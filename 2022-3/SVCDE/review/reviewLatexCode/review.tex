@@ -1,6 +1,11 @@
 \documentclass[12pt,a4paper]{article}
 \usepackage[utf8]{inputenc}
 \usepackage{blindtext, titlesec, amsthm, thmtools, amsmath, amsfonts, scalerel, amssymb, graphicx, titlesec}
+\usepackage[hidelinks]{hyperref}
+\usepackage{xcolor}
+%\hypersetup{colorlinks,linkcolor={red!20!black},citecolor={blue!50!black,urlcolor={blue!80!black}}
+\hypersetup{frenchlinks=true}
+
 
 \newtheorem{theorem}{Theorem}[subsection]
 \newtheorem{lemma}[theorem]{Lemma}
@@ -289,6 +294,9 @@ Ommited.
 \]
 	
 \end{corollary}
+\begin{remark}
+	Triple integral, see example 50 page 47.
+\end{remark}
 
 \subsection{Change of Variables}
 \subsubsection{Double Integrals: To Polar Coordinates}
@@ -302,6 +310,43 @@ If the area $R$ is given by $r_0 \leq r \leq r_1, \theta_0 \leq \theta \leq \the
 \]
 Notice the extra $r$ in the integrand.
 \end{theorem}
+
+\subsubsection{Triple Integrals: To Cylindrical Coordinates}
+\begin{theorem}[Change of Variables To Cylindrical Coordinates]
+Recall the cylindrical coordinate $(r, \theta, z)$ is defined by: $r^2 = x^2+y^2, x = r\cos{\theta}, y = r\sin{\theta}$
+If the volume $V$ is given by $r_0 \leq r \leq r_1, \theta_0 \leq \theta \leq \theta_1, z_0 \leq z \leq z_1$, then:
+\[
+	\iiint_V f(x,y,z) dV = \iiint_D f(r\cos{\theta}, r\sin{\theta}, z) r dz dr d\theta
+	= \int_{r_0}^{r_1} \int_{\theta_0}^{\theta_1} \int_{z_0}^{z_1} f(r\cos{\theta}, r\sin{\theta}, z) r dz dr d\theta
+\]
+Notice the extra $r$ in the integrand.
+\end{theorem}
+
+\subsubsection{Triple Integrals: To Spherical Coordinates}
+\begin{theorem}[Change of Variables To Spherical Coordinates]
+Recall the spherical coordinate
+$(r, \theta, \phi)$
+is defined by: $r^2 = x^2+y^2+z^2, x = r\sin{\phi}\cos{\theta}, y = r\sin{\theta}\sin{\phi}, z = r\cos{\phi}$
+
+If the volume $V$ is given by $r_0 \leq r \leq r_1, \theta_0 \leq \theta \leq \theta_1, \phi_0 \leq \phi \leq \phi_1$, then:
+\[
+	\iiint_V f(x,y,z) dV = \iiint_D f(r\sin{\phi}\cos{\theta}, r\sin{\theta}\sin{\phi}, r\cos{\phi}) r^2 \sin{\phi} dr d\theta d\phi
+\]
+
+Notice the extra $r^2 \sin{\phi}$ in the integrand.
+\end{theorem}
+\begin{remark}
+	More excercises needed.
+\end{remark}
+
+
+
+
+
+
+
+
+
 \section{Formulae Cheatsheet}
 \subsection{Trignometric Formulae}
 \begin{enumerate}
