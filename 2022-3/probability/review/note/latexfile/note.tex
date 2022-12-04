@@ -1,0 +1,61 @@
+\documentclass[12pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsthm, blindtext, titlesec, thmtools, amsmath, amsfonts, scalerel, amssymb, graphicx}
+
+\newtheorem{theorem}{Theorem}[subsection]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{hypothesis}{Hypothesis}
+
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}[section]
+
+\title{Probability Note}
+\author{Harry Han}
+\date{Dec 2022}
+\begin{document}
+
+\maketitle
+\tableofcontents
+\newpage
+
+\section{Basics Definitions}
+\begin{definition}[Sample Spaces]
+	A sample space is a set of all possible outcomes of an experiment.
+\end{definition}
+
+\begin{definition}[Events]
+	An event is a subset of the sample space.
+\end{definition}
+
+\begin{definition}[Probability Mass Function]
+	Let 
+	$ \mathbb{S} = \{x_1, x_2, \dots \}$ be a sample space and domain of function $F.$
+	$F$ is its probability mass function provided that: $0<F(x_i)<1$ and $\sum_{i=1} F(x_i) = 1$.
+\end{definition}
+
+\begin{definition}[Probability of an Event]
+	Let $A$ be an event and $F$ be its probability mass function.
+	Then $P(A) = \sum_{x_i \in A} F(x_i)$.
+\end{definition}
+
+\begin{definition}[Independence of an Event]
+	Let $A$ and $B$ be two events.
+	Then $A$ and $B$ are independent if $P(A \cap B) = P(A)P(B)$.
+\end{definition}
+
+\begin{definition}[Random Variable]
+	A random variable is a function on sample space.
+\end{definition}
+
+\begin{definition}[Idenpendence of Random Variable]
+	Two random variables $X$ and $Y$ are independent if and only if $P(X=x, Y=y) = P(X=x)P(Y=y)$ for all $x$ and $y$.
+\end{definition}
+
+\begin{definition}[Expected Value of a Random Variable]
+	Let $X$ be a random variable.
+	Its expected value is $E(X)= \sum_i P(x_i)x_i$	
+\end{definition}
+
+	
+\end{document}

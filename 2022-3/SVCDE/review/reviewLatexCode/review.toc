@@ -1,0 +1,14 @@
+\contentsline {section}{\numberline {1}Vectors and Geometry}{2}{}%
+\contentsline {section}{\numberline {2}Partial Derivatives}{3}{}%
+\contentsline {subsection}{\numberline {2.1}Limits}{3}{}%
+\contentsline {subsection}{\numberline {2.2}Partial Derivatives}{3}{}%
+\contentsline {subsection}{\numberline {2.3}Maximum and Minimum}{5}{}%
+\contentsline {subsubsection}{\numberline {2.3.1}Function of Three Variables}{6}{}%
+\contentsline {subsubsection}{\numberline {2.3.2}Lagrange Multiplier}{6}{}%
+\contentsline {section}{\numberline {3}Multiple Integrals}{6}{}%
+\contentsline {subsection}{\numberline {3.1}Double And Triple Integrals}{6}{}%
+\contentsline {subsection}{\numberline {3.2}Change of Variables}{7}{}%
+\contentsline {subsubsection}{\numberline {3.2.1}Double Integrals: To Polar Coordinates}{7}{}%
+\contentsline {section}{\numberline {4}Formulae Cheatsheet}{7}{}%
+\contentsline {subsection}{\numberline {4.1}Trignometric Formulae}{7}{}%
+\contentsline {subsection}{\numberline {4.2}Common Integrals}{7}{}%
