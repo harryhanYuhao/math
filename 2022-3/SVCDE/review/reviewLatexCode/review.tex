@@ -340,13 +340,102 @@ Notice the extra $r^2 \sin{\phi}$ in the integrand.
 \end{remark}
 
 
+\subsubsection{Change of Variable in General: Jacobian}
+\begin{definition}[Jacobian]
+Consider the transformation from $u,v$ plane to $x,y$ plane, where $x = x(u,v), y = y(u, v)$ For bijective transformation, the jacobian is defined as:
+	\[
+		J_2 = \frac{\partial x \partial y}{\partial u \partial v} 
+		= \frac{\partial x}{\partial u} \frac{\partial y}{\partial v} - \frac{\partial x}{\partial v} \frac{\partial y}{\partial u}
+		=\begin{vmatrix}
+			\dfrac{\partial x}{\partial u} & \dfrac{\partial x}{\partial v} \\
+			\dfrac{\strut\partial y}{\partial u} & \dfrac{\partial y}{\partial v}
+		\end{vmatrix}
+	\]
+
+The jacobian for transformation from $u,v,w$ plane to $x,y,z$ plane, where $x=x(u,v,w), y = y(u,v,w), z = z(u,v,w)$ is defined as:
+\[
+	J_3 = \frac{\partial x \partial y \partial z}{\partial u \partial v \partial w}
+=	\begin{vmatrix}
+		\dfrac{\partial x}{\partial u} & \dfrac{\partial x}{\partial v} & \dfrac{\partial x}{\partial w} \\
+		\dfrac{\strut\partial y}{\partial u} & \dfrac{\partial y}{\partial v} & \dfrac{\partial y}{\partial w} \\
+		\dfrac{\strut\partial z}{\partial u} & \dfrac{\partial z}{\partial v} & \dfrac{\partial z}{\partial w}
+	\end{vmatrix}
+\]
+\end{definition}
+
+\begin{theorem}[Change of Variable in General]
+If the transformation from $u,v$ plane to $x,y$ plane is bijective, then:
+\[
+	\iint_D f(x,y) dA = \iint_D g(u,v) |J_2| du dv
+\]
+Where $g(u,v) = f(x(u,v), y(u,v))$.
+
+If the transformation from $u,v,w$ plane to $x,y,z$ plane is bijective, then:
+\[
+	\iiint_V f(x,y,z) dV = \iiint_V g(u,v,w) |J_3| du dv dw
+\]
+Where $g(u,v,w) = f(x(u,v,w), y(u,v,w), z(u,v,w))$.
+
+Notice the Jacobian is taken as absolute value.
+\end{theorem}
+
+\begin{remark}
+	More excercises needed. See Example 54, lecture note page 51.
+\end{remark}
 
 
+\section{Vector Calculus}
+
+\subsection{Vector Fields}
+\begin{definition}[Vector Field]
+A vector field is a function 
+$\underline{F}: \mathbb{R}^n \rightarrow \mathbb{R}^n$.
+The input and output are $n$ dimensional vectors.
+\end{definition}
+
+\begin{definition}[Conservative Vector Field]
+A vector field $\underline{F}$ is conservative if there exists a function $f$ such that
+$\underline{\nabla} f = \underline{F}$.
+\end{definition}
+
+\begin{definition}[Line Integral]
+
+If $f$ is a function of three variable, the line integral along the curve $\gamma$ is defined as:
+\[
+	\int_\gamma f(x,y,z) ds 
+	= \int_{t_0} ^{t_1} f(x(t), y(t), z(t)) \sqrt{ \frac{dx}{dt}^2 + \frac{dy}{dt}^2 + \frac{dz}{dt}^2 } dt
+\]
+Where $\gamma$ is parametrized by $x=x(t), y=y(t), z=z(t),$ from $t_0$ to $t_1$.
+
+Moreover
+\[
+	\int_\gamma F dx = \int_{t_0} ^{t_1} F(x(t), y(t), z(t)) \frac{dx}{dt} dt
+\]
+Line integral alone $y$ and $z$ are defined similarly.
+
+\end{definition}
 
 
+\begin{definition}[Line Integral of a Vector Field]
+The line integral of a vector field $\underline{F}$ along a curve $\gamma$ is defined as:
+\[
+	\int_\gamma \underline{F} \cdot d\underline{r} 
+	=	 \int_{\gamma} \underline{F} (\underline{r}) \cdot \underline{r}'dt
+	= \int_{\gamma} P_x dx + P_y dy + P_z dz
+\]
+Where $ \underline{F} = \underline{i} P_x + \underline{j} P_y +  \underline{k} P_z$
+\end{definition}
+
+\begin{theorem}[Fundamental Theorem of Line Integral]
+If $\underline{F}$ is conservative, and $ \underline{\nabla}f = \underline{F}$. Let $/$
+\[
+s
+\]
+ 
+\end{theorem}
 
 
-
+\newpage
 \section{Formulae Cheatsheet}
 \subsection{Trignometric Formulae}
 \begin{enumerate}
