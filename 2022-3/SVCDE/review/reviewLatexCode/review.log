@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2022.11.27)  5 DEC 2022 12:59
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2022.11.27)  5 DEC 2022 14:06
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -408,7 +408,7 @@ LaTeX Font Warning: Font shape `OT1/cmr/bx/sc' undefined
 
  [1
 
-{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}]
+{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}] [2]
 Package hyperref Info: bookmark level for unknown theorem defaults to 0 on input line 33.
 Package hyperref Info: bookmark level for unknown definition defaults to 0 on input line 49.
 
@@ -416,14 +416,14 @@ Overfull \hbox (28.75919pt too wide) in paragraph at lines 54--55
 \OT1/cmr/m/n/12 whose do-main is $\U/msb/m/n/12 R$ \OT1/cmr/m/n/12 and whose range is $\U/msb/m/n/12 R[]\OML/cmm/m/it/12 :$ \OT1/cmr/m/n/12 It has three com-po-nents $\OML/cmm/m/it/12 f\OT1/cmr/m/n/12 (\OML/cmm/m/it/12 t\OT1/cmr/m/n/12 )\OML/cmm/m/it/12 ; g\OT1/cmr/m/n/12 (\OML/cmm/m/it/12 t\OT1/cmr/m/n/12 )\OML/cmm/m/it/12 andh\OT1/cmr/m/n/12 (\OML/cmm/m/it/12 t\OT1/cmr/m/n/12 )$
  []
 
-[2]
+[3]
 Overfull \hbox (2.95558pt too wide) detected at line 118
 \OML/cmm/m/it/12 f[]\OT1/cmr/m/n/12 (\OML/cmm/m/it/12 x[]; x[]; [] ; x[]\OT1/cmr/m/n/12 ) = [] = [] []
  []
 
-[3]
+[4]
 Package hyperref Info: bookmark level for unknown remark defaults to 0 on input line 137.
- [4]
+ [5]
 Overfull \hbox (4.30305pt too wide) in paragraph at lines 224--226
 [][]\OT1/cmr/bx/sc/12 Theorem 2.3.2 \OT1/cmr/m/n/12 (Sec-ond Deriva-tive Test)\OT1/cmr/bx/sc/12 . []\OT1/cmr/m/it/12 Sup-pose the sec-ound par-tial deriva-
  []
@@ -433,7 +433,7 @@ Overfull \hbox (4.30305pt too wide) in paragraph at lines 239--241
 [][]\OT1/cmr/bx/sc/12 Theorem 2.3.3 \OT1/cmr/m/n/12 (Sec-ond Deriva-tive Test)\OT1/cmr/bx/sc/12 . []\OT1/cmr/m/it/12 Sup-pose the sec-ound par-tial deriva-
  []
 
-[5] [6]
+[6] [7]
 Package hyperref Info: bookmark level for unknown corollary defaults to 0 on input line 291.
 
 Overfull \hbox (7.438pt too wide) detected at line 310
@@ -450,26 +450,26 @@ Overfull \hbox (8.00443pt too wide) in paragraph at lines 327--330
 \OT1/cmr/m/it/12 spher-i-cal co-or-di-nate $\OT1/cmr/m/n/12 (\OML/cmm/m/it/12 r; ^^R; ^^^\OT1/cmr/m/n/12 )$ \OT1/cmr/m/it/12 is de-fined by: $\OML/cmm/m/it/12 r[] \OT1/cmr/m/n/12 = \OML/cmm/m/it/12 x[] \OT1/cmr/m/n/12 + \OML/cmm/m/it/12 y[] \OT1/cmr/m/n/12 + \OML/cmm/m/it/12 z[]; x \OT1/cmr/m/n/12 = \OML/cmm/m/it/12 r [] ^^^ [] ^^R; y \OT1/cmr/m/n/12 =
  []
 
-[7] [8] [9] [10] (./review.aux)
+[8] [9] [10] [11] [12] (./review.aux)
 
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
 Package rerunfilecheck Info: File `review.out' has not changed.
-(rerunfilecheck)             Checksum: 0F7F1DD3D0332ADBF107538F022FB46F;3397.
+(rerunfilecheck)             Checksum: 717BD639D38AA1DF1E71D50E44362B19;4171.
  ) 
 Here is how much of TeX's memory you used:
- 11667 strings out of 478287
- 182492 string characters out of 5849288
- 484599 words of memory out of 5000000
- 29558 multiletter control sequences out of 15000+600000
+ 11692 strings out of 478287
+ 182971 string characters out of 5849288
+ 484602 words of memory out of 5000000
+ 29567 multiletter control sequences out of 15000+600000
  478670 words of font info for 64 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  70i,8n,76p,351b,494s stack positions out of 5000i,500n,10000p,200000b,80000s
 </usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmcsc10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on review.pdf (10 pages, 193947 bytes).
+Output written on review.pdf (12 pages, 199889 bytes).
 PDF statistics:
- 343 PDF objects out of 1000 (max. 8388607)
- 301 compressed objects within 4 object streams
- 132 named destinations out of 1000 (max. 500000)
- 153 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 385 PDF objects out of 1000 (max. 8388607)
+ 341 compressed objects within 4 object streams
+ 148 named destinations out of 1000 (max. 500000)
+ 185 words of extra memory for PDF output out of 10000 (max. 10000000)
 
