@@ -394,6 +394,21 @@ The input and output are $n$ dimensional vectors.
 \end{definition}
 
 
+\subsubsection{Conservative Vector Fields}
+\begin{theorem}[Conservative Vector Fields]
+	Vector field $ \underline{F}(x,y)$
+	is conservative, provided that it is defined on all 
+	$ \mathbb{R}^2,$ if and only if
+	\[
+		\frac{\partial P}{\partial y} = \frac{\partial Q}{\partial x}
+	\]
+
+For vector field $ \underline{G}(x,y,z)$, provided it is defined on all $ \mathbb{R}^3$, it is conservative if and only if:
+\[
+	\underline{\nabla} \times \underline{G} = 0
+\]
+
+\end{theorem}
 \begin{definition}[Conservative Vector Field]
 A vector field $\underline{F}$ is conservative if there exists a function $f: \mathbb{R}^n \rightarrow \mathbb{R}$ such that
 $\underline{\nabla} f = \underline{F}$.
@@ -429,14 +444,14 @@ The divergence of a vector field $\underline{F} = F_x \underline{i} +  F_y \unde
 \]
 \end{definition}
 
-\begin{theorem}[Divergence Theorem]
-If $\underline{F}$ is a conservative vector field, then:
-\[
-	\iiint_V \underline{\nabla} \cdot \underline{F} dV = \iint_D \underline{\nabla} \cdot \underline{F} dA
-\]
-\end{theorem}
-
-\subsubsection{Integrals Related to Vector Fields}
+\begin{corollary}
+	Two facts about curl and divergence:
+	\begin{enumerate}
+		\item \text{div} (\text{curl} $\underline{F}$) = 0
+		\item \text{curl} ($\nabla f) = 0$
+	\end{enumerate}
+\end{corollary}
+\subsection{Line Integral}
 \begin{definition}[Line Integral]
 
 If $f$ is a function of three variable, the line integral along the curve $\gamma$ is defined as:
@@ -475,21 +490,54 @@ Then
 
 \end{theorem}
 
-\subsubsection{Conservative Vector Fields}
-\begin{theorem}[Conservative Vector Fields]
-	Vector field $ \underline{F}(x,y)$
-	is conservative, provided that it is defined on all 
-	$ \mathbb{R}^2,$ if and only if
-	\[
-		\frac{\partial P}{\partial y} = \frac{\partial Q}{\partial x}
-	\]
-
-For vector field $ \underline{G}(x,y,z)$, provided it is defined on all $ \mathbb{R}^3$, it is conservative if and only if:
+\subsection{Surface Integral}
+\begin{theorem}[Surface Area]
+The surface area of a parametrized surface $\underline{r}(u,v) = \underline{i}x(u,v) + \underline{j}y(u,v) + \underline{k}z(u,v)$, for $(u,v) \in \mathbb{D}$ is:
 \[
-	\underline{\nabla} \times \underline{G} = 0
+	\iint_{\mathbb{D}} | \underline{r}_u \times \underline{r}_v | dA
 \]
+Where $ \underline{r}_u = \dfrac{\partial \underline{r}}{\partial u}$ 
+and $ \underline{r}_v = \dfrac{\partial \underline{r}}{\partial v}$. 
 
+Notice $ \underline{r}_u $ and $ \underline{r}_v $ are tangent vectors to the surface, and $||$ operator returns their magnitude.
 \end{theorem}
+
+\begin{corollary}[When z is a function of x and y]
+For surface paramatrized as $ \underline{r} = \underline{i}x+ \underline{j}y+ \underline{k} f(x,y),$ the surface area of the surface for $(x,y) \in \mathbb{D}$ is 
+\[
+	\iint_{ \mathbb{D}} \sqrt{1 + \left( \frac{\partial f}{\partial x} \right)^2 + \left( \frac{\partial f}{\partial y} \right)^2} dA
+\]
+	
+\end{corollary}
+
+
+\begin{definition}[Surface Integral]
+	Consider function $f(x,y,z)$ defined on the surface $ \mathbb{S}$ which is described by the vector function: 
+	\[
+		\underline{r}(u,v) = \underline{i}x(u,v) + \underline{j}y(u,v) + \underline{k}z(u,v), (u, v) \in \mathbb{D}
+	\]
+	Then the surface integral of $f$ over the surface $\mathbb{S}$ is defined as:
+	\[
+		\iint_{\mathbb{S}} f(x,y,z) dS
+	=
+		\iint_{\mathbb{D}} f( \underline{r}(u,v)) | \underline{r}_u \times \underline{r}_v | dA
+	\]
+Where $ \underline{r}_u = \dfrac{\partial \underline{r}}{\partial u}$
+$ \underline{r}_v = \dfrac{\partial \underline{r}}{\partial v}$,
+and$f( \underline{r}(u,v)) = f(x(u,v), y(u,v), z(u,v))$
+
+
+\end{definition}
+
+\begin{remark}
+	More excercises needed.
+\end{remark}
+
+
+
+
+
+
 
 
 \subsection{Theoremae Trinitatis}
@@ -523,5 +571,27 @@ For vector field $ \underline{G}(x,y,z)$, provided it is defined on all $ \mathb
 \begin{enumerate}
 	\item $\int \cos^2{\theta} = \frac{\theta}{2} + \frac{\sin{2\theta}}{4}, \int_0^{\pi} \cos^2{\theta} = \frac{\pi}{2} $
 	\item $\int \sin^2{\theta} = \frac{\theta}{2} - \frac{\sin{2\theta}}{4},  \int_0^{\pi} \sin^2{\theta} = \frac{\pi}{2} $
-\end{enumerate}:
+\end{enumerate}
+
+\subsection{Other Common Computations}
+\begin{enumerate}
+	\item For $ \underline{r}(\phi, \theta) = \sin{\phi}\cos{\theta} \underline{i} + \sin{\phi}\sin{\theta} \underline{j} + \cos{\phi} \underline{k}, 
+		|\underline{r}_{\phi} \times \underline{r}_{\theta}| = \sin{\phi}$  
+
+
+\end{enumerate}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 \end{document}
