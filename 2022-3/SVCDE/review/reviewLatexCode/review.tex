@@ -606,6 +606,160 @@ Let $ \underline{F}: \mathbb{R}^3 \rightarrow \mathbb{R}^3$ be a vector field th
 \end{theorem}
 
 
+\section{Differential Equations}
+\subsection{Classification}
+\begin{definition}[Classification of Diferential Equation]
+	\begin{enumerate}
+		\item ordinary differential equation (ODE) involves only differentiation of one variable
+		\item partial differential equation (PDE) involves differentiation of more than one variable.
+		\item Order of differential equation is the highest order of differentiation in the equation.
+	\end{enumerate}
+The $n^{\text{th}}$ order linear differential equation has the general form:
+\[
+	\frac{d^n y}{dx^n} + a_1 \frac{d^{n-1} y}{dx^{n-1}} + a_2 \frac{d^{n-2} y}{dx^{n-2}} + \cdots + a_{n-1} \frac{d y}{dx} + a_n y = a_0(x)
+\]
+Where $a_i$ asre functions of $x$. 
+The equation is called homogeneous if $a_0(x) = 0$.
+
+If $S_1(x), S_2(x) \dots $ are solution to the homogeneous equation, then any of its linear combinations are also a solution.
+\end{definition}
+
+
+\begin{theorem}[Uniqueness of the solution to Inital Value Problem]
+Consider the general $n^{\text{th}}$ order linear differential equation:
+\[
+f(y^{n}, y^{n-1}, \dots, y, x) = 0 
+\]
+Provided with inital values 
+$$y (x_0) = a_0, y^{1}(x_1) = a_1 \dots y^{n}(x_n) = a_n $$
+There is one unique solution to this Initial Value Problem.
+
+\end{theorem}
+
+
+\subsection{First Order Ordinary Differential Equation}
+\begin{theorem}[Solutions to Linear First Order ODE]
+The linear ODE of the form:
+\[
+	y' + P(x)y = Q(x)
+\]
+has the general solution:
+\[
+	y(x) = e^{-\int P(x) dx}\left( \int Q(x) e^{\int P(x) dx} dx + C\right)
+\]
+Where $C$ is an arbitrary constant.
+
+\end{theorem}
+
+\begin{theorem}[Separable ODE]
+	ODE are separarble if it can be written in the form:
+\[
+	\frac{dy}{dx} h(y) = g(x)
+\]
+And the solution is given by simply integration:
+\[
+	\int h(y) dy = \int g(x) dx
+\]
+\end{theorem}
+
+\begin{theorem}[Homogeneous ODE (Another Homogeneous)]
+A ODE is called homogeneous if it can be written in the form:
+\[
+	\frac{dy}{dx}  = g(\frac{y}{x})
+\]
+
+It can be solved by introducing a new variable $u = \dfrac{y}{x}$. Notice 
+$ \dfrac{dy}{dx} = u + x \dfrac{du}{dx}$.
+	
+\end{theorem}
+
+\begin{theorem}[Exact ODE]
+	The ODE is exact if it can be written in the form:
+\[
+	\frac{ \partial \psi}{ \partial x} + \frac{ \partial \psi}{ \partial y} \frac{dy}{dx} = 0
+\]
+Where $\psi$ is a function of $x$ and $y$.
+
+And its general the solution is $ \psi (x,y) = C$.
+
+Moreover, a equation in the form of $ M(x,y) + \frac{dy}{dx} N(x,y) = 0$ is if and only if $ \frac{ \partial M}{y} = \frac{ \partial N}{x}.$
+c.f. the determination of conservative vector field.
+\end{theorem}
+
+\begin{remark}[On Integration Factor]
+The process of finding the solution of a differential equation many times involves heavily upon the creative application of algebraic manipulation
+and the computation capabilities of the problem solver. For a particular kind of equation whose general solution is unknown, there are many times
+tricks that may be useful. One of them is integration factor.
+
+For example, consider the following equation:
+\[
+	3xy+y^2 +(x^2+xy)y' = 0
+\]
+This equation can be turned into an exact equation by multiplying both sides by $x$, and the $\psi$ function can be found to be: $x^3y+ \dfrac{1}{2}x^2y^2.$
+\end{remark}
+
+\subsection{Second Order Ordinary Differential Equation}
+
+\subsubsection{General Solutions to Second Order Homogeneous ODE}
+
+\begin{theorem}[General Solutions to Second Order Homogeneous ODE]
+	Let $y'' + a_1y' +  a_2y = 0$ be a second order homogeneous ODE.
+	Substitute the function $T(x) = e^{rx},$ where $r$ is a constant:
+\begin{equation}\label{eq:2HOMOODE}
+		r^2e^{rx} + a_1re^{rx} + a_2e^{rx} = 0 \iff r^2 + a_1r + a_2 = 0
+\end{equation}
+
+Here we have three cases.
+
+\textbf{Case 1}: equation \ref{eq:2HOMOODE} has two distinct real roots $r_1$ and $r_2$.
+
+Then the general solution is: 
+\[
+	y(x) = C_1e^{r_1x} + C_2e^{r_2x}
+\]
+
+\textbf{Case 2}: equation \ref{eq:2HOMOODE} has two repeated real roots $r_1$.
+
+Then the general solution is:
+\[
+	y(x) = C_1e^{r_1x} + C_2x e^{r_1x}
+\]
+
+\textbf{Case 3}: equation \ref{eq:2HOMOODE} has two complex roots $r_1+im_1$ and $r_1 - im_1$, where $i$ is the imaginary unit.
+
+Recall Euler's formula: $e^{ix} = \cos x + i \sin x$.
+Then the general solution is:
+\[
+	y(x) = C_1e^{r_1x}e^{im_1x} + C_2e^{r_1x}e^{-im_1x}
+\]
+Which is equivalent to:
+\[
+	y(x) = C_3\cos(m_1x)e^{r_1x} + C_4\sin(m_1x)e^{r_1x}
+\]
+\end{theorem}
+
+\subsubsection{Solutions to Certain Second Order Non-Homogeneous ODE}
+
+\begin{theorem}[Method of Variation of Parameters]
+	Consider the linear non-homogeneous second order ODE:
+\begin{equation}\label{eq:2NHOMOODE}
+	ay'' + by' + cy = g(t)
+\end{equation}
+Suppose the homogeneous equation ($ayy'' + by' + cy = 0$) has the general solution:
+\[
+	y_c(t) = C_1y_1(t) + C_2y_2(t)
+\]
+Then the particular solution of the non-homogeneous equation \ref{eq:2NHOMOODE} is: 
+\[
+	y_p(t) = -y_1(t)\int \frac{y_2(t)g(t)}{aW(y_1,y_2)} dt + y_2(t)\int \frac{y_1(t)g(t)}{aW(y_1,y_2)} dt
+\]
+
+Where $W$ is Wronskian operator and 
+$W(y_1,y_2) = y_1y_2' - y_2y_1'$.
+\end{theorem}
+
+
+
 
 
 
@@ -613,7 +767,7 @@ Let $ \underline{F}: \mathbb{R}^3 \rightarrow \mathbb{R}^3$ be a vector field th
 
 \newpage
 
-\section{Formulae Cheatsheet}
+\section{Quaedam Formulae Utillimae}
 \subsection{Trignometric Formulae}
 \begin{enumerate}
 \item $\sin^2{\theta} + \cos^2{\theta} = 1$
@@ -633,6 +787,8 @@ Let $ \underline{F}: \mathbb{R}^3 \rightarrow \mathbb{R}^3$ be a vector field th
 
 
 \end{enumerate}
+
+
 
 
 
