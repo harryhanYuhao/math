@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2022.11.27)  5 DEC 2022 20:13
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2022.11.27)  6 DEC 2022 11:45
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -409,10 +409,10 @@ LaTeX Font Warning: Font shape `OT1/cmr/bx/sc' undefined
 \openout4 = `review.toc'.
 
  [2]
-Package hyperref Info: bookmark level for unknown theorem defaults to 0 on input line 33.
-Package hyperref Info: bookmark level for unknown definition defaults to 0 on input line 49.
+Package hyperref Info: bookmark level for unknown theorem defaults to 0 on input line 32.
+Package hyperref Info: bookmark level for unknown definition defaults to 0 on input line 48.
 
-Overfull \hbox (28.75919pt too wide) in paragraph at lines 54--55
+Overfull \hbox (28.75919pt too wide) in paragraph at lines 53--54
 \OT1/cmr/m/n/12 whose do-main is $\U/msb/m/n/12 R$ \OT1/cmr/m/n/12 and whose range is $\U/msb/m/n/12 R[]\OML/cmm/m/it/12 :$ \OT1/cmr/m/n/12 It has three com-po-nents $\OML/cmm/m/it/12 f\OT1/cmr/m/n/12 (\OML/cmm/m/it/12 t\OT1/cmr/m/n/12 )\OML/cmm/m/it/12 ; g\OT1/cmr/m/n/12 (\OML/cmm/m/it/12 t\OT1/cmr/m/n/12 )\OML/cmm/m/it/12 andh\OT1/cmr/m/n/12 (\OML/cmm/m/it/12 t\OT1/cmr/m/n/12 )$
  []
 
@@ -450,7 +450,12 @@ Overfull \hbox (8.00443pt too wide) in paragraph at lines 327--330
 \OT1/cmr/m/it/12 spher-i-cal co-or-di-nate $\OT1/cmr/m/n/12 (\OML/cmm/m/it/12 r; ^^R; ^^^\OT1/cmr/m/n/12 )$ \OT1/cmr/m/it/12 is de-fined by: $\OML/cmm/m/it/12 r[] \OT1/cmr/m/n/12 = \OML/cmm/m/it/12 x[] \OT1/cmr/m/n/12 + \OML/cmm/m/it/12 y[] \OT1/cmr/m/n/12 + \OML/cmm/m/it/12 z[]; x \OT1/cmr/m/n/12 = \OML/cmm/m/it/12 r [] ^^^ [] ^^R; y \OT1/cmr/m/n/12 =
  []
 
-[8] [9] [10] [11] [12] [13] (./review.aux)
+[8] [9] [10] [11] [12]
+Overfull \hbox (7.35313pt too wide) in paragraph at lines 598--600
+[][]\OT1/cmr/bx/sc/12 Theorem 4.5.3 \OT1/cmr/m/n/12 (Di-ver-gence The-o-rem)\OT1/cmr/bx/sc/12 . []\OT1/cmr/m/it/12 Let $\OML/cmm/m/it/12 E$ \OT1/cmr/m/it/12 be a sim-ple solid re-gion bounded
+ []
+
+[13] [14] (./review.aux)
 
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
@@ -458,18 +463,18 @@ Package rerunfilecheck Info: File `review.out' has not changed.
 (rerunfilecheck)             Checksum: 29AB3F496A55F040EDC07A1A88413C86;4377.
  ) 
 Here is how much of TeX's memory you used:
- 11708 strings out of 478287
- 183230 string characters out of 5849288
+ 11723 strings out of 478287
+ 183554 string characters out of 5849288
  484602 words of memory out of 5000000
- 29571 multiletter control sequences out of 15000+600000
+ 29575 multiletter control sequences out of 15000+600000
  478670 words of font info for 64 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  70i,8n,76p,351b,494s stack positions out of 5000i,500n,10000p,200000b,80000s
 </usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmcsc10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on review.pdf (13 pages, 204887 bytes).
+Output written on review.pdf (14 pages, 209509 bytes).
 PDF statistics:
- 411 PDF objects out of 1000 (max. 8388607)
- 366 compressed objects within 4 object streams
- 160 named destinations out of 1000 (max. 500000)
+ 427 PDF objects out of 1000 (max. 8388607)
+ 381 compressed objects within 4 object streams
+ 171 named destinations out of 1000 (max. 500000)
  201 words of extra memory for PDF output out of 10000 (max. 10000000)
 

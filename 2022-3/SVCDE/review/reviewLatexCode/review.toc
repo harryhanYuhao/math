@@ -18,8 +18,8 @@
 \contentsline {subsection}{\numberline {4.2}Curl and Divergence}{10}{subsection.4.2}%
 \contentsline {subsection}{\numberline {4.3}Line Integral}{11}{subsection.4.3}%
 \contentsline {subsection}{\numberline {4.4}Surface Integral}{11}{subsection.4.4}%
-\contentsline {subsection}{\numberline {4.5}Theoremae Trinitatis}{12}{subsection.4.5}%
-\contentsline {section}{\numberline {5}Formulae Cheatsheet}{13}{section.5}%
-\contentsline {subsection}{\numberline {5.1}Trignometric Formulae}{13}{subsection.5.1}%
-\contentsline {subsection}{\numberline {5.2}Common Integrals}{13}{subsection.5.2}%
-\contentsline {subsection}{\numberline {5.3}Other Common Computations}{13}{subsection.5.3}%
+\contentsline {subsection}{\numberline {4.5}Theoremae Trinitatis}{13}{subsection.4.5}%
+\contentsline {section}{\numberline {5}Formulae Cheatsheet}{14}{section.5}%
+\contentsline {subsection}{\numberline {5.1}Trignometric Formulae}{14}{subsection.5.1}%
+\contentsline {subsection}{\numberline {5.2}Common Integrals}{14}{subsection.5.2}%
+\contentsline {subsection}{\numberline {5.3}Other Common Computations}{14}{subsection.5.3}%

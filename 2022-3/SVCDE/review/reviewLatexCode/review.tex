@@ -29,7 +29,6 @@
 
 \section{Vectors and Geometry}
 
-
 \begin{theorem}[Vector Computation]
 Basics computation rules for vectors:
 	\begin{enumerate}
@@ -86,6 +85,7 @@ s(t)=\int_a^b \sqrt{x'(t)^2 + y'(t)^2 + z'(t)^2} dt = \int_a^b | \underline{r}'(
 	For vector function $ \underline{r}(t) $, its unit tangent vector is $ \underline{T} = \displaystyle\frac{ \underline{r}(t)}{| \underline{r}(t)|} $
 	, and its unit normal vector is $ \underline{N}(t) = \displaystyle\frac{ \underline{T'}(t)}{| \underline{T'}(t)|}$, and its binormal vector is $ \underline{T}(t) \times \underline{N}(t) $
 \end{definition}
+
 
 \section{Partial Derivatives}
 
@@ -393,7 +393,6 @@ $\underline{F}: \mathbb{R}^n \rightarrow \mathbb{R}^n$.
 The input and output are $n$ dimensional vectors.
 \end{definition}
 
-
 \subsubsection{Conservative Vector Fields}
 \begin{theorem}[Conservative Vector Fields]
 	Vector field $ \underline{F}(x,y)$
@@ -534,10 +533,43 @@ and$f( \underline{r}(u,v)) = f(x(u,v), y(u,v), z(u,v))$
 \end{remark}
 
 
+\begin{definition}[Oriented Surface]
+	Let $\underline{r}(u,v)$ be a vector function on $\mathbb{D}$ that describes the surface $S$.
+	$ \displaystyle\frac{\underline{r}_u \times \underline{r}_v}{| \underline{r}_u \times \underline{r}_v|}$ is its unit normal vector to $S$.
 
-
-
-
+	Moreover, for surface $z = f(x,y)$ the unit normal vector is:
+	\[
+		\frac{-\underline{i} \displaystyle \frac{\partial f}{\partial x} - \underline{j} \frac{\partial f}{\partial y} + \underline{k}}
+		{\sqrt{1 + \left( \displaystyle\frac{\partial f}{\partial x} \right)^2 + \left( \dfrac{\partial f}{\partial y} \right)^2}}
+	\]
+\end{definition}
+\begin{definition}[Surface Integral Over Vector Field]
+	Let $\underline{F}(x,y,z)$ be a vector field defined on the surface $S$.
+	Then the surface integral of $\underline{F}$ over $S$ is defined as:
+	\[
+		\iint_{S} \underline{F} \cdot d\underline{S}
+	=
+	\iint_{S} \underline{F} \cdot \hat{ \underline{n}} dS
+	=
+		\iint_{\mathbb{D}} \underline{F}(\underline{r}(u,v)) \cdot \frac{\underline{r}_u \times \underline{r}_v}{| \underline{r}_u \times \underline{r}_v|} \cdot | \underline{r}_u \times \underline{r}_v| dA
+	\]
+Which equals to:
+\[
+	\iint_{\mathbb{D}} \underline{F}(\underline{r}(u,v)) \cdot \left( \underline{r}_u \times \underline{r}_v \right)dA
+\]	
+Moreover, for surface $z = g(x,y)$, we have:
+\[
+	\underline{F} \cdot | \underline{r}_u \times \underline{r}_v| 
+=
+	(F_x \underline{i} + F_y \underline{j} + F_z \underline{k}) \cdot \left( - \dfrac{ \partial g}{ \partial x} \underline{i} - \frac{ \partial g}{ \partial y} \underline{j} + \underline{k} \right)
+\]
+And the surface integral is:
+\[
+	\iint_{S} \underline{F} \cdot d\underline{S}
+=
+\iint _{ \mathbb{D}} - F_x \frac{ \partial g}{ \partial x} - F_y \frac{ \partial g}{ \partial y} + F_z dA
+\]
+\end{definition}
 
 
 \subsection{Theoremae Trinitatis}
@@ -552,6 +584,26 @@ and$f( \underline{r}(u,v)) = f(x(u,v), y(u,v), z(u,v))$
 
 \end{theorem}
 
+\begin{theorem}[Stokes' Theorem]
+	Let $\gamma$ be positively oriented, simply close, and piecewise smooth curve in $x,y$ plane.
+	Let $ \Gamma$ be the region bounded by $\gamma$.
+	If $ \underline{F}(x,y, z)$ is a continuous vector field on $\Gamma$, then
+\[
+	\iint _{\Gamma} \underline{\nabla} \times \underline{F} \cdot d\underline{S} = \int _{\gamma} \underline{F} \cdot d\underline{r}
+\]
+
+\end{theorem}
+
+\begin{theorem}[Divergence Theorem]
+Let $E$ be a simple solid region bounded by a positively oriented surface (outward) $\mathbb{S}$.
+Let $ \underline{F}: \mathbb{R}^3 \rightarrow \mathbb{R}^3$ be a vector field that has continuous partial derivative in $E$, then:
+
+\[
+	\iint _{\mathbb{S}} \underline{F} \cdot d\underline{S} = \iiint _{E} \underline{\nabla} \cdot \underline{F} dV
+\]
+
+
+\end{theorem}
 
 
 
@@ -560,6 +612,7 @@ and$f( \underline{r}(u,v)) = f(x(u,v), y(u,v), z(u,v))$
 
 
 \newpage
+
 \section{Formulae Cheatsheet}
 \subsection{Trignometric Formulae}
 \begin{enumerate}
@@ -580,16 +633,6 @@ and$f( \underline{r}(u,v)) = f(x(u,v), y(u,v), z(u,v))$
 
 
 \end{enumerate}
-
-
-
-
-
-
-
-
-
-
 
 
 
