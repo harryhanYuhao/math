@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2022.11.27)  6 DEC 2022 22:21
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2022.11.27)  7 DEC 2022 22:59
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -465,44 +465,48 @@ Overfull \hbox (8.4774pt too wide) in paragraph at lines 613--614
 []\OT1/cmr/m/n/12 ordinary dif-fer-
  []
 
-[13] [14]
+[13] [14] [15]
 
 LaTeX Font Warning: Font shape `OT1/cmr/m/scit' undefined
-(Font)              using `OT1/cmr/m/sc' instead on input line 714.
-
-
-LaTeX Font Warning: Font shape `OT1/cmr/m/scit' undefined
-(Font)              using `OT1/cmr/m/sc' instead on input line 721.
+(Font)              using `OT1/cmr/m/sc' instead on input line 734.
 
 
 LaTeX Font Warning: Font shape `OT1/cmr/m/scit' undefined
-(Font)              using `OT1/cmr/m/sc' instead on input line 728.
+(Font)              using `OT1/cmr/m/sc' instead on input line 741.
 
-[15]
 
 LaTeX Font Warning: Font shape `OT1/cmr/m/scit' undefined
-(Font)              using `OT1/cmr/m/sc' instead on input line 752.
+(Font)              using `OT1/cmr/m/sc' instead on input line 748.
 
-[16] [17] (./review.aux)
+
+LaTeX Font Warning: Font shape `OT1/cmr/m/scit' undefined
+(Font)              using `OT1/cmr/m/sc' instead on input line 772.
+
+[16]
+
+LaTeX Font Warning: Font shape `OT1/cmr/m/scit' undefined
+(Font)              using `OT1/cmr/m/sc' instead on input line 796.
+
+[17] [18] (./review.aux)
 
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
 Package rerunfilecheck Info: File `review.out' has not changed.
-(rerunfilecheck)             Checksum: 8884429D1F373453D1955E0EB5A63677;5947.
+(rerunfilecheck)             Checksum: D19383DE0C02D9AA50DC7DDBCC87DA4B;6098.
  ) 
 Here is how much of TeX's memory you used:
- 11777 strings out of 478287
- 184618 string characters out of 5849288
- 484744 words of memory out of 5000000
- 29595 multiletter control sequences out of 15000+600000
+ 11794 strings out of 478287
+ 185049 string characters out of 5849288
+ 484961 words of memory out of 5000000
+ 29602 multiletter control sequences out of 15000+600000
  479730 words of font info for 67 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  70i,8n,76p,402b,494s stack positions out of 5000i,500n,10000p,200000b,80000s
 </usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbxti10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmcsc10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cmextra/cmex8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmti8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on review.pdf (17 pages, 252174 bytes).
+Output written on review.pdf (18 pages, 256856 bytes).
 PDF statistics:
- 519 PDF objects out of 1000 (max. 8388607)
- 463 compressed objects within 5 object streams
- 202 named destinations out of 1000 (max. 500000)
- 249 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 540 PDF objects out of 1000 (max. 8388607)
+ 483 compressed objects within 5 object streams
+ 212 named destinations out of 1000 (max. 500000)
+ 257 words of extra memory for PDF output out of 10000 (max. 10000000)
 

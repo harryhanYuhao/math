@@ -72,7 +72,7 @@ s(t)=\int_a^b \sqrt{x'(t)^2 + y'(t)^2 + z'(t)^2} dt = \int_a^b | \underline{r}'(
 
 \begin{definition}[Unit Tangent Vector]
 	
-	For vector function $ \underline{r}(t) $, its unit tangent vector is $ \underline{T} = \displaystyle\frac{ \underline{r}(t)}{| \underline{r}(t)|} $
+	For vector function $ \underline{r}(t) $, its unit tangent vector is $ \underline{T} = \displaystyle\frac{ \underline{r'}(t)}{| \underline{r'}(t)|} $
 \end{definition}
 
 \begin{definition}[Curvature]
@@ -82,7 +82,7 @@ s(t)=\int_a^b \sqrt{x'(t)^2 + y'(t)^2 + z'(t)^2} dt = \int_a^b | \underline{r}'(
 \end{definition}
 
 \begin{definition}[Normal and binormal Vector]
-	For vector function $ \underline{r}(t) $, its unit tangent vector is $ \underline{T} = \displaystyle\frac{ \underline{r}(t)}{| \underline{r}(t)|} $
+	For vector function $ \underline{r}(t) $, its unit tangent vector is $ \underline{T} = \displaystyle\frac{ \underline{r'}(t)}{| \underline{r'}(t)|} $
 	, and its unit normal vector is $ \underline{N}(t) = \displaystyle\frac{ \underline{T'}(t)}{| \underline{T'}(t)|}$, and its binormal vector is $ \underline{T}(t) \times \underline{N}(t) $
 \end{definition}
 
@@ -625,7 +625,7 @@ If $S_1(x), S_2(x) \dots $ are solution to the homogeneous equation, then any of
 \end{definition}
 
 
-\begin{theorem}[Uniqueness of the solution to Inital Value Problem]
+\begin{theorem}[Uniqueness of the solution to Inital Value Problem]\label{UniquenessTheorem}
 Consider the general $n^{\text{th}}$ order linear differential equation:
 \[
 f(y^{n}, y^{n-1}, \dots, y, x) = 0 
@@ -699,10 +699,30 @@ This equation can be turned into an exact equation by multiplying both sides by 
 \end{remark}
 
 \subsection{Second Order Ordinary Differential Equation}
+Consider second order ODE of the form:
+\[
+	P(t) \frac{d^2y}{dt^2} + Q(t) \frac{dy}{dt} + R(t) y = G(t)
+\]
 
+Existence and Uniqueness Theorem (\ref{UniquenessTheorem}) says that fot the initial value problem $y(t_0)=\alpha, y'(t_0) = \beta$, there exists exactly one solution.
+
+\begin{definition}[Wroskian]
+	The Wroskian of two functions, $f(x)$ and $g(x)$ is defined as:\[
+		W(f,g) = \det \begin{bmatrix} f(x) & g(x) \\ f'(x) & g'(x) \end{bmatrix}
+	\]
+\end{definition}
+
+\begin{definition}[Linearly Independent Functions]
+	Two functions, $f_1(t)$ and $f_2(t)$ are linearly independent if if their Wronskian is not zero.
+More significantly, it means that $ \frac{f_1}{f_2} = g(t),$ where g(t) is not a constant function of $t$ in their domain.
+\end{definition}
+
+\begin{theorem}[Nature of Solutions to secound order linear ODE]
+	A second order linear ODE's solution would be two and only twosets of linearly independent functions.
+\end{theorem}
 \subsubsection{General Solutions to Second Order Homogeneous ODE}
 
-\begin{theorem}[General Solutions to Second Order Homogeneous ODE]
+\begin{theorem}[General Solutions to Second Order Homogeneous ODE with Constant Coefficients] \label{SolutionSOODEConstant}
 	Let $y'' + a_1y' +  a_2y = 0$ be a second order homogeneous ODE.
 	Substitute the function $T(x) = e^{rx},$ where $r$ is a constant:
 \begin{equation}\label{eq:2HOMOODE}
@@ -757,6 +777,26 @@ Then the particular solution of the non-homogeneous equation \ref{eq:2NHOMOODE} 
 Where $W$ is Wronskian operator and 
 $W(y_1,y_2) = y_1y_2' - y_2y_1'$.
 \end{theorem}
+
+\subsubsection{Euler's Equation}
+\begin{theorem}[Solution to Euler's Equation]
+	Consider the equation:
+\[
+	ax^2 \frac{d^2y}{dx^2} + bx \frac{dy}{dx} + cy = 0
+\]
+For constants $a,b,c$. The solution of can be found by introducing a new variable $t = ln(x)$
+
+Notice $ \frac{dy}{dx} = \frac{dy}{dt} \frac{dt}{dx} = \frac{dy}{dt} \frac{1}{x}$
+and $ \frac{d^2y}{dx^2} = \frac{d^2y}{dt^2} \frac{1}{x^2} - \frac{dy}{dt} \frac{1}{x^2}$
+
+Then the equation becomes:
+\[
+	a\frac{d^2y}{dt^2} + (b-a)\frac{dy}{dt} + cy = 0
+\]
+Which can be solved by theorem \ref{SolutionSOODEConstant}.
+\end{theorem}
+
+
 
 
 

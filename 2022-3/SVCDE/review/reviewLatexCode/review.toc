@@ -23,9 +23,10 @@
 \contentsline {subsection}{\numberline {5.1}Classification}{13}{subsection.5.1}%
 \contentsline {subsection}{\numberline {5.2}First Order Ordinary Differential Equation}{14}{subsection.5.2}%
 \contentsline {subsection}{\numberline {5.3}Second Order Ordinary Differential Equation}{15}{subsection.5.3}%
-\contentsline {subsubsection}{\numberline {5.3.1}General Solutions to Second Order Homogeneous ODE}{15}{subsubsection.5.3.1}%
+\contentsline {subsubsection}{\numberline {5.3.1}General Solutions to Second Order Homogeneous ODE}{16}{subsubsection.5.3.1}%
 \contentsline {subsubsection}{\numberline {5.3.2}Solutions to Certain Second Order Non-Homogeneous ODE}{16}{subsubsection.5.3.2}%
-\contentsline {section}{\numberline {6}Quaedam Formulae Utillimae}{17}{section.6}%
-\contentsline {subsection}{\numberline {6.1}Trignometric Formulae}{17}{subsection.6.1}%
-\contentsline {subsection}{\numberline {6.2}Common Integrals}{17}{subsection.6.2}%
-\contentsline {subsection}{\numberline {6.3}Other Common Computations}{17}{subsection.6.3}%
+\contentsline {subsubsection}{\numberline {5.3.3}Euler's Equation}{17}{subsubsection.5.3.3}%
+\contentsline {section}{\numberline {6}Quaedam Formulae Utillimae}{18}{section.6}%
+\contentsline {subsection}{\numberline {6.1}Trignometric Formulae}{18}{subsection.6.1}%
+\contentsline {subsection}{\numberline {6.2}Common Integrals}{18}{subsection.6.2}%
+\contentsline {subsection}{\numberline {6.3}Other Common Computations}{18}{subsection.6.3}%
