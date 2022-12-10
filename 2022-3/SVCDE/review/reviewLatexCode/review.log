@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2022.11.27)  7 DEC 2022 22:59
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2022.11.27)  10 DEC 2022 22:19
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -333,27 +333,31 @@ Package hyperref Info: Option `frenchlinks' set `true' on input line 7.
 File: l3backend-pdftex.def 2022-01-12 L3 backend support: PDF output (pdfTeX)
 \l__color_backend_stack_int=\count308
 \l__pdf_internal_box=\box53
-) (./review.aux)
+) (./review.aux
+
+LaTeX Warning: Label `eq:2NHOMOODE' multiply defined.
+
+)
 \openout1 = `review.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 24.
-LaTeX Font Info:    ... okay on input line 24.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 24.
-LaTeX Font Info:    ... okay on input line 24.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 24.
-LaTeX Font Info:    ... okay on input line 24.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 24.
-LaTeX Font Info:    ... okay on input line 24.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 24.
-LaTeX Font Info:    ... okay on input line 24.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 24.
-LaTeX Font Info:    ... okay on input line 24.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 24.
-LaTeX Font Info:    ... okay on input line 24.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 24.
-LaTeX Font Info:    ... okay on input line 24.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 24.
-LaTeX Font Info:    ... okay on input line 24.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 23.
+LaTeX Font Info:    ... okay on input line 23.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 23.
+LaTeX Font Info:    ... okay on input line 23.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 23.
+LaTeX Font Info:    ... okay on input line 23.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 23.
+LaTeX Font Info:    ... okay on input line 23.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 23.
+LaTeX Font Info:    ... okay on input line 23.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 23.
+LaTeX Font Info:    ... okay on input line 23.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 23.
+LaTeX Font Info:    ... okay on input line 23.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 23.
+LaTeX Font Info:    ... okay on input line 23.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 23.
+LaTeX Font Info:    ... okay on input line 23.
  (/usr/share/texlive/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
 \scratchcounter=\count309
@@ -373,7 +377,7 @@ Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 48
  (/usr/share/texlive/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg
 File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Live
 ))
-Package hyperref Info: French linking ON on input line 24.
+Package hyperref Info: French linking ON on input line 23.
  (/usr/share/texlive/texmf-dist/tex/latex/hyperref/nameref.sty
 Package: nameref 2021-04-02 v2.47 Cross-referencing by name of section
  (/usr/share/texlive/texmf-dist/tex/latex/refcount/refcount.sty
@@ -383,18 +387,18 @@ Package: gettitlestring 2019/12/15 v1.6 Cleanup title references (HO)
 )
 \c@section@level=\count315
 )
-LaTeX Info: Redefining \ref on input line 24.
-LaTeX Info: Redefining \pageref on input line 24.
-LaTeX Info: Redefining \nameref on input line 24.
+LaTeX Info: Redefining \ref on input line 23.
+LaTeX Info: Redefining \pageref on input line 23.
+LaTeX Info: Redefining \nameref on input line 23.
  (./review.out) (./review.out)
 \@outlinefile=\write3
 \openout3 = `review.out'.
 
-LaTeX Font Info:    Trying to load font information for U+msa on input line 27.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 26.
  (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 27.
+LaTeX Font Info:    Trying to load font information for U+msb on input line 26.
  (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 ) (./review.toc
@@ -414,99 +418,97 @@ Overfull \hbox (54.02939pt too wide) in paragraph at lines 27--27
 \openout4 = `review.toc'.
 
  [2]
-Package hyperref Info: bookmark level for unknown theorem defaults to 0 on input line 32.
-Package hyperref Info: bookmark level for unknown definition defaults to 0 on input line 48.
+Package hyperref Info: bookmark level for unknown theorem defaults to 0 on input line 31.
+Package hyperref Info: bookmark level for unknown definition defaults to 0 on input line 47.
 
-Overfull \hbox (28.75919pt too wide) in paragraph at lines 53--54
+Overfull \hbox (28.75919pt too wide) in paragraph at lines 52--53
 \OT1/cmr/m/n/12 whose do-main is $\U/msb/m/n/12 R$ \OT1/cmr/m/n/12 and whose range is $\U/msb/m/n/12 R[]\OML/cmm/m/it/12 :$ \OT1/cmr/m/n/12 It has three com-po-nents $\OML/cmm/m/it/12 f\OT1/cmr/m/n/12 (\OML/cmm/m/it/12 t\OT1/cmr/m/n/12 )\OML/cmm/m/it/12 ; g\OT1/cmr/m/n/12 (\OML/cmm/m/it/12 t\OT1/cmr/m/n/12 )\OML/cmm/m/it/12 andh\OT1/cmr/m/n/12 (\OML/cmm/m/it/12 t\OT1/cmr/m/n/12 )$
  []
 
 [3]
-Overfull \hbox (2.95558pt too wide) detected at line 118
+Overfull \hbox (2.95558pt too wide) detected at line 117
 \OML/cmm/m/it/12 f[]\OT1/cmr/m/n/12 (\OML/cmm/m/it/12 x[]; x[]; [] ; x[]\OT1/cmr/m/n/12 ) = [] = [] []
  []
 
 [4]
-Package hyperref Info: bookmark level for unknown remark defaults to 0 on input line 137.
+Package hyperref Info: bookmark level for unknown remark defaults to 0 on input line 136.
  [5]
-Overfull \hbox (4.30305pt too wide) in paragraph at lines 224--226
+Overfull \hbox (4.30305pt too wide) in paragraph at lines 223--225
 [][]\OT1/cmr/bx/sc/12 Theorem 2.3.2 \OT1/cmr/m/n/12 (Sec-ond Deriva-tive Test)\OT1/cmr/bx/sc/12 . []\OT1/cmr/m/it/12 Sup-pose the sec-ound par-tial deriva-
  []
 
 
-Overfull \hbox (4.30305pt too wide) in paragraph at lines 239--241
+Overfull \hbox (4.30305pt too wide) in paragraph at lines 238--240
 [][]\OT1/cmr/bx/sc/12 Theorem 2.3.3 \OT1/cmr/m/n/12 (Sec-ond Deriva-tive Test)\OT1/cmr/bx/sc/12 . []\OT1/cmr/m/it/12 Sup-pose the sec-ound par-tial deriva-
  []
 
 [6] [7]
-Package hyperref Info: bookmark level for unknown corollary defaults to 0 on input line 291.
+Package hyperref Info: bookmark level for unknown corollary defaults to 0 on input line 290.
 
-Overfull \hbox (7.438pt too wide) detected at line 310
+Overfull \hbox (7.438pt too wide) detected at line 309
 [] [][] \OML/cmm/m/it/12 f\OT1/cmr/m/n/12 (\OML/cmm/m/it/12 x; y\OT1/cmr/m/n/12 )\OML/cmm/m/it/12 dA \OT1/cmr/m/n/12 = [] [][] \OML/cmm/m/it/12 f\OT1/cmr/m/n/12 (\OML/cmm/m/it/12 r [] ^^R; r [] ^^R\OT1/cmr/m/n/12 )\OML/cmm/m/it/12 rdrd^^R \OT1/cmr/m/n/12 = [][] [][] \OML/cmm/m/it/12 f\OT1/cmr/m/n/12 (\OML/cmm/m/it/12 r [] ^^R; r [] ^^R\OT1/cmr/m/n/12 )\OML/cmm/m/it/12 rdrd^^R
  []
 
 
-Overfull \hbox (105.0663pt too wide) detected at line 321
+Overfull \hbox (105.0663pt too wide) detected at line 320
 [] [] [][] \OML/cmm/m/it/12 f\OT1/cmr/m/n/12 (\OML/cmm/m/it/12 x; y; z\OT1/cmr/m/n/12 )\OML/cmm/m/it/12 dV \OT1/cmr/m/n/12 = [] [] [][] \OML/cmm/m/it/12 f\OT1/cmr/m/n/12 (\OML/cmm/m/it/12 r [] ^^R; r [] ^^R; z\OT1/cmr/m/n/12 )\OML/cmm/m/it/12 rdzdrd^^R \OT1/cmr/m/n/12 = [][] [][] [][] \OML/cmm/m/it/12 f\OT1/cmr/m/n/12 (\OML/cmm/m/it/12 r [] ^^R; r [] ^^R; z\OT1/cmr/m/n/12 )\OML/cmm/m/it/12 rdzdrd^^R
  []
 
 
-Overfull \hbox (8.00443pt too wide) in paragraph at lines 327--330
+Overfull \hbox (8.00443pt too wide) in paragraph at lines 326--329
 \OT1/cmr/m/it/12 spher-i-cal co-or-di-nate $\OT1/cmr/m/n/12 (\OML/cmm/m/it/12 r; ^^R; ^^^\OT1/cmr/m/n/12 )$ \OT1/cmr/m/it/12 is de-fined by: $\OML/cmm/m/it/12 r[] \OT1/cmr/m/n/12 = \OML/cmm/m/it/12 x[] \OT1/cmr/m/n/12 + \OML/cmm/m/it/12 y[] \OT1/cmr/m/n/12 + \OML/cmm/m/it/12 z[]; x \OT1/cmr/m/n/12 = \OML/cmm/m/it/12 r [] ^^^ [] ^^R; y \OT1/cmr/m/n/12 =
  []
 
 [8] [9] [10] [11] [12]
-Overfull \hbox (7.35313pt too wide) in paragraph at lines 598--600
+Overfull \hbox (7.35313pt too wide) in paragraph at lines 597--599
 [][]\OT1/cmr/bx/sc/12 Theorem 4.5.3 \OT1/cmr/m/n/12 (Di-ver-gence The-o-rem)\OT1/cmr/bx/sc/12 . []\OT1/cmr/m/it/12 Let $\OML/cmm/m/it/12 E$ \OT1/cmr/m/it/12 be a sim-ple solid re-gion bounded
  []
 
-
-Overfull \hbox (8.4774pt too wide) in paragraph at lines 613--614
-[]\OT1/cmr/m/n/12 ordinary dif-fer-
- []
-
 [13] [14] [15]
-
-LaTeX Font Warning: Font shape `OT1/cmr/m/scit' undefined
-(Font)              using `OT1/cmr/m/sc' instead on input line 734.
-
-
-LaTeX Font Warning: Font shape `OT1/cmr/m/scit' undefined
-(Font)              using `OT1/cmr/m/sc' instead on input line 741.
-
 
 LaTeX Font Warning: Font shape `OT1/cmr/m/scit' undefined
 (Font)              using `OT1/cmr/m/sc' instead on input line 748.
 
 
 LaTeX Font Warning: Font shape `OT1/cmr/m/scit' undefined
-(Font)              using `OT1/cmr/m/sc' instead on input line 772.
+(Font)              using `OT1/cmr/m/sc' instead on input line 755.
+
+
+LaTeX Font Warning: Font shape `OT1/cmr/m/scit' undefined
+(Font)              using `OT1/cmr/m/sc' instead on input line 762.
 
 [16]
 
 LaTeX Font Warning: Font shape `OT1/cmr/m/scit' undefined
-(Font)              using `OT1/cmr/m/sc' instead on input line 796.
+(Font)              using `OT1/cmr/m/sc' instead on input line 786.
+
+
+LaTeX Font Warning: Font shape `OT1/cmr/m/scit' undefined
+(Font)              using `OT1/cmr/m/sc' instead on input line 822.
 
 [17] [18] (./review.aux)
 
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
+
+LaTeX Warning: There were multiply-defined labels.
+
 Package rerunfilecheck Info: File `review.out' has not changed.
-(rerunfilecheck)             Checksum: D19383DE0C02D9AA50DC7DDBCC87DA4B;6098.
+(rerunfilecheck)             Checksum: 8E2676185094D24B977BE40733B04CF1;6242.
  ) 
 Here is how much of TeX's memory you used:
- 11794 strings out of 478287
- 185049 string characters out of 5849288
- 484961 words of memory out of 5000000
- 29602 multiletter control sequences out of 15000+600000
+ 11802 strings out of 478287
+ 185227 string characters out of 5849288
+ 485002 words of memory out of 5000000
+ 29604 multiletter control sequences out of 15000+600000
  479730 words of font info for 67 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 70i,8n,76p,402b,494s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 70i,8n,76p,526b,494s stack positions out of 5000i,500n,10000p,200000b,80000s
 </usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbxti10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmcsc10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cmextra/cmex8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmti8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on review.pdf (18 pages, 256856 bytes).
+Output written on review.pdf (18 pages, 259985 bytes).
 PDF statistics:
- 540 PDF objects out of 1000 (max. 8388607)
- 483 compressed objects within 5 object streams
- 212 named destinations out of 1000 (max. 500000)
+ 550 PDF objects out of 1000 (max. 8388607)
+ 493 compressed objects within 5 object streams
+ 218 named destinations out of 1000 (max. 500000)
  257 words of extra memory for PDF output out of 10000 (max. 10000000)
 

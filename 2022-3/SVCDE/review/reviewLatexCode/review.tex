@@ -6,7 +6,6 @@
 %\hypersetup{colorlinks,linkcolor={red!20!black},citecolor={blue!50!black,urlcolor={blue!80!black}}
 \hypersetup{frenchlinks=true}
 
-
 \newtheorem{theorem}{Theorem}[subsection]
 \newtheorem{lemma}[theorem]{Lemma}
 \newtheorem{corollary}[theorem]{Corollary}
@@ -470,7 +469,7 @@ Line integral alone $y$ and $z$ are defined similarly.
 
 
 \begin{definition}[Line Integral of a Vector Field]
-The line integral of a vector field $\underline{F}$ along a curve $\gamma$ is defined as:
+	The line integral of a vector field $\underline{F}$ along a curve $\gamma$ is described by the vector function $ \underline{r}$ is defined as:
 \[
 	\int_\gamma \underline{F} \cdot d\underline{r} 
 	=	 \int_{\gamma} \underline{F} (\underline{r}) \cdot \underline{r}'dt
@@ -608,10 +607,11 @@ Let $ \underline{F}: \mathbb{R}^3 \rightarrow \mathbb{R}^3$ be a vector field th
 
 \section{Differential Equations}
 \subsection{Classification}
-\begin{definition}[Classification of Diferential Equation]
+\begin{definition}[Classification of Differential Equation]
+Classification of Differential Equation.
 	\begin{enumerate}
-		\item ordinary differential equation (ODE) involves only differentiation of one variable
-		\item partial differential equation (PDE) involves differentiation of more than one variable.
+		\item Ordinary differential equation (ODE) involves only differentiation of one variable
+		\item Partial differential equation (PDE) involves differentiation of more than one variable.
 		\item Order of differential equation is the highest order of differentiation in the equation.
 	\end{enumerate}
 The $n^{\text{th}}$ order linear differential equation has the general form:
@@ -714,13 +714,27 @@ Existence and Uniqueness Theorem (\ref{UniquenessTheorem}) says that fot the ini
 
 \begin{definition}[Linearly Independent Functions]
 	Two functions, $f_1(t)$ and $f_2(t)$ are linearly independent if if their Wronskian is not zero.
-More significantly, it means that $ \frac{f_1}{f_2} = g(t),$ where g(t) is not a constant function of $t$ in their domain.
+More significantly, it means that $ \frac{f_1}{f_2} = g(t),$ where g(t) is not a constant function for $t$ in their domain.
 \end{definition}
 
-\begin{theorem}[Nature of Solutions to secound order linear ODE]
-	A second order linear ODE's solution would be two and only twosets of linearly independent functions.
+\begin{theorem}[Nature of Solutions to secound order homogeneous ODE]
+	Consider the second order homogeneous ODE:
+\[
+	P(t) \frac{d^2y}{dt^2} + Q(t) \frac{dy}{dt} + R(t) y = 0
+\]
+Assuming $y_1(t)$ and $y_2(t)$ are two linearly independent solutions, then function $y_r$ is a solution to the ODE if and only it $y_r$ is linear combination of $y_1$ and $y_2$.
+
 \end{theorem}
-\subsubsection{General Solutions to Second Order Homogeneous ODE}
+
+\begin{theorem}[Abel's Theorem]
+	Consider the second order homogeneous ODE:
+\[
+	y'' + p(t)y' + q(t)y = 0
+\] with solutions $y_1(t)$ and $y_2(t)$, then:
+$W(y_1, y_2) = c \exp{\left[ - \int p(t) dt \right]}$
+	
+\end{theorem}
+\subsubsection{General Solutions to Second Order Homogeneous ODE with Constant Coefficients}
 
 \begin{theorem}[General Solutions to Second Order Homogeneous ODE with Constant Coefficients] \label{SolutionSOODEConstant}
 	Let $y'' + a_1y' +  a_2y = 0$ be a second order homogeneous ODE.
@@ -776,7 +790,19 @@ Then the particular solution of the non-homogeneous equation \ref{eq:2NHOMOODE} 
 
 Where $W$ is Wronskian operator and 
 $W(y_1,y_2) = y_1y_2' - y_2y_1'$.
+
+See Boyce 4.4.
 \end{theorem}
+
+\begin{remark}[Method of Undetermined Coefficients]
+	Method of Undetermined Coefficients may well be termed as method of educated guess.
+	Consider the linear non-homogeneous second order ODE:
+\begin{equation}\label{eq:2NHOMOODE}
+	ay'' + by' + cy = g(t)
+\end{equation}
+For certain $g(t),$ such as $e^t$, we can assume the solution is of the form $ae^t,$ where a is a constant. Then we can simply plug in and solve for $a.$
+
+\end{remark}
 
 \subsubsection{Euler's Equation}
 \begin{theorem}[Solution to Euler's Equation]
@@ -822,12 +848,15 @@ Which can be solved by theorem \ref{SolutionSOODEConstant}.
 
 \subsection{Other Common Computations}
 \begin{enumerate}
-	\item For $ \underline{r}(\phi, \theta) = \sin{\phi}\cos{\theta} \underline{i} + \sin{\phi}\sin{\theta} \underline{j} + \cos{\phi} \underline{k}, 
-		|\underline{r}_{\phi} \times \underline{r}_{\theta}| = \sin{\phi}$  
+	\item For $ \underline{r}(\phi, \theta) = 
+		a(\sin{\phi}\cos{\theta} \underline{i} +
+		\sin{\phi}\sin{\theta} \underline{j} + 
+		\cos{\phi} \underline{k}), 
+		|\underline{r}_{\phi} \times \underline{r}_{\theta}| = 
+		a^2\sin{\phi}$.
 
 
 \end{enumerate}
-
 
 
 
