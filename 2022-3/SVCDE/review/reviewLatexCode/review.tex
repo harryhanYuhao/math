@@ -455,7 +455,7 @@ The divergence of a vector field $\underline{F} = F_x \underline{i} +  F_y \unde
 If $f$ is a function of three variable, the line integral along the curve $\gamma$ is defined as:
 \[
 	\int_\gamma f(x,y,z) ds 
-	= \int_{t_0} ^{t_1} f(x(t), y(t), z(t)) \sqrt{ \frac{dx}{dt}^2 + \frac{dy}{dt}^2 + \frac{dz}{dt}^2 } dt
+	= \int_{t_0} ^{t_1} f(x(t), y(t), z(t)) \sqrt{ \left(\frac{dx}{dt}\right)^2 + \left(\frac{dy}{dt}\right)^2 + \left(\frac{dz}{dt}\right)^2 } dt
 \]
 Where $\gamma$ is parametrized by $x=x(t), y=y(t), z=z(t),$ from $t_0$ to $t_1$.
 
@@ -618,7 +618,7 @@ The $n^{\text{th}}$ order linear differential equation has the general form:
 \[
 	\frac{d^n y}{dx^n} + a_1 \frac{d^{n-1} y}{dx^{n-1}} + a_2 \frac{d^{n-2} y}{dx^{n-2}} + \cdots + a_{n-1} \frac{d y}{dx} + a_n y = a_0(x)
 \]
-Where $a_i$ asre functions of $x$. 
+Where $a_i$ is a functions of $x$. 
 The equation is called homogeneous if $a_0(x) = 0$.
 
 If $S_1(x), S_2(x) \dots $ are solution to the homogeneous equation, then any of its linear combinations are also a solution.
@@ -663,7 +663,7 @@ And the solution is given by simply integration:
 \end{theorem}
 
 \begin{theorem}[Homogeneous ODE (Another Homogeneous)]
-A ODE is called homogeneous if it can be written in the form:
+An ODE is called homogeneous if it can be written in the form:
 \[
 	\frac{dy}{dx}  = g(\frac{y}{x})
 \]
@@ -779,7 +779,7 @@ Which is equivalent to:
 \begin{equation}\label{eq:2NHOMOODE}
 	ay'' + by' + cy = g(t)
 \end{equation}
-Suppose the homogeneous equation ($ayy'' + by' + cy = 0$) has the general solution:
+Suppose the homogeneous equation ($ay'' + by' + cy = 0$) has the general solution:
 \[
 	y_c(t) = C_1y_1(t) + C_2y_2(t)
 \]
