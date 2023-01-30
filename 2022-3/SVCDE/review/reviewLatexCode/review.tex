@@ -1,0 +1,866 @@
+\documentclass[12pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{blindtext, titlesec, amsthm, thmtools, amsmath, amsfonts, scalerel, amssymb, graphicx, titlesec, xcolor}
+\usepackage[hidelinks]{hyperref}
+\hypersetup{colorlinks,linkcolor={red!20!black},citecolor={blue!50!black},urlcolor={blue!80!black}}
+%\hypersetup{frenchlinks=true}
+
+\newtheorem{theorem}{Theorem}[subsection]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{hypothesis}{Hypothesis}
+
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}[section]
+
+\theoremstyle{remark}
+\newtheorem{remark}{Remark}[section]
+
+\title{Several Variable Calculus and Differential Equations Review}
+\author{Harry Han}
+\date{Dec 2022}
+\begin{document}
+
+\maketitle
+\tableofcontents
+\newpage
+
+\section{Vectors and Geometry}
+
+\begin{theorem}[Vector Computation]
+Basics computation rules for vectors:
+	\begin{enumerate}
+		\item $\underline{a} \cdot \underline{b} = \cos{\theta}  | \underline{a}| | \underline{b}| $
+		\item $| \underline{a} \times \underline{b} | = \sin{\theta}  | \underline{a}| | \underline{b}| $
+		\item $ \underline{a} \times \underline{b} = - \underline{b} \times \underline{a} $
+		\item $ \underline{a} \cdot (\underline{b} \times \underline{c}) = ( \underline{a}\times \underline{b}) \cdot \underline{c} $
+		\item $ \underline{a} \times (\underline{b} \times \underline{c}) = (\underline{a} \cdot \underline{c}) \underline{b} - (\underline{a} \cdot \underline{b}) \underline{c} $
+		\item $ \underline{a} \cdot ( \underline{b} \times \underline{c}) = \begin{vmatrix}
+			a_1 & a_2 & a_3 \\
+			b_1 & b_2 & b_3 \\
+			c_1 & c_2 & c_3
+			\end{vmatrix}, $ moreover, this equal to the area of the parallelepiped specified by the vectors $ \underline{a}, \underline{b}, \underline{c} $
+ 	\end{enumerate}
+\end{theorem}
+
+\begin{definition}[Line and Plane in 2D and 3D space]
+	
+\end{definition}
+
+\begin{definition}[Vector Function]
+	We consider the vector function \underline{v}(t) whose domain is $ \mathbb{R}$ and whose range is $ \mathbb{R}^3.$ It has three components $f(t), g(t) and h(t)$ and can be written in the form:
+\[
+\underline{v}(t) = \begin{pmatrix}
+f(t) \\
+g(t) \\
+h(t)
+\end{pmatrix} = f(t) \underline{i} + g(t) \underline{j} + h(t) \underline{k}
+\]
+
+Vector function obey most of the integrating and differentiation rules of a normal function.
+\end{definition}
+
+\begin{theorem}[Arc Length]
+	The length of the curve traced out by the postion vector function $ \underline{r}(t)=x(t) \underline{i} + y(t) \underline{j} + z(t) \underline{k} $ over the interval $ a \leq t \leq b$ is 
+\[
+s(t)=\int_a^b \sqrt{x'(t)^2 + y'(t)^2 + z'(t)^2} dt = \int_a^b | \underline{r}'(t) | dt
+\]
+
+\end{theorem}
+
+\begin{definition}[Unit Tangent Vector]
+	
+	For vector function $ \underline{r}(t) $, its unit tangent vector is $ \underline{T} = \displaystyle\frac{ \underline{r'}(t)}{| \underline{r'}(t)|} $
+\end{definition}
+
+\begin{definition}[Curvature]
+	For vector function $ \underline{r}(t) $, its curvature is
+	$$\kappa = \left|\frac{ \underline{T'}(t)}{s'(t)}\right| = \frac{| \underline{T'}(t)|}{| \underline{r'}(t)|}= \frac{ |\underline{r}'(t) \times \underline{r}''(t)|}{| \underline{r}'(t)|^3} $$
+	
+\end{definition}
+
+\begin{definition}[Normal and binormal Vector]
+	For vector function $ \underline{r}(t) $, its unit tangent vector is $ \underline{T} = \displaystyle\frac{ \underline{r'}(t)}{| \underline{r'}(t)|} $
+	, and its unit normal vector is $ \underline{N}(t) = \displaystyle\frac{ \underline{T'}(t)}{| \underline{T'}(t)|}$, and its binormal vector is $ \underline{T}(t) \times \underline{N}(t) $
+\end{definition}
+
+
+\section{Partial Derivatives}
+
+\subsection{Limits}
+\begin{definition}[Limits of function of two variables]
+	Let $ f(x,y) $ be a function of two variables. The limit of $ f(x,y) $ as $ (x,y) $ approaches $ (a,b) $ is defined as
+	$$ \lim_{(x,y) \to (a,b)} f(x,y) = L $$
+	if for every $\epsilon > 0$, there exists a $\delta > 0$ such that $ \sqrt{(x-a)^2 + (y-a)^2} < \delta $ implies $ |f(x,y) - L| < \epsilon. $
+	Significantly, the limit of $ f(x,y) $ as $ (x,y) \to (a,b) $ is independent of the path of $x $ and $y$. i.e. if assuming the relationship $y = Y_1(x)$ and $y = Y_2(x),$ provided $Y(a) = b$, we arrives to different value of the limite of $f(x,Y(x)) $ as $x \to a$, then limit of $f(x,y)$ as 
+$ (x,y) $ approach $ (a,b) $ does not exist.
+
+It is sometimes easier to evaluate the limit using polar coordinates (or other kinds of transformation). Let $ (x,y) = (r\cos{\theta}, r\sin{\theta}) $, then $(x ,y) \to 0 \iff r \to 0$
+	All limit law for function of one variable also apply to function of multiple variables.
+\end{definition}
+
+\begin{definition}[Continuity]
+	Let $ f(x,y) $ be a function of two variables. $ f(x,y) $ is continuous at $ (a,b) \iff \displaystyle\lim_{(x,y)\to (a,b)} = f(a,b) $ 
+	
+\end{definition}
+
+\subsection{Partial Derivatives}
+
+\begin{definition}[Partial Derivative]
+\[
+	\frac{\partial f}{\partial x} = \lim_{\Delta x \to 0} \frac{f(x+\Delta x,y) - f(x,y)}{\Delta x}
+\]
+More generally, for $n$ variables, we have
+\[
+	f_{x_1}(x_1,x_2,\dots,x_n) = \frac{\partial f}{\partial x_1} = \lim_{\Delta x_1 \to 0} \frac{f(x_1+\Delta x_1,x_2,\dots,x_n) - f(x_1,x_2,\dots,x_n)}{\Delta x_1}
+\]
+
+NB: the notation of partial derivative:
+
+\[
+f_x(x,y) = \frac{\partial f}{\partial x}=f_x= \frac{\partial}{\partial x}f(x,y)
+\]
+\end{definition}
+
+\begin{theorem}[Clairaut's Theorem]
+
+	Let $ f(x,y) $ be a function of two variables. Then
+	\[
+		f_{xy}=f_{yx}
+	\]
+More generally the order of the partial derivative does not matter.
+\end{theorem}
+
+\begin{remark}
+	NB: Tangent plane and linear approximation.
+	
+\end{remark}
+
+\begin{definition}[Differentiability]
+	Let $z = f(x,y), \Delta z = f(a+\Delta x,b+\Delta y) - f(x,y) $, then the function is differentialbe if and only if $(\epsilon _1, \epsilon _2) \to (0, 0)$ as  $(\Delta x, \Delta y) \to (0, 0)$, where $ \epsilon _1, \epsilon _2 $ are defined as 
+	\[
+\Delta z = f_x(a,b) \Delta x + f_y(a,b) \Delta y + \epsilon _1 \Delta x + \epsilon _2 \Delta y
+	\]
+
+Moreover, it can be shown that $z$ is differentiable at $(a,b)$ if and only if the partial derivative $f_x, f_y$ exisits and are continuous near $(a,b)$
+\end{definition}
+
+\begin{definition}[Differentials]
+	$w = f(x,y,z)$ the total differential $dw$ is defined as 
+	\[
+dw = \frac{\partial w}{\partial x} dx + \frac{\partial w}{\partial y} dy + \frac{\partial w}{\partial z} d z
+	\]
+	
+\end{definition}
+
+\begin{theorem}[Chain Rule]
+Suppose $z = f(x, y)$ and $ x = g(t)$, $y = h(t)$ then 
+\[
+\frac{\partial z}{\partial t} = \frac{\partial z}{\partial x} \frac{\partial x}{\partial t} + \frac{\partial z}{\partial y} \frac{\partial y}{\partial t}
+\]
+
+Suppose $z = f(x, y)$ and $ x = g(t, u)$, $y = h(t, u)$ then
+\[
+\frac{\partial z}{\partial t} = \frac{\partial z}{\partial x} \frac{\partial x}{\partial t} + \frac{\partial z}{\partial y} \frac{\partial y}{\partial t}, 
+\frac{\partial z}{\partial u}
+= \frac{\partial z}{\partial x} \frac{\partial x}{\partial u} + \frac{\partial z}{\partial y} \frac{\partial y}{\partial u}
+\]
+
+\end{theorem}
+
+\begin{theorem}[Implicit Differentiation]
+	Suppose $F(x,y,z) = 0$, and $z$ is a implicit funtion of $x$, then:
+	\[
+		\frac{\partial z}{\partial x} = - \frac{F_x}{F_z}, 
+	\]
+If $z$ is a implicit function of $y$, then:
+\[
+		\frac{\partial z}{\partial y} = - \frac{F_y}{F_z}
+	\]
+\end{theorem}
+
+\begin{definition}[Gradient]
+	Let $f(x,y)$ be a function of two variables, then the gradient of $f$ is defined as a vector function: 
+	\[
+\nabla f(x,y) = \left( \frac{\partial f}{\partial x}, \frac{\partial f}{\partial y} \right)
+	\]
+\end{definition}
+
+\begin{definition}[Directional Derivative]
+	For funtion $f(x,y)$, the directional derivative at $(a,b)$ at the direction of the unit vector $\underline{u} = (u_1, u_2)$ in $x-y$ plane is:
+\[
+	\nabla f \cdot \underline{u} = f_x(a,b) u_1 + f_y(a,b) u_2
+\]
+Note it is a constant.
+\end{definition}
+\begin{theorem}[Maximun Directional Derivative]
+	Suppose $f(x,y)$ is differentiable at $(a,b)$, then the directional derivative of $f$ at $(a,b)$ in the direction of $u$ is maximized if and only if $u$ is parallel to the gradient of $f$ at $(a,b)$.
+\end{theorem}
+\begin{proof}
+Notice the directional derivative equals to
+\[
+	\nabla f \cdot \underline{u} = \cos{\theta} | \nabla f | | \underline{u} |
+\]
+Which is maximized when $\theta = 0$.
+\end{proof}
+\begin{remark}
+	Tangent plain to level surface ans normal line: see lecture notes page 27.
+	
+\end{remark}
+
+%Subsection Maximum and Minimum
+\subsection{Maximum and Minimum}
+\begin{definition}[Critical Point]
+	Let $f(x,y)$ be a function of two variables, then $(a,b)$ is a critical point of $f$ if $f_x(a)=0 and f_y=(b)0,$ or one of its partialderivative does not exist.
+\end{definition}
+
+\begin{theorem}
+	If $(a,b)$ is a local maximum or minimum of $f(x,y)$, then $(a,b) $ is a critical point of $f$
+\end{theorem}
+
+\begin{theorem}[Second Derivative Test]
+Suppose the secound partial derivative of $f(x,y)$ exists at $(a,b)$ and is continous around it, and $f_x(a,b)=f_y(a,b) = 0$
+Let 
+\[
+D(a,b) = f_{xx}(a,b) f_{yy}(a,b) - f_{xy}(a,b)^2 = \left| \begin{matrix} f_{xx}(a,b) & f_{xy}(a,b) \\ f_{xy}(a,b) & f_{yy}(a,b) \end{matrix} \right|
+\]
+Then 
+\begin{enumerate}
+	\item If $D(a,b) > 0$ and $f_{xx} > 0$, then $(a,b)$ is a local minimum of $f(x,y)$
+	\item If $D(a,b) > 0$ and $f_{xx}<0$, then $(a,b)$ is a local maximum of $f(x,y)$
+	\item If $D(a,b) < 0$, then $(a,b)$ is a saddle point of $f(x,y)$
+	\item If $D(a,b) = 0$, the test is inconclusive
+\end{enumerate}
+\end{theorem}
+\subsubsection{Function of Three Variables}
+\begin{theorem}[Second Derivative Test]
+Suppose the secound partial derivative of $f(x,y,z)$ exists at $(a,b,c)$ and is continous around it, and $f_x(a,b,c)=f_y(a,b,c)=f_z(a,b,c) = 0$
+Let 
+\[
+	D_1(a, b, c) = f_{xx}(a,b,c)
+\]
+\[
+	D_2(a, b, c) = \begin{vmatrix} f_{xx}(a,b,c) & f_{xy}(a,b,c) \\ f_{xy}(a,b,c) & f_{yy}(a,b,c) \end{vmatrix}
+\]
+\[
+	D_3(a, b, c) = \begin{vmatrix} f_{xx}(a,b,c) & f_{xy}(a,b,c) & f_{xz}(a,b,c) \\ f_{xy}(a,b,c) & f_{yy}(a,b,c) & f_{yz}(a,b,c) \\ f_{xz}(a,b,c) & f_{yz}(a,b,c) & f_{zz}(a,b,c) \end{vmatrix}
+\]
+Then 
+\begin{enumerate}
+	\item If $D_1(a,b,c) > 0$ and $D_2(a,b,c) > 0$ and $D_3(a,b,c) > 0$, then $(a,b,c)$ is a local minimum of $f(x,y,z)$
+	\item If $D_1(a,b,c) < 0$ and $D_2(a,b,c) > 0$ and $D_3(a,b,c) < 0$, then $(a,b,c)$ is a local maximum of $f(x,y,z)$
+	\item If $D_3 \neq 0$ and $(a,b,c) is neither a maxium nor a minimum$, then $(a,b,c)$ is a saddle point of $f(x,y,z)$
+	\item If $D_3(a,b,c) = 0$, the test is inconclusive
+
+\end{enumerate}
+\end{theorem}
+\subsubsection{Lagrange Multiplier}
+
+\begin{theorem}[Lagrange Multiplier]
+	Let $f(x,y)$ be a function of two variables and differential along the smooth curve $g(x,y) = 0$ where $\nabla g (x,y) \neq 0.$ 
+	if $f$ attains minimum value along $g = 0$ at $(a,b)$, then there exists $\lambda \in \mathbb{R}$ such that
+	\[
+		\nabla f (a,b)= - \lambda \nabla g(a, b)
+	\]
+	For function $f(x,y,z)$ subject to constrain $g(x,y,z) = 0$, the same result holds. 
+\end{theorem}
+
+\section{Multiple Integrals}
+\subsection{Double And Triple Integrals}
+\begin{definition}[Double Integral]
+Ommited.
+\end{definition}
+\begin{definition}[Average Value]
+	The average value of a function $f(x,y)$ over a region $D$ is defined as
+	\[
+		f_{avg} = \frac{1}{A(D)} \iint_D f(x,y) dA
+	\]
+	
+\end{definition}
+
+\begin{theorem}[Fubini's Theorem]
+	If $f(x, y)$ is continuous on the rectangle $R = {(x, y) \mathbb{R}^2, a \leq x \leq b, c\leq y \leq d}$, then
+\[
+	\iint_R f(x,y) dA = \int_a^b \int_c^d f(x,y) dydx = \int_c^d \int_a^b f(x,y) dxdy
+\]
+	
+\end{theorem}
+
+\begin{corollary}
+	Suppose $f(x,y) = g(x)h(y)$ on $R = [a,b] \times [c,d]$, then
+\[
+	\iint_R f(x,y) dA = \int_a^b g(x) dx \int_c^d h(y) dy
+\]
+	
+\end{corollary}
+\begin{remark}
+	Triple integral, see example 50 page 47.
+\end{remark}
+
+\subsection{Change of Variables}
+\subsubsection{Double Integrals: To Polar Coordinates}
+\begin{theorem}[Change of Variables]
+For $(x, y)$ in Cartesian coordinates, recall the polar coordinate $(r, \theta)$ is defined by: $r^2 = x^2+y^2, x = r\cos{\theta}, y = r\sin{\theta}$
+
+If the area $R$ is given by $r_0 \leq r \leq r_1, \theta_0 \leq \theta \leq \theta_1$, then:
+\[
+	\iint_R f(x,y) dA = \iint_D f(r\cos{\theta}, r\sin{\theta}) r dr d\theta
+	= \int_{r_0}^{r_1} \int_{\theta_0}^{\theta_1} f(r\cos{\theta}, r\sin{\theta}) r dr d\theta
+\]
+Notice the extra $r$ in the integrand.
+\end{theorem}
+
+\subsubsection{Triple Integrals: To Cylindrical Coordinates}
+\begin{theorem}[Change of Variables To Cylindrical Coordinates]
+Recall the cylindrical coordinate $(r, \theta, z)$ is defined by: $r^2 = x^2+y^2, x = r\cos{\theta}, y = r\sin{\theta}$
+If the volume $V$ is given by $r_0 \leq r \leq r_1, \theta_0 \leq \theta \leq \theta_1, z_0 \leq z \leq z_1$, then:
+\[
+	\iiint_V f(x,y,z) dV = \iiint_D f(r\cos{\theta}, r\sin{\theta}, z) r dz dr d\theta
+	= \int_{r_0}^{r_1} \int_{\theta_0}^{\theta_1} \int_{z_0}^{z_1} f(r\cos{\theta}, r\sin{\theta}, z) r dz dr d\theta
+\]
+Notice the extra $r$ in the integrand.
+\end{theorem}
+
+\subsubsection{Triple Integrals: To Spherical Coordinates}
+\begin{theorem}[Change of Variables To Spherical Coordinates]
+Recall the spherical coordinate
+$(r, \theta, \phi)$
+is defined by: $r^2 = x^2+y^2+z^2, x = r\sin{\phi}\cos{\theta}, y = r\sin{\theta}\sin{\phi}, z = r\cos{\phi}$
+
+If the volume $V$ is given by $r_0 \leq r \leq r_1, \theta_0 \leq \theta \leq \theta_1, \phi_0 \leq \phi \leq \phi_1$, then:
+\[
+	\iiint_V f(x,y,z) dV = \iiint_D f(r\sin{\phi}\cos{\theta}, r\sin{\theta}\sin{\phi}, r\cos{\phi}) r^2 \sin{\phi} dr d\theta d\phi
+\]
+
+Notice the extra $r^2 \sin{\phi}$ in the integrand.
+\end{theorem}
+\begin{remark}
+	More excercises needed.
+\end{remark}
+
+
+\subsubsection{Change of Variable in General: Jacobian}
+\begin{definition}[Jacobian]
+Consider the transformation from $u,v$ plane to $x,y$ plane, where $x = x(u,v), y = y(u, v)$ For bijective transformation, the jacobian is defined as:
+	\[
+		J_2 = \frac{\partial x \partial y}{\partial u \partial v} 
+		= \frac{\partial x}{\partial u} \frac{\partial y}{\partial v} - \frac{\partial x}{\partial v} \frac{\partial y}{\partial u}
+		=\begin{vmatrix}
+			\dfrac{\partial x}{\partial u} & \dfrac{\partial x}{\partial v} \\
+			\dfrac{\strut\partial y}{\partial u} & \dfrac{\partial y}{\partial v}
+		\end{vmatrix}
+	\]
+
+The jacobian for transformation from $u,v,w$ plane to $x,y,z$ plane, where $x=x(u,v,w), y = y(u,v,w), z = z(u,v,w)$ is defined as:
+\[
+	J_3 = \frac{\partial x \partial y \partial z}{\partial u \partial v \partial w}
+=	\begin{vmatrix}
+		\dfrac{\partial x}{\partial u} & \dfrac{\partial x}{\partial v} & \dfrac{\partial x}{\partial w} \\
+		\dfrac{\strut\partial y}{\partial u} & \dfrac{\partial y}{\partial v} & \dfrac{\partial y}{\partial w} \\
+		\dfrac{\strut\partial z}{\partial u} & \dfrac{\partial z}{\partial v} & \dfrac{\partial z}{\partial w}
+	\end{vmatrix}
+\]
+\end{definition}
+
+\begin{theorem}[Change of Variable in General]
+If the transformation from $u,v$ plane to $x,y$ plane is bijective, then:
+\[
+	\iint_D f(x,y) dA = \iint_D g(u,v) |J_2| du dv
+\]
+Where $g(u,v) = f(x(u,v), y(u,v))$.
+
+If the transformation from $u,v,w$ plane to $x,y,z$ plane is bijective, then:
+\[
+	\iiint_V f(x,y,z) dV = \iiint_V g(u,v,w) |J_3| du dv dw
+\]
+Where $g(u,v,w) = f(x(u,v,w), y(u,v,w), z(u,v,w))$.
+
+Notice the Jacobian is taken as absolute value.
+\end{theorem}
+
+\begin{remark}
+	More excercises needed. See Example 54, lecture note page 51.
+\end{remark}
+
+
+\section{Vector Calculus}
+
+\subsection{Vector Fields}
+\begin{definition}[Vector Field]
+A vector field is a function 
+$\underline{F}: \mathbb{R}^n \rightarrow \mathbb{R}^n$.
+The input and output are $n$ dimensional vectors.
+\end{definition}
+
+\subsubsection{Conservative Vector Fields}
+\begin{theorem}[Conservative Vector Fields]
+	Vector field $ \underline{F}(x,y)$
+	is conservative, provided that it is defined on all 
+	$ \mathbb{R}^2,$ if and only if
+	\[
+		\frac{\partial P}{\partial y} = \frac{\partial Q}{\partial x}
+	\]
+
+For vector field $ \underline{G}(x,y,z)$, provided it is defined on all $ \mathbb{R}^3$, it is conservative if and only if:
+\[
+	\underline{\nabla} \times \underline{G} = 0
+\]
+
+\end{theorem}
+\begin{definition}[Conservative Vector Field]
+A vector field $\underline{F}$ is conservative if there exists a function $f: \mathbb{R}^n \rightarrow \mathbb{R}$ such that
+$\underline{\nabla} f = \underline{F}$.
+\end{definition}
+
+
+\subsection{Curl and Divergence}
+\begin{definition}[Curl]
+The curl of a vector field $\underline{F} = F_x \underline{i} +  F_y \underline{j} + F_z \underline{k}$ is defined as:
+\[
+	\underline{\nabla} \times \underline{F} 
+	=
+	\underline{i}\left( \frac{\partial F_z}{\partial y} - \frac{\partial F_y}{\partial z} \right)
+	+ \underline{j}\left( \frac{\partial F_x}{\partial z} - \frac{\partial F_z}{\partial x} \right)
+	+ \underline{k}\left( \frac{\partial F_y}{\partial x} - \frac{\partial F_x}{\partial y} \right)
+\]
+
+Moreover, curl of $ \underline{F}$ can be rewritten as below:
+\[
+	\underline{\nabla} \times \underline{F} = 
+	\begin{vmatrix}
+		\underline{i} & \strut\underline{j} & \underline{k} \\
+		\dfrac{\partial}{\partial x} & \dfrac{\partial}{\partial y} & \dfrac{\partial}{\partial z} \\
+		F_x & F_y & F_z
+	\end{vmatrix}
+\]
+\end{definition}
+
+\begin{definition}[Divergence]
+The divergence of a vector field $\underline{F} = F_x \underline{i} +  F_y \underline{j} + F_z \underline{k}$ is defined as:
+\[
+	\underline{\nabla} \cdot \underline{F} = \frac{\partial F_x}{\partial x} + \frac{\partial F_y}{\partial y} + \frac{\partial F_z}{\partial z}
+\]
+\end{definition}
+
+\begin{corollary}
+	Two facts about curl and divergence:
+	\begin{enumerate}
+		\item \text{div} (\text{curl} $\underline{F}$) = 0
+		\item \text{curl} ($\nabla f) = 0$
+	\end{enumerate}
+\end{corollary}
+\subsection{Line Integral}
+\begin{definition}[Line Integral]
+
+If $f$ is a function of three variable, the line integral along the curve $\gamma$ is defined as:
+\[
+	\int_\gamma f(x,y,z) ds 
+	= \int_{t_0} ^{t_1} f(x(t), y(t), z(t)) \sqrt{ \left(\frac{dx}{dt}\right)^2 + \left(\frac{dy}{dt}\right)^2 + \left(\frac{dz}{dt}\right)^2 } dt
+\]
+Where $\gamma$ is parametrized by $x=x(t), y=y(t), z=z(t),$ from $t_0$ to $t_1$.
+
+Moreover
+\[
+	\int_\gamma F dx = \int_{t_0} ^{t_1} F(x(t), y(t), z(t)) \frac{dx}{dt} dt
+\]
+Line integral alone $y$ and $z$ are defined similarly.
+
+\end{definition}
+
+
+\begin{definition}[Line Integral of a Vector Field]
+	The line integral of a vector field $\underline{F}$ along a curve $\gamma$ is described by the vector function $ \underline{r}$ is defined as:
+\[
+	\int_\gamma \underline{F} \cdot d\underline{r} 
+	=	 \int_{\gamma} \underline{F} (\underline{r}) \cdot \underline{r}'dt
+	= \int_{\gamma} P_x dx + P_y dy + P_z dz
+\]
+Where $ \underline{F} = \underline{i} P_x + \underline{j} P_y +  \underline{k} P_z$
+\end{definition}
+
+\begin{theorem}[Fundamental Theorem of Line Integral]
+If $\underline{F}$ is conservative, and $ \underline{\nabla}f = \underline{F}$. 
+Let $\gamma$ be a curve which starts from $(x_0, y_0)$ and ends at $(x_1, y_1)$.
+Then
+\[
+\int _\gamma \underline{F} \cdot d\underline{r} = f(x_1, y_1) - f(x_0, y_0)
+\]
+
+\end{theorem}
+
+\subsection{Surface Integral}
+\begin{theorem}[Surface Area]
+The surface area of a parametrized surface $\underline{r}(u,v) = \underline{i}x(u,v) + \underline{j}y(u,v) + \underline{k}z(u,v)$, for $(u,v) \in \mathbb{D}$ is:
+\[
+	\iint_{\mathbb{D}} | \underline{r}_u \times \underline{r}_v | dA
+\]
+Where $ \underline{r}_u = \dfrac{\partial \underline{r}}{\partial u}$ 
+and $ \underline{r}_v = \dfrac{\partial \underline{r}}{\partial v}$. 
+
+Notice $ \underline{r}_u $ and $ \underline{r}_v $ are tangent vectors to the surface, and $||$ operator returns their magnitude.
+\end{theorem}
+
+\begin{corollary}[When z is a function of x and y]
+For surface paramatrized as $ \underline{r} = \underline{i}x+ \underline{j}y+ \underline{k} f(x,y),$ the surface area of the surface for $(x,y) \in \mathbb{D}$ is 
+\[
+	\iint_{ \mathbb{D}} \sqrt{1 + \left( \frac{\partial f}{\partial x} \right)^2 + \left( \frac{\partial f}{\partial y} \right)^2} dA
+\]
+	
+\end{corollary}
+
+
+\begin{definition}[Surface Integral]
+	Consider function $f(x,y,z)$ defined on the surface $ \mathbb{S}$ which is described by the vector function: 
+	\[
+		\underline{r}(u,v) = \underline{i}x(u,v) + \underline{j}y(u,v) + \underline{k}z(u,v), (u, v) \in \mathbb{D}
+	\]
+	Then the surface integral of $f$ over the surface $\mathbb{S}$ is defined as:
+	\[
+		\iint_{\mathbb{S}} f(x,y,z) dS
+	=
+		\iint_{\mathbb{D}} f( \underline{r}(u,v)) | \underline{r}_u \times \underline{r}_v | dA
+	\]
+Where $ \underline{r}_u = \dfrac{\partial \underline{r}}{\partial u}$
+$ \underline{r}_v = \dfrac{\partial \underline{r}}{\partial v}$,
+and$f( \underline{r}(u,v)) = f(x(u,v), y(u,v), z(u,v))$
+
+
+\end{definition}
+
+\begin{remark}
+	More excercises needed.
+\end{remark}
+
+
+\begin{definition}[Oriented Surface]
+	Let $\underline{r}(u,v)$ be a vector function on $\mathbb{D}$ that describes the surface $S$.
+	$ \displaystyle\frac{\underline{r}_u \times \underline{r}_v}{| \underline{r}_u \times \underline{r}_v|}$ is its unit normal vector to $S$.
+
+	Moreover, for surface $z = f(x,y)$ the unit normal vector is:
+	\[
+		\frac{-\underline{i} \displaystyle \frac{\partial f}{\partial x} - \underline{j} \frac{\partial f}{\partial y} + \underline{k}}
+		{\sqrt{1 + \left( \displaystyle\frac{\partial f}{\partial x} \right)^2 + \left( \dfrac{\partial f}{\partial y} \right)^2}}
+	\]
+\end{definition}
+\begin{definition}[Surface Integral Over Vector Field]
+	Let $\underline{F}(x,y,z)$ be a vector field defined on the surface $S$.
+	Then the surface integral of $\underline{F}$ over $S$ is defined as:
+	\[
+		\iint_{S} \underline{F} \cdot d\underline{S}
+	=
+	\iint_{S} \underline{F} \cdot \hat{ \underline{n}} dS
+	=
+		\iint_{\mathbb{D}} \underline{F}(\underline{r}(u,v)) \cdot \frac{\underline{r}_u \times \underline{r}_v}{| \underline{r}_u \times \underline{r}_v|} \cdot | \underline{r}_u \times \underline{r}_v| dA
+	\]
+Which equals to:
+\[
+	\iint_{\mathbb{D}} \underline{F}(\underline{r}(u,v)) \cdot \left( \underline{r}_u \times \underline{r}_v \right)dA
+\]	
+Moreover, for surface $z = g(x,y)$, we have:
+\[
+	\underline{F} \cdot | \underline{r}_u \times \underline{r}_v| 
+=
+	(F_x \underline{i} + F_y \underline{j} + F_z \underline{k}) \cdot \left( - \dfrac{ \partial g}{ \partial x} \underline{i} - \frac{ \partial g}{ \partial y} \underline{j} + \underline{k} \right)
+\]
+And the surface integral is:
+\[
+	\iint_{S} \underline{F} \cdot d\underline{S}
+=
+\iint _{ \mathbb{D}} - F_x \frac{ \partial g}{ \partial x} - F_y \frac{ \partial g}{ \partial y} + F_z dA
+\]
+\end{definition}
+
+
+\subsection{Theoremae Trinitatis}
+
+\begin{theorem}[Green's Theorem]
+	Let $\gamma$ be positively oriented curve, simply close, and piecewise smooth curve in $x,y$ plane.
+	Let $ \Gamma$ be the region bounded by $\gamma$.
+	If $ P(x,y)$ and $Q(x,y)$ are continuous functions on $\Gamma$, then
+\[
+	\int _{\gamma} P dx + Qdy = \iint _{\Gamma} \frac{\partial Q}{\partial x} - \frac{\partial P}{\partial y} dA
+\]
+
+\end{theorem}
+
+\begin{theorem}[Stokes' Theorem]
+	Let $\gamma$ be positively oriented, simply close, and piecewise smooth curve in $x,y$ plane.
+	Let $ \Gamma$ be the region bounded by $\gamma$.
+	If $ \underline{F}(x,y, z)$ is a continuous vector field on $\Gamma$, then
+\[
+	\iint _{\Gamma} \underline{\nabla} \times \underline{F} \cdot d\underline{S} = \int _{\gamma} \underline{F} \cdot d\underline{r}
+\]
+
+\end{theorem}
+
+\begin{theorem}[Divergence Theorem]
+Let $E$ be a simple solid region bounded by a positively oriented surface (outward) $\mathbb{S}$.
+Let $ \underline{F}: \mathbb{R}^3 \rightarrow \mathbb{R}^3$ be a vector field that has continuous partial derivative in $E$, then:
+
+\[
+	\iint _{\mathbb{S}} \underline{F} \cdot d\underline{S} = \iiint _{E} \underline{\nabla} \cdot \underline{F} dV
+\]
+
+
+\end{theorem}
+
+
+\section{Differential Equations}
+\subsection{Classification}
+\begin{definition}[Classification of Differential Equation]
+Classification of Differential Equation.
+	\begin{enumerate}
+		\item Ordinary differential equation (ODE) involves only differentiation of one variable
+		\item Partial differential equation (PDE) involves differentiation of more than one variable.
+		\item Order of differential equation is the highest order of differentiation in the equation.
+	\end{enumerate}
+The $n^{\text{th}}$ order linear differential equation has the general form:
+\[
+	\frac{d^n y}{dx^n} + a_1 \frac{d^{n-1} y}{dx^{n-1}} + a_2 \frac{d^{n-2} y}{dx^{n-2}} + \cdots + a_{n-1} \frac{d y}{dx} + a_n y = a_0(x)
+\]
+Where $a_i$ is a functions of $x$. 
+The equation is called homogeneous if $a_0(x) = 0$.
+
+If $S_1(x), S_2(x) \dots $ are solution to the homogeneous equation, then any of its linear combinations are also a solution.
+\end{definition}
+
+
+\begin{theorem}[Uniqueness of the solution to Inital Value Problem]\label{UniquenessTheorem}
+Consider the general $n^{\text{th}}$ order linear differential equation:
+\[
+f(y^{n}, y^{n-1}, \dots, y, x) = 0 
+\]
+Provided with inital values 
+$$y (x_0) = a_0, y^{1}(x_1) = a_1 \dots y^{n}(x_n) = a_n $$
+There is one unique solution to this Initial Value Problem.
+
+\end{theorem}
+
+
+\subsection{First Order Ordinary Differential Equation}
+\begin{theorem}[Solutions to Linear First Order ODE]
+The linear ODE of the form:
+\[
+	y' + P(x)y = Q(x)
+\]
+has the general solution:
+\[
+	y(x) = e^{-\int P(x) dx}\left( \int Q(x) e^{\int P(x) dx} dx + C\right)
+\]
+Where $C$ is an arbitrary constant.
+
+\end{theorem}
+
+\begin{theorem}[Separable ODE]
+	ODE are separarble if it can be written in the form:
+\[
+	\frac{dy}{dx} h(y) = g(x)
+\]
+And the solution is given by simply integration:
+\[
+	\int h(y) dy = \int g(x) dx
+\]
+\end{theorem}
+
+\begin{theorem}[Homogeneous ODE (Another Homogeneous)]
+An ODE is called homogeneous if it can be written in the form:
+\[
+	\frac{dy}{dx}  = g(\frac{y}{x})
+\]
+
+It can be solved by introducing a new variable $u = \dfrac{y}{x}$. Notice 
+$ \dfrac{dy}{dx} = u + x \dfrac{du}{dx}$.
+	
+\end{theorem}
+
+\begin{theorem}[Exact ODE]
+	The ODE is exact if it can be written in the form:
+\[
+	\frac{ \partial \psi}{ \partial x} + \frac{ \partial \psi}{ \partial y} \frac{dy}{dx} = 0
+\]
+Where $\psi$ is a function of $x$ and $y$.
+
+And its general the solution is $ \psi (x,y) = C$.
+
+Moreover, a equation in the form of $ M(x,y) + \frac{dy}{dx} N(x,y) = 0$ is if and only if $ \frac{ \partial M}{y} = \frac{ \partial N}{x}.$
+c.f. the determination of conservative vector field.
+\end{theorem}
+
+\begin{remark}[On Integration Factor]
+The process of finding the solution of a differential equation many times involves heavily upon the creative application of algebraic manipulation
+and the computation capabilities of the problem solver. For a particular kind of equation whose general solution is unknown, there are many times
+tricks that may be useful. One of them is integration factor.
+
+For example, consider the following equation:
+\[
+	3xy+y^2 +(x^2+xy)y' = 0
+\]
+This equation can be turned into an exact equation by multiplying both sides by $x$, and the $\psi$ function can be found to be: $x^3y+ \dfrac{1}{2}x^2y^2.$
+\end{remark}
+
+\subsection{Second Order Ordinary Differential Equation}
+Consider second order ODE of the form:
+\[
+	P(t) \frac{d^2y}{dt^2} + Q(t) \frac{dy}{dt} + R(t) y = G(t)
+\]
+
+Existence and Uniqueness Theorem (\ref{UniquenessTheorem}) says that fot the initial value problem $y(t_0)=\alpha, y'(t_0) = \beta$, there exists exactly one solution.
+
+\begin{definition}[Wroskian]
+	The Wroskian of two functions, $f(x)$ and $g(x)$ is defined as:\[
+		W(f,g) = \det \begin{bmatrix} f(x) & g(x) \\ f'(x) & g'(x) \end{bmatrix}
+	\]
+\end{definition}
+
+\begin{definition}[Linearly Independent Functions]
+	Two functions, $f_1(t)$ and $f_2(t)$ are linearly independent if if their Wronskian is not zero.
+More significantly, it means that $ \frac{f_1}{f_2} = g(t),$ where g(t) is not a constant function for $t$ in their domain.
+\end{definition}
+
+\begin{theorem}[Nature of Solutions to secound order homogeneous ODE]
+	Consider the second order homogeneous ODE:
+\[
+	P(t) \frac{d^2y}{dt^2} + Q(t) \frac{dy}{dt} + R(t) y = 0
+\]
+Assuming $y_1(t)$ and $y_2(t)$ are two linearly independent solutions, then function $y_r$ is a solution to the ODE if and only it $y_r$ is linear combination of $y_1$ and $y_2$.
+
+\end{theorem}
+
+\begin{theorem}[Abel's Theorem]
+	Consider the second order homogeneous ODE:
+\[
+	y'' + p(t)y' + q(t)y = 0
+\] with solutions $y_1(t)$ and $y_2(t)$, then:
+$W(y_1, y_2) = c \exp{\left[ - \int p(t) dt \right]}$
+	
+\end{theorem}
+\subsubsection{General Solutions to Second Order Homogeneous ODE with Constant Coefficients}
+
+\begin{theorem}[General Solutions to Second Order Homogeneous ODE with Constant Coefficients] \label{SolutionSOODEConstant}
+	Let $y'' + a_1y' +  a_2y = 0$ be a second order homogeneous ODE.
+	Substitute the function $T(x) = e^{rx},$ where $r$ is a constant:
+\begin{equation}\label{eq:2HOMOODE}
+		r^2e^{rx} + a_1re^{rx} + a_2e^{rx} = 0 \iff r^2 + a_1r + a_2 = 0
+\end{equation}
+
+Here we have three cases.
+
+\textbf{Case 1}: equation \ref{eq:2HOMOODE} has two distinct real roots $r_1$ and $r_2$.
+
+Then the general solution is: 
+\[
+	y(x) = C_1e^{r_1x} + C_2e^{r_2x}
+\]
+
+\textbf{Case 2}: equation \ref{eq:2HOMOODE} has two repeated real roots $r_1$.
+
+Then the general solution is:
+\[
+	y(x) = C_1e^{r_1x} + C_2x e^{r_1x}
+\]
+
+\textbf{Case 3}: equation \ref{eq:2HOMOODE} has two complex roots $r_1+im_1$ and $r_1 - im_1$, where $i$ is the imaginary unit.
+
+Recall Euler's formula: $e^{ix} = \cos x + i \sin x$.
+Then the general solution is:
+\[
+	y(x) = C_1e^{r_1x}e^{im_1x} + C_2e^{r_1x}e^{-im_1x}
+\]
+Which is equivalent to:
+\[
+	y(x) = C_3\cos(m_1x)e^{r_1x} + C_4\sin(m_1x)e^{r_1x}
+\]
+\end{theorem}
+
+\subsubsection{Solutions to Certain Second Order Non-Homogeneous ODE}
+
+\begin{theorem}[Method of Variation of Parameters]
+	Consider the linear non-homogeneous second order ODE:
+\begin{equation}\label{eq:2NHOMOODE}
+	ay'' + by' + cy = g(t)
+\end{equation}
+Suppose the homogeneous equation ($ay'' + by' + cy = 0$) has the general solution:
+\[
+	y_c(t) = C_1y_1(t) + C_2y_2(t)
+\]
+Then the particular solution of the non-homogeneous equation \ref{eq:2NHOMOODE} is: 
+\[
+	y_p(t) = -y_1(t)\int \frac{y_2(t)g(t)}{aW(y_1,y_2)} dt + y_2(t)\int \frac{y_1(t)g(t)}{aW(y_1,y_2)} dt
+\]
+
+Where $W$ is Wronskian operator and 
+$W(y_1,y_2) = y_1y_2' - y_2y_1'$.
+
+See Boyce 4.4.
+\end{theorem}
+
+\begin{remark}[Method of Undetermined Coefficients]
+	Method of Undetermined Coefficients may well be termed as method of educated guess.
+	Consider the linear non-homogeneous second order ODE:
+\begin{equation}
+	ay'' + by' + cy = g(t)
+\end{equation}
+For certain $g(t),$ such as $e^t$, we can assume the solution is of the form $ae^t,$ where a is a constant. Then we can simply plug in and solve for $a.$
+
+\end{remark}
+
+\subsubsection{Euler's Equation}
+\begin{theorem}[Solution to Euler's Equation]
+	Consider the equation:
+\[
+	ax^2 \frac{d^2y}{dx^2} + bx \frac{dy}{dx} + cy = 0
+\]
+For constants $a,b,c$. The solution of can be found by introducing a new variable $t = ln(x)$
+
+Notice $ \frac{dy}{dx} = \frac{dy}{dt} \frac{dt}{dx} = \frac{dy}{dt} \frac{1}{x}$
+and $ \frac{d^2y}{dx^2} = \frac{d^2y}{dt^2} \frac{1}{x^2} - \frac{dy}{dt} \frac{1}{x^2}$
+
+Then the equation becomes:
+\[
+	a\frac{d^2y}{dt^2} + (b-a)\frac{dy}{dt} + cy = 0
+\]
+Which can be solved by theorem \ref{SolutionSOODEConstant}.
+\end{theorem}
+
+
+
+
+
+
+
+
+
+
+\newpage
+
+\section{Quaedam Formulae Utillimae}
+\subsection{Trignometric Formulae}
+\begin{enumerate}
+\item $\sin^2{\theta} + \cos^2{\theta} = 1$
+\item $\cos(2\theta) = \cos^2{\theta} - \sin^2{\theta} = 2\cos^2{\theta} - 1$
+
+\end{enumerate}
+\subsection{Common Integrals}
+\begin{enumerate}
+	\item $\int \cos^2{\theta} = \frac{\theta}{2} + \frac{\sin{2\theta}}{4}, \int_0^{\pi} \cos^2{\theta} = \frac{\pi}{2} $
+	\item $\int \sin^2{\theta} = \frac{\theta}{2} - \frac{\sin{2\theta}}{4},  \int_0^{\pi} \sin^2{\theta} = \frac{\pi}{2} $
+\end{enumerate}
+
+\subsection{Other Common Computations}
+\begin{enumerate}
+	\item For $ \underline{r}(\phi, \theta) = 
+		a(\sin{\phi}\cos{\theta} \underline{i} +
+		\sin{\phi}\sin{\theta} \underline{j} + 
+		\cos{\phi} \underline{k}), 
+		|\underline{r}_{\phi} \times \underline{r}_{\theta}| = 
+		a^2\sin{\phi}$.
+
+
+\end{enumerate}
+
+
+$$
+[SDS] (mol\cdot dm^{-3}) = 0.01 \frac{g}{100cm^{-3}}\div 288.38 \frac{g}{mol} \time \frac{1000cm^{-3}}{1dm^{-3}}=3.5\cdot 10^{-4} mol dm^{-3}
+$$
+
+\end{document}
