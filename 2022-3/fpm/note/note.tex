@@ -1,8 +1,8 @@
-\documentclass[12pt, a4paper]{article}
+\documentclass[12pt, a4paper]{report}
 \usepackage{blindtext, titlesec, amsthm, thmtools, amsmath, amsfonts, scalerel, amssymb, graphicx, titlesec, xcolor}
 \usepackage[utf8]{inputenc}
 %\hypersetup{frenchlinks=true}
-\newtheorem{theorem}{Theorem}[subsection]
+\newtheorem{theorem}{Theorem}[section]
 \newtheorem{lemma}[theorem]{Lemma}
 \newtheorem{corollary}{Corollary}[section]
 \newtheorem{hypothesis}{Hypothesis}
@@ -19,14 +19,21 @@
 \date{\today}
 \begin{document}
 \maketitle
-%\tableofcontents
+\tableofcontents
 
-\subsection*{Notation}
+\newpage
+
+\begin{abstract}
+	This is my notes when taking the class \emph{Fundamentals of Pure Mathematics} at the University of Edinburgh. These notes do not follow the course lecture notes; instead, they are my thoughts and works inspired by the class.
+\end{abstract}
+\chapter{Notation}
+
 \begin{itemize}
 	\item The \verb|\mathbb{}| fonts are used to denote sets. ($\mathbb{S}, \mathbb{Y},$ etc.)
 	\item $\mathbb{A} \succ \mathbb{B}$ denotes there exits a surjective function $f:A\rightarrow B$. $\prec$, $\asymp$ denotes injective, bijective, respectively.
 \end{itemize}
 
+\chapter{Analysis}
 \begin{axiom}[The "Smallest" Infinite Set]
 	A set $\mathbb{S}$ is infinite iff $\mathbb{S} \succ \mathbb{N}$. 
 \end{axiom}
@@ -68,5 +75,22 @@
 	\end{enumerate}
 \end{theorem}
 
+\chapter{Algebra}
 
+\begin{definition}[Group]
+Group is a set $\mathbb{S}$ with an operation $\odot$ that fulfills the following four properties:
+\begin{enumerate}
+	\item Closure
+	\item Associtivity: $(a \odot b) \odot c = a \odot (b \odot c)$;
+	\item Identity
+	\item Inverse
+\end{enumerate}
+\end{definition}
+\begin{theorem}[Consequence of the Definition]
+There are many unobvious properties that directly follows the definition.
+\begin{enumerate}
+	\item General Associtivity: Parenthesis does not matter, as long as the order is the same: 
+		$a \odot b \odot c \odot d \odot e \odot f \odot g \cdots  = (a \odot ((b \odot c) \odot e (\odot f \odot g)\cdots) = \cdots$
+\end{enumerate}
+\end{theorem}
 \end{document}
