@@ -5,7 +5,6 @@
 \newtheorem{theorem}{Theorem}[section]
 \newtheorem{lemma}[theorem]{Lemma}
 \newtheorem{corollary}{Corollary}[section]
-\newtheorem{hypothesis}{Hypothesis}
 \theoremstyle{definition}
 \newtheorem{definition}{Definition}[section]
 
@@ -14,6 +13,9 @@
 
 \theoremstyle{remark}
 \newtheorem{remark}{Remark}[section]
+\newtheorem{hypothesis}{Hypothesis}
+
+\renewcommand\qedsymbol{Q.E.D.}
 \title{Notes on Pure Mathematics}
 \author{Harry Han}
 \date{\today}
@@ -31,6 +33,10 @@
 \begin{itemize}
 	\item The \verb|\mathbb{}| fonts are used to denote sets. ($\mathbb{S}, \mathbb{Y},$ etc.)
 	\item $\mathbb{A} \succ \mathbb{B}$ denotes there exits a surjective function $f:A\rightarrow B$. $\prec$, $\asymp$ denotes injective, bijective, respectively.
+	\item $e$ is used to denote the identity of a group.
+	\item When there is no ambiguity, the notation for the operation of group is ommited. (i.e., $a \odot b = ab$).
+		$a^{-1}$ is used to denote the inverse of $a$.
+
 \end{itemize}
 
 \chapter{Analysis}
@@ -63,7 +69,7 @@
 	$g$ can be constructed by such: sort $\mathbb{N}^-$ and $\mathbb{N}$ in ascending order. Let the first element in the sorted $\mathbb{N}^-$ maps to the first in the sorted $\mathbb{N}$, the secound to secound, etc.
 	As $\mathbb{N}^-$ is infinite, $g$ must be bijective.
 
-	Indeed $h = f' \circ g: \mathbb{A} \rightarrow \mathbb{N}$ is the bijective mapping we seek. QED. 
+	Indeed $h = f' \circ g: \mathbb{A} \rightarrow \mathbb{N}$ is the bijective mapping we seek. 
 \end{proof}
 
 \begin{theorem}[List of Countable and Uncountable Sets]
@@ -87,10 +93,28 @@ Group is a set $\mathbb{S}$ with an operation $\odot$ that fulfills the followin
 \end{enumerate}
 \end{definition}
 \begin{theorem}[Consequence of the Definition]
-There are many unobvious properties that directly follows the definition.
+There are many non-obvious properties that directly follows the definition.
 \begin{enumerate}
 	\item General Associtivity: Parenthesis does not matter, as long as the order is the same: 
 		$a \odot b \odot c \odot d \odot e \odot f \odot g \cdots  = (a \odot ((b \odot c) \odot e (\odot f \odot g)\cdots) = \cdots$
+	\item Order of Inverse: $(a \odot b)^{-1}=b^{-1}\odot a^{-1}$.  
 \end{enumerate}
 \end{theorem}
+
+Here are some examples of groups. 
+\begin{enumerate}
+	\item $\mathbb{S}=\{e\}$
+	\item $\mathbb{S} = \{e, a, b, c\}.$ With the following operation:
+		1. All elements are their own inverse; 
+		2. The group is abelian.
+		2. $a \odot b = c, a \odot c = b, b \odot c = a$.
+\end{enumerate}
+\begin{hypothesis}
+	These are some of my hypothesis and thoughts.
+	\begin{enumerate}
+		\item different properties of odd finite groups and even finite groups
+		\item If defining the reverto of the operation $\odot $ to be $\oslash $ as such: $a \odot b = a \oslash b^{-1}$. What are the sets such that it would be a group under both $\odot \& \oslash$?
+		\item Can we have a set $\mathbb{S}$, such that under the operation $\odot $ we have $\forall a, b \in \mathbb{S}, a \odot b = b \odot  a$ but without associtivity? (Community without associtivity?)
+	\end{enumerate}
+\end{hypothesis}
 \end{document}
