@@ -2,18 +2,19 @@
 \usepackage{blindtext, titlesec, amsthm, thmtools, amsmath, amsfonts, scalerel, amssymb, graphicx, titlesec, xcolor}
 \usepackage[utf8]{inputenc}
 %\hypersetup{frenchlinks=true}
-\newtheorem{theorem}{Theorem}[section]
+\newtheorem{theorem}{Theorema}[section]
 \newtheorem{lemma}[theorem]{Lemma}
-\newtheorem{corollary}{Corollary}[section]
+\newtheorem{corollary}{Corollarium}[section]
+\newtheorem{propositio}{Propositio}[section]
 \theoremstyle{definition}
-\newtheorem{definition}{Definition}[section]
+\newtheorem{definition}{Definitio}[section]
 
 \theoremstyle{definition}
-\newtheorem{axiom}{Axiom}[section]
+\newtheorem{axiom}{Axioma}[section]
 
 \theoremstyle{remark}
-\newtheorem{remark}{Remark}[section]
-\newtheorem{hypothesis}{Hypothesis}
+\newtheorem{remark}{Observatio}[section]
+\newtheorem{hypothesis}{Coniectura}[section]
 
 \renewcommand\qedsymbol{Q.E.D.}
 \title{Notes on Pure Mathematics}
@@ -27,6 +28,7 @@
 
 \begin{abstract}
 	This is my notes when taking the class \emph{Fundamentals of Pure Mathematics} at the University of Edinburgh. These notes do not follow the course lecture notes; instead, they are my thoughts and works inspired by the class.
+	Terms like ``Theorem, Proposition'' are coined in Latin. Here is the list: theorema for theorem, Corollarium for corollary, Propositio for proposition, Definitio for definition, Conietura for hypothesis (conjecture).	
 \end{abstract}
 \chapter{Notation}
 
@@ -117,4 +119,16 @@ Here are some examples of groups.
 		\item Can we have a set $\mathbb{S}$, such that under the operation $\odot $ we have $\forall a, b \in \mathbb{S}, a \odot b = b \odot  a$ but without associtivity? (Community without associtivity?)
 	\end{enumerate}
 \end{hypothesis}
+\begin{definition}[Order of Group and element]
+The order of the group $\mathbb{S}$ is $|\mathbb{S}|$ (How many elements it has). \\
+The order of an element $s \in \mathbb{S}$ is the smallest integer $i$ such that $s^i = e.$ (If such $i$ exists)
+\end{definition}
+
+\begin{definition}[Cyclic Group]
+Let $\mathbb{G}$ be a group and $g$ one of its element. Considering the set:
+\[
+	\mathbb{S} = \{\cdots g^{-2}, g^{-1}, e, g, g^1, g^2 \cdots\}  
+\]
+If $\mathbb{S}$ is finite, it is called a cyclic group. (It can be shown that it must be a subgroup of $\mathbb{G}$.
+\end{definition}
 \end{document}
