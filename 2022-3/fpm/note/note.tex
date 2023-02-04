@@ -1,5 +1,5 @@
 \documentclass[12pt, a4paper]{report}
-\usepackage{blindtext, titlesec, amsthm, thmtools, amsmath, amsfonts, scalerel, amssymb, graphicx, titlesec, xcolor}
+\usepackage{blindtext, titlesec, amsthm, thmtools, amsmath, amsfonts, scalerel, amssymb, graphicx, titlesec, xcolor, multicol}
 \usepackage[utf8]{inputenc}
 %\hypersetup{frenchlinks=true}
 \newtheorem{theorem}{Theorema}[section]
@@ -17,7 +17,12 @@
 \newtheorem{hypothesis}{Coniectura}[section]
 
 \renewcommand\qedsymbol{Q.E.D.}
-\title{Notes on Pure Mathematics}
+\renewcommand{\chaptername}{Caput}
+\renewcommand{\contentsname}{INDEX} % Index Capitum 
+\title{
+	DE MATHEMATICA PURA \\
+	\large On Pure Mathematics
+}
 \author{Harry Han}
 \date{\today}
 \begin{document}
@@ -27,8 +32,8 @@
 \newpage
 
 \begin{abstract}
-	This is my notes when taking the class \emph{Fundamentals of Pure Mathematics} at the University of Edinburgh. These notes do not follow the course lecture notes; instead, they are my thoughts and works inspired by the class.
-	Terms like ``Theorem, Proposition'' are coined in Latin. Here is the list: theorema for theorem, Corollarium for corollary, Propositio for proposition, Definitio for definition, Conietura for hypothesis (conjecture).	
+	These are my notes when taking the class \emph{Fundamentals of Pure Mathematics} at the University of Edinburgh. They are not a replicate of the lecture notes: they are my thoughts and explorations. 
+	Terms like ``Theorem, Proposition'' are coined in Latin. As the English terms descended from Latin, most of them are self-explanatory. 
 \end{abstract}
 \chapter{Notation}
 
@@ -71,15 +76,15 @@
 	$g$ can be constructed by such: sort $\mathbb{N}^-$ and $\mathbb{N}$ in ascending order. Let the first element in the sorted $\mathbb{N}^-$ maps to the first in the sorted $\mathbb{N}$, the secound to secound, etc.
 	As $\mathbb{N}^-$ is infinite, $g$ must be bijective.
 
-	Indeed $h = f' \circ g: \mathbb{A} \rightarrow \mathbb{N}$ is the bijective mapping we seek. 
+	Indeed $h = g \circ f': \mathbb{A} \rightarrow \mathbb{N}$ is the bijective mapping we seek. 
 \end{proof}
 
 \begin{theorem}[List of Countable and Uncountable Sets]
 	Any of the following sets are countable.
 	\begin{enumerate}
-		\item $\mathbb{Z}$ and any of its infinite subsets.
-		\item $\mathbb{R}$ and any of its infinite subsets.
-		\item If $\mathbb{S}$ is countable, $\{\mathbb{S}\times \mathbb{S}\}, \{\mathbb{S}\times \mathbb{S}\times \dots \times \mathbb{S}) \}$ are also countable.
+		\item $\mathbb{Z}, \mathbb{Q}$ 
+		\item Any infinite subset of countable sets.
+		\item Any products of countable sets. If $\mathbb{S}$ is countable, $\{\mathbb{S}\times \mathbb{S}\}, \{\mathbb{S}\times \mathbb{S}\times \dots \times \mathbb{S}) \}$ are also countable.
 	\end{enumerate}
 \end{theorem}
 
@@ -131,4 +136,12 @@ Let $\mathbb{G}$ be a group and $g$ one of its element. Considering the set:
 \]
 If $\mathbb{S}$ is finite, it is called a cyclic group. (It can be shown that it must be a subgroup of $\mathbb{G}$.
 \end{definition}
+
+\appendix
+\renewcommand{\thechapter}{\Roman{chapter}}
+\chapter{Latin and Abbreviations}
+\begin{multicols}{2} % Dependent on the package multicol.
+Theorema: Theorem
+\end{multicols}
+
 \end{document}
