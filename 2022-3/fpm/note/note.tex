@@ -49,6 +49,8 @@
 \end{itemize}
 
 \chapter{Analysis}
+\section{The Countable Sets}
+
 \begin{axiom}[The "Smallest" Infinite Set]
 	A set $\mathbb{S}$ is infinite iff $\mathbb{S} \succ \mathbb{N}$. 
 \end{axiom}
@@ -86,11 +88,18 @@
 	\begin{enumerate}
 		\item $\mathbb{Z}, \mathbb{Q}$ 
 		\item Any infinite subset of countable sets.
-		\item Any products of countable sets. If $\mathbb{S}$ is countable, $\{\mathbb{S}\times \mathbb{S}\}, \{\mathbb{S}\times \mathbb{S}\times \dots \times \mathbb{S}) \}$ are also countable.
+		\item Any Unions of countable and finite sets.
+		\item Any products of countable sets and finite sets. i.e., if $\mathbb{S}, \mathbb{T}$ are countable, $\{\mathbb{S}\times \mathbb{S}\}, \{\mathbb{S}\times \mathbb{T}\times \dots \times \mathbb{S} \}$ are also countable.
 	\end{enumerate}
 \end{theorem}
 
+\begin{hypothesis}
+Is the product of countable number of countable sets countable?
+\end{hypothesis}
+
+
 \chapter{Algebra}
+\section{Group}
 
 \begin{definition}[Group]
 Group is a set $\mathbb{S}$ with an operation $\odot$ that fulfills the following four properties:
@@ -140,7 +149,7 @@ If $\mathbb{S}$ is finite, it is called a cyclic group. (It can be shown that it
 \end{definition}
 
 \begin{theorem}[Properties of Cyclic Group]
-Here are some properties immediately follows the definition of cyclic group.
+Here are some properties immediately follows the definition.
 \begin{enumerate}
 	\item Any subgroup of a cyclic group is also cyclic.
 \end{enumerate}	
@@ -159,24 +168,32 @@ Consider finite group $\mathbb{G}$ and its subgroup $\mathbb{S}$. $|\mathbb{S}|$
 \begin{proof}[Proof of Lagrange Theorem]
 	Let $\mathbb{G}=\{g_1, g_2, g_3, \cdots \}$ be a group and $\mathbb{S}= \{s_0, s_1, s_2, \cdots\}$(let $s_0=e$) be its subgroup. 
 	If $\mathbb{S}=\mathbb{G},$ we are done. If not, sine detrimento universalitatis(without loss of generality), let  $g_i \notin \mathbb{S}$. 
-	Consider the set: $\mathbb{D}_1=\{g_1s|s \in \mathbb{S}\}$. All elements in $\mathbb{D}_1$ has the following properties:
+	Consider the set: $\mathbb{D}_1=\{g_1s|s \in \mathbb{S}\}$. The set $\mathbb{D}_1$ has the following properties:
 	\begin{enumerate}
 		\item $g_1s \in \mathbb{D}_1 \rightarrow g_1s \in \mathbb{G}$ 
 		\item $|\mathbb{D}_1| = |\mathbb{S}|$. 
+		\item $(\forall d \in \mathbb{D}_1)$ the set $\mathbb{D}_1'=\{ds|s\in \mathbb{S}\}=\mathbb{D}_1$
 		\item $g_1s \in \mathbb{D}_1 \rightarrow g_1s \notin \mathbb{S}.$ 
 	\end{enumerate}
 	Property I is true because $\mathbb{G}$ is a group with the property closure.\\
 	By claiming that $g_1s_i \neq g_1s_j$ for $i \neq j$ it is sufficently to show property II is true.
-	Property III can be proved by contradiction. Assuming $\exists g_1s \in \mathbb{D}_1$ and $ g_1s \in \mathbb{S}.$ 
+	
+	To prove property III, we shall prove statement 1) $\mathbb{D}_1\subseteq \mathbb{D}_1'$ and 2) $\mathbb{D}_1'\subseteq \mathbb{D}_1$.
+	To prove statement 1), consider $a\in \mathbb{D}_1$, $\exists s_1 \in \mathbb{S}$ such that $g_1s_1$. 
+	Let $\mathbb{D}_1'$ be defined as $\mathbb{D}_1'=\{bs|s\in \mathbb{S}\}$. 
+	and $b$ can be written in the form of $g_1s_2$. 
+	Indeed $bs_2^{-1}s_1=a \rightarrow a\in \mathbb{D}_1' \rightarrow \mathbb{D}_1 \subseteq \mathbb{D}_1'.$ Statement 2) can be proved similarly.
+
+	Property IV can be proved by contradiction. Assuming $\exists g_1s \in \mathbb{D}_1$ and $ g_1s \in \mathbb{S}.$ 
 	We have $g_1ss^{-1} \in \mathbb{S}$ (by Inverse and Closure property of group) $\rightarrow g_1 \in \mathbb{S},$(by associtivity property of group) contradicting our assumption that $g \notin \mathbb{S}$.
 
 	If $\mathbb{G}=\mathbb{S}\cup \mathbb{D}_1$, we are done, as $|\mathbb{G}| = 2|\mathbb{S}|$. 
 
 	If $\exists g_2 \in \mathbb{G} \lor g_2 \notin \mathbb{S}, \mathbb{D}_1$. 
-	Construct the set $\mathbb{D}_2=\{g_ws|s \in \mathbb{S}\}$. All elements in $\mathbb{D}_2$ have properties I, II of $\mathbb{D}_1$, and a stronger III property: 
+	Construct the set $\mathbb{D}_2=\{g_ws|s \in \mathbb{S}\}$. All elements in $\mathbb{D}_2$ have properties I, II of $\mathbb{D}_1$, and a stronger IV property: 
 	$g_1s \in \mathbb{D}_2 \rightarrow g_1s \notin \mathbb{S}, \mathbb{D}_1.$.
 
-	Thus by same reasoning, if $\mathbb{G}=\mathbb{S}\cup \mathbb{D}_1 \cup \mathbb{D}_2$, $|\mathbb{G}| = 3|\mathbb{S}|$. 
+	Thus by same reasoning, if $\mathbb{G}=\mathbb{S}\cup \mathbb{D}_1 \cup \mathbb{D}_2$, $|\mathbb{G}| = 3|\mathbb{S}|$.
 	If not, we can constuct more disjoined sets $\mathbb{D}_3, \mathbb{D}_4, \cdots \mathbb{D}_n$ until the union of them and $\mathbb{S}$ forms $\mathbb{G}$. This can always be done as $\mathbb{G}$ is finite, and will have an order of $(n+1)\cdot |\mathbb{S}|. $
 \end{proof}
 
