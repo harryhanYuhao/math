@@ -1,0 +1,50 @@
+% $ biblatex auxiliary file $
+% $ biblatex bbl format version 3.2 $
+% Do not modify the above lines!
+%
+% This is an auxiliary file used by the 'biblatex' package.
+% This file may safely be deleted. It will be recreated by
+% biber as required.
+%
+\begingroup
+\makeatletter
+\@ifundefined{ver@biblatex.sty}
+  {\@latex@error
+     {Missing 'biblatex' package}
+     {The bibliography requires the 'biblatex' package.}
+      \aftergroup\endinput}
+  {}
+\endgroup
+
+
+\refsection{0}
+  \datalist[entry]{nty/global//global/global}
+    \entry{Ross}{book}{}
+      \name{author}{1}{}{%
+        {{hash=086104de2402fc3119dd543cacbc8f6f}{%
+           family={Ross},
+           familyi={R\bibinitperiod},
+           given={Kenneth\bibnamedelima A.},
+           giveni={K\bibinitperiod\bibinitdelim A\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Springer}%
+      }
+      \strng{namehash}{086104de2402fc3119dd543cacbc8f6f}
+      \strng{fullhash}{086104de2402fc3119dd543cacbc8f6f}
+      \strng{bibnamehash}{086104de2402fc3119dd543cacbc8f6f}
+      \strng{authorbibnamehash}{086104de2402fc3119dd543cacbc8f6f}
+      \strng{authornamehash}{086104de2402fc3119dd543cacbc8f6f}
+      \strng{authorfullhash}{086104de2402fc3119dd543cacbc8f6f}
+      \field{sortinit}{R}
+      \field{sortinithash}{5e1c39a9d46ffb6bebd8f801023a9486}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{isbn}{9781461462705}
+      \field{title}{Elementary Analysis, The Theory of Calculus, Second Edition}
+      \field{year}{2013}
+    \endentry
+  \enddatalist
+\endrefsection
+\endinput
+

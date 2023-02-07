@@ -1,6 +1,8 @@
 \documentclass[12pt, a4paper]{report}
 \usepackage{blindtext, titlesec, amsthm, thmtools, amsmath, amsfonts, scalerel, amssymb, graphicx, titlesec, xcolor, multicol}
 \usepackage[utf8]{inputenc}
+\usepackage{biblatex}
+\addbibresource{./reference/reference.bib}
 %\hypersetup{frenchlinks=true}
 \newtheorem{theorem}{Theorema}[section]
 \newtheorem{lemma}[theorem]{Lemma}
@@ -35,6 +37,8 @@
 
 \begin{abstract}
 	These are my notes when taking the class \emph{Fundamentals of Pure Mathematics} at the University of Edinburgh. They are not a replicate of the lecture notes: they are my thoughts and explorations. 
+	Most importantly, all proofs presented in this document are of my own conception. 
+
 	Terms like ``Theorem, Proposition'' are coined in Latin. As the English terms descended from Latin, most of them are self-explanatory. 
 \end{abstract}
 \chapter{Notation}
@@ -94,8 +98,53 @@
 \end{theorem}
 
 \begin{hypothesis}
-Is the product of countable number of countable sets countable?
+Is the product of countable number of countable sets countable? (Proposed Feb 6)
 \end{hypothesis}
+
+\section{Sequence and Series}
+\subsection{Sequence}
+\begin{definition}[Sequence]
+\end{definition}
+
+\begin{definition}[Convergent and Divergent]
+\end{definition}
+
+\begin{definition}[Increasing and Decreasing Sequence]
+\end{definition}
+
+\begin{definition}[Cauchy Sequence]\cite{Ross}
+	A sequence $(s_n)$ is a Cauchy Sequence iff $(\forall \epsilon > 0)(\exists N)(\forall n,m>N)(|s_n-s_m|<\epsilon)$
+\end{definition}
+\begin{theorem}[Properties of Cauchy Sequence]
+Here are two important propeties:
+\begin{enumerate}
+	\item All convergent sequences are Cauchy Sequences;
+	\item Cauchy Sequences are bounded;
+\end{enumerate}
+\end{theorem}
+
+\subsection{Series}
+\begin{definition}[Series]
+\end{definition}
+\begin{definition}[Convergent and Divergent]
+\end{definition}
+\begin{example}
+List of Convergent and Divergent series:
+\begin{enumerate}
+	\item Harmonic Series.
+\end{enumerate}
+\end{example}
+\begin{definition}[Cauchy Criterion]
+\end{definition}
+\begin{theorem}[Convergent Tests]
+Here are the most common convergent test:
+\begin{enumerate}
+	\item Comparison test
+	\item Ratio test
+	\item Root test
+\end{enumerate}
+\end{theorem}
+
 
 
 \chapter{Algebra}
@@ -201,4 +250,6 @@ Consider finite group $\mathbb{G}$ and its subgroup $\mathbb{S}$. $|\mathbb{S}|$
 
 \appendix
 \subfile{appendix/appendix.tex}
+
+\printbibliography
 \end{document}
