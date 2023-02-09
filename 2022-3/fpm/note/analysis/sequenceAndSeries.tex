@@ -1,0 +1,76 @@
+\documentclass[../note.tex]{subfiles}
+\begin{document}
+
+\section{Sequence and Series}
+\subsection{Sequence}
+\begin{definition}[Sequence]
+\end{definition}
+
+\begin{definition}[Convergent and Divergent]
+\end{definition}
+
+\begin{definition}[Increasing and Decreasing Sequence]
+\end{definition}
+
+\begin{definition}[Limit of supremum \& infimum]\label{def:limiSupremum}
+	For a sequence $(s_n)$, let $b_i$ denotes the supremum of $\{s_n|n>i\}$.
+	If $(b_n)$ converges, the value it converges to is called the limit of supremum of $(s_n)$, and is denoted as $\mathcal{L}_s (s_n)$. 
+	The limit of infimum is defined and denoted as $\mathcal{L}_i(s_n)$. (And the series be denoted as $(s_i)$.
+	(b for big, s for small)
+\end{definition}
+\begin{remark}
+	$(m_n)$, if exists, is a decreasing series; likewise $(i_n)$ is increasing.
+\end{remark}
+\begin{hypothesis} 
+	A sequence $(s_n)$ converges if and only if $\mathcal{L}_s (s_n) = \mathcal{L}_i(s_n)$. 
+	(Proposed Feb 8 2023)
+\end{hypothesis}
+\begin{definition}[Cauchy Sequence]\cite{Ross}
+	A sequence $(s_n)$ is a Cauchy Sequence iff $(\forall \epsilon > 0)(\exists N)(\forall n,m>N)(|s_n-s_m|<\epsilon)$
+\end{definition}
+\begin{theorem}
+A sequence converges if and only if it is a Cauchy Sequence.
+\end{theorem}
+\begin{proof}
+Consider 
+\end{proof}
+\begin{remark}
+	We can define a sudo Cauchy Sequence to be sequence $(s_n)$ such that $(\forall \epsilon > 0)(\exists N)(\forall n>N)(|s_n-s_{n+1}|<\epsilon)$ Indeed all convergent sequence are sudo Cauchy Sequence, but not all sudo Cauchy Sequence are convergent.
+\end{remark}
+
+\subsection{Series}
+\begin{definition}[Series]
+	A series can be expressed as $ \sum^{\infty}_{k=1} a_k$. 
+\end{definition}
+\begin{definition}[Convergent and Divergent]
+	Consider the seires :\\
+	$(s_n)=\sum^{n}_{k=1} a_k$. $(s_n)$ is called the partial sum of the series. The series $\sum^{\infty}_{k=1}a_k $ converges if and only if its partial sum converges; otherwise it diverges. 
+\end{definition}
+\begin{example}
+List of Convergent and Divergent series:
+\begin{enumerate}
+	\item Harmonic Series.
+\end{enumerate}
+\end{example}
+
+\begin{definition}[Cauchy Criterion]A series befits Cauchy Criterion if and only if its partial sum is a Cauchy Sequence. \end{definition}
+
+\begin{definition}[Absolute Convergent] A series $\sum^{\infty}_{k=1}a_k$ converges absolutely if and only if $\sum^{\infty}_{k=1}|a_k|$ converges. Otherwise it converges non-absolutely
+\end{definition}
+\begin{theorem}[Convergence Reveries]\label{th:ConvergenceReveries}
+\ 
+\begin{enumerate}
+	\item \label{th:ConvergenceReveries:en:absoluteconverge} Absolute Convergent
+		If a series converge absolutely, it converges. The converse is not true. 
+	\item Addition, Substraction, Multiplication, Division
+		If $\sum^{\infty}_{k=1}a_k $ and $\sum^{\infty}_{k=1}b_k$ converges, the followings also converge:
+		$\sum^{\infty}_{k=1}(a_k+b_k) $, $\sum^{\infty}_{k=1}(a_k-b_k) $ $\sum^{\infty}_{k=1}(a_k\cdot b_k)$
+\end{enumerate}
+\end{theorem}
+
+% \begin{proof}
+% 	To prove \ref{th:ConvergenceReveries:en:absoluteconverge} of theorem \ref{th:ConvergenceReveries}
+% \end{proof}
+
+
+\end{document}

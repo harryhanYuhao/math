@@ -1,0 +1,102 @@
+\documentclass[../note.tex]{subfiles}
+\begin{document}
+\section{Group}
+
+\begin{definition}[Group]
+Group is a set $\mathbb{S}$ with an operation $\odot$ that fulfills the following four properties:
+\begin{enumerate}
+	\item Closure
+	\item Associtivity: $(a \odot b) \odot c = a \odot (b \odot c)$;
+	\item Identity
+	\item Inverse
+\end{enumerate}
+\end{definition}
+\begin{theorem}[Consequence of the Definition]
+There are many non-obvious properties that directly follows the definition.
+\begin{enumerate}
+	\item General Associtivity: Parenthesis does not matter, as long as the order is the same: 
+		$a \odot b \odot c \odot d \odot e \odot f \odot g \cdots  = (a \odot ((b \odot c) \odot e (\odot f \odot g)\cdots) = \cdots$
+	\item Order of Inverse: $(a \odot b)^{-1}=b^{-1}\odot a^{-1}$.  
+\end{enumerate}
+\end{theorem}
+
+Here are some examples of groups. 
+\begin{enumerate}
+	\item $\mathbb{S}=\{e\}$
+	\item $\mathbb{S} = \{e, a, b, c\}.$ With the following operation:
+		1. All elements are their own inverse; 
+		2. The group is abelian.
+		2. $a \odot b = c, a \odot c = b, b \odot c = a$.
+\end{enumerate}
+\begin{hypothesis}
+	These are some of my hypothesis and thoughts.
+	\begin{enumerate}
+		\item different properties of odd finite groups and even finite groups
+		\item If defining the reverto of the operation $\odot $ to be $\oslash $ as such: $a \odot b = a \oslash b^{-1}$. What are the sets such that it would be a group under both $\odot \& \oslash$?
+		\item Can we have a set $\mathbb{S}$, such that under the operation $\odot $ we have $\forall a, b \in \mathbb{S}, a \odot b = b \odot  a$ but without associtivity? (Community without associtivity?)
+	\end{enumerate}
+\end{hypothesis}
+\begin{definition}[Order of Group and element]
+The order of the group $\mathbb{S}$ is $|\mathbb{S}|$ (How many elements it has). \\
+The order of an element $s \in \mathbb{S}$ is the smallest integer $i$ such that $s^i = e.$ (If such $i$ exists)
+\end{definition}
+
+\begin{definition}[Cyclic Group]
+Let $\mathbb{G}$ be a group and $g$ one of its element. Considering the set:
+\[
+	\mathbb{S} = \{\cdots g^{-2}, g^{-1}, e, g, g^1, g^2 \cdots\}  
+\]
+If $\mathbb{S}$ is finite, it is called a cyclic group. (It can be shown that it must be a subgroup of $\mathbb{G}$.
+\end{definition}
+
+\begin{theorem}[Properties of Cyclic Group]
+Here are some properties immediately follows the definition.
+\begin{enumerate}
+	\item Any subgroup of a cyclic group is also cyclic.
+\end{enumerate}	
+\end{theorem}
+
+\begin{theorem}[Lagrange Theorem]
+Consider finite group $\mathbb{G}$ and its subgroup $\mathbb{S}$. $|\mathbb{S}|$ divides $|\mathbb{G}|.$	
+\end{theorem}
+\begin{example}
+	The followings demonstrate Lagrange Theorem.
+	\begin{enumerate}
+		\item $\mathbb{Z}_{10}$ under addition modula 10 and its subgroup $\mathbb{S} = \{0,2,4,6,10\}$. 
+		$|\mathbb{Z}_{10}|=10, |\mathbb{S}|=5$.  
+	\end{enumerate}
+\end{example}
+\begin{proof}[Proof of Lagrange Theorem]
+	Let $\mathbb{G}=\{g_1, g_2, g_3, \cdots \}$ be a group and $\mathbb{S}= \{s_0, s_1, s_2, \cdots\}$(let $s_0=e$) be its subgroup. 
+	If $\mathbb{S}=\mathbb{G},$ we are done. If not, sine detrimento universalitatis(without loss of generality), let  $g_i \notin \mathbb{S}$. 
+	Consider the set: $\mathbb{D}_1=\{g_1s|s \in \mathbb{S}\}$. The set $\mathbb{D}_1$ has the following properties:
+	\begin{enumerate}
+		\item $g_1s \in \mathbb{D}_1 \rightarrow g_1s \in \mathbb{G}$ 
+		\item $|\mathbb{D}_1| = |\mathbb{S}|$. 
+		\item $(\forall d \in \mathbb{D}_1)$ the set $\mathbb{D}_1'=\{ds|s\in \mathbb{S}\}=\mathbb{D}_1$
+		\item $g_1s \in \mathbb{D}_1 \rightarrow g_1s \notin \mathbb{S}.$ 
+	\end{enumerate}
+	Property I is true because $\mathbb{G}$ is a group with the property closure.\\
+	By claiming that $g_1s_i \neq g_1s_j$ for $i \neq j$ it is sufficently to show property II is true.
+	
+	To prove property III, we shall prove statement 1) $\mathbb{D}_1\subseteq \mathbb{D}_1'$ and 2) $\mathbb{D}_1'\subseteq \mathbb{D}_1$.
+	To prove statement 1), consider $a\in \mathbb{D}_1$, $\exists s_1 \in \mathbb{S}$ such that $g_1s_1$. 
+	Let $\mathbb{D}_1'$ be defined as $\mathbb{D}_1'=\{bs|s\in \mathbb{S}\}$. 
+	and $b$ can be written in the form of $g_1s_2$. 
+	Indeed $bs_2^{-1}s_1=a \rightarrow a\in \mathbb{D}_1' \rightarrow \mathbb{D}_1 \subseteq \mathbb{D}_1'.$ Statement 2) can be proved similarly.
+
+	Property IV can be proved by contradiction. Assuming $\exists g_1s \in \mathbb{D}_1$ and $ g_1s \in \mathbb{S}.$ 
+	We have $g_1ss^{-1} \in \mathbb{S}$ (by Inverse and Closure property of group) $\rightarrow g_1 \in \mathbb{S},$(by associtivity property of group) contradicting our assumption that $g \notin \mathbb{S}$.
+
+	If $\mathbb{G}=\mathbb{S}\cup \mathbb{D}_1$, we are done, as $|\mathbb{G}| = 2|\mathbb{S}|$. 
+
+	If $\exists g_2 \in \mathbb{G} \lor g_2 \notin \mathbb{S}, \mathbb{D}_1$. 
+	Construct the set $\mathbb{D}_2=\{g_ws|s \in \mathbb{S}\}$. All elements in $\mathbb{D}_2$ have properties I, II of $\mathbb{D}_1$, and a stronger IV property: 
+	$g_1s \in \mathbb{D}_2 \rightarrow g_1s \notin \mathbb{S}, \mathbb{D}_1.$.
+
+	Thus by same reasoning, if $\mathbb{G}=\mathbb{S}\cup \mathbb{D}_1 \cup \mathbb{D}_2$, $|\mathbb{G}| = 3|\mathbb{S}|$.
+	If not, we can constuct more disjoined sets $\mathbb{D}_3, \mathbb{D}_4, \cdots \mathbb{D}_n$ until the union of them and $\mathbb{S}$ forms $\mathbb{G}$. This can always be done as $\mathbb{G}$ is finite, and will have an order of $(n+1)\cdot |\mathbb{S}|. $
+\end{proof}
+
+
+\end{document}

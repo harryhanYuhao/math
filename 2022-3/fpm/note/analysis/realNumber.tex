@@ -1,0 +1,52 @@
+\documentclass[../note.tex]{subfiles}
+\begin{document}
+\section{Real Number}
+\subsection{The Countable Sets}
+
+\begin{axiom}[The "Smallest" Infinite Set]
+	A set $\mathbb{S}$ is infinite iff $\mathbb{S} \succ \mathbb{N}$. 
+\end{axiom}
+
+\begin{remark}
+	Although FPM is a pure mathematic class with emphasis on rigor, no rigorous definition for the infinite set has been proposed. This definition/axiom is of my own conception.
+\end{remark}
+
+\begin{definition}[Countable Set]
+	A set $\mathbb{S}$ is countable iff $\mathbb{N} \asymp \mathbb{S}$ (there exists a bijection $f:\mathbb{N} \rightarrow \mathbb{S}$).
+\end{definition}
+
+\begin{corollary}[At Most Countable]
+	Let $\mathbb{A}$ be an infinite set. \\($\mathbb{A} \prec \mathbb{N}$) iff ($\mathbb{A} \asymp \mathbb{N}$).
+\end{corollary}
+
+\begin{proof}
+	We want to prove $\mathbb{A} \prec \mathbb{N}$ is equivalent to $\mathbb{A} \asymp \mathbb{N}$. $\mathbb{A} \asymp \mathbb{N} \rightarrow \mathbb{A} \prec \mathbb{N}$ is by definition. 
+	We only need to prove the other direction; i.e., provided $\mathbb{A} \prec \mathbb{N}$, find a bijective function $h: \mathbb{A} \rightarrow \mathbb{N}$.
+
+	Let $f: \mathbb{A} \rightarrow \mathbb{N}$ be an injective mapping. If $f$ is bijective, we are done. If $f$ is injective but not bijective, let $\mathbb{N}^-$ be the range of $f.$ As $\mathbb{A}$ is infinite, $\mathbb{N}^-$ is also infinite.  
+	%TODO: f' is not bijective, construct the correct bijective f'.
+	Let $f': \mathbb{A} \rightarrow \mathbb{N}^-$ such that $f(a) = f'(a).$ $f'$ is an bijective mapping. 
+	
+    Thus we only need to show there exists a mapping $g: \mathbb{N}^- \rightarrow \mathbb{N}$ that is bijective. 
+
+	$g$ can be constructed by such: sort $\mathbb{N}^-$ and $\mathbb{N}$ in ascending order. Let the first element in the sorted $\mathbb{N}^-$ maps to the first in the sorted $\mathbb{N}$, the secound to secound, etc.
+	As $\mathbb{N}^-$ is infinite, $g$ must be bijective.
+
+	Indeed $h = g \circ f': \mathbb{A} \rightarrow \mathbb{N}$ is the bijective mapping we seek. 
+\end{proof}
+
+\begin{theorem}[List of Countable and Uncountable Sets]
+	Any of the following sets are countable.
+	\begin{enumerate}
+		\item $\mathbb{Z}, \mathbb{Q}$ 
+		\item Any infinite subset of countable sets.
+		\item Any Unions of countable and finite sets.
+		\item Any products of countable sets and finite sets. i.e., if $\mathbb{S}, \mathbb{T}$ are countable, $\{\mathbb{S}\times \mathbb{S}\}, \{\mathbb{S}\times \mathbb{T}\times \dots \times \mathbb{S} \}$ are also countable.
+	\end{enumerate}
+\end{theorem}
+
+\begin{hypothesis}
+Is the product of countable number of countable sets countable? (Proposed Feb 6)
+\end{hypothesis}
+
+\end{document}
