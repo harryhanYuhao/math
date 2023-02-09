@@ -1,9 +1,9 @@
 \documentclass[12pt, a4paper]{report}
-\usepackage{blindtext, titlesec, amsthm, thmtools, amsmath, amsfonts, scalerel, amssymb, graphicx, titlesec, xcolor, multicol}
+\usepackage{blindtext, titlesec, amsthm, thmtools, amsmath, amsfonts, scalerel, amssymb, graphicx, titlesec, xcolor, multicol, hyperref}
 \usepackage[utf8]{inputenc}
 \usepackage{biblatex}
 \addbibresource{./reference/reference.bib}
-%\hypersetup{frenchlinks=true}
+\hypersetup{colorlinks, linkcolor={red!40!black}, citecolor={blue!50!black}, urlcolor={blue!80!black}}
 \newtheorem{theorem}{Theorema}[section]
 \newtheorem{lemma}[theorem]{Lemma}
 \newtheorem{corollary}{Corollarium}[section]
@@ -45,7 +45,7 @@
 
 \begin{itemize}
 	\item The \verb|\mathbb{}| fonts are used to denote sets. ($\mathbb{S}, \mathbb{Y},$ etc.)
-	\item $\mathbb{A} \succ \mathbb{B}$ denotes there exits a surjective function $f:A\rightarrow B$. $\prec$, $\asymp$ denotes injective, bijective, respectively.
+	\item $\mathbb{A} \succ \mathbb{B}$ denotes there exits a surjective function $f:\mathbb{A}\rightarrow \mathbb{B}$. $\prec$, $\asymp$ denotes injective, bijective, respectively.
 	\item $e$ is used to denote the identity of a group.
 	\item When there is no ambiguity, the notation for the operation of group is ommited. (i.e., $a \odot b = ab$).
 		$a^{-1}$ is used to denote the inverse of $a$.

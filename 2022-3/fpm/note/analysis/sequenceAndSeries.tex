@@ -9,33 +9,51 @@
 \begin{definition}[Convergent and Divergent]
 \end{definition}
 
-\begin{definition}[Increasing and Decreasing Sequence]
+\begin{definition}[Increasing and Decreasing Sequence(Monotone)]
 \end{definition}
 
 \begin{definition}[Limit of supremum \& infimum]\label{def:limiSupremum}
 	For a sequence $(s_n)$, let $b_i$ denotes the supremum of $\{s_n|n>i\}$.
 	If $(b_n)$ converges, the value it converges to is called the limit of supremum of $(s_n)$, and is denoted as $\mathcal{L}_s (s_n)$. 
-	The limit of infimum is defined and denoted as $\mathcal{L}_i(s_n)$. (And the series be denoted as $(s_i)$.
-	(b for big, s for small)
+	$(b_n)$ is called the supremum sequence.
+	Similarly infimum sequence and limit of infimum are defined, and the later denoted as $\mathcal{L}_i(s_n)$. 
 \end{definition}
+
 \begin{remark}
-	$(m_n)$, if exists, is a decreasing series; likewise $(i_n)$ is increasing.
+	Notice supremum and infimum sequences are monotone.
 \end{remark}
-\begin{hypothesis} 
+\begin{theorem} [Convergence and Limit of supremum \& infimum]\label{analysis:th:Convergence_and_limit_of_sup_in}
 	A sequence $(s_n)$ converges if and only if $\mathcal{L}_s (s_n) = \mathcal{L}_i(s_n)$. 
-	(Proposed Feb 8 2023)
-\end{hypothesis}
+	(Proposed Feb 8 2023, proved Feb 9)
+\end{theorem}
+
+\begin{proof}
+We want to prove that $(\mathcal{L}_i (s_n) = \mathcal{L}_s (s_n)) \iff (s_n)$ converges. \\
+Forward direction: We shall show that $\lim_{n\to \infty}(s_n)=\mathcal{L}_s(s_n) = \mathcal{L}_i (s_n) = \lambda$. $\forall \epsilon >0$, we know by our assumption that $(\exists N \in \mathbb{N})(\forall n>N)$ the set $\{s_n|n>N\}$ is bounded by $\lambda \pm \epsilon.$ This is the definition for the convergent sequence. 
+
+We shall prove the contraposition of the backwards direction, i.e. $ (\mathcal{L}_i (s_n) \neq \mathcal{L}_s (s_n)) \rightarrow (s_n)$ diverges.
+The contraposition can be proved by contradiction. 
+
+Assuming $ (\lambda = \mathcal{L}_i (s_n) \neq \mathcal{L}_s (s_n))$ and $ (s_n)$ converges to $l$. S.D.U., let $\lambda > l$. 
+Let $\epsilon = (\lambda - l)/2$. 
+Since $(s_n)$ converges to $l$, there exists $N \in \mathbb{N}$ such that $\forall n>N$, $|s_n - l| < \epsilon$. 
+However, we know that $\mathcal{L}_i (s_n) = \lambda$, which means that there exists $N'$ such that $\forall n>N'$ we have at least one element $s_i > \lambda - \epsilon$. Indeed $s_i - l>\epsilon$, contradicting with our assumption that $(s_n)$ converges. Thus we conclude the backwards direction is also true.
+\end{proof}
+
 \begin{definition}[Cauchy Sequence]\cite{Ross}
 	A sequence $(s_n)$ is a Cauchy Sequence iff $(\forall \epsilon > 0)(\exists N)(\forall n,m>N)(|s_n-s_m|<\epsilon)$
 \end{definition}
 \begin{theorem}
-A sequence converges if and only if it is a Cauchy Sequence.
+A sequence converges if and only if it is a Cauchy Sequence. 
 \end{theorem}
-\begin{proof}
-Consider 
-\end{proof}
 \begin{remark}
-	We can define a sudo Cauchy Sequence to be sequence $(s_n)$ such that $(\forall \epsilon > 0)(\exists N)(\forall n>N)(|s_n-s_{n+1}|<\epsilon)$ Indeed all convergent sequence are sudo Cauchy Sequence, but not all sudo Cauchy Sequence are convergent.
+We are to outline our proof of $(s_n)$ converges $\iff (s_n)$ is Cauchy Sequence. \\
+The forward direction is obvious. To prove the backwards direction, notice: 1) All Cauchy Sequences are bounded; 2) the infimum and supremum sequence converge by monoteon convergence theorem; 3) They must converge to the same value;
+4) By theorem \ref{analysis:th:Convergence_and_limit_of_sup_in} the sequence must converge. 
+\end{remark}
+\begin{remark}
+	We can define a pseudo Cauchy Sequence to be sequence $(s_n)$ such that $(\forall \epsilon > 0)(\exists N)(\forall n>N)(|s_n-s_{n+1}|<\epsilon)$.
+	Indeed all convergent sequence are pseudo Cauchy Sequence, but not all pseudo Cauchy Sequence are convergent. An example is the partial sum of harmonic series, i.e, $(\sum^{n}_{i=1}\frac{1}{i})$.
 \end{remark}
 
 \subsection{Series}
