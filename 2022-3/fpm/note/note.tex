@@ -19,7 +19,8 @@
 \newtheorem{hypothesis}{Coniectura}[section]
 \newtheorem{example}{Exampli Gratia}[section]
 
-\renewcommand\qedsymbol{Q.E.D.}
+\renewenvironment{proof}{{\bfseries\emph{Demonstratio.}}}{\qed}
+\renewcommand\qedsymbol{\bfseries\emph{Q.E.D.}}
 \renewcommand{\chaptername}{Caput}
 \renewcommand{\contentsname}{Index Capitum} % Index Capitum 
 \usepackage{subfiles}

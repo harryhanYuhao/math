@@ -15,16 +15,15 @@
 	A set $\mathbb{S}$ is countable iff $\mathbb{N} \asymp \mathbb{S}$ (there exists a bijection $f:\mathbb{N} \rightarrow \mathbb{S}$).
 \end{definition}
 
-\begin{corollary}[At Most Countable]
+\begin{theorem}[At Most Countable]
 	Let $\mathbb{A}$ be an infinite set. \\($\mathbb{A} \prec \mathbb{N}$) iff ($\mathbb{A} \asymp \mathbb{N}$).
-\end{corollary}
+\end{theorem}
 
 \begin{proof}
 	We want to prove $\mathbb{A} \prec \mathbb{N}$ is equivalent to $\mathbb{A} \asymp \mathbb{N}$. $\mathbb{A} \asymp \mathbb{N} \rightarrow \mathbb{A} \prec \mathbb{N}$ is by definition. 
 	We only need to prove the other direction; i.e., provided $\mathbb{A} \prec \mathbb{N}$, find a bijective function $h: \mathbb{A} \rightarrow \mathbb{N}$.
 
 	Let $f: \mathbb{A} \rightarrow \mathbb{N}$ be an injective mapping. If $f$ is bijective, we are done. If $f$ is injective but not bijective, let $\mathbb{N}^-$ be the range of $f.$ As $\mathbb{A}$ is infinite, $\mathbb{N}^-$ is also infinite.  
-	%TODO: f' is not bijective, construct the correct bijective f'.
 	Let $f': \mathbb{A} \rightarrow \mathbb{N}^-$ such that $f(a) = f'(a).$ $f'$ is an bijective mapping. 
 	
     Thus we only need to show there exists a mapping $g: \mathbb{N}^- \rightarrow \mathbb{N}$ that is bijective. 
