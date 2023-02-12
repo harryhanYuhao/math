@@ -88,18 +88,34 @@ List of Convergent and Divergent series:
 	\item Root Test
 	\item Integral Test
 	\item Alternating Series Test
-	\item Cauchy's Condenstation Test
+	\item \label{Cauchy_Condensation_Test}Cauchy's Condenstation Test:\\
 		Consider series $\sum^{\infty}_{k=1}s_k$. If ${s_k}$ is decreasing and greater than zero, the seires converge if and only if $\sum^{\infty}_{k=1}s_{2^k}2^k $ converges. 
 
 \end{enumerate}
 \end{theorem}
 
 \begin{proof}
-	Consider the series $\sum^{\infty}_{k=1}a_k$.
 
-	To prove \ref{th:ConvergenceReveries:en:absoluteconverge} of theorem \ref{th:ConvergenceReveries}, we know the series $\sum^{\infty}_{k=1}|a_k|$ converges. 
+	To prove \ref{th:ConvergenceReveries:en:absoluteconverge} of theorem \ref{th:ConvergenceReveries},
+	Consider the convergent series $\sum^{\infty}_{k=1}|a_k|$.
 	Split $\sum^{\infty}_{k=1}a_k$ into $\sum^{\infty}_{k=1}p_k$ and $\sum^{\infty}_{k=1}n_k$, where $p_k, n_k$ are positive and negative, respectively.
 	By Comparison test, both series converge, as $\sum^{\infty}_{k=1}p_k <\sum^{\infty}_{k=1}|a_k| $ and $\sum^{\infty}_{k=1}n_k > -\sum^{\infty}_{k=1}|a_k|$. Thus $\sum^{\infty}_{k=1}a_k$, as the sum of two convergent seires, must converge.
+
+	Entry NO. \ref{Cauchy_Condensation_Test}, Cauchy's Condensation Test, has two directions: for decreasing and positive $s_k$, $\sum^{\infty}_{k=1}s_k$ converges $\iff \sum^{\infty}_{k=1}s_{2^k}2^k$ converges.
+
+	To prove the forward direction, consider the convergent series:
+	\[
+		2\cdot \sum^{\infty}_{k=1}s_k =
+		2\cdot s_1 + 2 \cdot (s_2+s_3) + 2 \cdot (s_4+s_5+s_6+s_7) \cdots
+	\]
+
+	And 
+	\[
+		\sum^{\infty}_{k=1}s_{2^k}2^k = s_1+2\cdot s_2 + 4\cdot s_4 + 8 \cdot s_8
+	\]
+
+	
+
 
 \end{proof}
 
