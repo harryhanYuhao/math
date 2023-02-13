@@ -78,29 +78,46 @@ List of Convergent and Divergent series:
 \begin{theorem}[Convergence Reveries]\label{th:ConvergenceReveries}
 \ 
 \begin{enumerate}
-	\item Comparison Test
-	\item \label{th:ConvergenceReveries:en:absoluteconverge} Absolute Convergent
-		If a series converge absolutely, it converges. The converse is not true. 
-	\item Addition, Substraction, Multiplication, Division
+	\item For convergent series $\sum^{\infty}_{k=1} s_k$, $\sum^{\infty}_{k=1}s'_k$, and constant $c$, all of the following sequence converges:
+		$\sum^{\infty}_{k=1}-s_k$ $\sum^{\infty}_{k=1}c\cdot s_k$, $\sum^{\infty}_{k=1}s_k+s'_k$, $\sum^{\infty}_{k+1}s_k\cdot s'_k$.\\
+		In particular, $\sum^{\infty}_{k=1}\frac{1}{s_k}$ diverges.\\
+		$\sum^{\infty}_{k=1}\frac{s_k}{s'_k}$ may diverge or converge.
+	\item \label{th:ConvergenceReveries:en:absoluteconverge} \textbf{Absolute Convergent}:\\
+		If a series converges absolutely, it converges. The converse is not true. 
+	\item \textbf{Comparison Test}
+		For convergent series $\sum^{\infty}_{k=1}s_k$, if $|b_k|\leq s_k$ for all $k$, $\sum^{\infty}_{k=1}b_k$ converges.\\
+		For divergent series $\sum^{\infty}_{k=1}d_k = \infty$, if $e_k\geq d_k$ for all $k$, $\sum^{\infty}_{k=1}e_k$ diverges. 
 		If $\sum^{\infty}_{k=1}a_k $ and $\sum^{\infty}_{k=1}b_k$ converges, the followings also converge:
 		$\sum^{\infty}_{k=1}(a_k+b_k) $, $\sum^{\infty}_{k=1}(a_k-b_k) $ $\sum^{\infty}_{k=1}(a_k\cdot b_k)$
-	\item Ratio Test
-	\item Root Test
-	\item Integral Test
+	\item \textbf{Ratio Test}:\\
+		For series $\sum^{\infty}_{k=1}s_k$, let $d=\lim_{k \to \infty} |\frac{s_k}{s_{k-1}}|$.\\
+		If $d<1$, the series converges absolutely.\\
+		If $d>1$, the series diverges.\\
+		If $d=1$, the series may converge or diverge.
+	\item \textbf{Root Test}:\\
+		For series $\sum^{\infty}_{k=1}s_k$, let $d=\lim_{k \to \infty} |(s_k)^{1/k}|$.\\
+		If $d<1$, the series converges absolutely.\\
+		If $d>1$, the series diverges.\\
+		If $d=1$, the series may converge or diverge.
 	\item Alternating Series Test
 	\item \label{Cauchy_Condensation_Test}Cauchy's Condenstation Test:\\
 		Consider series $\sum^{\infty}_{k=1}s_k$. If ${s_k}$ is decreasing and greater than zero, the seires converge if and only if $\sum^{\infty}_{k=1}s_{2^k}2^k $ converges. 
+	\item Integral Test
 
 \end{enumerate}
 \end{theorem}
 
 \begin{proof}
 
+\begin{itemize}
+	\item 
 	To prove \ref{th:ConvergenceReveries:en:absoluteconverge} of theorem \ref{th:ConvergenceReveries},
 	Consider the convergent series $\sum^{\infty}_{k=1}|a_k|$.
-	Split $\sum^{\infty}_{k=1}a_k$ into $\sum^{\infty}_{k=1}p_k$ and $\sum^{\infty}_{k=1}n_k$, where $p_k, n_k$ are positive and negative, respectively.
-	By Comparison test, both series converge, as $\sum^{\infty}_{k=1}p_k <\sum^{\infty}_{k=1}|a_k| $ and $\sum^{\infty}_{k=1}n_k > -\sum^{\infty}_{k=1}|a_k|$. Thus $\sum^{\infty}_{k=1}a_k$, as the sum of two convergent seires, must converge.
+	Split $\sum^{\infty}_{k=1}a_k$ into $\sum^{\infty}_{k=1}p_k$ and $\sum^{\infty}_{k=1}n_k$, where $p_k, n_k$ are positive and negative, respectively. (We can safely ignore any 0)\\
+	As $\sum^{\infty}_{k=1}p_k \leq \sum^{\infty}_{k=1}|a_k| $ and $\sum^{\infty}_{k=1}n_k \geq -\sum^{\infty}_{k=1}|a_k|$, both series are bounded. By Monotone convergence theorem, both serieses converge.
+	Thus $\sum^{\infty}_{k=1}a_k$, as the sum of two convergent seires, must converge.
 
+	\item
 	Entry NO. \ref{Cauchy_Condensation_Test}, Cauchy's Condensation Test, has two directions: for decreasing and positive $s_k$, $\sum^{\infty}_{k=1}s_k$ converges $\iff \sum^{\infty}_{k=1}s_{2^k}2^k$ converges.
 
 	To prove the forward direction, consider the convergent series:
@@ -110,13 +127,15 @@ List of Convergent and Divergent series:
 	\]
 
 	And 
-	\[
-		\sum^{\infty}_{k=1}s_{2^k}2^k = s_1+2\cdot s_2 + 4\cdot s_4 + 8 \cdot s_8
-	\]
-
+	\begin{equation} \label{eq:Forward_Proof_Cauchy_Condensation_Test}
+		\sum^{\infty}_{k=1}s_{2^k}2^k = s_1+\underbrace{2\cdot s_2}_{<2\cdot s_1}
+		+ \underbrace{4\cdot s_4}_{<2\cdot (s_2+s_3)}
+		+ \underbrace{8\cdot s_8}_{<2\cdot (s_4+s_5+s_6+s_7)} + \cdots
+	\end{equation}
+	Thus by comparison test we conlude \eqref{eq:Forward_Proof_Cauchy_Condensation_Test} converges. 
 	
-
-
+	The backwards direction directly follows the comparison test as $ \sum^{\infty}_{k=1}s_{2^k}2^k \geq \sum^{\infty}_{k=1}s_k$.
+\end{itemize}
 \end{proof}
 
 
