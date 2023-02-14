@@ -84,7 +84,7 @@ List of Convergent and Divergent series:
 		$\sum^{\infty}_{k=1}\frac{s_k}{s'_k}$ may diverge or converge.
 	\item \label{th:ConvergenceReveries:en:absoluteconverge} \textbf{Absolute Convergent}:\\
 		If a series converges absolutely, it converges. The converse is not true. 
-	\item \textbf{Comparison Test}
+	\item \textbf{Comparison Test}:\\
 		For convergent series $\sum^{\infty}_{k=1}s_k$, if $|b_k|\leq s_k$ for all $k$, $\sum^{\infty}_{k=1}b_k$ converges.\\
 		For divergent series $\sum^{\infty}_{k=1}d_k = \infty$, if $e_k\geq d_k$ for all $k$, $\sum^{\infty}_{k=1}e_k$ diverges. 
 		If $\sum^{\infty}_{k=1}a_k $ and $\sum^{\infty}_{k=1}b_k$ converges, the followings also converge:
@@ -99,10 +99,13 @@ List of Convergent and Divergent series:
 		If $d<1$, the series converges absolutely.\\
 		If $d>1$, the series diverges.\\
 		If $d=1$, the series may converge or diverge.
-	\item Alternating Series Test
-	\item \label{Cauchy_Condensation_Test}Cauchy's Condenstation Test:\\
+	\item \textbf{Alternating Series Test}:\\
+		For series in the form $\sum^{\infty}_{k=1}(-1)^{k}s_k$. If $s_k$ is decreasing and $\lim_{k\to \infty} s_k = 0$, the sereis converge. (Copied from textbook on 14 Feb 2023, not proved.)
+	\item \label{Cauchy_Condensation_Test} \textbf{Cauchy's Condenstation Test}:\\
 		Consider series $\sum^{\infty}_{k=1}s_k$. If ${s_k}$ is decreasing and greater than zero, the seires converge if and only if $\sum^{\infty}_{k=1}s_{2^k}2^k $ converges. 
-	\item Integral Test
+	\item \textbf{Integral Test}\label{IntegralTest}
+		For $s_k>0$, the series $\sum^{\infty}_{k=1}s_k$ converge if and only if $\int_{a}^{\infty}f(k)$ converge for some constant $a$, provided $\forall k \in \mathbb{N}, f(k)=s_k$.
+		(Proposed Feb 14 2023)
 
 \end{enumerate}
 \end{theorem}
@@ -134,7 +137,7 @@ List of Convergent and Divergent series:
 	\end{equation}
 	Thus by comparison test we conlude \eqref{eq:Forward_Proof_Cauchy_Condensation_Test} converges. 
 	
-	The backwards direction directly follows the comparison test as $ \sum^{\infty}_{k=1}s_{2^k}2^k \geq \sum^{\infty}_{k=1}s_k$.
+	The backwards direction directly follows the comparison test as\\ $ \sum^{\infty}_{k=1}s_{2^k}2^k \geq \sum^{\infty}_{k=1}s_k$.
 \end{itemize}
 \end{proof}
 
