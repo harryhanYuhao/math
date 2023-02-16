@@ -104,14 +104,14 @@ List of Convergent and Divergent series:
 	\item \label{Cauchy_Condensation_Test} \textbf{Cauchy's Condenstation Test}:\\
 		Consider series $\sum^{\infty}_{k=1}s_k$. If ${s_k}$ is decreasing and greater than zero, the seires converge if and only if $\sum^{\infty}_{k=1}s_{2^k}2^k $ converges. 
 	\item \textbf{Integral Test}\label{IntegralTest}
-		For $s_k>0$, the series $\sum^{\infty}_{k=1}s_k$ converge if and only if $\int_{a}^{\infty}S(k)$ converge for some constant $a$, provided $\forall k \in \mathbb{N}, S(k)=s_k$.
+		For $s_k>0$, the series $\sum^{\infty}_{k=1}s_k$ converge if and only if $\int_{a}^{\infty}S(k)dk$ converge for some constant $a$, provided $\forall k \in \mathbb{N}, S(k)=s_k$.
 		(Proposed Feb 14 2023)
 
 \end{enumerate}
 \end{theorem}
 
 \begin{hypothesis}[Inspired from the Integral Test]
-	If the finite integral, with some constant $a$, $\int_{a}^{\infty}f(k)$, converges for function $f$, $\lim_{n \to \infty}\sum^{n}_{i=0} f(\Delta x_ii + a)$ converge for $\Delta x_i \in \mathbb{R}$, provided $\{\Delta x_i\}$ is bounded. (Proposed 15 Feb 2023)
+	If the finite integral, with some constant $a$, $\int_{a}^{\infty}f(k)dk$, converges for function $f$, $\lim_{n \to \infty}\sum^{n}_{i=0} f(\Delta x_ii + a)$ converge for $\Delta x_i \in \mathbb{R}$, provided $\{\Delta x_i\}$ is bounded. (Proposed 15 Feb 2023)
 \end{hypothesis}
 
 \begin{proof}
@@ -142,11 +142,10 @@ List of Convergent and Divergent series:
 	Thus by comparison test we conlude \eqref{eq:Forward_Proof_Cauchy_Condensation_Test} converges. 
 	
 	The backwards direction directly follows the comparison test as\\ $ \sum^{\infty}_{k=1}s_{2^k}2^k \geq \sum^{\infty}_{k=1}s_k$.
-%TODO fix missing dx in the integral notation.
 	\item 
 		Here we present an informal proof fo \ref{th:ConvergenceReveries}.\ref{IntegralTest}, the integral test with an extra restriction that the function is strictly decreasing. (15 Feb 2023)
 
-		Consider the function $S$ with the property $\int_{a}^{\infty}S(k)$ converges for some constant $a$ and its correspondent series 
+		Consider the function $S$ with the property $\int_{a}^{\infty}S(k)dk$ converges for some constant $a$ and its correspondent series 
 		$\sum^{\infty}_{k=1}S(k)$. 
 		Consider the function $\sigma (x) = S(x-1)$ $\int_{a}^{\infty}\sigma(k)dk$ converges, and is greater than $\sum^{\infty}_{k=\left\lceil{a}\right\rceil}s_k$(as the function is strictly decreasing), thus by comparison test it converges,
 		thus $\sum^{\infty}_{k=1}s_k$, as the sum of a convergent series and a constant also converge.
