@@ -99,7 +99,7 @@ List of Convergent and Divergent series:
 		If $d<1$, the series converges absolutely.\\
 		If $d>1$, the series diverges.\\
 		If $d=1$, the series may converge or diverge.
-	\item \textbf{Alternating Series Test}:\\
+	\item \textbf{Alternating Series Test}: \label{AlternatingSeriesTest}\\
 		For series in the form $\sum^{\infty}_{k=1}(-1)^{k}s_k$. If $s_k$ is decreasing and $\lim_{k\to \infty} s_k = 0$, the sereis converge. (Copied from textbook on 14 Feb 2023, not proved.)
 	\item \label{Cauchy_Condensation_Test} \textbf{Cauchy's Condenstation Test}:\\
 		Consider series $\sum^{\infty}_{k=1}s_k$. If ${s_k}$ is decreasing and greater than zero, the seires converge if and only if $\sum^{\infty}_{k=1}s_{2^k}2^k $ converges. 
@@ -110,7 +110,7 @@ List of Convergent and Divergent series:
 \end{enumerate}
 \end{theorem}
 
-\begin{hypothesis}[Inspired from the Integral Test]
+\begin{hypothesis}[Inspired from the Integral Test]\label{hypothesis:Finite Riamenn Sum}
 	If the finite integral, with some constant $a$, $\int_{a}^{\infty}f(k)dk$, converges for function $f$, $\lim_{n \to \infty}\sum^{n}_{i=0} f(\Delta x_ii + a)$ converge for $\Delta x_i \in \mathbb{R}$, provided $\{\Delta x_i\}$ is bounded. (Proposed 15 Feb 2023)
 \end{hypothesis}
 
@@ -151,6 +151,17 @@ List of Convergent and Divergent series:
 		thus $\sum^{\infty}_{k=1}s_k$, as the sum of a convergent series and a constant also converge.
 \end{itemize}
 \end{proof}
+
+\subsection{Interestring Sequences and Series}
+\paragraph{Sequences}
+\paragraph{Series}
+\begin{enumerate}
+	\item $\sum^{\infty}_{n=1}\frac{n}{2^n}=1$  
+\end{enumerate}
+
+
+\subsection{Decimal Expansion}
+
 
 
 \end{document}
