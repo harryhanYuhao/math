@@ -1,0 +1,80 @@
+\documentclass[12pt, a4paper]{article}
+\usepackage{blindtext, titlesec, amsthm, thmtools, amsmath, amsfonts, scalerel, amssymb, graphicx, titlesec, xcolor}
+\usepackage[utf8]{inputenc}
+\newtheorem{theorem}{Theorem}[subsection]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{hypothesis}{Hypothesis}
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}[section]
+
+\theoremstyle{remark}
+\newtheorem{remark}{Remark}[section]
+\renewcommand\qedsymbol{Q.E.D.}
+
+\title{Title}
+\author{Harry Han; S2162783}
+\date{\today}
+
+\begin{document}
+%\tableofcontents
+\subparagraph{Q1}
+We are to prove the sequence $\left(\displaystyle \frac{5n^7}{7^n}\right)_{n \in \mathbb{N}}$ converges. 
+\begin{proof}
+	We shall first prove the statement (1): $(n>11)\rightarrow (5n^7<5^n)$
+	Statement 1 can be proved by induction. \\
+	Base case: for $n=12$, $5n^7 = 179159040<5^n=244140625.$ \\
+	Induction: Assuming $5n^7<5^n$.
+	$(\forall n>11)$ $(\frac{n+1}{n}<\frac{12}{11}\approx 1.0909<1.2585\approx 5^{\frac{1}{7}})$
+	$\rightarrow (\frac{n+1}{n})^7<5 \rightarrow 5(n+1)^7 < 5\cdot 5n^7<5\cdot 5^n=5^{n+1}.$
+	And statement 1 is proved. 
+
+	We also need statement 2, which is obvious: $(0<a<1, 0<n<m) \rightarrow (a^m<a^n$)
+
+	$\forall \epsilon > 0$, let $l_1 = \displaystyle \frac{\ln{\epsilon}}{\ln{\frac{5}{7}}}$ and $l_2 = 12$. 
+	Let $N$ be the greater of $l_1$ and $l_2$. 
+	$$
+	(n>N) \rightarrow 
+	\underbrace{\frac{5n^7}{7^n}}_{\alpha}
+	<\underbrace{\frac{5^n}{7^n}}_{\beta}
+	<\underbrace{\frac{5^N}{7^N}}_{\gamma}
+	\leq \underbrace{
+	\left(\frac{5}{7}\right)^{\frac{\ln{\epsilon}}{\ln{\frac{5}{7}}}}
+	}_{\delta}
+	=\epsilon
+	$$
+	$\alpha<\beta$ is of statement 1.
+	$\beta<\gamma\leq \delta$ is of statement 2.
+
+
+	Thus we have proved that $(\forall \epsilon > 0) (\exists N \in \mathbb{N}) (\forall n>N) (\displaystyle \frac{5n^7}{7^n}<\epsilon)$.
+\end{proof}
+
+\newpage
+
+\subparagraph{Q2}
+
+Let $\mathbb{S}$ be a countable set, and let $\mathbb{E}_s$ be a countable sets for all $s \in \mathbb{S}$.
+Define the set 
+\[\mathbb{E} =\displaystyle \bigcup_{s\in \mathbb{S}}\mathbb{E}_s \]
+We are to prove that $\mathbb{E}$ is countable by constructing a bijective mapping $\mathfrak{C}: \mathbb{N}\rightarrow \mathbb{E}$.
+
+\begin{proof}
+	By definition there exists a bijective function $f:\mathbb{N} \rightarrow \mathbb{S}$, and bijective function $g_s :\mathbb{N}\rightarrow \mathbb{E}_s$. Moreover, let us denote each element of the set $\mathbb{E}_s$ to be $E_s^{1}, E_s^2,\cdots.$ As there exists a bijective function $g$ between $\mathbb{N}$ and $\mathbb{E}_s$, $\{E_s^{i}|i\in \mathbb{N}\}=\mathbb{E}_s$
+
+	We also know that there exists a bijective mapping $h:\mathbb{N}\rightarrow \mathbb{N}\times \mathbb{N}$. 
+	
+	Now consider the function defined thus: $m: \mathbb{N}\times \mathbb{N}\rightarrow E$ such that $m(a,b) = E^a_{f(b)}$. $m$ is bijective.
+
+	The function $\mathfrak{C}=m\circ h: \mathbb{N} \rightarrow \mathbb{E}$ is bijective, as all of the function used to construct it are bijective.
+
+	% Injectivity: Different $a\in \mathbb{N}$ maps to a different $(a', a'')\in \mathbb{N}\times \mathbb{N}$ which in in terms maps to a different $E_{f(a'')}^{a'}$.
+	%
+	% Surjectivity: for all $E_{f(a'')}^{a'}$, there exists $(a'', a') \in \mathbb{N}\times \mathbb{N}$ that maps to it, which is maps to by 
+
+
+\end{proof}
+
+
+\end{document}
+
