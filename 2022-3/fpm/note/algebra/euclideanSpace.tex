@@ -1,0 +1,51 @@
+\documentclass[12pt, a4paper]{article}
+\usepackage{blindtext, titlesec, amsthm, thmtools, amsmath, amsfonts, scalerel, amssymb, graphicx, titlesec, xcolor, multicol, hyperref}
+\usepackage[utf8]{inputenc}
+\hypersetup{colorlinks,linkcolor={red!40!black},citecolor={blue!50!black},urlcolor={blue!80!black}}
+\newtheorem{theorem}{Theorema}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollarium}
+\newtheorem{hypothesis}{Coniectura}
+\theoremstyle{definition}
+\newtheorem{definition}{Definitio}
+\theoremstyle{remark}
+\newtheorem{remark}{Observatio}
+\newtheorem{example}{Exampli Gratia}
+\renewcommand\qedsymbol{Q.E.D.}
+\title{Euclidean Space}
+\author{Harry Han}
+\date{\taday}
+\begin{document}
+\begin{definition}[Inner Product]
+	Inner product is a function $\langle u,v \rangle:\mathbb{U} \times \mathbb{U} \rightarrow \mathbb{R}$, with the following properties:
+	\begin{enumerate}
+		\item symmetry $\langle u, v \rangle = \langle v, u \rangle$ 
+		\item linearity$\langle au+v, w\rangle = \langle au, w \rangle + \langle v, w \rangle$
+		\item positive definitiveness $\langle a, a \rangle \geq 0 $
+	\end{enumerate}
+\end{definition}
+
+
+\begin{definition}[Euclidean Space]
+	A Euclidean Space is a vector space with a inner product.
+\end{definition}
+
+\begin{example}[Euclidean Space with Infinite Dimension]
+	Consider $f, g \in \mathbb{S}$, where $\mathbb{S}$ is the set of all continuous function on interval $[0, 1]$, the following is a inner product:
+	$$
+		\int ^1 _0 f(x)g(x)dx
+	$$
+\end{example}
+
+\begin{theorem}[Inner Product]
+	For $u, v \in \mathbb{R}^n$, and$n\times n$ matrix $M$, a function $f: u,v \rightarrow \mathbb{R}$ is an inner product (of finite dimension) 
+	if and only if it can be represented in the following way:
+	$$\langle u, v \rangle = u^T M v$$
+	while $M $ is symmetrical and positive definite, i.e. $\forall v \neq 0, v^TMv \geq 0$.
+\end{theorem}
+
+\begin{definition}[Norm and Distance]
+	In a vector space with a inner product, the Euclidean norm of a vector $v$ is $||v||=\sqrt{\langle v,v\rangle}$
+\end{definition}
+\end{document}
+
