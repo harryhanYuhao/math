@@ -1,5 +1,6 @@
 \documentclass[../note.tex]{subfiles}
 \begin{document}
+
 \section{Group}
 
 \begin{definition}[Group]
@@ -20,14 +21,6 @@ There are many non-obvious properties that directly follows the definition.
 \end{enumerate}
 \end{theorem}
 
-Here are some examples of groups. 
-\begin{enumerate}
-	\item $\mathbb{S}=\{e\}$
-	\item $\mathbb{S} = \{e, a, b, c\}.$ With the following operation:
-		1. All elements are their own inverse; 
-		2. The group is abelian.
-		2. $a \odot b = c, a \odot c = b, b \odot c = a$.
-\end{enumerate}
 \begin{hypothesis}
 	These are some of my hypothesis and thoughts.
 	\begin{enumerate}
@@ -41,17 +34,41 @@ The order of the group $\mathbb{S}$ is $|\mathbb{S}|$ (How many elements it has)
 The order of an element $s \in \mathbb{S}$ is the smallest integer $i$ such that $s^i = e.$ (If such $i$ exists)
 \end{definition}
 
+Here are some examples of groups. 
+\begin{enumerate}
+	\item $\mathbb{S}=\{e\}$
+	\item $\mathbb{S} = \{e, a, b, c\}.$ With the following operation:
+		1. All elements are their own inverse; 
+		2. The group is abelian.
+		2. $a \odot b = c, a \odot c = b, b \odot c = a$.
+\end{enumerate}
+
+Graphs can help us to construct/discover more examples of groups.
+
+\begin{definition}[Graph]
+	A graph is a finite set of vertices and edges connecting the vertices;
+	or, with abstraction of set theory, a graph consists of two sets $\mathbb{V}$ and $\mathbb{E}$, where each element of $\mathbb{E}$ is an element of $\mathbb{V}\times \mathbb{V}.$
+\end{definition}
+\begin{definition}[Isomophisim]
+	Isomophisim of a graph is a bjection of vertices that preseves all edges;
+	or, $\exists$ bijective $ f:\mathbb{V}\to \mathbb{V}$, such that $\mathbb{E}'= \{(f(a),f(b))|a,b \in \mathbb{E}\}=\mathbb{E}$.
+\end{definition}
+\begin{definition}[Dihedral Group]
+
+\end{definition}
+
 \begin{definition}[Cyclic Group]
 Let $\mathbb{G}$ be a group and $g$ one of its element. Considering the set:
 \[
 	\mathbb{S} = \{\cdots g^{-2}, g^{-1}, e, g, g^1, g^2 \cdots\}  
 \]
-If $\mathbb{S}$ is finite, it is called a cyclic group. (It can be shown that it must be a subgroup of $\mathbb{G}$.
+If $\mathbb{S}$ is finite, it is called a cyclic group. Most importantly, all sets of such form with inheritted operation must be a subgroup.
 \end{definition}
 
 \begin{theorem}[Properties of Cyclic Group]
 Here are some properties immediately follows the definition.
 \begin{enumerate}
+	\item All set in the form of the defintion of the cyclic group is a subgroup.
 	\item Any subgroup of a cyclic group is also cyclic.
 \end{enumerate}	
 \end{theorem}
@@ -98,8 +115,16 @@ Consider finite group $\mathbb{G}$ and its subgroup $\mathbb{S}$. $|\mathbb{S}|$
 	If not, we can constuct more disjoined sets $\mathbb{D}_3, \mathbb{D}_4, \cdots \mathbb{D}_n$ until the union of them and $\mathbb{S}$ forms $\mathbb{G}$. This can always be done as $\mathbb{G}$ is finite, and will have an order of $(n+1)\cdot |\mathbb{S}|. $
 \end{proof}
 
-\begin{proposition}[Some Application of Lagrange Theorem]
-
+\begin{proposition}[Some Application of Lagrange Theorem]\label{prop:Applic_lagrange}
+	\ 
+\begin{enumerate}
+	\item \label{orderOfElement}For a group $\mathbb{G}$ with order $p$ and $k \in \mathbb{G}$ with order $q$; then $q$ divides $p$.
+	\item \label{prime_cyclic} For a group $\mathbb{G}$ with prime order (i.e., $|\mathbb{G}|$ is prime), it must be a cyclic group.
+\end{enumerate}
 \end{proposition}
 
+\begin{proof}
+	\ref{prop:Applic_lagrange}.\ref{orderOfElement} implies \ref{prop:Applic_lagrange}.\ref{prime_cyclic}.
+	To prove proposition \ref{prop:Applic_lagrange}.\ref{orderOfElement}, let $\mathbb{G}$ be a group and $\langle g\rangle$ be a cyclic group containing $g \in \mathbb{G}$, by langrange theorem $|\langle g\rangle|$ must divides $|\mathbb{G}|$.
+\end{proof}
 \end{document}
