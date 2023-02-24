@@ -43,6 +43,18 @@ Here are some examples of groups.
 		2. $a \odot b = c, a \odot c = b, b \odot c = a$.
 \end{enumerate}
 
+\begin{definition}[Subgroup]
+	\hypertarget{def:subgroup}{A} subgroup of a group $\mathbb{S}$ is a subset $\\mathbb{H}$ of $\mathbb{S}$ that is also a group under the same operation $\odot$. It is denoted as $ \mathbb{H}\leq \mathbb{S}$. If $\mathbb{H} \neq \mathbb{G}$, we call it a proper subgroup with notation $\mathbb{H}< \mathbb{S}$.
+\end{definition}
+
+\begin{theorem}[Test For Subgroup] 
+	For group $\mathbb{S}$ and it subset$\mathbb{H} \subseteq \mathbb{S}$, $\mathbb{H}$ is a subgroup of $\mathbb{S}$ if and only if 
+	\begin{enumerate}
+		\item $\mathbb{H}$ is not empty 
+		\item $\forall h,k \in \mathbb{H}, h\odot k^{-1} \in \mathbb{H}$.
+	\end{enumerate}
+\end{theorem}
+
 Graphs can help us to construct/discover more examples of groups.
 
 \begin{definition}[Graph]
@@ -72,6 +84,10 @@ Here are some properties immediately follows the definition.
 	\item Any subgroup of a cyclic group is also cyclic.
 \end{enumerate}	
 \end{theorem}
+
+\begin{definition}[Left Coset]
+
+\end{definition}
 
 \begin{theorem}[Lagrange Theorem]
 Consider finite group $\mathbb{G}$ and its subgroup $\mathbb{S}$. $|\mathbb{S}|$ divides $|\mathbb{G}|.$	
