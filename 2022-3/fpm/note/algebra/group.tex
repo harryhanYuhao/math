@@ -61,10 +61,12 @@ Graphs can help us to construct/discover more examples of groups.
 	A graph is a finite set of vertices and edges connecting the vertices;
 	or, with abstraction of set theory, a graph consists of two sets $\mathbb{V}$ and $\mathbb{E}$, where each element of $\mathbb{E}$ is an element of $\mathbb{V}\times \mathbb{V}.$
 \end{definition}
+
 \begin{definition}[Isomophisim]
 	Isomophisim of a graph is a bjection of vertices that preseves all edges;
 	or, $\exists$ bijective $ f:\mathbb{V}\to \mathbb{V}$, such that $\mathbb{E}'= \{(f(a),f(b))|a,b \in \mathbb{E}\}=\mathbb{E}$.
 \end{definition}
+
 \begin{definition}[Dihedral Group]
 	The dihedral group of order $2n$ is the group of symmetries of a regular $n$-gon. It is the direct product of two copies of the cyclic group of order $n$.
 \end{definition}
@@ -81,9 +83,21 @@ If $\mathbb{S}$ is finite, it is called a cyclic group. Most importantly, all se
 Here are some properties immediately follows the definition.
 \begin{enumerate}
 	\item All set in the form of the defintion of the cyclic group is a subgroup.
-	\item Any subgroup of a cyclic group is also cyclic.
+	\item \label{Cyclic_Inheritance}Any subgroup of a cyclic group is also cyclic.
 \end{enumerate}	
 \end{theorem}
+
+\begin{proof}
+	
+\end{proof}
+
+\begin{example}
+An example of cyclic group is $\mathbb{Z}_n$. (Integer under modular $n$ addition);
+\end{example}
+
+\begin{proposition}[Number of Subgroup for $\mathbb{Z}_n$]
+	The number of the subgroup of cyclic group $\mathbb{Z}_n$ is equal to the number of the divisor of $n$. (Proposed 27 Feb 2023)
+\end{proposition}
 
 \begin{definition}[Left Coset]
 
@@ -92,6 +106,17 @@ Here are some properties immediately follows the definition.
 \begin{theorem}[Lagrange Theorem]
 Consider finite group $\mathbb{G}$ and its subgroup $\mathbb{S}$. $|\mathbb{S}|$ divides $|\mathbb{G}|.$	
 \end{theorem}
+
+\begin{proposition}
+Lagrange theorem implies that:
+for a group $\mathbb{G}$ and $g \in \mathbb{G}$:
+
+\begin{enumerate}
+	\item $\omega (g)$ divides $|\mathbb{G}|$; 
+	\item $g^{|\mathbb{G}|}=e$;
+\end{enumerate}
+\end{proposition}
+
 \begin{example}
 	The followings demonstrate Lagrange Theorem.
 	\begin{enumerate}
