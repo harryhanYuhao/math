@@ -19,10 +19,15 @@
 \newtheorem{hypothesis}{Coniectura}[section]
 \newtheorem{example}{Exampli Gratia}[section]
 
-\renewenvironment{proof}{{\bfseries\emph{Demonstratio.}}}{\qed}
-\renewcommand\qedsymbol{\bfseries\emph{Q.E.D.}}
+\renewenvironment{proof}{{\emph{Demonstratio.}}}{\qed}
+% \renewenvironment{proof}{{\bfseries\emph{Demonstratio.}}}{\qed}
+\renewcommand\qedsymbol{Q.E.D.}
 \renewcommand{\chaptername}{Caput}
 \renewcommand{\contentsname}{Index Capitum} % Index Capitum 
+
+% New Commands
+\newcommand{\bb}[1]{\mathbb{#1}}
+
 \usepackage{subfiles}
 \title{
 	DE MATHEMATICA PURA \\
@@ -59,6 +64,8 @@
 \subfile{./analysis/realNumber.tex}
 
 \subfile{./analysis/sequenceAndSeries.tex}
+
+\subfile{./analysis/continuity.tex}
 
 \chapter{Algebra}
 
