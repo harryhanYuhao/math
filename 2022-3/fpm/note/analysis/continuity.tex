@@ -11,7 +11,28 @@
 \end{definition}
 
 \begin{theorem}[Equivalent Defintion]
-	The definition \ref{def:Continuity} of function $f$ is continuou at $a$ is equivalent to $\lim _{x\to a}f(x) = f(a)$.
+	The definition \ref{def:Continuity} of function $f:\mathbb{D} \rightarrow \bb{R}$ is continuous at $a\in \bb{D}$ is equivalent to $\lim _{x\to a}f(x) = f(a)$, provided $\bb{D}$ is a non-degenerate interval in $\bb{R}$; 
+	i.e. $\forall \epsilon \in \bb{D} \exists \delta $ such that $|x-a| < \delta \implies |f(x)-f(a)| < \epsilon$.
 \end{theorem}
+
+\begin{definition}[Extreme Value Theorem]
+	$f:\bb{I} \rightarrow \bb{R}$ where $\bb{I}$ is a close interval of real number is bounded.
+\end{definition}
+
+\begin{remark}
+	The extreme value theorem does not hold when $\bb{I}$ is a close interval. 
+\end{remark}
+
+\begin{theorem}[Intermediate Value Theorem]
+	Let $f: \bb{D} \rightarrow \bb{R}$ be continuous on the interval $[a,b]\in \bb{D}$. $\forall c\in [a, b]$ and $f(a)<c<f(b)\ \exists d \in [a,b] $ such that $ f(d) = c$.  
+\end{theorem}
+
+\begin{remark}
+
+	The sequence definition of continuity sets no restrains on the domains of the function. Indeed by this definition all discrete functions are continuous: contradicting our intuition about continuity.
+	
+	The more important consequence of continuity relies heavily on the properties of real number, i.e, the completeness of real number.
+\end{remark}
+
 
 \end{document}
