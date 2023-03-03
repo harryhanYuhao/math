@@ -1,7 +1,9 @@
 \documentclass[../note.tex]{subfiles}
 \begin{document}
 
-\section{Continuity}
+\section{Real Functions}
+
+\subsection{Continuity}
 
 \begin{definition}[Continuity of a Function]\label{def:Continuity}
 	Function $f: \bb{D} \rightarrow \bb{R}$ (provided $\bb{D} \subseteq \bb{R}$) is continuous at $a$
@@ -20,19 +22,32 @@
 \end{definition}
 
 \begin{remark}
-	The extreme value theorem does not hold when $\bb{I}$ is a close interval. 
+	The extreme value theorem does not hold when $\bb{I}$ is a close interval. For example, function $f(x)=\frac{1}{x}$ is continous but unbounded in the open interval $(0,1)$.
 \end{remark}
 
 \begin{theorem}[Intermediate Value Theorem]
-	Let $f: \bb{D} \rightarrow \bb{R}$ be continuous on the interval $[a,b]\in \bb{D}$. $\forall c\in [a, b]$ and $f(a)<c<f(b)\ \exists d \in [a,b] $ such that $ f(d) = c$.  
+	Let $f: \bb{D} \rightarrow \bb{R}$ be continuous on the interval $[a,b]\in \bb{D}$. $\forall c $ such that $f(a)<c<f(b)\ \exists d \in [a,b] $ such that $ f(d) = c$.  
 \end{theorem}
 
-\begin{remark}
+% TODO substitute eee with \bb{E}; sss with \sup{\bb{E}}
+\begin{proof}[Proof of Intermediate Value Theorem]
+	Construct a set $eee = \{e\in [a,b]| f(e)<c\}$. Since $f(a)<c$, $eee$ is non empty.  
+	As $eee$ is bounded, by the completeness of real number, there exists a supremum , which shall be denoted as $\sup{E}$. As $eee$ is bounded by a close inteval, $sss$ is also bounded by the same intevral. Our aim is to show that $f(sss)=c$.
 
+	By our assumption $f$ is continous	at $sss$. 
+\end{proof}
+
+\begin{remark}
 	The sequence definition of continuity sets no restrains on the domains of the function. Indeed by this definition all discrete functions are continuous: contradicting our intuition about continuity.
 	
 	The more important consequence of continuity relies heavily on the properties of real number, i.e, the completeness of real number.
 \end{remark}
 
-
+\subsection{Bizare Functions}
+\begin{hypothesis}
+	\ 
+\begin{enumerate}
+	\item Is there a function $f: \bb{R} \rightarrow \bb{R}$ such that for all invertal $[a,b] \in \bb{R}$, $f$ is neither strictly increasing or decreasing? 
+\end{enumerate}
+\end{hypothesis}
 \end{document}
