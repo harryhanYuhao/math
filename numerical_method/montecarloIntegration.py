@@ -80,18 +80,13 @@ def area_n_sphere(n, iter):
     # INPUT: iter is the number of iterations
     # OUTPUT: a list of the area of 1-sphere to n-sphere. Note n-sphere is actually in n+1 dimension.
     area_hyperspheres = [np.pi]
-    counter=0;
     for i in range(1,n):
-        lsOfCoor=[]; # List of Coordinates
         output=[];
+        
         for j in range(iter):
-            lsOfCoor.append(random_nArray(1+i));
+            output.append(np.sqrt(1-sum_square(random_nArray(1+i))));
         
-        for j in lsOfCoor:
-            output.append(np.sqrt(1-sum_square(j)));
-        
-        approx=area_hyperspheres[counter]*(sum_of_list(output)/iter)*2
-        counter+=1;
+        approx=area_hyperspheres[i-1]*(sum_of_list(output)/iter)*2
         area_hyperspheres.append(approx);
 
     return area_hyperspheres;
