@@ -1,7 +1,10 @@
+// Compile with gcc -lm
 #include <math.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
+
+#define PI 3.1415926
 
 // only use the first 6 digits.
 
@@ -41,7 +44,7 @@ void random_nArray(long double *res, int n){
 	while (sum_square(res, n)>1){	
 		number = n;
 		while (number --> 0){
-			int buf1, buf2, buf3, buf4, buf5, buf6;
+			int buf1, buf2;
 			// uniform_10_Random(&buf2); uniform_10_Random(&buf1);
 			buf2=myRand(1000); buf1=myRand(1000);
 			res[number] = (long double)buf1/(1000.0f) + (long double) buf2/(1000000.0f);
@@ -70,17 +73,20 @@ void area_n_sphere(int n, int iter){
 		area_hypersphere[i]=approx;
 		free(buffer);
 	}
-
+	
+	long double expected [8] = {3.14159, 4.18879, 4.9348, 5.2637, 5.1677, 4.7247, 4.0587, 3.2985};
+	printf("%8s %12s %8s\n", "Dimension", "Calculated", "Error");
 	for(int i=0; i<8; i++){
-		printf("D %d: %Lf\n",i+2, area_hypersphere[i]);
+		printf("%8d: %12.4Lf %8.2Lf\%\n",i+2, area_hypersphere[i], (expected[i]-area_hypersphere[i])/expected[i]*100.0f);
 	}
 
 	free(area_hypersphere);free(output);
+	printf("%s %d\n", "number of iterations", iter);
 	return;
 }
 
 int main() {//int argc, char *argv[]
 	srand(time(NULL));   // Initialization, should only be called once.
-	area_n_sphere(8, 1000);
+	area_n_sphere(8, 10000);
 	return 0; 
 }
