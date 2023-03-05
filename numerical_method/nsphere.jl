@@ -6,6 +6,7 @@
 # append!(x,[1,2])
 using DelimitedFiles
 using Printf
+counter = 0
 function sum_list(list)
 	sum = 0
 	for i in list
@@ -23,10 +24,14 @@ function sum_square(list)
 	return sum
 end
 
+# This algorithm will not generate a uniform distribution, off by quite a bit
 function random_n_array(n)
 	res = rand(n);
+	global counter;
+	counter += 1;
 	while (sum_square(res))>1 
 		res = rand(n);
+		counter+=1;
 	end
 	return res
 end
@@ -53,4 +58,5 @@ function fn_area_n_sphere(n, iter)
 	return 1;
 end
 
-fn_area_n_sphere(8,10000)
+fn_area_n_sphere(8,10000);
+println("Counter: ", counter);

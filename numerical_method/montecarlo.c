@@ -7,7 +7,10 @@
 #define PI 3.1415926
 
 // only use the first 6 digits.
+int count = 0;
 
+// This method will not generate uniformly distributed independent random variable.
+// TODO find a better algorithm of random number generation
 int myRand(long n) {  
 	// returns a uniformly distributed random integer from 0 to n-1
 	long limit = (RAND_MAX / n)*n;
@@ -48,6 +51,7 @@ void random_nArray(long double *res, int n){
 			// uniform_10_Random(&buf2); uniform_10_Random(&buf1);
 			buf2=myRand(1000); buf1=myRand(1000);
 			res[number] = (long double)buf1/(1000.0f) + (long double) buf2/(1000000.0f);
+			count++;
 		}
 	}
 	return;
@@ -77,11 +81,12 @@ void area_n_sphere(int n, int iter){
 	long double expected [8] = {3.14159, 4.18879, 4.9348, 5.2637, 5.1677, 4.7247, 4.0587, 3.2985};
 	printf("%8s %12s %8s\n", "Dimension", "Calculated", "Error");
 	for(int i=0; i<8; i++){
-		printf("%8d: %12.4Lf %8.2Lf\%\n",i+2, area_hypersphere[i], (expected[i]-area_hypersphere[i])/expected[i]*100.0f);
+		printf("%8d: %12.4Lf %8.3Lf\%\n",i+2, area_hypersphere[i], (expected[i]-area_hypersphere[i])/expected[i]*100.0f);
 	}
 
 	free(area_hypersphere);free(output);
 	printf("%s %d\n", "number of iterations", iter);
+	printf("%s: %d\n","counts: ", count);
 	return;
 }
 

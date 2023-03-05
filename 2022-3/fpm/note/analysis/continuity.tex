@@ -29,12 +29,14 @@
 	Let $f: \bb{D} \rightarrow \bb{R}$ be continuous on the interval $[a,b]\in \bb{D}$. $\forall c $ such that $f(a)<c<f(b)\ \exists d \in [a,b] $ such that $ f(d) = c$.  
 \end{theorem}
 
-% TODO substitute eee with \bb{E}; sss with \sup{\bb{E}}
 \begin{proof}[Proof of Intermediate Value Theorem]
-	Construct a set $eee = \{e\in [a,b]| f(e)<c\}$. Since $f(a)<c$, $eee$ is non empty.  
-	As $eee$ is bounded, by the completeness of real number, there exists a supremum , which shall be denoted as $\sup{E}$. As $eee$ is bounded by a close inteval, $sss$ is also bounded by the same intevral. Our aim is to show that $f(sss)=c$.
+	Construct a set $\bb{E} = \{e\in [a,b]| f(e)<c\}$. Since $f(a)<c$, $\bb{E}$ is non empty.  
+	As $\bb{E}$ is bounded, by the completeness of real number, there exists a supremum , which shall be denoted as $\sup{\bb{E}}=s$. 
+	As $\bb{E}$ is bounded by a close inteval, $s$ is also bounded by the same intevral. Our aim is to show that $f(s)=c$.
 
-	By our assumption $f$ is continous	at $sss$. 
+	By our assumption $f$ is continous at $s$. Assuming $f(s) < c$. 
+	Since $f$ is continous as $s$, there exists $\delta \in \bb{R}$ such that for all $s<x<\delta$, $|f(x)-f(s)|<c-f(s)$, i.e., $f(s)<f(x)<c$, contradicting our assumption that $s$ is the supremum of $\bb{E}$. 
+	Thus we conlude $f(s)\geq c$. $f(s)\leq c$ can be proved similarly.
 \end{proof}
 
 \begin{remark}
