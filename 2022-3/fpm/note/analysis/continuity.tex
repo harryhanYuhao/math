@@ -22,8 +22,19 @@
 \end{definition}
 
 \begin{remark}
-	The extreme value theorem does not hold when $\bb{I}$ is a close interval. For example, function $f(x)=\frac{1}{x}$ is continous but unbounded in the open interval $(0,1)$.
+	Here is the outline of the proof. 
+	First difine local maximum as $f(x) > f(y)$ for all $y \in (x-\delta, x+\delta)$ for some $\delta > 0$. 
+	
+	Then prove the lemme: for all continuous function with finite domain, it will have finite local maximums. EVT follows immediately.
+
+	Note we have not restrict the domain of function $f$ to be real number. EVT holds for rational number, irrational number, and many other.
+
+	However, extreme value theorem does not hold when $\bb{I}$ is a open interval. For example, function $f(x)=\frac{1}{x}$ is continous but unbounded in the open interval $(0,1)$.
 \end{remark}
+
+\begin{hypothesis}[Valid Domain for EVT]
+	Investigate the valid domain for EVT under the definition of continuity. 
+\end{hypothesis}
 
 \begin{theorem}[Intermediate Value Theorem]
 	Let $f: \bb{D} \rightarrow \bb{R}$ be continuous on the interval $[a,b]\in \bb{D}$. $\forall c $ such that $f(a)<c<f(b)\ \exists d \in [a,b] $ such that $ f(d) = c$.  
