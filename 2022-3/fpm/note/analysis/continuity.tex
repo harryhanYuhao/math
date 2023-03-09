@@ -18,30 +18,36 @@
 \end{theorem}
 
 \begin{definition}[Extreme Value Theorem]
-	$f:\bb{I} \rightarrow \bb{R}$ where $\bb{I}$ is a close interval of real number is bounded.
+	$f:\bb{I} \rightarrow \bb{R}$ where $\bb{I}$ is a close interval of real number is bounded and would attain supremum and infimum on $\bb{I}$.
 \end{definition}
 
 \begin{proof}
-	We shall prove Extreme Value Theorem (EVT) by showing that a continuous function on a finite domain must have finite number of local maxima. Then range of the function would be bounded, as guaranteed by EVT, by the supremum and infinum of the set containing all its local maximum and two values at the end points.
+	We shall first show that a continuous function whose domain is a closed interval must have finite number of local maxima, and thus bounded above. Its maximum is the maximum of the set consisted of all local maxima and its value at the end points. 
+	\footnote{
+		Indeed a continuous function in a closed interval may have 0 local maximum or minimum: in such cases the statement still holds, though it requires more justifications.
+	}
 
-	A real number $f(a)$ is a local maximum of function $f$ if $f(a)>f(x)$ there exists $\delta > 0$ such that for all $x \in(a-\delta, a+\delta), f(a)>f(x)$. 
+	In this proof let $f(x)$ be a continous function defined in a closed interval $[l, h]$.
 
-	Moreover, we claim that for all local maxima $f(a)$ attained at $a$, there exists two intervals $(s, a)$ and $(a, d)$ such that the function is strictly increasing in the interval $(s,a)$ while stricting decreasing in the interval $(a,d)$. 
-	The interval $(s,d)$ is called the charateristic interval of local maxima attained at $a$, and $\lambda = (d-a)$ is its charateristic length. The characteristic intervals are disjoint.
+	A real number $r = f(a)$ is a local maximum of function $f$ if there exists $\delta > 0$ such that for all $x \in(a-\delta, a+\delta), f(a)>f(x)$. 
+
+	Moreover, we claim that for all local maxima $f(a)$ attained at $a$, there exists a interval $(s, a)$  such that the function is strictly increasing in the interval $(s,a)$, but not so for any interval $(s', a)$ with $s'<s$. 
+	There also exists another interval $(a, d)$ such that the function is stricting decreasing in the interval but not so for any interval $(a. d')$ with $d<d'$.
+
+	The interval $(s,d)$ is called the charateristic interval of local maxima attained at $a$, and $\lambda = (d-a)$ is its charateristic length. 
+	We claim the characteristic intervals partitions $[l,h]$.
+	Define function $\gamma: [l,h] \rightarrow \bb{R}$ as $\gamma(x) = \lambda$ if $x\in (a,d)$. Importantly, $\exists \beta > 0$ such that $\exists \zeta \in [x-\lambda,x+\lambda]$ and $|f(x)-f(\zeta)|>\beta$.
 	
-	Assuming function $f$ is continuous in the domain $[l, h]$ and it achieves infinitely many distinct local maxima in the same domain. Such function would have infinite charateristic intervals, and, for all $\lambda$, the characteristic length of a characteristic intevarl, there exists $0<\lambda '<\lambda$ that is the characteristic length of another characteristic interval.
+	If $f(x)$ attains infinitely many local maxima, we claim that $\exists \alpha \in [l, h]$ such that $\displaystyle \lim_{x\to \alpha} \gamma (x) = 0$.
+	Thus there exists $\beta > 0$ such that for all $\delta>0$ there exists $0<\lambda<\delta$ such that there exists $\zeta \in [\alpha-\lambda, \alpha+\lambda]$ and $|f(\alpha)-f(\zeta)|>\beta$, which means $f$ is discontinuous at $\alpha$, contridicting our assumption, and we can conclude that $f$ is indeed bounded above.
 
+	So far we have proved that a function that is continuous in a closed interval must be bounded above. It is similar to prove that it is bounded below.
 \end{proof}
-
+% TODO: The proof is a little sketchy, need to be improved.
 \begin{remark}
-	Here is the outline of the proof. 
-	First difine local maximum as $f(x) > f(y)$ for all $y \in (x-\delta, x+\delta)$ for some $\delta > 0$. 
-	
-	Then prove the lemme: for all continuous function with finite domain, it will have finite local maximums. EVT follows immediately.
+	Note we have not restrict the domain of function $f$ to be real number to show it is bounded, although it may be required if we need to show it would attains sup and inf.
 
-	Note we have not restrict the domain of function $f$ to be real number. EVT holds for rational number, irrational number, and many other.
-
-	However, extreme value theorem does not hold when $\bb{I}$ is a open interval. For example, function $f(x)=\frac{1}{x}$ is continous but unbounded in the open interval $(0,1)$.
+	Notice, extreme value theorem does not hold when $\bb{I}$ is a open interval. For example, function $f(x)=\frac{1}{x}$ is continous but unbounded in the open interval $(0,1)$.
 \end{remark}
 
 \begin{hypothesis}[Valid Domain for EVT]
