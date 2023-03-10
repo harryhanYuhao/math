@@ -76,7 +76,7 @@ Let $\mathbb{G}$ be a group and $g$ one of its element. Considering the set:
 \[
 	\mathbb{S} = \{\cdots g^{-2}, g^{-1}, e, g, g^1, g^2 \cdots\}  
 \]
-If $\mathbb{S}$ is finite, it is called a cyclic group. Most importantly, all sets of such form with inheritted operation must be a subgroup.
+If $\mathbb{S}$ is finite, it is called a cyclic group. Most importantly, all sets of such form with inheritted operation must be a group.
 \end{definition}
 
 \begin{theorem}[Properties of Cyclic Group]
@@ -168,4 +168,19 @@ for a group $\mathbb{G}$ and $g \in \mathbb{G}$:
 	\ref{prop:Applic_lagrange}.\ref{orderOfElement} implies \ref{prop:Applic_lagrange}.\ref{prime_cyclic}.
 	To prove proposition \ref{prop:Applic_lagrange}.\ref{orderOfElement}, let $\mathbb{G}$ be a group and $\langle g\rangle$ be a cyclic group containing $g \in \mathbb{G}$, by langrange theorem $|\langle g\rangle|$ must divides $|\mathbb{G}|$.
 \end{proof}
+
+
+\subsection{Between Groups}
+
+\begin{definition}[Homomorphisim]
+	Group $\bb{G}\ \& \ \bb{P}$ are isomorphic to each other if there exists a function
+	$\phi: \bb{G}\rightarrow \bb{P}$ such that	$ a, b \in \bb{G} \implies \phi(ab) = \phi(a)\phi(b)$.
+
+	The function $\phi$ is denominated as a homomorphism of the group $\bb{G}\&\bb{P}$.
+\end{definition}
+
+\begin{definition}[Isomorphism]
+	A homomorphism $\phi \bb{G} \rightarrow \bb{P}$ that is also a bijection is a isomorphism of group $\bb{B}\&\bb{P}$, and we denote two such isomorphic group with $\bb{G} \cong \bb{P}$.
+\end{definition}
+
 \end{document}
