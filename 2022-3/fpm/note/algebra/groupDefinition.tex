@@ -1,15 +1,15 @@
 \documentclass[../note.tex]{subfiles}
 \begin{document}
 
-\section{Group}
+\section{Group: Definition}
 
 \begin{definition}[Group]
 Group is a set $\mathbb{S}$ with an operation $\odot$ that fulfills the following four properties:
 \begin{enumerate}
-	\item Closure
-	\item Associtivity: $(a \odot b) \odot c = a \odot (b \odot c)$;
-	\item Identity
-	\item Inverse
+	\item Closure: $\forall a,b\in \mathbb{S}, a\odot b\in \mathbb{S}$.
+	\item Associtivity: $\forall a, b, c \in \mathbb{S}, (a \odot b) \odot c = a \odot (b \odot c)$;
+	\item Identity: $\exists e\in \mathbb{S}$ such that $a\odot e = e\odot a = a$ for all $a\in \mathbb{S}$;
+	\item Inverse: $\forall a\in \mathbb{S}, \exists a^{-1}\in \mathbb{S}$ such that $a\odot a^{-1} = a^{-1}\odot a = e$.
 \end{enumerate}
 \end{definition}
 \begin{theorem}[Consequence of the Definition]
@@ -168,19 +168,5 @@ for a group $\mathbb{G}$ and $g \in \mathbb{G}$:
 	\ref{prop:Applic_lagrange}.\ref{orderOfElement} implies \ref{prop:Applic_lagrange}.\ref{prime_cyclic}.
 	To prove proposition \ref{prop:Applic_lagrange}.\ref{orderOfElement}, let $\mathbb{G}$ be a group and $\langle g\rangle$ be a cyclic group containing $g \in \mathbb{G}$, by langrange theorem $|\langle g\rangle|$ must divides $|\mathbb{G}|$.
 \end{proof}
-
-
-\subsection{Between Groups}
-
-\begin{definition}[Homomorphisim]
-	Group $\bb{G}\ \& \ \bb{P}$ are isomorphic to each other if there exists a function
-	$\phi: \bb{G}\rightarrow \bb{P}$ such that	$ a, b \in \bb{G} \implies \phi(ab) = \phi(a)\phi(b)$.
-
-	The function $\phi$ is denominated as a homomorphism of the group $\bb{G}\&\bb{P}$.
-\end{definition}
-
-\begin{definition}[Isomorphism]
-	A homomorphism $\phi \bb{G} \rightarrow \bb{P}$ that is also a bijection is a isomorphism of group $\bb{B}\&\bb{P}$, and we denote two such isomorphic group with $\bb{G} \cong \bb{P}$.
-\end{definition}
 
 \end{document}
