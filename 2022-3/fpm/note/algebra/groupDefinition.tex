@@ -9,14 +9,19 @@ Group is a set $\mathbb{S}$ with an operation $\odot$ that fulfills the followin
 	\item Closure: $\forall a,b\in \mathbb{S}, a\odot b\in \mathbb{S}$.
 	\item Associtivity: $\forall a, b, c \in \mathbb{S}, (a \odot b) \odot c = a \odot (b \odot c)$;
 	\item Identity: $\exists e\in \mathbb{S}$ such that $a\odot e = e\odot a = a$ for all $a\in \mathbb{S}$;
-	\item Inverse: $\forall a\in \mathbb{S}, \exists a^{-1}\in \mathbb{S}$ such that $a\odot a^{-1} = a^{-1}\odot a = e$.
+	\item Inverse: $\forall a\in \mathbb{S}, \exists a^{-1}\in \mathbb{S}$ such that $a\odot a^{-1} = e$.
 \end{enumerate}
 
 \begin{remark}
 	A quick definition for operation, $\odot $, within the set $\bb{S}$ is that $\odot: \bb{S}\times \bb{S} \rightarrow \bb{S}$; moreover, we can denote $\odot (a,b)=a \odot b$.
 
-	It is important to note that for the definition of identity can not be simplified to $\exists e\in \mathbb{S}$ such that $a\odot e = a$ for all $a\in \mathbb{S}$. 
-	Nothing has prevented us from arbitrating that for a certain set $\bb{S}$ and $a, b \in \bb{S}$, it could be that $a \odot b = a$ while $b \odot a\neq a$.`
+	The definition of identity can not be simplified to $\exists e\in \mathbb{S}$ such that $a\odot e = a$ for all $a\in \mathbb{S}$. 
+	Nothing has prevented us from arbitrating that for a certain set $\bb{S}$ and $a, b \in \bb{S}$, $a \odot b = a$ while $b \odot a\neq a$.`
+
+	In contrast, the definition of inverse needs not such emphasis. If a set $\bb{S}$ has the property of closure, associtivity, and identity, $\forall a\in \mathbb{S} \exists a^{-1}\in \mathbb{S}$ such that $a\odot a^{-1} = e$ would implies that $a^{-1}a = e$. Here is a quick proof.
+
+	Let $b = a^{-1}$.
+	$a b=e \implies a b b = b a b = b$ (multiply both sides of $e$ with $b$). We know $b$ itself has an inverse, denoted as $c$; thus $a b b c = b a b c = b c$, and by associtivity, $a b (b c) = a b b c = b a b c = ba(bc) \implies a b = b a$ = $e$.  
 \end{remark}
 
 \end{definition}
