@@ -1,0 +1,90 @@
+\documentclass[12pt, a4paper]{article}
+\usepackage{blindtext, titlesec, amsthm, thmtools, amsmath, amsfonts, scalerel, amssymb, graphicx, titlesec, xcolor, multicol, hyperref}
+\usepackage[utf8]{inputenc}
+\hypersetup{colorlinks,linkcolor={red!40!black},citecolor={blue!50!black},urlcolor={blue!80!black}}
+\newtheorem{theorem}{Theorema}[subsection]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollarium}
+\newtheorem{hypothesis}{Coniectura}
+\theoremstyle{definition}
+\newtheorem{definition}{Definitio}[section]
+\theoremstyle{remark}
+\newtheorem{remark}{Observatio}[section]
+\newtheorem{example}{Exampli Gratia}[section]
+\renewcommand\qedsymbol{Q.E.D.}
+\title{Handin Week 6}
+\author{Harry Han}
+\date{\today}
+\begin{document}
+\maketitle
+%\tableofcontents
+\paragraph{Q1}
+We are to find all subgroups of $\mathbb{D}_3$, and determine which of them are \emph{normal}. (A subgroup $N$ of the group $G$ is normal if and only if every left coset of $N$ equals to the corresponding right coset, i.e. $\forall k \in G, kN = Nk$)
+
+Before our investigation of subgroups, recall for $\mathbb{D}_3, h^2=e, gh = hg^2, hg = g^2h, \text{and } g^3 = 1$. Each one of these statament can be checked easily.
+
+To find all subgroups of the dihedral group $\mathbb{D}_3$, Lagrange theorem is required which claims that its subgroup must have the order of 1,2,3, or 6. 
+
+The subgroup with 1 element is the trivial subgroup $\{e\}$, the subgroup with 6 element is $\mathbb{D}_3$ itself. 
+
+Theorem 2.4.6 states that any groups with 2, or 3 elements must be cyclic(as 2 and 3 are prime). Thus we shall consider all possible cyclic subgroup:
+
+\begin{enumerate}
+	\item $\langle e \rangle = \{e\}$;
+	\item $\langle g \rangle = \{e, g, g^2\}$;
+	\item $\langle g^2 \rangle = \{e, g^2, g\} = \langle g \rangle$;
+	\item $\langle h \rangle = \{e, h\}$ (as $h^2=e$);
+	\item $\langle hg \rangle = \{e, hg\}$ (as $(hg)^2=e$);
+	\item $\langle hg^2 \rangle = \{e, hg^2\}$ (as $(hg^2)^2=e$);
+\end{enumerate}
+And we conclude there are only 6 subgroup for $\mathbb{D}_3$,
+namely:\\ $\{e\}, \{e, g, g^2\}, \{e, h\}, \{e, hg\}, \{e, hg^2\}$ and $\mathbb{D}_3$ itself.
+
+Next, we are to find all \emph{normal} subgroups.
+
+\begin{enumerate}
+	\item $\mathbb{D}_3$ itself; This is a normal group as $\forall a \in \mathbb{D}_3, a \mathbb{D}_3 = \mathbb{D}_3 a = \mathbb{D}_3$ 
+	\item $\{e\}$; This is a normal group as $\forall a \in \mathbb{D}_3,\ ae= ea$;
+	\item $\mathbb{S}_3=\{e, g, g^2\} = \langle g \rangle$; This is also a normal group, which can be shown by brute force: the first three cases are obvious: $e \mathbb{S}_3 = \mathbb{S}_3 e; g\mathbb{S}_3 = \mathbb{S}_3 g = \mathbb{S}_3; g^2 \mathbb{S}_3 = \mathbb{S}_3 g^2 = \mathbb{S}_3 $.
+		
+		$h \mathbb{S}_3 = \{h, hg, hg^2\} = \{h, hg^2 ,gh\} =\{h, gh, gh^2\}=\mathbb{S}_3 h$
+
+		$hg \mathbb{S}_3 = \{hg, hg^2, hg^3\} = \{hg, h ,hg^2\} =\{hg, ghg, g^2hg\}=\mathbb{S}_3 h$
+
+		$hg^2 \mathbb{S}_3 = \{hg^2, h, hg\} = \{hg^2, hg ,h\} =\{hg^2, ghg^2, g^2hg^2\}=\mathbb{S}_3 h$
+	\item $\mathbb{S}_4=\{e, h\}=\langle h \rangle$ is not a normal group as $g\mathbb{S}_4 = \{g, gh\} \neq \{g, hg\} = \mathbb{S}_4g$.
+	\item $\mathbb{S}_5=\{e, hg\}=\langle hg \rangle$ is not a normal group as $ g\mathbb{S}_5 = \{g, ghg\} = \{g, h\} \neq \{g, hgg\}=\mathbb{S}_5g$.
+	\item $\mathbb{S}_6=\{e, g^2h\} = \langle hg^2\rangle$ is not a normal group as $ g\mathbb{S}_5 \{g, h\} \neq \{g, gh\}\{g, g^2hg\}=\mathbb{S}_5g$. 
+\end{enumerate}
+
+
+
+
+\newpage
+\paragraph{Q2}
+We are to prove the series 
+\begin{equation}\label{series}
+	\sum^{\infty}_{n=1}\left( \frac{an+2}{n+1}\right)^{n^2}
+\end{equation}
+converges when $0<a<1$, and diverges when $a \geq 1$.
+
+\begin{proof}
+	We shall first prove that the series converge when $0<a<1$, and it diverges when $a>1$.
+	Ratio test shall be applied (which is valid, as all terms of series are positive):
+\begin{equation}\label{ratio}
+	\begin{split}
+		\rho=\lim _{n\to \infty}\left( \left( \frac{an+2}{n+1}\right)^{n^2}\right)^{1/n} = \lim_{n\to \infty}\left( \frac{an+2}{n+1}\right)^{n}& \\
+		= \lim _{n\to \infty}\left(\frac{a+2/n}{1+1/n}\right)^n = a^n 
+	\end{split}
+\end{equation}
+Thus
+\[0<a<1 \implies a^n<1 \implies \rho <1 \implies  \text{series \eqref{series} converges};\] and $a>1 \implies a^n>1 \implies \rho >1 \implies $ series \eqref{series} diverges.
+
+When $a=1$, consider:
+\begin{equation}
+	\lim_{n \to \infty}\left( \frac{n+2}{n+1}\right)^{n^2} = \lim_{n \to \infty}\left( 1+\frac{1}{n+1}\right)^{n^2} = e^n>0
+\end{equation}
+Thus we conlude the series diverges when $a=1$ by the divergence test.
+\end{proof}
+\end{document}
+
