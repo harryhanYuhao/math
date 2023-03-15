@@ -45,10 +45,14 @@
 \end{proof}
 % TODO: The proof is a little sketchy, need to be improved.
 \begin{remark}
-	Note we have not restrict the domain of function $f$ to be real number to show it is bounded, although it may be required if we need to show it would attains sup and inf.
+	We have not restrict the domain of function $f$ to be real number to show it is bounded, although it may be required if we need to show it would attains sup and inf.
 
 	Notice, extreme value theorem does not hold when $\bb{I}$ is a open interval. For example, function $f(x)=\frac{1}{x}$ is continous but unbounded in the open interval $(0,1)$.
 \end{remark}
+
+\begin{corollary}
+	Let function $f: \bb{D} \rightarrow	\bb{R}$ be continuous on the inteval $I=[a,b]$. For all $\epsilon \in I$, there exists a subinterval $S\subseteq I$ and $\epsilon \in S$ such that in $S$ the function $f$ is either strictly increasing, decreasing, or remain constant.
+\end{corollary}
 
 \begin{hypothesis}[Valid Domain for EVT]
 	Investigate the valid domain for EVT under the definition of continuity. 
@@ -78,19 +82,33 @@
 \begin{hypothesis}
 	\ 
 \begin{enumerate}
-	\item Is there a function $f: \bb{R} \rightarrow \bb{R}$ such that for all invertal $[a,b] \in \bb{R}$, $f$ is neither strictly increasing or decreasing? 
-
+	\item Is there a defined in close interval $[a,b]$ but is not strictly increasing nor decreasing for any interval in its domain? 
+	\item Is there a function that is continuous everywhere but not differentiable at any point?
 \end{enumerate}
 \end{hypothesis}
-\subsubsection{Unbounded Functions}
+\paragraph{Non Increasing Nor Decreasing}
+Let function $f: \bb{R}\rightarrow \bb{R}$ be defined as such:
+\[
+	f(x)=
+	\begin{cases}
+		1 &\text{if } x \in \bb{Q}\\
+		0 &\text{otherwise}
+	\end{cases}
+\]
+As infinitely many number of rational numbers and irrational number are contained in any domain $[a,b]$, such funtion is not increasing nor decreasing for any intervals of real number.
+
+\paragraph{Unbounded Functions}
 Commonly, unbounded functions are defined in a open inteval, e.g., $\frac{1}{x}$ in the interval $(0, 1]$. By extreme value theorem we know that there is no continuous function in close interval that is unbounded. However, there is function that is non-continuous that shows unbounded behaviour in close inteval.
 
 Consider the function $f:[0,1] \rightarrow (\infty, 1]$ defined as thus:
-		\[
+\[
     f(x)= 
 \begin{cases}
 	2^{n+1},& \text{if } x=2^{-n} \text{ for some natural number }n\\
     x,              & \text{otherwise}
 \end{cases}
 \]
+
+
 \end{document}
+
