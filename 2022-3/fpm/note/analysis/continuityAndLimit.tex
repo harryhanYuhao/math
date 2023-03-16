@@ -14,12 +14,14 @@
 
 \begin{theorem}[Equivalent Defintion]
 	The definition \ref{def:Continuity} of function $f:\mathbb{D} \rightarrow \bb{R}$ is continuous at $a\in \bb{D}$ is equivalent to $\lim _{x\to a}f(x) = f(a)$, provided $\bb{D}$ is a non-degenerate interval in $\bb{R}$; 
-	i.e. $\forall \epsilon \in \bb{D} \exists \delta $ such that $|x-a| < \delta \implies |f(x)-f(a)| < \epsilon$.
+	i.e. $\forall \epsilon \in \bb{D}, \exists \delta $ such that $|x-a| < \delta \implies |f(x)-f(a)| < \epsilon$.
 \end{theorem}
 
 \begin{definition}[Extreme Value Theorem]
 	$f:\bb{I} \rightarrow \bb{R}$ where $\bb{I}$ is a close interval of real number is bounded and would attain supremum and infimum on $\bb{I}$.
 \end{definition}
+
+The following proof is wrong, see \ref{InfiniteLocalMaxima}; but I think it may be remedied, so I will leave it here for now.
 
 \begin{proof}
 	We shall first show that a continuous function whose domain is a closed interval must have finite number of local maxima, and thus bounded above. Its maximum is the maximum of the set consisted of all local maxima and its value at the end points. 
@@ -43,6 +45,7 @@
 
 	So far we have proved that a function that is continuous in a closed interval must be bounded above. It is similar to prove that it is bounded below.
 \end{proof}
+
 % TODO: The proof is a little sketchy, need to be improved.
 \begin{remark}
 	We have not restrict the domain of function $f$ to be real number to show it is bounded, although it may be required if we need to show it would attains sup and inf.
@@ -50,9 +53,7 @@
 	Notice, extreme value theorem does not hold when $\bb{I}$ is a open interval. For example, function $f(x)=\frac{1}{x}$ is continous but unbounded in the open interval $(0,1)$.
 \end{remark}
 
-\begin{corollary}
-	Let function $f: \bb{D} \rightarrow	\bb{R}$ be continuous on the inteval $I=[a,b]$. For all $\epsilon \in I$, there exists a subinterval $S\subseteq I$ and $\epsilon \in S$ such that in $S$ the function $f$ is either strictly increasing, decreasing, or remain constant.
-\end{corollary}
+
 
 \begin{hypothesis}[Valid Domain for EVT]
 	Investigate the valid domain for EVT under the definition of continuity. 
@@ -84,8 +85,22 @@
 \begin{enumerate}
 	\item Is there a defined in close interval $[a,b]$ but is not strictly increasing nor decreasing for any interval in its domain? 
 	\item Is there a function that is continuous everywhere but not differentiable at any point?
+	\item  
 \end{enumerate}
 \end{hypothesis}
+\paragraph{A Continuous Function in Finite Domain with Infinite Local Maxima} \label{InfiniteLocalMaxima}
+Define function $f:\bb{R}\rightarrow \bb{R}$ as such:
+\[
+	f(x)=
+	\begin{cases}
+		x\sin{\frac{1}{x}} & \text{if } x\neq 0\\
+		0 & \text{if } x = 0
+	\end{cases}
+\]
+
+It has infinitely many local maxima in the inteval $[-1,1]$.
+
+Notice the function is continous at $0$. Morever, for $\forall \delta > 0$, $[-\delta, \delta]$ contains infinitly many local maxima. Denominate points with such property as transedental points. It is possible to have a function defined in domain $[a,b]$ while at same time have $\forall \epsilon \in [a,b], \epsilon$ is a transedental point? Can such function be continous? 
 \paragraph{Non Increasing Nor Decreasing}
 Let function $f: \bb{R}\rightarrow \bb{R}$ be defined as such:
 \[
