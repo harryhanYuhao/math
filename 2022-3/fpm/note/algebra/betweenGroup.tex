@@ -35,7 +35,19 @@
 	A subgroup $\bb{H}$ of a group $\bb{G}$ is called normal if $\forall a \in \bb{G}$, the left and right coset of $\bb{H}$ are equal, i.e. $aG=Ga$.
 \end{definition}
 
-\begin{proposition}
-	Let	$\phi : G \rightarrow H$ be a homomorphism; $\ker{\phi}$ is a normal subgroup of $G$. 
-\end{proposition}
+\begin{theorem}
+	Let $\phi : G \rightarrow H$ be a group homomorphism.
+\begin{enumerate}
+	\item $\ker{\phi}$ is a normal subgroup of $G$. 
+	\item $\phi: G \rightarrow H$ is injective if and only if $\ker{\phi} = \{e_{G}\}$.
+	\item If $\phi$ is injective, it gives an isomorphism between $G$ and $im{\phi}$.
+\end{enumerate}
+\end{theorem}
+
+\begin{hypothesis}[Proposed 20 Mar 2023]
+	Let $\phi: G \rightarrow H$ be a homomorphism.
+	Define kernel of $\phi$ respect to $a \in H$ as $\ker_a{\phi}=\{g\in G| \phi(g)=a\}$.
+	For all $a, b$ such that $\ker_a{\phi}, \ker_b{\phi}$ is not an empty set, $\ker_a{\phi}=\ker_a{\phi}$ 
+\end{hypothesis}
+
 \end{document}
