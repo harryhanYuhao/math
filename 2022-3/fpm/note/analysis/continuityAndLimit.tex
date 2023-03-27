@@ -54,7 +54,6 @@ The following proof is wrong, see \ref{InfiniteLocalMaxima}; but I think it may 
 \end{remark}
 
 
-
 \begin{hypothesis}[Valid Domain for EVT]
 	Investigate the valid domain for EVT under the definition of continuity. 
 \end{hypothesis}
@@ -78,6 +77,39 @@ The following proof is wrong, see \ref{InfiniteLocalMaxima}; but I think it may 
 	
 	The more important consequence of continuity relies heavily on the properties of real number, i.e, the completeness of real number.
 \end{remark}
+
+\section{Limits of Functions}
+
+\begin{definition}[Sequence Definition of Limit]\label{SequenceDefinitionOfLimit}
+	Let $f: \bb{D} \rightarrow \bb{R}$ be a function. 
+	We say $\lim_{x \rightarrow a} f(x)=L$ if and only if for every sequence $(x_n)$, provided $x_i \in \bb{D}$, which converges to $a$ we have $(f(x_n))$ that converges to $L$.	
+\end{definition}
+
+\begin{definition}[Sided Limit]
+	Limit may be two sided or one sided.
+	\begin{enumerate}
+	\item Limit from left: $\lim_{x \rightarrow a^-} f(x)=L$ if and only if for every sequence $(x_n)$, provided $x_i \in \bb{D}$ and $x_i<a$, which converges to $a$ we have $(f(x_n))$ that converges to $L$.
+	\item Limit from right: $\lim_{x \rightarrow a^+} f(x)=L$ if and only if for every sequence $(x_n)$, provided $x_i \in \bb{D}$ and $x_i>a$, which converges to $a$ we have $(f(x_n))$ that converges to $L$.
+	\end{enumerate}
+\end{definition}
+
+\begin{definition}[Infinit Limit] 
+\end{definition}
+
+\begin{theorem}[Limit is Unique]
+	Let $f: \bb{D} \rightarrow \bb{R}$ be a function. 
+
+	$\lim_{x \rightarrow a}=L$ if and only if $\lim_{x \rightarrow a^-}=L$ and $\lim_{x \rightarrow a^+}=L$.
+\end{theorem}
+
+\begin{theorem}[$\epsilon-\delta$ Definition]
+	The sequence definition of limit is equivalent to the $\epsilon-\delta$ definition.
+	\begin{enumerate}
+	\item $\lim_{x \rightarrow a} f(x)=L$ if and only if for every $\epsilon > 0$, there exists $\delta > 0$ such that for all $x$ such that $|x-a|<\delta \implies |f(x)-L|<\epsilon$.
+	\item $\lim_{x \rightarrow a^-} f(x)=L$ if and only if for every $\epsilon > 0$, there exists $\delta > 0$ such that for all $x$ such that $a-\delta<x<a \implies |f(x)-L|<\epsilon$.
+	\item $\lim_{x \rightarrow a^+} f(x)=L$ if and only if for every $\epsilon > 0$, there exists $\delta > 0$ such that for all $x$ such that $a<x<a+\delta \implies |f(x)-L|<\epsilon$.
+	\end{enumerate}
+\end{theorem}
 
 \subsection{Bizare Functions}
 \begin{hypothesis}
