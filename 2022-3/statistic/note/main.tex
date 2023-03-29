@@ -1,0 +1,63 @@
+\documentclass[12pt, a4paper]{article}
+\usepackage{blindtext, titlesec, amsthm, thmtools, amsmath, amsfonts, scalerel, amssymb, graphicx, titlesec, xcolor, multicol, hyperref}
+\usepackage[utf8]{inputenc}
+\hypersetup{colorlinks,linkcolor={red!40!black},citecolor={blue!50!black},urlcolor={blue!80!black}}
+\newtheorem{theorem}{Theorema}[subsection]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollarium}
+\newtheorem{hypothesis}{Coniectura}
+\theoremstyle{definition}
+\newtheorem{definition}{Definitio}[section]
+\theoremstyle{remark}
+\newtheorem{remark}{Observatio}[section]
+\newtheorem{example}{Exampli Gratia}[section]
+\renewcommand\qedsymbol{Q.E.D.}
+\title{Statistics}
+\author{Harry Han}
+\date{\today}
+\newcommand{\bb}[1]{\mathbb{#1}}
+\newcommand{\var}[1]{\text{Var}(#1)}
+\begin{document}
+\maketitle
+%\tableofcontents
+
+\section{Linear Regression}
+
+\subsection{Least Square Estimate}
+
+\subsubsection{Single Variabel Linear Regression}
+\begin{theorem}[Least Square Estimators]
+	Assuming iid random variables $x_i$ with the regression model
+	\begin{equation}
+		Y_i=\alpha + \beta	x_i + \epsilon_i
+	\end{equation}
+	With the assumption that each $\epsilon_i$ is normally distributed, $\bb{E}[\epsilon_i]=0$ (Linearity of Expectation), and $\var{ \epsilon_i }=\sigma^2$ (homoscedasticity) 
+
+	The least square estimator are 
+	\begin{equation}
+		\hat{\alpha} = \bar{Y}-\hat{\beta}\bar{x}; \hat{\beta} = \frac{\sum^{n}_{i=1}(x_i-\bar{x})(Y_i-\bar{Y}) }{\sum^{n}_{i=1}(x_i-\bar{x}^2) }
+	\end{equation}
+	Both estimator are consistent and unbiased. Moreover:
+	\begin{equation}
+		\var{\hat{\beta}} = \frac{\sigma^2}{(n-1)s^2_x}; \var{\hat{ \alpha }}=\sigma^2\left(\frac{1}{n}+\frac{\bar{x}^2}{(n-1)s^2_x}\right)
+	\end{equation}
+	Where $\sigma^2=\var{\epsilon_i}=\var{Y_i}$ and $s_x^2= \frac{\sum (x_i-x)^2 }{n-1}$ is the sample variance of the explanatory varaible.
+\end{theorem}
+
+
+\begin{definition}[Residue Sum of Square]
+	The residue sun of square, SSE, is defined as:
+	\begin{equation}
+		SSE=\sum^{n}_{i=1}(y_i-\hat{y}_i)^2
+	\end{equation}
+
+
+	Its unbiased estimator is $S^2_E = \frac{1}{2}\sum^{n}_{i=1}(y_i-\hat{y}_i)^2$
+	
+\end{definition}
+The regression equation for the response given the explanatory varaiable $x_0$ is
+\begin{equation}
+	\bb{E}[Y_0]=\alpha + \beta x_0
+\end{equation}
+\end{document}
+
