@@ -98,13 +98,23 @@
 	$|\orb{G}{x}||\stab{G}{x}|=|G|$
 \end{theorem}
 
+To prove Orbit Stabilizer Theorem, we need lemma \ref{lemmaOrbitStabilizerTheorem}.
+
 \begin{lemma}\label{lemmaOrbitStabilizerTheorem}
 	Let $G$ be a group acting on the set $S$.
-	For $a$ and $b\in \orb{G}{a}$, $|\stab{G}{a}|=|\stab{G}{b}|$.
-	Moreover, define the set $S_b=\{g\in G| ga=b \}$. For all $b_1, b_2 \in \orb{G}{a}, |S_{b_1}|=|S_{b_2}|$.
+\begin{enumerate}
+	\item For $a$ and $b\in \orb{G}{a}$, $|\stab{G}{a}|=|\stab{G}{b}|$.
+	\item Let set $S_b=\{g\in G| ga=b \}$. For all $b_1, b_2 \in \orb{G}{a}, |S_{b_1}|=|S_{b_2}|$.
+\end{enumerate}
 \end{lemma}
 
-\begin{proof}
+To prove the first part of the lemma, consider $\{a,b \cdots\}\in \orb{G}{a}$. By definition of orbit, we know $\exists \beta \in G $ such that $\beta a = b$.
+Let $\stab{G}{a} = \{e_g, e_1, e_2 \cdots\}$. Notice that $\forall \epsilon \in \stab{G}{a}$, $\beta \epsilon \beta^{-1} \beta a = \beta \epsilon \beta^{-1} b = b$; i.e, $\beta \epsilon \beta^{-1} \in \stab{G}{b}$. 
+Since $\epsilon_1 \neq \epsilon_2 \implies \beta \epsilon_1 \beta^{-1} \neq \beta \epsilon_2 \beta ^{-1}$, we conclide that $|\stab{G}{a}| \leq |\stab{G}{b}| $.
+
+Such argument can be repeated for all $a',b' \in \orb{G}{a}$ such that $|\stab{G}{a'}| \leq |\stab{G}{b'}|$; the only possibility that is it true is that indeed they are all equal to each other.
+
+\begin{proof}[Orbit Stabilizer Theorem]
 	Let $G$ be a group acting on the set $S$. 
 	Consider the pseudo set (that allows the repetition of the elements) $L=\{ag| g\in G\}$. 
 	By lemma \ref{lemmaOrbitStabilizerTheorem} we claim $L=\orb{G}{a} \times |\stab{G}{a}|$, i.e, $L$ is made up of all element of orbit of $a$ repeated $|\stab{G}{a}|$ times. Thus $|G|=|L|=|\stab{G}{a}||\orb{G}{a}|$.
