@@ -40,7 +40,7 @@
 \begin{enumerate}
 	\item $\ker{\phi}$ is a normal subgroup of $G$. 
 	\item $\phi: G \rightarrow H$ is injective if and only if $\ker{\phi} = \{e_{G}\}$.
-	\item If $\phi$ is injective, it gives an isomorphism between $G$ and $im{\phi}$.
+	\item If $\phi$ is injective, it gives an isomorphism between $G$ and $\im{\phi}$.
 \end{enumerate}
 \end{theorem}
 
@@ -57,11 +57,15 @@
 \subsection{Product and Polymorphism}
 
 \begin{theorem}
-	Let $H, K \leq G$ be subgroups of $G$ with the union of $H, K = \{e\}$
+	Let $\bb{H}, \bb{K} \leq \bb{G}$ be subgroups of $\bb{G}$ with the union of $\bb{H}, \bb{K} = \{e\}$
 	\begin{enumerate}
-		\item The map $\phi: H\times K \rightarrow HK$ given by $\phi(h,k) = hk$ is a bijection.
+		\item The map $\phi: \bb{H}\times \bb{K} \rightarrow \bb{H}\bb{K}$ given by $\phi(h,k) = hk$ is a bijection.
+		\item $\bb{H}\bb{K}$ is a subgroup of $\bb{G}$ if and only if for all $h, k: $ $\exists h' k'$ such that $hk = k'h'$.
+		\item $\bb{H}\bb{K}$ is isomorphic to $\bb{H} \times \bb{K}$ if and only if every element of $\bb{H}$ commutes with every element of $\bb{K}$, i.e. $\forall h, k: hk=kh$.
 	\end{enumerate}
 \end{theorem}
+
+
 \section{Group Actions}
 \begin{definition}[Group Action]
 	A group action between a group $\bb{G}$ and a set $S$ is a function $f: \bb{G}\times S \rightarrow S$. 
