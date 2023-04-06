@@ -3,6 +3,8 @@
 
 \section{Between Groups}
 
+\subsection{Homomorphism and Isomorphism}
+
 \begin{definition}[Homomorphism]
 	Group $\bb{G}\ \& \ \bb{P}$ are isomorphic to each other if there exists a function (shall we add the following[proposed 14 mar]  defined for all $a \in \bb{G}$)
 	$\phi: \bb{G}\rightarrow \bb{P}$ such that	$ a, b \in \bb{G} \implies \phi(ab) = \phi(a)\phi(b)$.
@@ -14,22 +16,32 @@
 	A homomorphism $\phi \bb{G} \rightarrow \bb{P}$ that is also a bijection is a isomorphism of group $\bb{B}\&\bb{P}$, and we denote two such isomorphic group with $\bb{G} \cong \bb{P}$.
 \end{definition}
 
-\begin{proposition}[Consequence of homomorphism]
+\begin{theorem}[Consequence of homomorphism]
 	Let $\phi: \bb{G} \rightarrow \bb{P}$ denote a homomorphism. 
 \begin{enumerate}
 	\item $\phi(e_{\bb{G}}) = e_{\bb{P}}$. 
-	\item $\phi(a^{-1}) = \phi(a)^{-1}$.
+	\item $\phi(a^n) = \phi(a)^n$ for $n\in \bb{N}$ (Including negative numbers).
 	\item If $\phi$ is injection, the order of $\phi(a)$ is the same as the order of $a$.
-	\item $\{\phi(c) |c \in \bb{G}\}\leq \bb{P}$.
 \end{enumerate}
-\end{proposition}
+\end{theorem}
 
+\subsection{Kernel and Image}
 \begin{definition}[Image]
 	The image of a homomorphism $\phi: \bb{G} \rightarrow \bb{P}$ is the set $\{\phi(c) |c \in \bb{G}\}$.
+	\emph{Image is a subset of $\bb{P}$.}
 \end{definition}
 \begin{definition}[Kernel] 
 	The kernel of a homomorphism $\phi: \bb{G} \rightarrow \bb{P}$ is the set $\{c \in \bb{G} | \phi(c) = e_{\bb{P}}\}$.
+	\emph{Kernel is a subset of $\bb{G}$.}
 \end{definition}
+
+\begin{theorem}
+	These properties immediately follows the definitions.
+	\begin{enumerate}
+		\item Both Kernal and Image are groups.
+	\end{enumerate}
+\end{theorem}
+
 
 \begin{definition}[Normal Group]
 	A subgroup $\bb{H}$ of a group $\bb{G}$ is called normal if $\forall a \in \bb{G}$, the left and right coset of $\bb{H}$ are equal, i.e. $aG=Ga$.
