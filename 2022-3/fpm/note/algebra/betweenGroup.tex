@@ -20,7 +20,7 @@
 	Let $\phi: \bb{G} \rightarrow \bb{P}$ denote a homomorphism. 
 \begin{enumerate}
 	\item $\phi(e_{\bb{G}}) = e_{\bb{P}}$. 
-	\item $\phi(a^n) = \phi(a)^n$ for $n\in \bb{N}$ (Including negative numbers).
+	\item $\phi(a^{-1}) = \phi(a)^{-1}$ for $n\in \bb{N}$ (Including negative numbers).
 	\item If $\phi$ is injection, the order of $\phi(a)$ is the same as the order of $a$.
 \end{enumerate}
 \end{theorem}
@@ -38,14 +38,18 @@
 \begin{theorem}
 	These properties immediately follows the definitions.
 	\begin{enumerate}
-		\item Both Kernal and Image are groups.
+		\item Both Kernel and Image are groups.
+			% TODO
+		\item Kernel is a normal subgroup of $\bb{G}$. (Is it? Need Checking)
 	\end{enumerate}
 \end{theorem}
 
 
 \begin{definition}[Normal Group]
-	A subgroup $\bb{H}$ of a group $\bb{G}$ is called normal if $\forall a \in \bb{G}$, the left and right coset of $\bb{H}$ are equal, i.e. $aG=Ga$.
+	A subgroup $\bb{H}$ of a group $\bb{G}$ is called normal if $\forall a \in \bb{G}$, the left and right coset of $\bb{H}$ are equal, i.e. $a \bb{H}=\bb{H}a$.
 \end{definition}
+
+To check if the left and right coset of $\bb{H}$ are equal, we just need to check if $\forall h \in \bb{H} \& g \in \bb{G}, gh \in \bb{H}g$.
 
 \begin{theorem}
 	Let $\phi : G \rightarrow H$ be a group homomorphism.
