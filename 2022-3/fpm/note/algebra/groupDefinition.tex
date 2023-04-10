@@ -1,7 +1,7 @@
 \documentclass[../note.tex]{subfiles}
 \begin{document}
 
-\section{Group: Definition}
+\section{Group: Definitions}
 
 \begin{definition}[Group]
 Group is a set $\mathbb{S}$ with an operation $\odot$ that fulfills the following four properties:
@@ -13,10 +13,10 @@ Group is a set $\mathbb{S}$ with an operation $\odot$ that fulfills the followin
 \end{enumerate}
 
 \begin{remark}
-	A quick definition for operation, $\odot $, within the set $\bb{S}$ is that $\odot: \bb{S}\times \bb{S} \rightarrow \bb{S}$; moreover, we can denote $\odot (a,b)=a \odot b$.
+	Operation, $\odot $, within the set $\bb{S}$ can be defined as a function: $\odot: \bb{S}\times \bb{S} \rightarrow \bb{S}$ with the notation $\odot (a,b)=a \odot b$.
 
 	The definition of identity can not be simplified to $\exists e\in \mathbb{S}$ such that $a\odot e = a$ for all $a\in \mathbb{S}$. 
-	Nothing has prevented us from arbitrating that for a certain set $\bb{S}$ and $a, b \in \bb{S}$, $a \odot b = a$ while $b \odot a\neq a$.`
+	Nothing has prevented us from arbitrating that for a certain set $\bb{S}$ and $a, b \in \bb{S}$, $a \odot b = a$ while $b \odot a\neq a$.
 
 	In contrast, the definition of inverse needs not such emphasis. If a set $\bb{S}$ has the property of closure, associtivity, and identity, $\forall a\in \mathbb{S} \exists a^{-1}\in \mathbb{S}$ such that $a\odot a^{-1} = e$ would implies that $a^{-1}a = e$. Here is a quick proof.
 
@@ -24,13 +24,19 @@ Group is a set $\mathbb{S}$ with an operation $\odot$ that fulfills the followin
 	$a b=e \implies a b b = b a b = b$ (multiply both sides of $e$ with $b$). We know $b$ itself has an inverse, denoted as $c$; thus $a b b c = b a b c = b c$, and by associtivity, $a b (b c) = a b b c = b a b c = ba(bc) \implies a b = b a$ = $e$.  
 \end{remark}
 
+\emph{Note On Notation}: When there is no confusion, the symbol $\odot$ is omitted. \label{notation:Omission_Of_Group_Operator}
+
 \end{definition}
 \begin{theorem}[Consequence of the Definition]
-There are many non-obvious properties that directly follows the definition.
+There are many non-obvious properties that directly follow the definition.
 \begin{enumerate}
+	\item $\forall a, p \in \bb{G},$ there exists a unique $b \in \bb{G}$ such that $a b = p$.
+	\item $\forall a, p \in \bb{G},$ there exists a unique $b \in \bb{G}$ such that $b a = p$.
+	\item The Equation Rule: $\forall a, b, c \in \bb{G},$ $a b = a c \implies b = c$.
+	\item The uniqueness of Inverse: All element of group has one and only one inverse.
 	\item General Associtivity: Parenthesis does not matter, as long as the order is the same: 
-		$a \odot b \odot c \odot d \odot e \odot f \odot g \cdots  = (a \odot ((b \odot c) \odot e (\odot f \odot g)\cdots) = \cdots$
-	\item Order of Inverse: $(a \odot b)^{-1}=b^{-1}\odot a^{-1}$.  
+		$a b c d e f g \cdots  = (a ((b c) e (f g)\cdots) = \cdots$
+	\item Order of Inverse: $(a b)^{-1}=b^{-1}a^{-1}$. Indeed $(a_1a_2a_3\dots a_n)^{-1} = a_n^{-1}a_{n-1}^{-1}\dots a_1^{-1}$.
 \end{enumerate}
 \end{theorem}
 

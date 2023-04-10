@@ -1,7 +1,8 @@
 \documentclass[12pt, a4paper]{article}
-\usepackage{blindtext, titlesec, amsthm, thmtools, amsmath, amsfonts, scalerel, amssymb, graphicx, titlesec, xcolor, multicol, hyperref}
+% TODO need to add bm in snippets
+\usepackage{blindtext, titlesec, amsthm, thmtools, amsmath, amsfonts, scalerel, amssymb, graphicx, titlesec, xcolor, multicol, hyperref, bm}
 \usepackage[utf8]{inputenc}
-\hypersetup{colorlinks,linkcolor={red!40!black},citecolor={blue!50!black},urlcolor={blue!80!black}}
+\hypersetup{colorlinks,linkcolor={red!40!black},citecolor={blue!50!black},urlcolor={blue!80!black}, linktocpage}
 \newtheorem{theorem}{Theorema}[subsection]
 \newtheorem{lemma}[theorem]{Lemma}
 \newtheorem{corollary}[theorem]{Corollarium}
@@ -17,6 +18,7 @@
 \date{\today}
 \newcommand{\bb}[1]{\mathbb{#1}}
 \newcommand{\var}[1]{\text{Var}(#1)}
+\newcommand{\ud}[1]{\underline{#1}}
 \begin{document}
 \maketitle
 %\tableofcontents
@@ -66,5 +68,13 @@ The regression equation for the response given the explanatory varaiable $x_0$ i
 \begin{equation}
 	\bb{E}[Y_0]=\alpha + \beta x_0
 \end{equation}
+
+\subsection{ANOVA \emph{F}-Test}
+
+\begin{definition}[ANONA \emph{F}-Test]
+	Consider the linear regression model $\ud{Y} = \bm{A} \ud{\beta}+\ud{\epsilon}$ where $\epsilon $
+
+\end{definition}
+
 \end{document}
 
