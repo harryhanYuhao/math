@@ -53,13 +53,16 @@ The order of the group $\mathbb{S}$ is $|\mathbb{S}|$ (How many elements it has)
 The order of an element $s \in \mathbb{S}$ is the smallest integer $i$ such that $s^i = e.$ (If such $i$ exists)
 \end{definition}
 
+\begin{definition}[Abelian Group]
+	An abelian group is a group $\mathbb{S}$ such that $\forall a, b \in \mathbb{S}, a  b = b  a$.
+\end{definition}
+
 Here are some examples of groups. 
 \begin{enumerate}
-	\item $\mathbb{S}=\{e\}$
-	\item $\mathbb{S} = \{e, a, b, c\}.$ With the following operation:
-		1. All elements are their own inverse; 
-		2. The group is abelian.
-		2. $a \odot b = c, a \odot c = b, b \odot c = a$.
+	\item The trivial group: $\mathbb{S}=\{e\}$
+	\item The Group $\bb{Z}_n$. (Which is the only cyclic group after isomorphism)
+	\item Dihedral Group 
+	\item Permutation Group
 \end{enumerate}
 
 \begin{definition}[Subgroup]
@@ -86,11 +89,6 @@ Graphs can help us to construct/discover more examples of groups.
 \begin{definition}[Graph]
 	A graph is a finite set of vertices and edges connecting the vertices;
 	or, with abstraction of set theory, a graph consists of two sets $\mathbb{V}$ and $\mathbb{E}$, where each element of $\mathbb{E}$ is an element of $\mathbb{V}\times \mathbb{V}.$
-\end{definition}
-
-\begin{definition}[Isomophisim]
-	Isomophisim of a graph is a bjection of vertices that preseves all edges;
-	or, $\exists$ bijective $ f:\mathbb{V}\to \mathbb{V}$, such that $\mathbb{E}'= \{(f(a),f(b))|a,b \in \mathbb{E}\}=\mathbb{E}$.
 \end{definition}
 
 \begin{definition}[Dihedral Group]
@@ -129,8 +127,13 @@ An example of cyclic group is $\mathbb{Z}_n$. (Integer under modular $n$ additio
 	The number of the subgroup of cyclic group $\mathbb{Z}_n$ is equal to the number of the divisor of $n$. (Proposed 27 Feb 2023)
 \end{proposition}
 
-\begin{definition}[Left Coset]
 
+\emph{Note On Notation}
+Let $A, B$ be subset of group $\bb{G}$ and let $g \in \bb{G}$. Then:
+$AB = \{ab|a\in A, b\in B\}$ and $gA = \{ga|a\in A\}$. 
+
+\begin{definition}[Coset]
+	The left coset of a group $G$ is a set of the form $gG$ for some $g\in G$, and right coset is defined as $Gg$.
 \end{definition}
 
 \begin{theorem}[Lagrange Theorem]
@@ -140,7 +143,6 @@ Consider finite group $\mathbb{G}$ and its subgroup $\mathbb{S}$. $|\mathbb{S}|$
 \begin{proposition}
 Lagrange theorem implies that:
 for a group $\mathbb{G}$ and $g \in \mathbb{G}$:
-
 \begin{enumerate}
 	\item $\omega (g)$ divides $|\mathbb{G}|$; 
 	\item $g^{|\mathbb{G}|}=e$;
