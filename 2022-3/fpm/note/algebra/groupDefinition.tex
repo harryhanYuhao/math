@@ -128,6 +128,25 @@ An example of cyclic group is $\mathbb{Z}_n$. (Integer under modular $n$ additio
 \end{proposition}
 
 
+\subsection{Equivalence Relation And Lagrange Theorem}
+
+\begin{definition}[Relation]\label{def:relation}
+	A relation on a set $X$ is a subset $R \subseteq X\times X$. $R$ contains the ordered pairs $(x,y)$ and we call $x$ and $y$ related with notation $x \sim y$.
+\end{definition}
+
+\begin{definition}[Equivalence Relation] 
+An equivalence relation on a set $X$ is a relation $R$ on $X$ such that:
+\begin{enumerate}
+\item $R$ is reflexive: $x \sim x$ for all $x \in X$.
+\item $R$ is symmetric: $x \sim y$ implies $y \sim x$ for all $x,y \in X$.
+\item $R$ is transitive: $x \sim y$ and $y \sim z$ implies $x \sim z$ for all $x,y,z \in X$.
+\end{enumerate}
+\end{definition}
+
+\begin{theorem}
+	Equivalence relation partitions the set.
+\end{theorem}
+
 \emph{Note On Notation}
 Let $A, B$ be subset of group $\bb{G}$ and let $g \in \bb{G}$. Then:
 $AB = \{ab|a\in A, b\in B\}$ and $gA = \{ga|a\in A\}$. 
@@ -136,26 +155,14 @@ $AB = \{ab|a\in A, b\in B\}$ and $gA = \{ga|a\in A\}$.
 	The left coset of a group $G$ is a set of the form $gG$ for some $g\in G$, and right coset is defined as $Gg$.
 \end{definition}
 
+\begin{theorem}
+Cosets partitions the group. 
+\end{theorem}
+
 \begin{theorem}[Lagrange Theorem]
 Consider finite group $\mathbb{G}$ and its subgroup $\mathbb{S}$. $|\mathbb{S}|$ divides $|\mathbb{G}|.$	
 \end{theorem}
 
-\begin{proposition}
-Lagrange theorem implies that:
-for a group $\mathbb{G}$ and $g \in \mathbb{G}$:
-\begin{enumerate}
-	\item $\omega (g)$ divides $|\mathbb{G}|$; 
-	\item $g^{|\mathbb{G}|}=e$;
-\end{enumerate}
-\end{proposition}
-
-\begin{example}
-	The followings demonstrate Lagrange Theorem.
-	\begin{enumerate}
-		\item $\mathbb{Z}_{10}$ under addition modula 10 and its subgroup $\mathbb{S} = \{0,2,4,6,10\}$. 
-		$|\mathbb{Z}_{10}|=10, |\mathbb{S}|=5$.  
-	\end{enumerate}
-\end{example}
 \begin{proof}[Proof of Lagrange Theorem]
 	Let $\mathbb{G}=\{g_1, g_2, g_3, \cdots \}$ be a group and $\mathbb{S}= \{s_0, s_1, s_2, \cdots\}$(let $s_0=e$) be its subgroup. 
 	If $\mathbb{S}=\mathbb{G},$ we are done. If not, sine detrimento universalitatis(without loss of generality), let  $g_i \notin \mathbb{S}$. 
@@ -187,6 +194,25 @@ for a group $\mathbb{G}$ and $g \in \mathbb{G}$:
 	Thus by same reasoning, if $\mathbb{G}=\mathbb{S}\cup \mathbb{D}_1 \cup \mathbb{D}_2$, $|\mathbb{G}| = 3|\mathbb{S}|$.
 	If not, we can constuct more disjoined sets $\mathbb{D}_3, \mathbb{D}_4, \cdots \mathbb{D}_n$ until the union of them and $\mathbb{S}$ forms $\mathbb{G}$. This can always be done as $\mathbb{G}$ is finite, and will have an order of $(n+1)\cdot |\mathbb{S}|. $
 \end{proof}
+
+\begin{proposition}
+Lagrange theorem implies that:
+for a group $\mathbb{G}$ and $g \in \mathbb{G}$:
+\begin{enumerate}
+	\item $\omega (g)$ divides $|\mathbb{G}|$; 
+	\item $g^{|\mathbb{G}|}=e$;
+\end{enumerate}
+\end{proposition}
+
+\begin{example}
+	The followings demonstrate Lagrange Theorem.
+	\begin{enumerate}
+		\item $\mathbb{Z}_{10}$ under addition modula 10 and its subgroup $\mathbb{S} = \{0,2,4,6,10\}$. 
+		$|\mathbb{Z}_{10}|=10, |\mathbb{S}|=5$.  
+	\end{enumerate}
+\end{example}
+
+
 
 \begin{proposition}[Some Application of Lagrange Theorem]\label{prop:Applic_lagrange}
 	\ 
