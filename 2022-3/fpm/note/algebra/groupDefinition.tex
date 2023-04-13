@@ -66,7 +66,7 @@ Here are some examples of groups.
 \end{enumerate}
 
 \begin{definition}[Subgroup]
-	\hypertarget{def:subgroup}{A} subgroup of a group $\mathbb{S}$ is a subset $\\mathbb{H}$ of $\mathbb{S}$ that is also a group under the same operation $\odot$. It is denoted as $ \mathbb{H}\leq \mathbb{S}$. If $\mathbb{H} \neq \mathbb{G}$, we call it a proper subgroup with notation $\mathbb{H}< \mathbb{S}$.
+	\hypertarget{def:subgroup}{A} subgroup of a group $\mathbb{S}$ is a subset $\mathbb{H}$ of $\mathbb{S}$ that is also a group under the same operation $\odot$. It is denoted as $ \mathbb{H}\leq \mathbb{S}$. If $\mathbb{H} \neq \mathbb{G}$, we call it a proper subgroup with notation $\mathbb{H}< \mathbb{S}$.
 \end{definition}
 
 \begin{theorem}[Test For Subgroup] 
@@ -143,6 +143,7 @@ An equivalence relation on a set $X$ is a relation $R$ on $X$ such that:
 \end{enumerate}
 \end{definition}
 
+
 \begin{theorem}
 	Equivalence relation partitions the set.
 \end{theorem}
@@ -155,6 +156,10 @@ $AB = \{ab|a\in A, b\in B\}$ and $gA = \{ga|a\in A\}$.
 	The left coset of a group $G$ is a set of the form $gG$ for some $g\in G$, and right coset is defined as $Gg$.
 \end{definition}
 
+\begin{lemma}
+	Let $\bb{G}$ be a group and $S$ its subgroup. Define relation $a \sim b$ if and only if there exists $s \in S$ such that $as = b$. (i.e., $a,b$ belongs to the same cosets). This is an equivlence relation.  
+\end{lemma}
+
 \begin{theorem}
 Cosets partitions the group. 
 \end{theorem}
@@ -163,59 +168,16 @@ Cosets partitions the group.
 Consider finite group $\mathbb{G}$ and its subgroup $\mathbb{S}$. $|\mathbb{S}|$ divides $|\mathbb{G}|.$	
 \end{theorem}
 
+
 \begin{proof}[Proof of Lagrange Theorem]
-	Let $\mathbb{G}=\{g_1, g_2, g_3, \cdots \}$ be a group and $\mathbb{S}= \{s_0, s_1, s_2, \cdots\}$(let $s_0=e$) be its subgroup. 
-	If $\mathbb{S}=\mathbb{G},$ we are done. If not, sine detrimento universalitatis(without loss of generality), let  $g_i \notin \mathbb{S}$. 
-	Consider the set: $\mathbb{D}_1=\{g_1s|s \in \mathbb{S}\}$. The set $\mathbb{D}_1$ has the following properties:
-	\begin{enumerate}
-		\item $g_1s \in \mathbb{D}_1 \rightarrow g_1s \in \mathbb{G}$ 
-		\item $|\mathbb{D}_1| = |\mathbb{S}|$. 
-		\item $(\forall d \in \mathbb{D}_1)$ the set $\mathbb{D}_1'=\{ds|s\in \mathbb{S}\}=\mathbb{D}_1$
-		\item $g_1s \in \mathbb{D}_1 \rightarrow g_1s \notin \mathbb{S}.$ 
-	\end{enumerate}
-	Property I is true because $\mathbb{G}$ is a group with the property closure.\\
-	By claiming that $g_1s_i \neq g_1s_j$ for $i \neq j$ it is sufficently to show property II is true.
-	
-	To prove property III, we shall prove statement 1) $\mathbb{D}_1\subseteq \mathbb{D}_1'$ and 2) $\mathbb{D}_1'\subseteq \mathbb{D}_1$.
-	To prove statement 1), consider $a\in \mathbb{D}_1$, $\exists s_1 \in \mathbb{S}$ such that $g_1s_1$. 
-	Let $\mathbb{D}_1'$ be defined as $\mathbb{D}_1'=\{bs|s\in \mathbb{S}\}$. 
-	and $b$ can be written in the form of $g_1s_2$. 
-	Indeed $bs_2^{-1}s_1=a \rightarrow a\in \mathbb{D}_1' \rightarrow \mathbb{D}_1 \subseteq \mathbb{D}_1'.$ Statement 2) can be proved similarly.
-
-	Property IV can be proved by contradiction. Assuming $\exists g_1s \in \mathbb{D}_1$ and $ g_1s \in \mathbb{S}.$ 
-	We have $g_1ss^{-1} \in \mathbb{S}$ (by Inverse and Closure property of group) $\rightarrow g_1 \in \mathbb{S},$(by associtivity property of group) contradicting our assumption that $g \notin \mathbb{S}$.
-
-	If $\mathbb{G}=\mathbb{S}\cup \mathbb{D}_1$, we are done, as $|\mathbb{G}| = 2|\mathbb{S}|$. 
-
-	If $\exists g_2 \in \mathbb{G} \lor g_2 \notin \mathbb{S}, \mathbb{D}_1$. 
-	Construct the set $\mathbb{D}_2=\{g_ws|s \in \mathbb{S}\}$. All elements in $\mathbb{D}_2$ have properties I, II of $\mathbb{D}_1$, and a stronger IV property: 
-	$g_1s \in \mathbb{D}_2 \rightarrow g_1s \notin \mathbb{S}, \mathbb{D}_1.$.
-
-	Thus by same reasoning, if $\mathbb{G}=\mathbb{S}\cup \mathbb{D}_1 \cup \mathbb{D}_2$, $|\mathbb{G}| = 3|\mathbb{S}|$.
-	If not, we can constuct more disjoined sets $\mathbb{D}_3, \mathbb{D}_4, \cdots \mathbb{D}_n$ until the union of them and $\mathbb{S}$ forms $\mathbb{G}$. This can always be done as $\mathbb{G}$ is finite, and will have an order of $(n+1)\cdot |\mathbb{S}|. $
+	As cosets partitions the group, and the number of the element in each coset equals to the order of the subgroup, Lagrange Theorem follows.
 \end{proof}
 
-\begin{proposition}
-Lagrange theorem implies that:
-for a group $\mathbb{G}$ and $g \in \mathbb{G}$:
-\begin{enumerate}
-	\item $\omega (g)$ divides $|\mathbb{G}|$; 
-	\item $g^{|\mathbb{G}|}=e$;
-\end{enumerate}
-\end{proposition}
-
-\begin{example}
-	The followings demonstrate Lagrange Theorem.
-	\begin{enumerate}
-		\item $\mathbb{Z}_{10}$ under addition modula 10 and its subgroup $\mathbb{S} = \{0,2,4,6,10\}$. 
-		$|\mathbb{Z}_{10}|=10, |\mathbb{S}|=5$.  
-	\end{enumerate}
-\end{example}
-
-
+The following statement somewhat similar in form of Lagrange Theorem is \emph{FALSE}:
+Provided  $n$ divides $  |\bb{G}|$, there exists $S \leq \bb{G}$ and $|S|=n$.
 
 \begin{proposition}[Some Application of Lagrange Theorem]\label{prop:Applic_lagrange}
-	\ 
+	Lagrange theorem is very powerful, here are some of its application.
 \begin{enumerate}
 	\item \label{orderOfElement}For a group $\mathbb{G}$ with order $p$ and $k \in \mathbb{G}$ with order $q$; then $q$ divides $p$.
 	\item \label{prime_cyclic} For a group $\mathbb{G}$ with prime order (i.e., $|\mathbb{G}|$ is prime), it must be a cyclic group.
