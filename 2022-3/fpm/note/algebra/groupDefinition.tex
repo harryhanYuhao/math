@@ -127,7 +127,18 @@ An example of cyclic group is $\mathbb{Z}_n$. (Integer under modular $n$ additio
 	The number of the subgroup of cyclic group $\mathbb{Z}_n$ is equal to the number of the divisor of $n$. (Proposed 27 Feb 2023)
 \end{proposition}
 
+\begin{definition}[Normal Group]\label{def:normal_group}\hypertarget{def:normal_group}{}
+	A subgroup $\bb{H}$ of a group $\bb{G}$ is called normal if $\forall a \in \bb{G}$, the left and right coset of $\bb{H}$ are equal, i.e. $a \bb{H}=\bb{H}a$.
+\end{definition}
 
+To check if the left and right coset of $\bb{H}$ are equal, we just need to check if $\forall h \in \bb{H} \& g \in \bb{G}, gh \in \bb{H}g$.
+
+%TODO NEEDS CHECKING
+\begin{theorem}[Test For Normal Group \emph{Needs Checking}]
+	A subgroup $S \leq G$ is a normal subgroup if and only if $\{gsg^{-1}|s\in S\}=S$ for all $g \in G$.
+\end{theorem}
+
+%TODO
 \subsection{Equivalence Relation And Lagrange Theorem}
 
 \begin{definition}[Relation]\label{def:relation}
@@ -142,7 +153,6 @@ An equivalence relation on a set $X$ is a relation $R$ on $X$ such that:
 \item $R$ is transitive: $x \sim y$ and $y \sim z$ implies $x \sim z$ for all $x,y,z \in X$.
 \end{enumerate}
 \end{definition}
-
 
 \begin{theorem}
 	Equivalence relation partitions the set.

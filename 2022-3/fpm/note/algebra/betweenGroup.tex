@@ -28,42 +28,30 @@
 \subsection{Kernel and Image}
 \begin{definition}[Image]
 	The image of a homomorphism $\phi: \bb{G} \rightarrow \bb{P}$ is the set $\{\phi(c) |c \in \bb{G}\}$.
+	Image is denoted as $\im{\phi}$.
 	\emph{Image is a subset of $\bb{P}$.}
 \end{definition}
 \begin{definition}[Kernel] 
 	The kernel of a homomorphism $\phi: \bb{G} \rightarrow \bb{P}$ is the set $\{c \in \bb{G} | \phi(c) = e_{\bb{P}}\}$.
+	Kernel is denoted as $\ker{\phi}$.
 	\emph{Kernel is a subset of $\bb{G}$.}
 \end{definition}
 
-\begin{theorem}
-	These properties immediately follows the definitions.
+\begin{theorem}[Properties of Kernel and Image]
+	Let $\phi: \bb{G} \rightarrow \bb{P}$ be a homomorphism.
 	\begin{enumerate}
 		\item Both Kernel and Image are groups.
-			% TODO
-		\item Kernel is a normal subgroup of $\bb{G}$. (Is it? Need Checking)
+		\item Kernel is a \hyperlink{def:normal_group}{normal subgroup} of $\bb{G}$.
+		\item For all $a\in \im{\phi}$, there exists exactly $n$ number of $b\in \bb{G}$ such that $\phi(b) = a$, where $n=|\ker{\phi}|$.
 	\end{enumerate}
 \end{theorem}
 
-\begin{definition}[Normal Group]
-	A subgroup $\bb{H}$ of a group $\bb{G}$ is called normal if $\forall a \in \bb{G}$, the left and right coset of $\bb{H}$ are equal, i.e. $a \bb{H}=\bb{H}a$.
-\end{definition}
+\begin{proof}
+	The first two properties are obvious.
 
-To check if the left and right coset of $\bb{H}$ are equal, we just need to check if $\forall h \in \bb{H} \& g \in \bb{G}, gh \in \bb{H}g$.
-
-\begin{theorem}
-	Let $\phi : G \rightarrow H$ be a group homomorphism.
-\begin{enumerate}
-	\item $\ker{\phi}$ is a normal subgroup of $G$. 
-	\item $\phi: G \rightarrow H$ is injective if and only if $\ker{\phi} = \{e_{G}\}$.
-	\item If $\phi$ is injective, it gives an isomorphism between $G$ and $\im{\phi}$.
-\end{enumerate}
-\end{theorem}
-
-\begin{hypothesis}[Proposed 20 Mar 2023]
-	Let $\phi: G \rightarrow H$ be a homomorphism.
-	Define kernel of $\phi$ respect to $a \in H$ as $\ker_a{\phi}=\{g\in G| \phi(g)=a\}$.
-	For all $a, b$ such that $\ker_a{\phi}, \ker_b{\phi}$ is not an empty set, $\ker_a{\phi}=\ker_a{\phi}$ 
-\end{hypothesis}
+	To prove the third property: consider $\phi(g)=h$, then for all $e' \in \ker{\phi}$, $\phi( ge' )=h$. Thus there are at least $|\ker{\phi}|$ number of element in $\bb{G}$ such that $\phi(g)=h$. 
+	If there exists another $\epsilon \notin \ker{\phi}$ such that $\phi(g \epsilon) = h$, we have $\phi(g \epsilon) = \phi(g)\phi(\epsilon) = h \implies \phi{\epsilon}=e_h$, i.e, $\epsilon \in \ker{\phi}$, a contradiction.
+\end{proof}
 
 \begin{hypothesis}[Proposed 21 Mar 2023]
 	Let $\phi: G \rightarrow H$ be a homomorphism. Then there exists a subgroup $S < G$ such that $\phi$ is a isomorphism between $S$ and $im \phi$.
