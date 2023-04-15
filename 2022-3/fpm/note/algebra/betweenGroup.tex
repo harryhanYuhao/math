@@ -75,27 +75,40 @@
 \end{hypothesis}
 
 \section{Group Actions}
-\begin{definition}[Group Action]
+\begin{definition}[Group Action]\label{def:group_action} \hypertarget{def:group_action}{}
 	A group action between a group $\bb{G}$ and a set $S$ is a function $f: \bb{G}\times S \rightarrow S$. 
-	Let $g\in \bb{G} \ \&\ s \in s$. Let $f(g,s)$ be denoted as $g\cdot s$. Group action must fulfill the two following property:
+	Let $\gamma \in \bb{G} \ \&\ s \in S$. Let $f(g,s)$ be denoted as $\gamma\cdot s$. Group action must fulfill the two following property:
 	\begin{enumerate}
-		\item $e\cdot s=s$ for all $s\in S$, with $e$ being the identity of the group $\bb{G}$
-		\item $g_1\cdot(g_2 \cdot s) = (g_1 g_2) \cdot s$ for all $g_1, g_2 \in \bb{G}\ \&\ s \in S$
+		\item $\epsilon\cdot s=s$ for all $s\in S$, with $\epsilon$ being the identity of the group $\bb{G}$
+		\item $\gamma_1\cdot(\gamma_2 \cdot s) = (\gamma_1 \gamma_2) \cdot s$ for all $\gamma_1, \gamma_2 \in \bb{G}\ \&\ s \in S$
 	\end{enumerate}
 \end{definition}
 
+\emph{Note On Notation:}
+In this session, Let $G$ be a group actting on the set $S$. Let Greek letters $\alpha, \beta \dots \in G$, while Latin letter $a,b,c, \dots \in S$. 
+
+Group actions are denoted by $\cdot$, while the sign for operation within the group are ommited when clear.
+
+\begin{example}[Examples of Group Action]
+	\ 
+\begin{enumerate}
+	\item A group $\bb{G}$ acts on itself in multiple ways, such as right multiplication, $g\cdot h=\gamma h$, left multiplication, $\gamma\cdot h = h\gamma^{-1}$, and conjugation, $\gamma\cdot h = \gamma h\gamma^{-1}$.
+\end{enumerate}
+\end{example}
 \begin{theorem}[Immediate Consequence of the Definition]
-	Let $G$ be a group actting on the set $S$. Let Greek letters $\alpha, \beta \dots \in G$, while Latin letter $a,b,c, \dots \in S$.
+	\ 
 	\begin{enumerate}
-		\item $\beta a = b \implies \beta^{-1} b = a$ 
+		\item $\gamma \cdot a = b \implies \gamma^{-1} \cdot b = a$ 
 	\end{enumerate}
 \end{theorem}
-\begin{definition}[Orbit]
-	Let $G$ act on $S$ and $s \in S$. The orbit of $s$ is the set $\{g\cdot s | g \in G\}$.	
+\begin{definition}[Orbit] \label{def:orbit} \hypertarget{def:orbit_stabilizer}{}
+	Let $G$ act on $S$ and $s \in S$. The orbit of $s$ is the set $\{\gamma\cdot s | \gamma \in G\}$. Orbit is denoted as $\orb{G}{s}$.
+	\emph{Orbit is a subset of $S$.}
 \end{definition}
 
-\begin{definition}[Stabilizer]
-	Let $G$ act on $S$ and $s \in S$. The stabilizer of $s$ is the set $\{g \in G | g\cdot s = s\}$.
+\begin{definition}[Stabilizer]\label{def:stabilizer} 
+	Let $G$ act on $S$ and $s \in S$. The stabilizer of $s$ is the set $\{\gamma \in G | \gamma\cdot s = s\}$. Stabilizer is denoted as $\stab{G}{s}$.
+	\emph{Stabilizer is a subset of $G$.}
 \end{definition}
 
 \begin{theorem}[Orbit Equivalence Relation]
@@ -103,6 +116,21 @@
 	Define the relationship $a\sim b$ if $b\in \orb{G}{a}$.
 	This is a equivalent relation; thus the orbits of the element of $S$ partitions $S$.
 \end{theorem}
+
+% TODO find a proper name for send x
+\begin{definition}[Send x]
+	If $a,b$ are in the same orbit. Define the set $\se{a}{b}=\{\gamma\in G| \gamma \cdot a=b \}$.
+\end{definition}
+
+\begin{lemma}
+$\se{a}{b}$ is left coset of $\stab{\bb{G}}{a}$
+\end{lemma}
+
+\begin{proof}
+	Assuming $a,b$ are in the same orbit, then $\exists \gamma \in \bb{G}$ such that $\gamma \cdot a = b$. 
+	For all $\epsilon' \in \stab{\bb{G}}{a}$, we have $\gamma \epsilon' \cdot a = g $. Thus $\gamma\stab{\bb{G}}{a} \subseteq \se{a}{b}$.
+	For all $\lambda \in \se{\bb{G}}{a}$, we can have  $\lambda = \gamma\lambda'$ and $\gamma\lambda' \cdot a = b \implies \lambda' \cdot a = \gamma^{-1} \cdot b=a$, which means $\lambda' \in \stab{\bb{G}}{a}$ and $\se{a}{b} \subseteq \gamma\stab{\bb{G}}{a}$.
+\end{proof}
 
 \begin{theorem}[Orbit Stabilizer Theorem]
 	Let $G$ act on $X$ and $x \in X$. The stabilizer of $x$ is the set $\{g \in G | g\cdot x = x\}$.
