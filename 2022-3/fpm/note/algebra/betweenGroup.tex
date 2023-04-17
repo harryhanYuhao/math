@@ -103,13 +103,20 @@ Group actions are denoted by $\cdot$, while the sign for operation within the gr
 \end{theorem}
 \begin{definition}[Orbit] \label{def:orbit} \hypertarget{def:orbit_stabilizer}{}
 	Let $G$ act on $S$ and $s \in S$. The orbit of $s$ is the set $\{\gamma\cdot s | \gamma \in G\}$. Orbit is denoted as $\orb{G}{s}$.
-	\emph{Orbit is a subset of $S$.}
+	\emph{Orbit is a subset of $S$}.
 \end{definition}
 
 \begin{definition}[Stabilizer]\label{def:stabilizer} 
 	Let $G$ act on $S$ and $s \in S$. The stabilizer of $s$ is the set $\{\gamma \in G | \gamma\cdot s = s\}$. Stabilizer is denoted as $\stab{G}{s}$.
-	\emph{Stabilizer is a subset of $G$.}
+	\emph{Stabilizer is a subset of $G$}. 
 \end{definition}
+
+\begin{theorem}[Properties of Stabilizer and Orbit]
+	\ 
+	\begin{enumerate}
+		\item $\stab{G}{s} \leq G$ (Stabilizer is a subgroup of $G$; N.B. Orbit is \emph{not} a group).
+	\end{enumerate}
+\end{theorem}
 
 \begin{theorem}[Orbit Equivalence Relation]
 	Let $G$ be a group acting on the set $S$.
