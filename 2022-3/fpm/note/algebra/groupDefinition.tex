@@ -82,7 +82,8 @@ Here are some examples of groups.
 \begin{theorem} [Immediate Consequence of Subgroup definition]
 	Let $\bb{G}$ be a group and $\bb{S}\leq \bb{G}$. Let $g_i\in \bb{G}$ and $s_i \in \bb{S}$:
 	\begin{enumerate}
-		\item $g\notin \bb{S} \implies gs, sg \notin \bb{S}$; however, $g_1, g_2 \notin \bb{S}$ may not imply $g_1g_2 \notin \bb{S}$
+		\item $S, I \leq G \implies S\cap I \leq G$. (Intersections of subgroups are also subgroups)
+		\item $g\notin \bb{S} \implies gs, sg \notin \bb{S}$; however, $g_1, g_2 \notin \bb{S}$ may not imply $g_1g_2 \notin \bb{S}$`
 	\end{enumerate}
 \end{theorem}
 
@@ -116,7 +117,7 @@ Here are some properties immediately follows the definition.
 \begin{proof}
 	The first property would be obvious after the introduction of homomorphism \& isomophisim, as all cyclic group with $n$ elements are isomorphic to $\mathbb{Z}_n$.
 	
-	To prove the second property. Consider the cyclic group in the form of $e, g, g^2, \dots, g^n$. Let $\bb{S}$ be its subgroup, let $m$ be the smallest integer such that $g^m \in \bb{S}$ (such $m$ can always be found as $\bb{S}$ must not be empty and all cyclic groups are finite). We claim $m|n$, thus $\bb{S}$ is cyclic.
+	To prove the second property. Consider the cyclic group in the form of \\ $e, g, g^2, \dots, g^n$. Let $\bb{S}$ be its subgroup, let $m$ be the smallest integer such that $g^m \in \bb{S}$ (such $m$ can always be found as $\bb{S}$ must not be empty and all cyclic groups are finite). We claim $m|n$, thus $\bb{S}$ is cyclic.
 
 	If $m$ does not divides $n$, by eucilidean algorithm we can find $m'<m$ such that $am-bn=m'$, where $a,b$ are integers, which means $g^{m'}\in \bb{S}$, which contradicts our assumption.
 \end{proof}
