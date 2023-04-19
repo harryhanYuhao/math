@@ -1,0 +1,61 @@
+\documentclass[../note.tex]{subfiles}
+\begin{document}
+\section{Bizare Functions}
+\begin{hypothesis}
+	\ 
+\begin{enumerate}
+	\item Is there a defined in close interval $[a,b]$ but is not strictly increasing nor decreasing for any interval in its domain? 
+	\item Is there a function that is continuous everywhere but not differentiable at any point?
+	\item  
+\end{enumerate}
+\end{hypothesis}
+\paragraph{A Continuous Function in Finite Domain with Infinite Local Maxima} \label{InfiniteLocalMaxima}
+Define function $f:\bb{R}\rightarrow \bb{R}$ as such:
+\[
+	f(x)=
+	\begin{cases}
+		x\sin{\frac{1}{x}} & \text{if } x\neq 0\\
+		0 & \text{if } x = 0
+	\end{cases}
+\]
+
+It has infinitely many local maxima in the inteval $[-1,1]$.
+
+Notice the function is continous at $0$. Morever, for $\forall \delta > 0$, $[-\delta, \delta]$ contains infinitly many local maxima. Denominate points with such property as transedental points. It is possible to have a function defined in domain $[a,b]$ while at same time have $\forall \epsilon \in [a,b], \epsilon$ is a transedental point? Can such function be continous? 
+\paragraph{Non Increasing Nor Decreasing}
+Let function $f: \bb{R}\rightarrow \bb{R}$ be defined as such:
+\[
+	f(x)=
+	\begin{cases}
+		1 &\text{if } x \in \bb{Q}\\
+		0 &\text{otherwise}
+	\end{cases}
+\]
+As infinitely many number of rational numbers and irrational number are contained in any domain $[a,b]$, such funtion is not increasing nor decreasing for any intervals of real number.
+
+\paragraph{Unbounded Functions}
+Commonly, unbounded functions are defined in a open inteval, e.g., $\frac{1}{x}$ in the interval $(0, 1]$. By extreme value theorem we know that there is no continuous function in close interval that is unbounded. However, there is function that is non-continuous that shows unbounded behaviour in close inteval.
+
+Consider the function $f:[0,1] \rightarrow (\infty, 1]$ defined as thus:
+\[
+    f(x)= 
+\begin{cases}
+	2^{n+1},& \text{if } x=2^{-n} \text{ for some natural number }n\\
+    x,              & \text{otherwise}
+\end{cases}
+\]
+
+
+\paragraph{Riemann Function} \label{RiemannFunction} \hypertarget{RiemannFunction}{}
+Consider function $f$ defined as such:
+\[
+	f(x)=
+	\begin{cases}
+		0 & \text{if } x \text{ is irrational or } x=0 \\
+		\frac{1}{q} & \text{if } x=\frac{p}{q} \text{ for some } p \in \bb{Z}; q \in \bb{N} \text{ with } gcf(q, p)=1  \\ 
+	\end{cases}
+\]
+
+Such function is continuous at every irrational point but not continuous at rational point.
+
+\end{document}

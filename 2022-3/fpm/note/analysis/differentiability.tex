@@ -14,7 +14,27 @@
 \end{theorem}
 
 \begin{proof}
-aa
+	Let $f$ be differentiable at $a$. 
+	\[
+		\lim_{x \to a}f(x)=
+		\lim_{x \to a} \underbrace{\frac{f(x)-f(a)}{x-a}}_{Differentiability}
+		\underbrace{(x-a)}_{0}
+		+f(a) 
+		= f(a)
+	\]
 \end{proof}
 
+\begin{theorem}[Rolle's Theorem]
+	Let $f$ be a real function. If it is continuous on the interval $[a,b]$, differentiable on $(a,b)$, and $f(a)=f(b)$, then for some $c \in (a,b)$ $f'(c)=0$.
+\end{theorem}
+\begin{proof}
+	We claim the the derivative of the function is zero at its local extrema garunteed by the Extreme Value Theorem.
+\end{proof}
+
+\begin{theorem}[Mean Value Theorem]
+	Let $f$ be a real function. If it is continuous on the interval $[a,b]$, differentiable on $(a,b)$, then for some $c \in (a,b)$ $f'(c)=\frac{f(b)-f(a)}{b-a}$.
+\end{theorem}
+\begin{proof}
+	Let function $g$ be defined as $g(x)=f(x)-\frac{f(b)-f(a)}{b-a}(x-a)$. Then $g$ is continuous on $[a,b]$ and $g(a)=g(b)$. At $c$ garunteed by the Rolle's theorem where $g'(c)=0$, $f'(c) = \frac{f(b)-f(a)}{b-a}$.
+\end{proof}
 \end{document}
