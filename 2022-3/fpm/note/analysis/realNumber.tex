@@ -1,13 +1,104 @@
 \documentclass[../note.tex]{subfiles}
 \begin{document}
 \section{Real Number}
-\subsection{Axioms}
-\begin{axiom}[Archimedean Property]
-	$\forall r \in \bb{R}, \exists n \in \bb{N}$ such that $n>a$.
-\end{axiom}
+
+\subsection{Algebraic Structures of Real Number}
+
+\axiom{Real Number is a Field}{
+	Real Number is a field denoted by $\bb{R}$ with operation addition and multiplication.
+	It is a group under both addtion and multiplication. Moreover, distributive law holds. Namely,
+	\begin{enumerate}
+		\small
+		\item F1: Closure. $\forall a,b \in \bb{R}, a+b \in \bb{R}, ab \in \bb{R}$
+		\item F2: Associativity. $\forall a,b,c \in \bb{R}, (a+b)+c = a+(b+c), (ab)c = a(bc)$
+		\item F3: Commutativity. $\forall a,b \in \bb{R}, a+b = b+a, ab = ba$
+		\item F4: Existance pf Additive Identity. There exist $0\in \bb{R}$ such that $\forall a \in \bb{R}, a+0 = a$
+		\item F5: Existance of Multiplicative Identity. There exist $1\in \bb{R}$ such that $\forall a \in \bb{R}, a \cdot 1 = a$
+		\item F6: Existance of Additive Inverse. $\forall a \in \bb{R}, \exists b \in \bb{R}$ such that $a+b = 0$
+		\item F7: Existance of Multiplicative Inverse. $\forall a \in \bb{R}, a \neq 0, \exists b \in \bb{R}$ such that $ab = 1$
+		\item F8: Distributivity. $\forall a,b,c \in \bb{R}, a(b+c) = ab+ac, (a+b)c = ac+bc$
+	\end{enumerate}
+}
+
+\axiom{Order Axiom}{
+	There is a relation $<$ on $\bb{R}$ with the following properties:
+	\begin{enumerate}
+		\item O1: Trichotomy Property: one and only one of the following holds: \[a<b, a=b, a>b\]
+		\item Transitive Property: If $a<b$ and $b<c$, then $a<c$.
+		\item Additive Property: If $a<b$ and $c<d$, then $a+c < b+d$.
+		\item Multiplicative Properties: $a<b, c>0 \implies ac<bc$ and $a<b, c<0 \implies ac>bc$.
+	\end{enumerate}
+}
+
+% TODO the definition is quite confusing
+\definition{Z, N}{
+	Define function $s:\bb{R} \rightarrow \bb{R} $ as $s(n)=n+1$, and $p:\bb{R} \rightarrow \bb{R}$ as $p(n)=n-1$. The set $\bb{N}_0$ can be constructed as follows: 
+	\begin{enumerate}
+		\item $0\in \bb{N}_0$
+		\item $\forall n \in \bb{N}_0, s(n) \in \bb{N}_0$
+		\item If $s(n)=s(m)$ then $n=m$
+		\item There exists not $n\in \bb{N}_0$ such that $s(n)=0$
+		\item If $0\in A \subseteq \bb{N}$ and if $n\in A$ implies $s(n) = A$, then $A=\bb{N}_0$
+	\end{enumerate}
+	
+	Define the set $\bb{Z}$ as a superset of $\bb{N}_0$ with the two extra properties:
+	\begin{enumerate}
+		\item Given $n\in \bb{Z}$ there exists $n \in \bb{Z}$ such that $p(n)\in \bb{Z}$.
+		\item If $A \subseteq \bb{Z}$ and $s(n)\in A$ if and only if $n\in A$ then $A=\bb{Z}$.
+	\end{enumerate}
+}
+
+\definition[Upper and Lower Bound]{
+	Let $A \subseteq \bb{R}$ be a non-empty set. An upper bound of $A$ is a real number $b$ such that $a \leq b$ for all $a \in A$. A lower bound of $A$ is a real number $b$ such that $a \geq b$ for all $a \in A$.
+	
+	A set with an upper bound is called bounded above, and a set with a lower bound is called bounded below. A set with both upper and lower bounds is called bounded.
+}
+
+\definition[Supremum \& Infimum]{
+	Let $A \subseteq \bb{R}$ be a non-empty set. The supremum of $A$ is the least upper bound of $A$, denoted by $\sup A$. 
+	The infimum of $A$ is the greatest lower bound of $A$, denoted by $\inf A$.
+}
+
 \begin{axiom}[The Completeness of Real Number] 
-	Let $\bb{D}\subseteq \bb{R}$. If $\bb{D}$ is bounded, there exists $s\&i, \in \bb{R}$ such that they are the supremum and infimum of $\bb{D}$.
+	All subsets of real number that is bounded above contains a supremum in the real number.
+	Similarly, all subsets of real number that is bounded below contains an infimum in the real number.
 \end{axiom}
+
+From these assumed axioms all properties of $\bb{R}, \bb{Z} \& \bb{Q}$ can be derived.
+
+\subsection{Properties of Real Number}
+
+\theorem[Approximation Property of Supremum]{
+	If the set $\bb{E} \subseteq \bb{R}$ has a supremum $\sup{\bb{E}}$. Then for every $\epsilon > 0$ there exists $e \in \bb{E}$ such that $\sup{\bb{E}} - \epsilon < e$.
+}
+
+\definition{Absolute Value}{
+	The absolute value of a real number $x$, denoted as $|x|$ is defined thus:
+	\[
+		|x|=
+	\begin{cases}
+		x \text{ if } x \geq 0 \\
+		-x \text{ otherwise}
+	\end{cases}
+\]
+}
+
+\theorem{
+\
+\begin{enumerate}
+	\item Absolute Value is multiplicative: $|ab|=|a||b|$
+	\item $-|a|\leq a \leq |a|$
+	\item $|a|=0 \iff a=0$
+	\item $|a-b|=|b-a|$
+	\item \emph{Triangular Inequality} $|a+b|\leq |a+b|$; $||a|-|b||\leq |a-b|$
+\end{enumerate}
+}
+
+% NOTE: NEED TO BE INCLUDED in Cheatsheet
+\theorem[Archimedean Property]{
+	$\forall a,b \in \bb{R},$ and $a<b$, $ \exists n \in \bb{N}$ such that $an>b$.
+	Archimedean Property is \emph{not} an Axiom.
+}
 
 \subsection{The Countable Sets}
 
@@ -27,7 +118,7 @@
 	Let $\mathbb{A}$ be an infinite set. \\($\mathbb{A} \prec \mathbb{N}$) iff ($\mathbb{A} \asymp \mathbb{N}$).
 }
 
-\begin{proof}
+\proof{
 	We want to prove $\mathbb{A} \prec \mathbb{N}$ is equivalent to $\mathbb{A} \asymp \mathbb{N}$. $\mathbb{A} \asymp \mathbb{N} \rightarrow \mathbb{A} \prec \mathbb{N}$ is by definition. 
 	We only need to prove the other direction; i.e., provided $\mathbb{A} \prec \mathbb{N}$, find a bijective function $h: \mathbb{A} \rightarrow \mathbb{N}$.
 
@@ -40,9 +131,9 @@
 	As $\mathbb{N}^-$ is infinite, $g$ must be bijective.
 
 	Indeed $h = g \circ f': \mathbb{A} \rightarrow \mathbb{N}$ is the bijective mapping we seek. 
-\end{proof}
+}
 
-\begin{theorem}[List of Countable and Uncountable Sets]
+\theorem[List of Countable and Uncountable Sets]{
 	Any of the following sets are countable.
 	\begin{enumerate}
 		\item $\mathbb{Z}, \mathbb{Q}$ 
@@ -50,10 +141,15 @@
 		\item Any Unions of countable and finite sets.
 		\item Any products of countable sets and finite sets. i.e., if $\mathbb{S}, \mathbb{T}$ are countable, $\{\mathbb{S}\times \mathbb{S}\}, \{\mathbb{S}\times \mathbb{T}\times \dots \times \mathbb{S} \}$ are also countable.
 	\end{enumerate}
-\end{theorem}
+}
 
 \begin{hypothesis}
-Is the product of countable number of countable sets countable? (Proposed Feb 6)
+	Is the product of countable number of countable sets countable? (Proposed Feb 6). \emph{It is not Countable}. (Proved April 21)
 \end{hypothesis}
+
+\begin{proof}
+	Let $L$ denote the product of countable number of countable sets. 
+	The set of $D = \{x\in \bb{R}|x\in (0,1)\}$ , when in decimal expansion, is a subset of $L$. $D$ is uncountable; thus $L$.
+\end{proof}
 
 \end{document}
