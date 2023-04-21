@@ -1,5 +1,21 @@
-## Technical Details
+# Notes for Fundamental of Pure Mathematics
 
-It seems there are some problems on bibtex as to compatibility of mutiple files and reference -- circumvented by including a valid, precompiked `.bbl` file in the directory.
+## Build 
 
-If compilation fails, try `biber main` first before compiling the document with `pdflatex note.tex`.
+To build, use existing `makefile`:
+
+```bash
+make
+```
+
+Or use the existing `build.sh`
+
+```bash
+sh build.sh
+```
+
+Or use `latexmk`:
+
+```bash
+latexmk -pdf note.tex
+```
