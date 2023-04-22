@@ -4,12 +4,24 @@
 \section{Sequence and Series}
 \subsection{Sequence}
 \begin{definition}[Sequence]
+	A sequence is a function $s: \mathbb{N} \to \mathbb{R}$. $s(n)$, the $n$th element of the sequence, is denoted as $s_n$.
+	The domain of the sequence is all of the natural numbers, $\mathbb{N}$.
 \end{definition}
 
 \begin{definition}[Convergent and Divergent]
+	A sequence, $s_n$, converges to $L$ if and only if $(\forall \epsilon > 0)(\exists N>0)(\forall n>N)(|s_n-L|<\epsilon)$. It is denoted as $\lim_{n\to \infty}s_n = L$.
+	Otherwise, it diverges.
 \end{definition}
 
+\definition[Diverges to Infinity]{
+	A sequence, $s_n$, diverges to positive infinity if and only if $(\forall M\in \bb{N})(\exists N>0)(\forall n>N)(s_n>M)$. It is denoted as $\lim_{n\to \infty}s_n = \infty$.
+
+	Alternatively, the sequence diverges to negative infinity if and only if $(\forall M\in \bb{N})(\exists N>0)(\forall n>N)(s_n<M)$. It is denoted as $\lim_{n\to \infty}s_n = -\infty$.
+}
+
 \begin{definition}[Increasing and Decreasing Sequence(Monotone)]
+	Let $s_n$ be a sequence. $s_n$ is increasing if and only if $s_{n+1} \geq s_n$ for all $n \in \mathbb{N}$. 
+	$s_n$ is decreasing if and only if $s_{n+1} \leq s_n$ for all $n \in \mathbb{N}$. We we follow the nomenclature of \cite{Ross}.
 \end{definition}
 
 \begin{definition}[Limit of supremum \& infimum]\label{def:limiSupremum}
@@ -40,6 +52,14 @@ Since $(s_n)$ converges to $l$, there exists $N \in \mathbb{N}$ such that $\fora
 However, we know that $\mathcal{L}_i (s_n) = \lambda$, which means that there exists $N'$ such that $\forall n>N'$ we have at least one element $s_i > \lambda - \epsilon$. Indeed $s_i - l>\epsilon$, contradicting with our assumption that $(s_n)$ converges. Thus we conclude the backwards direction is also true.
 \end{proof}
 
+\definition[Subsequence]{
+	For a sequence $(s_n)$, its subsequence is a sequence $(s_{f(n)})$ where $f: \mathbb{N} \to \mathbb{N}$ is a strictly increasing function.
+}
+
+\theorem{
+	A sequence converges if and only if all of its subsequence converges.
+}
+
 \begin{definition}[Cauchy Sequence]\cite{Ross}
 	A sequence $(s_n)$ is a Cauchy Sequence iff $(\forall \epsilon > 0)(\exists N)(\forall n,m>N)(|s_n-s_m|<\epsilon)$
 \end{definition}
@@ -55,6 +75,30 @@ The forward direction is obvious. To prove the backwards direction, notice: 1) A
 	We can define a pseudo Cauchy Sequence to be sequence $(s_n)$ such that $(\forall \epsilon > 0)(\exists N)(\forall n>N)(|s_n-s_{n+1}|<\epsilon)$.
 	Indeed all convergent sequence are pseudo Cauchy Sequence, but not all pseudo Cauchy Sequence are convergent. An example is the partial sum of harmonic series, i.e, $(\sum^{n}_{i=1}\frac{1}{i})$.
 \end{remark}
+
+\theorem[Squeeze Theorem]{
+	Let $(s_n)$, $(b_n)$ and $(t_n)$ be sequences such that $(\forall n)(s_n \leq t_n \leq b_n)$. If $(s_n)$ and $(b_n)$ converges to the same limit, then $(t_n)$ converges to the same limit.
+}
+
+\theorem[Monotone Sequences]{
+	An increasing sequence that is bounded above converges to its supremum. A decreasing sequence that is bounded below converges to its infimum.
+}
+
+\theorem[Limit Theorems of Sequences]{
+	Let $(s_n)$ converges to $L_s$ and $(b_n)$ converges to $L_b$. Then:
+	\begin{enumerate}
+		\item Any convergent sequence are bounded.
+		\item Any convergent sequence must have exactly one limit.
+		\item $(s_n+b_n) $ converges to $L_s + L_b$.
+		\item For any constant $c$, $(cs_n)$ converges to $cL_s$.
+		\item $(s_nb_n)$ converges to $L_sL_b$.
+		\item $(\frac{s_n}{b_n})$ converges to $\frac{L_s}{L_b}$ if $L_b \neq 0$.
+	\end{enumerate}
+}
+
+\theorem[Bolzano-Weierstrass Theorem]{
+	Every bounded sequence has a convergent subsequence. (Seems easy, hard to prove)
+}
 
 \subsection{Series}
 \begin{definition}[Series]
@@ -87,20 +131,18 @@ List of Convergent and Divergent series:
 	\item \textbf{Comparison Test}:\\
 		For convergent series $\sum^{\infty}_{k=1}s_k$, if $|b_k|\leq s_k$ for all $k$, $\sum^{\infty}_{k=1}b_k$ converges.\\
 		For divergent series $\sum^{\infty}_{k=1}d_k = \infty$, if $e_k\geq d_k$ for all $k$, $\sum^{\infty}_{k=1}e_k$ diverges. 
-		If $\sum^{\infty}_{k=1}a_k $ and $\sum^{\infty}_{k=1}b_k$ converges, the followings also converge:
-		$\sum^{\infty}_{k=1}(a_k+b_k) $, $\sum^{\infty}_{k=1}(a_k-b_k) $ $\sum^{\infty}_{k=1}(a_k\cdot b_k)$
 	\item \textbf{Ratio Test}:\\
 		For series $\sum^{\infty}_{k=1}s_k$, let $d=\lim_{k \to \infty} |\frac{s_k}{s_{k-1}}|$.\\
 		If $d<1$, the series converges absolutely.\\
 		If $d>1$, the series diverges.\\
 		If $d=1$, the series may converge or diverge.
 	\item \textbf{Root Test}:\\
-		For series $\sum^{\infty}_{k=1}s_k$, let $d=\lim_{k \to \infty} |(s_k)^{1/k}|$.\\
+		For series $\sum^{\infty}_{k=1}s_k$, let $d=\lim_{k \to \infty} |s_k|^{1/k}$.\\
 		If $d<1$, the series converges absolutely.\\
 		If $d>1$, the series diverges.\\
 		If $d=1$, the series may converge or diverge.
 	\item \textbf{Alternating Series Test}: \label{AlternatingSeriesTest}\\
-		For series in the form $\sum^{\infty}_{k=1}(-1)^{k}s_k$. If $s_k$ is decreasing and $\lim_{k\to \infty} s_k = 0$, the sereis converge. (Copied from textbook on 14 Feb 2023, not proved.)
+		For series in the form $\sum^{\infty}_{k=1}(-1)^{k}s_k$. If $s_k$ is decreasing and $\lim_{k\to \infty} s_k = 0$, the sereis converge. 
 	\item \label{Cauchy_Condensation_Test} \textbf{Cauchy's Condenstation Test}:\\
 		Consider series $\sum^{\infty}_{k=1}s_k$. If ${s_k}$ is decreasing and greater than zero, the seires converge if and only if $\sum^{\infty}_{k=1}s_{2^k}2^k $ converges. 
 	\item \textbf{Integral Test}\label{IntegralTest}
@@ -157,7 +199,11 @@ List of Convergent and Divergent series:
 \subsection{Interestring Sequences and Series}
 \paragraph{Sequences}
 \paragraph{Series}
+	\small
 \begin{enumerate}
+	\item $\sum \frac{\sqrt{n+1}-\sqrt{n}}{n^k}$ diverges for $k\leq \frac{1}{2}$, converges otherwise.
+	\item $\sum \frac{1}{n\log{n}}$ diverges.
+	\item $\sum(\frac{1}{n}-\frac{1}{n+1})$ converges. 
 	\item $\sum^{\infty}_{n=1}\frac{n}{2^n}=1$  
 \end{enumerate}
 
