@@ -97,7 +97,23 @@ The forward direction is obvious. To prove the backwards direction, notice: 1) A
 }
 
 \theorem[Bolzano-Weierstrass Theorem]{
-	Every bounded sequence has a convergent subsequence. (Seems easy, hard to prove)
+	Every bounded sequence has a convergent subsequence. 
+}
+
+\proof{
+	Consider a sequence $(s_n)$ that is bounded above by $B_a$ and below by $B_l$. 
+
+	It is impossible to find the limit of a convergent subsequence of such a sequence; we will, nevertheless, show that such a convergent subsequence always exists. 
+
+	 What we want to prove is equivalent to that $(\forall \epsilon>0)(\exists \delta >0)$ such that there is infinitely many $s_i$ lay in the intevarl $[l-\epsilon, l+\epsilon]$ for some number $l$. We want to find such $l$.
+
+	 For all $\epsilon > 0$, The interval $[B_b, B_a]$ are partitioned to finite number of subintervals
+	 \[
+		 [B_b, B_b+2\epsilon], [B_b+2\epsilon, B_b+4\epsilon],  \cdots, [B_b+n\epsilon, B_a]
+	 \]
+	 
+	 As all series contains infinitely many elements, at least one of these subinterval, say $[\beta, \alpha]$ shall contain infintely many $s_i$.	
+	 We claim such $l$ demanded is $\frac{\beta+\alpha}{2}$.
 }
 
 \subsection{Series}
@@ -154,10 +170,6 @@ List of Convergent and Divergent series:
 \end{enumerate}
 \end{theorem}
 
-\begin{hypothesis}[Inspired from the Integral Test]\label{hypothesis:Finite Riamenn Sum}
-	If the finite integral, with some constant $a$, $\int_{a}^{\infty}f(k)dk$, converges for function $f$, $\lim_{n \to \infty}\sum^{n}_{i=0} f(\Delta x_ii + a)$ converge for $\Delta x_i \in \mathbb{R}$, provided $\{\Delta x_i\}$ is bounded. (Proposed 15 Feb 2023)
-\end{hypothesis}
-
 \begin{proof}
 
 \begin{itemize}
@@ -202,6 +214,7 @@ List of Convergent and Divergent series:
 	\small
 \begin{enumerate}
 	\item $\sum \frac{\sqrt{n+1}-\sqrt{n}}{n^k}$ diverges for $k\leq \frac{1}{2}$, converges otherwise.
+	\item $\sum_{\{n|n=2k, k\in \bb{N}\}} \frac{1}{n}$ (i,e,. $n$ is even). Diverges.
 	\item $\sum \frac{1}{n\log{n}}$ diverges.
 	\item $\sum(\frac{1}{n}-\frac{1}{n+1})$ converges. 
 	\item $\sum^{\infty}_{n=1}\frac{n}{2^n}=1$  

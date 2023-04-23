@@ -1,6 +1,9 @@
 \documentclass[../note.tex]{subfiles}
 \begin{document}
 \section{Differentiability}
+
+\subsection{Defintions of Differentiability}
+
 \begin{definition}[Differentiability]
 	A real function $f$ is differntiable at point $a \in \bb{R}$ if $f$ is defined at some open interval containing $a$ and 
 	\begin{equation}
@@ -24,6 +27,36 @@
 	\]
 \end{proof}
 
+\definition[Differentiability]{
+	A function is \emph{differentiable} on interval $I$ if its derivative exists and is finite for all $a\in I$.
+	A function is \emph{continuously differentiable} on interval $I$ if its derivative exists and is continuous for all $a\in I$.
+}
+
+\subsection{Differentiability Theorems}
+
+\theorem{
+	Let $f,g$ be real fucntion that is differentiable on interval $I$. Then
+	\begin{enumerate}
+		\item $\alpha f'(a)=\alpha f(a)$
+		\item $(f+g)'(a)= f'(a)+g'(a)$
+		\item $(fg)'(a)= f(a)g'(a)+g(a)f'(a)$
+		\item $(f/g)'(a)= \frac{f'(a)g(a)-f(a)g'(a)}{g(a)^2}$
+	\end{enumerate}
+}
+
+\theorem[Chain Rule]{
+	Let $f,g$ be real fucntion that is differentiable on interval $I$. Then
+	\begin{equation}
+		(f\circ g)'(a)=f'(g(a))g'(a)
+	\end{equation}
+}
+
+\theorem[Power Rule]{
+	\begin{equation}
+		x^n = \frac{d}{dx}x^n = nx^{n-1}
+	\end{equation}
+}
+
 \begin{theorem}[Rolle's Theorem]
 	Let $f$ be a real function. If it is continuous on the interval $[a,b]$, differentiable on $(a,b)$, and $f(a)=f(b)$, then for some $c \in (a,b)$ $f'(c)=0$.
 \end{theorem}
@@ -33,8 +66,21 @@
 
 \begin{theorem}[Mean Value Theorem]
 	Let $f$ be a real function. If it is continuous on the interval $[a,b]$, differentiable on $(a,b)$, then for some $c \in (a,b)$ $f'(c)=\frac{f(b)-f(a)}{b-a}$.
+
+	\emph{Extended Version}: 
+	If $f,g$ are continuous on $[a,b]$ and differentiable on $(a,b)$, then for some $c \in (a,b)$ $f'(c)(g(b)-g(a))=g'(c)(f(b)-f(a))$.
 \end{theorem}
+
 \begin{proof}
 	Let function $g$ be defined as $g(x)=f(x)-\frac{f(b)-f(a)}{b-a}(x-a)$. Then $g$ is continuous on $[a,b]$ and $g(a)=g(b)$. At $c$ garunteed by the Rolle's theorem where $g'(c)=0$, $f'(c) = \frac{f(b)-f(a)}{b-a}$.
 \end{proof}
+
+\theorem[Bernoulli's Inequality]{
+	Let $\alpha >0$ and $\delta l\geq -1$. Then 
+	\begin{enumerate}
+		\item $(1+\delta)^{\alpha} \leq 1+\delta\alpha$ if $\alpha \in (0,1]$,
+		\item $(1+\delta)^{\alpha} \geq 1+\delta\alpha$ if $\alpha \in [1,\infty)$,
+	\end{enumerate}
+}
+
 \end{document}
