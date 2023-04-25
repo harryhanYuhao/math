@@ -83,4 +83,45 @@
 	\end{enumerate}
 }
 
+\subsection{Monotone Functions}
+
+\definition{
+	\ 
+\begin{enumerate}
+
+	\item	A function $f$ is \emph{increasing} on interval $I$ if $x_1<x_2 \implies f(x_1) \leq f(x_2)$. It is \emph{strictly increasing} if $x_1<x_2 \implies f(x_1) < f(x_2)$.
+	\item A function $f$ is \emph{decreasing} on interval $I$ if $x_1<x_2 \implies f(x_1) \geq f(x_2)$. It is \emph{strictly decreasing} if $x_1<x_2 \implies f(x_1) > f(x_2)$.
+	\item A function $f$ is \emph{monotone} on interval $I$ if it is either increasing or decreasing.
+	\item A function $f$ is \emph{strictly monotone} on interval $I$ if it is either strictly increasing or strictly decreasing.
+\end{enumerate}
+}
+
+\remark{
+	Note that for a function $f: \bb{R} \rightarrow \bb{R}$ $x_1<x_2 \implies f(x_1) < f(x_2) $
+}
+
+\theorem{
+	Let $a<b$ be real and $f$ be continuous on $[a,b]$ and differentiable on $(a,b)$. 
+	\begin{enumerate}
+		\item $f'(x)>0$ for all $x \in (a,b)$ if and only if $f$ is strictly increasing on $[a,b]$.
+		\item $f'(x)<0$ for all $x \in (a,b)$ if and only if $f$ is strictly decreasing on $[a,b]$.
+		\item $f'(x)=0$ for all $x \in (a,b)$ if and only if $f$ is constant on $[a,b]$.
+	\end{enumerate}
+}
+
+\theorem[Fermat's Theorem]{
+	If a function attains a extrema at $a$, then either $f'(a)=0$ or $f'(a)$ does not exist.
+}
+
+\theorem[Darboux's Theorem]{
+	If $f$ is differentiable on $(a,b)$, then $f'$ has the intermediate value property; i.e., if $f'(a)<c<f'(b)$, then there exists $x \in (a,b)$ such that $f'(x)=c$.
+}
+
+\remark{
+	This theorem can not be mistaken as all derivative, if defined, are continuous. See bizzare function.
+}
+
+\corollary{
+a
+}
 \end{document}
