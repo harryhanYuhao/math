@@ -12,6 +12,7 @@ Group is a set $\mathbb{S}$ with an operation $\odot$ that fulfills the followin
 	\item Inverse: $\forall a\in \mathbb{S}, \exists a^{-1}\in \mathbb{S}$ such that $a\odot a^{-1} = e$.
 \end{enumerate}
 
+\end{definition}
 \begin{remark}
 	Operation, $\odot $, within the set $\bb{S}$ can be defined as a function: $\odot: \bb{S}\times \bb{S} \rightarrow \bb{S}$ with the notation $\odot (a,b)=a \odot b$.
 
@@ -26,7 +27,6 @@ Group is a set $\mathbb{S}$ with an operation $\odot$ that fulfills the followin
 
 \emph{Note On Notation}: When there is no confusion, the symbol $\odot$ is omitted. \label{notation:Omission_Of_Group_Operator}
 
-\end{definition}
 \begin{theorem}[Consequence of the Definition]
 There are many non-obvious properties that directly follow the definition.
 \begin{enumerate}
@@ -50,6 +50,7 @@ There are many non-obvious properties that directly follow the definition.
 		\item Can we have a set $\mathbb{S}$, such that under the operation $\odot $ we have $\forall a, b \in \mathbb{S}, a \odot b = b \odot  a$ but without associtivity? (Community without associtivity?)
 	\end{enumerate}
 \end{hypothesis}
+
 \begin{definition}[Order of Group and element]
 The order of the group $\mathbb{S}$ is $|\mathbb{S}|$ (How many elements it has). \\
 The order of an element $s \in \mathbb{S}$ is the smallest integer $i$ such that $s^i = e.$ (If such $i$ exists)
@@ -136,7 +137,6 @@ An example of cyclic group is $\mathbb{Z}_n$. (Integer under modular $n$ additio
 
 To check if the left and right coset of $\bb{H}$ are equal, we just need to check if $\forall h \in \bb{H} \& g \in \bb{G}, gh \in \bb{H}g$.
 
-%TODO NEEDS CHECKING
 \begin{theorem}[Test For Normal Group \emph{Needs Checking}]
 	A subgroup $S \leq G$ is a normal subgroup if and only if $\{gsg^{-1}|s\in S\}=S$ for all $g \in G$.
 \end{theorem}
@@ -194,6 +194,7 @@ Provided  $n$ divides $  |\bb{G}|$, there exists $S \leq \bb{G}$ and $|S|=n$.
 \begin{enumerate}
 	\item \label{orderOfElement}For a group $\mathbb{G}$ with order $p$ and $k \in \mathbb{G}$ with order $q$; then $q$ divides $p$.
 	\item \label{prime_cyclic} For a group $\mathbb{G}$ with prime order (i.e., $|\mathbb{G}|$ is prime), it must be a cyclic group.
+	\item All groups with order smaller than 6 are abelian.
 \end{enumerate}
 \end{proposition}
 

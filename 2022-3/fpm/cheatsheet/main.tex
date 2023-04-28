@@ -1,21 +1,150 @@
-\documentclass[12pt, a4paper]{article}
-\usepackage{blindtext, titlesec, amsthm, thmtools, amsmath, amsfonts, scalerel, amssymb, graphicx, titlesec, xcolor, multicol, hyperref}
-\usepackage[utf8]{inputenc}
-\hypersetup{colorlinks,linkcolor={red!40!black},citecolor={blue!50!black},urlcolor={blue!80!black}}
-\newtheorem{theorem}{Theorema}[subsection]
-\newtheorem{lemma}[theorem]{Lemma}
-\newtheorem{corollary}[theorem]{Corollarium}
-\newtheorem{hypothesis}{Coniectura}
-\theoremstyle{definition}
-\newtheorem{definition}{Definitio}[section]
-\theoremstyle{remark}
-\newtheorem{remark}{Observatio}[section]
-\newtheorem{example}{Exampli Gratia}[section]
-\newcommand{\bb}[1]{\mathbb{#1}}
-\renewcommand\qedsymbol{Q.E.D.}
+\documentclass[12pt]{article}
+\input{preamble}
+
 \begin{document}
-\subsubsection*{Algebra}
-aaa
+\section{Algebra}
+\subsection{Graph}
+\definition{
+	Isomorphism between two graphs are bijection btween them that preserve all edges. 
+	A symmytry is a isomorphism to itself.
+}
+
+\definition[Group]{
+Group is a set $\mathbb{S}$ with an operation $\odot$ that fulfills the following four properties:
+\begin{enumerate}
+	\item Closure: $\forall a,b\in \mathbb{S}, a\odot b\in \mathbb{S}$.
+	\item Associtivity: $\forall a, b, c \in \mathbb{S}, (a \odot b) \odot c = a \odot (b \odot c)$;
+	\item Identity: $\exists e\in \mathbb{S}$ such that $a\odot e = e\odot a = a$ for all $a\in \mathbb{S}$;
+	\item Inverse: $\forall a\in \mathbb{S}, \exists a^{-1}\in \mathbb{S}$ such that $a\odot a^{-1} = e$.
+\end{enumerate}
+}
+
+\definition[Order of Group and element]{
+The order of the group $\mathbb{S}$ is $|\mathbb{S}|$ (How many elements it has). \\
+The order of an element $s \in \mathbb{S}$ is the smallest integer $i$ such that $s^i = e.$ (If such $i$ exists)
+}
+
+\definition[Abelian Group]{
+	An abelian group is a group $\mathbb{S}$ such that $\forall a, b \in \mathbb{S}, a  b = b  a$.
+}
+
+\definition[Normal Group]{\label{def:normal_group}\hypertarget{def:normal_group}{}
+	A subgroup $\bb{H}$ of a group $\bb{G}$ is called normal if $\forall a \in \bb{G}$, the left and right coset of $\bb{H}$ are equal, i.e. $a \bb{H}=\bb{H}a$.
+}
+
+\subsection{Group Property and Lagrange Theorem}
+
+\begin{theorem}[Lagrange Theorem]
+Consider finite group $\mathbb{G}$ and its subgroup $\mathbb{S}$. $|\mathbb{S}|$ divides $|\mathbb{G}|.$	
+\end{theorem}
+
+\theorem[Useful Facts]{
+\begin{enumerate}
+	\item \label{orderOfElement}For a group $\mathbb{G}$ with order $p$ and $k \in \mathbb{G}$ with order $q$; then $q$ divides $p$.
+	\item \label{prime_cyclic} For a group $\mathbb{G}$ with prime order (i.e., $|\mathbb{G}|$ is prime), it must be a cyclic group.
+	\item All groups with order smaller than 6 are abelian.
+\end{enumerate}
+}
+
+\subsection{Homomorphism and Isomorphism}
+
+\definition[Homomorphism]{
+	Group $\bb{G}\ \& \ \bb{P}$ are isomorphic to each other if there exists a function 
+	$\phi: \bb{G}\rightarrow \bb{P}$ such that	$ a, b \in \bb{G} \implies \phi(ab) = \phi(a)\phi(b)$.
+
+	The function $\phi$ is denominated as a homomorphism of the group $\bb{G}\&\bb{P}$.
+}
+
+\definition[Isomorphism]{
+	A homomorphism $\phi \bb{G} \rightarrow \bb{P}$ that is also a bijection is a isomorphism of group $\bb{B}\&\bb{P}$, and we denote two such isomorphic group with $\bb{G} \cong \bb{P}$.
+}
+
+\theorem[Consequence of homomorphism]{
+	Let $\phi: \bb{G} \rightarrow \bb{P}$ denote a homomorphism. 
+\begin{enumerate}
+	\item $\phi(e_{\bb{G}}) = e_{\bb{P}}$. 
+	\item $\phi(a^{-1}) = \phi(a)^{-1}$ for $n\in \bb{N}$ (Including negative numbers).
+	\item If $\phi$ is injection, the order of $\phi(a)$ is the same as the order of $a$.
+\end{enumerate}
+}
+
+\definition[Image]{
+	The image of a homomorphism $\phi: \bb{G} \rightarrow \bb{P}$ is the set $\{\phi(c) |c \in \bb{G}\}$.
+	Image is denoted as $\im{\phi}$.
+	Image is a \emph{subgroup} of $\bb{P}$.
+}
+
+\definition[Kernel]{ 
+	The kernel of a homomorphism $\phi: \bb{G} \rightarrow \bb{P}$ is the set $\{c \in \bb{G} | \phi(c) = e_{\bb{P}}\}$.
+	Kernel is denoted as $\ker{\phi}$.
+	Kernel is a \emph{normal subgroup} of $\bb{G}$.
+}
+
+\theorem[Properties of Kernel and Image]{
+	Let $\phi: \bb{G} \rightarrow \bb{P}$ be a homomorphism.
+	\begin{enumerate}
+		\item For all $a\in \im{\phi}$, there exists exactly $n$ number of $b\in \bb{G}$ such that $\phi(b) = a$, where $n=|\ker{\phi}|$.
+	\end{enumerate}
+}
+
+\theorem{
+	Let $\bb{H}, \bb{K} \leq \bb{G}$ be subgroups of $\bb{G}$ with the union of $\bb{H}, \bb{K} = \{e\}$
+	\begin{enumerate}
+		\item The map $\phi: \bb{H}\times \bb{K} \rightarrow \bb{H}\bb{K}$ given by $\phi(h,k) = hk$ is a bijection.
+		\item $\bb{H}\bb{K}$ is a subgroup of $\bb{G}$ if and only if for all $h, k: $ $\exists h' k'$ such that $hk = k'h'$.
+		\item $\bb{H}\bb{K}$ is isomorphic to $\bb{H} \times \bb{K}$ if and only if every element of $\bb{H}$ commutes with every element of $\bb{K}$, i.e. $\forall h, k: hk=kh$.
+	\end{enumerate}
+}
+
+\subsection{Group Action}
+\definition[Group Action]{\label{def:group_action} \hypertarget{def:group_action}{}
+	A group action between a group $\bb{G}$ and a set $S$ is a function $f: \bb{G}\times S \rightarrow S$. 
+	Let $\gamma \in \bb{G} \ \&\ s \in S$. Let $f(g,s)$ be denoted as $\gamma\cdot s$. Group action must fulfill the two following property:
+	\begin{enumerate}
+		\item $\epsilon\cdot s=s$ for all $s\in S$, with $\epsilon$ being the identity of the group $\bb{G}$
+		\item $\gamma_1\cdot(\gamma_2 \cdot s) = (\gamma_1 \gamma_2) \cdot s$ for all $\gamma_1, \gamma_2 \in \bb{G}\ \&\ s \in S$
+	\end{enumerate}
+}
+
+\definition[Kernal Of Action]{
+	Let $G$ be a group acting on set $X$.
+	The set $\bb{N}:=\{g\in G | g\cdot x=x \text{ for all } x\in X\}$
+	
+	If the Kernel $\bb{N}=\{e\}$, then the action is \emph{faithful}.
+}
+
+\definition[Transitive Group Action]{
+	An group action of $G$ on $X$ is transitive if for all $x,y\in X$, there exists $g\in G$ such that $g\cdot x=y$.
+}
+
+\begin{definition}[Orbit] \label{def:orbit} \hypertarget{def:orbit_stabilizer}{}
+	Let $G$ act on $S$ and $s \in S$. The orbit of $s$ is the set $\{\gamma\cdot s | \gamma \in G\}$. Orbit is denoted as $\orb{G}{s}$.
+	Orbit is a \emph{subset of $S$} and is \emph{NOT} a group.\\
+\end{definition}
+
+\begin{definition}[Stabilizer]\label{def:stabilizer} 
+	Let $G$ act on $S$ and $s \in S$. The stabilizer of $s$ is the set $\{\gamma \in G | \gamma\cdot s = s\}$. Stabilizer is denoted as $\stab{G}{s}$.
+	Stabilizer is a \emph{subgroup} of $G$. 
+\end{definition}
+
+\theorem[Orbit Counting Theorem]{
+	Let $G$ be a group acting on set $S$. 
+	Orbits \emph{partition} $S$ into disjoint sets.
+
+	Number of Orbits = $\frac{1}{|G|}\sum_{s\in X} \stab{G}{s} $.
+}
+
+\begin{theorem}[Orbit Stabilizer Theorem]
+	Let $G$ act on $X$ and $x \in X$. The stabilizer of $x$ is the set $\{g \in G | g\cdot x = x\}$.
+	$|\orb{G}{x}||\stab{G}{x}|=|G|$
+\end{theorem}
+
+\begin{theorem}[Cauchy's Theorem]
+	Let $G$ be a group. Let $p$ be prime. If $p$ divides $|G|$, then $G$ contains a element of order $p$.
+\end{theorem}
+
+\begin{theorem}[Sylow' First Theorem]
+	Let $G$ be a group. Let $p$ be prime. If $p^k$ divides $|G|$, then $G$ contains a subgroup of order $p^k$.
+\end{theorem}
 
 \end{document}
-

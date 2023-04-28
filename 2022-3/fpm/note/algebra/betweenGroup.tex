@@ -101,6 +101,13 @@ Group actions are denoted by $\cdot$, while the sign for operation within the gr
 		\item $\gamma \cdot a = b \implies \gamma^{-1} \cdot b = a$ 
 	\end{enumerate}
 \end{theorem}
+
+\definition[Kernal Of Action]{
+	Let $G$ be a group acting on set $X$.
+	The set $\bb{N}:=\{g\in G | g\cdot x=x \text{ for all } x\in X\}$
+	If the Kernel $\bb{N}=\{e\}$, then the action is faithful.
+}
+
 \begin{definition}[Orbit] \label{def:orbit} \hypertarget{def:orbit_stabilizer}{}
 	Let $G$ act on $S$ and $s \in S$. The orbit of $s$ is the set $\{\gamma\cdot s | \gamma \in G\}$. Orbit is denoted as $\orb{G}{s}$.
 	\emph{Orbit is a subset of $S$}.
@@ -170,4 +177,7 @@ Such argument can be repeated for all $a',b' \in \orb{G}{a}$ such that $|\stab{G
 	Let $G$ be a group. Let $p$ be prime. If $p$ divides $|G|$, then $G$ contains a element of order $p$.
 \end{theorem}
 
+\begin{theorem}[Sylow' First Theorem]
+	Let $G$ be a group. Let $p$ be prime. If $p^k$ divides $|G|$, then $G$ contains a subgroup of order $p^k$.
+\end{theorem}
 \end{document}
