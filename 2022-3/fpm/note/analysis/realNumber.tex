@@ -94,7 +94,6 @@ From these assumed axioms all properties of $\bb{R}, \bb{Z} \& \bb{Q}$ can be de
 \end{enumerate}
 }
 
-% NOTE: NEED TO BE INCLUDED in Cheatsheet
 \theorem[Archimedean Property]{
 	$\forall a,b \in \bb{R},$ and $a<b$, $ \exists n \in \bb{N}$ such that $an>b$.
 	Archimedean Property is \emph{not} an Axiom.
@@ -102,20 +101,27 @@ From these assumed axioms all properties of $\bb{R}, \bb{Z} \& \bb{Q}$ can be de
 
 \subsection{The Countable Sets}
 
+\definition[Injective, Surjective, and Bijective]{
+	Let $f:A \rightarrow B$ be a function. $f$ is injective if $\forall a_1, a_2 \in A, f(a_1)=f(a_2) \implies a_1=a_2$. $f$ is surjective if $\forall b \in B, \exists a \in A$ such that $f(a)=b$. $f$ is bijective if it is both injective and surjective.
+	Injective is also called one-to-one, and surjective is also called onto.
+}
+
+\begin{definition}[Finite, Countable Set, and Uncountable]
+	Let $E$ be a set.
+	\begin{enumerate}
+		\item $E$ is said to be finite if either $E=\emptyset$ or there is an injective function $f:E \rightarrow \{1,2,\dots,n\}$ for some $n \in \bb{N}$.
+		\item $E$ is said to be countable if there is a bijective function $f:E \rightarrow \bb{N}$.
+		\item $E$ is at most countable if it is finite or countable.
+		\item $E$ is uncountable if it is not at most countable.
+	\end{enumerate}
+\end{definition}
+
 \begin{axiom}[The "Smallest" Infinite Set]
 	A set $\mathbb{S}$ is infinite iff $\mathbb{S} \succ \mathbb{N}$. 
 \end{axiom}
 
-\begin{remark}
-	Although FPM is a pure mathematic class with emphasis on rigor, no rigorous definition for the infinite set has been proposed. This definition/axiom is of my own conception.
-\end{remark}
-
-\begin{definition}[Countable Set]
-	Another A set $\mathbb{S}$ is countable iff $\mathbb{N} \asymp \mathbb{S}$ (there exists a bijection $f:\mathbb{N} \rightarrow \mathbb{S}$).
-\end{definition}
-
-\thm{At Most Countable}{ 
-	Let $\mathbb{A}$ be an infinite set. \\($\mathbb{A} \prec \mathbb{N}$) iff ($\mathbb{A} \asymp \mathbb{N}$).
+\theorem[At Most Countable]{ 
+	Let $\mathbb{A}$ be an infinite set. ($\mathbb{A} \prec \mathbb{N}$) iff ($\mathbb{A} \asymp \mathbb{N}$).
 }
 
 \proof{

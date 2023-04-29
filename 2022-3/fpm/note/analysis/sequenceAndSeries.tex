@@ -34,6 +34,7 @@
 \begin{remark}
 	Notice supremum and infimum sequences are monotone.
 \end{remark}
+
 \begin{theorem} [Convergence and Limit of supremum \& infimum]\label{analysis:th:Convergence_and_limit_of_sup_in}
 	A sequence $(s_n)$ converges if and only if $\mathcal{L}_s (s_n) = \mathcal{L}_i(s_n)$. 
 	(Proposed Feb 8 2023, proved Feb 9)
@@ -142,11 +143,17 @@ List of Convergent and Divergent series:
 		$\sum^{\infty}_{k=1}-s_k$ $\sum^{\infty}_{k=1}c\cdot s_k$, $\sum^{\infty}_{k=1}s_k+s'_k$, $\sum^{\infty}_{k+1}s_k\cdot s'_k$.\\
 		In particular, $\sum^{\infty}_{k=1}\frac{1}{s_k}$ diverges.\\
 		$\sum^{\infty}_{k=1}\frac{s_k}{s'_k}$ may diverge or converge.
+	\item \textbf{Convergence Test}:\\
+		If $\lim_{n \rightarrow \infty} s_n \neq 0$, $\sum s_n$ diverges.
 	\item \label{th:ConvergenceReveries:en:absoluteconverge} \textbf{Absolute Convergent}:\\
 		If a series converges absolutely, it converges. The converse is not true. 
 	\item \textbf{Comparison Test}:\\
-		For convergent series $\sum^{\infty}_{k=1}s_k$, if $|b_k|\leq s_k$ for all $k$, $\sum^{\infty}_{k=1}b_k$ converges.\\
-		For divergent series $\sum^{\infty}_{k=1}d_k = \infty$, if $e_k\geq d_k$ for all $k$, $\sum^{\infty}_{k=1}e_k$ diverges. 
+		Suppose $0<a_k$ and $0<b_k$ for large $k$ and $L = \lim_{n \rightarrow \infty} \frac{a_n}{b_n}$ exists as an extended real number. Then:
+		\begin{itemize}
+			\item If $L=0$ and $\sum b_k$ converges, $\sum a_k$ converges.
+			\item If $L=\infty$ and $\sum b_k$ diverges, $\sum a_k$ diverges.
+			\item If $L \in (0, \infty)$, then $\sum a_k$ converges absolutely if and only if $\sum b_k$ converges absolutely.
+		\end{itemize}
 	\item \textbf{Ratio Test}:\\
 		For series $\sum^{\infty}_{k=1}s_k$, let $d=\lim_{k \to \infty} |\frac{s_k}{s_{k-1}}|$.\\
 		If $d<1$, the series converges absolutely.\\
@@ -162,7 +169,7 @@ List of Convergent and Divergent series:
 	\item \label{Cauchy_Condensation_Test} \textbf{Cauchy's Condenstation Test}:\\
 		Consider series $\sum^{\infty}_{k=1}s_k$. If ${s_k}$ is decreasing and greater than zero, the seires converge if and only if $\sum^{\infty}_{k=1}s_{2^k}2^k $ converges. 
 	\item \textbf{Integral Test}\label{IntegralTest}
-		For $s_k>0$, the series $\sum^{\infty}_{k=1}s_k$ converge if and only if $\int_{a}^{\infty}S(k)dk$ converge for some constant $a$, provided $\forall k \in \mathbb{N}, S(k)=s_k$.
+		For nonnegative and decreasing $s_k$, the series $\sum^{\infty}_{k=1}s_k$ converge if and only if $\int_{a}^{\infty}S(k)dk$ converge for some constant $a$, provided $\forall k \in \mathbb{N}, S(k)=s_k$.
 		(Proposed Feb 14 2023, modified and proved 16 Feb)
 	\item \textbf{Raabe's Test}\label{Raabe's Test}
 		For series $\sum^{\infty}_{k=1}s_k$, let $l= \displaystyle n\left(1-\frac{s_{n+1}}{s_n}\right)$. The series converge if $l>1$, diverges if $l<1$, and is inconclusive if $l=1$.

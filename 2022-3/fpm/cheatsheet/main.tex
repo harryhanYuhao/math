@@ -147,4 +147,131 @@ Consider finite group $\mathbb{G}$ and its subgroup $\mathbb{S}$. $|\mathbb{S}|$
 	Let $G$ be a group. Let $p$ be prime. If $p^k$ divides $|G|$, then $G$ contains a subgroup of order $p^k$.
 \end{theorem}
 
+\section{Analysis}
+
+\subsection{Real Number}
+\emph{Triangular Inequality} $|a+b|\leq |a+b|$; $||a|-|b||\leq |a-b|$
+
+\begin{axiom}[The Completeness of Real Number] 
+	All subsets of real number that is bounded above contains a supremum in the real number.
+	Similarly, all subsets of real number that is bounded below contains an infimum in the real number.
+\end{axiom}
+
+\theorem[Archimedean Property]{
+	$\forall a,b \in \bb{R},$ and $a<b$, $ \exists n \in \bb{N}$ such that $an>b$.
+	Archimedean Property is \emph{not} an Axiom.
+}
+
+\definition[Injective, Surjective, and Bijective]{
+	Let $f:A \rightarrow B$ be a function. $f$ is injective if $\forall a_1, a_2 \in A, f(a_1)=f(a_2) \implies a_1=a_2$. $f$ is surjective if $\forall b \in B, \exists a \in A$ such that $f(a)=b$. $f$ is bijective if it is both injective and surjective.
+	Injective is also called one-to-one, and surjective is also called onto.
+}
+
+\begin{definition}[Finite, Countable Set, and Uncountable]
+	Let $E$ be a set.
+	\begin{enumerate}
+		\item $E$ is said to be finite if either $E=\emptyset$ or there is an injective function $f:E \rightarrow \{1,2,\dots,n\}$ for some $n \in \bb{N}$.
+		\item $E$ is said to be countable if there is a bijective function $f:E \rightarrow \bb{N}$.
+		\item $E$ is at most countable if it is finite or countable.
+		\item $E$ is uncountable if it is not at most countable.
+	\end{enumerate}
+\end{definition}
+
+\theorem[At Most Countable]{ 
+	If $f: N \rightarrow E$ is surjective, then $E$ is at most countable.
+}
+
+\subsection{Sequences and Series}
+
+\theorem{
+	A sequence converges if and only if all of its subsequence converges.
+}
+\theorem[Bolzano-Weierstrass Theorem]{
+	Every bounded sequence has a convergent subsequence. 
+}
+
+\begin{theorem}[Convergence Reveries]\label{th:ConvergenceReveries}
+\ 
+\begin{enumerate}
+	\item For convergent series $\sum^{\infty}_{k=1} s_k$, $\sum^{\infty}_{k=1}s'_k$, and constant $c$, all of the following sequence converges:
+		$\sum^{\infty}_{k=1}-s_k$ $\sum^{\infty}_{k=1}c\cdot s_k$, $\sum^{\infty}_{k=1}s_k+s'_k$, $\sum^{\infty}_{k+1}s_k\cdot s'_k$.\\
+		In particular, $\sum^{\infty}_{k=1}\frac{1}{s_k}$ diverges.\\
+		$\sum^{\infty}_{k=1}\frac{s_k}{s'_k}$ may diverge or converge.
+	\item \textbf{Convergence Test}:\\
+		If $\lim_{n \rightarrow \infty} s_n \neq 0$, $\sum s_n$ diverges.
+	\item \label{th:ConvergenceReveries:en:absoluteconverge} \textbf{Absolute Convergent}:\\
+		If a series converges absolutely, it converges. The converse is not true. 
+	\item \textbf{Comparison Test}:\\
+		Suppose $0<a_k$ and $0<b_k$ for large $k$ and $L = \lim_{n \rightarrow \infty} \frac{a_n}{b_n}$ exists as an extended real number. Then:
+		\begin{itemize}
+			\item If $L=0$ and $\sum b_k$ converges, $\sum a_k$ converges.
+			\item If $L=\infty$ and $\sum b_k$ diverges, $\sum a_k$ diverges.
+			\item If $L \in (0, \infty)$, then $\sum a_k$ converges absolutely if and only if $\sum b_k$ converges absolutely.
+		\end{itemize}
+	\item \textbf{Ratio Test}:\\
+		For series $\sum^{\infty}_{k=1}s_k$, let $d=\lim_{k \to \infty} |\frac{s_k}{s_{k-1}}|$.\\
+		If $d<1$, the series converges absolutely.\\
+		If $d>1$, the series diverges.\\
+		If $d=1$, the series may converge or diverge.
+	\item \textbf{Root Test}:\\
+		For series $\sum^{\infty}_{k=1}s_k$, let $d=\lim_{k \to \infty} |s_k|^{1/k}$.\\
+		If $d<1$, the series converges absolutely.\\
+		If $d>1$, the series diverges.\\
+		If $d=1$, the series may converge or diverge.
+	\item \textbf{Alternating Series Test}: \label{AlternatingSeriesTest}\\
+		For series in the form $\sum^{\infty}_{k=1}(-1)^{k}s_k$. If $s_k$ is decreasing and $\lim_{k\to \infty} s_k = 0$, the sereis converge. 
+	\item \label{Cauchy_Condensation_Test} \textbf{Cauchy's Condenstation Test}:\\
+		Consider series $\sum^{\infty}_{k=1}s_k$. If ${s_k}$ is decreasing and greater than zero, the seires converge if and only if $\sum^{\infty}_{k=1}s_{2^k}2^k $ converges. 
+	\item \textbf{Integral Test}\label{IntegralTest}
+		For nonnegative and decreasing $s_k$, the series $\sum^{\infty}_{k=1}s_k$ converge if and only if $\int_{a}^{\infty}S(k)dk$ converge for some constant $a$, provided $\forall k \in \mathbb{N}, S(k)=s_k$.
+		(Proposed Feb 14 2023, modified and proved 16 Feb)
+	\item \textbf{Raabe's Test}\label{Raabe's Test}
+		For series $\sum^{\infty}_{k=1}s_k$, let $l= \displaystyle n\left(1-\frac{s_{n+1}}{s_n}\right)$. The series converge if $l>1$, diverges if $l<1$, and is inconclusive if $l=1$.
+
+\end{enumerate}
+\end{theorem}
+\subsection{Continuity And Differentiability}
+
+\begin{theorem}[Mean Value Theorem]
+	If $f,g$ are continuous on $[a,b]$ and differentiable on $(a,b)$, then for some $c \in (a,b)$ we have
+	\[
+		f'(c)(g(b)-g(a))=g'(c)(f(b)-f(a))
+	\]
+	.
+\end{theorem}
+
+\theorem[Fermat's Theorem]{
+	If a function attains a extrema at $a$, then either $f'(a)=0$ or $f'(a)$ does not exist.
+}
+
+\theorem[Darboux's Theorem]{
+	If $f$ is differentiable on $(a,b)$, then $f'$ has the intermediate value property; i.e., if $f'(a)<c<f'(b)$, then there exists $x \in (a,b)$ such that $f'(x)=c$.
+}
+
+\theorem[L'Hopital's Rule]{
+	Let $a \in \bb{R} \cup \{ \pm \infty \}$ and $f,g$ be real functions. If $A = \lim_{x \rightarrow a} f(x) = \lim_{x \rightarrow a} f(x)$ is either 0 or $\infty$ and $f,g$ are differentiable on $(a,b)\{a\}$, then 
+	\begin{equation}
+		\lim_{x \rightarrow a} \frac{f(x)}{g(x)} = \lim_{x \rightarrow a} \frac{f'(x)}{g'(x)}
+	\end{equation}
+}
+
+\definition[Taylor Polynomial]{
+	Taylor's polynomial $P_n^{f,x_0}(x)$ of degree $n$ of a function $f$ at $x_0$ is defined as 
+	\begin{equation}
+		P_n^{f,x_0}(x)=f(x_0)+\sum_{k=1}^{n}\frac{f^{(k)}(x_0)}{k!}(x-x_0)^k 
+	\end{equation}
+
+}
+
+\theorem[Taylor's Formula]{
+	Let $n\in \bb{N}$ and $a<b$ be real number. 
+	If $f:(a,b) \rightarrow \bb{R}$ and $f^{(n+1)}$ exists on $(a,b)$, then for all each $x, x_0 \in (a,b)$ there exists $c \in (a,x)$ such that
+	\begin{align}
+	`	\begin{split}
+			f(x)=f(x_0)+\sum_{k=1}^{n}\frac{f^{(k)}(x_0)}{k!}(x-x_0)^k + &\frac{f^{(n+1)}(c)}{(n+1)!}(x-x_0)^{n+1} = \\
+			P_n^{f,x_0}(x)+ &\frac{f^{n+1}(c)}{(n+1)!}(x-x_0)^{n+1}
+		\end{split}
+	\end{align}
+}
+
 \end{document}
