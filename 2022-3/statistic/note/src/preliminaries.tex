@@ -1,0 +1,125 @@
+\section{Random Variables}
+
+A random variable, usually denoated with majuscule letter, e.g., $X$, and the value it may take is denoated with corresponding minuscule letter, x. The probability function $P(\cdot)$ maps every possible value $X$ may take to range $[0, 1]$.
+
+\subsection{Probability Mass Function}
+A random variable may be discrete or continuous. A discrete random variable, $X$, within the sample space $\omega =\{x_1, x_2, \cdots \}$
+can be characterised by its corresponding \textit{probability mass function} (pmf) $P_X(x)$ for all $\bb{R}$ such that:
+\begin{equation}
+	f_X(x)=
+	\begin{cases}
+		P_X(x) & x\in \omega\\
+		0 & \text{otherwise}
+	\end{cases}
+\end{equation}
+provided that $\sum_{x\in \omega} P_X(x)=1$ and $P_X(x)\geq 0$ for all $x\in \omega$.
+
+\subsection{Probabilty Density Function}
+A continuous random variable, $X$, can be characterised by its corresponding \textit{probability density function} (pdf) $f_X(x)$ for all $\bb{R}$ such that:
+\begin{equation}
+	P(a<X<b)=\int^b_a f_X(x)dx
+\end{equation}
+provided that $\int^{\infty}_{-\infty} f_X(x)dx=1$ and $f_X(x)\geq 0$ for all $x\in \bb{R}$.
+
+\subsection{Cumulative Distribution Function}
+Cumulative distrbution function (cdf) of a continuous random variable $Y$ whose pdf is $f_Y$ is defined as 
+\begin{equation}
+	F_Y(y) = P(Y\leq y) = \int^y_{-\infty}f_Y(y)dy
+\end{equation}
+By fundamental theorem of calculus, 
+\begin{equation}
+	\frac{d}{dy}F_Y(y) = f_Y(y)
+\end{equation}
+
+\subsection{Bivariate Distribution}
+The joint pmf/pdf is defined thus:
+\begin{equation}
+	\begin{cases}
+		f_{X,Y}(x,y) = P(X=x\cap Y=y) \text{ for Joint pmf}\\
+		P((X,Y)\in T) = \displaystyle \iint _{(x,y)\in T}f_{XY}(x,y)dxdy \text{ For joint pdf}
+	\end{cases}
+\end{equation}
+
+\subsection{Independence}
+Two random variables are \emph{independent} if and only if $f_{X,Y}(x,y)=f_X(x)f_Y(y)$
+If two random variables are independent, $\cor(X,Y)=0$. The reverse is not true.
+
+A pair of random variable is \emph{identically} distributed if and only if they have the same marginal pdf/pmf.
+
+\subsection{Measurements of Random Variable}
+\subsubsection{Expectation}
+\begin{definition}[Expectation]
+\begin{equation}
+	E[X] = \begin{cases}
+		\sum_x xf(x) \text{ discrete}\\
+		\int_{-\infty}^{\infty} xf(x) dx \text{ continuous}
+	\end{cases}
+\end{equation}
+\end{definition}
+
+In general, the expectation of a random variable after transformation $g$ 
+\begin{theorem}[Linearity of Expectation]
+	\[E[aX+bY] = aE[X]+bE[Y]\]
+	This is true regardless of whether $X$ and $Y$ are independent.
+
+If $X$ and $Y$ are independent, then $\bb{E}[XY]=E[X]E[Y]$. The reverse is not true.
+\end{theorem}
+
+
+\subsubsection{Variance and STD}
+\begin{definition}[Variance]
+	\begin{equation}
+		\var{X} = E[[X-E[X]]^2] = E[X^2]-E[X]^2
+	\end{equation}
+\end{definition}
+
+\begin{theorem}[Variance Computation]
+	\ 
+	\begin{enumerate}
+\item	$\var{aX+b}=a^2+\var{X}+b$
+\item If $X, Y$ are independent, then $\var{X+Y}=\var{X}+\var{Y}$
+\end{enumerate}
+\end{theorem}
+
+\begin{definition}[Standard Deviation]
+$\std{X} = \sqrt{\var{X}}$
+\end{definition}
+
+\subsection{Covariance and Correlation}
+
+\subsection{Central Limit Theorem}
+
+\theorem[Central Limit Theorem]{
+	Let $X_1, \cdots X_n$ be iid random variable of any distribution with expectation $\mu$ and variance $\sigma^2$. Then the distribution of $\bar{X}_n$ approaches a normal distribution with mean $\mu$ and variance $\frac{\sigma^2}{n}$ as $n\to \infty$.	
+	This is equivalent to 
+	\begin{equation}
+	\begin{split}
+		P(\sum X_i \leq x) &\approx \Phi(\frac{x-n\mu}{\sigma\sqrt{n}}) \text{ as } n\to \infty \\
+		\text{ or } \sum X_i &\sim N(n\mu, n\sigma^2) \text{ equivalently } \bar{X}_n = \frac{1}{n}\sum X_i \sim N(\mu, \frac{\sigma^2}{n})
+	\end{split}
+	\end{equation}
+
+	$\Phi$ is standard normal cdf.
+}
+
+\subsection{Normal Distribution}
+\begin{definition}[Normal Distribution]
+	A random variable $X$ is said to be normally distributed with mean $\mu$ and variance $\sigma^2$ if its pdf is 
+	\begin{equation}
+		f_X(x) = \frac{1}{\sigma\sqrt{2\pi}}e^{-\frac{1}{2}(\frac{x-\mu}{\sigma})^2}
+	\end{equation}
+	We write $X\sim N(\mu, \sigma^2)$
+
+	Its cdf is 
+	\begin{equation}
+		\Phi(x) = \frac{1}{\sigma\sqrt{2\pi}}\int^x_{-\infty}e^{-\frac{1}{2}(\frac{t-\mu}{\sigma})^2}dt 
+	\end{equation}
+\end{definition}
+
+Important fact about normal distribution:
+
+\begin{enumerate}
+	\item If $X\sim N(\mu, \sigma^2)$, then $	\frac{X-\mu}{\sigma^2}\sim N(0,1)$
+\end{enumerate}
+
+

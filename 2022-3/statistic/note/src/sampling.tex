@@ -1,0 +1,72 @@
+\section{Population and Sample}
+\definition[Population, Sample, Censue]{
+	\ 
+	\begin{enumerate}
+		\item \textbf{Population} is the set of all objects of interest in a statistical study.
+		\item \textbf{Sample} is a subset of the population.
+		\item \textbf{Census} is a sample that consists of the entire population (exactly once).
+	\end{enumerate}
+}
+
+\definition[Representative and Repeated Sample]{
+	A sample from population is said to be representative if all member of the population hvae an equal chance of being selected.
+
+	Repeated sample is the process of taking multiple samples from the same population.
+}
+
+\section{Estimator and Estimate}
+\definition[Estimator and Estimate]{
+	The Estimator is a random variable; The estimate is its realisation. 
+	The estimator is denoted with $T$, and the estimate is denoted with $t$. 
+	The intrinsic population parameter is denoted with $\theta$, the estimate of the parameter is denoted as $\hat{\theta}$
+	\begin{enumerate}
+		\item \textbf{Estimator} is some function of the sample random variable, $T=g(X_1, X_2, \cdots, X_n)$ used to estimate a population parameter $\theta$. The Estimator, being a transformation fo the sample random variable, is also a random variable.
+		\item \textbf{Estimate} is the value of the estimator for a particular sample, $t=g(x_1, \cdots ,x_n)$. It is a realisation of the random variable $T$.
+	\end{enumerate}
+}
+
+\definition[Unbiased Estimator]{
+	An estimator $T$ is said to be unbiased if $\bb{E}[T]=\theta$. Otherwise it is biased. 
+
+	An estimator is asymptotically unbiased if $\bb{E}[T]\rightarrow \theta$ as $n\rightarrow \infty$.
+}
+
+\definition[Consistent Estimator]{
+	An estimator $T$ is said to be consistent if 
+\begin{enumerate}
+	\item $T\rightarrow \theta$ as $n\rightarrow \infty$. (It is asymptotically unbiased)
+	\item $\var{T}\rightarrow 0$ as $n\rightarrow \infty$.
+\end{enumerate}
+}
+
+\definition[Sample Mean and Variance Estimator]{
+	The sample mean and variance estimators are functions of sample random variables used to estimate the mean of variance of the population.
+ 	\begin{enumerate}
+		\item The sample mean estimator is $\bar{X}=\frac{1}{n}\sum_{i=1}^n X_i$.
+		\item The sample variance estimator is $S^2=\frac{1}{n-1}\sum_{i=1}^n (X_i-\bar{X})^2$.
+	\end{enumerate}
+}
+
+\theorem{
+	The sample mean estimator is unbiased and consistent. $\var{\bar{E}}=\frac{\sigma^2}{n}$. The sample variance estimator is unbiased but not consistent.
+}
+
+\definition[Standard Error of The Estimator]{
+	The standard error of an estimator is the square root of its variance.
+$\ste{\bar{X}}=\frac{\sigma}{\sqrt{n}}$
+}
+
+\section{Constucting Estimators}
+\subsection{Method of Moments}
+\definition{
+Consider some (population) random variable $X$ which has the probability distribution function $f_X(x|\theta)$ depending on some population parameter $\theta$. For $k = 1,2,3, \cdots, n$ the $k^{th}$ \textit{population moment} is defined as the expectation:
+\begin{equation}
+	\mu_k = \bb{E}[X^k] = \int x^k f_X(x|\theta) dx
+\end{equation}
+
+Let random variables $X_1, X_2, \cdots, X_n$ be a random sample from the population. The $k^{th}$ \textit{sample moment} is defined as:
+\begin{equation}
+	\hat{\mu}_k = \frac{1}{n}\sum_{i=1}^n X_i^k 
+\end{equation}
+}
+

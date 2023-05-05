@@ -1,80 +1,28 @@
-\documentclass[12pt, a4paper]{article}
-% TODO need to add bm in snippets
-\usepackage{blindtext, titlesec, amsthm, thmtools, amsmath, amsfonts, scalerel, amssymb, graphicx, titlesec, xcolor, multicol, hyperref, bm}
-\usepackage[utf8]{inputenc}
-\hypersetup{colorlinks,linkcolor={red!40!black},citecolor={blue!50!black},urlcolor={blue!80!black}, linktocpage}
-\newtheorem{theorem}{Theorema}[subsection]
-\newtheorem{lemma}[theorem]{Lemma}
-\newtheorem{corollary}[theorem]{Corollarium}
-\newtheorem{hypothesis}{Coniectura}
-\theoremstyle{definition}
-\newtheorem{definition}{Definitio}[section]
-\theoremstyle{remark}
-\newtheorem{remark}{Observatio}[section]
-\newtheorem{example}{Exampli Gratia}[section]
-\renewcommand\qedsymbol{Q.E.D.}
-\title{Statistics}
+\documentclass[12pt, a4paper]{report}
+
+\input{preamble}
+
+% \newcommand{\var}[1]{\text{Var}(#1)}
+% \newcommand{\ud}[1]{\underline{#1}}
+
+\title{
+	STATISTICS\\
+	\large{}
+}
 \author{Harry Han}
 \date{\today}
-\newcommand{\bb}[1]{\mathbb{#1}}
-\newcommand{\var}[1]{\text{Var}(#1)}
-\newcommand{\ud}[1]{\underline{#1}}
+
 \begin{document}
 \maketitle
-%\tableofcontents
+\tableofcontents
 
-\section{Linear Regression}
+\chapter{Preliminaries}
+\input{./src/preliminaries}
 
-\subsection{Least Square Estimate}
+\chapter{Sampling}
+\input{./src/sampling}
 
-\subsubsection{Single Variabel Linear Regression}
-\begin{theorem}[Least Square Estimators]
-	Assuming iid random variables $x_i$ with the regression model
-	\begin{equation}
-		Y_i=\alpha + \beta	x_i + \epsilon_i
-	\end{equation}
-	With the assumption that each $\epsilon_i$ is normally distributed, $\bb{E}[\epsilon_i]=0$ (Linearity of Expectation), and $\var{ \epsilon_i }=\sigma^2$ (homoscedasticity) 
-
-	The least square estimator are 
-	\begin{equation}
-		\hat{\alpha} = \bar{Y}-\hat{\beta}\bar{x}; \hat{\beta} = \frac{\sum^{n}_{i=1}(x_i-\bar{x})(Y_i-\bar{Y}) }{\sum^{n}_{i=1}(x_i-\bar{x}^2) }
-	\end{equation}
-	Both estimator are consistent and unbiased. Moreover:
-	\begin{equation}
-		\var{\hat{\beta}} = \frac{\sigma^2}{(n-1)s^2_x}; \var{\hat{ \alpha }}=\sigma^2\left(\frac{1}{n}+\frac{\bar{x}^2}{(n-1)s^2_x}\right)
-	\end{equation}
-	Where $\sigma^2=\var{\epsilon_i}=\var{Y_i}$ and $s_x^2= \frac{\sum (x_i-x)^2 }{n-1}$ is the sample variance of the explanatory varaible.
-\end{theorem}
-
-\begin{remark}[Assumption of Linear Regression model]
-	There are four assumption for the linear regression model:
-	\begin{enumerate}
-		\item Linearity of Expectation: $\bb{E}[Y_i]=\alpha + \beta x_i$
-		\item Homoscedasticity (same variance): $\var{ \epsilon_i }=\sigma^2$
-		\item Independence: $\epsilon_i$ and $x_i$ are independent
-		\item Normality: $\epsilon_i$ is normally distributed
-	\end{enumerate}
-\end{remark}
-
-\begin{definition}[Residue Sum of Square]
-	The residue sun of square, SSE, is defined as:
-	\begin{equation}
-		SSE=\sum^{n}_{i=1}(y_i-\hat{y}_i)^2
-	\end{equation}
-	Its unbiased estimator is $S^2_E = \frac{1}{2}\sum^{n}_{i=1}(y_i-\hat{y}_i)^2$
-\end{definition}
-
-The regression equation for the response given the explanatory varaiable $x_0$ is
-\begin{equation}
-	\bb{E}[Y_0]=\alpha + \beta x_0
-\end{equation}
-
-\subsection{ANOVA \emph{F}-Test}
-
-\begin{definition}[ANONA \emph{F}-Test]
-	Consider the linear regression model $\ud{Y} = \bm{A} \ud{\beta}+\ud{\epsilon}$ where $\epsilon $
-
-\end{definition}
+\chapter{Linear Regression}
+\input{./src/linearRegression}
 
 \end{document}
-
