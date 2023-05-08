@@ -264,9 +264,9 @@ Consider the model $Y_i \sim N(\beta_1x_{i,1}+\cdots+\beta_{p_0}x_{i, p_0}+\cdot
 	The critical value can be computed by R as \texttt{qf(1-$\alpha$, p1-p0, n-p1)}.
 \end{definition}
 
-\paragraph{One-Way ANOVA Table (k categorical variable and n samples)}
 \begin{table}[ht]
 	\centering
+	\caption{ONE-WAY ANOVA Table (k treatments and total n samples)}
 	\begin{tabular}{|c|c|c|c|c|}
 			 & DF & RSS & Mean Sum Sq & F-Value \\
 			\hline
@@ -276,9 +276,9 @@ Consider the model $Y_i \sim N(\beta_1x_{i,1}+\cdots+\beta_{p_0}x_{i, p_0}+\cdot
 	\end{tabular}
 \end{table}
 
-\paragraph{Two-Way ANOVA Table (b blocks, k treatments and total n samples)}
 \begin{table}[ht]
 	\centering
+	\caption{TWO-WAY ANOVA Table (b blocks, k treatments and total n samples)}
 	\begin{tabular}{|c|c|c|c|c|}
 			 & DF & RSS & Mean Sum Sq & F-Value \\
 			\hline
@@ -289,11 +289,10 @@ Consider the model $Y_i \sim N(\beta_1x_{i,1}+\cdots+\beta_{p_0}x_{i, p_0}+\cdot
 	\end{tabular}
 \end{table}
 
-\newpage
 \section{Common Distribution}
-\subsection{Discrete Random Variable}
 \begin{table}[h]
 	\centering
+	\caption{Common Distribution For Discrete Random Variable}
 	\begin{tabular}{c|c|c|c|c}
 		Distribution &  parameter & PMF & $\bb{E}[X]$ & $\var{X}$\\
 		\hline
