@@ -3,10 +3,10 @@
 \subsection{Single Variabel Linear Regression}
 \begin{theorem}[Least Square Estimators]
 	Assuming iid random variables $x_i$ with the regression model
+	and assuming that each $\epsilon_i$ is normally distributed, $\bb{E}[\epsilon_i]=0$ (Linearity of Expectation), and $\var{ \epsilon_i }=\sigma^2$ (homoscedasticity) 
 	\begin{equation}
 		Y_i=\alpha + \beta	x_i + \epsilon_i
 	\end{equation}
-	With the assumption that each $\epsilon_i$ is normally distributed, $\bb{E}[\epsilon_i]=0$ (Linearity of Expectation), and $\var{ \epsilon_i }=\sigma^2$ (homoscedasticity) 
 
 	The least square estimator are 
 	\begin{equation}
@@ -22,30 +22,55 @@
 \begin{remark}[Assumption of Linear Regression model]
 	There are four assumption for the linear regression model:
 	\begin{enumerate}
-		\item Linearity of Expectation: $\bb{E}[Y_i]=\alpha + \beta x_i$
-		\item Homoscedasticity (same variance): $\var{ \epsilon_i }=\sigma^2$
+		\item Linearity of Expectation: $\bb{E}[Y_i]=\alpha + \beta x_i$ (residue vs fitted)
+		\item Homoscedasticity (same variance): $\var{ \epsilon_i }=\sigma^2$. (Scale location plot [Transformation of standardized residue vs fitted value] $\sqrt{e_i^*}$ vs $\hat{y}$)
 		\item Independence: $\epsilon_i$ and $x_i$ are independent
-		\item Normality: $\epsilon_i$ is normally distributed
+		\item Normality: $\epsilon_i$ is normally distributed. 
 	\end{enumerate}
 \end{remark}
+
+
 \begin{definition}[Residue Sum of Square]
 	The residue sun of square, SSE, is defined as:
 	\begin{equation}
 		SSE=\sum^{n}_{i=1}(y_i-\hat{y}_i)^2
 	\end{equation}
-	Its unbiased estimator is $S^2_E = \frac{1}{2}\sum^{n}_{i=1}(y_i-\hat{y}_i)^2$
+	Its unbiased estimator is $s^2_e = \frac{SSE}{n-2}	=\frac{1}{n-2}\sum^{n}_{i=1}(y_i-\hat{y}_i)^2$. (It is unbiased)
+	The residue standard deviation is $s_e=\sqrt{s^2_e}$.
+	The standard error of least-square estimate is 
+	\begin{equation}
+		\hat{S.E.}(\hat{\alpha})=s_e\sqrt{\frac{1}{n}+\frac{\bar{x}^2}{(n-1)s^2_x}}; \text{and } \hat{S.E.}(\hat{\beta})=\frac{s_e}{\sqrt{(n-1)s^2_x}}
+	\end{equation}
 \end{definition}
 
-The regression equation for the response given the explanatory varaiable $x_0$ is
+\paragraph{Distribution of Least Square Estimators}
+
+Distribution of $\hat{\alpha}$ and $\hat{beta}$ given $\sigma$ is:
 \begin{equation}
-	\bb{E}[Y_0]=\alpha + \beta x_0
+	\hat{\alpha} \sim N(\alpha, \sigma^2\left(\frac{1}{n}+\frac{\bar{x}^2}{(n-1)s^2_x}\right) \text{ and }
+	\hat{\beta} \sim N(\alpha, \frac{\sigma^2}{(n-1)s^2_x})
 \end{equation}
 
-\section{ANOVA \emph{F}-Test}
+Distribution of residue variance estimator is:
+\begin{equation}
+	\frac{(n-2)S^2_E}{\sigma^2} \sim \chi^2_{n-2}
+\end{equation}
 
-\begin{definition}[ANONA \emph{F}-Test]
-	Consider the linear regression model $\ud{Y} = \bm{A} \ud{\beta}+\ud{\epsilon}$ where $\epsilon $
+Both $\hat{\alpha}$ and $\hat{\beta}$ are independent of $S^2_E$, thus their marginal distribution is:
+\begin{equation}
+	\frac{\hat{\alpha}-\alpha}{\hat{S.E.}(\hat{\alpha})} \sim t_{n-2} \text{ and }
+	\frac{\hat{\beta}-\beta}{\hat{S.E.}(\hat{\beta})} \sim t_{n-2}
+\end{equation}
 
-\end{definition}
+\subsection{Confidence and Prediction Interval}
+The confidence interval is the estimate of the line of the best fit $\alpha + \beta x$ at a given $x_0$.
+\begin{equation}
+	\hat{\alpha} + \hat{\beta}x_0 \pm t_{n-2, \alpha/2} \cdot \sqrt{s^2_e\left(\frac{1}{n}+\frac{(x_0-\bar{x})^2}{(n-1)s^2_x}\right)}
+\end{equation}
+Prediction interval for $Y_0$ is a confidence interval for a future observation, and it is wider than the confidence interval.
+\begin{equation}
+	\hat{\alpha} + \hat{\beta}x_0 \pm t_{n-2, \alpha/2} \cdot \sqrt{s^2_e\left(1+\frac{1}{n}+\frac{(x_0-\bar{x})^2}{(n-1)s^2_x}\right)}
+\end{equation}
+
 
 

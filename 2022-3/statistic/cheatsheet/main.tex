@@ -1,0 +1,310 @@
+\documentclass[10pt]{article}
+
+\input{macros}
+\input{preamble}
+
+\title{CheatSheet}
+\author{Harry Han}
+\date{\today}
+\begin{document}
+\section{Preliminaries}
+\theorem[Central Limit Theorem]{
+	Let $X_1, \cdots X_n$ be iid random variable of any distribution with expectation $\mu$ and variance $\sigma^2$. Then the distribution of $\bar{X}_n$ approaches a normal distribution with mean $\mu$ and variance $\frac{\sigma^2}{n}$ as $n\to \infty$.	
+	This is equivalent to 
+	\begin{equation}
+	\begin{split}
+		P(\sum X_i \leq x) &\approx \Phi(\frac{x-n\mu}{\sigma\sqrt{n}}) \text{ as } n\to \infty \\
+		\text{ or } \sum X_i &\sim N(n\mu, n\sigma^2) \text{ equivalently } \bar{X}_n = \frac{1}{n}\sum X_i \sim N(\mu, \frac{\sigma^2}{n})
+	\end{split}
+	\end{equation}
+
+	$\Phi$ is standard normal cdf.
+}
+
+\begin{definition}[Normal Distribution]
+	A random variable $X$ is said to be normally distributed with mean $\mu$ and variance $\sigma^2$ if its pdf is 
+	\begin{equation}
+		f_X(x) = \frac{1}{\sigma\sqrt{2\pi}}e^{-\frac{1}{2}(\frac{x-\mu}{\sigma})^2}
+	\end{equation}
+	We write $X\sim N(\mu, \sigma^2)$
+
+	Its cdf is 
+	\begin{equation}
+		\Phi(x) = \frac{1}{\sigma\sqrt{2\pi}}\int^x_{-\infty}e^{-\frac{1}{2}(\frac{t-\mu}{\sigma})^2}dt 
+	\end{equation}
+\end{definition}
+\section{Sampling}
+\definition[Estimator and Estimate]{
+	The Estimator is a random variable; The estimate is its realisation. 
+	The estimator is denoted with $T$, and the estimate is denoted with $t$. 
+	The intrinsic population parameter is denoted with $\theta$, the estimate of the parameter is denoted as $\hat{\theta}$
+	\begin{enumerate}
+		\item \textbf{Estimator} is some function of the sample random variable, $T=g(X_1, X_2, \cdots, X_n)$ used to estimate a population parameter $\theta$. The Estimator, being a transformation fo the sample random variable, is also a random variable.
+		\item \textbf{Estimate} is the value of the estimator for a particular sample, $t=g(x_1, \cdots ,x_n)$. It is a realisation of the random variable $T$.
+	\end{enumerate}
+}
+
+\definition[Unbiased Estimator]{
+	An estimator $T$ is said to be unbiased if $\bb{E}[T]=\theta$. Otherwise it is biased. 
+
+	An estimator is asymptotically unbiased if $\bb{E}[T]\rightarrow \theta$ as $n\rightarrow \infty$.
+}
+
+\definition[Consistent Estimator]{
+	An estimator $T$ is said to be consistent if 
+\begin{enumerate}
+	\item $T\rightarrow \theta$ as $n\rightarrow \infty$. (It is asymptotically unbiased)
+	\item $\var{T}\rightarrow 0$ as $n\rightarrow \infty$.
+\end{enumerate}
+}
+
+\definition[Sample Mean and Variance Estimator]{
+	The sample mean and variance estimators are functions of sample random variables used to estimate the mean of variance of the population.
+ 	\begin{enumerate}
+		\item The sample mean estimator is $\bar{X}=\frac{1}{n}\sum_{i=1}^n X_i$.
+		\item The sample variance estimator is $S^2=\frac{1}{n-1}\sum_{i=1}^n (X_i-\bar{X})^2$.
+	\end{enumerate}
+}
+
+\theorem{
+	The sample mean estimator is unbiased and consistent. $\var{\bar{E}}=\frac{\sigma^2}{n}$. The sample variance estimator is unbiased but not consistent.
+}
+
+\definition[Standard Error of The Estimator]{
+	The standard error of an estimator is the square root of its variance.
+$\ste{\bar{X}}=\frac{\sigma}{\sqrt{n}}$
+}
+
+\subsection{Method of Moments}
+\definition{
+Consider some (population) random variable $X$ which has the probability distribution function $f_X(x|\theta)$ depending on some population parameter $\theta$. For $k = 1,2,3, \cdots, n$ the $k^{th}$ \textit{population moment} is defined as the expectation:
+\begin{equation}
+ \bb{E}[X^k] = \int x^k f_X(x|\theta) dx
+\end{equation}
+
+Let random variables $X_1, X_2, \cdots, X_n$ be a random sample from the population. The $k^{th}$ \textit{sample moment} is defined as:
+\begin{equation}
+	\bar{X^k} = \frac{1}{n}\sum_{i=1}^n X_i^k 
+\end{equation}
+
+}
+
+Let $n$ be population, $s^2$ be sample variance and $\bar{x}$ be sample mean, i.e., first sample moment. 
+Then the observed second sample moment is $\frac{n-1}{n}s^2+\bar{x}^2$
+
+The method of moment estimator may be biased or unbiased.
+
+\paragraph{Distribution of Sample Mean and Variance}
+For small population with unknown variance, we can use the chi-square distribution and t-distribution. 
+
+The confidence interval for $\mu$ is given by
+
+\begin{equation}
+	(\bar{x} - t_{n-1, \alpha/2}\frac{s}{\sqrt{n}}, \bar{x} + t_{n-1, \alpha/2}\frac{s}{\sqrt{n}})
+\end{equation}
+
+where $t_{n-1, \alpha/2}$ is the $100(1-\alpha/2)$ quantile of the t-distribution with $n-1$ degrees of freedom, which can be found by the R command \texttt{qt(1-alpha/2, df = n-1)}.
+
+Known $\frac{(n-1)S^2}{\sigma^2}\sim \chi^2_{n-1}$,
+The confidence interval for $\sigma^2$ is given by
+
+\begin{equation}
+	(\frac{(n-1)s^2}{\chi^2_{n-1, \alpha/2}}, \frac{(n-1)s^2}{\chi^2_{n-1, 1-\alpha/2}})
+\end{equation}
+
+where $\chi^2_{n-1, \alpha/2}$ and $\chi^2_{n-1, 1-\alpha/2}$ are the $100\alpha/2$ and $100(1-\alpha/2)$ quantiles of the chi-square distribution with $n-1$ degrees of freedom, which can be found by the R command \texttt{qchisq(alpha/2, df = n-1)} and \texttt{qchisq(1-alpha/2, df = n-1)}.
+
+Thus 
+\begin{equation}
+T=\frac{\bar{X}-\mu}{S/\sqrt{n}}\sim t_{n-1}
+\end{equation}
+$\bar{x}, s^2$ are the sample mean and sample variance estimate.
+
+\section{Hypothesis Testing}
+\paragraph{Five Step of hypothesis testing}
+\begin{enumerate}
+	\item State the null and alternative hypothesis.
+	\item Select appropriate test statistics ad determine the distribution under null hypothesis
+	\item Compute the test statistics
+	\item Quantifying the Evidence, compute the critical region. \small \textit{If the test statistics falls in the critical region, we reject the null hypothesis. If p value smaller than $\alpha$, reject null}
+	\item Make a decision
+\end{enumerate}
+
+\subparagraph{Notation}
+$\mu_0$ is given mean to be tested. $\sigma^2$ is given (known) variance. $\bar{X}$ is sample mean, (estimate by estimator). $n$ is sample size. $s^2$ is estimated sample variance. $\alpha$ is significance level. $C$ is critical region. 
+\subparagraph{Z-test}
+\emph{Use When Population Variance is Known}
+$z_0$ is critical value. $z$ is test statistics. 
+\begin{equation}H_0: \mu = \mu_0; \hspace{1cm} H_1: \mu\neq \mu_0\end{equation}	
+\[
+Z = \frac{\bar{X}-\mu_0}{\sqrt{\sigma^2/n}} \sim N(0,1),
+C=\{z:|z|\geq z_0\},z_0 = \texttt{qnorm(1-\textalpha/2, mean=0, sd=1)}
+\]
+
+\subparagraph{One Sample T-test}
+\emph{Use When Population Variance is Unknown}
+
+Assumption: $X_1, \cdots, X_n$ are iid distributed $N(\mu, \sigma^2)$, where $\sigma^2$ is unknown.
+\[
+	H_0: \mu = \mu_0; \hspace{1cm} H_1: \mu\neq \mu_0
+\]
+$$T = \frac{\bar{X}-\mu_0}{\sqrt{S^2/n}} \sim t_{n-1},
+C=\{t:|t|\geq t_0\},t_0 = \texttt{qt(1-\textalpha/2, df=n-1)}$$
+
+\subparagraph{Paired T-Test}
+Use only if the measurements of two samples are paired and related.
+
+\subparagraph{Two Sample T-test}
+\emph{Use When Population Variance is Unknown and Population size are different}
+
+Assumption: $X_1, \cdots, X_n$ and $Y_1, \cdots, Y_m$ are iid distributed $N(\mu_1, \sigma^2)$ and $N(\mu_2, \sigma^2)$, where $\sigma^2$ is unknown. ($X_i, Y_i$ have the \emph{same variance})
+\[
+	H_0: \mu_1 = \mu_2; \hspace{1cm} H_1: \mu_1\neq \mu_2
+\]
+\[ 
+	T = \frac{\bar{X}-\bar{Y}}{\sqrt{S^2_p(1/m+1/n)}} \sim t_{m+n-2}
+\]
+$S^2_p$ is the sample pooled variance estimator ($S^2_X$ and $S^2_Y$ are sample variance of $X$ and $Y$):
+\[
+	S^2_p = \frac{(n-1)S^2_X+(m-1)S^2_Y}{n+m-2}
+\]
+
+\subparagraph{F-test}
+To test if two population have the same variance.
+\[
+	F = \frac{S^2_X}{S^2_Y} \sim F_{n_1-1, n_2-1}
+\]
+$S^2_X$ and $S^2_Y$ are sample variance of $X$ and $Y$.
+At $\alpha=5\%$ confidence level, the critical region is $C=\{F: F\leq l \cup \geq u\}$, $l, u$ can be calculated by \texttt{qf(c(0.025, 0.975), df1=n1-1, df2=n2-1)}. 
+
+\section{Linear Regression}
+	Assuming iid random variables $x_i$ with the regression model 
+	, and assuming that each $\epsilon_i$ is normally distributed, $\bb{E}[\epsilon_i]=0$ (Linearity of Expectation), and $\var{ \epsilon_i }=\sigma^2$ (homoscedasticity) 
+	\begin{equation}
+		Y_i=\alpha + \beta	x_i + \epsilon_i
+	\end{equation}
+
+	The least square estimator are 
+	\begin{equation}
+		\hat{\alpha} = \bar{Y}-\hat{\beta}\bar{x}; \hat{\beta} = \frac{\sum^{n}_{i=1}(x_i-\bar{x})(Y_i-\bar{Y}) }{\sum^{n}_{i=1}(x_i-\bar{x})^2 }
+	\end{equation}
+	Both estimator are consistent and unbiased. Moreover:
+	\begin{equation}
+		\var{\hat{\beta}} = \frac{\sigma^2}{(n-1)s^2_x}; \var{\hat{ \alpha }}=\sigma^2\left(\frac{1}{n}+\frac{\bar{x}^2}{(n-1)s^2_x}\right)
+	\end{equation}
+	Where $\sigma^2=\var{\epsilon_i}=\var{Y_i}$ and $s_x^2= \frac{\sum (x_i-x)^2 }{n-1}$ is the sample variance of the explanatory varaible.
+
+	\paragraph{Assumption of Linear Regression}
+	\begin{enumerate}
+		\item Linearity of Expectation: $\bb{E}[Y_i]=\alpha + \beta x_i$ (residue vs fitted)
+		\item Homoscedasticity (same variance): $\var{ \epsilon_i }=\sigma^2$. (Scale location plot [Transformation of standardized residue vs fitted value] $\sqrt{e_i^*}$ vs $\hat{y}$)
+		\item Independence: $\epsilon_i$ and $x_i$ are independent
+		\item Normality: $\epsilon_i$ is normally distributed. 
+	\end{enumerate}
+
+	\begin{definition}[Residue Sum of Square]
+	The residue sun of square, SSE, is defined as:
+	\begin{equation}
+		SSE=\sum^{n}_{i=1}(y_i-\hat{y}_i)^2
+	\end{equation}
+	Its unbiased estimator is $s^2_e = \frac{SSE}{n-2}	=\frac{1}{n-2}\sum^{n}_{i=1}(y_i-\hat{y}_i)^2$. (It is unbiased)
+	The residue standard deviation is $s_e=\sqrt{s^2_e}$.
+	The standard error of least-square estimate is 
+	\begin{equation}
+		\hat{S.E.}(\hat{\alpha})=s_e\sqrt{\frac{1}{n}+\frac{\bar{x}^2}{(n-1)s^2_x}}; \text{and } \hat{S.E.}(\hat{\beta})=\frac{s_e}{\sqrt{(n-1)s^2_x}}
+	\end{equation}
+\end{definition}
+
+\paragraph{Distribution of Least Square Estimators}
+
+Distribution of $\hat{\alpha}$ and $\hat{beta}$ given $\sigma$ is:
+\begin{equation}
+	\hat{\alpha} \sim N(\alpha, \sigma^2\left(\frac{1}{n}+\frac{\bar{x}^2}{(n-1)s^2_x}\right) \text{ and }
+	\hat{\beta} \sim N(\alpha, \frac{\sigma^2}{(n-1)s^2_x})
+\end{equation}
+
+Distribution of residue variance estimator is:
+\begin{equation}
+	\frac{(n-2)S^2_E}{\sigma^2} \sim \chi^2_{n-2}
+\end{equation}
+
+Both $\hat{\alpha}$ and $\hat{\beta}$ are independent of $S^2_E$, thus their marginal distribution is:
+\begin{equation}
+	\frac{\hat{\alpha}-\alpha}{\hat{S.E.}(\hat{\alpha})} \sim t_{n-2} \text{ and }
+	\frac{\hat{\beta}-\beta}{\hat{S.E.}(\hat{\beta})} \sim t_{n-2}
+\end{equation}
+
+\paragraph{Confidence and Prediction Interval}
+The confidence interval is the estimate of the line of the best fit $\alpha + \beta x$ at a given $x_0$.
+\begin{equation}
+	\hat{\alpha} + \hat{\beta}x_0 \pm t_{n-2, \alpha/2} \cdot \sqrt{s^2_e\left(\frac{1}{n}+\frac{(x_0-\bar{x})^2}{(n-1)s^2_x}\right)}
+\end{equation}
+Prediction interval for $Y_0$ is a confidence interval for a future observation, and it is wider than the confidence interval.
+\begin{equation}
+	\hat{\alpha} + \hat{\beta}x_0 \pm t_{n-2, \alpha/2} \cdot \sqrt{s^2_e\left(1+\frac{1}{n}+\frac{(x_0-\bar{x})^2}{(n-1)s^2_x}\right)}
+\end{equation}
+
+\section{ANOVA}
+\paragraph{Multiple Linear Regression}
+Consider the multiple linear regression model $\ud{Y}=\bm{X}\ud{\beta}+\epsilon$, where $\ud{Y}$ is the response vector, $\bm{X}$ is the $n\times p$ design matrix ($p$=\#of explanatory variable), $\ud{\beta}$ is the parameter vector, and $\epsilon$ is the error vector.
+The least square estimator is $\hat{\beta}=(\bm{X}^T\bm{X})^{-1}\bm{X}^T\ud{y}$.
+The distribution of $\hat{\beta_j}$ is: $\frac{\hat{\beta_j}-\beta_j}{\ste{\hat{\beta}_j}} \sim t_{n-p}$. 
+
+\subsection{ANOVA \textit{F}-Test}
+\paragraph{Residue Sum of Square, RSS}
+Consider the model $Y_i \sim N(\beta_1x_{i,1}+\cdots+\beta_{p_0}x_{i, p_0}+\cdots+ \beta_{p_1}x_{i, p_1})$
+\[RSS_1=\sum (Y_i-\hat{y})^2=(n-p_1)S^2_1\], where $S^2_1$ is the variance residue estimator.
+\begin{definition}[ANONA \textit{F}-Test]
+	Consider the linear regression model $\ud{Y} = \bm{A} \ud{\beta}+\ud{\epsilon}$ where $\epsilon \sim N(0, \sigma) $. 
+	We want to access whether some explanatory variable have negligible effect on the response variable.
+	\[H_0: \beta_{p_0+1} + \cdots + \beta_{p_1}=0; \text{vs } \exists j \in \{p_{0}+1, \cdots p_1\}, \beta j \neq 0 \]
+	The F-test statistic under $H_0$ is:
+	\[F=\frac{(RSS_0-RSS_1)/(p_1-p_0)}{RSS_1/(n-p_1)} \sim F_{p_1-p_0, n-p_1}\]
+	At $\alpha$ significance level, the critical region is $C=[F_{p_1-p_0, n-p_1; \alpha}, \infty]$
+	The critical value can be computed by R as \texttt{qf(1-$\alpha$, p1-p0, n-p1)}.
+\end{definition}
+
+\paragraph{One-Way ANOVA Table (k categorical variable and n samples)}
+\begin{table}[ht]
+	\centering
+	\begin{tabular}{|c|c|c|c|c|}
+			 & DF & RSS & Mean Sum Sq & F-Value \\
+			\hline
+			Categorical Variable & $k-1$ & $RSS_B=RSS_Y-RSS_E$ & $S^2_B=\frac{RSS_B}{k-1}$ & $F=S^2_B/S^2_E$\\
+			Residue & $n-k$ & $RSS_E$ & $S_E^2=\frac{RSS_E}{n-k}$ & \\
+			Total & $n-1$ & $RSS_Y$ & $S_Y^2=\frac{RSS_Y}{n-1}$& \\
+	\end{tabular}
+\end{table}
+
+\paragraph{Two-Way ANOVA Table (b blocks, k treatments and total n samples)}
+\begin{table}[ht]
+	\centering
+	\begin{tabular}{|c|c|c|c|c|}
+			 & DF & RSS & Mean Sum Sq & F-Value \\
+			\hline
+			Treatments & $k-1$ & $RSS_T$& $S^2_T=\frac{RSS_T}{k-1}$ & $F=S^2_T/S^2_E$\\
+			Blocks & $b-1$ & $RSS_B$ & $S_B^2=\frac{RSS_B}{b-1}$ & $F=S^2_B/S^2_E$\\
+			Residue & $n-k-b+1$ & $RSS_E$ & $S_E^2=\frac{RSS_E}{n-k-b+1}$ & \\
+			Total & $n-1$ & $RSS_Y$ & $S_Y^2=\frac{RSS_Y}{n-1}$& \\
+	\end{tabular}
+\end{table}
+
+\newpage
+\section{Common Distribution}
+\subsection{Discrete Random Variable}
+\begin{table}[h]
+	\centering
+	\begin{tabular}{c|c|c|c|c}
+		Distribution &  parameter & PMF & $\bb{E}[X]$ & $\var{X}$\\
+		\hline
+		Bernoulli & Probability $p$ & $p^x(1-p)^{1-x}$ & $p$ & $p(1-p)$ \\
+		\hline
+		Binomial & sample size, $n$, probability $p$ & $\binom{n}{x}p^x(1-p)^{n-x}$ & $np$ & $np(p-1)$ \\
+		\hline
+		Poisson & Rate, $\lambda>0$ & $\frac{\lambda^x}{x!}e^{-\lambda}$ & $\lambda$  & $\lambda$\\
+		\hline
+		Geometric & $p$ & $(1-p)^{x-1}p$ & $\frac{1}{p}$ & $\frac{1-p}{p}$ \\
+	\end{tabular}
+\end{table}
+
+\end{document}

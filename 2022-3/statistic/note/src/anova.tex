@@ -1,0 +1,45 @@
+\section{Extended Least Square Estimate}
+
+Consider the multiple linear regression model $\ud{Y}=\bm{X}\ud{\beta}+\epsilon$, where $\ud{Y}$ is the response vector, $\bm{X}$ is the $n\times p$ design matrix ($p$=\#of explanatory variable), $\ud{\beta}$ is the parameter vector, and $\epsilon$ is the error vector.
+The least square estimator is $\hat{\beta}=(\bm{X}^T\bm{X})^{-1}\bm{X}^T\ud{y}$.
+The distribution of $\hat{\beta_j}$ is: $\frac{\hat{\beta_j}-\beta_j}{\ste{\hat{\beta}_j}} \sim t_{n-p}$. 
+
+\section{ANOVA \textit{F}-Test}
+\paragraph{Residue Sum of Square, RSS}
+Consider the model $Y_i \sim N(\beta_1x_{i,1}+\cdots+\beta_{p_0}x_{i, p_0}+\cdots+ \beta_{p_1}x_{i, p_1})$
+\[RSS_1=\sum (Y_i-\hat{y})^2=(n-p_1)S^2_1\], where $S^2_1$ is the variance residue estimator.
+\begin{definition}[ANONA \textit{F}-Test]
+	Consider the linear regression model $\ud{Y} = \bm{A} \ud{\beta}+\ud{\epsilon}$ where $\epsilon \sim N(0, \sigma) $. 
+	We want to access whether some explanatory variable have negligible effect on the response variable.
+	\[H_0: \beta_{p_0+1} + \cdots + \beta_{p_1}=0; \text{vs } \exists j \in \{p_{0}+1, \cdots p_1\}, \beta j \neq 0 \]
+	The F-test statistic under $H_0$ is:
+	\[F=\frac{(RSS_0-RSS_1)/(p_1-p_0)}{RSS_1/(n-p_1)} \sim F_{p_1-p_0, n-p_1}\]
+	At $\alpha$ significance level, the critical region is $C=[F_{p_1-p_0, n-p_1; \alpha}, \infty]$
+	The critical value can be computed by R as \texttt{qf(1-$\alpha$, p1-p0, n-p1)}.
+\end{definition}
+
+\paragraph{One-Way ANOVA Table (k categorical variable and n samples)}
+\begin{table}[ht]
+	\centering
+	\begin{tabular}{|c|c|c|c|c|}
+			 & DF & RSS & Mean Sum Sq & F-Value \\
+			\hline
+			Categorical Variable & $k-1$ & $RSS_B=RSS_Y-RSS_E$ & $S^2_B=\frac{RSS_B}{k-1}$ & $F=S^2_B/S^2_E$\\
+			Residue & $n-k$ & $RSS_E$ & $S_E^2=\frac{RSS_E}{n-k}$ & \\
+			Total & $n-1$ & $RSS_Y$ & $S_Y^2=\frac{RSS_Y}{n-1}$& \\
+	\end{tabular}
+\end{table}
+
+\paragraph{Two-Way ANOVA Table (b blocks, k treatments and total n samples)}
+\begin{table}[ht]
+	\centering
+	\begin{tabular}{|c|c|c|c|c|}
+			 & DF & RSS & Mean Sum Sq & F-Value \\
+			\hline
+			Treatments & $k-1$ & $RSS_T$& $S^2_T=\frac{RSS_T}{k-1}$ & $F=S^2_T/S^2_E$\\
+			Blocks & $b-1$ & $RSS_B$ & $S_B^2=\frac{RSS_B}{b-1}$ & $F=S^2_B/S^2_E$\\
+			Residue & $n-k-b+1$ & $RSS_E$ & $S_E^2=\frac{RSS_E}{n-k-b+1}$ & \\
+			Total & $n-1$ & $RSS_Y$ & $S_Y^2=\frac{RSS_Y}{n-1}$& \\
+	\end{tabular}
+\end{table}
+

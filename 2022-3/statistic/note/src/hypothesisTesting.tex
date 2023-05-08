@@ -7,3 +7,58 @@ Type I error is to incorrectly reject the null hypothesis when it is true. Type 
 The probability of incurring a Type 1 error is the significance level of the hypothesis and is denoted by $\alpha$. The probability of incurring a Type II error is denoted by $\beta$. $1-\beta$ is called the power of the test.
 \end{definition}
 
+\paragraph{Five Step of hypothesis testing}
+\begin{enumerate}
+	\item State the null and alternative hypothesis.
+	\item Select appropriate test statistics ad determine the distribution under null hypothesis
+	\item Compute the test statistics
+	\item Quantifying the Evidence, compute the critical region. \small \textit{If the test statistics falls in the critical region, we reject the null hypothesis. If p value smaller than $\alpha$, reject null}
+	\item Make a decision
+\end{enumerate}
+
+\subparagraph{Notation}
+$\mu_0$ is given mean to be tested. $\sigma^2$ is given (known) variance. $\bar{X}$ is sample mean, (estimate by estimator). $n$ is sample size. $s^2$ is estimated sample variance. $\alpha$ is significance level. $C$ is critical region. 
+\subparagraph{Z-test}
+\emph{Use When Population Variance is Known}
+$z_0$ is critical value. $z$ is test statistics. 
+\begin{equation}H_0: \mu = \mu_0; \hspace{1cm} H_1: \mu\neq \mu_0\end{equation}	
+\[
+Z = \frac{\bar{X}-\mu_0}{\sqrt{\sigma^2/n}} \sim N(0,1),
+C=\{z:|z|\geq z_0\},z_0 = \texttt{qnorm(1-\textalpha/2, mean=0, sd=1)}
+\]
+
+\subparagraph{One Sample T-test}
+\emph{Use When Population Variance is Unknown}
+
+Assumption: $X_1, \cdots, X_n$ are iid distributed $N(\mu, \sigma^2)$, where $\sigma^2$ is unknown.
+\[
+	H_0: \mu = \mu_0; \hspace{1cm} H_1: \mu\neq \mu_0
+\]
+$$T = \frac{\bar{X}-\mu_0}{\sqrt{S^2/n}} \sim t_{n-1},
+C=\{t:|t|\geq t_0\},t_0 = \texttt{qt(1-\textalpha/2, df=n-1)}$$
+
+\subparagraph{Paired T-Test}
+Use only if the measurements of two samples are paired and related.
+
+\subparagraph{Two Sample T-test}
+\emph{Use When Population Variance is Unknown and Population size are different}
+
+Assumption: $X_1, \cdots, X_n$ and $Y_1, \cdots, Y_m$ are iid distributed $N(\mu_1, \sigma^2)$ and $N(\mu_2, \sigma^2)$, where $\sigma^2$ is unknown. ($X_i, Y_i$ have the \emph{same variance})
+\[
+	H_0: \mu_1 = \mu_2; \hspace{1cm} H_1: \mu_1\neq \mu_2
+\]
+\[ 
+	T = \frac{\bar{X}-\bar{Y}}{\sqrt{S^2_p(1/m+1/n)}} \sim t_{m+n-2}
+\]
+$S^2_p$ is the sample pooled variance estimator ($S^2_X$ and $S^2_Y$ are sample variance of $X$ and $Y$):
+\[
+	S^2_p = \frac{(n-1)S^2_X+(m-1)S^2_Y}{n+m-2}
+\]
+
+\subparagraph{F-test}
+To test if two population have the same variance.
+\[
+	F = \frac{S^2_X}{S^2_Y} \sim F_{n_1-1, n_2-1}
+\]
+$S^2_X$ and $S^2_Y$ are sample variance of $X$ and $Y$.
+At $\alpha=5\%$ confidence level, the critical region is $C=\{F: F\leq l \cup \geq u\}$, $l, u$ can be calculated by \texttt{qf(c(0.025, 0.975), df1=n1-1, df2=n2-1)}. 
