@@ -1,0 +1,54 @@
+\documentclass[12pt]{report}
+
+\input{macros}
+\input{preamble}
+
+\title{Linear Algebra}
+\author{Harry Han}
+\date{\today}
+\begin{document}
+\maketitle
+\tableofcontents
+\chapter{Vector Spaces}
+
+\section{Group, Field and, Vector Spaces}
+
+\definition[group]{
+A \textbf{group} is a set $G$ with an operation $\cdot$ such that
+\begin{enumerate}
+\item $\cdot$ is closed;
+\item $\cdot$ is associative;
+\item $\exists e\in G$ such that $\forall g\in G, eg=ge=g$;
+\item $\forall g\in G, \exists g^{-1}\in G$ such that $gg^{-1}=g^{-1}g=e$;
+\end{enumerate}
+}
+
+\definition[field]{
+A \textbf{field} is a set $F$ with two operations, addition and multiplication, such that
+\begin{enumerate}
+\item $F$ is an abelian group under addition
+\item $F\setminus\{0\}$ is an abelian group under multiplication
+\item Multiplication distributes over addition
+\end{enumerate}
+}
+
+\definition[vector space]{
+A \textbf{vector space} over a field $F$ is a set $V$ with two operations, addition and scalar multiplication, such that
+\begin{enumerate}
+\item $V$ is an abelian group under addition
+\item (Multiplicative identity) $\forall v\in V, 1 v=v$ (here 1 is the multiplicative identity of the field)
+\item (Distributive Property) $\forall a,b\in F,$ and $v\in V, (a+b)v=av+bv$; and $\forall v, u \in V$ and $a\in F, a(v+u)=av+au$
+\end{enumerate}
+}
+
+Note, the field $F$ has an additive identity, 0. 
+The abelian group of vectors also has an additive identity.
+
+\begin{theorem}
+\begin{enumerate}
+    \ 
+    \item For $u\in V$, its additive inverse in $V$ is $-1u$, while $-1$ is the additive inverse of the multiplicative identity of the field F.
+  \end{enumerate}
+\end{theorem}
+  
+\end{document}
