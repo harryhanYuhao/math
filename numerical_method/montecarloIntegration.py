@@ -1,6 +1,6 @@
 import numpy as np
-import matplotlib.pyplot as plt
-from scipy import integrate
+# import matplotlib.pyplot as plt
+# from scipy import integrate
 
 PI = np.pi;
 
@@ -24,7 +24,7 @@ print("The result of our montecarlo approximation:\n", I, sep='')
 
 # Question 2
 # integrate.quad returns a list, the first element is the integral value
-print("The error: ", np.abs(I - integrate.quad(f, 0, 1)[0]))
+# print("The error: ", np.abs(I - integrate.quad(f, 0, 1)[0]))
 
 # Question 3
 def montecarlo_2D(f, a, b, c, d, N):
@@ -45,7 +45,7 @@ I = montecarlo_2D(f_2D, 0, 1, 0, 1, 1000)
 print("The result of our montecarlo_2D approximation:\n", I, sep='')
 
 # integrate.dblquad returns a list, the first element is the integral value
-print("The error: ", np.abs(I - integrate.dblquad(f_2D, 0, 1, lambda x: 0, lambda x: 1)[0]))
+# print("The error: ", np.abs(I - integrate.dblquad(f_2D, 0, 1, lambda x: 0, lambda x: 1)[0]))
 
 # Write a function volume_ball(n, N) which uses random sampling in a similar way, to estimate the volume of an n-dimensional ball with radius 1 and centred around the origin, using N uniformly distributed random points.  
 
@@ -91,7 +91,7 @@ def area_n_sphere(n, iter):
 
     return area_hyperspheres;
 
-numOfIter=1000;
+numOfIter=100000;
 calculated = area_n_sphere(8,numOfIter)
 # The following are expected volume of n-sphere starting from 1-sphere
 expected_area=[PI, 4/3*PI, PI**2/2, 8*PI**2/15, PI**3/6, 16*PI**3/105, PI**4/24, 32/945*PI**4, PI*5/120]
