@@ -1,0 +1,57 @@
+\documentclass{article}
+\usepackage{graphicx} % Required for inserting images
+\usepackage{algpseudocode}
+\usepackage{bm}
+
+\title{NLA\_Assignment1}
+\author{Harry Han}
+\date{September 2023}
+
+\begin{document}
+
+\section{Question 1}
+\subsection*{i}
+
+With vectors $\bm{x}, \bm{y} \in R^n$, and matrix $A\in R^{n*n}$, such that $\bm{x}\bm{y}^T = A$ consider the following algorithm:
+
+\begin{algorithmic}[1] 
+\ForAll{$i \in \{1, 2, \cdots, n\}$} 
+    \ForAll{$j \in \{1, 2, \cdots, n\}$} 
+        \State $A_{i, j} = \bm{x}_i\bm{y}_j  $
+    \EndFor
+\EndFor
+\end{algorithmic}
+
+i.e, this algorithm loops over each entry of $A$ and compute its value by multiplying the corresponding values of $\bm{x}$ and $\bm{y}$. 
+
+Each multiplication requires 1 FLOP, which is rpeated $n^2$ times, thus we conclude the complexity of this algorithme is $C(n) = n^2$.
+
+\subsection*{ii}
+
+We are to demonstrate that it is possible to compute 
+\begin{equation}
+\label{ii}
+    (I-\bm{u}\bm{u}^T)\bm{x}
+\end{equation}
+with $O(n)$ complexity, given vectors $\bm{u}, \bm{x} \in R^n$.
+
+Note operation \ref{ii} is equivalent to $\bm{x}-\bm{u}(\bm{u}^T\bm{x})$, which can be broken down into three steps:
+
+\begin{enumerate}
+    \item $\bm{u}^T\bm{x}=c$, for some constant c; the complexity is equivalent to that of dot product, thus $O(n)$
+    \item $\bm{u}c = \bm{u}'$; this is a simple scaler multiplication, with complexity $O(n)$
+    \item $\bm{x} + \bm{u}'$: vector addition: whose complexity is $O(n)$
+\end{enumerate}
+
+As the operation can be broken down to three steps each with complexity $O(n)$, the overall efficiency of the algorithm is $O(n)$.
+
+\newpage 
+
+\section{Question 2}
+
+We are to prove that for all matrices $A \in R^{n*n}$, $||A||_\infty = ||A^T||_1 $
+
+We know that $||A||_\infty$ is the maximum of the row sum, and $||A||_1$ is the maximum column sum. Since the maximum row sum of $A$ must be the same as the maximum column sum of $A^T$, we conclude they are the same.
+
+\end{document}
+

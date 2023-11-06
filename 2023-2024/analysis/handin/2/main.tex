@@ -1,0 +1,26 @@
+% available style: report
+\documentclass[12pt]{article}
+
+\input{macros}
+\input{preamble}
+
+\begin{document}
+
+\section{Q5}
+
+We are to prove that any cauchy sequence, $(x_n)$, where $x_i \in \bb{N}$, will be eventually constant.
+
+\begin{proof}
+We choose $\epsilon = 0.2$, and definition of cauchy sequence garantees that there exist $N$, such that for all $n,m>N$, $|x_n-x_m|<0.2$.
+
+Let let $n>N$ and $c$ be an integer such that $c=x_n$. If $x_m \neq c$ for $m>n$, then $|x_n-x_m| \geq 1$, which is a contradiction. Therefore, $x_m=c$ for all $m>n$. 
+\end{proof}
+
+\section{Q8}
+
+The sequence $x_n = 2+(-1)^n$ is a alternating sequence.
+
+For $n \in \bb{N}$, the set $A_n = \{x_k | k \geq n\}$ contain exactly two elements, $1, 3$. Thus $\sup_{k>n}x_n = 3$ for all $n$, which implies that $\limsup_{n \to \infty} x_n = 3$. Similarly, $\liminf_{n \to \infty} = 1$
+
+
+\end{document}

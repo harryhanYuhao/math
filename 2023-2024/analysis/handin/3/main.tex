@@ -1,0 +1,62 @@
+% available style: report
+\documentclass[12pt]{article}
+\usepackage{amsmath}
+\usepackage{amsthm}
+
+% \title{}
+% \author{}
+% \date{}
+\begin{document}
+\section{Q4}
+
+Suppose $\sum^{n=1}_{\infty} a_n $ converges absolutely. Prove that $\sum^{n=1}_{\infty} |a_n|^p $ converges for all $p>1$.
+
+\begin{proof}
+	Since $\sum^{n=1}_{\infty} |a_n| $ converges, we know $|a_n| \rightarrow 0$, which implies there is a $N$, such that $\forall n>N, 0<|a_n| \leq 1 $.
+
+	We know the simple fact that $0 \leq c^p\leq c$ for all $c \geq 0$ and $p > 1$.
+	
+	Let us write our series in the following way:
+	\begin{equation}
+		\begin{split}
+			\sum |a_n| =&
+				\underbrace{\sum_{n=1}^{N} |a_n|}_{\alpha}
+				+ |a_{N+1}| + |a_{N+2}| + \dots = 
+				\sum^{N}_{n=1} |a_n| + \sum^{\infty}_{N+1} |a_n|  \\
+			\sum |a_n|^p =&
+				\sum_{n=1}^{N} |a_n|^p_{\beta} 
+				+ |a_{N+1}|^p + |a_{N+2}|^p + \dots =
+				\sum^{N}_{n=1} |a_n|^p + \sum^{\infty}_{N+1} |a_n|^p
+		\end{split}
+	\end{equation}
+
+	Since the $\alpha$ term is finite, the series $\sum^{\infty}_{N+1} |a_n|$ converges.
+	
+	For each $i$, $|a_i| \geq |a_i|^p$, thus the following inequality of the partial sum holds:
+	$\sum^{m}_{N+1} |a_n| \geq \sum^{m}_{N+1} |a_n|^p $. As the lfs is convergent, we conclude the rhs is bounded above.
+
+	Since the partial sum $\sum^{m}_{N+1} |a_n|^p $ is also increasing, we conclude it converges by the monotone convergence theorem.
+	
+	The series $\sum |a_n|^p$ is the sum of a constant and a convergent series, thus it converges.
+\end{proof}
+
+\newpage
+
+\section{Q9}
+
+\begin{enumerate}
+    \item $\forall \epsilon > 0, \exists \delta > 0$ such that $|x - a| < \delta$ implies $|f(x) - f(a)| < \epsilon$. \\
+		This matches (a): i.e., $f$ is continuous at $a$.
+    \item $\forall \epsilon > 0, \forall \delta > 0, |x - a| < \delta$ implies $|f(x) - f(a)| < \epsilon$. \\
+		Matching (c): i.e., $f$ is constant on $(0, 1)$,
+    \item $\exists \epsilon > 0$ such that $\forall \delta > 0, |x - a| < \delta$ implies $|f(x) - f(a)| < \epsilon$. \\
+		Matching (b): i.e., $f$ is bounded on $(0, 1)$.
+    \item $\exists \epsilon > 0$ and $\exists \delta > 0$ such that $|x - a| < \delta$ implies $|f(x) - f(a)| < \epsilon$. \\
+		Matching (d): i.e., $f$ is bounded on some interval.
+    \item $\forall \delta > 0, \exists \epsilon > 0$ such that $|x - a| < \delta$ implies $|f(x) - f(a)| < \epsilon$. \\
+		Matching (b): i.e., $f$ is bounded on $(0, 1)$.
+    \item $\exists \delta > 0$ such that $\forall \epsilon > 0, |x - a| < \delta$ implies $|f(x) - f(a)| < \epsilon$.
+		Matching (e): i.e., $f$ is constant on some interval.
+\end{enumerate}
+
+\end{document}

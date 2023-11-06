@@ -1,0 +1,152 @@
+\documentclass{article}
+\usepackage{graphicx, amsthm} % Required for inserting images
+\usepackage{amsmath, amsfonts}
+
+
+\newtheorem{theorem}{Theorema}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}{Propositio}
+\newtheorem{corollary}{Corollarium}[proposition]
+\theoremstyle{definition}
+\newtheorem{definition}{Definitio}[section]
+
+\theoremstyle{definition}
+\newtheorem{axiom}{Axioma}[section]
+
+\theoremstyle{remark}
+\newtheorem{remark}{Observatio}[section]
+\newtheorem{hypothesis}{Coniectura}[section]
+\newtheorem{example}{Exampli Gratia}[section]
+
+\title{HA_Assignment1}
+\author{Harry Han}
+\date{September 2023}
+
+\begin{document}
+
+\section*{Question 5}
+
+We are to prove that the set of all algebraic number are countable. Let $P_n$ denote the set of all polynomials of degree $n$.
+Let $S_n$ denote all solution of $n$ degree polynomial with integer coefficient. Let $L_i$ denote the finite set of solution of the polynomail $i$. Let $A$ denote the set of all algebraic numbers.
+
+First, we need several propositions:
+
+\begin{proposition}
+Let $A$ be a countable set, and each $B_i$ also be a countable set,
+then $\displaystyle\cup_{i\in A} B_i$ is countable. Let this set be detnoted as $C$.
+\end{proposition}
+
+Consider the production of two countable set: $A\times A$ It is easy to demonstrate that there exist a bijection between $A\times A$ and $C$, thus $C$ is countable.
+
+\begin{corollary}
+Let $A$ be a countable set, and each $B_i$ be a finite set,
+then $\displaystyle\cup_{i\in A} B_i$ is countable.
+\end{corollary}
+
+\begin{proposition}
+    Finite product of countable sets are countable.
+\end{proposition}
+
+
+\begin{corollary}
+The set of all polynomials of degree $n$ with integer coefficients are countable
+\end{corollary}
+
+\begin{proof} 
+    Without loss of any generosity, any polynomials of degree $2$ can be written as:
+    $$
+    C_2x^2 + C_{1}x^{1} + C_0
+    $$
+    A bijection $f: N^3 \rightarrow P_n$ can be established thus:
+    For $(a,b,c) \in N^3$, map it to $ax^2+bx+c$. 
+    By proposition 2, $N^3$ is countable, thus $P_2$ is also countable.
+
+    Indeed, for all $n$, an bijection between $N^{n+1}$ and $P_n$ can be established similarly: thus $P_n$ is countable for all $n\in N$ 
+\end{proof}
+
+We are ready to prove that the set of all algebraic number are countable.
+
+\begin{proof}
+    Let $S_n$ denote all solution of $n$ degree polynomial with integer coefficient. 
+    Note $S_n = \cup_{i\in P_n} L_i$, where $L_i$ is the set of solution of the polynomail $i$. By fundamental theorem of algebra, $L_i$ is finite regardless of the order of the polynomial. We also know that $P_n$ is countable by corollary 2.1, thus, applying Corollary 1.1, $S_n$ is countable. We have not set any restrction on $n$ except that it is an positive integer, thus, $\forall n \in N, S_n$ is countable.
+
+    Let $A$ denote the set of all algebraic number. Note: $A = \cup_{i\in N} S_i$. Since $N$ is countable by definition, and we just proved that $S_i$ is countable for all $i \in N$; apply proposition 1, we conclude $A$ is indeed countable.
+\end{proof}
+
+\newpage
+
+\section*{Question 6}
+
+\subsection*{a}
+
+We are to prove that, for a converging sequence $a_n \rightarrow a$, the sequence of their mean also converges to $a$, i.e, 
+\begin{equation}
+  \label{mean}
+\frac{\sum_{i=0}^n a_i }{n} \rightarrow a
+\end{equation}
+
+By the definition of the convergence, we need to prove that $\forall \epsilon > 0, \exists N\in \mathbb{N}$ such that $\forall n>N,$
+we have
+
+\begin{equation}
+  \label{limit}
+|\frac{\sum_{i=0}^n a_i }{n} -a | < \epsilon
+\end{equation}
+
+\begin{proof}
+    Let $\epsilon$ be any real number greater than 0. Since $a_n \rightarrow a$, there exists $N_1$ such that $\forall n>N_1, |a_n - a| < \frac{\epsilon}{10}$. 
+
+    Pick an $N_2>N_1$, and we can write the first $N_2$ terms of the left hand side of the equation \ref{limit} as follow:
+
+    \begin{equation}
+      |
+      \underbrace{
+      \frac{a_1-a+a_2-a+\cdots+a_{N_1}-a}{n}
+      }_{\alpha} + 
+      \underbrace{
+        \overbrace{
+          \frac{a_{N_1+1}-a + \cdots a_{N_2}-a}{n}
+      }^{\text{less than n terms}}
+      }_{\beta}
+      |
+    \end{equation}
+
+    We shall first consider the $\beta$ term. 
+    $\forall n>N_1 \implies |a_n-a|<\frac{\epsilon}{10} $ and we have $ | a_{N_1+1}-a + \cdots a_{N_2}-a| \leq 
+    |a_{N_1+1}-a| + \cdots + |a_{N_2}-a| \leq \frac{n\epsilon}{10}$, which means 
+          $|\frac{a_{N_1+1}-a + \cdots a_{N_2}-a}{n}|\leq \frac{\epsilon}{10}$. Notice this inequality holds for all $N_2>N_1$.
+
+          Next, let us consider $\alpha$. Since $a_1-a+a_2-n + \cdots a_{N_1}-a$ is a finite number, we know that $\exists N_3>0$ such that $\forall n>N_3$, $|\frac{a_1-a+a_2-n + \cdots a_{N_1}-a}{n}|<\frac{\epsilon}{10}$.
+
+    Thus, picking $N$ be the greatest of $N_2, N_3$, by triangular inequality, we have, $\forall n>N$, 
+    \begin{multline}
+      |
+      \frac{a_1-a+a_2-a+\cdots+a_{N_1}-a}{n}+\frac{a_{N_1+1}-a + \cdots a_{N_2}-a}{n}
+      | \leq \\
+      |\frac{a_1-a+a_2-a+\cdots+a_{N_1}-a}{n}|+|\frac{a_{N_1+1}-a + \cdots a_{N_2}-a}{n}| \leq \\
+      \frac{\epsilon}{10} + \frac{\epsilon}{10} < \epsilon
+    \end{multline}
+
+    
+\end{proof}
+\subsection*{b}
+We claim the series $(a_n)$, where 
+$
+a_n = \begin{cases}
+			-1, & \text{if $n$ odd}\\
+            1, & \text{otherwise}
+		 \end{cases}
+$
+diverges but have converging mean.
+
+Clearly this sequence does not converge. 
+
+Yet, notice: $a_1+a_2+\cdots a_n = 
+\begin{cases}
+1, & \text{if $n$ is even}\\
+0, & \text{if $n$ is odd}
+\end{cases}$
+
+Thus, $0\leq\frac{a_1+a_2+\cdots + a_n}{n}\leq\frac{2}{n} $ for all $n$. Since $\frac{2}{n}$ converges to $0$, by squeeze theorem $\frac{a_1+a_2+\cdots + a_n}{n}$ also does. Thus we have found a divergent sequence whose $\frac{a_1+a_2+\cdots + a_n}{n}$ converges.
+\end{document}
+
