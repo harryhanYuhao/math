@@ -12,8 +12,8 @@
 %------------------------------------------------------------
 %This block of code defines the information to appear in the
 %Title page
-\title[An Interesting Lebegues Intergrable Function] %optional
-{An Interesting Lebegues Intergrable Function}
+\title[An Interesting Lebesgue Intergrable Function] %optional
+{An Interesting Lebesgue Intergrable Function}
 
 % \subtitle{A short story}
 
@@ -104,12 +104,12 @@
 
 %---------------------------------------------------------
 \begin{frame}
-\frametitle{Lebegues Intergral is a Generalization of Riemann Integral}
+\frametitle{Lebesgue Intergral is a Generalization of Riemann Integral}
 
-\begin{block}{All Reimain Integrable Functions are Lebegues Integrable}
+\begin{block}{All Reimain Integrable Functions are Lebesgue Integrable}
 \end{block}
 
-\begin{alertblock}{\textbf{Not} All Lebegues Integrable Functions are Reimann Integrable}
+\begin{alertblock}{\textbf{Not} All Lebesgue Integrable Functions are Reimann Integrable}
 	Classic Example: Dirichlet Functions
 	\[
 		\mathcal{D}(x) =
@@ -120,7 +120,7 @@
 	\]
 	We have:
 	$$(L) \int \mathcal{D} = 0$$
-	As Lebegues integral over countable set is 0. 
+	As Lebesgue integral over countable set is 0. 
 \end{alertblock}
 
 
@@ -153,7 +153,7 @@
 			\draw[step=0.8, very thin,color=gray] (-2.1,-2.1) grid (2.1,2.2);
 			\draw[->] (-2.2,0) -- (2.2,0) node[right] {$x$};
 			\draw[->] (0,-2.2) -- (0,2.2) node[above] {$y$};
-			\draw[color=orange, line width = 0.25mm, domain=0.11:2] plot (\x,{1/((\x)^(1/2))}) node[right] {$f(x) = \frac{1}{x^{1/2}}$};
+			\draw[color=orange, line width = 0.25mm, domain=0.11:2] plot (\x,{1/((\x)^(1/2))}) node[right] {$f(x) = \frac{1}{x^{2}}$};
 		\end{tikzpicture}
 	\end{figure}
 \end{block}
@@ -176,7 +176,7 @@
 			\draw[->] (-2.2,0) -- (2.2,0) node[right] {$x$};
 			\draw[->] (0,-2.2) -- (0,2.2) node[above] {$y$};
 			\draw[color=orange, line width = 0.25mm, domain=0.11:2] plot (\x,{1/((\x)^(1/2))}) node[right] {$f(x) = \frac{1}{x^{1/2}}$};
-			\draw[color=blue, line width = 0.25mm, domain=0.61:3] plot (\x,{1/((\x)^(2))}) node[right] {$f(x) = \frac{1}{x^{2}}$};
+			\draw[color=blue, line width = 0.25mm, domain=0.61:3] plot (\x,{1/((\x)^(2))}) node[right] {$g(x) = \frac{1}{x^{2}}$};
 		\end{tikzpicture}
 	\end{figure}
 \end{block}
