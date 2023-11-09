@@ -1,0 +1,97 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Do not alter this block (unless you're familiar with LaTeX
+\documentclass{article}
+\usepackage[margin=1in]{geometry} 
+\usepackage{amsmath,amsthm,amssymb,amsfonts, fancyhdr, color, comment, graphicx, environ}
+\usepackage{xcolor}
+\usepackage{mdframed}
+\usepackage[shortlabels]{enumitem}
+\usepackage{indentfirst}
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,      
+    urlcolor=blue,
+}
+
+
+\pagestyle{fancy}
+
+
+\newenvironment{problem}[2][Problem]
+    { \begin{mdframed}[backgroundcolor=gray!20] \textbf{#1 #2} \\}
+    {  \end{mdframed}}
+
+% Define solution environment
+\newenvironment{solution}
+    {\textit{Proof:}}
+    {}
+
+\renewcommand{\qed}{\quad\qedsymbol}
+
+% prevent line break in inline mode
+\binoppenalty=\maxdimen
+\relpenalty=\maxdimen
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%Fill in the appropriate information below
+\lhead{Your name: }
+\rhead{CGT Fall 2023} 
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+\begin{centering}\textbf{Assignment 3: Due Friday 10 November 15:00, via Gradescope on Learn}\end{centering}
+
+\begin{mdframed}[backgroundcolor=blue!20]
+Submissions using \LaTeX\ are strongly encouraged but not mandatory. If using \LaTeX\, you can simply copy and paste the source code from Overleaf, delete these blue boxes, and insert your proofs in the indicated spots. Alternatively, hand-written solutions will be expected to be as neat and well organized, and should include the complete problem statement, as well as proofs and discussion in complete sentences -- see the writing standards in the course webpage.
+\end{mdframed}
+
+
+
+
+\begin{problem}{1} (10pts)
+A planar graph $G$ is \emph{outerplanar} if it can be drawn on the plane in such a way that all the vertices lie on the exterior boundary.
+\begin{enumerate}[(a)]
+    \item Show that $K_4$ and $K_{2,3}$ are not outerplanar. (5pts)
+    \item Deduce that if $G$ is an outerplanar graph, then $G$ \textbf{contains no subgraph that is a subdivision\footnote{A subdivision of a graph $H$ is a graph that is obtained from $H$  by a sequence of edge subdivision operations. An edge subdivision operation for an edge $uv$ deletes that edge from the graph and replaces it by two edges, $uw$ and $wv$, along with a new vertex $w$.}  of} $K_4$ or $K_{2,3}$.(5pts)
+    \item Challenge problem: Prove the converse statement, that a graph $G$ which does not contain a subgraph \textbf{that is a subdivision of}  $K_4$ or $K_{2,3}$ is outerplanar. (0pts)
+\end{enumerate}
+
+\noindent\textbf{Remark: For simplicity, you may use the following version of Kuratowski's theorem: A graph is planar if and only if it contains no subgraph that is a subdivision of $K_5$ or $K_{3,3}$.}
+\end{problem}
+\begin{solution}
+	\textbf{Part (a)}\\
+
+	As each face of the graph $G$, can be drawn as the exterior boundary (infinite face), a graph is outerplanar if and only if it contains at least one face with $n$ vertices, where $n$ is the total number of vertices of the graph $G$.
+
+	Consider the graph $K_4$, each of its face has only $3$  vertices, so it must not be outerplanar.
+	
+	Similarly, the graph $K_{2,3}$ 3 faces, each with $4$ vertices, so it must not be outerplanar either.
+
+	\textbf{Part (b)}\\
+
+	First, let us prove that any subdivision of a non-outerplaner graph is not outerplaner. 
+
+	Consider the non-outerplaner graph $N$ with $n$ vertices. The maximum vertices contained a any face of $N$ must less than or equal to $n-1$.
+
+	Now consider $N'$, obtained by an edge subdivision operation acted on the edge $e$ of $N$. Say in $N$, $e$ is adjacent to face $f_1, f_2$. Since $N$ is not outerplaner, the number of vertices contained in $f_1, f_2$ must be smaller than or equal to $n-1$. After the edge subdivision, no new face was created, and $f_1$, $f_2$ contain one more vertice, and must be smaller than $n$. Since the total number of vertices of $N'$, also increased , now become $n+1$, we conclude the $N'$ is still non-outerplaner.
+
+	As sub-division operation is a series of edge division, we conclude that any subdivision of a non-outerplaner graph is not outerplaner.
+
+	Next we are to show that face and edge addition to a non-outerplaner graph will not result in an outerplaner graph.
+
+	Say a vertices $a$ is added to the face $f$. No new face is created. The face $f$ will contain one more vertices, but as the total number of vertices also increased by one, so the resulting graph is still non-outerplaner.
+
+	Say an edge is added to the non-outerplaner graph. As edge devide faces, the total number of verices contained in the face will not increase, so the graph stay non-outerplaner.
+
+
+	If the graph $G$ contains a subgraph $S$ that is a subdivision of $K_4$ or $K_{2,3}$, then $S$ is non-outerplaner. As $G$ can be obtained by adding vertices and edges to $S$, we conclude $G$ is not outerplaner either.
+	
+	The we conluded its contrapositive is also true, which is what we want to prove: If a graph is outerplaner, it must not contain a subgraph that is a subdivision of $K_4$ or $K_{2,3}$.
+\end{solution} 
+
+
+\end{document}
