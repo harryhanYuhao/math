@@ -18,6 +18,7 @@
 
 \pagestyle{fancy}
 
+\newtheorem{lemma}{Lemma}
 
 \newenvironment{problem}[2][Problem]
     { \begin{mdframed}[backgroundcolor=gray!20] \textbf{#1 #2} \\}
@@ -62,36 +63,56 @@ A planar graph $G$ is \emph{outerplanar} if it can be drawn on the plane in such
 
 \noindent\textbf{Remark: For simplicity, you may use the following version of Kuratowski's theorem: A graph is planar if and only if it contains no subgraph that is a subdivision of $K_5$ or $K_{3,3}$.}
 \end{problem}
-\begin{solution}
-	\textbf{Part (a)}\\
 
-	As each face of the graph $G$, can be drawn as the exterior boundary (infinite face), a graph is outerplanar if and only if it contains at least one face with $n$ vertices, where $n$ is the total number of vertices of the graph $G$.
+\subsection*{Solution}
 
-	Consider the graph $K_4$, each of its face has only $3$  vertices, so it must not be outerplanar.
+We first prove lemma 1, 2, 3:
+\begin{lemma}
+	A graph is outerplanar if and only if it contains at least one face with $n$ vertices, where $n$ is the total number of vertices of the graph $G$.
+\end{lemma}
+
+\begin{proof}
+Forward Direction:
+A outerplanar graph has all its vertices drawn in the exterior boundary; so the infinite face of this graph contains all of its vertices.
+
+Backward Direction:
+If the face $f$ of graph $G$ has $n$ vertices. Rearrange the graph so that $f$ becomes its infinte face. Thus all the vertices of $G$ are drawn in the exterior boundary, so $G$ is outerplanar.
+Thus we conclude that lemma 1 is true. 
+\end{proof}
+
+\begin{lemma}
+	If a graph is a subdivision of a non-outerplaner graph, then it is not outerplaner.
+\end{lemma}
+
+\begin{proof}
+Consider the non-outerplaner graph $N$ with $n$ vertices. The maximum vertices contained any face of $N$ must less than or equal to $n-1$.
+
+Now consider $N'$, obtained by an edge subdivision operation acted on the edge $e$ of $N$. 
+Say in $N$, $e$ is adjacent to face $f_1, f_2$. 
+Since $N$ is not outerplaner, the number of vertices contained in $f_1, f_2$ must be smaller than or equal to $n-1$. 
+After the edge subdivision, no new face was created, all other faces are not modified, except $f_1$ and $f_2$, which would contain one more vertice, and the total number of vertices it contained now must be smaller than $n$.
+Since the total number of vertices of $N'$, also increased , now become $n+1$, we conclude the $N'$ is still non-outerplaner.
+
+As sub-division operation is a series of edge division, we conclude that any subdivision of a non-outerplaner graph is not outerplaner.
+\end{proof}
+
+\begin{lemma}
+	If a graph $S$ is non-outerplaner, addition of vertices and edges to $S$ will not result in an outerplaner graph.
+\end{lemma}
+
+\begin{proof}
+Say a vertices $a$ is added to the face $f$. No new face is created. The face $f$ will contain one more vertices, but as the total number of vertices also increased by one, so the resulting graph is still non-outerplaner.
+
+Say an edge is added to the non-outerplaner graph. As edge devide faces, the total number of verices contained in the face will not increase, so the graph stay non-outerplaner.
+\end{proof}
+\textbf{Part (a)}\\
+
+Consider the graph $K_4$, each of its face has only $3$ vertices, so by lemma 1 it must not be outerplanar.
+
+Similarly, the graph $K_{2,3}$ 3 faces, each with $4$ vertices, so by lemma 1 it must not be outerplanar either.
+
+\textbf{Part (b)}\\
+If a subgraph $S$ of $G$, is a subdivision of $K_4$ or $K_{2,3}$, by lemma 2 $S$ is non-outerplaner. As $G$ can be obtained by adding vertices and edges to $S$, we conclude $G$ is not outerplaner either.
 	
-	Similarly, the graph $K_{2,3}$ 3 faces, each with $4$ vertices, so it must not be outerplanar either.
-
-	\textbf{Part (b)}\\
-
-	First, let us prove that any subdivision of a non-outerplaner graph is not outerplaner. 
-
-	Consider the non-outerplaner graph $N$ with $n$ vertices. The maximum vertices contained a any face of $N$ must less than or equal to $n-1$.
-
-	Now consider $N'$, obtained by an edge subdivision operation acted on the edge $e$ of $N$. Say in $N$, $e$ is adjacent to face $f_1, f_2$. Since $N$ is not outerplaner, the number of vertices contained in $f_1, f_2$ must be smaller than or equal to $n-1$. After the edge subdivision, no new face was created, and $f_1$, $f_2$ contain one more vertice, and must be smaller than $n$. Since the total number of vertices of $N'$, also increased , now become $n+1$, we conclude the $N'$ is still non-outerplaner.
-
-	As sub-division operation is a series of edge division, we conclude that any subdivision of a non-outerplaner graph is not outerplaner.
-
-	Next we are to show that face and edge addition to a non-outerplaner graph will not result in an outerplaner graph.
-
-	Say a vertices $a$ is added to the face $f$. No new face is created. The face $f$ will contain one more vertices, but as the total number of vertices also increased by one, so the resulting graph is still non-outerplaner.
-
-	Say an edge is added to the non-outerplaner graph. As edge devide faces, the total number of verices contained in the face will not increase, so the graph stay non-outerplaner.
-
-
-	If the graph $G$ contains a subgraph $S$ that is a subdivision of $K_4$ or $K_{2,3}$, then $S$ is non-outerplaner. As $G$ can be obtained by adding vertices and edges to $S$, we conclude $G$ is not outerplaner either.
-	
-	The we conluded its contrapositive is also true, which is what we want to prove: If a graph is outerplaner, it must not contain a subgraph that is a subdivision of $K_4$ or $K_{2,3}$.
-\end{solution} 
-
-
+The we conluded its contrapositive is also true, which is what we want to prove: If a graph is outerplaner, it must not contain a subgraph that is a subdivision of $K_4$ or $K_{2,3}$.
 \end{document}
