@@ -1,0 +1,54 @@
+desc: (none)
+cmd: ./a.out --time-unit=B
+time_unit: i
+#-----------
+snapshot=0
+#-----------
+time=0
+mem_heap_B=0
+mem_heap_extra_B=0
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=1
+#-----------
+time=144656
+mem_heap_B=200000
+mem_heap_extra_B=8
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=2
+#-----------
+time=4553133583
+mem_heap_B=201024
+mem_heap_extra_B=16
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=3
+#-----------
+time=4553135764
+mem_heap_B=201024
+mem_heap_extra_B=16
+mem_stacks_B=0
+heap_tree=peak
+n2: 201024 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n0: 200000 0x401168: main (in /home/hhyh/sandbox/benchmarks/a.out)
+ n0: 1024 in 1 place, below massif's threshold (1.00%)
+#-----------
+snapshot=4
+#-----------
+time=4553135764
+mem_heap_B=1024
+mem_heap_extra_B=8
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=5
+#-----------
+time=4553140742
+mem_heap_B=0
+mem_heap_extra_B=0
+mem_stacks_B=0
+heap_tree=empty
