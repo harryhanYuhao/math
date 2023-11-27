@@ -18,16 +18,26 @@ for i in range(2, upper_bound + 1):
 ```
 
 
-The results were striking
+Here is the result:
 
 - C: elaspsed time: 0.60 s; RSS: 1408 kb
 - fortran90: elaspsed time 0.61 sl; RSS: 2304 kb
 - python: elaspsed time 26 s; RSS 9569 kb
 - julia: elapsed time 25 s; RSS 28706 kb
 
-In addition, C and fortran can be easily made multithreading with OpenMD. 
+## Multithreading & Other optimisation.
 
-With multithreading, elaspsed time for c and fortran are less than 0.20s, although consuming slightly more memory.
+### C and Fortran: OpenMP
+
+C and fortran have multithreading support with OpenMD. 
+
+### Julia
+
+Julia has native multithreading support. 
+
+### Python
+
+Performance of python can be improved with JIT interpreters.
 
 ## Reproducing
 
