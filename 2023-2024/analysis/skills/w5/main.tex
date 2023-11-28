@@ -109,6 +109,8 @@
 \begin{block}{Open Balls in $\mathbb{R}^n$}
 	Let $\bm{a}$ be a point in $\mathbb{R}^n$ and $r$ be a positive real number. The open ball of radius $r$ centered at $\bm{a}$ is the set 
 	$$B(\bm{a}, r) = \{\bm{x} \in \mathbb{R}^n: \|\bm{x} - \bm{a}\| < r\}$$
+
+	This definition applies to all metric space if we exchange $\| \cdot \|$ with the metric $d(\cdot, \cdot)$.
 \end{block}
 
 \begin{examples}
@@ -143,60 +145,108 @@
 
 \begin{frame}
 \frametitle{Cluster Point}
+
+In $\mathbb{R}^n$, any point is the same as any other point.
+
+Cluster point is not a point by itself. It must be related to a set.
 Intuitively: around it there are infinitely many other points.
-\begin{block}{Accumulation Point}
-	Let $S$ be a subset of $\mathbb{R}^n$. 
+
+\begin{block}{Adherence Point to A Set}
+	Let $S$ be a set.
+	$\bm{a}$ is Adherence point of $S$ if every open ball centered at $\bm{a}$ contain at least a point in $S$.
+\end{block}
+
+\textbf{Adherence Point is not a clusteer point!}
+
+Consider point $1$ for set $\{ 1 \}$.
+
+\begin{block}{Accumulation Point to A Set}
+	Let $S$ be a set.
 	$\bm{a}$ is accumulation point of $S$ if every open ball centered at $\bm{a}$ contain at least one other point in $S$ that is not $\bm{a}$.
 \end{block}
 
-No direct reference to infinity: but sufficient: there are infinitely many points in any open ball centered at $\bm{a}$.
+No direct reference to infinity: but sufficient
 
-\begin{block}{Proof}
-	Say in an open ball centered at $a$ there are only finitely many points in $S$. 
-	Let the distance between $\bm{a}$ and the closest point to it be $r$.
-There is no points in $S$ in $B(\bm{a},r)$
-
-\begin{figure}
-\begin{tikzpicture}
-\centering
-\draw[latex-latex] (-3.5,0) -- (3.5,0) ; %edit here for the axis
-\foreach \x in  {-3,-2,-1,0,1,2,3} % edit here for the vertical lines
-\draw[shift={(\x,0)},color=black] (0pt,3pt) -- (0pt,-3pt);
-
-% draw a
-\draw[shift={(1,0)}] (0pt,0pt) -- (0pt,-3pt) node[below] 
-{$\bm{a}$};
-
-\foreach \Point in {(2,0), (-1,0), (-1.3,0), (-1.1,0), (-0.4,0)}{
-    \node at \Point {\textbullet};
-	}
-
-\draw[o-o] (-0.08,0) -- (1.08,0);
-\draw[very thick] (1,0) -- (2,0);
-\draw[very thick] (0.00,0) -- (1.00,0);
-\end{tikzpicture}
-\end{figure}
-\end{block}
 \end{frame}
 
 \begin{frame}
-\frametitle{Close Set}
+\frametitle{Accumulation Point}
+	\begin{alertblock}{Theorem}
+		There are infinitely many points of $S$ in any open ball centered at accumulation point $\bm{a}$.
+	\end{alertblock}
 
-\begin{block}{Closed Set}
-	Let $S$ be a subset of $\mathbb{R}^n$. 
-	$S$ is closed if it contains all its accumulation points.
-\end{block}
+	\begin{block}{Proof}
+		Say in an open ball centered at $a$ there are only finitely many points in $S$. 
+		Let the distance between $\bm{a}$ and the closest point to it be $r$.
+		There is no points in $S$ in $B(\bm{a},r)$
+		\begin{figure}
+			\begin{tikzpicture}
+				\centering
+				\draw[latex-latex] (-3.5,0) -- (3.5,0) ; %edit here for the axis
+				\foreach \x in  {-3,-2,-1,0,1,2,3} % edit here for the vertical lines
+				\draw[shift={(\x,0)},color=black] (0pt,3pt) -- (0pt,-3pt);
+				% draw a
+				\draw[shift={(1,0)}] (0pt,0pt) -- (0pt,-3pt) node[below] 
+					{$\bm{a}$};
+				\foreach \Point in {(2,0), (-1,0), (-1.3,0), (-1.1,0), (-0.4,0)}{
+					\node at \Point {\textbullet};
+				}
+				\draw[o-o] (-0.08,0) -- (1.08,0);
+				\draw[very thick] (1,0) -- (2,0);
+				\draw[very thick] (0.00,0) -- (1.00,0);
+			\end{tikzpicture}
+		\end{figure}
+	\end{block}
+
+	\textbf{There is no accumulation point for finite set.}
+
+	\textbf{This definition is applicable for all metric space.}
+\end{frame}
+
+\begin{frame}
+\frametitle{Bolzano-Weierstrass Theorem}
+\textbf{Definition In Lecture: } A bounded sequence has a convergent subsequence.
+
+\textit{It Required Unnecessary Complications: }
+
+It needs sequence, convergence, and only works for $\mathbb{R}$
+\vfill
+\begin{alertblock}{Bolzano-Weierstrass Theorem With Accumulation Point}
+	If $S$ is bounded, then $S$ has an accumulation point.
+\end{alertblock}
+
+All we need is boundedness and open ball.
+
+It works for \textbf{all} $\mathbb{R}^n$.
+With careful defintion of boundedness, it works for all metric space.
+\end{frame}
+
+\begin{frame}
+	\frametitle{Close and Open Interval}
+	\textbf{Usual Definition in $\mathbb{R}$:} A open interval is an interval that does not contain its endpoints. A closed interval is an interval that contains its endpoints.
+
+	\textit{So Simple, May not be useful}. So difficult to prove Extreme Value Theorem with this definition.
+	\begin{block}{Closed Set}
+		Let $S$ be a subset of $\mathbb{R}^n$. 
+		$S$ is closed if it contains all its accumulation points.
+	\end{block}
+	\begin{block}{ Open Set } 
+		A set is open if its complement is closed.
+	\end{block}
+\end{frame}
+\begin{frame}
+	\frametitle{Close Set}
+
 
 \begin{examples}
 	\begin{enumerate}
-		\item $S = \{a, b, c \cdots|a,b,c \cdots \in \mathbb{R}^n\}$ is closed.
-		\item $[a,b]$ is closed.
+		\item $S = \{a, b, c \cdots|a,b,c \cdots \in \mathbb{R}^n\}$ is closed: they have no accumulation point.
+		\item $[a, b]$ is closed. Thus $(-\infty, a) \cup (b, \infty)$ is open.
+		\item Any intersection, finite union of close/open sets stay close/open.
 	\end{enumerate}
 \end{examples}
 
-\begin{block}{ Open Set } 
-	A set is open if its complement is closed.
-\end{block}
+
 
 \end{frame}
 
