@@ -47,16 +47,10 @@
 
 
 \section{Linear ODE}
-\begin{definition}[ODE]
-	todo
-\end{definition}
 
-\begin{enumerate}
-	\item The the existance and uniqueness theorem for ODE with initial condition.
-	\item Solve linear ODE system. Similar to a single ODE. Matrix exponent.
-	\item Characterisation of non linear ODE: critical points, stability, phase diagram, limit cycle, Poincare-Bendixson theorem (only in 2 D).
-	\item Solve non homogeneous ODE. Three methods: variation of parameters, undetermined coefficients, change of basis.
-\end{enumerate}
+\begin{theorem}[System of Homogeneous Linear ODE]
+
+\end{theorem}
 
 
 \section{Laplace Transform}
@@ -71,8 +65,12 @@
 	\ 
 \begin{enumerate}
 	\item $\L{f^{(n)}(t)} = s^n \L{f(t)} - s^{n-1}f(0) - s^{n-2}f'(0) - \cdots - f^{(n-1)}(0)$
-	\item $\L{e^{at}f(t)} = \L{f}(s-a)$
+	\item $\L{u_{c}(t)} = \frac{e^{-cs}}{s}$
+	\item $\L{u_c(t)f(t-c)} = e^{-cs} \L{f}$, domain unchanged. $(u_c(t) = t, t<c, 1$ otherwise)
+	\item $\L{e^{ct}f(t)} = \L{f}(s-c)$,$s-c > a$, if $\L{f}$ is defined for $s>a$
+	\item $\L{\delta(t-a)} = e^{-sa}$
 	\item $\L{t^nf(t)} = (-1)^n \frac{d^n}{ds^n} \L{f}(s)$
+	\item $\L{f(ct)} = \frac{1}{c}F(\frac{s}{c})$
 	\item $\L{1} = \frac{1}{s}$
 	\item $\L{e^{at}} = \frac{1}{s-a}$ for $s>a$
 	\item $\L{\sin{at}} = \frac{a}{s^2+a^2}$ for $s>0$
@@ -86,6 +84,59 @@
 \end{enumerate}	
 \end{theorem}
 
+\begin{theorem}[Convolution Theorem]
+	$$ f*g(t) =  \int_{0}^{t} f(t-\tau)g(\tau) d\tau$$
+	\begin{enumerate}
+		\item $\L{f*g} = \L{f} \L{g}$
+		\item $f*g = g*f$
+		\item $f*(g*h) = (f*g)*h$
+		\item $f*(g+h) = f*g + f*h$
+	\end{enumerate}
+\end{theorem}
+
+\section{Autonumous System}
+Considering a system of ODE: $\frac{dx}{dt} = F(x,y), \frac{dy}{dt} = G(x,y)$. $F, G$ are independent of $t$. This system is \textbf{autonomous}.
+
+\begin{definition}[Critical Point]
+	$(x_0, y_0)$ is a critical point if $F(x_0, y_0) = G(x_0, y_0) = 0$.
+\end{definition}
+
+The nature of critical is easy to determine for linear system. 
+
+\begin{definition}[Almost Linear System]
+	Consider autonomous system $\bm{x}' = \bm{A}\bm{x} + \bm{g}(\bm{x})$.  
+	If $\bm{0}$ is a critical point, and $\frac{||\bm{g}||}{||\bm{x}||} \rightarrow \bm{0}$ as $\bm{x} \rightarrow \bm{0}$, this is an almost linear system.
+	Significantly, if $F, G$ are twice differentiable. The system is almost linear, and is approximated by
+	$\frac{d}{dt} \bm{u} = \begin{bmatrix} F_x & F_y \\ G_x & G_y \end{bmatrix} \bm{u} $, where $\hat{\bm{x}}$ is a critical point, $F_x = F_x(\hat{\bm{x}}), \cdots$, $\bm{u} = \bm{x} - \hat{\bm{x}}$.
+	The stability of $\hat{\bm{x}}$ for the almost linear system is the same as linear system, except when the linear system has purly imaginary eiganvalues or equal real eiganvalues.
+\end{definition}
+
+\begin{theorem}[Lyapunov]
+	For a linear system $x' = F(x,y)$, $y' = G(x,y)$. We can find a Lyapunov function $V(x(t), y(t))$ such that $V$ is positive definite and $V' = \frac{dV}{dx}\frac{dx}{dt} + \frac{dV}{dy} \frac{dy}{dt} $ is negative definite in a domain containing $(0,0)$, then $(0,0)$ is asymptotic stable critical point. IF $V'$ semi negative definite, $(0,0)$ is stable. 
+
+	If For all interval containing $(0,0)$ there is a point such that $V$ is positive, while $V'$ is positive definite in a domain containing $(0,0)$, $\bm{0}$ is unstable.
+\end{theorem}
+
+\begin{theorem}
+If $F,G$ has continuous partial derivative is domain $D$, a close trajectory must contain a critical point that is not a saddle point.
+\end{theorem}
+
+\begin{theorem}
+If function $F, G$ has continuous first partial derivative in simply connected domain $D$. If $F_x + G_y$ has the same sign in $D$, then there is no close trajectory in $D$.
+\end{theorem}
+
+\begin{theorem}[Poincare-Bendixson]
+	Let $F,G$ have continuous first partial derivative. Let $D$ be a closed set containing no critical point. If there exists a trajectory in $D$ for all $t>t_0$, there must be a closed trajectory (periodic solution) in $D$.
+\end{theorem}
+
+\section{Fourier Series}
+\begin{theorem}[Fourier Convergence Theorem]
+	Suppose $f$ and $f'$ are piecewise continuous on interval $-L < x < L$, while $f$ is periodic with period $2L$. Then,
+
+	$f(x) = \frac{a_0}{2} + \sum_{n=1}^{\infty} (a_n \cos{\frac{n\pi x}{L}} + b_n \sin{\frac{n\pi x}{L}})$,
+
+	where $a_n = \frac{1}{L} \int_{-L}^{L} f(x) \cos{\frac{n\pi x}{L}} dx$, $b_n = \frac{1}{L} \int_{-L}^{L} f(x) \sin{\frac{n\pi x}{L}} dx$.
+\end{theorem}
 
 \section{Exam}
 \begin{enumerate}

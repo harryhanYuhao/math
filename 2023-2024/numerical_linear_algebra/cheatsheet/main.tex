@@ -1,0 +1,127 @@
+% available style: report
+\documentclass[12pt]{article}
+
+\input{preamble}
+
+
+\begin{document}
+
+\section{Linear Algebra}
+
+\begin{definition}[Norm]
+	$p$ norm of vector: $\norm{\bm{x}}_p = \left(\sum_{i=1}^{n} \abs{x_i}^p\right)^{1/p}$. ($\norm{\bm{x}}_\infty = \max_i \abs{x_i}$)
+
+	Matrix norm: $\norm{A}_p = \sup_{\bm{x} \neq 0} \frac{\norm{A\bm{x}}_p}{\norm{\bm{x}}_p}$.
+	$\norm{A}_1$ is maximum absolute column sum, $\norm{A}_\infty$ is maximum absolute row sum.
+	$\norm{A}_2 = \sqrt{\rho(A^TA)}$ where $\rho$ is the spectral radius.
+
+	We have these inequalities for all norms:
+	\begin{itemize}
+		\item $\norm{\bm{A}\bm{y}} \leq \norm{\bm{A}} \norm{\bm{y}}$
+		\item $\norm{\bm{A}\bm{B}} \leq \norm{\bm{A}} \norm{\bm{B}}$
+		\item $\norm{\bm{x} + \bm{y}} \leq \norm{\bm{x}} + \norm{\bm{y}}$
+		\item $\norm{\bm{A} + \bm{B}} \leq \norm{\bm{A}} + \norm{\bm{B}}$
+		\item $\norm{\alpha \bm{x}} = |\alpha| \norm{\bm{x}}$
+		\item $\norm{\alpha \bm{A}} = |\alpha| \norm{\bm{A}}$
+	\end{itemize}
+
+	For orthogonal matrices $\norm{\bm{Q}} = 1$, and $\norm{\bm{A}\bm{Q}} = \norm{\bm{A}}$
+\end{definition}
+
+\begin{theorem}[vectors]
+	\ 
+
+	\begin{enumerate}
+		\item \textbf{Projection}: $proj_{y} (x) = \frac{x \cdot y} {y \cdot y} y$
+	\end{enumerate}
+\end{theorem}
+
+\begin{theorem}[Matices] 
+	\ 
+	\begin{itemize}
+		\item \textbf{pseudo inverse}: $\bm{A}^{\dag} = (\bm{A}^T\bm{A})^{-1} \bm{A}^T$ 
+		\item \textbf{Condition number} (Squre matrices): $\kappa_p(\bm{A}) = \norm{\bm{A}}_p \norm{\bm{A}^{-1}}_p$ for invertible $\bm{A}$, $\infty$ for singular $\bm{A}$.
+		\item Let $\bm{A}$ be square matrix with eiganvalue $|\lambda_1| > |\lambda_2| \geq \dots \geq |\lambda_n|$, then $\kappa_2(\bm{A}) = \norm{\bm{A}} \norm{\bm{A}^{-1}} = \frac{|\lambda_1|}{|\lambda_n|}$
+
+	\end{itemize}
+\end{theorem}
+
+\section{Solve Linear System}
+
+\begin{theorem}[LU]
+	LU factorization: $A = LU$ where $L$ is lower triangular and $U$ is upper triangular.
+	\begin{algorithm}[H]
+		\caption{LU factorization}
+		\begin{algorithmic}[1]
+			\State $L = I, U = A$
+			\For{$k = 1, \dots, n-1$}
+				\For{$i = k+1, \dots, n$}
+					\State $l_{ik} = \frac{u_{ik}}{u_{kk}}$
+					\State $(u_{ik}, \cdots , u_{in}) = (u_{ik}, \cdots , u_{in}) - l_{ik} (u_{kk}, \cdots , u_{kn})$
+				\EndFor
+			\EndFor
+		\end{algorithmic}
+	\end{algorithm}
+\end{theorem}
+
+\begin{theorem}{Gaussian Elimination}
+	To solve $Ax = b$. Let $A = LU$. We solve $Ly = b$ and $Ux = y$.
+\end{theorem}
+
+\begin{theorem}[GEPP]
+	\textbf{Gaussian Elimination with Partial Pivoting}: $\bm{PA} = \bm{LU}$ where $\bm{P}$ is a permutation matrix.
+	\begin{algorithm}[H]
+		\caption{GEPP}
+		\begin{algorithmic}[1]
+			\State $\bm{L} = \bm{I}, \bm{U} = \bm{A},\bm{P} =\bm{I}$
+			\For{$k = 1, \dots, n-1$}
+			\State Choose $i \in \{k, \cdots, n\}$ that maximizes $\abs{u_{ik}}$
+			\State swap row $(u_{kk}, \cdots ,u_{kn})$ with $(u_{ik}, \cdots ,u_{in})$ 
+			\State swap row $(l$
+			\State swap $p_{ik}$ and $p_{kk}$ in $P$
+			\For{$i = k+1, \dots, n$}
+			\State $l_{ik} = \frac{u_{ik}}{u_{kk}}$
+			\State $(u_{ik}, \cdots , u_{in}) = (u_{ik}, \cdots , u_{in}) - l_{ik} (u_{kk}, \cdots , u_{kn})$
+			\EndFor
+			\EndFor
+		\end{algorithmic}
+	\end{algorithm}
+
+	To solve $\bm{Ax} = \bm{b}$: find $\bm{PA} = \bm{LU}$, solve $\bm{Ly} = \bm{Pb}$, solve $\bm{Ux} = \bm{y}$,
+\end{theorem}
+
+\begin{theorem}[Iterative Methods]
+	To solve $\bm{Ax} = \bm{b}$. Let $\bm{A} = \bm{M} + \bm{N}$. Start with guess $\bm{x}_0$, and compute $\bm{x}_{k+1} = \bm{M}^{-1}(\bm{b} - \bm{Nx}_k)$. This method converge if $\norm{\bm{M}^{-1}\bm{N}} < 1$.
+\end{theorem}
+
+\begin{theorem}[Least Squre]
+	Let $\bm{A} \in \R^{m \times n}$, $\bm{b} \in \R^{n}$. The vector $\bm{x} \in \R^{m}$ that minimise $\norm{\bm{Ax} - \bm{b}}_2$ satisfies $\bm{A}^T\bm{Ax} = \bm{A}^T\bm{b}$
+
+	Via QR:
+	Compute reduced QR: $\bm{A} = \bm{Q} \bm{R}$ where $\bm{Q} \in \R^{m \times n} \bm{R} \in \R^{n \times n}$. Compute $\bm{y} = \bm{Q}^T\bm{b}$, solve $\bm{Rx} = \bm{y}$
+
+	Via SVD:
+	Compute SVD: $\bm{A} = \bm{U} \bm{\Sigma} \bm{V}^T$ where $\bm{U} \in \R^{m \times m} \bm{\Sigma} \in \R^{m \times n} \bm{V} \in \R^{n \times n}$. Compute $\bm{z} = \bm{U}^T\bm{b}$, solve $\bm{\Sigma}\bm{y} = \bm{z}$, $\bm{x} = \bm{V}\bm{y}$
+
+
+\end{theorem}
+
+\begin{theorem}[eiganvalue problem]
+	Suppose we have computed approximate eiganvalue and eiganvector by power iteration. 
+	Suppose, $|\lambda_1| > |\lambda_2|$, and $x_1^Tz^0 \neq 0$.
+	We have, for the $k$th iteration, $\sigma_k = \pm 1$, $|\lambda_1| > |\lambda_2|$ is the greatest eiganvalue, corresponding to $\bm{x}_1$:
+	$\norm{\sigma_k \bm{z}^k - \bm{x}_1} \leq \alpha_1 \left( \frac{|\lambda_2|}{|\lambda_1|}\right)^k$, and
+	$\norm{\lambda_k - \lambda_1} \leq \alpha_2 \left( \frac{|\lambda_2|}{|\lambda_1|}\right)^{2k}$
+\end{theorem}
+
+\begin{theorem}[Computation Cost]
+	\ 
+\begin{enumerate}
+	\item LU factorization: $ C(n) = \frac{2}{3}n^3 + \frac{1}{2}n^2 - \frac{7}{6}n$ 
+	\item Forward substitution: $C(n) = n^2$
+	\item Gaussian elimination: $C(n) = \frac{2}{3}n^3 + \frac{5}{2}n^2 - \frac{7}{6}n$
+	\item Gram-Schmidt: $C(n) = 2n^3 + n^2 + n$
+	\item Householder: $C(n) = \frac{4}{3}n^3 + O(n^2)$
+\end{enumerate}
+\end{theorem}
+\end{document}
