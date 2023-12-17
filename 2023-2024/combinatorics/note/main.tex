@@ -1,0 +1,97 @@
+% available style: report
+\documentclass[12pt]{article}
+
+\input{preamble}
+
+\title{Graph Theory}
+\author{Harry Han}
+\date{\today}
+\begin{document}
+\section{Basics}
+
+\begin{definition}[Graph]
+	Let $n, m, f, k$ denote number of vertices, edges, faces, components respectively. 
+	\begin{enumerate}
+		\item	\b{Simple Graph} No loops, no multiple edges.	
+		\item	\b{Walk} Finite sequence of connected edges.
+		\item	\b{Trail} walk with no repeated edges.
+		\item	\b{Path} walk with no repeated vertices.
+		\item 	\b{Cycle} Closed plath with no repeated edges. (any loop or multiple edges are cycles)
+		\item	\b{Disconnecting Set} A set of edges whose removal disconnects the graph (increase the number of components).
+		\item	\b{Cut Set} smallest disconnecting set.
+		\item	\b{Edge Connectivity} The size of the smallest cut set, $\lambda (G)$. We say $G$ is $k$ connected if $\lambda (G) \geq k$.
+		\item	\b{Bridge} An edge whose removal increases the number of components.
+		\item	\b{Separating Set} A set of vertices whose removal disconnects the graph.
+		\item	\b{Vertex Connectivity} The size of the smallest separating set, $\kappa (G)$. We say $G$ is $k$ connected if $\kappa (G) \geq k$. We have $\kappa (G) \leq \lambda (G)$
+		\item	\b{Cut Vertex} A vertex whose removal increases the number of components.
+		\item	\b{Eulerian} A graph with a closed trail containing all edges.
+		\item	\b{Semi-Eulerian} A graph with a trail containing all edges.
+		\item	\b{Hamiltonian} A graph with a closed trail passing through exactly once all vertices. This is Hamiltonian cycle. (No repeated edges or vertices, passing through all vertices)
+		\item	\b{Forest} A graph with no cycles.
+		\item	\b{Tree} A connected forest.
+		\item	\b{Cutset Rank} Number of edges in a spanning tree. $n-k$.
+		\item	\b{Cycle Rank} Number of edges removed to get a spanning forest. $m - (n-k)$.
+		\item	\b{Connected Digraph} A digraph whose corresponding undirected graph is connected.
+		\item	\b{Strongly Connected Digraph} A digraph such that for all $u,v \in V$, there is a $u-v$ path and a $v-u$ path.
+		\item	\b{Orientable} A graph is orientable if it is possible to assign a direction to each edge such that the resulting digraph is strongly connected.
+		\item	\b{Tournament} A digraph such that two vertices are joined by one directed edge.+
+		\item	\b{Chromatic Number} Coloring index.
+		\item	\b{Chromatic Polynomial} Coloring edge with minimum number of colors.
+	\end{enumerate}
+\end{definition}
+
+\begin{theorem}[Adjacency matrix]
+	Let $A$ be adjacency matrix.
+	Trace of $A^2$ is twice the number of edges. Trace of $A^3$ is 6 times the number of triangles.
+\end{theorem}
+
+\begin{theorem}[Bound for edges]
+	$G$ be a simple graph with $n$ vertices, $k$ components, $m$ edges. We have 
+	\[ 
+		n-k \leq m \leq \frac{(n-k)(n-k+1)}{2}
+	\]
+\end{theorem}
+
+\begin{theorem}[Ore]
+If $G$ is simple graph with $n \geq 3$ vertices such that $\deg (u) + \deg (v) \geq n$ for all non-adjacent vertices $u,v$, then $G$ is Hamiltonian.
+\end{theorem}
+
+\begin{definition}[Algorithms]
+	\ 
+\begin{enumerate}
+	\item The shortest path problem: Dijkstra's algorithm.
+	\item The minimum spanning tree problem: Greedy algorithm.
+	\item Chinese postman problem: find the shortest closed walk containing all edges. (If the graph is Eulerian, then it is the Eulerian cycle. If Semi-Eulerian, this is the Semi-Eulerian path along the path of least length between the two odd vertices.
+	\item Travelling salesman problem: find the shortest hamiltonian cycle. (Passing through all vertices exactly once and returning to the starting vertex) (Lower bound: find minimum spanning tree of $G - v$. Add the sum with two minimum edges of $v$).
+\end{enumerate}
+\end{definition}
+
+\begin{theorem}[Counting Trees]
+	There are $n^{n-2}$ labeled trees on $n$ vertices.
+\end{theorem}
+
+\begin{theorem}[Planarity]
+	\ 
+	\begin{enumerate}
+		\item Every planar graph has a vertex of degree at most 5.
+		\item For planar graphs, $ m \leq 3n - 6$. For plane graphs with no triangles, $m \leq 2n - 4$.
+	\end{enumerate}
+\end{theorem}
+
+\begin{theorem}[Genus]
+	For simple graph, $g(G) \geq \text{ceil} \{(m-3n)/6 +1 \}$. The equality holds if $G$ is complete graph.
+\end{theorem}
+
+\begin{theorem}[Euler]
+	\begin{equation}
+		n - m + f = 2 - 2g	
+	\end{equation}
+\end{theorem}
+
+\begin{theorem}[Coloring]
+	\begin{enumerate}
+		\item Every planar graph is 4-colorable.
+		\item Four color theorem for maps is equivalent to four color theorem for planar graphs.
+	\end{enumerate}
+\end{theorem}
+\end{document}
