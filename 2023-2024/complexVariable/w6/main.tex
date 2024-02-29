@@ -1,0 +1,81 @@
+\documentclass[12pt, a4paper]{article}
+\usepackage{blindtext, titlesec, amsthm, thmtools, amsmath, amsfonts, scalerel, amssymb, graphicx, titlesec, xcolor, multicol, hyperref}
+\usepackage[utf8]{inputenc}
+\hypersetup{colorlinks,linkcolor={red!40!black},citecolor={blue!50!black},urlcolor={blue!80!black}}
+\newtheorem{theorem}{Theorema}[subsection]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollarium}
+\newtheorem{hypothesis}{Coniectura}
+\theoremstyle{definition}
+\newtheorem{definition}{Definitio}[section]
+\theoremstyle{remark}
+\newtheorem{remark}{Observatio}[section]
+\newtheorem{example}{Exampli Gratia}[section]
+\newcommand{\bb}[1]{\mathbb{#1}}
+\renewcommand\qedsymbol{Q.E.D.}
+\newcommand{\Log}[1]{\text{Log}#1}
+
+\begin{document}
+
+\section{Q1}
+
+We have multivalued function $f(x) = (z^2 + 1)^{1/2}$. We want to define a branch so that it is holomorphic in $D_1(0) := \{z \in \bb{C} : |z| < 1\}$.
+
+Notice $f = g_1 g_2$ where $g_1 = (z+i)^{1/2}, g_2 = (z-i)^{1/2} $. We can pick a branch for $g_1, g_2$ that is holomorphic on $D_1(0)$.
+
+Let us pick the branch of $g_1$ corresponds to $\Log_{\chi_1}$, with $\chi = -\pi$, i.e, the principal branch.
+By definition $g_1 = \exp(\frac{1}{2} \Log(z+i))$.
+Apply lemma 1.7.11, we see $Log(z+i)$ is holomorphic on $D_{i, \pi}$.
+Apply rationale in 1.8.10 we see $g_0$ is holomorphic on $D_{i, \pi}$. Note $D_1(0) \subset D_{i, \pi}$.
+
+Similarly, chose principal branch of $g_2$, we see it is holomorphic on $D_{i, \pi}$.
+
+Both branches are holomorphic on $D_1(0)$, thus their product is also holomorphic.
+In this way we choose the branch of $f$ as the product of the two principal branch of $g_1, g_2$, which is holomorphic on the desired domain.
+
+\section{Q2}
+
+We want to find a branch of $f(z) = (z^2 + 1)^{1/2}$ that is holomorphic on the set $S = \bb{C} \smallsetminus \bar{D}_1(0)$.
+
+Let us rewrite $f$ as $f = (z^2)^{\frac{1}{2}}(1+z^{-2})^{1/2}$. $(z^2)^{\frac{1}{2}} = \exp(\log(z^2) \frac{1}{2})$ =$\pm z$, both of which are holomorphic.
+So let us find a branch of $g=(1+z^{-2})^{1/2}$ that is holomorphic on desired domain.
+
+Let us pick $g = \exp(\frac{1}{2}\Log(1+z^{-2}))$. I will show this is holomorphic in the desired domain. Define $m(z)= 1+z^{-2}$. For $|z| > 1$, it is clear that we have $|z^{-2}| < 1$, thus $m(S) \subset \{z : |z-1| < 1\} \subset D_{0, \pi} $, the domain for $\Log$.
+This means that for $z \in S$, $\Log(m(z))$ is holomorphic, which means $g(z)$ is holomorphic as desired.
+
+Thus, we chose $f = zg$, which is conformal in the desired domain.
+
+\section{Q3}
+
+Let $g_1(z) = z - 1, g_2(z) = z^{1/2}$, $g_3(z) = \frac{z-1}{z+1}$. I claim that the composite $f = g_1 \circ g_2 \circ g_3 $ is a conformal map from $D_{1, \pi}$ to $D_1(0)$
+
+\begin{proof}
+	Let us first show that $g_1, g_2, g_3$ are conformal maps in their respective domain.
+
+	For $g_1: \bb{C} \rightarrow  \bb{C}$, as its derivative is 1 for all $\bb{C}$, by theorem 2.1.2 it is conformal map for all $\bb{C}$.
+	For $g_2: D_{0, \pi} \rightarrow  \{z : Re(z) > 0\}$, for $z \in D_{0, \pi}$, its derivative is $\frac{-1}{2}z^{-1/2}$, which is not zero. Thus again by theorem 2.1.2 it is conformal.
+	$g_3: \tilde{\bb{C}} \rightarrow  \tilde{\bb{C}} $ is Mobius transformation thus conformal for all $\bb{C}$. As composite of conformal maps are conformal, $ f = g_1 \circ g_2 \circ g_3$ is conformal for an appropriate domain. It is also worth noting that each of $g_1, g_2, g_3$ are bijective thus homeomorphic.
+
+	Notice that $g_1$ is a bijective map that sends $D_{1, \pi}$ to $D_{0, \pi}$. And, as we have shown in Question 1 of the workshop, $g_3$ is a bijective map that sends $\{z: Re(z) > 0\} $ to $D_1 (0)$. 
+	$g_2$ is also an Mobius transformation thus bijective. To find it codomain, with $z \in D_{0, \pi} = re^{i \theta}$ with $0 \leq \theta < -\pi $, we found $g_2(z) \in \{re^{i \theta}: 0\leq\theta <\pi\} $, that is, $\{z : Re(z) > 0\}$.
+
+	As composition perserves holomorphicity and cofrmalbess, we conclude, $f = g_1 \circ g_2 \circ g_3$, is a holomorphic, conformal, and homeomorphic map that sends $D_{1, \pi}$ to $D_1(0)$ as desired.
+\end{proof}
+
+\section{Q4}
+
+Let $L_1 = \{z \in \bb{C}: Re(z) = Im(z)\} \cup \{\infty\}$, $L_2 = \{z \in \bb{C}: Re(z) = -Im(z)\} \cup \{\infty\}$
+
+For a certain mobius transformation $f$ such that $f(L_1) = L_1$ and $f(L_2) = L_2$, I claim that it maps circles centered at the origin to circles centered at the origin, of not necessary the same radius.
+
+\begin{proof}
+	Let us first proof the simple fact that the only circlines that that are orthogonal to both $L_1$ and $L_2$ are the circles centered at the origin.
+	If a circle is orthogonal to a line, its origin must be in the line.
+	Thus, the only circles that are orthogonal to both $L_1$ and $L_2$ are the circles centered at the origin, as origin is the only point of their intersection.
+	There are no lines that are orthogonal to both $L_1$ and $L_2$, as they are orthogonal to each other, and a line that is orthogonal to $L_1$ is necessarily parallel to $L_2$, and vice versa, by the fifth proposition of the Euclid, if we disregard infinity and regard $\bb{C}$ as a Euclidean Space.
+
+	Now, consider the circle $C$ centered at the origin. It is orthogonal to both $L_1$ and $L_2$. Thus, by the above argument, $f(C)$ is orthogonal to both $L_1$ and $L_2$ thus a circle centered at the origin.
+\end{proof}
+
+\end{document}
+

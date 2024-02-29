@@ -1,0 +1,111 @@
+\documentclass[12pt, a4paper]{article}
+\usepackage{blindtext, titlesec, amsthm, thmtools, amsmath, amsfonts, scalerel, amssymb, graphicx, titlesec, xcolor, multicol, hyperref}
+\usepackage{amsmath}
+\usepackage{mathtools}
+\usepackage[utf8]{inputenc}
+\hypersetup{colorlinks,linkcolor={red!40!black},citecolor={blue!50!black},urlcolor={blue!80!black}}
+\newtheorem{theorem}{Theorema}[subsection]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollarium}
+\newtheorem{hypothesis}{Coniectura}
+\theoremstyle{definition}
+\newtheorem{definition}{Definitio}[section]
+\theoremstyle{remark}
+\newtheorem{remark}{Observatio}[section]
+\newtheorem{example}{Exampli Gratia}[section]
+\newcommand{\bb}[1]{\mathbb{#1}}
+\renewcommand\qedsymbol{Q.E.D.}
+\begin{document}
+Let $V$ be a finite dimensional vector space over a field $F$, of dimension $r$ and field $F$.
+
+\section{Q1}
+Let us prove that $V$'s dual space, $V^*$, is a vector space over $F$.
+
+Let us first define the proper operation:
+
+Let us define the operation $(\cdot):F \times V^* \rightarrow V^* $ to be for $r \in F , f \in V^*$, we have $(r \cdot f ) (v)= r \cdot f(v) \in V^*$. Obviously $(r \cdot f ) \in V^*$ and our definition make sense.
+
+Let us define operation $(+): V^* \times V^* \rightarrow V^*$, to be for $f, g \in V^*, v \in V$, we have $ (f + g)(v) = f(v) + g(v)$. Obviously $(f+g)(v) \in V^*$ and our definition make sense. It is also clear that $f+g = g+f$, as for all $f, g, v$, $f(v) + g(v) = g(v) + f(v)$.
+
+We can define zero of $V^*$ be to the function $f : V \rightarrow  F $ such that $f(v) = 0$ for all $v\in V$. Then, for every $f \in V^*$, it would have an inverse that is $f^{-1}(v) = -1 \cdot f(v)$ for all $v$.
+
+Thus $V^*$ under operation $+$ constitutes an abelian group.
+
+Let us then prove $V^*$ under these operation constitutes a vector space over $F$.
+
+Notice that $\lambda (f + g) = \lambda f + \lambda g; (\lambda + \mu) f = \lambda f + \mu f; \lambda \mu f = \lambda (\mu f); 1f =f$. Thus we conclude $V^*$ is a vector space under field $F$.
+
+\section{Q2}
+
+We are to show that the dimension of $V^*$ is $r$ by finding the basis of $V^*$.
+
+\begin{proof}
+Let $0_F, 1_F$ be the additive and multiplicative identity of $F$, 
+$v_1, v_2, \cdots v_r$ be basis of $V$. Let $\beta$ denote the set $\{v_1, v_2, \cdots, v_r \}$
+
+Let us define $r$ linear mapping $V \rightarrow F$ thus (with $n = 1, 2, \cdots , r$ and $v \in V$): 
+\[
+v^*_1(v) = \begin{dcases*}
+1_F & if $v = v_1$ \\
+0_F & if $v \in \beta \setminus \{v_1\}$
+\end{dcases*}
+v^*_n(v) = \begin{dcases*}
+1_F & if $v = v_n$ \\
+0_F & if $v \in \beta \setminus \{v_n\}$ 
+\end{dcases*}
+\]
+
+
+
+Note for $v \notin \beta$, it can be written as the linear combination of the basis $a_1v_1 + a_2v_2 \cdots a_rv_r$ and we define $v^*_n(v) = a_1v^*_n(v_1) + a_2v^*_n(v_2) + \cdots $.
+
+I claim that these are the basis of $V^*$, thus dimension of $V^*$ is $r$.
+
+First let us prove that $v^*_1, v^*_2, \cdots$ are linearly independent. Recall that $0_{V^*}$ is the mapping that map every $v$ to $0_F$. 
+Notice for any linear combination of $v^*_n$ that is written as $f = a_1v^*_1 + a_2v^*_2+ \cdots + a_rv^*_r$, $f(v_1) = a_1, f(v_n) = a_n$. Thus, for $f=0_{V^*}$, $a_1, a_2, \cdots , a_r$ must all be zero, which means that $v^*_n$ are indeed linear independent. 
+
+Then let us prove that $v^*_1, v^*_2, \cdots$ span $V^*$. Let $f \in V^*$, Let us define $f' = f(v_1)v^*_1 + f(v_2)v^*_2 + \cdots + f(v_r)v^*_r $. 
+To prove $f'=f$, first notice that $f'(v_1) = f(v_1), \cdots, f'(v_n) = f(v_n)$. 
+For any other $v$, we have $v = a_1v_1 + a_2v_2 + \cdots a_rv_r \implies f(v) = \sum_{i=1}^r a_if(v_i) = \sum_{i=1}^r a_if'(v_i) = f'(v)$.
+Thus every $f \in V^*$ can be written as a linear combination of $v^*_n$, i.e., $v^*_n$ span $V^*$.
+
+As $v_1, \cdots v_r$ is linearly independent and spans $V^*$, they are the basis of $V^*$, thus the dimension of $V^*$ is $r$.
+\end{proof}
+
+\section{Q3}
+
+To show $(V^*)^*$ is also a vector space over $F$ with dimension $r$ is trivial. We just showed that for vector space $V$ over $F$ or dimension $r$, it dual $V^*$ is a vector space over $F$ with dimension $r$. Apply this argument to $V^*$ we see $(V^*)^*$ is also a vector space over $F$ with dimension $r$.
+
+\section{Q4}
+
+Define the map $\Gamma \in map(V, V^{**})$ thus:
+$$(\Gamma v)(\xi) = \xi (v)$$
+, where $v \in V, \xi \in V^*$. I claim $\Gamma$ is an isomorphism. 
+
+\begin{proof}
+Let us first show that $\Gamma$ is a homomorphism.
+
+Notice that for any $v, w \in V, \xi \in V^* $, we have $\Gamma(v+w) (\xi) = \xi(v + w) = \xi(v) + \xi(w) = \Gamma(v) (\xi) + \Gamma(w) (\xi)$, thus we conclude that $\Gamma(v+w) = \Gamma(v) + \Gamma(w)$.
+For any $c \in F, v \in V, \xi \in V^*$, we have $\Gamma(cv) (\xi) = \xi(cv) = c \xi(v) = c\Gamma(v) (\xi)$, thus we conclude that $\Gamma(cv) = c\Gamma(v)$. These two are the definition of homomorphism.
+
+Next let us show $\Gamma$ is an isomorphism.
+
+Recall that the zero for the vector space $V^{**}$ is the map that takes every $\nu \in V^*$ to $0_F$. I claim that the kernel of $\Gamma$ is the set $\{0_V\}$. To show this, consider $v_1 \in V \land v_1 \neq 0_V$. Define $\xi \in V^*$ thus (with $c \in F$): 
+
+\[
+\xi (v) = \begin{dcases*}
+1_F & if $v = v_1$ \\
+c \cdot 1_F & if $v = cv_1$ \\
+0_F & otherwise
+\end{dcases*}
+\]
+\end{proof}
+
+It is clear that $\Gamma (v_1) (\xi) \neq 0_F \implies v_1 \neq ker(\Gamma) \implies ker(\Gamma) =\{0_V\}$. 
+From this it is easy to show $\Gamma$ is injective: $\Gamma (x) = \Gamma(y) \implies \Gamma(x) - \Gamma(y) = 0_F \implies \Gamma(x-y) = 0_F \implies x - y = 0_F \implies x = y$.
+
+Apply nullity-rank theorem we see $im(\Gamma)$ is a vector space of dimension $r$, equal to that of $V^{**}$, which means $im(\Gamma) = V^{**}$ i.e., $\Gamma$ is surjective.
+
+As $\Gamma$ is both injective and surjective, it is an isomorphism.
+
+\end{document}

@@ -1,0 +1,107 @@
+\documentclass[12pt, a4paper]{article}
+\usepackage{blindtext, titlesec, amsthm, thmtools, amsmath, amsfonts, scalerel, amssymb, graphicx, titlesec, xcolor, multicol, hyperref}
+\usepackage[utf8]{inputenc}
+\hypersetup{colorlinks,linkcolor={red!40!black},citecolor={blue!50!black},urlcolor={blue!80!black}}
+\newtheorem{theorem}{Theorema}[subsection]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollarium}
+\newtheorem{hypothesis}{Coniectura}
+\theoremstyle{definition}
+\newtheorem{definition}{Definitio}[section]
+\theoremstyle{remark}
+\newtheorem{remark}{Observatio}[section]
+\newtheorem{example}{Exampli Gratia}[section]
+\newcommand{\bb}[1]{\mathbb{#1}}
+\renewcommand\qedsymbol{Q.E.D.}
+
+\begin{document}
+
+\section{Q1}
+
+Let $z_0 \in \bb{C}$, and $0 < r < R$ for real number $r, R$. We are to prove that the set 
+$$
+S := \{z : r<|z-z_0|< R \}
+$$
+
+is open.
+
+\begin{proof}
+Let $s \in S$. Pick $\delta$ be the smaller of $|s-z_0| -r $ and $R - |s-z_0|$, both of which are positive by construction.
+
+I claim the the open ball $\beta = B(s, \delta) \subset S$. 
+
+$\forall a \in \beta$, by construction $|a-s| < \delta  \leq R - |s-z_0|$. Apply triangular inequality, we see $|a-z_0| \leq |a-s| + |z_0-s| < R - |s-z_0| + |s-z_0| = R$.
+
+Moreover, by construction we know $| a-s | < \delta \leq |s - z_0| - r$. Thus $|a-s| - |s-z_0| < - r \implies ||a-s| - |s-z_0|| > r$ as $r > 0$. Apply triangular inequality again we see $|a-z_0| \geq | |a-s| - |s-z_0| | > r$.
+
+For $\forall s \in S$ we have constructed an open ball centered at it as a subset of $S$, i.e., $S$ is an open set.
+\end{proof}
+
+\section{Q2}
+
+I claim that, the set $S := \{a + bi : a, b \in \bb{Q}\}$ is a countable dense subset of $\bb{C}$.
+
+\begin{proof}
+It it clear that $S$ is isomorphic to $\bb{Q}^2$, which is countable, thus $S$ is also countable.
+
+Before proving $S$ is dense on $\bb{C}$, let us prove first $\bb{Q}$ is dense on $\bb{R}$.
+
+For all $s\in \bb{R}$ and $\epsilon > 0$, we want to prove that there is $q \in \bb{Q}$ such that $|s-q| < \epsilon$.
+By Archimedean property, for this $\epsilon$, there is $n \in N$ such that $n > \frac{1}{\epsilon} $i.e., $ \frac{1}{n} < \epsilon$. 
+WLOG, let $s > 0$.
+Let us consider the sequence $\frac{1}{n}, \frac{2}{n}, \cdots$. Choose the smallest $c \in \bb{N}$ such that $\frac{c}{n} > s$. 
+Thus we know $\frac{c-1}{n} \leq s \leq \frac{c}{n}$. Since $\frac{1}{n} < \epsilon$, it is clear that $|\frac{c}{n} - s| < \epsilon$ as desired.
+
+To prove S is dense, consider any $c \in \bb{C} = a + bi$. For any $\epsilon$, pick $a', b' \in \bb{Q}$ such that $|a-a'| < \epsilon /2$ and $|b-b'| < \epsilon/2$. 
+Such $a', b'$ exist as $\bb{Q}$ is dense. I claim that for $c' = a' + b'i$, $|c - c'| \leq \epsilon$. To prove this, consider $m = a + b'i$. 
+Let us apply triangular inequality $|c' - c| \leq |c' - m| + |c - m | = |a-a'| + |b-b'| < \epsilon$ as desired.
+
+\end{proof}
+
+\section{Q3}
+
+We are to prove that the function $f(z) = \sqrt{|Re(z)Im(z)|}$ satisfy cauchy reiman equation but is not differentiable at $z_0 = 0$.
+
+\begin{proof}
+	To Show that $f$ is non-differentiable is easy. 
+	Consider $z_1 = a + ai$. 
+	$\lim_{a\rightarrow 0} \frac{f(a+ai)}{a+ai} = \lim_{a \rightarrow 0}\frac{a}{a+ai} = \frac{1}{2} -\frac{1}{2}i$.
+
+	Consider $z_2 = a + 2ai$:
+	$\lim_{a\rightarrow 0} \frac{f(a+2ai)}{a+2ai} = \lim_{a \rightarrow 0}\frac{\sqrt{2}a}{a+2ai} = \frac{\sqrt{2}}{5} -\frac{2\sqrt{2}}{5}i \neq \frac{1}{2} - i \frac{1}{2}$. Thus we conclude that $f$ is non-differentiable at $z_0$
+
+	Next we shall show it satisfy cauchy reimann equation.
+
+	By construction we have $v = 0$ and $u = |xy|^{1/2}$. Thus we have $u_x(0,0) = \frac{du(x,0)}{dx} = 0$, $u_y(0,0) = \frac{du(0, y)}{dy}=0$. Thus we conclude $v_y = u_x$ and $v_x = - u_y$: the cauchy reimann equation.
+
+
+\end{proof}
+
+\section{Q4}
+We have $u(x,y) = ay^3 + by^2x + cyx^2 + dx^3$ being the real part of a holomorphic function.
+
+By lemma 1.4.14 $u$ must be harmonic. Thus we have $u_{xx} + u_{yy} = 0$, i.e., $2cy + 6dx + 6ay + 2bx = 0 \implies b = -3d, c = -3a $ 
+i.e., $u = ay^3  -3dy^2x -3ayx^2 +dx^3$.
+Let us construct $v$, a harmonic conjuage for $u$. 
+
+We know $\frac{\partial v}{\partial y} = \frac{\partial u}{\partial x} = -3dy^2 -6ayx + 3dx^2 \implies v = -dy^3 -3ay^2x + 3dx^2y + C(x)$.
+
+We know $\frac{\partial v}{\partial x} = -\frac{\partial u}{\partial y} = -3ay^2 +6dyx +3ax^2  \implies v = -3axy^2 + 3dx^2y + ax^3 + C(y)$
+
+Combining these two, we get $v = ax^3 - dy^3 + 3dx^2y -3axy^2 + C$ for some constant $C \in \bb{R}$. 
+
+As both $u$ and $v$ are differentiable. By applying theorem 1.4.8 we see the function $f(z) = u + iv$ is differentiable for all $z \in \bb{C}$ thus holomorphic on all $z \in \bb{C}$. Thus we conclude $v$ is  harmonic conjugate of $u$ and the most general form of $u$ such that it is the real part of the holomorphic function is indeed $u = ay^3  -3dy^2x -3ayx^2 +dx^3$.
+
+It is worth noting that 
+\begin{equation} \label{eq1}
+\begin{split}
+	f(z) &= f(x+iy) = u(x,y) + iv(x,y)  = \\
+		 & =  ay^3  -3dy^2x -3ayx^2 +dx^3 + i(ax^3 - dy^3 + 3dx^2y -3axy^2 + C)\\
+		 & = a(y^3 - 3yx^2 +ix^3 -3ixy^2) +d(x^3 -3y^2x +3x^2y -idy^3) + iC\\
+		 & = dz^3 + i(az^3 + C)   
+\end{split}
+\end{equation}
+
+For certain constant $C \in \bb{R}$.
+\end{document}
+

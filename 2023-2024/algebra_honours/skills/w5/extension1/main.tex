@@ -1,0 +1,152 @@
+\documentclass[12pt, a4paper]{article}
+\usepackage{blindtext, titlesec, amsthm, thmtools, amsmath, amsfonts, scalerel, amssymb, graphicx, titlesec, xcolor, multicol, hyperref}
+\usepackage[utf8]{inputenc}
+\hypersetup{colorlinks,linkcolor={red!40!black},citecolor={blue!50!black},urlcolor={blue!80!black}}
+\newtheorem{theorem}{Theorema}[subsection]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollarium}
+\newtheorem{hypothesis}{Coniectura}
+\theoremstyle{definition}
+\newtheorem{definition}{Definitio}[section]
+\theoremstyle{remark}
+\newtheorem{remark}{Observatio}[section]
+\newtheorem{example}{Exampli Gratia}[section]
+\newcommand{\bb}[1]{\mathbb{#1}}
+\renewcommand\qedsymbol{Q.E.D.}
+\title{}
+\author{}
+\date{}
+
+\begin{document}
+\maketitle
+%\tableofcontents
+
+Let us define the $n\times n$ matrix $A_n$ thus:
+
+Fix arbitrary real numbers $x_1,\ldots,x_n$ which are pairwise distinct, i.e. so that $x_i\neq x_j$ for any pair $i\neq j$.  Let $A_n=(a_{ij})$ be the following $n \times n$ matrix:  its diagonal entries are given by the equation,
+
+$$a_{ii} = \sum_{j\neq i}\frac{x_i}{x_i-x_j},$$
+
+while its off-diagonal entries given by the equation,
+
+$$a_{ij} = \frac{x_i}{x_i-x_j},$$
+
+I claim that the matrix $A_n$ has \textbf{eigenvalues} $0,1,2, \cdots, n-1$.
+
+Let us first define some notation.
+For any terms $x_1,x_2,\cdots, x_n$ Define $\chi = \{x_1,x_2, \cdots, x_n\}$, $\Delta^p_{S} = \sum_{i_1, i_2, \cdots, i_p \in S}i_1\cdot i_2\cdot i_3\cdots i_p$.
+
+For example:
+$$\Delta^0_{\chi} = \sum_{i=1}^{n} 1 = |\chi|$$
+$$\Delta^1_{\chi} = \sum_{i=1}^{n} x_i$$
+$$\Delta^2_{\chi} = \sum_{1 \leq i<j \leq n} x_ix_j = x_1x_2 + x_1x_3 + \cdots x_1x_n + x_2x_3 \cdots$$
+
+The left-eigenvector, $\vec{v}_0$ corresponding to the eigenvalue $0$ is
+$$
+	\vec{v}_0 =\left[\dfrac{x_1}{x_1}, \dfrac{x_1}{x_2}, \cdots ,\dfrac{x_1}{x_n}\right]
+$$
+
+The left-eigenvector, $\vec{v}_k$ corresponding to the eigenvalue $k$, with $1 \leq k \leq n-1$ is
+$$
+	\vec{v}_k =
+	\left[
+		\dfrac{\Delta^{n-1-k}_{\chi \smallsetminus x_1}}{\Delta^{n-1-k}_{\chi \smallsetminus x_1}},
+		\dfrac{\Delta^{n-1-k}_{\chi \smallsetminus x_2}}{\Delta^{n-1-k}_{\chi \smallsetminus x_1}},
+		\cdots ,
+		\dfrac{\Delta^{n-1-k}_{\chi \smallsetminus x_n}}{\Delta^{n-1-k}_{\chi \smallsetminus x_1}},
+		\right]
+$$
+
+\section{Problem 5}
+
+\subsection{ Proof}
+
+\subsubsection{v0}
+
+To prove that
+$$
+	\vec{v}_0 =\left[\dfrac{x_1}{x_1}, \dfrac{x_1}{x_2}, \cdots ,\dfrac{x_1}{x_n}\right]
+$$
+
+is easy.
+
+We simply compute with bruteforce:
+
+$$
+	\vec{v}_0 A_7 = [a_{11} + \sum_{1\neq j}{x_1}{x_j-x_1}, a_{22} + \sum_{2\neq j}{x_2}{x_j-x_2}, \cdot]
+$$
+I.e, the ith term is $a_{ii} +  \sum_{i\neq j}\frac{x_i}{x_j-x_i}$.
+Notice $a_{ii} = \sum_{i\neq j} \frac{x_i}{-x_j+x_i}$, and we conclude $\vec{v}_0 A_7 = 0$.
+
+\subsubsection{ v(n-1)}
+
+$$
+	\vec{v}_1 A_7 = [a_{ii} + \sum_{i\neq j}\frac{x_j}{x_j-x_i}]
+$$
+
+Notice
+$$
+	a_{ii} + \sum_{i\neq j}\frac{x_j}{x_j-x_i} = \sum_{i\neq j}\frac{x_j}{x_j-x_i} + \sum_{i\neq j}\frac{x_i}{-x_j+x_i} = \sum_{i\neq j}\frac{x_j-x_i}{x_j-x_i} = n-1
+$$
+
+$\vec{v}_1 A_7 = [n-1, n-1, \cdots] = (n-1) v_1$.
+
+\subsubsection{ The rest}
+
+Let us first notice 2 identity:
+
+$$
+	\frac{1}{x_i - x_j}(x_i \Delta^{n}_{\chi \smallsetminus x_i} - x_j \Delta^{n}_{\chi \smallsetminus x_j}) = \Delta^{n}_{\chi \smallsetminus \{x_i, x_j\}}  (1)
+$$
+
+$$
+	\text{(Iterate through j)}\sum_{j \neq i} \Delta^{k}_{\chi \smallsetminus \{x_i, x_j\}} = (n-k-1) \Delta^{k}_{\chi \smallsetminus \{x_i\}} (2)
+$$
+
+They two can be proved by simply calculation.
+
+Recall
+$$
+	\vec{v}_k =
+	\left[
+		\dfrac{\Delta^{n-1-k}_{\chi \smallsetminus x_1}}{\Delta^{n-1-k}_{\chi \smallsetminus x_1}},
+		\dfrac{\Delta^{n-1-k}_{\chi \smallsetminus x_2}}{\Delta^{n-1-k}_{\chi \smallsetminus x_1}},
+		\cdots ,
+		\dfrac{\Delta^{n-1-k}_{\chi \smallsetminus x_n}}{\Delta^{n-1-k}_{\chi \smallsetminus x_1}},
+		\right]
+$$
+
+Using these two identities, let us do some calculations for: $\vec{v}_k A_k = \vec{u}$
+
+The first term of $u$ divided by $\frac{1}{\Delta^{n-1-k}_{\chi \smallsetminus x_1}}$is:
+
+$$
+	\frac{x_1}{x_1-x_2} \Delta^{n-1-k}_{\chi \smallsetminus x_1} -
+	\frac{x_2}{x_1-x_2} \Delta^{n-1-k}_{\chi \smallsetminus x_2} +
+	\frac{x_1}{x_1-x_3} \Delta^{n-1-k}_{\chi \smallsetminus x_1} -
+	\frac{x_3}{x_1-x_3} \Delta^{n-1-k}_{\chi \smallsetminus x_3} + \cdots
+$$
+
+Which is equal to
+
+$$
+	\frac{1}{x_1-x_2} (x_1 \Delta^{n-1-k}_{\chi \smallsetminus x_1} - x_2 \Delta^{n-1-k}_{\chi \smallsetminus x_2}) +
+	\frac{1}{x_1-x_3} (x_1 \Delta^{n-1-k}_{\chi \smallsetminus x_1} - x_3 \Delta^{n-1-k}_{\chi \smallsetminus x_3}) + \cdots
+$$
+
+Which is equal to
+
+$$
+	\Delta^{n-1-k}_{\chi \smallsetminus x_1, x_2} +
+	\Delta^{n-1-k}_{\chi \smallsetminus x_1, x_3} + \cdots = k  \Delta^{n-1-k}_{\chi \smallsetminus x_1}
+$$
+
+Repeat this calculation we get
+
+$$\vec{u} = k \vec{v}_k$$
+
+
+
+
+
+\end{document}

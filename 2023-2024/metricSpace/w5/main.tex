@@ -1,0 +1,46 @@
+\documentclass[12pt]{article}
+\usepackage{amssymb, amsmath, mathptmx} 
+
+\begin{document}
+\begin{center}
+	METRIC SPACES 2023-24\\
+	ASSIGNMENT 2\\
+	Due date: Monday of week 5 by 4pm.
+\end{center}
+
+\bigskip
+
+\begin{enumerate}
+	\item
+	      Let $(X,d)$ be a metric space, $c$ be a point in $X$ and $r$ be a positive real number. Define
+	      \[
+		      G=\{x\in X : d(x,c)>r\}.
+	      \]
+	      Prove that $G$ is open.
+
+	\item
+	      Let $(X,d)$ be a metric space and $A\subseteq X$. Prove that $\overset{\circ}{A}=A \smallsetminus \partial A$.
+
+	      ($\partial A$ denotes the boundary of $A$. See workshop in week 2, Problems 5-9. $\overset{\circ}{A}$ denotes the interior of $A$. See workshop in week 4.)
+\end{enumerate}
+
+\section{Q1}
+Let $x$ be a point in $G$. I claim that, the open ball $B(x, \rho) \subset G$, with $\rho = d(x,c) - r > 0$.
+
+Pick a point $a \in B(x, \rho)$ and apply triangular inequality: $d(a,c) \geq d(x,c) - d(x,a) > d(x,c) - \rho = r$. Which means $a \in G$ and we are done.
+
+\newpage
+\section{Q2}
+
+We shall first prove that $A \smallsetminus \partial A$ is an open set.
+Recall $\forall  x \in \partial A, \forall r > 0, $ there exist $a \in A $ and $b \in A^c$ such that $a, b \in B(x,r)$.
+If a point $x$, is not in $\partial A$, there exist $r > 0$ such that $B(x, r)$ does not contain at the same time a point in $A$ and a point in $B$.
+
+For any $x \in A \smallsetminus \partial A$,
+apply this rational, we see there exist $r$ such that $B(x, r)$ would contain not the same time points from $A$ and $A^c$. Since $B(x, r)$ contains $x \in A$ we see it must only contain points in $A$. I further claim that this open ball contains no element of $\partial A$. To see this, as we know that each open ball is an open set, for any points, $a$, in $B(x,r)$, there is a open ball that contains only points in $B(x,r)$, which means it is not in $\partial A$. Thus, we have proved that $A \smallsetminus \partial A$ is an open set.
+
+Next we are to show $A \smallsetminus \partial A $ is the largest open set containing in $A$. It is trivial that $A \smallsetminus \partial A \subseteq A$. To show it is the largest, consider the set $\{ \chi \} \cup A \smallsetminus \partial A $ for $\chi \notin A \smallsetminus \partial A $, i.e.,  $\chi \in A^c$ or $\chi \in \partial A$.
+If $\chi \in A^c$, $\{ \chi \} \cup A \smallsetminus \partial A \not\subseteq A$. If $\chi \in \partial A$, $\{ \chi \} \cup A \smallsetminus \partial A$ is not an open set.
+Thus, we conclude that $A \smallsetminus \partial A $ is the largest open set contained in $A$, i.e., $A \smallsetminus \partial A = \overset{\circ}{A}$.
+\end{document}
+

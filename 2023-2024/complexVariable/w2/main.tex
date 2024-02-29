@@ -1,0 +1,75 @@
+% available style: report
+\documentclass[12pt]{article}
+
+\input{preamble}
+
+\title{Complex Variable}
+\author{Harry}
+\date{\today}
+\begin{document}
+\section{Q3}
+We are to prove that there is no $z \in \mathbb{C}$ such that $|z| = |z-2(1-i)| = 1$.
+
+Let us invoke triangular-inequality:
+
+$$
+|z-2(1-i)| \geq	||z| - |2(1-i)|| = 2\sqrt{2} - 1 > 1
+$$
+
+This is a contradiction and we conclude that there is no such $z$.
+
+\section{Q4}
+I claim that all $z$ such that $|Re(z)| + |Im(z)| = \sqrt{2} |z|$ are $r e^{i \pi/4}$ and $r e^{i 3\pi/4}$ for any $r \in \bb{R}$.
+
+Backword diretion: easy to verify with computation.
+
+Forward direction:
+
+For any $z = re^{i \theta}$, our constrains gives us: $|\sin{\theta}| + |\cos{\theta}| = \sqrt{2}$.
+
+Consider the following cases:
+
+$\sin{\theta} + \cos{\theta} = \sqrt{2}$. 
+Notice $\sin{\theta} + \cos{\theta} = \sqrt{2}\sin{(\frac{\pi}{4} + \theta)} = \sqrt{2}$. (Apply identity for $\sin(a+b)$)
+It is clear that the equaility is only established with $\theta = \frac{\pi}{4}$ for $0\leq \theta \leq 2\pi$.
+
+Similarly, for 
+$-\sin{\theta}  -\cos{\theta} = \sqrt{2}$, we can assert the equality is only established with $\theta = \frac{5\pi}{4}$ for $0\leq \theta \leq 2\pi$.
+
+
+For $-\sin{\theta} + \cos{\theta} = \sqrt{2}$. We have
+$-\sin{\theta} + \cos{\theta} = \sqrt{2}\sin{(\frac{3\pi}{4} + \theta)} = \sqrt{2}$. 
+It is clear that the equaility is only established with $\theta = \frac{7\pi}{4}$ for $0\leq \theta \leq 2\pi$.
+
+And for $\sin{\theta} - \cos{\theta} = \sqrt{2}$, the equality is only established with $\theta = \frac{3\pi}{4}$.
+
+Note for all four cases we have set no restrain for $r$. 
+
+Thus we conclude that all $z$ such that $|Re(z)| + |Im(z)| = \sqrt{2} |z|$ are $r e^{i \pi/4}$ and $r e^{i 3\pi/4}$ for any $r \in \bb{R}$.
+
+\section{Q5}
+
+I claim that, for all $\alpha>0$, we have $\frac{|z-\alpha|}{|z+\alpha|} < 1$ iff $Re(z) > 0$.
+
+Let us write $z = a+ bi$ and $|z|^2 = a^2 + b^2$.
+
+Again, there are three cases:
+
+1): $a=0$.
+In such case we have $(\frac{|z-\alpha|^2}{|z+\alpha|^2}) = (\frac{\alpha^2 + b^2}{\alpha^2 + b^2}) = 1$. As modular is always positive, we conclude that $\frac{|z-\alpha|}{|z+\alpha|} = 1$
+
+2): $a>0$. 
+Since $a, \alpha>0$, it is clear that $|a-\alpha| < |a+\alpha| \implies (a-\alpha)^2 < (a+\alpha)^2 \implies (a-\alpha)^2 + b^2 < (a+\alpha)^2 + b^2$ thus
+in such case we have $\frac{|z-\alpha|^2}{|z+\alpha|^2} = \frac{(a-\alpha)^2 + b^2}{(a+\alpha)^2 + b^2} < 1 \implies \frac{|z-\alpha|}{|z+\alpha|} < 1$ (as modular is positive). 
+
+3): $a<0$.
+Since $a<0, \alpha>0$, it is clear that $|a-\alpha| > |a+\alpha| \implies (a-\alpha)^2 > (a+\alpha)^2 \implies (a-\alpha)^2 + b^2 > (a+\alpha)^2 + b^2$ thus 
+in such case we have $\frac{|z-\alpha|^2}{|z+\alpha|^2} = \frac{(a-\alpha)^2 + b^2}{(a+\alpha)^2 + b^2} > 1 \implies \frac{|z-\alpha|}{|z+\alpha|} > 1$.
+
+Thus we conclude that, for all $\alpha>0$, we have $\frac{|z-\alpha|}{|z+\alpha|} < 1$ iff $Re(z) > 0$.
+
+\section{Q6}
+We have  $z = x+iy$ and $x>0$. I claim that for $\epsilon = \frac{x}{2}$, and $w $ such that $|w-z| < \epsilon$, we have $Re(w) > 0$.
+
+Let us write $w = a+bi$. Notice $|w-z|<\epsilon \implies (a-x)^2 + (b-y)^2 < \epsilon^2 \implies (a-x)^2 < \epsilon^2 \implies |x-a| < \frac{x}{2} $. As $\frac{x}{2}>0$, apply definition of absolute value, we have $ \frac{x}{2}<a<\frac{3x}{2}$. As $x > 0$ we have $a>x>0$ as desired. 
+\end{document} 
