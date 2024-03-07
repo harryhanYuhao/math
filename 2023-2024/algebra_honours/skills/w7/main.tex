@@ -1,0 +1,337 @@
+\documentclass[12pt, a4paper]{article}
+\usepackage{blindtext, titlesec, amsthm, thmtools, amsmath, amsfonts, scalerel, amssymb, graphicx, titlesec, xcolor, multicol, hyperref}
+\usepackage{bm}
+\usepackage[utf8]{inputenc}
+\hypersetup{colorlinks,linkcolor={red!40!black},citecolor={blue!50!black},urlcolor={blue!80!black}}
+\newtheorem{theorem}{Theorema}[subsection]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollarium}
+\newtheorem{hypothesis}{Coniectura}
+\theoremstyle{definition}
+\newtheorem{definition}{Definitio}[section]
+\theoremstyle{remark}
+\newtheorem{remark}{Observatio}[section]
+\newtheorem{example}{Exampli Gratia}[section]
+\newcommand{\bb}[1]{\mathbb{#1}}
+\renewcommand\qedsymbol{Q.E.D.}
+\begin{document}
+%\tableofcontents
+
+
+\section{Q2}
+
+I claim that the dimension of the centrailizer of $J_n(\lambda)$ is $n$, more over, it has the form of
+
+$$
+	\left[
+		\begin{array}{cccccc}
+			a_1    & a_2    & a_3    & \cdots & a_n     \\
+			0      & a_1    & a_3    & \cdots & a_{n-1} \\
+			0      & 0      & a_1    & \cdots & a_{n-2} \\
+			\vdots & \vdots & \vdots & \ddots & \vdots  \\
+			0      & 0      & 0      & \cdots & a_1
+		\end{array}
+		\right]
+$$
+
+\begin{proof}
+	We shall prove by induction.
+
+	For the case $n=1$, $J_1(\lambda)$ is just real number, which commutes with any other real, i.e., its centrailizer has dimension 1.
+
+	Assuming our conjecture is true for $J_{n-1}$, let us now consider the case for $J_n$.
+	Notice that, for matrix $B \in \bb{R}^{1\times(n-1)}, D \in \bb{R}^{(n-1)\times(n-1)}$, we have
+
+	$$
+		J_n(\lambda)=
+		\left[
+			\begin{array}{c|c}
+				\lambda & B \\
+				\hline
+				0       & D
+			\end{array}
+			\right]
+	$$
+
+	We can write our candidate for the centrailizer, $Z$, in this form, with $g \in \bb{R}$, $L \in \bb{R}^{1\times(n-1)}$, $M \in \bb{R}^{(n-1)\times1}$, $N \in \bb{R}^{(n-1)\times(n-1)}$.
+	Notice $D = J_{n-1}(\lambda)$ and matrix $B = [1, 0, \cdots, 0]$.
+
+	$$
+		Z=
+		\left[
+			\begin{array}{c|c}
+				g & L \\
+				\hline
+				M & N
+			\end{array}
+			\right]
+	$$
+
+	We have $ZJ_n(\lambda)=J_n(\lambda)Z$ if and only if
+
+	\begin{equation}\label{Q2:1}
+		\left[
+			\begin{array}{c|c}
+				g \lambda & gB+LD \\
+				\hline
+				M \lambda & MB+ND
+			\end{array}
+			\right]
+		=
+		\left[
+			\begin{array}{c|c}
+				\lambda g  + BM & \lambda L + BN \\
+				\hline
+				DM              & DN
+			\end{array}
+			\right]
+	\end{equation}
+
+	Let me show you that $M=0$.
+	Since $M \lambda = DM$, write $M$ in the form of $[m_1, m_2, \cdots, m_{n-1}]^T$ this equation becomes
+	(Recall the fact that $D = J_{n-1}(\lambda)$):
+	$$[\lambda m_1, \lambda m_2, \cdots, \lambda m_{n-1}]^T = [\lambda m_1 + m_2, \lambda m_2 + m_3 \cdots \lambda m_{n-1}]^T$$
+	which means $m_2, \cdots m_{n-1}$ are zero.
+	Morever, notice $B = [1, 0, 0, \cdots ]$, we have $BM = m_1 \implies g\lambda  = \lambda g + m_1 $ (recall the first term of equation \ref{Q2:1}) .This means $ m_1 = 0$.
+
+	Now equation 1 can be cleaned up to
+
+	\begin{equation}
+		\left[
+			\begin{array}{c|c}
+				g \lambda & gB+LD \\
+				\hline
+				0         & ND
+			\end{array}
+			\right]
+		=
+		\left[
+			\begin{array}{c|c}
+				\lambda g & \lambda L + BN \\
+				\hline
+				0         & DN
+			\end{array}
+			\right]
+	\end{equation}
+\end{proof}
+
+This means that $N$ must be the centrailizer of $D$, which equals to $J_{n-1}(\lambda)$. Let us write $N$ in this form:
+
+\begin{equation}
+	N=
+	\left[
+		\begin{array}{ccccc}
+			r_1    & r_2    & r_3    & \cdots & r_{n-1} \\
+			0      & r_1    & r_3    & \cdots & r_{n-2} \\
+			0      & 0      & r_1    & \cdots & r_{n-3} \\
+			\vdots & \vdots & \vdots & \ddots & \vdots  \\
+			0      & 0      & 0      & \cdots & r_1
+		\end{array}
+		\right]
+\end{equation}
+
+We further have the constrains that $gB + LD = L \lambda +BN$. Let us expand them, and write $L = [l_1, l_2, \cdots, l_{n-1}]^T$
+We get:
+
+\begin{equation}
+	\left[
+		\begin{array}{c}
+			g + \lambda l_1   \\
+			l_1 + \lambda l_2 \\
+			\cdots            \\
+			l_{n-2} + \lambda l_{n-1}
+		\end{array}
+		\right]
+	=
+	\begin{array} {c}
+		\left[
+			\begin{array}{c}
+				l_1 \lambda + r_1 \\
+				l_2 \lambda + r_2 \\
+				\cdots            \\
+				l_{n-1} \lambda + r_{n-1}
+			\end{array}
+			\right]
+	\end{array}
+\end{equation}
+
+This means $g = r_1, l_1 = r_2, l_2 = r_3, \cdots l_{n-2} = r_{n-1}$, leaving no constrain for $l_{n-1}$, which we can set it to be $r_n$.
+
+
+Thus, the centrailizer of $J_n(\lambda)$ has the form of
+
+$$
+	\left[
+		\begin{array}{cccccc}
+			r_1    & r_2    & r_3    & \cdots & r_{n}   \\
+			0      & r_1    & r_2    & \cdots & r_{n-1} \\
+			0      & 0      & r_1    & \cdots & r_{n-2} \\
+			\vdots & \vdots & \vdots & \ddots & \vdots  \\
+			0      & 0      & 0      & \cdots & r_1
+		\end{array}
+		\right]
+$$
+
+This is of dimension $n$ as desired.
+
+Before moving into Q4, let us prove two lemma:
+
+\begin{lemma}\label{lemma:1}
+	For $J_n(\lambda_1) $ and $J_m(\lambda_2)$, there exist no non-zero matrix $Z$ such that $ZJ_n(\lambda_1) = J_m(\lambda_2)Z$.
+\end{lemma}
+
+
+
+
+\begin{proof}
+	Assume such a matrix$Z$, exists. Let us define vector $v = [1, 0, \cdots, 0]^T$, then we have $ZJ_n(\lambda_1)v = J_m(\lambda_2)Zv$. Let the first column of $Z$ be denoted as $[z_1,z_2, z_3, \cdots, z_m ]^T$.
+	By straight forward computation we get:
+	\begin{equation}
+		\left[
+			\begin{array}{c}
+				z_1 \lambda_1   \\
+				z_2 \lambda_1   \\
+				\vdots          \\
+				z_{m} \lambda_1 \\
+			\end{array}
+			\right]
+		=
+		\left[
+			\begin{array}{c}
+				\lambda_2 z_1 + z_2 \\
+				\lambda_2 z_2 + z_3 \\
+				\vdots              \\
+				\lambda_2 z_{m}
+			\end{array}
+			\right]
+	\end{equation}
+
+	This is clear that $z_1 = z_2 \cdots = 0$. The same argument can be applied to any other colomn of $Z$, which means $Z$ must be zero.
+\end{proof}
+
+\begin{lemma}\label{CentrailizerForNonSquare}
+	For $J_n(\lambda), J_m(\lambda)$, there exist $Z_1 \in R^{n\times m}$ and $Z_2 \in R^{m\times n}$ such that $J_n(\lambda) Z_1 = Z_1 J_m(\lambda)$, and $Z_2 J_n(\lambda) = J_m(\lambda) Z_2$.
+
+	Moreover, $Z_1$ and $Z_2$ are of the form of (assuming $n \leq m$):
+	$$
+		Z_1 = \left[
+			\begin{array}{c}
+				C \\
+				0
+			\end{array}
+			\right], Z_2=
+		\left[
+			\begin{array}{c|c}
+				C & 0
+			\end{array}
+			\right]
+	$$
+	Let us call $Z_1, Z_2$ \textbf{pseudo-centrailizer} of $J_n, J_m$.
+	For the sake of simplicity, let pseudo-centrailizer of Jordan form of two different eigenvalue be $0$, and the pseudo-centrailizer of Jordan form of the same eigenvalue be the actual centrailizer. 
+\end{lemma}
+
+This can be proved similarly as Q3.
+
+
+\section{Q4}
+
+For matrix $$A = J_{n_1}(\lambda_1)\oplus \cdots \oplus J_{n_k}(\lambda_k),$$, with $\lambda_i$ be distinct.
+
+I claim its centrailizer is of the form of
+
+\begin{equation}
+	\left[
+		\begin{array}{cccc}
+			Z_1    & 0      & \cdots & 0      \\
+			0      & Z_2    & \cdots & 0      \\
+			\vdots & \vdots & \ddots & \vdots \\
+			0      & 0      & \cdots & Z_k
+		\end{array}
+		\right]
+\end{equation}
+
+Where $Z_i$ is the centrailizer of $J_{n_i}(\lambda_i)$. It has dimension of $n_1 + n_2 + \cdots + n_k$.
+
+\begin{proof}
+	This can be proved by striaght forward calculation.
+	Let $Z$ be our candidate of the centrailizer of $A$.
+	Let us write $Z$ in this form for submatrices of an apropriate size:
+	$$
+		Z =
+		\left[
+			\begin{array}{cccc}
+				Z_{1,1} & Z_{1,2} & \cdots & Z_{1,k} \\
+				Z_{2,1} & Z_{2,2} & \cdots & Z_{2,k} \\
+				\vdots  & \vdots  & \ddots & \vdots  \\
+				Z_{k,1} & Z_{k,2} & \cdots & Z_{k,k}
+			\end{array}
+			\right]
+	$$
+
+	Note $A$ can be written as:
+	\[
+		A =
+		\left[
+			\begin{array}{cccc}
+				J_{n_1}(\lambda_1) & 0                  & \cdots & 0                  \\
+				0                  & J_{n_2}(\lambda_2) & \cdots & 0                  \\
+				\vdots             & \vdots             & \ddots & \vdots             \\
+				0                  & 0                  & \cdots & J_{n_k}(\lambda_k)
+			\end{array}
+			\right]
+	\]
+
+	Carry out the computation $AZ = ZA$ we have:
+
+	\begin{align}
+		AZ   & =
+		\left[
+			\begin{array}{cccc}
+				J_{n_1}(\lambda_1)Z_{1,1} & J_{n_1}(\lambda_1)Z_{1,2} & \cdots & J_{n_1}(\lambda_1)Z_{1,k} \\
+				J_{n_2}(\lambda_2)Z_{2,1} & J_{n_2}(\lambda_2)Z_{2,2} & \cdots & J_{n_2}(\lambda_2)Z_{2,k} \\
+				\vdots                    & \vdots                    & \ddots & \vdots                    \\
+				J_{n_k}(\lambda_k)Z_{k,1} & J_{n_k}(\lambda_k)Z_{k,2} & \cdots & J_{n_k}(\lambda_k)Z_{k,k}
+			\end{array}
+		\right]  \\
+		= ZA & =
+		\left[
+			\begin{array}{cccc}
+				Z_{1,1}J_{n_1}(\lambda_1) & Z_{1,2}J_{n_2}(\lambda_2) & \cdots & Z_{1,k}J_{n_k}(\lambda_k) \\
+				Z_{2,1}J_{n_1}(\lambda_1) & Z_{2,2}J_{n_2}(\lambda_2) & \cdots & Z_{2,k}J_{n_k}(\lambda_k) \\
+				\vdots                    & \vdots                    & \ddots & \vdots                    \\
+				Z_{k,1}J_{n_1}(\lambda_1) & Z_{k,2}J_{n_2}(\lambda_2) & \cdots & Z_{k,k}J_{n_k}(\lambda_k)
+			\end{array}
+			\right]
+	\end{align}
+	Applying \ref{lemma:1} to each block, we have $Z_{i,j} = 0$ for $i \neq j$. Moreover, $Z_{i,i}$ is the centrailizer of $J_{n_i}(\lambda_i)$.
+\end{proof}
+
+\section{Q5}
+
+Now let us consider $$A = J_{n_1}(\lambda_1)\oplus \cdots \oplus J_{n_k}(\lambda_k),$$
+
+Where $\lambda_i$ are not necessarily distinct.
+
+Assuming there are $m$ distinct $\lambda_i$'s, we can write $A$, and each $\lambda_i$ corrosponds to $k_i$ Jordan forms of size $s_{i,1} \leq \cdots \leq s_{i,k_i}$,
+I claim that the centrailizer has the dimension
+
+$$ \sum_{a=1}^{m} \sum_{b=1}^{k_a} (1+2 \cdot (b-1)) s_{a,b} $$
+
+Moreover, the centrailizer is of the form of
+\[
+	Z =
+	\left[
+		\begin{array}{cccc}
+			Z_{1,1} & Z_{1,2} & \cdots & Z_{1,k} \\
+			Z_{2,1} & Z_{2,2} & \cdots & Z_{2,k} \\
+			\vdots  & \vdots  & \ddots & \vdots  \\
+			Z_{k,1} & Z_{k,2} & \cdots & Z_{k,k}
+		\end{array}
+		\right]  \\
+\]
+
+Where $Z_{i,j}$ is the psucentrailizer (defined in \ref{CentrailizerForNonSquare} of $J_{n_i}(\lambda_i)$ and $J_{n_j}(\lambda_j)$.
+
+The proof is exactly the same as problem 4. We are behooved to use bruteforc, with lemma \ref{CentrailizerForNonSquare}.
+
+\end{document}

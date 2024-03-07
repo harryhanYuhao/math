@@ -1,0 +1,79 @@
+\documentclass[a4paper,11pt]{article}
+
+\usepackage[UKenglish]{babel}
+\usepackage{mathtools,amssymb,amsthm}
+\usepackage{setspace}
+\usepackage{adjustbox,graphicx}
+\usepackage{hyperref}
+\newtheorem{prop}{Proposition} 
+\newtheorem{lem}[prop]{Lemma}
+\newtheorem{thm}[prop]{Theorem}
+\newtheorem{cor}[prop]{Corollary}
+\theoremstyle{definition}
+\newtheorem{defn}[prop]{Definition}
+\usepackage{csquotes,biblatex}
+\addbibresource{References.bib}
+\newcommand{\bb}[1]{\mathbb{#1}}
+
+\title{HCoV Skills Handin 3}
+\author{Harry Han, s2162783}
+
+\begin{document}
+\maketitle
+
+\section{Contour Integral: A Quick Guide}
+
+% Replace this text based on your solution to Exercise~3.5 from Workshop~3, summarising the main points of section~3.2 of the Honours Complex Variables course notes~\autocite{gratwick_2023_HCoV} on ``Contour integrals''. Your summary should be no more than about a page long (excluding any optional figures that you might want to include) and should include (at least) one formatted definition (using \verb|\begin{defn}|) and (at least) one example of your own that you feel helps communicate an important idea. Be sure to acknowledge Richard Gratwick as the author of those notes by including something like the following.
+
+% \begin{quote}
+% 	``Here we summarise the section ``Contour Integrals'' from the Honours Complex Variables course notes~\autocite{gratwick_2023_HCoV}.''
+% \end{quote}
+
+The theory of integration for complex functions is wonderful and marvellous, but we need to start with some book keeping.
+For a function $f: \bb{R} \rightarrow \bb{C}$, in the form of $f(x) = u(x) +  iv(x)$,
+where $u,v : \bb{R} \rightarrow  \bb{R}$, let us extend the definition of real integral,
+and define its complex integral thus \cite{gratwick_2023_HCoV}:
+
+\begin{defn}[Complex Integral]
+	For $ [a, b] \in \bb{R}$, function $f : \bb{R} \rightarrow \bb{C}$ is integrable
+	if and only if $u ,v$ are both integrable in $I$, and
+	\begin{equation}
+		\int_a^b f(t)dt = \int_a^b u(t)dt + i \int_a^b v(t)dt
+	\end{equation}
+\end{defn}
+
+Now we can define integration for a general complex function $f: \bb{C} \rightarrow  \bb{C}$ along a regular, paramatetrized, curve $\Gamma$ in $\bb{C}$ \cite{gratwick_2023_HCoV}:
+Recall parametrization of a curve $\Gamma$ connecting $z_0$ and $ z_1$ is a continuous and bijective function $\gamma: [t_0, t_1] \rightarrow \Gamma $, such that $\gamma(t_0) = z_0$ and $\gamma(t_1) = z_1$.
+
+\begin{defn}[Integral Along a Curve]
+	Let $f: \bb{C} \rightarrow \bb{C}$ be a complex function and $\gamma$ be a paramatetrisation of a regular curve $\Gamma$ in $\bb{C}$.
+	We say that $f$ is integrable along $\gamma$ if and only if $f$ is continuous on $\gamma$.
+	Then the integral of $f$ along $\gamma$ is defined as
+	\begin{equation}
+		\int_{\Gamma} f(z)dz = \int_{a}^{b} f(\gamma(t))\gamma'(t)dt
+	\end{equation}
+\end{defn}
+
+RHS is the complex integral we just defined.
+If the $\Gamma$ is piecewise regular, we can still define the integral of $f$ along it as the sum of the integrals along each regular component. A piecewise regular curve is a contour, thus the name contour integral.
+
+Contour integral is a generalisation of integrals of real functions. For function $f(x): \bb{R} \rightarrow  \bb{R}$, define curve $\Gamma$ to be the straight line segment connecting real number $a$ and $b$, which
+can be parametrized by $\gamma(t) = t$ for $t \in [a, b]$. Applying the above definition, the contour integral of $f$ along $\Gamma$ is $\int_a^{b} f(t) dt$ as desired.
+
+Many properties of real integrals can be extended for their complex conterparts:
+
+\begin{enumerate}
+	\item Linearity: $\int_{\gamma} (af + bg)dz = a\int_{\gamma} f dz + b\int_{\gamma} g dz$
+	\item Max Bound: $|\int_{\gamma} f(z)dz| \leq \max_{z\in \gamma}|f(z)|\ell(\gamma)$ where $\ell(\gamma)$ is the length of $\gamma$. This is called M-L lemmal \cite{gratwick_2023_HCoV}.
+\end{enumerate}
+
+It is also important to note that the orientation of the curve matters . If the curve $\Gamma$ can be parametrized by $\gamma$ in the interval $[a, b]$. $\Gamma '$, a curve of the same shape but opposite orientation, can be parametrised by $\hat{\gamma} (t) =\gamma(b-t)$ in the interval $[0, b-a]$. Let us apply the above definition: 
+
+\[
+	\int_\Gamma f(x) = \int_{a}^{b} f(\gamma(t))\gamma'(t)dt =\int_{0}^{b-a} f(\gamma(b-t))\gamma'(b-t)dt = -\int_{\Gamma'} f(x)
+\]
+
+Here is the fundation from which we build the edifice of complex analysis.
+
+\printbibliography % This command prints the cited references.
+\end{document}

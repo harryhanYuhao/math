@@ -1,0 +1,74 @@
+\documentclass[12pt, a4paper]{article}
+\usepackage{blindtext, titlesec, amsthm, thmtools, amsmath, amsfonts, scalerel, amssymb, graphicx, titlesec, xcolor, multicol, hyperref}
+\usepackage[utf8]{inputenc}
+\hypersetup{colorlinks,linkcolor={red!40!black},citecolor={blue!50!black},urlcolor={blue!80!black}}
+\newtheorem{theorem}{Theorema}[subsection]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollarium}
+\newtheorem{hypothesis}{Coniectura}
+\theoremstyle{definition}
+\newtheorem{definition}{Definitio}[section]
+\theoremstyle{remark}
+\newtheorem{remark}{Observatio}[section]
+\newtheorem{example}{Exampli Gratia}[section]
+\newcommand{\bb}[1]{\mathbb{#1}}
+\renewcommand\qedsymbol{Q.E.D.}
+\title{Handin 3}
+\author{Harry Han}
+\date{\today}
+\begin{document}
+
+\begin{center}
+	METRIC SPACES 2023-24\\
+	ASSIGNMENT 3\\
+	Due date: Monday of week 7 by 4pm.
+\end{center}
+
+\bigskip
+
+\section{Q1}
+
+Let $X=\mathbb{R}^2$, $d$ be the Euclidean metric and define
+\[
+	G=\left\{(x,y)\in \mathbb{R}^2 : \frac{x^2}{9} + \frac{y^2}{4}<1\right\}.
+\]
+Prove that the set $G$ is open  in the metric space $(X,d)$.
+
+\begin{proof}
+	Let us define a homeomorphism $f: X \rightarrow X$ as $f(x,y) = (3x, 2y)$.
+
+	It is clear the $f$ is bijective, and an inverse , $f^{-1}(x,y) = (\frac{x}{3}, \frac{y}{2})$, exists.
+	To see $f$ is continuous, consider the map $g_1(x,y) = (3x, 0), g_2(x,y) = (0,2y)$. Both $g_1$ and $g_2$ are continuous, thus $f = g_1 + g_2 $ also is. Similar argument can be applied to $f^{-1}$.
+
+	It is clear that $f(G) = \{(x,y) \in \bb{R} : x^2 + y^2 < 1 \} = B(0, 1)$, i.e., an open ball of radius one centered at (0,0). That is, $f^{-1}(B(0,1)) = G$. We have proved that all open balls are open sets, and apply open ball characterisation of continuous function, we conclude $G$ is open. Another way to think about it is that homeomorphism perserves open sets.
+\end{proof}
+
+\newpage
+
+\section{Q2}
+
+Let $(X,d)$ be a metric space and let $A$ be a non-empty subset of $X$.
+Define $f:X\to\mathbb{R}$ by $f(x)=\inf\{d(x,a) : a \in A\}$. ($f(x)$ is the distance from the point $x$ to the set $A$.) Prove that $f$ is continuous.
+
+
+\begin{proof}
+
+Let us prove a lemma:
+
+\begin{lemma}
+For all $x, y \in X$
+\begin{equation}\label{trianguleSetDistance}
+	|f(x) - f(y)| \leq d(x,y)
+\end{equation}
+\end{lemma}
+
+To prove this, consider the term $f(x)$ and $d(x,y) + f(y)$. By definition of infimum, for any $\epsilon > 0$, there exist $a \in X$ such that $d(a,y) < f(y) + \epsilon \implies d(a,y) + d(y, x) < d(x, y) + f(y) + \epsilon $. This is equivalent to $d(a,y) + d(y,x) \leq d(x,y) + f(y)$.
+By definition of infimum again we have $f(x) \leq d(x ,a) \leq d(y,a ) + d(y,x)$. Combining these two equation we get $f(x) \leq f(y) + d(x,y)$ that is $f(x) - f(y) \leq d(x,y)$. 
+
+If we interchange $x, y$, this equation becomes $f(y) - f(x) \leq d(x,y)$. As $|f(x) - f(y)|$ equals to $f(x) - f(y)$ or $f(y) - f(x)$, we conclude equation \eqref{trianguleSetDistance} is true.
+
+To prove $f$ is continuous, we need to show that for all $\epsilon > 0$ there exist $\delta$ such that $d(x,y) < \delta \implies |f(x) - f(y)| < \epsilon$. Using this lemma it is trivial that $\delta = \epsilon$.
+\end{proof}
+
+\end{document}
+
