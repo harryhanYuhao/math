@@ -1,0 +1,53 @@
+\documentclass[12pt, a4paper]{article}
+\usepackage{blindtext, titlesec, amsthm, thmtools, amsmath, amsfonts, scalerel, amssymb, graphicx, titlesec, xcolor, multicol, hyperref}
+\usepackage[utf8]{inputenc}
+\hypersetup{colorlinks,linkcolor={red!40!black},citecolor={blue!50!black},urlcolor={blue!80!black}}
+\newtheorem{theorem}{Theorema}[subsection]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollarium}
+\newtheorem{hypothesis}{Coniectura}
+\theoremstyle{definition}
+\newtheorem{definition}{Definitio}[section]
+\theoremstyle{remark}
+\newtheorem{remark}{Observatio}[section]
+\newtheorem{example}{Exampli Gratia}[section]
+\newcommand{\bb}[1]{\mathbb{#1}}
+\renewcommand\qedsymbol{Q.E.D.}
+\title{Metric Space Assignment 4}
+\author{Harry Han; s2162783}
+\date{\today}
+\begin{document}
+\maketitle
+
+\begin{enumerate}
+\item Prove that a continuous function $f:\mathbb{R}^{n} \to \mathbb{R}$ such that
+\begin{equation}\label{1}
+\lim\limits_{x \to \infty} f(x) = +\infty
+\end{equation}
+ attains a minimum.
+
+As usual, $\mathbb{R}$ is equipped with the standard metric and $\mathbb{R}^{n}$ is equipped with the Euclidean metric.
+The meaning of \eqref{1} is exactly what we expect it to be: for every positive $M$ there exists a positive $R$ such that for all 
+$x$ in $\mathbb{R}^n$ with $\|x\|_2>R$ we have $f(x)>M$.
+
+
+\item Is $(0,1)$ with the standard metric totally bounded? Prove your claim.
+\end{enumerate}
+
+
+\begin{proof}[Proof of Question 1]
+  Let us first prove that the function $f$ is bounded below.
+  Assuming $f$ is not bounded below, by the constrain \ref{1}, for certain $M, $, there is $R > 0$ such that $f(x)\leq M \implies ||x||_2 \leq R$. 
+  Thus there exists a bounded sequence $x_i$ such that $||x_i||_2 \leq R $ and $f(x_i) \rightarrow  -\infty $ as $i \rightarrow  \infty$. 
+  As we are in $R^{n}$, by Bolzano Weierstrass $x_i$ has a convergent subsequence that converges to $x_0$ such that $\lim_{x \rightarrow x_0} f(x)= - \infty$, a contradiction to $f$ is continuous. Thus we conclude $f$ is bounded below.
+
+  Since $f$ is bounded below and $ \bb{R} $ is complete, it has an infimum $\zeta \in \bb{R}$. Let us take a sequence $\alpha_i$ such that $f(\alpha_i) \rightarrow \zeta$. Again by Bolzano-Weierstrass $\alpha_i$ has convergent subseqence that goes to $\mathcal{A}$, and by continuity I conclude that $f(\mathcal{A}) = \zeta$, that is, the minimum is attained.
+\end{proof}
+
+\begin{proof}[Question 2]
+  I claim that $(0,1)$ is totally bounded. 
+  For all $\epsilon >0$, notice $[0,1]$ is covered by $\cup_{\eta \in (0,1)} B(\eta, \epsilon)$. We know $[0,1]$ is compact so $\cup_{\eta \in (0,1)} B(\eta, \epsilon)$ has a finite subcover that covers $(0,1) \subset [0,1]$. This is the definition of totally boundedness.
+\end{proof}
+
+
+\end{document}

@@ -1,0 +1,77 @@
+\documentclass[12pt, a4paper]{article}
+\usepackage{blindtext, titlesec, amsthm, thmtools, amsmath, amsfonts, scalerel, amssymb, graphicx, titlesec, xcolor, multicol, hyperref}
+\usepackage[utf8]{inputenc}
+\hypersetup{colorlinks,linkcolor={red!40!black},citecolor={blue!50!black},urlcolor={blue!80!black}}
+\newtheorem{theorem}{Theorema}[subsection]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollarium}
+\newtheorem{hypothesis}{Coniectura}
+\theoremstyle{definition}
+\newtheorem{definition}{Definitio}[section]
+\theoremstyle{remark}
+\newtheorem{remark}{Observatio}[section]
+\newtheorem{example}{Exampli Gratia}[section]
+\newcommand{\bb}[1]{\mathbb{#1}}
+\renewcommand\qedsymbol{Q.E.D.}
+\title{}
+\author{}
+\date{}
+\begin{document}
+\maketitle
+%\tableofcontents
+\begin{theorem}\label{ToProve}
+  The characteristic polynomial of $\rho(g)$ is sole dependent on the number and size of $g$'s cyclic decomposition.
+
+Importantly, say $g$ has the cyclic decomposition of 
+
+$$
+(a_{1,1}, a_{1,2},\cdots a_{1, l(1)} )(a_{2,1}, a_{2,2}, a_{2, l(2)}), \cdots (a_{n_1} \cdots)
+$$
+
+i.e, it can be decomposed into $n$ cycles, each of which has order $l(i)$, than the characteristic polynomial of $\rho(g)$ is 
+
+$$
+\prod_{i=1}^{n}  (-1)^{l(i)} x^{l(i)}-1
+$$
+
+Note, if $g(c)=c$ we say (c) is a cyclic factor of degree one.
+  
+\end{theorem}
+
+We first need a lemma:
+\begin{lemma}\label{lem:1}
+	If $g$ is a cycle of length $n$, and $I$ is the identity matrix of $n \times n$, then $\rho(g)$ has a characteristic polynomial of $x^n-1$.
+\end{lemma}
+
+\begin{proof}[Proof pf Lemma \ref{lem:1}]
+	We shall use Leibniz formula to compute the determinant of $\rho(g)-xI$. Let $g$ be a cycle of length $n$, then $\rho(g) -xI$ is a permutation matrix of similar to the form:
+	$$ 
+	A=
+	\begin{bmatrix}
+		-x & 0 & 0 & \cdots & 0 & 1 \\
+		1 & -x & 0 & \cdots & 0 & 0 \\
+		0 & 1 & -x & \cdots & 0 & 0 \\
+		\vdots & \vdots & \vdots & \ddots & \vdots & \vdots \\
+		0 & 0 & 0 & \cdots & 1 & -x
+	\end{bmatrix}
+	$$
+
+	Leibniz formula says the
+	\begin{equation}
+		det(A) = \sum_{\sigma \in S_n} sgn(\sigma) \prod_{i=1}^{n} a_{i, \sigma(i)}
+	\end{equation}
+	That is, the determinant equals to the sum of the product of the diagnol entry times the sign of the permuation for all permuation of the matrix .
+
+	Let us consider each terms of addition in Leibniz Formula. I claim that only two of them is not zero: one is the identity permutation, equals to $(-x)^{n}$ and the other is $g^{-1}$, which moves one to the diagnol, and has the sign of $-1^{n-1}$. 
+	Our formula directly follows.
+
+	To see why is this the case, consider that the only term that is non-zero on the diagnol would either be $-x$ or $1$. If there is one $-x$ on $n$th column, then on the same role there is a one in the $k$th row, which means that on the $k_k$ entry there shall be $-x$. For the same reason we can induct that every diagnol entry would be $-x$. Thus, if the product of the diagnol entry of certain permutation is not zero, the diagnol must be either all $-x$ or all $1$.
+\end{proof}
+
+\begin{proof}[Proof of Theorem \ref{ToProve}]
+	Using lemma \ref{lem:1} the theorem is easy to prove. We just apply the lemma to each cycle of $g$ and multiply the characteristic polynomial of each cycle. The result follows.
+\end{proof}
+
+
+
+\end{document}

@@ -1,0 +1,317 @@
+\documentclass[12pt, a4paper]{article}
+\usepackage{blindtext, titlesec, amsthm, thmtools, amsmath, amsfonts, scalerel, amssymb, graphicx, titlesec, xcolor, multicol, hyperref}
+\usepackage[utf8]{inputenc}
+\hypersetup{colorlinks,linkcolor={red!40!black},citecolor={blue!50!black},urlcolor={blue!80!black}}
+\newtheorem{theorem}{Theorema}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollarium}
+\newtheorem{hypothesis}{Coniectura}
+\theoremstyle{definition}
+\newtheorem{definition}{Definitio}[section]
+\theoremstyle{remark}
+\newtheorem{remark}{Observatio}[section]
+\newtheorem{example}{Exampli Gratia}[section]
+\newtheorem{note}{N. B.}[section]
+\newcommand{\bb}[1]{\mathbb{#1}}
+\renewcommand\qedsymbol{Q.E.D.}
+\newcommand{\Arg}{\text{Arg}}
+\newcommand{\Log}{\text{Log}}
+\newcommand{\sech}{\text{sech}}
+\newcommand{\csch}{\text{csch}}
+\newcommand{\res}{\text{Res}}
+\renewcommand{\emph}[1]{\textbf{\textit{#1}}}
+
+\begin{document}
+\section{Notation} 
+\begin{definition}
+	\ 
+	\begin{enumerate}
+		\item Open $\epsilon$ disk centered at $z_0$: $D(z_0, \epsilon) = \{z \in \bb{C} : |z - z_0| < \epsilon\}$
+		\item Closed $\epsilon$ disk centered at $z_0$: $\overline{D}(z_0, \epsilon) = \{z \in \bb{C} : |z - z_0| \leq \epsilon\}$	
+		\item Punctured $\epsilon$ disk centered at $z_0$: $D'(z_0, \epsilon) = \{z \in \bb{C} : 0 < |z - z_0| < \epsilon\}$
+		\item Annulus centered at $z_0$: $A_{r, R}(z_0) = \{z \in \bb{C} : r < |z - z_0| < R\}$
+    \item For a meromorphic function $f$, with zeros $z_i$ and poles $p_i$, $N_0(f) = \sum \text{order of } z_j$ and $N_{\infty} (f) = \sum \text{order of } p_j$
+	\end{enumerate}
+
+\end{definition}
+
+\section{Holomorphic Function}
+
+\begin{definition}[Argument]
+	\ 
+	\begin{enumerate}
+		\item $\arg (z) = \{\theta : z = |z| e^{i \theta}\} = \{\Arg(z) + 2k\pi\}$, where $- \pi <\Arg(z) \leq \pi$
+	\end{enumerate}
+\end{definition}
+
+\begin{theorem}[Cauchy Riemann Equation]
+	Let $f(z) = u(x, y) + iv(x, y)$ be holomorphic 
+	complex function. The following equation holds $\frac{\partial f}{\partial x} + i\frac{\partial f}{\partial y} =0 $. That is:
+	\begin{align*}
+		\frac{\partial u}{\partial x} = \frac{\partial v}{\partial y} \quad \text{and} \quad \frac{\partial u}{\partial y} = -\frac{\partial v}{\partial x}
+	\end{align*}
+\end{theorem}
+
+\begin{definition}[Harmonic]
+	Let $h: R^2 \rightarrow  R$. $h$ is harmonic if 
+	$$
+	\frac{\partial^2 h}{\partial x^2} + \frac{\partial^2 h}{\partial y^2} = 0
+	$$
+\end{definition}
+
+\begin{note}
+	For holomorphic function $f = u(x,y) + iv(x,y)$. Both $u$ and $v$ are harmonic. We say $v$ is harmonic conjugate of $u$.
+\end{note}
+
+\begin{definition}[Some Holomorphic Functions]
+	\ 
+	\begin{enumerate}
+	\item $\sin z = \frac{\exp{iz} - \exp{-iz}}{2i}$
+		\item $\cos z = \frac{\exp{iz} + \exp{-iz}}{2}$
+		\item $\sinh z = \frac{\exp{z} - \exp{-z}}{2}$
+		\item $\cosh z = \frac{\exp{z} + \exp{-z}}{2}$
+	\end{enumerate}
+\end{definition}
+
+\begin{note}
+	Note that $\tan z = \frac{\sin z}{\cos z}, \sec z = \frac{1}{\cos z}, \csc z = \frac{1}{\sin z}, \cot z = \frac{1}{\tan z}, \tanh z = \frac{\sinh z}{\cosh z}, \sech z = \frac{1}{\cosh z}, \csch z = \frac{1}{\sinh z}, \coth z = \frac{1}{\tanh z}$
+	
+	Also note that $\sinh(iz) = i\sin(z)$
+\end{note}
+
+\begin{definition}[Logarithm]
+	\ 
+	\begin{enumerate}
+		\item $\Log z = \log |z| + i\Arg(z)$
+		\item $\log z = \log |z| + i\arg(z)$
+	\end{enumerate}
+	Note that $\log z = \{w: \exp(w) = z\} = \{\ln|z| + i\theta + i 2\pi\}$
+
+	Let us define $\phi <\Arg_{\phi}(z) \leq \phi + 2\pi$, and $\Log_{\phi} = \ln |z| + i \Arg_{\phi}(z)$.
+\end{definition}
+
+\begin{definition}[Branch Cut]
+	Branch cut is a subset of $\bb{C}$: $L_{z_0, \phi} = \{z \in \bb{C}: z = z_0 + re^{i \phi}, r \geq 0\}$. I.e., a ray starting at $z_0$ with argument $\phi$.
+\end{definition}
+
+
+Notice that $\Log_{\phi}$ is holomorphic on $\bb{C} \backslash L_{0, \phi} $
+
+\begin{note} 
+	$\Log(z-1)$ is holomorphic on $\bb{C} \backslash L_{1, -\pi}$
+	$\log(z^2 - 1) = \log(z+1) + \log(z-1)$. We can pick two differnt branch of $\log$.
+\end{note}
+
+\begin{theorem}[Conformal Map]
+	A map is conformal if it preserves angle and orientation. 
+
+	A holomorphic map is conformal in domain $D$ if $f' \neq 0$ in  $D$.
+\end{theorem}
+
+\begin{theorem}[Mobius Transformation]
+	Mobius transformation is function of the form $f(z) = \frac{az + b}{cz + d}$, where $ad \neq bc$. 
+	$f_M$ can be represented by matrix of $SL_2$ such that $M = \begin{bmatrix} a & b \\ c & d\end{bmatrix} $. Notice that $f_{MN}= f_M \circ f_N$
+
+	Mobius Transformation is conformal, and map circline to circlines.
+	
+	Mobius Transformation can be deconstructed into four kinds: 
+	\begin{enumerate}
+		\item \emph{translation}: $\begin{bmatrix} 1 & b \\ 0 & 1\end{bmatrix}$
+		\item \emph{dilation}: $\begin{bmatrix} \sqrt{r} & 0 \\ 0 & 1/\sqrt{r}\end{bmatrix}$
+		\item \emph{rotation}: $\begin{bmatrix} e^{i\theta} & 0 \\ 0 & e^{-i\theta}\end{bmatrix}$
+		\item \emph{inversion}: $\begin{bmatrix} 0 & i \\ i & 0\end{bmatrix}$
+	\end{enumerate}
+\end{theorem}
+
+\begin{theorem}[Cross Ratio]
+$$
+[z_1, z_2, z_3, z_4] = \frac{z_1 - z_3}{z_1 - z_4} \frac{z_2 - z_4}{z_2 - z_3}
+$$
+
+Mobius Transformation preserves cross ratio: $[f(z_1), f(z_2), f(z_3), f(z_4)] = [z_1, z_2, z_3, z_4]$. 
+
+Let $g$ be the unique mobius transformation that maps $z_2, z_3, z_4$ to $1, 0, \infty, x$. Then $g(z_1) = [z_1, z_2, z_3, z_4]$
+\end{theorem}
+
+\section{Integral}
+
+
+\begin{theorem}[Path Independent Lemma] 
+Let $D \in \bb{C}$ be a domain and $f$ continuous on $D$. The followings are equivalent:
+
+\begin{enumerate}
+	\item $f$ has an antiderivative on $D$
+	\item $\int_{\gamma} f(z) dz = 0$ for all closed path $\gamma$ in $D$
+	\item All contour integral of $f$ is path independent (only depends on endpoint.)
+\end{enumerate}
+
+\end{theorem}
+
+\begin{theorem}[Cauchy Integral Theorem]
+	Let $f$ be holomorphic on the loop $\gamma$ and inside the loop. Then $\int_{\gamma} f(z) dz = 0$
+\end{theorem}
+
+\begin{theorem}[Cauchy Integral Formula]
+	Let $f$ be holomorphic on the loop $\gamma$ and inside the loop. Let $z$ be in the interior of the loop.
+	Then 
+	$$f(z) = \frac{1}{2\pi i} \int_{\gamma} \frac{f(w)}{w - z} dw$$
+
+	Also: 
+	\[
+	f^{(n)}(z) = \frac{n!}{2\pi i} \int_{\gamma} \frac{f(w)}{(w - z)^{n+1}} dw	
+		\]
+
+\end{theorem}
+
+\subsection{Properties of Holomorphic Functions}
+
+\begin{theorem}[Liouville's Theorem]
+	Let $f$ be holomorphic and bounded on $\bb{C}$. Then $f$ is constant.
+\end{theorem}
+
+\begin{theorem}[Maximum Modulus Principle]
+	Let $f$ be holomorphic on a domain $D$. Then $|f(z)|$ has no maximum in $D$ unless $f$ is constant.
+\end{theorem}
+
+
+\begin{theorem}[Morera's Theorem]
+	Let $f$ be continuous on a domain $D$. If $\int_{\gamma} f(z) dz = 0$ for all closed path $\gamma$ in $D$, then $f$ is holomorphic.
+\end{theorem}
+
+\begin{theorem}[Open Mapping Theorem]
+	Let $f$ be holomorphic on a domain $D$. If $f$ is not constant, then $f(D)$ is open.
+\end{theorem}
+
+\begin{theorem}[Identity Theorem]
+	Let $f$ and $g$ be holomorphic on a domain $D$. If $f = g$ on a set with a limit point in $D$, then $f = g$ on $D$.
+\end{theorem}
+
+\section{Series}
+
+\begin{theorem}[Weierstrass M-Test]
+	Let $f_n$ be a sequence of functions on $D$ such that $|f_n(z)| \leq M_n$ for all $z \in D$. If $\sum_{n=1}^{\infty} M_n$ converges, then $\sum_{n=1}^{\infty} f_n(z)$ converges uniformly on $D$.
+\end{theorem}
+
+
+\begin{theorem}[Laurent Series]
+	Let $f$ be holomorphic on $A_{r,R}(z_0)$, then $f$ can be represented by Laurent Series for any loop$\gamma$ in $A_{r,R}(z_0)$:
+	$$
+	f(z) = \sum_{n=-\infty}^{\infty} a_n (z - z_0)^n
+	$$
+	where $a_n = \frac{1}{2\pi i} \int_{\gamma} \frac{f(w)}{(w - z_0)^{n+1}} dw$
+\end{theorem}
+
+\subsection{Zero and Singularities}
+\begin{definition}[Zero]
+	Let $f$ be holomorphic on $D$. $z_0$ is a zero of $f$ if $f(z_0) = 0$. $z_0$ is a zero of order $n$ if $f(z_0) = f^{1}(z_0) = \cdots = f^{(n-1)}(z_0) = 0$ and $f^{(n)}(z_0) \neq 0$.
+\end{definition}
+
+All zeros of finite order are isolated.
+
+\begin{definition}[Singularity]
+	Let $f$ be holomorphic on $A_{0,R} (z_0)$ but not holomorphic at $z_0$. Suppose $f(z) = \sum^{\infty}_{j = - \infty} a_j(z-z_0)^j$. Then $z_0$ is 
+	\emph{Removable Singularity} if $a_j = 0$ for all $j < 0$. 
+	\emph{Pole} of order $n$ if $a_j = 0$ for all $j < -n$ and $a_{-n} \neq 0$.
+	\emph{Essential Singularity} if $a_j \neq 0$ for infinitely many $j < 0$.
+\end{definition}
+
+\section{Residue Calculus}
+
+\begin{definition}{Residue}
+	Let $f$ be holomorphic on $A_{0,R}(z_0)$, possible not at $z_0$. Then the residue of $f$ at $z_0$ is $a_{-1}$ (coefficient of $(z-z_0)^{-1}$ term) in the Laurent Series of $f$ at $z_0$. It is denoted as $\res(f, z_0)$.
+\end{definition}
+
+\begin{theorem}[Calculating Residue]
+  Let $z_0 \in \bb{C}$, and f holomorphic on the puctured disk, with pole of order $m$ at $z_0$. Then 
+  \[
+    \res(f, z_0) = \lim _{z \rightarrow z_0} \frac{1}{(m-1)!} \frac{d^{m-1}}{dz^{m-1}}(z-z_0)^mf(z)
+  \]
+
+  Moreover, if $f = \frac{g}{h}$ and f as a simple pole, then 
+  \[
+    \res(f, z_0) = \frac{g(z_0)}{h'(z_0)}
+  \]
+\end{theorem}
+
+\begin{theorem}[Cauchy Residue Theorem]
+  Let $\gamma$ be a loop, and $f$ has finite singularities $z_1, \cdots z_k$ in the interior of the loop. Then 
+  \[
+    \int_{\gamma} f = 2\pi i \sum \res(f, z_i)
+  \]
+\end{theorem}
+
+\section{Meromorphic Function} % (fold)
+\label{sec:Meromorphic Function}
+
+
+\begin{definition}[Meromorphic Function]
+  A function $f$ is meromorphic on $D$ if for every $z \in D$, $f$ is holomorphic on $z$ or $f$ has a zero of finite order. 
+\end{definition}
+
+\begin{theorem}[Argument Principle]
+  Let $\gamma$ be a loop in $\bb{C}$, $f$ meromorphic on interior of $\gamma$ and holomorphic and non-zero on $\gamma$, then we have: 
+  \[
+    \frac{1}{2\pi i} \int_{\gamma} \frac{f'}{f} = N_0(f) - N_{\infty}(f)
+  \]
+\end{theorem}
+
+\begin{theorem}[Rouche's Theorem]
+  Loet $\gamma$ be a loop, and $f,g$ holomorphic on and inside $\gamma$, such that $|f(z) - g(z)| \leq |f(z)$. We have $N_0(f) = N_0(g)$.
+\end{theorem}
+
+% section Meromorphic Function (end)
+
+\subsection{Techniques of Integration} % (fold)
+\label{sec:Techniques of Integration}
+
+\begin{theorem}[Trignometry Integration]
+For $ R(\cos(\theta), \sin(\theta))$, define $f(z) = \frac{1}{iz}R(\frac{z+1/z}{2}, \frac{z-1/z}{2i})$
+We have $ \int_{C_1(0)} f(z) dz = \int^{2\pi}_{0} R(\cos{\theta}, \sin(\theta))$.
+\end{theorem}
+
+\begin{theorem}[Jordan's Lemma]
+	Let $P,Q$ be polynomial and $deg(Q) \leq deg(P) + 1$. We have 
+	$$
+	\lim_{R \rightarrow  \infty} \int_{C_R^+} \frac{P(z)}{Q(z)} e^{iaz} dz = 0 \text{ if  a $>$ 0 }
+	$$
+	$$
+	\lim_{R \rightarrow  \infty} \int_{C_R^-} \frac{P(z)}{Q(z)} e^{iaz} dz = 0 \text{ if a $<$ 0 }
+	$$
+\end{theorem}
+
+\begin{theorem}[Partial Circle]
+	Let $f$ be meromorphic on $D$ with poles at $c$. Let $S$ be a partial circle with center $c$, parametrize by $c + Re^{i\theta}$, for $\alpha \leq \theta \leq \beta$. Then we have 
+	$$
+	\int_{S} f(z) dz = i (\beta - \alpha) \res(f, c)
+	$$
+\end{theorem}
+
+
+\subsubsection{P/Q}
+
+Consider Integral of the form $\int_{- \infty}^{\infty}\frac{P}{Q}$, where $deg(Q) - deg(P) \geq 2$. Let $C_R$ be the close contour consists of line segment $L$, from $-R$ to $R$, and upper half circle$\sigma$, of radius $R$. 
+
+It can be shown that $\int_{C_R} \frac{P}{Q} \rightarrow 0$ as $R \rightarrow \infty$. Thus  $\int_{-\infty}^{\infty} \frac{P}{Q} = 2\pi i \sum \res(f, c)$, where $c$ are poles of $f$ in the upper half plane.
+
+\subsubsection{half line}
+For $deg(Q) - deg(P) \geq 2$, $\int_{0}^{\infty}\frac{P}{Q} = - \sum \res(\log(z)P/Q, z_k )$, for all poles $z_k$.
+
+\subsubsection{R(x)sin(x)}
+
+The integral $\int_{-\infty}^{\infty} R(x) \sin(x)$, where $R = P/Q$ and $deg(Q)> deg(P)$, can be evaluated as the imaginary part of $\int_{-\infty}^{\infty} R(x) e^{ix}$.
+
+\subsection{Series}
+
+$\phi(z) = \pi \frac{\cos(\pi z)}{\sin(\pi z)}$ has simple pole at $z = n$, for $n \in \bb{Z}$, and residue 1, $\xi(z) = \pi \frac{1}{\sin(\pi z)}$ has residue $(-1)^n$ at $z = n$.
+
+$\sum_{n=-\infty}^{\infty} f(n) = - \sum \res(f(z)\pi \cot(\pi z), z)$, for all poles $z$,
+and $\sum_{n=-\infty}^{\infty} (-1)^n f(n) = - \sum \res(f(z)\pi \csc(\pi z), z)$, for all poles $z$.
+
+$C(n,k) = \frac{1}{2\pi i } \int_{C} \frac{(1+z)^n}{z^{k+1}}$, for simple curve $C$ enclosing $z = 0$.
+
+% section Techniques of Integration (end)
+
+\end{document}
+
+
+

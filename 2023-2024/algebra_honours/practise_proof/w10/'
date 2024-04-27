@@ -1,0 +1,89 @@
+\documentclass[12pt, a4paper]{article}
+\usepackage{blindtext, titlesec, amsthm, thmtools, amsmath, amsfonts, scalerel, amssymb, graphicx, titlesec, xcolor, multicol, hyperref}
+\usepackage[utf8]{inputenc}
+\hypersetup{colorlinks,linkcolor={red!40!black},citecolor={blue!50!black},urlcolor={blue!80!black}}
+\newtheorem{theorem}{Theorema}[subsection]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollarium}
+\newtheorem{hypothesis}{Coniectura}
+\theoremstyle{definition}
+\newtheorem{definition}{Definitio}[section]
+\theoremstyle{remark}
+\newtheorem{remark}{Observatio}[section]
+\newtheorem{example}{Exampli Gratia}[section]
+\newcommand{\bb}[1]{\mathbb{#1}}
+\renewcommand\qedsymbol{Q.E.D.}
+\title{Honours Algebra Handin 3}
+\author{Harry Han}
+\date{\today}
+\begin{document}
+\maketitle
+%\tableofcontents
+\section{Q1}
+\subsection{(a)}
+\subsubsection{(i)}
+
+We are to prove that $S$, the set of all antisymmetric matrices, and $T$, the set of all upper triangular matrices, are subspaces of $V$, the set of all $n \times n$ matrices.
+
+\begin{proof}
+    Recall the definition of antisymmetric matrices. A matrix $A$ is antisymmetric if $A^T = -A$. Let $A, B \in S$ be antisymmetric matrices. Then, we have 
+	$
+		(A + B)^T = A^T + B^T 
+		= -A + -B 
+		= -(A + B)
+	$. For a scaler $\lambda$, it is clear that $(\lambda A)^T = -\lambda A$. Moreover the identity matrix is also antisymmetric. Therefore, $S$ is a subspace of $V$.
+
+	Recall the definition of upper triangular matrices. A matrix $A$ is upper triangular if $a_{ij} = 0$ for all $i > j$. Let $A, B \in T$ be upper triangular matrices. Then, we have, for $i>j$
+	$
+		(A + B)_{ij} = A_{ij} + B_{ij} = 0 + 0 = 0
+	$. For a scaler $\lambda$, it is clear that $(\lambda A)_{ij} = \lambda A_{ij} = \lambda 0 = 0$. Moreover the identity matrix is also upper triangular. Therefore, $T$ is a subspace of $V$.
+\end{proof}
+
+\subsubsection{(ii)}
+
+We are to show that any matrix $A \in V$ can be written as the sum of an antisymmetric matrix and an upper triangular matrix uniquely.
+
+\begin{proof}
+
+	It is worth noting that all diagonal elements of $B$ must be zero. Let $d_{i,i}$ be a element in the diagonal of $B$. $B^T = -B$ means that $d_{i,i} = -d_{i,i}$. Therefore, $d_{i,i} = 0$ for all $i$.
+
+	Let $A \in V$ be an arbitrary matrix. We want to write $A = B + C$ where $B \in S$ and $C \in T$. As matrix addition is term by term, we can write $A_{i,j} = B_{i,j} + C_{i,j}$ for all $i, j$.
+
+	Notice $C_{i, j} = 0$ for all $i > j$. Thus $B_{i, j} $ must equal to $A_{i, j}$ for all $i > j$. As the diagonal elements of $B$ are all zero, and $B_{j,i} = -B_{i,j}$ for all $i, j$, $B$ is therefore defined uniquely. As matrix addition makes matrix into a group, $C$ is also defined uniquely. Therefore, $A$ can be written as the sum of an antisymmetric matrix and an upper triangular matrix uniquely.
+\end{proof}
+
+\subsection{(b)}
+
+I claim the statement is false and that both $F(A, B) = Tr(AB)$ and $H(A,B) = Tr(AB^T)$ are bilinear forms.
+
+\begin{proof}
+	Recall the definition of bilinear forms. A bilinear form is a function $F: V \times V \to \bb{R}$ such that $F(\lambda A + \mu B, C) = \lambda F(A, C) + \mu F(B, C)$ and $F(A, \lambda B + \mu C) = \lambda F(A, B) + \mu F(A, C)$ for all $A, B, C \in V$ and $\lambda, \mu \in \bb{R}$.
+
+	Notice that 
+	$$F(\lambda A + \mu B, C) = Tr(\lambda AC + \mu BC) = \lambda Tr(AC) + \mu Tr(BC) = \lambda F(A,C) + \mu F(B,C)$$
+
+	$$\lambda F(A, \lambda B+ \mu C)  = Tr(A(\lambda B + \mu C)) = \lambda Tr(AB) + \mu Tr(AC) = \lambda F(A,B) + \mu F(A,C)$$
+
+	Thus $F$ is a bilinear form. For similar argyment $H$ is also a bilinear form.
+\end{proof}
+
+\subsection{(c)}
+The statement is true, only $H$ is inner product while $F$ is not.
+
+\begin{proof}
+Consider $A = \begin{bmatrix}
+0 & -1 \\
+1 & 0 
+\end{bmatrix}$.
+
+Notice that $F(A,A) = -2$. This it is not positive definite which means it is not an inner product.
+
+Let me show you that $H$ is an inner product. By the definition of matrix multiplication we can show that, if matrix $r_1, r_2 \cdots r_n$ make up the rows of $A$, by definition of matrix multiplication we can see that $H(A,A) = \sum_{i=1}^n r_i^T r_i = \sum_{i=1}^n ||r_i||^2$. Therefore, $H(A, A) = 0$ if and only if $A = 0$, and for $A \neq 0$ $H(A, A) > 0$.
+
+It is clear that $H(A, B) = Tr(AB^T) = Tr((AB^T)^T)= Tr(BA^T) = H(B,A)$. 
+
+In (b) we have shown that $H$ is a bilinear form. Therefore, $H$ is an inner product.
+\end{proof}]
+
+\end{document}
+

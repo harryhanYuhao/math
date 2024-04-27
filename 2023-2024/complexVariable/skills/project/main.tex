@@ -1,0 +1,183 @@
+\documentclass[12pt, a4paper]{article}
+\usepackage{blindtext, titlesec, amsthm, thmtools, amsmath, amsfonts, scalerel, amssymb, graphicx, titlesec, xcolor, multicol, hyperref}
+\usepackage[utf8]{inputenc}
+\usepackage{biblatex}
+\usepackage{csquotes}
+\addbibresource{References.bib}
+\usepackage{caption}
+\usepackage{subcaption}
+\hypersetup{colorlinks,linkcolor={red!40!black},citecolor={blue!50!black},urlcolor={blue!80!black}}
+\newtheorem{theorem}{Theorema}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollarium}
+\newtheorem{proposition}[theorem]{Propositio}
+\newtheorem{hypothesis}{Coniectura}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definitio}
+\theoremstyle{remark}
+\newtheorem{remark}{Observatio}[section]
+\newtheorem{example}{Exampli Gratia}[section]
+\newcommand{\bb}[1]{\mathbb{#1}}
+\renewcommand\qedsymbol{Q.E.D.}
+\title{Euclidean Geometry And Complex Numbers}
+\author{Harry Han; S2162783}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+\section{Introduction}
+
+In the class we have delved unmeasurable amount of time on the analytical sides of complex number: Cauchy Integral Theorem, Laurent Series, Cauchy Residue Theorem, \&c: these are, no doubts, the pinnacle of mathematics. \cite{gratwick_2023_HCoV}
+
+In this report, however, please allow me to rewind to the less abstract areas of mathematics and introduce a different perspective on the usefulness of the complex number: their application in Euclidean Geometry. 
+The inspiration lays on the prominent observation that $\bb{C}$ is isomorphic to $\bb{R}^2$. \cite{DrawingWithComplexNumbers}
+
+Now, you may deride at me, that I am studying an obsolete subject that is belittled by the edifice of modern mathematics. 
+Yet, take heed that Euclidean geometry is unparalleled in its intuitiveness and beauty, and that whence mathematics itself came as a scientific subject.
+
+\section{Four Easy Examples}
+
+One of the most eminent intuition for complex number in Euclidean geometry is that, if we have complex number $\alpha, \beta$ on the complex plane, we can represent $-\alpha, \bar{\alpha}, \alpha + \beta, \alpha \cdot \beta, \alpha^{-1}$, and $\alpha^{1/2}$ with a little geometric manoeuvre. \cite{theoryOfFunctions}
+
+The cases for $-\alpha, \bar{\alpha},$ and $\alpha + \beta$ are straight forward. 
+$-\alpha$ can be obtained by reflecting $\alpha$ through origin (or, rotation by $\pi$); $\bar{\alpha}$ and $\alpha$ are symmetric respect to the real axis. 
+$\alpha + \beta$ can be obtained by drawing a parallelogram with $\overline{OA}$ and $\overline{OB}$ as sides, if denoting the origin as $O$. See figure \ref{fig:A plus B}.
+
+$\alpha \cdot \beta$ can be obtained by drawing two similar triangles: $\triangle OAB$ and $\triangle OB(ab)$. See figure \ref{fig:A times B}.
+
+We can summarised these observation with the following theorem:
+
+\begin{theorem}\label{thm:euclideanFunction}
+	All Euclidean motion (except reflection) can be represented by complex number multiplication and addition. I.e, let function $f : \bb{C} \rightarrow  \bb{C}$, $f(\alpha) = \mu \alpha + \nu$, where $\mu, \nu \in \bb{C}$, then $\alpha$ and $f(\alpha)$ are off by an Euclidean motion. 
+\end{theorem}
+
+To obtain $\alpha^{-1}$, we shall connect $\alpha$ to $E$, which represent the unit length on real axis. Draw a circle passing through $O, E$ and is tangent to $\overline{EA}$. The intersection of $\bar{a}$ with the circle would mark the position of $\alpha^{-1}$, as shown in figure \ref{fig:1overa}.
+
+To find $\sqrt{a}$ involves a little more manipulation. Mark the unit length on real axis with $E$. 
+Draw a circle, $K_1$, that passes through $A, O$ and $E$. 
+Mark the intersection of the bisector of $\angle AOE$ with the circle as $N$. Let $M$ be another point on $K_1$ such that $MN$ is the diameter of $K_1$.
+Draw another circle, $K_2$, with center $M$ and radius $MA$. The intersection of $ON$ with $K_2$ marks the position of $\sqrt{a}$, as shown in figure \ref{fig:sqrta}.
+
+\begin{figure}
+	\centering
+	\includegraphics[width=0.5\textwidth]{./a+b.pdf}
+	\caption{$\alpha + \beta$ and $\alpha - \beta$. $O, \alpha, \beta, \alpha + \beta$ are vertices of a parallelogram.}
+	\label{fig:A plus B}
+\end{figure}
+\begin{figure}
+	\centering
+	\includegraphics[width=0.5\textwidth]{./ab.pdf}
+	\caption{$\alpha \cdot \beta$. We shall apply the property the product of two complex
+		number has modulus equal to the product of the modulus of the two complex number, and the argument equal to the sum of the argument of the two complex number.
+	}
+	\label{fig:A times B}
+\end{figure}%
+
+\begin{figure}[htbp]
+	\centering
+		\includegraphics[width=0.7\textwidth]{./1overa.pdf}
+		\caption{$a^{-1}$. Notice the triangle $OE \alpha$ and $O \alpha^{-1} E$ are similar.}
+	\label{fig:1overa}
+	%
+\end{figure}
+
+\begin{figure}[htbp]
+		\centering
+		\includegraphics[width=0.7\textwidth]{./sqrta.pdf}
+		\caption{$\sqrt{\alpha}$. All we have to prove is that $\angle OE \sqrt{\alpha}$ and $\angle O \sqrt{\alpha} A$ are the same, which means 
+			that $\triangle OE\sqrt{\alpha}$ and $\triangle O \sqrt{\alpha} A$ are similar.
+		}
+		\label{fig:sqrta}
+\end{figure}
+
+\section{An Application Into Similar Triangles}
+
+Let me present to you another theorem that is less elementary regarding the necessary and sufficient condition for two triangles to become similar. We shall recall the definition of similar triangles first.
+
+\begin{definition}
+Two triangles are similar if their corresponding angles have the same degree. 
+They are \emph{directly} similar if they have the same orientation, that is, their corresponding vertices are in the same order.
+\end{definition}
+
+Two similar triangles can be made from the other by only Euclidean motions, that is, translation, rotation, dilation, and reflection. 
+Importantly, two triangles are directly similar if one can be made by the other with only translation, rotation, and dilation, but without reflection. 
+
+Note that similar relation is reflexive; thus we can have the following proposition: 
+
+\begin{proposition}\label{prop:similarAndEuclideanMotion}
+Triangle $A$ is similar to $B$ if and only if after some Euclidean motions, $A$ can be made into $B$. 
+
+The triangle $A$ is directly similar to $B$ if and only if after some Euclidean motions, $A$ can be made into $B$ without reflection.
+\end{proposition}
+
+With the definition taken care of, here is the connection to complex numbers:
+\begin{theorem}
+	The triangle with vertices $\alpha, \beta, \gamma$, represented in complex number 
+	is \textbf{directly} similar to triangle with side length $b, c \in \bb{R}$, and the measure of angle between these two sides being $\delta$, if and only if 
+	\begin{equation}\label{eq:directSimilar}
+		be^{i \delta}(\alpha - \beta) + c(\gamma - \alpha) = 0
+	\end{equation}
+	They are similar but not directly similar if and only if
+	\begin{equation}
+		be^{i \delta}(\bar{\alpha} - \bar{\beta}) + c(\bar{\gamma} - \bar{\alpha}) = 0
+	\end{equation}
+	This equation is equivalent to 
+	\begin{equation}\label{eq:nondirectsimilar}
+		be^{-i \delta}(\alpha - \beta) + c(\gamma - \alpha) = 0
+	\end{equation}
+\end{theorem}
+
+\begin{figure}[htbp]
+	\centering
+	\includegraphics[width=0.4\textwidth]{./similarTriangle.pdf}
+	\caption{Triangle $\triangle ABC$ in complex plane. Let vertex $A$ represent complex number $\alpha$, $B$ represent $\beta$, and $C$ represent $\gamma$. Let $\angle CAB = \delta$}
+	\label{fig:TriangleABC}
+\end{figure}
+
+It is clear that three points in complex plane uniquely defines a triangle, and two sides with the angle between them also uniquely defines a triangle, so our theorem is well defined.
+We shall first check the triangle with vertices $\alpha, \beta, \gamma$ with itself (check figure \ref{fig:TriangleABC}).
+
+Notice that $\alpha - \beta$ equals to the vector $\overline{AB}$. By definition of complex multiplication $be^{i \delta} \overline{AB} $  will have the same direction as $\overline{AC}$, with its modulus being $bc$.
+Similarly, $c(\gamma - \alpha)$ equals to the vector $c\overline{CA}$, with its modulus being $bc$ and its direction opposite to $\overline{AC}$. 
+In this way we proved that equation \ref{eq:directSimilar} holds for the triangle with vertices $\alpha, \beta, \gamma$ with with with sides and angle of itself.
+
+Notice that if we apply an Euclidean motion to the triangle, the vertex $\alpha, \beta, \gamma$ will be transformed to $f(\alpha), f(\beta), f(\gamma)$, where $f$ is the function defined in theorem \ref{thm:euclideanFunction}. 
+It is of mere arithmetic to see that equation \ref{eq:directSimilar} holds if $\alpha, \beta, \gamma$ is replaced by $f(\alpha), f(\beta), f(\gamma)$. So, by proposition \ref{prop:similarAndEuclideanMotion}, we can claim that equation \ref{eq:directSimilar} if and only if the triangle with vertices $\alpha, \beta, \gamma$ is directly similar to the triangle with side length $a, b$ and the angle $\delta$.
+
+It is trivial to deduce equation \ref{eq:nondirectsimilar} from equation \ref{eq:directSimilar} by applying a reflection to the triangle with vertices $\alpha, \beta, \gamma$.
+
+Next we present the culmination of this report.
+
+\begin{theorem}\label{thm:similarity}
+	The triangle with vertices $\alpha, \beta, \gamma$, represented in complex number, is similar to triangle with side length $a, b,c \in \bb{R}$ if and only if 
+	\begin{equation}\label{eq:similarity}
+		a^2 \alpha^2 + b^2 \beta^2 + c^2 \gamma^2 + (c^2-b^2-a^2)\alpha \beta + (b^2-c^2-a^2)\gamma \alpha + (a^2 - b^2 - c^2) \beta \gamma = 0
+	\end{equation}
+\end{theorem}
+
+Before any attempts of proof we shall first have a sanity check. Is only one equation sufficient to determine the similarity of two triangles? It turns out that it is.
+As the sum of the angles of a triangle is $\pi$, there are actually only two degree of freedom for a triangle to be similar to another. Our equation \ref{eq:similarity} can be considered as two real equations: this is fitting our expectation.  
+
+Reader, I shall bring to you an ingenious proof of this theorem. After some arithmetic (remembering that $e^{i \delta} + e^{-i \delta} = 2\cos(\delta)$, and apply law of cosine $a^2 + b^2 = c^2 + 2ab\cos{\delta}$), we can check that 
+
+\begin{equation}
+	\begin{split}
+		&a^2 \alpha^2 + b^2 \beta^2 + c^2 \gamma^2 + \\
+		&(c^2-b^2-a^2)\alpha \beta + (b^2-c^2-a^2)\gamma \alpha + (a^2 - b^2 - c^2) \beta \gamma = \\ 
+		&\left(be^{-i \delta}(\alpha - \beta) + c(\gamma - \alpha)\right)
+		\left(be^{i \delta}(\alpha - \beta) + c(\gamma - \alpha) \right)
+	\end{split}
+\end{equation}
+
+Which means that equation \ref{eq:similarity} holds if and only if the triangle with vertices $\alpha, \beta, \gamma$ is directly or non-directly similar to the triangle with side length $a, b, c$. This is exactly what we want to prove.
+
+I hope in this report I have shed some lights on the wonderful yet easily neglected connection between complex numbers and Euclidean geometry.
+There are much more fruitful theories in this fields to be explored.
+
+\printbibliography
+
+
+
+\end{document}
+

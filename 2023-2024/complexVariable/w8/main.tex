@@ -1,0 +1,163 @@
+\documentclass[12pt, a4paper]{article}
+\usepackage{blindtext, titlesec, amsthm, thmtools, amsmath, amsfonts, scalerel, amssymb, graphicx, titlesec, xcolor, multicol, hyperref}
+\usepackage[utf8]{inputenc}
+\hypersetup{colorlinks,linkcolor={red!40!black},citecolor={blue!50!black},urlcolor={blue!80!black}}
+\newtheorem{theorem}{Theorema}[subsection]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollarium}
+\newtheorem{hypothesis}{Coniectura}
+\theoremstyle{definition}
+\newtheorem{definition}{Definitio}[section]
+\theoremstyle{remark}
+\newtheorem{remark}{Observatio}[section]
+\newtheorem{example}{Exampli Gratia}[section]
+\newcommand{\bb}[1]{\mathbb{#1}}
+\renewcommand\qedsymbol{Q.E.D.}
+\title{Complex Variable Handin 4}
+\author{Harry Han}
+\date{\today}
+\begin{document}
+\maketitle
+
+\section{Q1} % (fold)
+\label{sec:Q1}
+\subsection{(a)}
+I am to prove that 
+
+\[
+  \left|\int_{C_3(i)} \frac{1}{z} dz \right| \leq 3 \pi
+\]
+
+Let us invoke ML lemma. Apply the formula we learned from kindergarden, we find the arclength of $C_3(i)$ is $6 \pi$.
+
+Notice that for certain $z$ on the curve such that $|\frac{1}{z}|$ attained its maximum, for the same $z$, $|z|$ attains its minimum.
+
+For the circle centered at $i$ with radius 3, it is clear that the minimum of $|z|$ is attained at $z=-2i$, for which $|z| = 2$, which means the maximum of $|1/z|$ is $1/2$.
+
+If you want furthur justification that the minimum is attained at $-2i$, notice that the modulus is the same as distance from the origin, and the point on the circle that is closest to the point $a$ that is not the center, lies on the line segment $ac$, where $c$ is the center of the circle. This is again the formula from primary school. 
+
+Apply $ML$ lemma I claim 
+
+\[
+  \left|\int_{C_3(i)} \frac{1}{z} dz \right| \leq \max {\frac{1}{z}}\cdot 6 \pi = 3\pi 
+\]
+  
+\subsection{(b)} 
+
+I am to prove that, for $R > 2$, where $C_{R}^+$ is the upper semi circle centered at origin with radius $R$.
+
+It is clear that the arc length of this curve is $R\pi$.
+
+\[
+  \left| \int_{C^+_{R}} \frac{1}{2+z^2} dz \right| \leq \frac{R\pi}{R^2-2}
+\]
+
+Again, the maximum of $|\frac{1}{2+z^2}|$ is attained at $z$ if and only if the minimum of $|2+z^2|$ is attained at the same $z$ along the curve.
+
+Before finding the minimum of $|2+z^2|$, let us find the image of $z^2 + 2$ for $z \in C^+_{R}$. 
+It is clear that the image is the full circle with the radius $R^2$ centered at the point 2.
+Thus the minimum of the modulus on the image is the point $-R^2$, which is attained at $z = Ri \implies 2+z^2 = -R^2 +2 \implies |2+z^2| = R^2 - 2 $. 
+(Recall we have the constrain that $R > 2$).
+
+In this way we apply $ML$ lemma and find that the maximum of the integral is $\frac{R\pi}{R^2 - 2}$.
+
+\section{Q2} % (fold)
+\label{sec:Q2}
+
+\subsection{Q2(a)}
+\label{subsec:Q2(a)}
+
+We are to show that there is no function $f: \bb{C} \symbol{92} \{0 \} \rightarrow \bb{C}$ such that $f' = 1/z$ and $f$ is holomorphic on all of its domain.
+
+\begin{proof}
+  Assuming such a $f$ exist. It is the anti derivative of $1/z$ in its domain. 
+
+  Let us integrate $1/z$ along the unit circle. Since $f$ is its antiderivative, by Lemma 3.3.9 we find this integral is 0. However, by theorem 3.4.1, this integral equals to $2\pi i$. This is an contradiction and we conclude such an $f$ does not exist.
+\end{proof}
+
+\subsection{q2(b)}
+\label{subsec:q2(b)}
+
+Let us now demonstrate the there is no holomorphic function $l: \bb{C} \symbol{92} \{0\} \rightarrow \bb{C}$ such that $exp(l(z)) =z$ for all $z
+$ in its domain.
+
+Assuming such a function exist. Let us differentiate $exp(l) = z$ on both side. 
+
+We find that $exp(l)' l' = 1 \implies l' = \frac{1}{exp(l)'} = \frac{1}{z}$. This $l$ is the antiderivative of $\frac{1}{z}$. In previous section we have shown that such a function does not exist.
+
+%subsection fold end
+
+\section{Q3} % (fold)
+\label{sec:Q3}
+
+I am to prove that the integral 
+
+\[
+  I = \displaystyle\int_{-\infty}^{\infty} \frac{1}{x^2+2} dx = \lim_{R \rightarrow \infty} \int_{-R}^{R} \frac{1}{x^2+2} dx= \frac{\pi}{\sqrt{2}} 
+\]
+
+Let us define the complex function $f(z) = \frac{1}{z^2 + 2}$. Let us define the curve $\Gamma_R$ be the upper circle centered at origin with radius $R$ and the curve $\Lambda_R$ be the line segment between $-R$ and $R$. 
+
+Notice the contour integral $\int_{\Lambda_R} f(z) = \int_{-R}^{R} \frac{1}{x^2+2}dx$
+
+Notice that for all $R > 0$, the curve $\Lambda_R + \Gamma_R$ becomes a loop that is the closed upper half semi circle centered at $0$ with radius $R$. 
+Thus we can apply cauchy integral theorem to integrage $f(z)$ 
+
+\[
+  \int_{\Lambda_R +  \Gamma_R} f(z) dz = \int_{\Lambda_R + \Gamma_R}  \frac{1}{z+\sqrt{2} i} \frac{1}{z- \sqrt{2} i} dz= 2\pi i \cdot \frac{1}{2\sqrt{2}i} = \frac{\pi}{\sqrt{2}}
+\]
+
+Notice this expression is independent of $R$.
+
+In the previous section we have shown that:
+
+\[
+  \left| \int_{\Gamma_{R}} \frac{1}{2+z^2} dz \right| \leq \frac{R\pi}{R^2-2} 
+\]
+
+This means $\lim_{R \rightarrow \infty} \int_{\Gamma_R} f(z) \leq \lim_{R \rightarrow \infty} | \int_{\Gamma_R} f(z)| dz = 0$ 
+
+Thus:
+
+\[
+  I = \lim_{R \rightarrow \infty} \int_{\Lambda_R +  \Gamma_R} f(z)dz - \lim_{R \rightarrow \infty} \int_{\Gamma_R} f(z) dz= \frac{\pi}{\sqrt{2}} 
+\]
+
+% section Q3 (end)
+
+\section{Q4} % (fold)
+\label{sec:Q4}
+
+We are to prove that if  $f$ is holomorphic on $D_1(0)$, and $\max_{z\in C_r(0)}|f(z)| = 0$ for $r \rightarrow 1$, then $f$ is identically 0. 
+
+\begin{proof}
+  Pick any $z_0 \in D_1(0)$. Pick a number $\rho$ such that $ \rho < 1 $ and $\rho >  \frac{1+|z|}{2}$. Apply cauchy integral formula we get: 
+
+  \[
+    f(z_0) = \frac{1}{2\pi i} \displaystyle\int_{C_{\rho}(0)} \frac{f(z)}{z-z_0} dz 
+  \]
+  
+  Notice for each $z$, $|\frac{f(z)}{z-z_0}| = |f(z)| |\frac{1}{z-z_0}|$. 
+  In particular, for $z \in C_\rho(0)$, $|\frac{1}{z-z_0}| \leq \frac{1}{1- |z_0|} $. 
+  This means 
+  $$\max_{z \in C_{\rho}(1)} \left|\frac{f(z)}{z-z_0}\right| \leq  \left|\frac{1}{1- z_0}\right| \max_{z \in C_{\rho}(1)} \left|f(z)\right|$$. 
+
+  Moreover, it is clear that the arclength of $C_{\rho} (0) < 2\pi$.
+
+  Let us apply ML lemma: 
+  
+  \[
+    \lim_{\rho \rightarrow  1} \left| \frac{1}{2\pi i} \displaystyle\int_{C_{\rho}(0)} \frac{f(z)}{z-z_0} dz \right| 
+    \leq  \lim_{\rho \rightarrow  1} \frac{1}{2 \pi}  \left|\frac{1}{1- z_0}\right| \max_{z \in C_{\rho}(1)} \left|f(z)\right| = 0
+  \]
+  This means that $|f(z_0)| = 0$. The only way it is possible is that $f(z_0) =0$.
+
+  Notice we have set no other restriction on $z$ except that $z \in D_1(0)$. Thus I claim $z\in D_1(0) \implies f(z_0) = 0 $ as desired.
+ 
+\end{proof}
+
+
+
+% section Q4 (end)
+
+\end{document}

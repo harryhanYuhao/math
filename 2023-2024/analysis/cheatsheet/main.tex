@@ -1,0 +1,44 @@
+\documentclass[12pt, a4paper]{article}
+\usepackage{blindtext, titlesec, amsthm, thmtools, amsmath, amsfonts, scalerel, amssymb, graphicx, titlesec, xcolor, multicol, hyperref}
+\usepackage[utf8]{inputenc}
+\hypersetup{colorlinks,linkcolor={red!40!black},citecolor={blue!50!black},urlcolor={blue!80!black}}
+\newtheorem{theorem}{Theorema}[subsection]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollarium}
+\newtheorem{hypothesis}{Coniectura}
+\theoremstyle{definition}
+\newtheorem{definition}{Definitio}[section]
+\theoremstyle{remark}
+\newtheorem{remark}{Observatio}[section]
+\newtheorem{example}{Exampli Gratia}[section]
+\newcommand{\bb}[1]{\mathbb{#1}}
+\renewcommand\qedsymbol{Q.E.D.}
+\begin{document}
+
+\section{CheatSheet}
+\subsection{Fourier Series and Orthogonality}
+
+\begin{definition}[$L^2$ Space]
+	Let $f$ be a function defined on $[a, b]$. We say that $f$ is square integrable on $[a, b]$ if
+	\begin{equation}
+		||f||^2_2 = \int_{a}^{b} |f(x)|^2 dx < \infty
+	\end{equation}
+	The set of all square integrable functions on $[a, b]$ is denoted by $L^2[a, b]$.
+\end{definition}
+
+\begin{definition}[Inner Product]
+	For function $f,g \in L^2[a,b]$, define their inner product as
+	\begin{equation}
+		\langle f, g \rangle = \int_{a}^{b} f(x)\overline{g(x)} dx
+	\end{equation}
+\end{definition}
+
+\begin{theorem}[Cauchy-Schwarz Inequality]
+	For $f,g \in L^2[a,b]$, we have
+	\begin{equation}
+		|\langle f, g \rangle| \leq ||f||_2 ||g||_2
+	\end{equation}
+\end{theorem}
+
+\end{document}
+

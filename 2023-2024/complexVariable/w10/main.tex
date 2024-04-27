@@ -1,0 +1,137 @@
+\documentclass[12pt, a4paper]{article}
+\usepackage{blindtext, titlesec, amsthm, thmtools, amsmath, amsfonts, scalerel, amssymb, graphicx, titlesec, xcolor, multicol, hyperref}
+\usepackage[utf8]{inputenc}
+\hypersetup{colorlinks,linkcolor={red!40!black},citecolor={blue!50!black},urlcolor={blue!80!black}}
+\newtheorem{theorem}{Theorema}[subsection]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollarium}
+\newtheorem{hypothesis}{Coniectura}
+\theoremstyle{definition}
+\newtheorem{definition}{Definitio}[section]
+\theoremstyle{remark}
+\newtheorem{remark}{Observatio}[section]
+\newtheorem{example}{Exampli Gratia}[section]
+\newcommand{\bb}[1]{\mathbb{#1}}
+\renewcommand\qedsymbol{Q.E.D.}
+\title{Complex Variables Handin 5}
+\author{Harry Han}
+\date{\today}
+\begin{document}
+\maketitle
+%\tableofcontents
+
+\section{Q1}
+Suppose $f$ is holomorphic on all $\bb{C}$ and $g = f/z$ is defined for all $z \neq 0$ such that $g(z) \rightarrow  0$ and $z \rightarrow \infty $ We are to show that $f$ is a constant function.
+
+\begin{proof}
+	For any $z_0\in \bb{C}$ and $r>0$, let us invoke the Cauchy Integral Formula and ML lemma:
+	\begin{equation}\label{cauchy:q1}
+		|f'(z_0)| = \left|\frac{1}{2\pi i} \int _{C_r(z_0)} \frac{f(z)}{(z-z_0)^2} dz \right| 
+		\leq \frac{1}{2\pi} \max_{z \in C_r(z_0)} \frac{|f(z)|}{|z-z_0|^2} \ell(C_r(z_0))	
+	\end{equation}
+
+	Notice that $|z-z_0|$ always equal $r$, and the circumference of the cirlce is $2 \pi r$, thus the upper bound is equivalent to:
+	\begin{equation}
+	\frac{1}{2\pi} \max_{z \in C_r(z_0)} \frac{|f(z)|}{|z-z_0|^2} \ell(C_r(z_0))	
+	=
+	  \max_{z \in C_r(z_0)} \frac{|f(z)|}{|z-z_0|} 
+	\end{equation}
+
+	I claim for any $z_0$, as $|z| \rightarrow  \infty$,$  \frac{|f(z)|}{|z-z_0|} \rightarrow  0$. To convice you of this, consider:
+	\begin{equation}
+		\lim_{|z| \rightarrow \infty} \frac{f(z)}{z-z_0} = \lim_{|z| \rightarrow \infty} \frac{f(z)}{z} -\frac{f(z)}{z} \cdot \frac{z_0}{z-z_0} = 0
+	\end{equation}
+
+	Notice equation \ref{cauchy:q1} applies for any $z_0$ and $r>0$. 
+	Thus we conclude $|f'(z)| = 0$ for all $z$, that is $f'(z) =0$ which means $f$ is constant.
+\end{proof}	
+
+\section{Question 2}
+We are to prove that, if $f$ is holomorphic on all $\bb{C}$ and $|f(z)| \rightarrow  \infty$ as $|z| \rightarrow  \infty$, $f$ is surjective, i.e., the codomain of $f$ is $\bb{C}$.
+
+\begin{proof}
+	By open mapping theorem, as $\bb{C}$ is open, $f(\bb{C})$ is open. (let us denote the codomain of $f$ to be $f(\bb{C})$). 
+
+	Assuming $f$ is not surjective, i.e., $f(\bb{C}) \neq \bb{C}$. As $\bb{C}$ is connected space, the boundary of $f(\bb{C})$ is non empty. (Denote the boundary as $\partial f(\bb{C})$)
+	Pick $c \in \partial f(\bb{C})$. 
+
+	As $f(\bb{C})$ is open, $c \notin f(\bb{C})$, but we can choose sequence $c_1, c_2, c_3 \cdots$ such that $f(c_i) \rightarrow c$.
+
+	Since $f$ has the restriction that $\lim_{|z| \rightarrow \infty} f(z) = \infty$, we see $\lim_{n \rightarrow \infty} |c_n| \neq \infty$, that is, the sequence $c_i$ is bounded. By Bolzano-Wiesestrass $c_i$ has a convergent subsequence, say this sequence converge to $\sigma$. By definition of continuity, $f(\sigma) =c$. This is a contradiction and we conclude $f$ must be surjective.
+\end{proof}
+
+\section{Q3}
+
+Assuming $f$ is holomorphic on all $\bb{C}$ and there exist $C>0$ and integer $N > 0$ such that $|f(z)| \leq C|z|^{N}$ for all $z$. We are to prove the $f$ is a polynomial of at most degree $N$.
+
+\begin{proof}
+	For certain $z \in \bb{C}$ and $R \in \bb{R}, r>0$, let us invoke the ingenuous equation of Cauchy:
+	\begin{align}\label{cauchy:q3}
+		|f^{(n+1)}(z_0)| 
+		&=
+		\left|\frac{(n+1)!}{2\pi i} \int _{C_r(z_0)} \frac{f(z)}{(z-z_0)^{n+2}} dz \right| 
+		\\
+		&\leq
+		\frac{(n+1)!}{2\pi} \max_{z \in C_r(z_0)} \frac{|f(z)|}{|z-z_0|^{n+2}} \ell(C_r(z_0))	
+		\\
+		&\leq 
+		\frac{(n+1)!}{2\pi} \max_{z \in C_r(z_0)} \frac{C|z|^N}{|z-z_0|^{n+1}\cdot R} 2R \pi 	
+		\\
+		&=
+		(n+1)! \max_{z \in C_r(z_0)} \frac{C|z|^N}{|z-z_0|^{n+1}}
+	\end{align}
+
+	Notice for integer $n \geq N$, for $R$ large enough
+	\begin{equation}
+		\lim_{R \rightarrow \infty} 
+    		\frac{(n+1)!C |z|^{N}}{|z-z_0|^{n+1}} =
+		\lim_{|z| \rightarrow \infty} 
+		    \frac{(n+1)!C |z|^N}{|z|^{n+1}} = 0
+	\end{equation}
+	As this is the upper bound for $|f^{n+1}(z_0)|$, and modula must be greator then 0, we claim $|f^{n+1}(z_0)|$ can only be $0$.
+
+	Notice the beauty of the equation is that we have set no restriction for $z_0$.
+	This means that all of the derivative of degree greator than or equal to $N+1$ are zero, that is, the Taylor expansion of $f$ does not have terms of degree greater than or equal to $N+1$. 
+	The only way this is possible is that $f$ is a polynomial of degree at most $N$.
+\end{proof}
+
+\section{Question 4}
+
+We are to investigate the celebrated Riemann Function.
+
+For $\epsilon >0$, let $U_{\epsilon} = \{z \in \bb{C}: Re(z) > 1+ \epsilon\}$, and for integers greater than $1$, define $\zeta_n (z) = n^{-z}$. The principal branch is taken.
+
+\subsection{a)}
+
+We are to show that $|\zeta_n (z)| \leq n^{-1-\epsilon}$
+
+By definition of complex exponential function,
+\begin{align}
+	\zeta_n (z) 
+	=& n^{-z}  \\
+	=& \exp{(-z Log(n))} \\
+	=& \exp{(Re(-z)ln(n) + im(-z) ln(n)i)}
+\end{align}
+
+Which means $|\zeta_n (z)| = n^{Re(-z)}$. 
+Notice $Re(-z) \leq -1 - \epsilon$, that is, as $n>1$, $|\zeta_n(z)| = n^{Re(-z)} \leq n^{-1-\epsilon}$.
+
+\subsection{b)}
+
+The series $\sum_{n=1}^{\infty} n^{-1-\epsilon}$ converge. By the previous section we show that each of $|\zeta_n| < n^{-1-\epsilon}$ .
+We can simply apply Bolzano M test which states that $\sum_{n=1}^{\infty} \zeta_n$ converges uniformly in $U_{\epsilon}$.
+
+\subsection{c)}
+
+Define $\zeta(z) = \sum_{n=1}^{\infty} \zeta_n(z)$, we are to show that it is holomorphic in $D = \{z \in \bb{C}: Re(z) > 1\}$.
+
+Consider the partial sum $f_n = \sum_{i=1}^{n} \zeta_n(z)$.
+As each $f_n$ is sum of finite holomorphic function, $f_n$ is holomorphic. 
+
+Notice every $\zeta_n(z)$ is holomorphic on $D$. For every $z$ such that $Re(z) > 1$, we can find a $\epsilon$ such that $1<\epsilon<Re(z)$, on which $U_{\epsilon}$, $f_n$ converges uniformly to $\zeta$. 
+Thus we can conclude that $f_n$ converge uniformly in $D$.
+
+Apply theorem 4.1.23, since $D$ is a simply connected domain, we conclude $\zeta$ is holomorphic.
+
+\end{document}
+
