@@ -1,6 +1,7 @@
 \documentclass[12pt, a4paper]{article}
 \usepackage{blindtext, titlesec, amsthm, thmtools, amsmath, amsfonts, scalerel, amssymb, graphicx, titlesec, xcolor, multicol, hyperref}
 \usepackage[utf8]{inputenc}
+\usepackage[margin=0.25in]{geometry}
 \hypersetup{colorlinks,linkcolor={red!40!black},citecolor={blue!50!black},urlcolor={blue!80!black}}
 \newtheorem{theorem}{Theorema}[section]
 \newtheorem{lemma}[theorem]{Lemma}
@@ -52,6 +53,9 @@
 	\end{align*}
 \end{theorem}
 
+\textbf{Only Partial Converse}: 
+If $u_x, u_y, v_x, v_y$ exists in a neighborhood if $z_0$ and is continuous, and $f$ satisfy Cauchy Riemann Equation, then it is holomorphic.
+
 \begin{definition}[Harmonic]
 	Let $h: R^2 \rightarrow  R$. $h$ is harmonic if 
 	$$
@@ -89,11 +93,12 @@
 
 	Let us define $\phi <\Arg_{\phi}(z) \leq \phi + 2\pi$, and $\Log_{\phi} = \ln |z| + i \Arg_{\phi}(z)$.
 \end{definition}
-
+\begin{definition}[Complex Power]
+	$z^{a} = \exp{wa}$, where $w \in \log(z)$
+\end{definition}
 \begin{definition}[Branch Cut]
 	Branch cut is a subset of $\bb{C}$: $L_{z_0, \phi} = \{z \in \bb{C}: z = z_0 + re^{i \phi}, r \geq 0\}$. I.e., a ray starting at $z_0$ with argument $\phi$.
 \end{definition}
-
 
 Notice that $\Log_{\phi}$ is holomorphic on $\bb{C} \backslash L_{0, \phi} $
 
@@ -133,8 +138,12 @@ Mobius Transformation preserves cross ratio: $[f(z_1), f(z_2), f(z_3), f(z_4)] =
 Let $g$ be the unique mobius transformation that maps $z_2, z_3, z_4$ to $1, 0, \infty, x$. Then $g(z_1) = [z_1, z_2, z_3, z_4]$
 \end{theorem}
 
-\section{Integral}
+\begin{theorem}[Riemman Sphere]
+	Projection of $z$ onto Riemann sphere is: $\phi(z) = \phi(x + iy) = (2x/(r+1), 2y/(r+1), (r-1)/(r+1) )$ for $r = |z|$.
+	$\phi^{-1} = \frac{X+iY}{1-Z}$
+\end{theorem}
 
+\section{Integral}
 
 \begin{theorem}[Path Independent Lemma] 
 Let $D \in \bb{C}$ be a domain and $f$ continuous on $D$. The followings are equivalent:
@@ -162,8 +171,13 @@ Let $D \in \bb{C}$ be a domain and $f$ continuous on $D$. The followings are equ
 		\]
 
 \end{theorem}
+		That is $\int_{\gamma} \frac{1}{z-z_0} dz = 2\pi i$ if $z_0$ is inside $\gamma$.
 
 \subsection{Properties of Holomorphic Functions}
+
+\begin{theorem}
+	Let $f$ be holomorphic on $D$ and $z_0 \in D$. We have $f(z_0) 2 \pi = \int_0^{2\pi} f(z_0 + Re^{iz}) dz $
+\end{theorem}
 
 \begin{theorem}[Liouville's Theorem]
 	Let $f$ be holomorphic and bounded on $\bb{C}$. Then $f$ is constant.
@@ -173,7 +187,9 @@ Let $D \in \bb{C}$ be a domain and $f$ continuous on $D$. The followings are equ
 	Let $f$ be holomorphic on a domain $D$. Then $|f(z)|$ has no maximum in $D$ unless $f$ is constant.
 \end{theorem}
 
-
+\begin{theorem}[Maximum Modulus Principle for Harmonic Function]
+	Let $D \subset \bb{R}^2$ be a domain and $\phi$ be harmonic. If $\phi$ is bounded above or below by $M \neq 0$, then it is constant.
+\end{theorem}
 \begin{theorem}[Morera's Theorem]
 	Let $f$ be continuous on a domain $D$. If $\int_{\gamma} f(z) dz = 0$ for all closed path $\gamma$ in $D$, then $f$ is holomorphic.
 \end{theorem}
@@ -194,7 +210,7 @@ Let $D \in \bb{C}$ be a domain and $f$ continuous on $D$. The followings are equ
 
 
 \begin{theorem}[Laurent Series]
-	Let $f$ be holomorphic on $A_{r,R}(z_0)$, then $f$ can be represented by Laurent Series for any loop$\gamma$ in $A_{r,R}(z_0)$:
+	Let $f$ be holomorphic on $A_{r,R}(z_0)$, then $f$ can be represented by Laurent Series for any loop $\gamma$ in $A_{r,R}(z_0)$:
 	$$
 	f(z) = \sum_{n=-\infty}^{\infty} a_n (z - z_0)^n
 	$$

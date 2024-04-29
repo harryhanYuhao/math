@@ -2,12 +2,12 @@
 \usepackage{blindtext, titlesec, amsthm, thmtools, amsmath, amsfonts, scalerel, amssymb, graphicx, titlesec, xcolor, multicol, hyperref}
 \usepackage[utf8]{inputenc}
 \hypersetup{colorlinks,linkcolor={red!40!black},citecolor={blue!50!black},urlcolor={blue!80!black}}
-\newtheorem{theorem}{Theorema}[subsection]
+\newtheorem{theorem}{Theorema}
 \newtheorem{lemma}[theorem]{Lemma}
 \newtheorem{corollary}[theorem]{Corollarium}
 \newtheorem{hypothesis}{Coniectura}
 \theoremstyle{definition}
-\newtheorem{definition}{Definitio}[section]
+\newtheorem{definition}{Definitio}
 \theoremstyle{remark}
 \newtheorem{remark}{Observatio}[section]
 \newtheorem{example}{Exampli Gratia}[section]
@@ -16,6 +16,110 @@
 \begin{document}
 
 \section{CheatSheet}
+
+\subsection{Series And Sequence}
+
+\begin{theorem}[Point-Wise Convergence]
+	Let $\{f_n\}$ be a sequence of functions defined on $D$. $f_n$ converge to $f$ point wise if for all $x \in D, \epsilon >0$, there exist $N$ such that $|f_n(x) - f(x)| < \epsilon$ for all $n > N$.
+\end{theorem}
+
+\begin{theorem}[Uniform Convergence]
+	Let $\{f_n\}$ be a sequence of functions defined on $D$. $f_n$ converge to $f$ uniformly if for all $\epsilon > 0$, there exist $N$ such that $|f_n(x) - f(x)| < \epsilon$ for all $n > N$ and for all $x \in D$.
+\end{theorem}
+
+\begin{theorem}[Properties of Uniform Convergence] 
+	\begin{enumerate}
+		\item \textbf{Perserve Continuity} Let $f_n$ be a sequence of continuous functions defined on $D$. If $f_n$ converges uniformly to $f$, then $f$ is continuous.
+		\item \textbf{Perserve Derivative} Let $(a,b)$ be a bounded interval and $f_n$ be a sequence of differentiable function. If $f'_n$ converge uniformly, then we have $f_n$ converges uniformly and $\lim_{n \rightarrow  \infty} f'_n = (\lim_{x \rightarrow \infty} f_n)'$.
+		\item \textbf{Perserve Integrability} Let $f_n$ be a sequence of integrable functions defined on $[a,b]$. If $f_n$ converges uniformly to $f$, then $f$ is integrable and $\lim_{n \rightarrow \infty} \int f_n = \int f$.
+\end{enumerate}
+\end{theorem}
+\begin{theorem}[Weiestrass M test]
+	Let $\{M_n\}$ be a sequence of positive numbers and $f_n$ be a sequence of functions defined on $D$. If $|f_n(x)| \leq M_n$ for all $x \in D$ and $n \in \bb{N}$, and $\sum M_n$ converges, then $\sum f_n$ converges uniformly.
+\end{theorem}
+
+
+\subsection{Power Series} 
+
+\begin{definition}[Radius of Convergence]
+	Let $\sum a_n (x-c)^n$ be a power series. Then the radius of convergence $R$ is defined as $\sup \{r>0; a_nr^n \text{ is bounded }\}$
+	
+\end{definition}
+
+\begin{theorem}
+	The radius of convergence equals to $\lim_{n \rightarrow  \infty} \left| \frac{a_n}{a_{n+1}} \right|$ and $\lim_{x \rightarrow  \infty} |a_n|^{1/n}$ if such limits exist.
+\end{theorem}
+
+\subsection{Lebusgue Integral}
+
+\begin{definition}[Lebesgue Integrable Function]
+	The function $f$ is lebesgue integrable on the interval $I$ if there exists numbers $c_i$ and bounded intervals $J_i \subset I$ such that 
+
+	$$
+		f = \sum c_i \chi_{J_i}(x)
+	$$
+	With the constraint that $\sum |c_i| \chi(J_i) < \infty$ and $\sum |c_j| \lambda(J_j) < 0$. In such case we define the integral of $f$ as $\int f = \sum c_i \lambda(J_i)$.
+\end{definition}
+
+\begin{theorem}[Properties of Lebesgue Integration]
+	If $f, g$ are Lebesgue Integrable on $I$ and $\alpha, \beta$ are real numbers. 
+	\begin{enumerate}
+		\item $\int (\alpha f + \beta g) = \alpha \int f + \beta \int g$
+		\item If $f >0$ then $\int f > 0$
+		\item $|f|$ is integrable and $|\int f| \leq \int |f|$
+		\item $\max{f,g}$ and $\min{f,g}$ are Integrable 
+		\item if one of the functions is bounded then the product is integrable
+		\item If $f>0$ and $\int f = 0$, any $0 \leq h \leq f$ is integrable.  
+	\end{enumerate}
+\end{theorem}
+
+\begin{theorem}[Integrability of Absoluting converging series]
+	\begin{enumerate}
+		\item 	Let $f_n$ be a series of integrable function such that $\sum |f_n| < \infty$ and $\sum f_n = f$. If their integral also converges absolutely, that is $\sum \int |f_n| < \infty$, then $\int f = \lim_{n \rightarrow  \infty} \sum \int f_n$
+		\item For $f_n$ are integrable and $f_n > 0$, if $f = \sum f_n$, $f$ is integrable if and only if $\sum \int f_n < \infty$. 
+	\end{enumerate}
+\end{theorem}
+
+\begin{theorem}[Monotone Convergence Theorem]
+	Suppose each $f_n$ is integrable and they constitutes a monotone non-decreasing sequence such that $f_n \rightarrow  f$. $f$ is integrable if and only if $\lim_{n \rightarrow  \infty} f_n < \infty$. In such case, $\int f = \lim_{n \rightarrow  \infty} \int f_n$.
+\end{theorem}
+
+\subsubsection{Riemann Integrability}
+
+\begin{theorem}[Riemann Integrability]
+	A function $f$ in Riemann Integrable over $I$ if and only if 
+	\begin{enumerate}
+		\item $\sup \left\{ \int \phi \right\} = \inf \left\{ \int \psi \right\}$, where $\phi$ is a step function smaller than $f$, and $\psi$ one greater.
+		\item For every $\epsilon > 0$ there exist $a = x_0 < \cdots x_n = b$ such that, with $I_j = (x_{j-1}, x_j)$, we have 
+			$\epsilon > \sum^{\infty} _{i=0} |\sup_{x, y \in I_i}{f(x)-f(y)}| \lambda(I_i) $
+	\end{enumerate}
+\end{theorem}
+
+\begin{theorem}
+	\begin{enumerate}
+		\item If $f$ is Riemann Integrable, $f$ is bounded and has bounded support.
+		\item Every continuous function or monoton function are Riemann Integrable.
+	\end{enumerate}
+\end{theorem}
+
+\begin{theorem}
+Let $J \subset I$ be two intervals.
+	\begin{enumerate}
+		\item If $f$ is integrable on $I$, then $f$ is integrable on $J$.
+		\item If $f$ is integrable on $I$ and simultaneously $f(x) = 0$ for all $x \in I \smallsetminus J $, then $\int_I f = \int_J f$.
+		\item If $f \geq 0$ in $I$, then $\int_I f \geq \int_J f$.
+		\item If $I$ can be partitioned into $I_i$. $f$ is integrable if and only if $\sum_i^{\infty} \int_{I_i} |f| \leq \infty$. If this holds then $\int_I f = \sum_i^{\infty} \int_{I_i} f$.
+	\end{enumerate}
+\end{theorem}
+
+\begin{theorem}[Fatoux Lemma]
+	Let $f_n$ be sequence of non-negative integrable functions and $f = \lim_{n \rightarrow  \infty} \inf f_n$. If $\lim_{n \rightarrow  \infty} \sup \int f_n < \infty$, $\int f$ is integrable and $\int f \leq \lim_{n \rightarrow  \infty} \sup \int f_n$.
+\end{theorem}
+
+\begin{theorem}[Dominated Convergence Theorem] 
+	Let $f_n$ be sequence of integrable function on $I$ and $f_n \rightarrow  f$. If there exist an integrable function $g$ such that $|f_n| \leq g$ for all $n$, then $f$ is integrable and $\lim_{n \rightarrow  \infty} \int f_n = \int f$.
+\end{theorem}
+
 \subsection{Fourier Series and Orthogonality}
 
 \begin{definition}[$L^2$ Space]
@@ -33,6 +137,18 @@
 	\end{equation}
 \end{definition}
 
+\begin{theorem}
+	\begin{enumerate}
+		\item \textbf{sesquilinearity}: $\langle \alpha f + \beta g, h \rangle = \alpha \langle f, h \rangle + \beta \langle g, h \rangle$, $\langle f, \alpha g + \beta h \rangle = \overline{\alpha} \langle f, g \rangle + \overline{\beta} \langle f, h \rangle$
+		\item Anti-symmetry: $\langle f, g \rangle = \overline{\langle g, f \rangle}$
+		\item Positivity: $\langle f, f \rangle \geq 0$ and $\langle f, f \rangle = 0$ if and only if $f = 0$ almost everywhere.
+	\end{enumerate}
+\end{theorem}
+
+\begin{definition}[Convergence in $L_2$]
+	We say functions $f_n \rightarrow f$ if $||f_n -f ||_2 \rightarrow 0$
+\end{definition}
+
 \begin{theorem}[Cauchy-Schwarz Inequality]
 	For $f,g \in L^2[a,b]$, we have
 	\begin{equation}
@@ -40,5 +156,110 @@
 	\end{equation}
 \end{theorem}
 
+\begin{definition}[One Norm]
+	For integrable function $f$ on $I = [a,b]$, define its one norm to be $||f||_1 = \int_I |f|$.
+
+	We have $||f||_1 \leq (b-a) ||f_2||_2$
+\end{definition}
+
+\subsubsection{Orthogonality}
+
+A sequence of function $\phi_i$ is called orthonormal system if $\langle \phi_i, \phi_j \rangle = 1$ for $i = j$ and $0 $ otherwise.
+
+These are orthonormal systems:
+\begin{enumerate}
+	\item $e^{2\pi i nx}$
+	\item $\sqrt{2} \cos(2 \pi nx)$
+	\item $\sqrt{2} \sin(2 \pi nx)$
+\end{enumerate}
+
+\begin{theorem}
+	Let $\phi_i$ be orthonormal system. Define 
+	$$
+	s_N = \sum_{n=1}^{N} \langle f, \phi_n \rangle \phi_n
+	$$
+
+	For any $g$ spanned by $\phi_i$, $0 \leq i \leq n$, we have $||f - s_N||_2 \leq ||f - g||_2$
+\end{theorem}
+
+\begin{theorem}[Bessels' inequality]
+	Let $\phi_i$ be orthonormal system. For any $f \in L^2[a,b]$, we have
+	$$
+	\sum_{n=1}^{\infty} |\langle f, \phi_n \rangle|^2 \leq ||f||_2^2
+	$$
+
+	Thus $\langle f, \phi_n \rangle \rightarrow  \infty$.
+\end{theorem}
+
+\begin{theorem}[Complete Orthonormal System]
+	An orthonormal system is complete in $L_2$ if $\sum_n |\langle f, \phi_n \rangle |^2 = ||f||^2_2$. In such cases $(s_N)_n$ converges to every $f$.
+\end{theorem}
+
+\begin{definition}[Trignometry Polynomial]
+	A trignometry polynomial is a function of the form $f(x) = \sum _{n = -N}^{N} c_n e^{2\pi in x}$
+\end{definition}
+
+\begin{definition}[1-periodic function]
+	A function $f$ is 1-periodic if $f(x) = f(x+1)$ for all $x$.
+\end{definition}
+
+\begin{theorem}
+	Over Interval $[0,1]$, $e^{2\pi i nx}$ forms an orthonormal system.
+\end{theorem}
+
+\begin{definition}[Fourier series]
+	Define $\hat{f}(n) = \int _0^1 f(t) e^{ - 2 \pi in t}dt = \langle f, \phi_n \rangle$. Then we have fourier series of $f$ as
+	$$
+	\sum_{n = -\infty}^{\infty} \hat{f}(n) e^{2\pi in x}
+	$$
+
+	Define $S_N f(x) = \sum _{n = -N}^{N} \hat{f}(n) e^{2\pi inx}$
+\end{definition}
+
+\begin{definition}[Convolution]
+	For two 1-periodic function $f, g$, define their convolution as
+	$$
+	(f*g)(x) = \int _0^1 f(t)g(x-t)dt
+	$$
+\end{definition}
+
+\begin{theorem}[Properties of Convolution]
+	\begin{enumerate}
+		\item $(f*g)(x) = (g*f)(x)$
+		\item $(f*g)*h = f*(g*h)$
+		\item $f*(g+h) = f*g + f*h$
+		\item There exist no algebraic function $e$ such that $f*e = f$ for all $f$.	
+		\item $(f * g)' =f' *g = f*g'$
+	\end{enumerate}
+\end{theorem}
+
+Notice $S_Nf(x) = f * D_N(x)$, where $D_N(x) = \sum _{n = -N}^{N} e^{2\pi inx}$ is the Dirichlet Kernel. It can be shown that $D_N(x) = \frac{\sin((N+1/2)\pi x)}{\sin(\pi x)}$.
+
+\begin{definition}[Fejer Kernel]
+	Define $$F_N(x) = \frac{1}{N+1} \sum _{n = 0}^{N-1} D_n(x) = \frac{1}{N+1} \left( \frac{\sin(\pi(N+1)x)}{\sin(\pi x)} \right)^2$$
+
+	\textbf{Fejer Kernel Is Approximation of Unity} that is
+	$K_Nf *f \rightarrow f$
+\end{definition}
+
+\begin{theorem}[Approximation of Unity]
+	Let $(k_n)$ be an sequence of 1-periodic and integrable function such that $k_n \geq 0$, $\int k_n = 1$, and for all $1/2 \geq \delta \geq 0$, $\int_{-\delta} ^{\delta} k_n \rightarrow  1$, then we have for all $f$ integrable and 1-periodic, $k_n * f \rightarrow f$. This is an if and only if condition.
+\end{theorem}
+
+\begin{theorem}[Completeness of Trignometric system]
+	Trignometric system is complete. That is for any function in $L_2$, $\lim_{N \rightarrow  \infty} || S_Nf -f ||_2 =0$
+\end{theorem}
+
+\begin{theorem}[Parseval's Identity]
+	For any one-periodic $L_2$ functions $f, g$, we have 
+	$\langle f, g \rangle = \sum_{n=-\infty}^{n=\infty}\hat{f}(n)\overline{\hat{g}(n)}$
+	In particular, we have
+	$$
+	||f||_2^2 = \sum_{n = -\infty}^{\infty} |\hat{f}(n)|^2
+	$$
+
+\end{theorem}
+
 \end{document}
+
 
