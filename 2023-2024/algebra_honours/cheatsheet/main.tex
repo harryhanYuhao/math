@@ -2,7 +2,7 @@
 \usepackage{blindtext, titlesec, amsthm, thmtools, amsmath,
 amsfonts, scalerel, amssymb, graphicx, titlesec, xcolor, multicol, 
 hyperref, tikz, bm}
-
+\usepackage[margin=0.75in]{geometry}
 \usepackage[utf8]{inputenc}
 \hypersetup{colorlinks,linkcolor={red!40!black},citecolor={blue!50!black},urlcolor={blue!80!black}}
 % \newtheorem{theorem}{Theorema}[subsection]
@@ -37,6 +37,17 @@ hyperref, tikz, bm}
 	\item $\mathcal{R}$ be a ring
 \end{enumerate}
 
+\section{Matrices}
+
+\begin{definition}{Bilinear Form}{}
+	Let $U, V, W$ be $F$ vector space. Let $u\in U$, $v \in V$ and $\lambda \in F$. The mapping $H: U \times V \rightarrow W$ is a bilinear form if: 
+	\begin{enumerate}
+		\item $H(u + u', v) = H(u, v) + H(u', v)$
+		\item $H(u, v + v') = H(u, v) + H(u, v')$
+		\item $H(\lambda u, v) = \lambda H(u, v) = H(u, \lambda v)$
+	\end{enumerate}
+	$H$ is symmetric if $U = V$ and $H(u, v) = H(v, u)$. It is antisymentric if $H(u, v) = -H(v, u)$.
+\end{definition}
 \section{Field, Rings, and Vector Space}
 \begin{definition}{Ring}{}
 	A \textbf{ring}, $\mathcal{R}$, is a set with two operations $+$ and $\cdot$ such that: 
@@ -86,6 +97,8 @@ hyperref, tikz, bm}
 \end{definition}
 \note{
 	It is \emph{NOT} required that $\phi(1) = 1$. Yet $\phi(0) = 0$ . Ring homomorphism preserves subring and subgroup.
+
+	The kernel of a ring homomorphism all $a$ such that $\phi(a) = 0$.
 }
 
 \begin{definition}{Left Modules}{}
@@ -96,7 +109,10 @@ hyperref, tikz, bm}
 		\item $(rs)a = r(sa)$
 		\item $1_Ra = a$
 	\end{enumerate}
+
 	\emph{Sub Module} is defined similarly as vector subspace: that is, a closed subgroup pf $\mc{M}$ under multiplication.
+
+	If $\mc{R}$ is a field, then $\mc{M}$ is a vector space. 
 \end{definition}
 
 \begin{definition}{R-homomorphism}{}
@@ -112,7 +128,7 @@ hyperref, tikz, bm}
 	An inner product space is a vector space $V$ over $\mc{F}$ with an inner product $\langle \cdot, \cdot \rangle: V \times V \to \mc{F}$ such that for $u, v, w \in V$ and $a \in \mc{F}$:
 	\begin{enumerate}
 		\item $\langle u, v \rangle = \overline{\langle v, u \rangle}$
-		\item $\langle u, \lambda v + \mu w \rangle = \lambda \langle u, v \rangle + \mu \langle u, w \rangle$
+		\item $\langle u, \lambda v + \mu w \rangle = \lambda \langle u, v \rangle + \overline{\mu} \langle u, w \rangle$
 		\item $\langle u, u \rangle \geq 0$ and $\langle u, u \rangle = 0$ if and only if $u = 0$.
 	\end{enumerate}
 

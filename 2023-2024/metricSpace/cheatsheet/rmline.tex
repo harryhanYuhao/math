@@ -1,0 +1,468 @@
+\documentclass[twocolumn,10pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{xcolor}
+\usepackage{marginnote}
+\usepackage{graphicx}
+\usepackage[margin=0.25in]{geometry}
+\usepackage{setspace}
+\setstretch{0.1}
+
+\newcommand{\ideal}{\mathrel{\ooalign{$\leq$\cr\raise.22ex\hbox{$\lhd$}\cr}}}
+\newcommand{\dom}{\text{dom}}
+\newcommand{\wt}{\text{wt}}
+
+\begin{document}
+
+\section*{Metric Spaces Exam Notes}
+
+\section{Definitions and examples}
+
+\textbf{D1:} A \textbf{metric space} is a non-empty set equipped with a metric. Let $X$ be a non-empty set. A function $d:X\times X\to\mathbb{R}$ is called a \textbf{metric} $\Leftrightarrow$ $\forall x,y,z\in X$,
+\begin{enumerate}
+    \item $d(x,y)\geq0$ and $d(x,y)=0\Leftrightarrow x=y$;
+    \item $d(x,y)=d(y,x)$;
+    \item $d(x,y)\leq d(x,z)+d(z,y)$ (triangle inequality).
+\end{enumerate}
+\textbf{D6:} Let $X$ be a real vector space. An \textbf{inner product} on $X$ is a function that assigns to every pair $(x,y)$ in $X\times X$ a real number denoted by $\langle x,y\rangle$ and has the following properties:
+\begin{enumerate}
+    \item $\langle x,x\rangle\geq0$ and $\langle x,x\rangle=0\Leftrightarrow x=0$;
+    \item $\langle x,y\rangle=\langle y,x\rangle$;
+    \item $\langle ax+by,z\rangle=a\langle x,z\rangle + b\langle y,z\rangle$.
+\end{enumerate}
+A \textbf{real inner product space} is a real vector space equipped with an inner product. If $\langle-,-\rangle$ is an inner product on $X$, then $||x||=\sqrt{\langle x,x\rangle}$ defines a norm and $d(x,y)=||x-y||$ defines a metric.
+\begin{equation*}
+    \langle x,y\rangle = x_1y_1 + ... + x_ny_n.
+\end{equation*}
+Let $V$ be a vector space over $\mathbb{R}$. A \textbf{norm} on $V$ is a function which has the properties (for $a\in\mathbb{R}$):
+\begin{enumerate}
+    \item $||x||\geq0$ and $||x||=0\Leftrightarrow x=0$;
+    \item $||ax|| = |a|||x||$;
+    \item $||x+y||\leq ||x||+||y||$ (triangle inequality).
+\end{enumerate}
+
+\subsection*{Spaces of real sequences}
+
+\textbf{D3:} We denote by $\ell^1$ the set of all real sequences $(x_n)_{n\in\mathbb{N}}$ for which the series $\sum_{n=1}^{\infty}|x_n|$ converges. For $x=(x_1,...,x_n,...)\in\ell^1$ and $y=(y_1,...,y_n,...)\in\ell^1$ we define
+\begin{equation*}
+    \textbf{Norm:} \hspace{0.5cm} ||x||_1 = \sum_{n=1}^{\infty}|x_n|, \hspace{0.5cm} \textbf{Metric:} \hspace{0.5cm} d_1(x,y) = \sum_{n=1}^{\infty}|x_n-y_n|.
+\end{equation*}
+We denote by $\ell^2$ the set of all real sequences $(x_n)_{n\in\mathbb{N}}$ for which the series $\sum_{n=1}^{\infty}|x_n|^2$ converges. For $x=(x_1,...,x_n,...)\in\ell^2$ and $y=(y_1,...,y_n,...)\in\ell^2$ we define
+\begin{equation*}
+    \textbf{N: }||x||_2 = \left(\sum_{n=1}^{\infty}|x_n|^2\right)^{1/2}, \hspace{0.5cm} \textbf{M: } d_2(x,y) = \left(\sum_{n=1}^{\infty}|x_n-y_n|^2\right)^{1/2}.
+\end{equation*}
+
+\textbf{T4:} $\ell^2$ is a real vector space.
+
+We denote by $\ell^{\infty}$ the set of all bounded sequences or real numbers. For $x=(x_1,...,x_n,...)\in\ell^{\infty}$ and $y=(y_1,...,y_n,...)\in\ell^{\infty}$ we define
+\begin{align*}
+    &\textbf{Norm:} \hspace{0.5cm} ||x||_{\infty} = \sup\{|x_1|,...,|x_n|,...\},\\
+    &\textbf{Metric:} \hspace{0.5cm} d_{\infty}(x,y) = \sup\{|x_1-y_1|,...,|x_n-y_n|,...\}.
+\end{align*}
+
+\subsection*{Spaces of continuous functions}
+
+$X=C([a,b])$ is \textbf{the set of all continuous functions} $f:[a,b]\to\mathbb{R}$.
+\begin{align*}
+    &\textbf{Norm: } ||f||_{\infty} = \max\{|f(x)| : a\leq x\leq b\},\\
+    &\textbf{Metric: } d_{\infty}(f,g) = ||f-g|| = \max\{|f(x)-g(x)| : a\leq x\leq b\}.
+\end{align*}
+\textbf{The $L^1$ metric:} $X$ as before.
+\begin{align*}
+    &\textbf{Norm: } ||f||_1 = \int_a^b |f(x)| dx,\\
+    &\textbf{Metric: } d_1(f,g) = ||f-g||_1 = \int_a^b|f(x)-g(x)| dx.
+\end{align*}
+\textbf{The $L^2$ metric:} $X$ as before.
+\begin{align*}
+    &\textbf{Inner product: } \langle f,g\rangle = \int_a^b f(x)g(x) dx,\\
+    &\textbf{Norm: } ||f||_2 = \langle f,f\rangle^{1/2} = \left(\int_a^b|f(x)|^2dx\right)^{1/2},\\
+    &\textbf{Metric: } d_2(f,g) = ||f-g||_2 = \left(\int_a^b|f(x)-g(x)|^2dx\right)^{1/2}.
+\end{align*}
+
+\textbf{E7:} Let $(X,d)$ be a metric space and $Y$ be a non-empty subset of $X$. Define
+\begin{equation*}
+    d_Y: \text{ } Y\times Y\to\mathbb{R}, \hspace{0.5cm} d_Y(y,y')=d(y,y').
+\end{equation*}
+Then $d_Y$ is a metric on $Y$ called the \textbf{induced} or \textbf{inherited metric}, and $(Y,d_Y)$ is said to be a metric \textbf{subspace} of the metric space $(X,d)$.
+
+\subsection*{Inequalities and identities}
+
+The \textbf{Cauchy-Schwarz inequality} is $\langle x,y\rangle\leq||x||_2||y||_2$.
+
+\section{Open balls, Sequences}
+
+\textbf{D8:} Let $(X,d)$ be a metric space, $c\in X$ be a point and $r>0$. Then \textbf{open ball} with centre $c$ and radius $r$ is defined by
+\begin{equation*}
+    B(c,r) = \{x\in X : d(x,c) < r\}.
+\end{equation*}
+
+\textbf{Convergent sequences in metric spaces:} On the real line, $x_n\to x$ $\leftrightarrow$ $\forall\epsilon>0$, $\exists N\in\mathbb{N}$ such that $\forall n\geq N$ we have $|x_n-x|<\epsilon$.
+
+\textbf{D15:} Let $(X,d)$ be a metric space, $(x_n)_{n\in\mathbb{N}}$ be a sequence in $X$, and $x\in X$. We say that $(x_n)_{n\in\mathbb{N}}$ converges to $x$ $\Leftrightarrow$ $\forall\epsilon>0$, $\exists N\in\mathbb{N}$ such that $\forall n\geq N$ we have $d(x_n,x)<\epsilon$.
+
+Observe that $d(x_n,x)<\epsilon$ is equivalent to $x_n\in B(x,\epsilon)$.
+
+$x_n\to x$ in $(X,d)$ $\Leftrightarrow$ $d(x_n,x)\to0$ on the real line.
+
+\textbf{T16 Uniqueness of the limit:} Let $(X,d)$ be a metric space and $x,x'\in X$, $x\neq x'$. Then there exists a positive radius $r$ such that $B(x,r)\cap B(x',r)=\varnothing$. A sequence in a metric space can have at most one limit.
+
+\textbf{D19:} A sequence in a metric space is said to be \textbf{bounded} $\Leftrightarrow$ there exists an open ball that contains all of its terms. \textbf{T20:} Every convergent sequence is bounded.
+
+\textbf{D21:} A sequence $(x_n)_{n\in\mathbb{N}}$ in a metric space $(X,d)$ is said to be a \textbf{Cauchy sequence} $\Leftrightarrow$ $\forall\epsilon>0$, $\exists N\in\mathbb{N}$ such that $\forall n,m\geq N$, we have $d(x_n,x_m)<\epsilon$.
+
+\textbf{T22:} If a sequence in a metric space converges, then it is a Cauchy sequence. \textbf{But Cauchy does not imply convergence}.
+
+\textbf{E14:} If a Cauchy sequence has a convergent subsequence then the sequence itself is convergent.
+
+\textbf{D24:} A metric space is said to be \textbf{complete} $\Leftrightarrow$ every Cauchy sequence is convergent.
+
+
+\section{Open and closed sets}
+
+\textbf{D26:} Let $(X,d)$ be a metric space. A subset $G\subseteq X$ is said to be \textbf{open} $\Leftrightarrow$ $\forall x\in G$ $\exists r>0$ such that $B(x,r)\subseteq G$. A subset $F\subseteq X$ is said to be \textbf{closed} $\Leftrightarrow$ $F^c$ is open.
+
+
+\textbf{D31:} A metric space is called \textbf{discrete} $\Leftrightarrow$ all its subsets are open (equiv. all subsets are closed).
+
+\textbf{T34:} Let $(X,d)$ be a metric space. The union of any family of opens sets is an open set. The intersection of finitely many open sets is an open set.
+
+
+\textbf{D49:} Let $(X,d)$ be a metric space. A subset $D\subseteq X$ is said to be \textbf{dense} $\Leftrightarrow$ $\overline{D}=X$. We showed in the previous example that $\mathbb{Q}$ is dense in $\mathbb{R}$.
+
+\textbf{T50:} Let $(X,d)$ be a metric space, $A\subseteq X$, $x\in X$. The following are equivalent:
+\begin{enumerate}
+    \item $x\in\overline{A}$;
+    \item For every positive $r$, $B(x,r)\cap A\neq\varnothing$;
+    \item There exists a sequence $(a_n)_{n\in\mathbb{N}}$ with $a_n\in A$ for all $n$, such that $a_n\to x$.
+\end{enumerate}
+A point $x$ with any of these properties is called an \textbf{adherent point} of $A$. So $\overline{A}$ is the set of all adherent points of $A$.
+
+
+\textbf{D52:} Let $(X,d)$ be a metric space, $A\subseteq X$ and $x\in X$. We say that $x$ is a \textbf{limit point} or an \textbf{accumulation point} of $A$ $\Leftrightarrow$ every open ball centered at $x$ contains an element of $A$ distinct from $x$, i.e.
+\begin{equation*}
+    \forall r>0, \hspace{0.5cm} (B(x,r) \setminus \{x\}) \cap A \neq \varnothing.
+\end{equation*}
+The set of all limit points of $A$ is called the \textbf{derived set} of $A$ and is denoted $A'$ or $A^{\sim}$.
+
+
+\textbf{E21:} Let $(X,d)$ be a metric space and $A\subseteq X$. Then $\overline{A}=A\cup A'$.
+
+\section{Continuous functions between MSs}
+
+\textbf{D54:} Let $(X,d_X)$ and $(Y,d_Y)$ be metric spaces and $f:X\to Y$ be a function. We say that $f$ is \textbf{continuous at a point $x_0$} in $X$ $\Leftrightarrow$ $\forall\epsilon>0$, $\exists\delta>0$ such that $\forall x\in X$ with $d_X(x,x_0)<\delta$, we have $d_Y(f(x),f(x_0))<\epsilon$.
+
+$f$ is continuous at a point $x_0\in X$ $\Leftrightarrow$ $\forall\epsilon>0$, $\exists\delta>0$ such that $\forall x\in B_X(x_0,\delta)$ we have $f(x)\in B_Y(f(x_0),\epsilon)$.
+
+\textbf{D55:} Let $(X,d_X)$ and $(Y,d_Y)$ be metric spaces. A function $f:X\to Y$ is said to be \textbf{continuous} $\Leftrightarrow$ it is continuous at every point in $X$.
+
+
+\textbf{T57:} Let $(X,d_X)$, $(Y,d_Y)$ be metric spaces, $f:X\to Y$ be a function and $x_0\in X$ be a point. Then $f$ is continuous at $x_0$ $\Leftrightarrow$ for every open nbhd $G$ of $f(x_0)$ there exists an open nbhd $O$ of $x_0$ such that, for all $x\in O$, we have $f(x)\in G$.
+
+\textbf{T58:} Let $(X,d_X)$, $(Y,d_Y)$ be metric spaces, $x_0\in X$ be a point and $f:X\to Y$ be a function. The following are equivalent:
+\begin{enumerate}
+    \item $f$ is continuous at $x_0$;
+    \item For every sequence $(x_n)_{n=1}^{\infty}$ in $X$, if $x_n\to x_0$ in $(X,d_X)$, then $f(x_n)\to f(x_0)$ in $(Y,d_Y)$.
+\end{enumerate}
+\textbf{T59:} Let $(X,d_X)$ and $(Y,d_Y)$ be two metric spaces. A function $f:X\to Y$ is continuous $\Leftrightarrow$ the inverse image $f^{-1}(G)$ of any open subset $G$ of $Y$ is an open subset of $X$.
+
+\textbf{D60:} A \textbf{topological space} is a set $X$ together with a family $\mathcal{T}$ of subsets of $X$ that has the following properties:
+\begin{itemize}
+    \item $\varnothing,X\in\mathcal{T}$;
+    \item Any union of elements of $\mathcal{T}$ is an element of $\mathcal{T}$;
+    \item Any finite intersection of elements of $\mathcal{T}$ is an element of $\mathcal{T}$.
+\end{itemize}
+$\mathcal{T}$ is called a \textbf{topology} and the elements of $\mathcal{T}$ are called \textbf{open sets}.
+
+\textbf{D61:} Let $(X,\mathcal{T}_X)$ and $(Y,\mathcal{T}_Y)$ be two topological spaces. A function $f:X\to Y$ is said to be \textbf{continuous} $\Leftrightarrow$ for every $G$ in $\mathcal{T}_Y$ the pre-image $f^{-1}(G)$ is an element of $\mathcal{T}_X$.
+
+$f$ is said to be a \textbf{homeomorphism} $\Leftrightarrow$ it is a continuous bijection and its inverse is continuous. If such a homeomorphism exists then $(X,\mathcal{T}_X)$ and $(Y,\mathcal{T}_Y)$ are said to be \textbf{homeomorphic}.
+
+If $(X,\mathcal{T}_X)$ and $(Y,\mathcal{T}_Y)$ are homeomorphic and one of them is compact or connected or separable or ..., then so is the other. Properties that are preserved by homeomorphisms are called topological properties.
+
+\textbf{T66:} Let $(X,d)$ be a metric space. The function $d:X\times X\to\mathbb{R}$ is continuous ($\mathbb{R}$ is equipped with the standard metric. $X\times X$ is equipped with the product metric).
+
+\textbf{D67:} A linear operator $T:X\to Y$ is said to be \textbf{bounded} $\Leftrightarrow$ there exists a positive constant $C$ such that, for all $x\in X$, $||T(x)||_Y\leq C||x||_X$.
+
+\textbf{T68:} Let $T:X\to Y$ be a linear operator. The following are equivalent:
+\begin{enumerate}
+    \item $T$ is continuous;
+    \item $T$ is continuous at $0$;
+    \item $T$ is bounded.
+\end{enumerate}
+\textbf{D70:} Let $(X,d_X)$ and $(Y,d_Y)$ be metric spaces. A function $f:X\to Y$ is said to be \textbf{Lipschitz} function, $\Leftrightarrow$ there exists a constant $L$ such that $\forall x,x'\in X$
+\begin{equation*}
+    d_Y(f(x),f(x')) \leq Ld_X(x,x').
+\end{equation*}
+If $L<1$, $f$ is said to be a contraction.
+
+\textbf{T71:} Every Lipschitz function is continuous.
+
+Lipschitz function $\Rightarrow$ \textbf{its derivative is bounded.}
+
+\textbf{D72:} A \textbf{fixed point} of a function $f:S\to S$, where $S$ is a non-empty set, is any element $x$ of $S$ such that $f(x)=x$.
+
+\textbf{T75 (Banach's fixed point theorem):} Let $(X,d)$ be a complete metric space and let $f:X\to X$ be a contraction. Then $f$ has a unique fixed point.
+
+\textbf{D76:} Two metrics on the same non-empty set $X$ are said to be equivalent $\Leftrightarrow$ they have the same open sets.
+
+\textbf{T77:} Let $d_1$ and $d_2$ be metrics on the same non-empty set $X$. If there exist positive constants $C,C'$ such that, $\forall x,y\in X$,
+\begin{equation*}
+    Cd_1(x,y) \leq d_2(x,y) \leq C'd_1(x,y),
+\end{equation*}
+then $d_1$ and $d_2$ are equivalent.
+
+
+\textbf{D78:} Let $(X,d_X)$ and $(Y,d_Y)$ be metric spaces, $x_0$ be a limit point of $X$, $y_0\in Y$ and $f:X\to Y$ be a function. We say that $\lim_{x\to x_0}f(x)=y_0$ $\Leftrightarrow$
+\begin{equation*}
+    \forall\epsilon>0, \text{ } \exists\delta>0, \text{ } \forall x\in B_X(x_0,\delta)\setminus\{x_0\}, \text{ } f(x)\in B_Y(y_0,\epsilon).
+\end{equation*}
+
+\section{Completeness}
+
+\textbf{T79:} $(\mathbb{R}^n,d_2)$ is a complete metric space.
+
+
+\textbf{T80:} $\ell^2$ is a complete metric space.
+
+\textbf{Remark:} $\ell^p$, where $1\leq p<\infty$ is complete.
+
+\textbf{T82:} Let $a,b\in\mathbb{R}$, $a<b$. Then $C([a,b])$ with its usual metric
+\begin{equation*}
+    d(f,g) = \max\{|f(x)-g(x)| : a\leq x\leq b\}
+\end{equation*}
+is a complete metric space.
+
+\textbf{D83:} Let $(X,d)$ be a metric space and $n\in\mathbb{N}$. Define $D:X^n\to\mathbb{R}$ by
+\begin{equation*}
+    D(x_1,x_2) = d(x_{11},x_{21}) + d(x_{12},x_{22}) + ... + d(x_{1n},x_{2n}).
+\end{equation*}
+$D$ is a metric and a sequence converges in $(X^n,D)$ $\Leftrightarrow$ it converges component-wise.
+
+\textbf{E34:} If $(X,d)$ is complete then $(X^n,D)$ is complete.
+
+\textbf{D84:} $B^A$, where $A,B$ are sets, is the set of all functions from $A$ to $B$.
+
+\textbf{D85:} Let $(X,d)$ be a metric space. Define a metric $D:X^{\mathbb{N}}\times X^{\mathbb{N}}\to\mathbb{R}$ by
+\begin{equation*}
+    D(x_1,x_2) = \sum_{n=1}^{\infty} \frac{1}{2^n}\frac{d(x_{1n},x_{2n})}{1+d(x_{1n},x_{2n})},
+\end{equation*}
+where, as usual, we have used the notation $x_1=(x_{11},...,x_{1n},...)$, $x_2=(x_{21},...,x_{2n},...)$. $(X^{\mathbb{N}},D)$ is called a \textbf{product space}.
+
+\textbf{T86:} Let $(X,d)$ be a metric space, let $(x_k)_{k=1}^{\infty}$ be a sequence in $X^{\mathbb{N}}$ and let $x\in X^{\mathbb{N}}$. Write $x_k=(x_{k1},...,x_{kn},...)$ and $x=(I_1,...,I_n,...)$. Then,
+\begin{equation*}
+    x_k \underset{k\to+\infty}{\overset{(X^{\mathbb{N}},D)}{\longrightarrow}} x \hspace{0.5cm}\Leftrightarrow\hspace{0.5cm} \text{for all } n, \hspace{0.5cm} x_{kn} \underset{k\to+\infty}{\overset{(X,d)}{\longrightarrow}} I_n
+\end{equation*}
+\textbf{T87:} Let $(X,d)$ be a complete metric space. Then the product space $(X^{\mathbb{N}},D)$ is complete.
+
+\textbf{The least upper bound principle:} Every non-empty bounded above subset of $\mathbb{R}$ has a least upper bound.
+
+\textbf{T88:} Every bounded monotone sequence of real numbers as a limit.
+
+\textbf{T89:} Every Cauchy sequence of real numbers is convergent.
+
+\textbf{D90:} Let $(x_n)_{n=1}^{\infty}$ be a Cauchy sequence in $\mathbb{R}$. Then $(x_n)_{n=1}^{\infty}$ is bounded. Define $(I_n)_{n=1}^{\infty}$ and $(S_n)_{n=1}^{\infty}$ by
+\begin{equation*}
+    I_n = \inf\{x_n,x_{n+1},...\}, \hspace{1cm} S_n = \sup\{x_n,x_{n+1},...\}.
+\end{equation*}
+The limit of the sequence $(I_n)_{n=1}^{\infty}$ is called the \textbf{limit inferior} of $(x_n)_{n=1}^{\infty}$ and is denoted by $\liminf x_n$. The limit of the sequence $(S_n)_{n=1}^{\infty}$ is called the \textbf{limit superior} of $(x_n)_{n=1}^{\infty}$ and is denoted by $\limsup x_n$. So
+\begin{align*}
+    \liminf x_n &= \lim_{n\to+\infty}I_n = \lim_{n\to+\infty}\inf\{x_n,x_{n+1},...\}\\
+    \limsup x_n &= \lim_{n\to+\infty}S_n = \lim_{n\to+\infty}\sup\{x_n,x_{n+1},...\}.
+\end{align*}
+$(x_n)_{n=1}^{\infty}$ converges if its limit inferior and superior equal.
+
+\section{Compactness}
+
+\textbf{D91:} Let $X=\mathbb{R}$ and $d$ be a standard metric. A subset $K$ of $\mathbb{R}$ is said to be \textbf{compact} $\Leftrightarrow$ every sequence of elements of $K$ has a subsequence that converges to an element of $K$.
+
+
+\textbf{T93 (Heine-Borel theorem):} On the real line with the standard metric, a set is compact $\Leftrightarrow$ it is closed and bounded.
+
+
+\textbf{T94:} Let $K\subseteq\mathbb{R}$ be compact and $f:K\to\mathbb{R}$ be a continuous function. Then $f$ is bounded.
+
+\textbf{T95 (Extreme value theorem):} Let $K\subseteq\mathbb{R}$ be compact and $f:K\to\mathbb{R}$ be a continuous function. Then $f$ has a maximum and a minimum.
+
+\textbf{D96:} An \textbf{open cover} of a set $S$ in a metric space is a family $(G_i)_{i\in I}$ of open sets such that $S\subseteq\bigcup_{i\in I}G_i$. A \textbf{subcover} of an open cover $(G_i)_{i\in I}$ is a sub-family $(G_i)_{i\in I'}$, where $I'\subseteq I$, such that $S\subseteq\bigcup_{i\in I'}G_i$.
+
+
+\textbf{T[99]:} On the real line with the standard metric, a set $K$ is compact $\Leftrightarrow$ every open cover of $K$ has a finite subcover.
+
+\textbf{L99:} Every open cover of the interval $[a,b]$, where $a,b\in\mathbb{R}$, $a\leq b$, has a finite subcover.
+
+\textbf{T100:} On the real line with the standard metric, if $K$ is compact, then every open cover of $K$ has a finite subcover.
+
+\textbf{T101:} Let $K\subseteq\mathbb{R}$ and assume that every open cover of $K$ has a finite subcover. Then $K$ is closed and bounded, hence compact.
+
+\textbf{D102:} Let $(X,d)$ be a metric space and $K\subseteq X$.
+\begin{enumerate}
+    \item We say that $K$ is \textbf{sequentially compact} $\Leftrightarrow$ every sequence in $K$ has a subsequence that converges to an element of $K$. For $K=X$ this becomes: $X$ is compact $\Leftrightarrow$ every sequence in $X$ has a convergent subsequence.
+    \item We say that $K$ is \textbf{compact} $\Leftrightarrow$ every open cover of $K$ has a finite subcover.
+\end{enumerate}
+
+\textbf{T105:} Let $(X,d)$ be a metric space and $K\subseteq X$ be sequentially compact. Then $K$ is closed and bounded.
+
+\textbf{T107:} Let $(X,d)$ be a sequentially compact metric space and $K\subseteq X$. The set $K$ is sequentially compact $\Leftrightarrow$ it is closed.
+
+
+\textbf{T108:} If a metric space $(X,d)$ is sequentially compact, then it is complete.
+
+
+\textbf{Remark:} The converse is not true. For example, $\mathbb{R}$ with the standard metric is complete but not compact.
+
+\textbf{T110 (Extreme value theorem):} Let $(X,d)$ be a metric space, $K$ be a sequentially compact subset of $X$, and $f:K\to\mathbb{R}$ be a continuous function. Then $f$ has a maximum and a minimum. In particular, $f$ is bounded.
+
+\textbf{D111:} Let $(X,d_X)$, $(Y,d_Y)$ be metric spaces. A function $f:X\to Y$ is said to be \textbf{uniformly continuous} $\Leftrightarrow$ $\forall\epsilon>0$, $\exists\delta>0$ such that $\forall x,x'\in X$ with $d_X(x,x')<\delta$ we have $d_Y(f(x),f(x'))<\epsilon$.
+
+
+\textbf{T114:} Let $(X,d_X)$ be a sequentially compact metric space, $(Y,d_Y)$ be a metric space and $f:X\to Y$ be a continuous function. Then $f$ is uniformly continuous.
+
+\textbf{T115:} If a metric space $(X,d)$ is compact, then it is sequentially compact.
+
+\textbf{T116 (Lebesgue's lemma):} Let $(X,d)$ be a sequentially compact metric space and $X=\bigcup_{i\in I}G_i$ be an open cover of $X$. Then $\exists\delta>0$ such that $\forall x,y\in X$ with $d(x,y)<\delta$, there exists an $i$ such that $x,y\in G_i$. Any such $\delta$ is called a Lebesgue number of the open cover.
+
+\textbf{D117:} A metric space $(X,d)$ is said to be \textbf{totally bounded} $\Leftrightarrow$ $\forall\delta>0$, $X$ can be covered by a finite number of open balls of radius $\delta$.
+
+\textbf{Remark:} Bounded $\not\Rightarrow$ totally bounded. Take for example an infinite set $X$ with the discrete metric. Then $X$ is bounded. Take $\delta=1$. We can't cover $X$ with a finite number of open balls of radius $\delta$:
+\begin{equation*}
+    X \not\subseteq B(x_1,1) \cup \cdots \cup B(x_k,1) = \{x_1\} \cup \cdots \cup \{x_k\}.
+\end{equation*}
+Therefore the metric space is not totally bounded.
+
+\textbf{T120:} If a metric space is sequentially compact, then it is totally bounded.
+
+\textbf{T121:} Every sequentially compact metric space is compact.
+
+\textbf{T122:} A metric space is compact $\Leftrightarrow$ it is complete and totally bounded.
+
+
+\section{Separability}
+
+\textbf{D123:} A set $S$ is said to be
+\begin{itemize}
+    \item \textbf{Infinitely countable} $\Leftrightarrow$ there is a bijection $f:\mathbb{N}\to S$;
+    \item \textbf{Countable} $\Leftrightarrow$ it is finite or infinitely countable;
+    \item \textbf{Uncountable} $\Leftrightarrow$ is is not countable.
+\end{itemize}
+\textbf{E45:} Let $(X,d)$ be a metric space and $D\subseteq X$. The following are equivalent:
+\begin{enumerate}
+    \item $D$ is dense.
+    \item $\forall x\in X$ and $\forall\epsilon>0$, $\exists y\in D$ such that $d(x,y)<\epsilon$.
+    \item $\forall x\in X$ there is a sequence $(y_n)_{n=1}^{\infty}$ of elements of $D$ such that $y_n\to x$.
+    \item $\forall x\in X$ and every open nbhd $G$ of $x$, $G\cap D\neq\varnothing$.
+    \item $D$ intersects every non-empty open set.
+\end{enumerate}
+\textbf{D125:} A metric space is said to be \textbf{separable} $\Leftrightarrow$ it has a countable dense subset.
+
+
+\textbf{E128:} $\ell^2$ is separable.
+
+
+\textbf{Remark:} $\ell^2$ is separable for $1\leq p<\infty$ (but not $\infty$).
+
+
+\textbf{T130 (Weierstrass approximation theorem):} Let $f:[a,b]\to\mathbb{R}$ be a continuous function and $\epsilon>0$. There exists a polynomial $p$ with real coefficients such that, $\forall x\in[a,b]$, $|f(x)-p(x)|<\epsilon$.
+
+\textbf{T131:} Let $f:[a,b]\to\mathbb{R}$ be continuous and $\epsilon>0$. There exists a polynomial $p$ with rational coefficients such that, $\forall x\in[a,b]$, $|f(x)-p(x)|<\epsilon$.
+
+
+\textbf{T132:} $C([a,b])$ is separable.
+
+
+\textbf{T133:} Let $(X,d)$ be a metric space, $A\subseteq X$, $A\neq\varnothing$ and $d_A$ be the induced metric on $A$. Then the metric space $(A,d_A)$ is separable.
+
+
+\textbf{T135:} Every compact metric space is separable.
+
+
+\textbf{T136:} Let $(X,d)$ be a separable metric space and let $D$ be a countable dense subset of $X$. Let $\mathcal{B}=\{B(c,r):c\in D,r\in\mathbb{Q}^+\}$ be the set of all open balls with centers in $D$ and rational radii. Then, $\mathcal{B}$ is countable and every open set in $X$ can be written as a union of elements of $\mathcal{B}$.
+
+\textbf{D137:} Let $(X,\mathcal{T})$ be a topological space. An \textbf{open base} (or simply base) for the topology $\mathcal{T}$ is a family $\mathcal{B}$ of open sets such that every open set in $\mathcal{T}$ can be written as a union of elements of $\mathcal{B}$.
+
+
+\textbf{D139:} A topological space $(X,\mathcal{T})$ is said to satisfy the \textbf{second axiom of countability} (or simply to be \textbf{second countable}) $\Leftrightarrow$ it has a countable open base.
+
+
+\textbf{T140:} In a separable metric space, every family of pairwise disjoint non-empty open sets is countable.
+
+
+\textbf{T141:} On the real line with the standard metric, every open set can be written as a countable union of disjoint open intervals.
+
+\textbf{T142:} Let $(X,d_X)$ and $(Y,d_Y)$ be metric spaces, $D\subseteq X$ be dense, $f,g:X\to Y$ continuous functions such that $f(x)=g(x)$ $\forall x\in D$. Then $f=g$.
+
+
+\textbf{T143:} Let $(X,d_X)$ and $(Y,d_Y)$ be metric spaces, $D\subseteq X$ be dense, $f:D\to Y$ be uniformly continuous, and assume that $(Y,d_Y)$ is complete. Then $f$ has a unique continuous extension $F:X\to Y$.
+
+\section{Completeness (again)}
+
+\textbf{T144:} Let $(X,d)$ be a metric space, $F$ be a non-empty subset of $X$ and $d_F$ be the induced metric on $F$. If the metric space $(F,d_F)$ is complete then $F$ is a closed subset of $X$.
+
+\textbf{T145:} Let $(X,d)$ be a complete metric space, $F$ be a non-empty subset of $X$ and $d_F$ be the induced metric on $F$. If $F$ is a closed subset of $X$, then the metric space $(F,d_F)$ is complete.
+
+
+\textbf{T146:} Let $(X,d)$ be a complete metric space, $A\subseteq X$, $A\neq\varnothing$. Then
+\begin{enumerate}
+    \item The metric space $(\overline{A},d_{\overline{A}})$ is complete;
+    \item If $A\subseteq B\subseteq X$ and $(B,d_B)$ is complete, then $\overline{A}\subseteq B$.
+\end{enumerate}
+\textbf{D147 (Isometries):} Let $(X,d_X)$ and $(Y,d_Y)$ be metric spaces. A function $f:X\to Y$ is called an \textbf{isometry} $\Leftrightarrow$ $\forall x_1,x_2\in X$, $d_Y(f(x_1),f(x_2))=d_X(x_1,x_2)$,
+
+\textbf{T148:} Let $(X,d_X)$ and $(Y,d_Y)$ be metric spaces and $f:X\to Y$ be an isometry. Then $f$ is an injection. If, moreover, $f$ is a surjection (hence $f$ is a bijection), then $f^{-1}:Y\to X$ is an isometry as well.
+
+\textbf{D149 (Isometric metric spaces):} The metric spaces $(X,d_X)$ and $(Y,d_Y)$ are said to be \textbf{isometric} $\Leftrightarrow$ there exists an isometry $f$ from $X$ onto $Y$. (By theorem 1483, $f$ is then a bijection and $f^{-1}:Y\to X$ is an isometry as well.
+
+\textbf{E52:} If two metric spaces are isometric and one of them is complete, compact, connected,... then so is the other.
+
+\textbf{T150:} Let $(X,d)$ be a bounded metric space and let $C(X,\mathbb{R})$ be the set of all bounded continuous functions $f:X\to\mathbb{R}$ equipped with the metric $d_{\infty}(f_1,f_2)=\sup\{|f_1(t)-f_2(t)|:t\in X\}$. For each $x\in X$ define $F_x:X\to\mathbb{R}$ by $F_x(x')=d(x,x')$. Then
+\begin{enumerate}
+    \item $F_x\in C(X,\mathbb{R})$;
+    \item The map $X\to C(X,\mathbb{R})$, $x\mapsto F_x$ is an isometry;
+    \item $X^*=\{F_x:x\in X\}$, equipped with the induced metric, is a subspace of $C(X,\mathbb{R})$ isometric to $X$;
+    \item The closure $\overline{X^*}$ of $X^*$ in $C(X,\mathbb{R})$, equipped with the induced metric, is a complete metric space;
+    \item $X^*$ is dense in $\overline{X^*}$.
+\end{enumerate}
+\textbf{D152:} Let $(X,d_X)$ be a metric space. A \textbf{completion} of $(X,d_X)$ is any metric space $(Y,d_Y)$ with the following properties:
+\begin{enumerate}
+    \item $(Y,d_Y)$ is complete;
+    \item $(Y,d_Y)$ has a subspace $X^*$ isometric to $(X,d_X)$;
+    \item $X^*$ is dense in $Y$.
+\end{enumerate}
+Theorem 150 shows that every metric space has a completion.
+
+
+\section{Connectedness}
+
+\textbf{D153:} A metric space $(X,d)$ is said to be \textbf{disconnected} $\Leftrightarrow$ there exist non-empty disjoint open sets $G_1$ and $G_2$ such that $X=G_1\cup G_2$. Otherwise the metric space is called \textbf{connected}. A non-empty subset $A$ of a metric space $(X,d)$ be said to be \textbf{disconnected} $\Leftrightarrow$ the metric space $(A,d_A)$, where $d_A$ is the induced metric, is disconnected.
+
+\textbf{T154:} $\mathbb{R}$ with the standard metric is connected.
+
+
+\textbf{E53:} On the real line with the standard metric all intervals are connected sets.
+
+\textbf{T155:} A subset of the real line is connected $\Leftrightarrow$ it is an interval.
+
+
+\textbf{T157:} A metric space $(X,d)$ is connected $\Leftrightarrow$ the only subsets of $X$ with empty boundary are $\varnothing$ and $X$.
+
+\textbf{T158:} Let $(X,d_X)$ be a connected metric space, $(Y,d_Y)$ be a metric space and $f:X\to Y$ be a continuous surjection. Then $(Y,d_Y)$ is connected as well.
+
+
+\textbf{T159 (Intermediate value theorem):} Let $(X,d)$ be a connected metric space and $f:X\to\mathbb{R}$ be a continuous function. If $x_1,x_2\in X$ with $f(x_1)\neq f(x_2)$ and $y$ is a real number between $f(x_1)$ and $f(x_2)$, then there exists an $x\in X$ such that $f(x)=y$.
+
+\textbf{T160:} A metric space $(X,d)$ is connected $\Leftrightarrow$ the only clopen subsets are $\varnothing$ and $X$.
+
+
+\textbf{T161:} The equivalence class of any point in $X$ is the largest connected subset of $X$ that contains that point.
+
+
+\textbf{D162:} Let $(X,d)$ be a metric space and $x_0,x_1\in X$. A \textbf{path} in $X$ from $x_0$ to $x_1$ is a continuous function $\gamma:[0,1]\to X$ such that $\gamma(0)=x_0$ and $\gamma(1)=x_1$. We say $(X,d)$ is \textbf{path-connected} $\Leftrightarrow$ for any two points $x_0,x_1\in X$ there is a path in $X$ from $x_0$ to $x_1$. A non-empty subset $A$ of $X$ is said to be \textbf{path-connected} $\Leftrightarrow$ the metric space $(A,d_A)$, where $d_A$ is the induced metric, is path-connected.
+
+\textbf{T163:} Every path-connected metric space is connected.
+
+
+\textbf{Remark:} The converse of theorem 163 is not true.
+
+
+\end{document}
