@@ -1,0 +1,434 @@
+\documentclass[12pt, a4paper]{article}
+\usepackage{blindtext, titlesec, amsthm, thmtools, amsmath, amsfonts, scalerel, amssymb, graphicx, titlesec, xcolor, multicol, bm}
+\usepackage[utf8]{inputenc}
+% \hypersetup{colorlinks,linkcolor={red!40!black},citecolor={blue!50!black},urlcolor={blue!80!black}}
+\usepackage[margin=0.25in]{geometry}
+\newtheorem{theorem}{Theorema}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollarium}
+\newtheorem{hypothesis}{Coniectura}
+\theoremstyle{definition}
+\newtheorem{definition}{Definitio}[section]
+\theoremstyle{remark}
+\newtheorem{remark}{Observatio}[section]
+\newtheorem{example}{Exampli Gratia}[section]
+\newcommand{\bb}[1]{\mathbb{#1}}
+\renewcommand\qedsymbol{Q.E.D.}
+\renewcommand{\emph}[1]{\textbf{\textit{#1}}}
+\newcommand{\gl}{\mathfrak{gl}}
+\renewcommand{\sl}{\mathfrak{sl}}
+\newcommand{\so}{\mathfrak{so}}
+\renewcommand{\sp}{\mathfrak{sp}}
+\newcommand{\GL}{\text{GL}}
+\newcommand{\rad}{\text{rad}}
+\newcommand{\mf}[1]{\mathfrak{#1}}
+\begin{document}
+\emph{\huge{Lie Group}}
+%\tableofcontents
+\section{Some Facts}
+\begin{table}[h]
+	\centering
+	\begin{tabular}{|c|c|c|c|c|c|c|}
+		\hline
+		$G$                                & Lie Algebra      & dim               &cpt& $\pi_0$    & $\pi_1$ & $Z(G)$\\
+		\hline                                                                    
+		$GL(1, \bb{R})$                    & $\gl(1, \bb{R})$ & $1$               & N & $\bb{Z}_2$ & $\{e\}$        & $R^{\times}$ \\
+		$GL(2, \bb{R})$                    & $\gl(2, \bb{R})$ & $4$               & N & $\bb{Z}_2$ & $\bb{Z}$       & $R^{\times}$ \\
+		$GL(n, \bb{R}), n \geq 3$          & $\gl(n, \bb{R})$ & $n^2$             & N & $\bb{Z}_2$ & $\bb{Z}_2$     & $R^{\times}$ \\
+		$GL(n, \bb{C})$                    & $\gl(n, \bb{C})$ & $n^2$ (C)         & N & $\{e\}$    & $\bb{Z}$       & $C^{\times}$ \\
+		$SL(2, \bb{R})$                    & $\sl(2, \bb{R})$ & $3$               & N & $\{e\}$    & $\bb{Z}$,      & $\bb{Z}_2$ \\
+		$SL(2n + 1, \bb{R}), n \geq 3$     & -                & -                 & N & $\{e\}$    & $\bb{Z}_2 $,   & $\{e\}$ \\
+		$SL(2n,\bb{R}), n \geq 3$          & -                & -                 & N & $\{e\}$    & $\{e\}$        & $\bb{Z}_2$ \\
+		$SL(n, \bb{C})$                    & $\sl(n, \bb{C})$ & $n^2-1$ (C)       & N & $\{e\}$    & $\bb{Z}$       & $Z_n$ \\
+		$O(n, \bb{R})$                     &  $\mf{so}(n, R)$ &$\frac{n(n-1)}{2}$ & Y & $\bb{Z}_2$ & $\bb{Z}_2$     & $\bb{Z}_2$  \\
+		$O(n, \bb{C})$                     & $\mf{so}(n, C)$  &$\frac{n(n-1)}{2}$ & N & $\bb{Z}_2$ & $\bb{Z}_2$     & $\bb{Z}_2$  \\
+		$SO(n, \bb{R}) n > 1$              &  -               &$\frac{n(n-1)}{2}$ & Y & - & -& - \\
+		$SO(2, \bb{R})$                    & $\mf{so}(2, R)$  &1                  & Y & $\{e\}$    & $\bb{Z}$       & self \\
+		$SO(2n+1, \bb{R}) n > 1$           &  -               &                -  & Y & $\{e\}$    & $\bb{Z}_2$     & $\{e\}$\\
+		$SO(2n, \bb{R}) n > 2$             &                - &                -  & Y & $\{e\}$    & $\bb{Z}_2$     & $\{e\}$\\
+		$SU(n) $                           &                - &$n^2-1$(R)           & Y & $\{e\}$    &$\{e\}$         & $Z_n$\\
+		$U(n) $                            &                - &$n^2$(R)             & Y & $\{e\}$    & $\bb{Z}$       & $U(1)$\\
+		\hline
+	\end{tabular}
+\end{table}
+
+\begin{enumerate}
+	\item $\mf{su}(2, C)$ is a real Lie Algebra different from $\sl(2, R)$. Its complexification is $\mf{sl}(2, C)$.
+	\item $O(n, R)/O(n-1, R) \cong S^{n-1}$
+	\item $SO(n, R)/SO(n-1, R) \cong S^{n-1}$
+	\item $U(n)/U(n-1) \cong S^{2n-1}$
+	\item $SU(n)/SU(n-1) \cong S^{2n-1}$
+	\item $USp(n)/U(n-1) \cong S^{4n-1}$
+	\item $Spin(3) \cong SU(2) \cong USp(1)$
+	\item $Spin(4) \cong SU(2) \times SU(2)$
+	\item $Spin(5) \cong USp(2)$
+	\item $Spin(6) \cong SU(4)$
+	\item $\mf{so}(3) \times \mf{so}(3) \cong \mf{so}(4)$
+\end{enumerate}
+
+\begin{theorem}[Differentiating Matrices]
+	\ 
+	\begin{enumerate} 
+		\item $d(A(t)^T) = A'(t)^T$
+		\item $d(A(t)^*) = A'(t)^*$
+		\item $d(A(t)^{-1}) = -A(t)^{-1}A'(t)A(t)^{-1}$
+		\item $d(\det(A(t))) = \det(A(t))\text{tr}(A(t)^{-1}A'(t))$
+	
+	\end{enumerate}
+\end{theorem}
+
+\begin{theorem}[$\bm{C}$ and $\bm{H}$]
+	$GL(n,C)$ is a subgroup of $GL(2n, R)$ of invertible matrices $A \in GL(2n, R)$ s.t. $AJ_1 = J_1A$. 
+	$GL(n, H)$ is a subgroup of $GL(2n, C)$ of invertible matrices $B \in GL(2n, C)$ s.t. $BJ_2 = J_2\overline{B}$.
+	$
+		J_1 = \begin{bmatrix}
+			0 & I_n \\
+			-I_n & 0
+		\end{bmatrix}
+		,
+		J_2 = \begin{bmatrix}
+			0 & -I_n \\
+			I_n & 0
+		\end{bmatrix}.
+		$
+\end{theorem}
+
+\begin{enumerate}
+	\item The universal cover of $SL(2,R)$ is not a matrix Lie group.
+\end{enumerate}
+
+
+\begin{theorem}[Adol's]
+Over a field $k$ of characteristic 0. Any finite dimensional Lie Algebra is a sub-algebra of $gl(V)$, where $V$ is a vector space of $k$.  
+\end{theorem}
+
+\begin{theorem}[Lie's Third Theorem]
+Every finite dimensional real Lie Algebra is isomorphic to a Lie algebra of a matrix Lie Group.
+\end{theorem}
+Reverse is \emph{Not} true. Not every Lie Group is a subgroup of matrix Lie Group.
+
+\section{Representation}
+
+\begin{definition}[Representation]
+	\ 
+	\begin{enumerate}	
+		\item A \emph{representation}, $(V, \rho)$, of a Lie Group $G$ is Lie Group morphism, $\rho$, to $GL(V)$, where $V$ is a vector space. $\rho(g)v $ is denoted as $gv$.
+		\item A representation of \emph{Lie Algebra} $\mathfrak{g}.$ is a Lie Algebra morphism, $\rho$, to $\mathfrak{gl}(V)$.
+		\item \emph{Subrepresentation} of $(V, \rho)$ is a subspace, $W \subset V$, such that $\forall g \in G, w \in W, gw \in W$.
+		\item A representation $(V, \rho)$ is \emph{irreducible} if the only subrepresentations are $0$ and $V$.
+		\item \emph{Direct sum} of Lie Group and Lie algebra representation, $(V_1, \rho_1)$, $(V_2, \rho_2)$, denoted as $V_1 \oplus V_2$ is a representation, with $g(v_1, v_2) = (gv_1, gv_2)$
+		\item A representation $(V, \rho)$ is \emph{completely reducible} if it is a direct sum of irreducible representations.
+		\item \emph{Tensor product} of Lie Group representation is a representation. $g(v_1 \otimes v_2)=gv_1 \otimes gv_2 $
+		\item Tensor product of \emph{Lie Algebra} representation is a representation. $x(v_1 \otimes v_2) = xv_1\otimes v_2 + v_1\otimes xv_2$
+		\item For representation $(V_1, \rho), (V_2, \rho)$, an interwiner is a linear map $f: V_1 \rightarrow V_2$, such that $g(f(v_1)) = f(gv_1)$ for all $g \in G$.
+		\item Two representation $V_1, V_2$ are isomorphic if there exists an invertible linear map $f$ such that $f(gv_1) = gv_2$ for all $g \in G$.
+	\end{enumerate}
+\end{definition}
+
+\begin{theorem}
+	Finite dimensional representation of compact Lie Group is completely reducible.
+\end{theorem}
+
+\begin{theorem}[Schur's Lemma]
+	Interwiner between irreducible representations is either trivial or an isomorphism.
+	
+	Let $V$ be an irreducible representation. 
+	If the ground field is $\bb{C}$, $End_G(V) \cong \bb{C}$.
+	If the ground field is $\bb{R}$, $End_G(V) \cong \bb{R}, \bb{C}$, or $\bb{H}$.
+
+	Irreducible representation of abelian Lie Algebra or Lie Group are $1$-dimensional.
+\end{theorem}
+
+\subsection{Representations of $\sl(2, \bb{C})$}
+
+Recall $\sl(2, C)$ has basis $\{h, e, f\}$, where 
+$h = \begin{bmatrix}
+	1 & 0 \\
+	0 & -1
+	\end{bmatrix}, 
+e = \begin{bmatrix}
+	0 & 1 \\ 
+	0 & 0 
+	\end{bmatrix}, 
+f = \begin{bmatrix} 
+	0 & 0 \\ 
+	1 & 0 
+\end{bmatrix}$.
+
+Notice $[e,f] = h, [h,e] = 2e, [h,f]=-2f$.
+
+\begin{theorem}
+	Every finite dimensional representation of $\sl(2, \bb{C})$ is completely reducible.
+\end{theorem} 
+
+\begin{definition}
+	Let $V$ be a representation of $\sl(2, \bb{C})$. 
+	\begin{enumerate}
+		\item A \emph{weight} of $V$ is an eigenvalue of $h$, i.e. $hv = \lambda v$. The space of vector of weight $\lambda$ is denoted as $V[\lambda]$.
+		\item Character of $V$ is $\chi_V(q) = \sum_{\lambda} \dim V[\lambda]q^{\lambda}$.
+	\end{enumerate}
+\end{definition}
+
+\begin{theorem}
+	\ 
+	\begin{enumerate}
+		\item $e: V[\lambda] \rightarrow  V[\lambda + 2], f: V[\lambda] \rightarrow  V[\lambda - 2]$.
+			All weights of $V$ are integers.
+		\item Representations of same character are isomorphic.
+		\item All irreducible representation of $\sl(2, C)$ are $L(n)$, whose dimension is $n+1$, with weights $-n, -n+2, \cdots, n-2, n$. 
+		\item $L(m) \otimes L(n) \cong L(m+n) \oplus L(m+n-2) \oplus \cdots \oplus L(m-n)$.
+		\item Irreducible representation of $SO(3)$ are $L(n)$ with even $n$. Irreducible representation of $Spin(3)$ are $L(n)$.
+		\item $\chi_V(L(n-1)) = \frac{q^n - q^{-n}}{q-q^{-1}}$.
+	\end{enumerate}
+\end{theorem}
+
+\section{Structure Theory of Lie Algebra}
+
+\begin{definition}[Derived Series]
+	Let $\mathfrak{g}$ be a Lie Algebra. The \emph{derived series} of $\mathfrak{g}$ is defined as 
+	$D^0\mathfrak{g} = \mathfrak{g}, D^1\mathfrak{g} = [\mathfrak{g}, \mathfrak{g}], D^{n+1}\mathfrak{g} = [D^n\mathfrak{g}, D^n\mathfrak{g}].$ 
+\end{definition}
+
+\begin{remark}
+	$[\mf{g}, \mf{g}]$ is an ideal. $\mf{g}/ [\mf{g}, \mf{g}]$ is abelian.
+	The derived series must terminate, either at $0$ or at some ideal.
+\end{remark}
+
+\begin{definition}[Solvable]
+	A Lie algebra is solvable if its derived series terminates with $0$.
+\end{definition}
+
+\begin{example}
+
+	The following Lie algebra are solvable.
+
+	$\mf{b} \subset \gl(n, R)$ be subalgebra of upper triangular matrices. 
+	All abelian Lie algebra.
+
+	Semi-simple Lie algebra are \emph{not} solvable. (Unless it is trivial Lie Algebra)
+\end{example}
+
+\begin{definition}[Radical]
+	$\rad(\mf{g})$ is the maximal solvable ideal of $\mf{g}$.
+\end{definition}
+
+\begin{definition}[Semisimple]
+	A Lie algebra is semisimple if its radical is $0$.
+\end{definition}
+
+\begin{definition}[Simple]
+	A Lie algebra is simple if it is not abelian and only has $0$ and itself as ideal.
+\end{definition}
+
+\begin{theorem}[Simple Lie Algebras]
+	All finite dimensional simple Lie Algebras are isomorphic to one of the following:
+		 $\sl(n, k)$, $\so(n, k)$, $\sp(n, k)$, $G_2$, $F_4$, $E_6$, $E_7$, or $E_8$.
+	Each of them has an associated Dynkin diagram.
+
+\end{theorem}
+
+\begin{theorem}
+	A semisimple Lie algebra is a direct sum of simple Lie algebras.
+	$$\mf{g} \cong \mf{g}_1 \oplus \cdots \oplus \mf{g}_n$$
+	where $\mf{g}_i$ are simple Lie algebras.
+	Moreover, $[\mf{g}, \mf{g}] = \mf{g}$ and all ideals are direct sum of $\mf{g}_i$.
+\end{theorem}
+
+\begin{theorem}
+	A Lie algebra is simple iff the adjoint representation is irreducible.
+\end{theorem}
+
+\begin{definition}[Semidirect Product]
+	Let $\mf{g}, \mf{h}$ be Lie algebras with morphism $f: \mf{g} \rightarrow Der)\mf{h}$. 
+	Their \emph{semidirect product} is the vector space $\mf{g} \oplus \mf{h}$ with the bracket $[(x, y), (x', y')] = ([x, x'], f(x)y' - f(x')y + [y, y'])$.
+	It is labeled as $\mf{g} \ltimes_f \mf{h}$.
+\end{definition}
+
+\begin{theorem}[Levi]
+	$\mf{g}$ be a Lie algebra over a field of characteristic 0. $\mf{g} \cong \mf{g}/\rad(\mf{g}) \ltimes \rad(\mf{g})$
+\end{theorem}
+
+\begin{definition}[Reducitive]
+	A Lie algebra is reductive if $\rad(\mf{g}) = \mf{z}(\mf{g})$.
+\end{definition}
+
+\begin{example}
+	$\gl(n, C)$ is reductive with one dimensional center.
+\end{example}
+
+\begin{theorem}
+	A reductive Lie algebra $\mf{g} \cong \mf{g}_{ss} \oplus \mf{z}(g)$, where $\mf{g}_{ss}$ is semisimple.
+\end{theorem}
+
+\begin{theorem}
+	A Lie algebra is reductive iff its adjoint representation is completely reducible.
+\end{theorem}
+
+\subsection{Killing Form}
+\begin{definition}[Killing Form]
+	Let $\mf{g}$ be a Lie algebran and $V$ its representation.
+	The killing form $B_V: \mf{g} \times \mf{g} \rightarrow  k = tr(\rho(x)\rho(y))$ 
+	Define $K_{\mf{h}}(x,y) = tr_{\mf{h}}(ad_x, ad_y)$.
+\end{definition}
+
+\begin{theorem}
+	$B_v([x,y],z) + B_v(y, [x,z]) = 0$
+\end{theorem}
+
+\begin{theorem}
+	$K$ non-degenerate $\iff$ $\mf{g}$ semisimple.
+	$K([\mf{g}, \mf{g}], \mf{g}) =0 \iff \mf{g}$ reductive. 
+\end{theorem}
+
+\begin{theorem}
+	Let $G$ be a compact Lie group. Its Lie algebra is reductive whose Killing form is negative semi-definite.
+
+	Let $\mf{g}$ be a real semisimple Lie algebra with negative-definite Killing form. There is a unique compact connected and simply connected Lie group $G$ s.t. $Lie(G) \cong \mf{g}$.
+\end{theorem}
+
+\begin{theorem}
+	Let $\mf{g}$ be a complex semisimple Lie algebra. There is a unique real semisimple Lie algebra, $\mf{g}_R$ with negative-definite Killing form such that $\mf{g}_R \otimes C \cong \mf{g}$.
+\end{theorem}
+
+\begin{theorem}
+	Let $\mf{g}$ be a complex semisimple Lie algebra. Then every $\mf{g}$ representation is completely reducible.
+\end{theorem}
+
+\section{Root System}
+
+\begin{definition}[Diagonalisable]
+	A linear map $V \rightarrow V$ is diagonlisable if it has a basis of eigenvectors on $V$.
+
+	For $x \in \mf{g}$. It is ad-diagonalisable if $ad_x$ is diagonalisable.
+\end{definition}
+
+\begin{definition}
+	Toral subalgebra is a subalgebra of $\mf{g}$ whose elements are ad-diagonalisable.
+	Cartan subalgebra is a maximal toral subalgebra.
+\end{definition}
+
+\begin{remark}
+	All toral subalgebra are abelian.
+\end{remark}
+
+\begin{definition}
+	A $\mf{g}$ invariant bilinear form is a form $B: \mf{g} \times \mf{g} \rightarrow k$ such that $B([x,y], z) + B(y, [x,z]) = 0$.
+\end{definition}
+
+\begin{theorem}
+	Let $\mf{g}$ be a semisimple Lie algebra with a non-degenerate symmetric invariant bilinear form $(-,-)$.
+	$\mf{h}\subset \mf{g}$ its Cartan subalgebra. 
+	There is a finite set of vectors $\alpha_i \in \mf{h}^*$, called roots, denoted as $\Delta$, such that
+
+\begin{enumerate}
+	\item $\mf{g} = \mf{h} \oplus \bigoplus \mf{g}_{\alpha}$, where $\mf{g}_{\alpha} $ is eigensapce of $\mf{h}$, which is also one dimensional. That is $[h, x_{\alpha}] = \alpha(h)x_{\alpha}$.
+	\item $[\mf{g}_{\alpha}, \mf{g}_{\beta}] = \mf{g}_{\alpha + \beta}$
+	\item If $\alpha \neq -\beta$, they are orthogonal respect to the bilinear form.
+	\item $\Delta$ spans $\mf{h}^*$.
+	\item For any two roots $\alpha, \beta$, $\frac{2(\alpha, \beta)}{(\alpha, \alpha)}$ is an integer.
+	\item Define reflection $s_{a}(l) = l - \frac{2(a,l)}{(a,a)}a$. $s_a(b)$ is a root. In particular, $s_a(a) = -a$ is root.
+	\item The only multiples of $a$ that is also a root is $\pm a$.
+	\item Define $H_a$ as $(H_a, h) =a(h)$
+\end{enumerate}
+\end{theorem}
+
+\begin{definition}[Abstract Root System]
+	Let $E$ be a real vector space with an inner product. 
+	A root system is a finite set of vectors $\Delta \subset E$ such that 
+	1) $\Delta$ spans $E$.
+	2) For any $\alpha \in \Delta$, $n_{\alpha \beta} = \frac{2(\alpha, \beta)}{(\alpha, \alpha)}$ is an integer.
+	3) For any $\alpha \in \Delta$, $s_{\alpha}(\beta) = \beta - \frac{2(\alpha, \beta)}{(\alpha, \alpha)}\alpha \in \Delta$.
+
+	A root system is reduced if for any $\alpha$ the only roots parallel to $\alpha$ in $\Delta$ is $\pm \alpha$.
+
+	Weyl group is the group generated by reflections $s_{\alpha}$.
+
+	Coroot $\alpha ^{\wedge} \in E^{*}$ is defined as $\alpha^{\wedge}(x) = \frac{2(\alpha, x)}{(\alpha, \alpha)}$.
+	$n_{\alpha,\beta}=\beta^{\wedge}(\alpha)$.
+	$s_{\alpha}(\lambda) = \lambda - a^{\wedge}(\lambda)\alpha$.
+
+	An \emph{Isomorphism} of root system $\Delta_{1} \in E_1, \Delta_2 \in E_2$ is a linear map $f: E_1 \rightarrow E_2$ such that $f(\Delta_1) = \Delta_2$ and $n_{f(\alpha), f(\beta)} = n_{\alpha, \beta}$.
+\end{definition}
+
+\begin{lemma}
+Weyl group is a finite subgroup of $O(E)$ that preserves the root system. $s_{w{\alpha}} = ws_{\alpha}w^{-1}$.
+\end{lemma}
+
+\begin{theorem}
+	There are only 4 rank 2 root systems, $A_1 \times A_1 \cong D_2, A_2, B_2, G_2$.
+\end{theorem}
+
+\begin{definition}
+	Pick a vector $v \in E$. Positive roots are those forms a positive inner product with $v$. Simple roots are those that cannot be written as sum of other positive roots.
+\end{definition}
+
+\begin{definition}[Fundamental Weight]
+	For $\alpha_i$ being simple roots, the fundamental weight $\varpi_i$ are the unique vector satisfying $\frac{2(\varpi_i, \alpha_j)}{\alpha_j, \alpha_j} = \delta^i_j$
+\end{definition}
+
+\begin{theorem}
+	$Q$ is the root lattice, generted by $\alpha_i$. $P$ is the weight lattice, generated by $\varpi_i$.
+	$Q\subset P$.
+\end{theorem}
+
+\begin{theorem}
+	Let $\mf{g}$ be a complex semisimple Lie algebra with root system $\Delta$.
+Let $G$ be the unique connected and simply connected Lie group such that $Lie(G) \otimes_R C \cong \mf{g}$.
+Then $Z(G) = P/Q$.
+
+Thus, by property of the universal cover, there is one to one correspondence between compact connected Lie group $G$, s.t. $Lie(G) \otimes_R C \cong \mf{g}$ and subgroups of $P/Q$.
+\end{theorem}
+
+\subsection{Dynkin Diagrams}
+
+\begin{definition}[Cartan Matrix]
+	Let $\Delta$ be a root system with simple roots $\alpha_i$. 
+	The Cartan matrix is defined as $A_{ij} = \frac{2(\alpha_i, \alpha_j)}{(\alpha_i, \alpha_i)}$.
+\end{definition}
+
+\begin{lemma}
+	The diagonal entries of Cartan matrix are all $2$. Off-diagonal entries are one of $0, -1, -2, -3$.
+\end{lemma}
+
+\begin{definition}[Coxeter Matrix]
+	Let $\Delta$ be reduced root system of rank $n$ and $A$ be its Cartan matrix.	
+	The Coxeter matrix is the symmetric matrix $m$, s.t.
+	1) $m_{ii} = 1$;
+	2) If $A_{ij} = 0, m_{ij} =2$;
+	3) If $A_{ij}A_{ji} = 1, m_{ij} = 3 $;
+	4) If $A_{ij}A_{ji} = 2, m_{ij} = 4 $;
+	5) If $A_{ij}A_{ji} = 3, m_{ij} = 6 $;
+\end{definition}
+
+\begin{lemma}
+	The Weyl group is generated by $s_1, \cdots, s_r, (s_is_j)^{m_{ij}} = 1$
+\end{lemma}
+
+\begin{definition}[Dynkin Diagram]
+	Let $\Delta$ be a reduced root system of rank $n$ with simple roots $\alpha_i$ and Cartan matrix $a$.
+	1) For each simple root, draw a node.
+	2) For each pair of simple roots, connect them by $a_{ji}a_{ij}$ edges.
+	3) If $|a_i| \neq |a_j|$, and they are not orthogonal, draw an arrow from longer root to the shorter.
+\end{definition}[Dynkin Diagram]
+
+\section{Miscellaneous}
+
+\begin{theorem}[Jordan Normal Form]
+	Let $k = \bb{R}$ or $\bb{C}$. For all matrix $A \in \gl(n, k)$, there exists $B \in \GL(n,k)$, such that $M = B^{-1}AB$ is in the Jordan Normal Form, which is diagonal with blocks like
+	\[
+		\begin{bmatrix}
+			C & 1 & 0 & \cdots & 0 \\
+			0 & C & 1 & \cdots & 0 \\
+			\vdots & \vdots & \vdots & \ddots & \vdots \\
+			0 & 0 & 0 & \cdots & C 
+		\end{bmatrix},
+		C_{\bb{R}} = \begin{bmatrix}
+		a & b \\
+		-b & a
+	\end{bmatrix},
+		 C_{\bb{C}} \in \bb{C}
+	\]
+\end{theorem}
+
+\end{document}
+

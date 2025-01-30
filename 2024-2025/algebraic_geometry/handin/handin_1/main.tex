@@ -1,0 +1,173 @@
+\documentclass{article}
+
+\usepackage[tmargin=2.5cm,rmargin=3cm,lmargin=3cm,bmargin=3cm]{geometry} 
+% Top margin, right margin, left margin, bottom margin, footnote skip
+\usepackage[utf8]{inputenc}
+\usepackage{biblatex}
+% \addbibresource{./reference/reference.bib}
+% linktocpage shall be added to snippets.
+\usepackage{hyperref,theoremref}
+\hypersetup{
+	colorlinks, 
+	linkcolor={red!40!black}, 
+	citecolor={blue!50!black},
+	urlcolor={blue!80!black},
+	linktocpage % Link table of content to the page instead of the title
+}
+
+\usepackage{blindtext}
+\usepackage{titlesec}
+\usepackage{amsthm}
+\usepackage{thmtools}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{titlesec}
+\usepackage{xcolor}
+\usepackage{multicol}
+\usepackage{hyperref}
+\usepackage{import}
+
+
+\newtheorem{theorem}{Theorema}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}{Corollarium}[section]
+\newtheorem{proposition}{Propositio}[theorem]
+\theoremstyle{definition}
+\newtheorem{definition}{Definitio}[section]
+
+\theoremstyle{definition}
+\newtheorem{axiom}{Axioma}[section]
+
+\theoremstyle{remark}
+\newtheorem{remark}{Observatio}[section]
+\newtheorem{hypothesis}{Coniectura}[section]
+\newtheorem{example}{Exampli Gratia}[section]
+
+% Proof Environments
+\newcommand{\thm}[2]{\begin{theorem}[#1]{}#2\end{theorem}}
+
+%TODO mayby proof environment shall have more margin
+% \renewenvironment{proof}{\vspace{0.4cm}\noindent\small{\emph{Demonstratio.}}}{\qed\vspace{0.4cm}}
+% \renewenvironment{proof}{{\bfseries\emph{Demonstratio.}}}{\qed}
+\renewcommand\qedsymbol{Q.E.D.}
+% \renewcommand{\chaptername}{Caput}
+% \renewcommand{\contentsname}{Index Capitum} % Index Capitum 
+\renewcommand{\emph}[1]{\textbf{\textit{#1}}}
+\renewcommand{\ker}[1]{\operatorname{Ker}{#1}}
+
+%\DeclareMathOperator{\ker}{Ker}
+
+% New Commands
+\newcommand{\bb}[1]{\mathbb{#1}} %TODO add this line to nvim snippets
+\newcommand{\orb}[2]{\text{Orb}_{#1}({#2})}
+\newcommand{\stab}[2]{\text{Stab}_{#1}({#2})}
+\newcommand{\im}[1]{\text{im}{\ #1}}
+\newcommand{\se}[2]{\text{send}_{#1}({#2})}
+
+\title{Algebraic Geometry Handin 1}
+\author{Harry Han} 
+\date{\today}
+
+\begin{document}
+\maketitle
+% \tableofcontents
+\section*{Exercise 1}
+Let \(\Sigma\) be a set of 8 distinct points on \(\mathbb{P}^2\). Let \(n\) be the largest number of points in \(\Sigma\) that lie on a line. Prove that there is a line in \(\mathbb{P}^2\) containing exactly two points from \(\Sigma\) in the following cases:
+\begin{enumerate}
+    \item \(n = 7\).
+    \item \(n = 6\).
+    \item \(n = 5\).
+\end{enumerate}
+
+\begin{proof}
+	\textbf{Case 1}: $n = 7$.
+
+	Let $l_1$ pass through the promised 7 points. 
+	Without loss of generacity let one of these points be $a$, and the other one in $\Sigma$ not on $l_1$ be $b$. 
+	There necessarily is a line, $l_2$, passing through $a$ and $b$. 
+	Since $l_2$ passes through $b$ which does not lie on $l_1$, $l_1$ and $l_2$ are two different lines.
+	Two distinct lines in $\bb{P}^2$ has one and only one intersection, in this case $l_1$, $l_2$ intersects only at $a$, which means $l_2$ will not contain any of the other 6 points on in $\Sigma$. 
+	So $l_2$ is the desired line passing exacting two points in $\Sigma$.
+
+	\textbf{Case 2}: $n = 6$.
+
+	Let $l_1$ pass through the promised 6 points. 
+	Label two of the distict points in $\Sigma$ as $a_1, a_2$. 
+	Label the two remaining points in $\Sigma$ not lying on $l_1$ as $b_1, b_2$.
+	For the same arguments above there exists a different line, $l_2$, which passes through $a_1, b_1$. 
+	If $l_2$ does not contain $b_2$, for the same arguments above it is the desired line which contain exactly two points in $\Sigma$. 
+	If $l_2$ does contain $b_2$, pick the line $l_3$ which passes through $a_2$ and $b_1$. 
+	$l_3$ contains $a_2$ which does not lies on $l_2$ and $b_1$ which does not lie on $l_1$, so $l_3$ is a distinct line from $l_1$, $l_2$. 
+	$l_3$ intersects $l_2$ precisely at $b_1$, so $l_3$ does not contain $b_2$. 
+	$l_3$ intersects $l_1$ precisely at $a_1$, so the rest of $5$ points of $\Sigma$ contained in $l_1$ do not lie on $l_3$. 
+	This means $l_3$ is the desired line which passes through exactly two points in $\Sigma$.
+
+	\textbf{Case 3}: $n = 5$.
+	Let $l_1$ pass through the promised 6 points. 
+	Label three of the distinct points in $\Sigma$ as $a_1, a_2$ and $a_3$. 
+	Label the one of the three remaining points in $\Sigma$ not lying on $l_2$ as $b$.
+
+
+\end{proof}
+
+\section*{Exercise 2}
+Consider the quartic curve \(f(x, y, z) = xy^3 + yz^3 + zx^3 = 0\) in \(\mathbb{P}^2_\mathbb{C}\).
+
+\begin{enumerate}
+    \item Show that there is no point on the curve where the gradient \(\left(\frac{\partial f}{\partial x}, \frac{\partial f}{\partial y}, \frac{\partial f}{\partial z}\right)\) vanishes. Deduce using Bezout's theorem that \(f\) is irreducible.
+
+	\begin{proof}
+		Setting the three components of the gradients into 0
+		\begin{align}
+			\label{dx}
+			\frac{\partial f}{\partial x} = y^3 + 3zx^2	 &= 0\\
+			\label{dy}
+			\frac{\partial f}{\partial y} = z^3 + 3xy^2	&= 0 \implies xy^2 = \frac{-1}{3}z^3\\
+			\label{dz}
+			\frac{\partial f}{\partial z} = x^3 + 3yz^2	 &= 0 \implies x^3 = -3yz^2
+		\end{align}
+
+	Multiplying \ref{dx} by $x$
+	\begin{align}\label{xdx}
+		xy^3 + 3zx^3 = 0	
+	\end{align}
+
+	Substituting \ref{dy}, \ref{dz} into \ref{xdx}
+
+	\begin{align}
+		-\frac{1}{3}z^3 y - 9 yz^3 = 0 \rightarrow z^3y = 0	
+	\end{align}
+
+	As $\bb{C}$ is a field thus a integral domain, this means either $y$ or $z$ is zero. 
+
+	If $y = 0$, \ref{dy} implies $z = 0$ and \ref{dz} implies $x = 0$. 
+	The case when $z = 0$ is similar. 
+	But $[0:0:0] \notin \bb{P}^2$, so the gradient of $f$ never finishes in $\bb{P}^2$.
+
+	Assuming, for the sake of contradiction, $f$ is reducible and $f = gh$.
+	By Bezout's theorem, $V(g)$, $V(h)$, must intersect at some point, $p$. 
+	However, at $p$, note 
+	\begin{align}
+		\frac{\partial f}{\partial x} (p) = \frac{\partial g}{\partial x}h(p) +  \frac{\partial h}{\partial x}g(p) = 0
+	\end{align}
+
+	For the exact same argument $\frac{\partial f}{\partial y}, \frac{\partial f}{\partial z}$ are also $0$ at $p$. 
+	This is a contradiction, thus $f$ must be irreducible.
+	
+	\end{proof}
+    
+    \item Let \(L\) be the tangent line at \([0 : 0 : 1]\). Find the intersection points of \(L\) with the curve \(f = 0\) and the intersection multiplicities. \textbf{Remark:} By Bezout's theorem, a line and a quartic have 4 intersection points, counted with multiplicity. Your answer to this problem should agree with this result.
+\end{enumerate}
+
+\section*{Exercise 3}
+Consider the conic \(x^2 + 4xy - 6xz + 14y^2 - 28yz + 35z^2 = 0\) in \(\mathbb{P}^2_\mathbb{C}\).
+
+\begin{enumerate}
+    \item Find the determinant of the matrix of the associated symmetric bilinear form.
+	
+    \item Find a projective transformation \(\mathbb{P}^2 \rightarrow \mathbb{P}^2\) which takes the above conic to the standard form \((x')^2 + (y')^2 + (z')^2 = 0\).
+\end{enumerate}
+
+% \printbibliography
+\end{document}

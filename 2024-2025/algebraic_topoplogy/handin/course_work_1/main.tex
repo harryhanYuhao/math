@@ -1,0 +1,145 @@
+\documentclass{article}
+
+\usepackage[tmargin=2.5cm,rmargin=3cm,lmargin=3cm,bmargin=3cm]{geometry} 
+% Top margin, right margin, left margin, bottom margin, footnote skip
+\usepackage[utf8]{inputenc}
+\usepackage{biblatex}
+% \addbibresource{./reference/reference.bib}
+% linktocpage shall be added to snippets.
+\usepackage{hyperref,theoremref}
+\hypersetup{
+	colorlinks, 
+	linkcolor={red!40!black}, 
+	citecolor={blue!50!black},
+	urlcolor={blue!80!black},
+	linktocpage % Link table of content to the page instead of the title
+}
+
+\usepackage{blindtext}
+\usepackage{titlesec}
+\usepackage{amsthm}
+\usepackage{thmtools}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{titlesec}
+\usepackage{xcolor}
+\usepackage{multicol}
+\usepackage{hyperref}
+\usepackage{import}
+
+
+\newtheorem{theorem}{Theorema}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}{Corollarium}[section]
+\newtheorem{proposition}{Propositio}[theorem]
+\theoremstyle{definition}
+\newtheorem{definition}{Definitio}[section]
+
+\theoremstyle{definition}
+\newtheorem{axiom}{Axioma}[section]
+
+\theoremstyle{remark}
+\newtheorem{remark}{Observatio}[section]
+\newtheorem{hypothesis}{Coniectura}[section]
+\newtheorem{example}{Exampli Gratia}[section]
+
+% Proof Environments
+\newcommand{\thm}[2]{\begin{theorem}[#1]{}#2\end{theorem}}
+
+%TODO mayby proof environment shall have more margin
+\renewenvironment{proof}{\vspace{0.4cm}\noindent\small{\emph{Demonstratio.}}}{\qed\vspace{0.4cm}}
+% \renewenvironment{proof}{{\bfseries\emph{Demonstratio.}}}{\qed}
+\renewcommand\qedsymbol{Q.E.D.}
+% \renewcommand{\chaptername}{Caput}
+% \renewcommand{\contentsname}{Index Capitum} % Index Capitum 
+\renewcommand{\emph}[1]{\textbf{\textit{#1}}}
+\renewcommand{\ker}[1]{\operatorname{Ker}{#1}}
+
+%\DeclareMathOperator{\ker}{Ker}
+
+% New Commands
+\newcommand{\bb}[1]{\mathbb{#1}} %TODO add this line to nvim snippets
+\newcommand{\orb}[2]{\text{Orb}_{#1}({#2})}
+\newcommand{\stab}[2]{\text{Stab}_{#1}({#2})}
+\newcommand{\im}[1]{\text{im}{\ #1}}
+\newcommand{\se}[2]{\text{send}_{#1}({#2})}
+
+\title{Ars Amatoriae}
+\author{Publius Ovidius Naso} 
+\date{\today}
+
+\begin{document}
+% \tableofcontents
+
+\subsection*{Q4}
+\subsubsection*{1}
+For $x, y \in Q$ which is star shaped centered at $x_0$, there is path connecting $x, x_0$ and $y, x_0$. Concatenating these two paths give rise to another path connecting $x, y$. 
+This means $Q$ is path-connected.
+
+\subsubsection*{2}
+
+\textbf{Claim 1}: $\bb{R}^n \backslash \{0\}$ is path connected for $n \geq 2$.
+
+When $n = 1$ $\bb{R}^n \backslash \{0\} = (-\infty, 0) \cup (0, \infty)$ is not connected thus not path connected.
+
+For $n = 2$, let $x, y \in \bb{R}^2 \backslash \{0\}$. 
+Connecting $x, y$ with the straight line. 
+If the straight line does not cross the origin we are done. 
+Otherwise connecting $x ,y$ with a half circle whose diameter is the segment $\overline{xy}$. 
+Note the half circle and the diameter only intersects at $x,y$, so it does not cross the origin, and we are also done. 
+
+For $n = 3$ notice and any two points in $\bb{R}^3 \backslash \{0\}$, note there is a hyperplane containing them which is homeomorphic to $\bb{R}^2 \backslash \{0\}$, so $x ,y$ can also be connected by the same path. 
+To convince you such a hyperplane exist just notice we can rotate $R^3$ so that the two points lies on the $x,y$ plane.
+This contruction always work and we conclude that $\bb{R}^n \backslash \{0\}$ is path connected for $n > 1$ by induction.
+
+\textbf{Claim 2}: $S^n$ is path connected for $n > 0$.
+
+When $n=1$ $S^1$ is a circle and we can always connecting two points in circle with an arch. 
+
+When $n > 1$, and any two points $x,y \in S^n$ we can always find a subsec containing $x,y$ which is homeomorphic to $S^{n-1}$ similar to the arguments above, so we conclude by induction all $S^{n}$ is path connected for $n > 0$.
+
+\subsection*{Q5}
+
+We want to prove that homotopy is a equivalence condition.
+
+\textbf{Reflexivity}
+ 
+For a function $f$, consider the homotopy $h: X \times [0,1] \rightarrow Y$ defined as $h(x, -) = f(x)$. For any open set $U \in Y$, $h^{-1}(U) = f^{-1}(U) \times I$, which is open by definition as $f^{-1}(U)$ is open.
+
+\textbf{Symmetry}
+
+If $f$ is homotopic to $g$ via the continuous map $h(-, 0) = f $ and $h(-, 1) =g$, define map $l: X \times I $ as $l(x,i) = (x, 1-i)$.$l$ is clearly continuous, and $h^*: h \circ l$, a composition of continuous function thus continuous, is a homotopy from $g$ to $f$. 
+
+\textbf{Transitivity}
+
+If $f \xrightarrow{n} g \xrightarrow{m} h $ are homotopic.
+Define the homotopy, $\phi$, between $f$ and $h$ thus 
+  \[
+    \phi(x, t) = \left\{\begin{array}{lr}
+        n(x, 2t), & \text{for } 0\leq t\leq \frac{1}{2}\\
+        m(x, 2t-1), & \text{for } \frac{1}{2}\leq t\leq 1\\
+        \end{array}\right\} 
+  \]
+
+Denote $n(x, 2t) = n'(x, t)$, and $m(x, 2t-1) = m'(x, t)$, both of which are obviously continuous and by construction $n'(-, 0.5) = m'(-, 0.5)$
+
+To show $\phi$ is continuous is easy. 
+Pick an open set, $U$, in $Y$. 
+$\phi^{-1}(U) = n'^{-1}(U) \cup m'^{-1}(U)$.
+Denote $n'^{-1}(U) = A$ and $m'^{-1}(U) = B$.
+
+Pick $a \in A \cup B$.
+If $a \in A \backslash X \times \{0.5\}$, by defintion there is an open set in $X \times [0, 0.5]$ containing $a$. 
+Intersect this open set with $X \times [0, 0,5)$ gives an open set in $X\times [0, 1]$ that also contains $a$. 
+The case with $a \in B \backslash X \times \{0.5\}$ is similar.
+
+Continuing the argument for $a \in X \times \{0.5\}$, notice $A \cap X \times \{0.5\} = B \cap X \times \{0.5\}$, so $a \in A \cap B$. 
+This means we can find an open set, $E, F$, in $X\times [0, 0.5]$ and $X \times [0.5, 1]$ respectively containing $a$. By definition of subspace topology there exist open sets in $E',F' \in X \times [0, 1]$ such that $E = E'\cap X \times [0, 0.5], F = F' \cap X \times [0.5, 1]$. Note $E' \cup F'$ is an open set containing $a$ and contained by both $E$ and $F$, which means it is also contained by $A \cup B$.
+
+In all cases we can find an open set containing any points in $A \cup B$ that is a subset of $A \cup B$, thus by defintion $A \cup B$ is open, and thus $\phi$ is continuous, and thus a homotopy.
+
+
+
+% \printbibliography
+\end{document}

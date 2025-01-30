@@ -1,0 +1,201 @@
+\documentclass[12pt, a4paper]{article}
+\usepackage{blindtext, titlesec, amsthm, thmtools, amsmath, amsfonts, scalerel, amssymb, graphicx, titlesec, xcolor, multicol, hyperref}
+\usepackage[utf8]{inputenc}
+\hypersetup{colorlinks,linkcolor={red!40!black},citecolor={blue!50!black},urlcolor={blue!80!black}}
+\usepackage[margin=0.4in]{geometry}
+\newtheorem{theorem}{Theorema}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollarium}
+\newtheorem{hypothesis}{Coniectura}
+\theoremstyle{definition}
+\newtheorem{definition}{Definitio}
+\theoremstyle{remark}
+\newtheorem{remark}{Observatio}[section]
+\newtheorem{example}{Exampli Gratia}[section]
+\newcommand{\bb}[1]{\mathbb{#1}}
+\renewcommand\qedsymbol{Q.E.D.}
+\renewcommand{\emph}[1]{\textbf{\textit{#1}}}
+\begin{document}
+
+
+{ \huge
+	\emph{Commutative Algebra}
+}
+
+\begin{itemize}
+	\item All rings are commutative with unity.
+	\item All subring contains the unity of the parent.
+	\item ring homomorphisms preserve unity.
+	\item $R^{\times}$ is denote the group of units in $R$.
+\end{itemize}
+
+\section{Rings and Ideals}
+
+\begin{definition}[Idempotent]
+An element, $a$, in a ring is idempotent if $a^2 = a$.
+\end{definition}
+
+\begin{definition}[Nilradical]
+	The nilradical of a ring, $R$, is the set of all nilpotent elements.
+\end{definition}
+
+\begin{lemma}
+	Nilradical is a radical ideal and is the intersection of all prime ideals.
+\end{lemma}
+
+\begin{definition}[Jacobson Radical]
+	The Jacobson radical of a ring, $R$, is the intersection of all maximal ideals.
+\end{definition}
+
+\begin{lemma}[Jacobson Characterisation]
+	$I$ is a Jacobson radical of the ring $R$ iff $\forall x \in I, y \in R, 1-xy$ is a unit.
+\end{lemma}
+
+\subsection{Localisation}
+
+\begin{definition}[Field of Fractions]
+	Let $R$ be a ring. Its field of fraction is the set $(a,b) \slash \sim$, where $\sim$ is the equivalence relation $(a,b) \sim (c,d) \iff ad = bc$.
+	$(a,b)$ can be written as $\frac{a}{b}$.
+\end{definition}
+
+\begin{definition}[Multiplicative Set]
+	A subset, $S$, of a ring, $R$, is multiplicative if $1 \in S$ and $a,b \in S \implies ab \in S$.
+\end{definition}
+
+\begin{definition}[Local Ring]
+	$R$ is a local if it has a unique maximal ideal.
+\end{definition}
+
+\begin{definition}[Localisation]
+	In a ring $R$, $P$ is prime ideal.
+	Let $S = R \setminus P$. 
+	The localisation of $R$ at $P$ is the ring $S^{-1}R$, i.e., the equivalence class of $(a,b), a \in P, b \in S \slash \sim$, where $\sim$ is defined above.
+	It has a unique maximal ideal, $S^{-1}P$.
+\end{definition}
+
+\section{ED, PID, UFD, ID}
+
+\begin{theorem}
+	ED $\implies$ PID $\implies$ UFD $\implies$ ID. 
+\end{theorem}
+
+\begin{definition}[Irreducible]
+	In a ID, an element $a$ is irreducible if it is none unit, none zero, and for all $b,c$ such that $bc =a $, one of $b,c$ is a unit.
+\end{definition}
+
+\begin{definition}[prime]
+	In an ID, an element, $a$, is prime if $a|bc \implies a|b$ or $a|c$.
+\end{definition}
+
+\begin{lemma}
+	Prime elements are irreducible.
+\end{lemma}
+
+\begin{theorem}[Primes in PID]
+	In PID an ideal is prime iff it is maximal.
+\end{theorem}
+
+\begin{theorem}[UFD Criterion]
+	$R$ is UFD iff it is Noetherian and every irreducible element is prime.
+	A PID is UFD.
+	A UFD is PID if every prime ideal is maximal.
+\end{theorem}
+
+\begin{definition}[ED]
+	An ID, $R$, is an ED if there exists a function $N: R \to \bb{N}$ such that, for all $a,b \in R$, there exists $q,r \in R$ such that $a = bq + r$ and $N(r) < N(b)$ or $r = 0$.
+\end{definition}
+
+\begin{lemma}
+	If $f$ is a field, then $f[X]$ is an ED.
+\end{lemma}
+
+\begin{definition}[GCD]
+	GCD of a set $A \subset R$ is an element $d \in R$ such that 1) $d | a$ for all $a \in A$, 2) if $c | a$ for all $a \in A$, then $c | d$.
+	If $gcd(a, b)$ is unit, $a$ is coprime to $b$.
+\end{definition}
+
+\section{Polynomial Rings}
+\begin{definition}
+	Let $f$ be a polynomial in $R[x]$ such that $f = a_0 + a_1x + a_2x^2 + \cdots a_n x^n$
+	\begin{enumerate}
+		\item $a_n$ is the leading coefficient of $f$.
+		\item $f$ is monic if leading coefficient is 1.
+		\item If $R$ is UFD, content of $f$ is the gcd of all coefficients.
+		\item $f$ is primitive if content is unit.
+		\item A root, $a$ if of $f$ of multiplicity $n$ if $(x-a)^n | f$ but $(x-a)^{n+1} \nmid f$.
+	\end{enumerate}
+\end{definition}
+
+\begin{theorem}[Gauss's Theorem]
+	Let $R$ be UFD, $Q$ its field of fractions. 
+	$f \in R$ is irreducible in $R[X]$ iff it is irreducible in $Q[X]$.
+\end{theorem}
+
+\begin{theorem}[Gauss's Theorem 2]
+	If $R$ is UFD, then $R[X]$ is UFD.
+\end{theorem}
+
+\begin{theorem}[Gauss's Lemma]
+	Let $R$ be UFD and $f, g \in R[X]$.
+	Then $cont(f)cont(g)=cont(fg)$.
+	I.e., if $f = cont(f)\widehat{f}$, for $\widehat{f}$ primitive, then $fg = cont(f)cont(g)\widehat{f}\widehat{g}$, and $\widehat{fg} = \widehat{f}\widehat{g}$.
+\end{theorem}
+
+\section{Nullstellensatz}
+
+\begin{theorem}[Weak Nullstellensatz]
+	Let $k$ be an algebraically closed field, $I$ an maximal ideal in $k[X_1, \cdots, X_n]$.
+	Then $I = (X_1 - a_1, \cdots, X_n - a_n)$ for some $a_1, \cdots, a_n \in k$, and $k[X_1, \cdots, X_n]/I \cong k$.
+\end{theorem}
+
+\begin{theorem}[Nullstellensatz]
+	Let $k$ be an algebraically closed field, $I$ an ideal in $k[X_1, \cdots, X_n]$.
+	Then $I(V(I)) = \sqrt{I}$.
+\end{theorem}
+
+\section{Monomial Orders and Grobner Bases}
+\begin{definition}[Totally Orderred]
+	A order, $<$, on $Z^n$ is an monomial order if 
+	\begin{enumerate} 
+		\item $<$ is totally orderred. I.e., for all $a \neq b$, either $a<b$ or $b<a$.
+		\item $a<b \implies a + c < b + c$
+		\item Any non-empty subset as a minimal element.
+	\end{enumerate}
+\end{definition}
+
+\begin{definition}[LT, LM, LC]
+	Let $f = 2x^2 + x$. $LM(f) = x^2$, $LT(f) = 2x^2$, and $LC(f) = 2$.
+\end{definition}
+
+\begin{definition}[Multi-degree]
+	For polynomials of $n$ variables, the multi-degree of a monomial is in $Z^n$, and forms a vector space.
+
+	Eg, $x^2y^3z^4$ has multi-degree $(2,3,4)$.
+\end{definition}
+
+\begin{definition}[Lexicographical Order (lex)]
+	For monomial of multidegree $a,b$, $a>b$ if the leftmost non-zero entry of $a-b$ is positive.
+
+	Eg, $x^2y^3 > x^2y^2z$.
+\end{definition}
+
+\begin{definition}[Graded Lexicographical Order, grlex, or deglex]
+
+	For monomial of multidegree $a,b$, $a>b$ if $|a| > |b|$ or $|a| = |b|$ and $a > b$ in lex order.
+
+	We write $|a|$ as one norm of $a$, i.e., $|a| = \sum a_i$.
+
+	Eg, $x^2y^3 > x^2y^2z$, $z^10 > x^9$.
+\end{definition}
+
+\begin{definition}[Graded Reverse Lex order grevlex]
+	For monomial of multidegree $a,b$, $a>b$ if $|a| > |b|$ or $|a| = |b|$ and the rightmost non-zero entry of $a-b$ is negative.
+
+	Eg, $x^2y^3 > x^2y^2z$, $z^10 > x^9$.
+\end{definition}
+
+
+
+%\tableofcontents
+\end{document}
+

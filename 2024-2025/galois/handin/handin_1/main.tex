@@ -1,0 +1,130 @@
+\documentclass{article}
+
+\usepackage[tmargin=2.5cm,rmargin=3cm,lmargin=3cm,bmargin=3cm]{geometry} 
+% Top margin, right margin, left margin, bottom margin, footnote skip
+\usepackage[utf8]{inputenc}
+\usepackage{biblatex}
+% \addbibresource{./reference/reference.bib}
+% linktocpage shall be added to snippets.
+\usepackage{hyperref,theoremref}
+\hypersetup{
+	colorlinks, 
+	linkcolor={red!40!black}, 
+	citecolor={blue!50!black},
+	urlcolor={blue!80!black},
+	linktocpage % Link table of content to the page instead of the title
+}
+
+\usepackage{blindtext}
+\usepackage{bm}
+\usepackage{titlesec}
+\usepackage{amsthm}
+\usepackage{thmtools}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{titlesec}
+\usepackage{xcolor}
+\usepackage{multicol}
+\usepackage{hyperref}
+\usepackage{import}
+
+
+\newtheorem{theorem}{Theorema}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}{Corollarium}[section]
+\newtheorem{proposition}{Propositio}[theorem]
+\theoremstyle{definition}
+\newtheorem{definition}{Definitio}[section]
+
+\theoremstyle{definition}
+\newtheorem{axiom}{Axioma}[section]
+
+\theoremstyle{remark}
+\newtheorem{remark}{Observatio}[section]
+\newtheorem{hypothesis}{Coniectura}[section]
+\newtheorem{example}{Exampli Gratia}[section]
+
+% Proof Environments
+\newcommand{\thm}[2]{\begin{theorem}[#1]{}#2\end{theorem}}
+
+%TODO mayby proof environment shall have more margin
+% \renewenvironment{proof}{\vspace{0.4cm}\noindent\small{\emph{Demonstratio.}}}{\qed\vspace{0.4cm}}
+% \renewenvironment{proof}{{\bfseries\emph{Demonstratio.}}}{\qed}
+\renewcommand\qedsymbol{Q.E.D.}
+% \renewcommand{\chaptername}{Caput}
+% \renewcommand{\contentsname}{Index Capitum} % Index Capitum 
+\renewcommand{\emph}[1]{\textbf{\textit{#1}}}
+\renewcommand{\ker}[1]{\operatorname{Ker}{#1}}
+
+%\DeclareMathOperator{\ker}{Ker}
+
+% New Commands
+\newcommand{\bb}[1]{\mathbb{#1}} %TODO add this line to nvim snippets
+\newcommand{\orb}[2]{\text{Orb}_{#1}({#2})}
+\newcommand{\stab}[2]{\text{Stab}_{#1}({#2})}
+\newcommand{\im}[1]{\text{im}{\ #1}}
+\newcommand{\se}[2]{\text{send}_{#1}({#2})}
+
+\title{Ars Amatoriae}
+\author{Publius Ovidius Naso} 
+\date{\today}
+
+\begin{document}
+% \tableofcontents
+
+\subsection*{Q1}
+Let $k\in \bb{N}, \sigma \in S_k$ and $p \in \bb{Q}[t_1, \cdots, t_k]$. We are to prove that $\sigma p = p(t_{\sigma(1)}, \cdots, t_{\sigma(k)})$ is a left group action. 
+
+\begin{proof}
+	This directly follows from the fact that $S_k$ is a group, and each element of it is a bijection from $1, \cdots, k$ to itself.
+
+	Above all we shall check $p(t_{\sigma(1)}, \cdots, t_{\sigma(k)})$ is a polynomial of $k$ variable over $\bb{Q}$, which of couse is as $\sigma$ is bijection from $1, \cdots,k$ to itself.
+
+	Next, notice for $e \in S_k$, $e p = p$. Secondly, for $a,b \in S_k$ we have 
+	\begin{equation}
+		(ab) p
+		= p(t_{ab(1)}, \cdots, t_{ab(k)}) 
+		=p(t_{a(b(1))}, \cdots, t_{a(b(k))})
+		=a(b p)
+	\end{equation}	
+
+	This is the definition of left group action.
+\end{proof}
+
+\subsection*{Q2}
+We want to prove the Galois group is indeed a group. That is, for a polynomial, $f$, with distinct roots written in the tuple form $\bm{r} = (r_1, \cdots, r_n)$, $Gal(f)$, which consists of all those $\sigma \in S_k$ such that $(r_1, \cdots, r_n)$ are conjugate to $\sigma \bm{r} = ( r_{\sigma(1)}, \cdots,  r_{\sigma{(k)}})$, is a subgroup of $S_k$.
+
+\begin{proof}
+
+	Observe first that if $\bm{r}$ is the root of $f$, $\sigma\bm{r}$ is necessarily a root of $\sigma f$. Similarly, if $\sigma f$ has root $\sigma \bm{r}$, applying $\sigma^{-1}$ to them we see $\sigma^{-1} \sigma f = f$ must have $\sigma^{-1} \sigma \bm{r} = \bm{r}$ as root.
+	In summary:
+	\begin{equation}
+		f(\bm{r}) = 0 \iff   (\sigma f)(\sigma \bm{ r}) = 0
+	\end{equation}
+
+	% This is because, if $f(r_1, \cdots, r_k) = 0$, $\sigma f = f(x_{\sigma 1}, \cdots, x_{\sigma_k})$, and if we plug in $(a_{\sigma_1}, \cdots, a_{\sigma_k})$, $x_{\sigma1}$ will be substituted for $a_{\sigma_1}$, etc, and the value necessarily is 0.
+
+	Let $\bm{r}$ is a root of $f$ and let it be conjugate to $\sigma \bm{r}$ and $\tau \bm{r}$,i.e., $\sigma, \tau\in Gal(f)$. 
+	Let $p \in \bb{Q}[t_1, \cdots, t_k]$. 
+	Note:
+	\begin{equation}
+		\begin{split}
+		p(\tau \sigma \bm{r}) = 0 
+		&\iff (\sigma \sigma^{-1} \tau^{-1}p)(\sigma \bm{r}) = (\tau^{-1} p)(\sigma \bm{r})    \text{ (by observation 2 and previous exercise)}\\
+		&\iff (\tau^{-1} p)(\bm{r}) = 0 \text{(As $\bm{r}$ and $\sigma \bm{r}$ are conjugate )} \\
+		&\iff  (\tau \tau^{-1}p)(\tau \bm{r}) = p(\tau \bm{r})= 0 \text{ (by observation 2 and previous exercise)} \\
+		&\iff p(\bm{r}) = 0 \text{(As $\bm{r}$ and $\tau \bm{r}$ are conjugate )} \\
+		\end{split}
+	\end{equation}
+
+	Unpacking the definition, we have proved that if $\sigma, \tau$ are conjugate to $\bm{r}$ so is $\sigma \tau$, which is equivelant to the statement $\sigma, \tau \in Gal(f) \rightarrow \sigma \tau \in Gal(f)$.
+		
+	Each $\sigma \in Gal(f)$ by definition is an element of $S_k$.
+	As $k$ is finite integer, $S_k$ is a finite group and the inverse of $\sigma$ must be $\sigma^m$ for some positive integer $m$. 
+	This means the statement $\sigma, \tau \in Gal(f) \implies \sigma \tau \in Gal(f)$ alone will be sufficient to prove $Gal(f)$ is a subgroup of $S_k$.
+
+
+\end{proof}
+
+\end{document}

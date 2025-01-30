@@ -1,0 +1,421 @@
+\documentclass{article}
+
+% \usepackage[tmargin=2.5cm,rmargin=3cm,lmargin=3cm,bmargin=3cm]{geometry} 
+% Top margin, right margin, left margin, bottom margin, footnote skip
+\usepackage[utf8]{inputenc}
+\usepackage{biblatex}
+% \addbibresource{./reference/reference.bib}
+% linktocpage shall be added to snippets.
+\usepackage{hyperref,theoremref}
+\hypersetup{
+	colorlinks, 
+	linkcolor={red!40!black}, 
+	citecolor={blue!50!black},
+	urlcolor={blue!80!black},
+	linktocpage % Link table of content to the page instead of the title
+}
+
+\usepackage{bbold}
+\usepackage{blindtext}
+\usepackage{titlesec}
+\usepackage{amsthm}
+\usepackage{thmtools}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{titlesec}
+\usepackage{xcolor}
+\usepackage{multicol}
+\usepackage{hyperref}
+\usepackage{import}
+
+
+\newtheorem{theorem}{Theorema}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}{Corollarium}[section]
+\newtheorem{proposition}{Propositio}[theorem]
+\theoremstyle{definition}
+\newtheorem{definition}{Definitio}[section]
+
+\theoremstyle{definition}
+\newtheorem{axiom}{Axioma}[section]
+
+\theoremstyle{remark}
+\newtheorem{remark}{Observatio}[section]
+\newtheorem{hypothesis}{Coniectura}[section]
+\newtheorem{example}{Exampli Gratia}[section]
+
+% Proof Environments
+\newcommand{\thm}[2]{\begin{theorem}[#1]{}#2\end{theorem}}
+
+%TODO mayby proof environment shall have more margin
+% \renewenvironment{proof}{\vspace{0.4cm}\noindent\small{\emph{Demonstratio.}}}{\qed\vspace{0.4cm}}
+% \renewenvironment{proof}{{\bfseries\emph{Demonstratio.}}}{\qed}
+\renewcommand\qedsymbol{Q.E.D.}
+\renewcommand\mod{\text{ mod }}
+% \renewcommand{\chaptername}{Caput}
+% \renewcommand{\contentsname}{Index Capitum} % Index Capitum 
+\renewcommand{\emph}[1]{\textbf{\textit{#1}}}
+\renewcommand{\ker}[1]{\operatorname{Ker}{#1}}
+
+%\DeclareMathOperator{\ker}{Ker}
+
+% New Commands
+\newcommand{\bb}[1]{\mathbb{#1}} %TODO add this line to nvim snippets
+\newcommand{\orb}[2]{\text{Orb}_{#1}({#2})}
+\newcommand{\stab}[2]{\text{Stab}_{#1}({#2})}
+\newcommand{\im}[1]{\text{im}{\ #1}}
+\newcommand{\se}[2]{\text{send}_{#1}({#2})}
+
+\title{Analytical Number Theorey Handin One}
+\author{Harry Han} 
+\date{\today}
+
+\begin{document}
+\maketitle
+% \tableofcontents
+
+\section*{Q1}
+
+Define functions $\mathbb{1}, \chi_0, \chi: \bb{N} \rightarrow \{-1,0,1\}$ thus 
+
+\begin{equation}
+	\mathbb{1}(n) = 
+	\begin{cases}
+		1,& n \equiv 1 \mod 3 \\ 
+		0,& \text{ otherwise }
+	\end{cases},
+	\chi_0 (n) = 
+	\begin{cases}
+		1, & \gcd(n, 3) = 1 \\
+		0, & \gcd(n, 3) \neq 1
+	\end{cases},
+	\chi(n) = 
+	\begin{cases}
+		0, & n \equiv 0 \mod 3 \\ 
+		1, & n \equiv 1 \mod 3 \\ 
+		-1, & n \equiv 2 \mod 3
+	\end{cases},
+\end{equation}
+where $\mathbb{1}$ is the indicator function, and $\chi_0$ is the principle Dirichlet function mod 3.
+
+We claim that $\chi$ and $ \chi_0$ are completely multiplicative, i.e., $\chi(xy) = \chi(x)\chi(y)$ (similar for $\chi_0$), and $\frac{1}{2}(\chi + \chi_0) = \mathbb{1}$.
+
+\begin{proof}
+Since $3$ is a prime number, and $\bb{N}$ is a unique factorisation domain, $\gcd(3, n) = 1$ if and only if $n$ is not a multiple of three. 
+
+Consider $\chi_0 (xy)$. 
+There are two cases: none of $x,y$ are multiples of $3$, or at least one of them is. 
+In the former case, as $3$ is prime, $xy$ is not a multiple of three either, thus $\gcd(xy, 3) = 1$, and $\chi_0(xy) = 1 = 1 \times 1 = \chi_0(x) \chi_0(y)$. 
+In the later case, one of $\chi_0(x), \chi_0(y)$ will be zero, and $xy$ will be multiple of $3$, thus $\chi_0(xy) = 0 = \chi_0(x)\chi_0(y)$.
+
+Multiplicativity of $\chi$ is obvious from the fact that $\mathbb{Z} \backslash 3 \mathbb{Z}$ is a field.
+To demonstrate this, let us invoke the fact that $\bb{N}$ is a completely ordered set by the canonical ordering and, subsequently, Euclidean Algorithm applies. 
+This means for all $n \in \bb{N}$, there exist $q \in \bb{N}, r \in \{-1,0,1\}$ such that $n = 3q + r$. 
+Notice $\chi(n) = r$ by construction. 
+Breakdown $n, m$ into $n = 3q + r, m = 3q' + r'$, then 
+\begin{equation}
+nm = 3(3qq' + rq' + r'q) + rr'
+\end{equation}
+Since $r, r' \in \{-1,0,1\}$, $rr' \in \{-1,0,1\}$, and $\chi(mn) = rr' = \chi(n) \chi(m) $.
+
+Last be not least let us show that $\mathbb{1}(n) = \frac{1}{2}(\chi(n) + \chi_0(n))$ by considering the all three possible cases
+
+\begin{equation}
+	\begin{cases}
+		n \equiv 0 \mod 3 &\rightarrow \mathbb{1}(n) = 0 = \frac{1}{2}(0+0) = \frac{1}{2}(\chi_0(n) + \chi(n)) \\
+		n \equiv 1 \mod 3 &\rightarrow \mathbb{1}(n) = 1 = \frac{1}{2}(1+1) = \frac{1}{2}(\chi_0(n) + \chi(n)) \\
+		n \equiv 2 \mod 3 &\rightarrow \mathbb{1}(n) = 0 = \frac{1}{2}(1-1) = \frac{1}{2}(\chi_0(n) + \chi(n)) \\
+	\end{cases}
+\end{equation}
+\end{proof}
+
+\section*{Q2}
+For $x > 1$ define the $L$ function 
+\begin{equation}
+	L(x; \chi) = \sum_{n = 1}^{\infty}\frac{\chi(n)}{n^x},
+	L(x; \chi_0) = \sum_{n = 1}^{\infty}\frac{\chi_0(n)}{n^x},
+\end{equation}
+
+{\large\textbf{Part 1}: $\frac{1}{2} \leq L(x; \chi) \leq 1$ for all $1 < x$}
+
+\begin{proof}
+	Assume $ x > 1$, notice 
+	\begin{equation}
+		L(x, \chi) = 1 - \frac{1}{2^x} + \frac{1}{4^x} - \frac{1}{5^x} + \cdots
+	\end{equation}
+	Let $t_n$ denote the $n$-th term; observe that 
+	\begin{enumerate}
+		\item the sign of $t_n$ is $(-1)^{n+1}$, and 
+		\item as $x > 1$, $|t_n| > |t_{n+1}|$ \
+		\item $\lim_{n \rightarrow \infty} |t_n| = 0$, thus, by alternating test, the series converges, and $L(x, \chi)$ is well-defined.
+	\end{enumerate}
+
+	\textbf{Proof for Upper Bound}:
+
+	Denote the partial sum $s_1 = \sum_{n=1}^k \frac{\chi(n)}{n^x}$. 
+	We shall prove that $s_k \leq 1$ for all $k \in \bb{N}$ by induction.\\
+	\textit{base case}: when $k = 1, s_1 = 1 \leq 1$. \\ 
+	\textit{induction step}: Assuming $s_i \leq 1$ for $1\leq i \leq k$.
+	There are two cases, $k$ is odd and $k$ is even. 
+	If $k$ is odd, $k+1$ is even and, by our first observation, $t_{k+1} < 0$. 
+	This means $s_{k+1} = s_{k} - |t_{k+1}| < s_{k} \leq 1$.
+	If $k$ is even, $k+1$ is odd, and $|t_{k+1}| < |t_{k}|$ by our second observation. 
+	By first observation $t_k < 0$ and $t_{k+1} > 0 \rightarrow  t_{k} + t_{k+1} < 0 \rightarrow s_{k+1} = s_{k-1} + t_k + t_{k+1} < s_{k-1}\leq 1$.
+
+	Now, recall the definition of series that $L(x, \chi) = \lim_{n \rightarrow \infty} s_n$. 
+	Observation 3 states that the limit exists, and as each of $s_n \leq 1$, it must also be smaller than or equal to $1$ as desired.
+
+	\textbf{Lower Bound}:
+
+	To prove the lower bound is similar. 
+	We induct on $\frac{1}{4^x} - \frac{1}{5^x} + \cdots$. (Note this not $L(x, \chi)$!)
+	Again, denote the $n$-th partial sum as $\sigma_n$, and the $n$-th term as $\tau_n$. 
+	Our observations 1, 2, and 3 still hold, but our induction hypothesis is changed to $\sigma_k \geq 0$.\\
+	\textit{base case}: when $k = 1, \sigma_1 > 0$ by the first observation. \\ 
+	\textit{induction step}: Assuming $\sigma_i \geq 0$ for $1\leq i \leq k$.
+	There are two cases, $k$ is odd and $k$ is even. 
+	If $k$ is even, $k+1$ is odd and, by our first observatiop, $\tau_{k+1} > 0$. 
+	This means $\sigma_{k+1} = \sigma_{k} + |\tau_{k+1}| \geq \sigma_{k} \geq 0$.
+	If $k$ is odd, $k+1$ is even, and $|t_{k+1}| < |t_{k}|$ by our second observation. 
+	By first observation $t_k > 0$ and $t_{k+1} < 0 \rightarrow  \tau_{k} + \tau_{k+1} > 0 \rightarrow \sigma_{k+1} = \sigma_{k-1} + |\tau_k + \tau_{k+1}| > \sigma_{k-1} \geq 0$.
+
+	Now, notice $1 - \frac{1}{2^x} \geq \frac{1}{2}$ for all $x > 1$, and $\sum_{n=1}^k = 1 - \frac{1}{2^x} + \sum_{n=1}^{k-2} \tau_n  \geq \frac{1}{2}$ for all $k$. 
+
+	Again, recall the definition of series that $L(x, \chi) = \lim_{k \rightarrow \infty} \sum_{n=1}^{k}\frac{\chi(n)}{n^x}$. 
+	As each of $ \sum_{n=1}^{k}\frac{\chi(n)}{n^x} \geq \frac{1}{2}$ for all $n$, and the limit exists by obesrvation 3, it must also be greater than or equal to $\frac{1}{2}$ as desired.
+\end{proof}
+	
+
+{\large\textbf{Part 2}: As $x \searrow 1, \frac{1}{2} \log(L(x; \chi_0)) + \frac{1}{2}\log( L(x; \chi)) \rightarrow \infty$}
+
+As $\frac{1}{2} \leq L(x; \chi) \leq 1$ for all $x > 1$, and $\log$ is a monotonically increasing function, $\log \frac{1}{2} \leq \log(L(x; \chi)) \leq \log(1)$. 
+So we only need to show that $\lim_{x \rightarrow 1^+}L(x; \chi_0) = \infty$, which would imply that $\lim_{x \rightarrow 1^+}\log(L(x; \chi_0)) = \infty$, as $\lim_{x \rightarrow \infty}\log(x) = \infty$.
+
+To prove this we need the following lemma. 
+
+\begin{lemma}\label{Q6}
+	For strictly increasing positive integers $n_k, 1 \leq k <  \infty$,
+	\begin{equation}
+		\sum_{k=1}^{\infty} \frac{1}{n_k} = \infty \iff \lim_{x \rightarrow 1^+} \sum_{k=1}^{\infty} \frac{1}{n_k^x} = \infty
+	\end{equation}
+\end{lemma}
+
+This is the problem 6 in the workshop 1. 
+
+Notice that
+$$
+L(x, \chi_0) = \sum_{k=1}^{\infty} \frac{1}{(3k+1)^x} + \sum_{k=1}^{\infty} \frac{1}{(3k+2)^x} >
+\sum_{k=1}^{\infty} \frac{1}{(3k+1)^x}
+$$
+
+Moreover, 
+$$
+	\sum_{k=1}^{\infty} \frac{1}{3k+1} > \frac{1}{9}\sum_{k=1}^{\infty} \frac{1}{k} = \infty
+$$
+
+So by Lemma \ref{Q6} 
+$\lim_{x \rightarrow 1^+} L(x; \chi_0) >
+\lim_{x \rightarrow 1^+} \sum_{k=1}^{\infty} \frac{1}{(3k+1)^x} 
+= \infty
+$ as desired.
+
+\begin{proof}[Proof of Lemma \ref{Q6}]
+	\textbf{Forward Direction}:
+	Define function $f(x) = \sum_{k=1}^{\infty} \frac{1}{n_k^x} $.
+	Assuming $ \lim_{x \rightarrow 1^+} f(x) \neq \infty$. 
+	Notice $f(x) > 0$ for all $x>1$, and as $x$ decrease $f(x)$ will increase.
+
+	An increasing sequence of real numbers can be bounded or not bounded. 
+	If it is non bounded it diverges to infinity.
+	If it is bounded by completeness of real number it must converge to some number, $C$. 
+
+	Apply this reasoning to $f(x)$ we see $ \lim_{x \rightarrow 1^+} f(x) \neq \infty$ implies that $ \lim_{x \rightarrow 1^+} f(x) = C$ for some $C \in \bb{R}$. 
+
+	Notice
+
+	$$
+	\sum_{k=1}^{N} \frac{1}{n_k} = \lim_{x \rightarrow  1^+} \sum_{k=1}^N \frac{1}{n_k^x} < \lim_{x \rightarrow 1^+} \sum_{k=1}^{\infty}\frac{1}{n_k^x} = C
+	$$
+
+	So $\sum_{k=1}^{N} \frac{1}{n_k}$ is bounded for all $N$, meaning $\sum_{k=1}^{\infty}\frac{1}{n_k}$ converges.
+
+	In summary we proved that 
+	$
+		 \lim_{x \rightarrow 1^+} \sum_{k=1}^{\infty} \frac{1}{n_k^x} < \infty \implies \sum_{k=1}^{\infty} \frac{1}{n_k} < \infty 
+	$.
+	The forward direction is its contrapositive.
+
+	\textbf{Backword Direction} 
+	If
+	$
+		\lim_{x \rightarrow 1^+} \sum_{k=1}^{\infty} \frac{1}{n_k^x} = \infty
+	$, note
+	$\sum_{k=1}^{\infty} \frac{1}{n_k}$, being necessarily greater than the former for $x > 1$, must also diverge.
+
+\end{proof}
+
+\section*{Q3}
+
+We claim that 
+
+\begin{equation}
+\frac{1}{2} \log(L(x; \chi_0)) + \frac{1}{2} \log(L(x; \chi)) = \sum_p \sum _{m=1}^{\infty} \frac{\mathbb{1}(p^m)}{m p^{mx}} 
+\end{equation}
+
+where $x>1$.
+
+The proof of this question is more tricky and we need the following facts.
+
+\begin{equation}\label{sum_to_product}
+	\sum_{n=1}^{\infty} f(n) = \prod_p \frac{1}{1-f(p)}
+\end{equation}
+where $f$ is a multiplicative function, and $\sum_{n=1}^{\infty} f(n)$ converges absolutely. This is proposition 2.3 in the lecture notes.
+
+Also recall the Taylor expansion for $\log(x)$ is 
+
+\begin{equation}
+	\log(x) = \sum_{n=1}^{\infty} (-1)^{n-1}\frac{(x-1)^n}{n},
+\end{equation}
+which converges absolutely for $0 \leq x \leq 2$.
+
+This means 
+\begin{equation}\label{taylor_log}
+	\log(1-x) = - \sum_{n=1}^{\infty} \frac{x^n}{n},
+\end{equation}
+and it will converge absolutely for $-1<x< 1$.
+
+Last, recall the following fact from Honours Analysis.
+
+\begin{theorem}\label{order_of_sum}
+	Changing the order of the sum will not change the value of the infinite series if the series converges absolutely.
+\end{theorem}
+
+\begin{proof}[Proof of Q3]
+	By question one, both of $\chi$ and $\chi_0$ are multiplicative. 
+	Consider $f(n) = \frac{\chi(n)}{n^x}$, $g(n) = \frac{\chi_0(n)}{n^x}$ we have 
+	
+	$$
+		f(mn) = \frac{\chi(nm)}{(nm)^x} = \frac{\chi(n)}{n^x} \frac{\chi(m)}{m^x} = f(n)f(m),
+	$$ 
+	and
+	$$
+		g(mn) = \frac{\chi_0(nm)}{(nm)^x} = \frac{\chi_0(n)}{n^x} \frac{\chi_0(m)}{m^x} = g(n)g(m),
+	$$
+
+	so both of $g, f$ are multiplicative. 
+
+	Moreover, for all $x > 1$, there exists some $ 1 < \epsilon < x$ so that for each $n$
+
+	$$
+	 |f(n)| = \left|\frac{\chi(n)}{n^x}\right| \leq \frac{1}{n^x} < \frac{1}{n^\epsilon} ,
+	 |g(n)| = \left|\frac{\chi_0(n)}{n^x}\right| \leq \frac{1}{n^x} < \frac{1}{n^\epsilon} 
+	$$
+
+	Since $\sum_{n=1}^{\infty} \frac{1}{n^\epsilon}$ converges absolutely as it is a harmonic series and $\epsilon > 1$,
+	by Weiestrass M test $\sum_{n=1}^{\infty} f(n) = L(x; \chi)$ and $\sum_{n=1}^{\infty} g(n) = L(x; \chi_0)$
+	also converge absolutely, and
+	by applying \ref{sum_to_product}
+
+\begin{equation}
+	L(x; \chi) = \prod_p (1-\chi(n)n^{-x})^{-1}, 
+\end{equation}	
+
+Similarly 
+\begin{equation}
+	L(x; \chi_0) = \prod_p (1-\chi_0(n)n^{-x})^{-1}, 
+\end{equation}
+
+Now, as log of product is the sum of log 
+
+\begin{equation}\label{eq:log_before_sub}
+	\frac{1}{2}\log(L(x; \chi)) = - \sum_{p} \log(1-\chi(p)p^{-x})
+\end{equation}
+
+Each of the terms of the Taylor series converges absolutely for $-1<\chi(n)p^{-x} < 1$.
+Since $-1< \chi(n) < 1$ and $0 < p^x < 1$ for all $x > 1$, $\sum_{m=1}^{\infty} \frac{\chi(p^m)}{mp^{mx}}$  converges absolutely for all $x > 1$ and $p$ being prime.
+So we can safely substitute \ref{eq:log_before_sub} into its taylor expansion
+
+\begin{equation}\label{eq_log_subbed}
+	\frac{1}{2}\log(L(x; \chi)) = 
+	\frac{1}{2}\sum_{p} \sum_{m=1}^{\infty} \frac{\chi(p^m)}{mp^{mx}}=
+	\sum_{p} \sum_{m=1}^{\infty} \frac{1}{2}\frac{\chi(p^m)}{mp^{mx}}
+\end{equation}
+
+Note that $ \frac{1}{2}\log(L(x; \chi)) < L(x; \chi)$ for all $x > 1$, and since $\sum_{m=1}^{\infty} \frac{\chi(p^m)}{mp^{mx}} > 0$ for all $p$ being prime and $x > 1$, the series \ref{eq_log_subbed} also converges absolutely.
+
+For the exact same arguments
+\begin{equation}
+	\frac{1}{2}\log(L(x; \chi_0)) = 
+	\frac{1}{2}\sum_{p} \sum_{m=1}^{\infty} \frac{\chi_0(p^m)}{mp^{mx}}=
+	\sum_{p} \sum_{m=1}^{\infty} \frac{1}{2}\frac{\chi_0(p^m)}{mp^{mx}},
+\end{equation}
+which converges absolutely for $x > 1$.
+
+By summing them all up
+\begin{align}
+		\label{eq_terrible_1}
+		\frac{1}{2} \log(L(x; \chi_0)) + \frac{1}{2} \log(L(x; \chi)) =& 
+	\sum_{p} \sum_{m=1}^{\infty} \frac{1}{2}\frac{\chi(p^m)}{mp^{mx}} +
+		\sum_{p} \sum_{m=1}^{\infty} \frac{1}{2}\frac{\chi_0(p^m)}{mp^{mx}} \\ 
+		\label{eq_terrible_2}
+		=&
+		\sum_{p} \sum_{m=1}^{\infty} \frac{\frac{1}{2}(\chi_0(p^m) + \chi(p^m))}{mp^{mx}} \\
+		\label{eq_terrible_3}
+		=&
+		\sum_p \sum _{m=1}^{\infty} \frac{\mathbb{1}(p^m)}{m p^{mx}} 
+	\end{align}
+
+	Where from \ref{eq_terrible_1} to \ref{eq_terrible_2}, we used theorem \ref{order_of_sum} to reordered the terms, and from \ref{eq_terrible_2} to \ref{eq_terrible_3} we used the identity $\frac{1}{2}((\chi_0(x) + \chi(x)) = \mathbb{1}(x)$ proved in the first question.
+\end{proof}
+
+\section*{Q4}
+This is the pinnacle of this homework, we are to prove that 
+
+\begin{equation}
+	\sum_{p \equiv 1 \mod 3} \frac{1}{p} = \sum_{p} \frac{\mathbb{1}(p)}{p} = \infty
+\end{equation}
+
+\begin{proof}
+In the previous question we have proved that,  for $x > 1$
+
+	$$
+\frac{1}{2} \log(L(x; \chi_0)) + \frac{1}{2} \log(L(x; \chi)) =
+\sum_p \sum _{m=1}^{\infty} \frac{\mathbb{1}(p^m)}{m p^{mx}} 
+	$$
+
+Notice that 
+\begin{align}
+	\lim_{x \rightarrow 1^+} \frac{1}{2} \log(L(x; \chi_0)) + \frac{1}{2} \log(L(x; \chi)) 
+	= \lim_{x \rightarrow 1^+}\sum_p \sum _{m=1}^{\infty} \frac{\mathbb{1}(p^m)}{m p^{mx}} \\
+	=
+	\underbrace{\lim_{x \rightarrow 1^+}\sum_p \frac{\mathbb{1}(p)}{p^x}}_{1} +
+	\underbrace{\lim_{x \rightarrow 1^+} \sum_p \sum _{m=2}^{\infty} \frac{\mathbb{1}(p^m)}{m p^{mx}}}_{2} 
+	= \infty
+\end{align}
+
+The limit diverges, as proven in question two part two.
+
+Let us scrutinise the second term
+
+\begin{align}
+ \lim_{x \rightarrow 1^+} \sum_p \sum _{m=2}^{\infty} \frac{\mathbb{1}(p^m)}{m p^{mx}} 
+<&  \sum_p \sum _{m=2}^{\infty} \frac{\mathbb{1}(p^m)}{p^{m}} 
+<  \sum_p \sum _{m=2}^{\infty} \frac{1}{p^{m}} 
+\\  
+=&  \sum_p \frac{p^{-2}}{1-p^{-1}} \text{ (evaluating the geometric series)}\\ 
+=&  \sum_p \frac{1}{p^2-p} 
+<  \sum_{n = 2}^{\infty} \frac{1}{p(p-1)} < \infty
+\end{align}
+
+This means the second term converges, so the first term must diverges. 
+Now invoke lemma \ref{Q6} we claim that 
+
+$$
+	\sum_p \frac{\mathbb{1}(p)}{p} = \infty
+$$
+
+\end{proof}
+
+
+\end{document}
