@@ -1,0 +1,290 @@
+\documentclass{article}
+
+\usepackage[tmargin=2.5cm,rmargin=3cm,lmargin=3cm,bmargin=3cm]{geometry} 
+% Top margin, right margin, left margin, bottom margin, footnote skip
+\usepackage[utf8]{inputenc}
+\usepackage{biblatex}
+\addbibresource{./references.bib}
+% linktocpage shall be added to snippets.
+\usepackage{hyperref,theoremref}
+\hypersetup{
+	colorlinks, 
+	linkcolor={red!40!black}, 
+	citecolor={blue!50!black},
+	urlcolor={blue!80!black},
+	linktocpage % Link table of content to the page instead of the title
+}
+
+\usepackage{blindtext}
+\usepackage{titlesec}
+\usepackage{amsthm}
+\usepackage{thmtools}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{titlesec}
+\usepackage{xcolor}
+\usepackage{multicol}
+\usepackage{hyperref}
+\usepackage{import}
+
+
+\newtheorem{theorem}{Theorema}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}{Corollarium}[section]
+\newtheorem{proposition}{Propositio}[theorem]
+\theoremstyle{definition}
+\newtheorem{definition}{Definitio}[section]
+
+\theoremstyle{definition}
+\newtheorem{axiom}{Axioma}[section]
+
+\theoremstyle{remark}
+\newtheorem{remark}{Observatio}[section]
+\newtheorem{hypothesis}{Coniectura}[section]
+\newtheorem{example}{Exampli Gratia}[section]
+
+% Proof Environments
+\newcommand{\thm}[2]{\begin{theorem}[#1]{}#2\end{theorem}}
+
+%TODO mayby proof environment shall have more margin
+\renewenvironment{proof}{\vspace{0.4cm}\noindent\small{\emph{Demonstratio.}}}{\qed\vspace{0.4cm}}
+% \renewenvironment{proof}{{\bfseries\emph{Demonstratio.}}}{\qed}
+\renewcommand\qedsymbol{Q.E.D.}
+% \renewcommand{\chaptername}{Caput}
+% \renewcommand{\contentsname}{Index Capitum} % Index Capitum 
+\renewcommand{\emph}[1]{\textbf{\textit{#1}}}
+\renewcommand{\ker}[1]{\operatorname{Ker}{#1}}
+
+%\DeclareMathOperator{\ker}{Ker}
+
+% New Commands
+\newcommand{\bb}[1]{\mathbb{#1}} %TODO add this line to nvim snippets
+\newcommand{\orb}[2]{\text{Orb}_{#1}({#2})}
+\newcommand{\stab}[2]{\text{Stab}_{#1}({#2})}
+\newcommand{\im}[1]{\text{im}{\ #1}}
+\newcommand{\se}[2]{\text{send}_{#1}({#2})}
+
+\title{Homework 3}
+\author{Yuhao Han, s2162783} 
+\date{\today}
+
+\begin{document}
+\maketitle
+\section*{Exercise 1}
+Assume the ground field $k$ is algebraically closed. For ideals $I_1, I_2$, denote by $I_1 + I_2$ the ideal given by sums of elements of $I_1$ and $I_2$. Let $X, Y \subset \mathbb{A}^n$ be algebraic subsets.
+
+\begin{enumerate}
+    \item Show that $X \cup Y \subset \mathbb{A}^n$ is an algebraic subset.
+    \item Show that $X \cap Y \subset \mathbb{A}^n$ is an algebraic subset and that
+    \[
+        I(X \cap Y) = \sqrt{I(X) + I(Y)}.
+    \]
+    \item Give an example where the previous statement does not hold without the radical.
+\end{enumerate}
+
+\subsection*{1}
+
+As $X, Y$ are algebraic sets, there exists ideals $I_1, I_2$ such that $X = V(I_1)$ and $Y = V(I_2)$. 
+
+Note 
+\begin{equation}
+	V(I_1 \cap I_2) = V(I_1) \cup V(I_2) = X \cup Y
+\end{equation}
+
+So $X \cup Y$ is an algebraic subset, as $I_1 \cap I_2$ is an ideal.
+
+Here we have used the identity
+\begin{equation}
+	V(I_1 \cap I_2) = V(I_1) \cup V(I_2) 
+\end{equation}
+and the proof of which is simple.
+Since $I_1 \cap I_2 \subset I_1$, $V(I_1) \subset V(I_1 \cap I_2)$, and similarly $V(I_2) \subset V(I_1 \cap I_2)$, so $V(I_1) \cup V(I_2) \subset V(I_1 \cap I_2)$.
+
+Let $x \notin V(I_1)$ and $x \notin V(I_2)$. 
+This means $\exists f \in I_1, g \in I_2$ such that $f(x) \neq 0$ and $g(x)\neq 0$, that is, $f(x)g(x) \neq 0$. 
+But, $fg \in I_1 \cap I_2$, so $x \notin V(I_1 \cap I_2)$.
+This means $(V(I_1) \cup V(I_2))^c \subset V(I_1 \cap I_2)^c \implies V(I_1 \cap I_2) \subset V(I_1) \cup V(I_2)$.
+Combining the two inclusions, we have the desired equality.
+
+\subsection*{2}
+
+As $X, Y$ are algebraic sets, there exists ideals $I_1, I_2$ such that $X = V(I_1)$ and $Y = V(I_2)$. 
+Without loss of generality, let $I_1, I_2$ be radical ideals so that $I(X) = I_1$ and $I(Y) = I_2$.
+
+Note 
+\begin{equation}
+	V(I_1 + I_2) = V(I_1) \cap V(I_2) = X \cap Y
+\end{equation}
+
+So $X \cap Y$ is an algebraic subset.
+
+Here we have used the identity
+\begin{equation}\label{eq:x_cap_y}
+	V(I_1 + I_2) = V(I_1) \cap V(I_2),
+\end{equation}
+and the proof of which is simple.
+Since $I_1 \subset I_1 + I_2$ and $I_2 \subset I_1 + I_2$, $V(I_1 + I_2) \subset V(I_1)$ and $V(I_1 + I_2) \subset V(I_2)$, so $V(I_1 + I_2) \subset V(I_1) \cap V(I_2)$.
+For any $x \in V(I_1) \cap V(I_2)$, then for all $f \in I_1, g \in I_2$, $f(x) = 0$ and $g(x) = 0$, so $f(x) + g(x) = 0$. 
+Since any elements of $I_1 + I_2$ can be written as $f + g$, $x \in V(I_1 + I_2)$.
+This means $V(I_1) \cap V(I_2) \subset V(I_1 + I_2)$, and combining the two directions give the eqaulity.
+
+Since the ground field is algebraically closed, by applying Hilbert's Nullstellensatz
+
+$$
+I(X \cap Y) = I(V(I_1 + I_2)) = \sqrt{I_1 + I_2} = \sqrt{I(X) + I(Y)}
+$$
+
+which is the desired equality.
+
+
+\subsection*{3}
+
+Let us work on the polynomial ring $\bb{C}[x, y] $, and let $X = \{(x,y): x = \pm iy\} = V(x^2 + y^2), Y = \{(x, y) : x = \pm y\} = V(x^2 - y^2)$.
+Note $X \cap Y = {(0,0)}$, and the polynomial $x \in I(X \cap Y)$.
+
+Also note that $x^2 + y^2 = (x+iy)(x-iy)$ and $x^2 - y^2 = (x+y)(x-y)$, so the ideal generated by them are radical, so that $I(X) = (x^2 + y^2)$, and $I(Y) = (x^2 - y^2)$.
+
+Every element of the ideal $I(X) + I(Y)$, if is a multiple of $x$, must be a multiple of $x^2$, so $x$ is not in this ideal.
+However, $x \in I(X \cap Y)$, so $I(X \cap Y) \neq I(X) + I(Y)$.
+
+\section*{Exercise 2}
+Consider the nodal cubic $C: y^2 = x^2(x - 1)$ in $\mathbb{A}^2$.
+
+\begin{enumerate}
+    \item Show that the coordinate ring $k[C]$ is not integrally closed, i.e., $C$ is not normal.
+    \item Consider a subset $\tilde{C} \subset \mathbb{A}^3$ given by $x = z^2 + 1, y = z(z^2 + 1)$. Show that the map $f: \tilde{C} \to \mathbb{A}^2$ given by
+    \[
+        (x, y, z) \mapsto (x, y)
+    \]
+    lands in $C \subset \mathbb{A}^2$. Show that $f: \tilde{C} \to C$ is surjective.
+    \item Show that there is an isomorphism of affine varieties $\tilde{C} \cong \mathbb{A}^1$ and that $k[\tilde{C}]$ is the integral closure of $k[C]$.
+\end{enumerate}
+
+\subsection*{1}
+The coordinate ring $k[C]$ is 
+$$
+k[C] = k[x, y]/(y^2 - x^2(x-1)).
+$$
+
+Consider the element reperesnted by $\alpha = \frac{y}{x}$ in the field of fractions of $k[C]$.
+If $\frac{y}{x} = f(x,y) \in k[C]$, then there exists some $g(x, y) \in k[x,y]$ such that 
+$$
+y = f(x,y)x + g(x,y)(y^2 - x^2(x-1))
+$$
+It is not possible for the monomial $y$ to appear on the RHS, so $\frac{y}{x} \notin k[C]$.
+
+$\alpha$ is integral, as $ \alpha^2 - x + 1= \frac{y^2}{x^2} - x + 1= \frac{x^2(x-1)}{x^2} -x + 1 = 0$. 
+As $k[C]$ does not contain all of the integral elements, is not normal.
+
+\subsection*{2}
+Let $(x,y,z) \in \tilde{C}$.
+Evaluate the map $f: \tilde{C} \to \mathbb{A}^2$ at $(x, y, z) = (z^2 + 1, z(z^2 + 1), z)$ gives $(z^2 + 1, z(z^2 + 1)) = (x, y)$. 
+Note
+\begin{align}
+	y^2 - x^2(x-1) &= (z(z^2 + 1))^2 - (z^2 + 1)^2(z^2)\\
+	&= z^2(z^2 + 1)^2 - (z^2 + 1)^2z^2\\
+	&= 0
+\end{align}
+So $(x, y) \in C$, that is, the image of $f$ is contained in $C$.
+
+To show surjectivity, we need to show that for any point $(x,y) \in C$ there is $z$ such that $f(z^2+1, z(z^2+1), z) = (x,y)$. 
+Break down into the following two cases:
+\textbf{Case 1}:
+If $x \neq 0$, set $z = \frac{y}{x}$, then $z^2 + 1 = \frac{y^2}{x^2} + 1 = x- 1 +1 = x$, and $z(z^2 + 1) = \frac{y}{x}x = y$. So $f(z^2+1, z(z^2+1), z) = (x,y)$.
+\textbf{Case 2}:
+If $x= 0$, necessarily $y = 0$ and $(0, 0) \in C$.
+This means we require $x = z^2 + 1 = 0$,  which is possible iff $\sqrt{-1} \in k$, where $k$ is our ground field. 
+
+In conclusion, $f: \tilde{C} \to C$ is surjective iff $\sqrt{-1} \in k$, where $k$ is the ground field.
+
+
+\subsection*{3}
+To show $\tilde{C} \cong \mathbb{A}^1$, the only requirement is that the coordinate ring of $\tilde{C}$ the same as that of  $\mathbb{A}^1$, which is isomorphic to $k[z]$.
+
+By construction the coordinate ring of $\tilde{C}$ is $\frac{k[x,y,z]}{(x-z^2+1, y-z(z^2+1))}$.
+Define ring homomorphism $\phi: k[x,y,z] \rightarrow k[z]$ thus:
+$$
+	\phi(1) = 1 \quad \phi(x) = z^2 + 1, \quad \phi(y) = z(z^2 + 1), \quad \phi(z) = z
+$$
+This map is clearly surjective, and the kernel is the ideal generated by $x-z^2+1, y-z(z^2+1)$, so by the first isomorphism theorem 
+$$
+\frac{k[x,y,z]}{(x-z^2+1, y-z(z^2+1))} \cong k[t]
+$$
+which means $\tilde{C} \cong \mathbb{A}^1$.
+
+By proposition 3.5.11 $k[t]$ is integrally closed, thus also is $k[\tilde{C}]$.
+
+The surjective map $f: \tilde{C} \rightarrow C$ defined in the previous part of the execise induces an injective map on $f^*: k[C] \rightarrow k[\tilde{C}]$ by proposition 3.4.11 of the lecture note. 
+An injective map between rings induces an injective map between their field of fractions. 
+So if $\alpha$ is integral over $k[C]$, $f^*(\alpha)$ is necessarily integral over $k[\tilde{C}]$. 
+Since $k[\tilde{C}]$ is integrally closed, $f^*(\alpha) \in k[\tilde{C}]$, therefore $\overline{k[C]} \subset k[\tilde{C}]$.
+
+As $k[\tilde{C}] \cong k[t]$, any element of $k$ can be repsented by a polynomial in $t$. 
+If, in addition define map $k[t] \rightarrow k(C)$ by setting $t$ to be $\frac{y}{x}$, which is integral over $k[C]$, this means all polynomials in $t$ are integral over $k[C]$. (As we know integral elements are closed under addition and multiplications). 
+Thus $k[\tilde{C}] \subset \overline{k[C]}$.
+
+Combining the two inclusions, we have $k[\tilde{C}] = \overline{k[C]}$, as desired.
+
+\section*{Exercise 3}
+Let $X \subset \mathbb{A}^n$ be an affine variety and $f \in k[X] \setminus \{0\}$ a polynomial function. Let $X_f = X \setminus \{f = 0\}$. The goal of this exercise is to show that we may identify $X_f$ with an affine variety.
+
+Define a rational map
+\[
+    \varphi: X \dashrightarrow \mathbb{A}^n \times \mathbb{A}^1
+\]
+by
+\[
+    \varphi(P) = (P, 1/f(P)).
+\]
+By construction, $X_f = \operatorname{dom}(\varphi)$ is the domain of definition of $\varphi$. Let $Y = \varphi(X_f)$. We will identify $\mathbb{A}^n \times \mathbb{A}^1 \cong \mathbb{A}^{n+1}$, with coordinates $x_1, \dots, x_n, y$, and consider $Y$ as a subset of $\mathbb{A}^{n+1}$.
+
+\begin{enumerate}
+    \item Show that $Y$ is an algebraic subset of $\mathbb{A}^{n+1}$ and describe the vanishing ideal of $Y$, that is,
+    \[
+        I(Y) \subset k[x_1, \dots, x_n, y].
+    \]
+    \item Show that $k[Y]$ is a domain, i.e., $Y$ is irreducible, and that $X, Y$ are birational. (Hint: Figure out how to write $k[X] \subset k[Y] \subset k(X)$.)
+    \item Find a polynomial map $\psi: Y \to X$ so that $\psi \circ \varphi|_{X_f} = \operatorname{id}_{X_f}$ and $\varphi \circ \psi = \operatorname{id}_Y$.
+\end{enumerate}
+
+\subsection*{1}
+Let $I = (f(x_1, \cdots, x_n)y - 1 = 0)$, I claim that $Y = V(I)$.
+Any $P \in Y$ can be written in the form of $(P, 1/f(P))$, where $P = (x_1, \cdots, x_n)$.
+Evaluating $fy -1$ at $(P, 1/f(P))$ gives $0$, meaning $Y \subset V(I)$. 
+
+For any $(x_1, \cdots, x_n, y) = (P, y) \in V(I)$, $f(x_1, x_2, \cdots, x_n)$ must not be zero, meaning $P \in X_f$. 
+Note $y = 1 /f(P)$, that is $(P, y) = \varphi(P)$, so $V(I) \subset Y$. 
+Combining the two inclusions, we have $Y = V(I)$.
+
+$I$ is a prime ideal (as will be shown in the next sub exercise) so it is radical, so the vanishing ideal of $Y$ is $I(Y) = I$.
+
+\subsection*{2}
+
+To show $Y$ is irreducible is to show $I$ is a prime ideal. 
+As $I$ is a principle ideal generated by $fy - 1$, irreducibility of $fy - 1$ will imply $I$ is prime.
+
+Assuming $fy - 1$ is not irreducible, then it can be written as the product of two non-constant polynomials $fy - 1 = gh$. 
+Since constant $1$ is contained in the product, one of $g$ or $h$ must contains the constant term $1$, and the other $-1$. 
+Now, since a term of multiple of $y$ is contained in $gh$, one of $g$ or $h$ must contain a term of $y$. 
+They must not contain $y$ to some power, nor can both $g,h$ contain $y$, otherwise a term of at least $y^2$ will be contained in $gh$, which is not.
+
+Without loss of any generality let $g$ contains $-1$ and $y$. 
+All other cases can be argued similarly.
+So
+$$
+	fy - 1 = gh = ( p(x_1, \cdots, x_n) + ay - 1) (q(x_1,\cdots, x_n) + 1)
+$$
+But if such is the case $gh$ must contain term of $ay$, which is not possible. 
+So we conclude that no such $g,h$ exists, and $fy - 1$ is irreducible.
+
+By construction $\varphi: X_f \dashrightarrow Y$ is surjective, so $\varphi^*: k[Y] \rightarrow k(X)$ is injective, except at some points where $f = 0$, but this does not hamper the argments, meaning $\varphi$ is dominant.
+
+Define a map $\psi: Y \rightarrow X$ by $\psi(P, y) = P$. 
+By the next part of the exercise, $\varphi \circ \psi = \operatorname{id}_Y$, and $\psi \circ \varphi|_{X_f} = \operatorname{id}_{X_f}$, so $\varphi$ is birational by definition 3.8.11.
+
+\subsection*{3}
+The desired map $\psi$ is the projection map $\psi: (P, y) \mapsto P$.
+Verification is trivial, as $\varphi(\psi(P, 1/f(P))) = \varphi(P) = (P, 1/f(P))$ and for $P \in X_f$, $\psi(\varphi(P)) = \psi(P, 1/f(P)) = P$.
+
+\end{document}

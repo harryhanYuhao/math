@@ -1,0 +1,253 @@
+\documentclass{article}
+
+\usepackage[tmargin=2.5cm,rmargin=3cm,lmargin=3cm,bmargin=3cm]{geometry} 
+% Top margin, right margin, left margin, bottom margin, footnote skip
+\usepackage[utf8]{inputenc}
+\usepackage{biblatex}
+\addbibresource{./references.bib}
+% linktocpage shall be added to snippets.
+\usepackage{hyperref,theoremref}
+\hypersetup{
+	colorlinks, 
+	linkcolor={red!40!black}, 
+	citecolor={blue!50!black},
+	urlcolor={blue!80!black},
+	linktocpage % Link table of content to the page instead of the title
+}
+
+\usepackage{blindtext}
+\usepackage{mathtools}
+\usepackage{breqn}
+\usepackage{titlesec}
+\usepackage{amsthm}
+\usepackage{thmtools}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{titlesec}
+\usepackage{xcolor}
+\usepackage{multicol}
+\usepackage{hyperref}
+\usepackage{import}
+
+
+\newtheorem{theorem}{Theorema}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}{Corollarium}[section]
+\newtheorem{proposition}{Propositio}[theorem]
+\theoremstyle{definition}
+\newtheorem{definition}{Definitio}[section]
+
+\theoremstyle{definition}
+\newtheorem{axiom}{Axioma}[section]
+
+\theoremstyle{remark}
+\newtheorem{remark}{Observatio}[section]
+\newtheorem{hypothesis}{Coniectura}[section]
+\newtheorem{example}{Exampli Gratia}[section]
+
+% Proof Environments
+\newcommand{\thm}[2]{\begin{theorem}[#1]{}#2\end{theorem}}
+
+%TODO mayby proof environment shall have more margin
+% \renewenvironment{proof}{\vspace{0.4cm}\noindent\small{\emph{Demonstratio.}}}{\qed\vspace{0.4cm}}
+% \renewenvironment{proof}{{\bfseries\emph{Demonstratio.}}}{\qed}
+\renewcommand\qedsymbol{Q.E.D.}
+% \renewcommand{\chaptername}{Caput}
+% \renewcommand{\contentsname}{Index Capitum} % Index Capitum 
+\renewcommand{\emph}[1]{\textbf{\textit{#1}}}
+\renewcommand{\ker}[1]{\operatorname{Ker}{#1}}
+
+%\DeclareMathOperator{\ker}{Ker}
+
+% New Commands
+\newcommand{\bb}[1]{\mathbb{#1}} %TODO add this line to nvim snippets
+\newcommand{\orb}[2]{\text{Orb}_{#1}({#2})}
+\newcommand{\stab}[2]{\text{Stab}_{#1}({#2})}
+\newcommand{\im}[1]{\text{im}{\ #1}}
+\newcommand{\se}[2]{\text{send}_{#1}({#2})}
+\newcommand{\X}{\mathfrak{X}}
+\newcommand{\n}{\nabla}
+\newcommand{\G}{\Gamma}
+\newcommand{\End}{\text{End}}
+\newcommand{\C}{C^{\infty}}
+\newcommand{\id}{\text{id}}
+\renewcommand{\d}{d^{\nabla}}
+\newcommand{\R}{R^{\nabla}}
+\renewcommand{\n}{\nabla}
+
+\title{GGR Handin 1}
+\author{Harry Han, S2162783} 
+\date{\today}
+
+\begin{document}
+\maketitle
+
+\section*{Q1}
+
+Let $\nabla, \nabla'$ be Koszul connections on $E$. We want to show that their difference $\kappa = \nabla - \nabla' \in \Omega^1(M; \End(M))$.
+
+\begin{proof}
+	Each $\nabla$ has signature $\mathfrak{X}(M) \times \Gamma(E) \rightarrow  \Gamma(E)$, which is equivalent to saying $\X(M) \rightarrow (\G(E) \rightarrow \Gamma(E))$, i.e., $\X(M) \rightarrow \G(\End(M))$.
+	$\kappa$ as their difference has the same signature; therefore we only need to show that $\kappa$ is $\C(M)$ bilinear, which can be verified by the calculations below. 
+
+	Let $f \in \C(M), X \in \X(M), s \in \G(E)$, note 
+	\begin{align*}
+		\kappa(fX, s) 
+		&= \nabla_{fX} s - \nabla'_{fX} s \\
+		&= f\nabla_{X} s - f\nabla'_{X} s \\ 
+		&= f\kappa(X, s)
+	\end{align*}
+	and 
+	\begin{align*}
+		\kappa(X, fs) 
+		&= \nabla_{X} fs - \nabla'_{X} fs \\
+		&= f\nabla_{X} s + X(f)x - f\nabla'_{X} s - X(f)s\\
+		&= f\nabla_{X} s - f\nabla'_{X} s \\ 
+		&= f\kappa(X, s)
+	\end{align*}
+\end{proof}
+
+\section*{Q2}
+
+Let $\nabla $ be a Koszul connection on $E$, and $\phi \in \G(\End(E))$, define 
+
+\begin{equation}
+	(\nabla_{X}\phi)s =  \nabla_{X}\phi(s) - \phi(\nabla_X s)
+\end{equation}
+where $X \in \X(M), s \in \G(E)$.
+
+We want to show that it is a Koszul connection on $\End(E)$.
+
+\begin{proof}
+	Let us first verify the signature of $\nabla$ defined above is $\X(M) \times \G(\End(E)) \rightarrow \G(\End(E))$.
+	Note we have plugged in $X \in \X(M)$ and $\phi \in \G(\End(E))$ into $\nabla$ to get $\nabla_X \phi$, which we expected to be $\G(\End(E))$. 
+	$\G(\End(E))$ is equivlent to $\G(E) \rightarrow \G(E)$. 
+	So all we need to verify is that 	
+	$(\nabla_{X}\phi)s$ is a section of $E$, which of course it is, as $\nabla_X \phi(s)$ by definition is a section of $E$, and, $\nabla_X s$, being a section of $E$, after applying $\phi$, is still a section of $E$. 
+	So $(\n_X \phi) s$, as their difference, is also a section of $E$.
+
+	Next we verify the two properties of the Koszul connection
+
+	\begin{align*}
+		(\nabla_{fX}\phi) s 
+		&= \nabla_{fX} (\phi(s)) - \phi(\nabla_{fX}s)  && \text{by definition} \\ 
+		&= f\nabla_{X} (\phi(s)) - \phi(f\nabla_{X}s)  && \nabla \text{ is Koszul connection on }E \\ 
+		&= f\nabla_{X} (\phi(s)) - f\phi(\nabla_{X}s)  && \phi \text{ is } \C \text{ linear} \\ 
+		&= f(\nabla_{X}\phi) s 
+	\end{align*}
+
+	\begin{align*}
+		(\nabla_{X}f\phi) s 
+		&= \nabla_{X} (f\phi(s)) - f\phi(\nabla_{X}s)  && \text{by definition} \\ 
+		&= f\nabla_{X}(\phi(s)) + X(f)\phi(s) - f\phi(\nabla_{X}s)  && \nabla \text{ is Koszul connection on }E \\ 
+		&= f(\nabla_{X}\phi) s  + X(f)\phi(s)
+	\end{align*}
+
+	As both identities are satisfied, $\nabla$ defined above is indeed a Koszul connection on $\End(E)$.
+\end{proof}
+
+For the following question, we need the formulae below
+
+For $s \in \Omega^0(M; E)$, that is, $s\in \G(E)$
+\begin{equation}
+	\label{d0}
+	\d(s)(X) = \nabla_X s 
+\end{equation}
+
+For $s \in \Omega^1(M; E)$
+\begin{equation}
+	\label{d1}
+	\d(s)(X, Y) = \nabla_X s(Y) - \nabla_Y s(X) - s([X, Y])
+\end{equation}
+
+For $s \in \Omega^2(M; E)$
+
+\begin{dmath}
+	\label{d2}
+	\d s (X, Y, Z) = \nabla_X s (Y, Z) + \nabla_Y s(Z, X) + \nabla_Z s (X, Y) - s([X, Y], Z) - s([Y, Z], X) - s([Z, X], Y)
+\end{dmath}
+
+\section*{Q3}
+We want to show that when $\id$ is considered as one form $\Omega^1(M, TM)$, 
+
+$$
+d^{\nabla} \id = T^{\nabla}
+$$
+
+\begin{proof}
+	Let us evaluate $d^{\nabla}\id$, which is a two form, with $X, Y \in \X(M)$
+
+	\begin{align*}
+		d^{\nabla} \id (X, Y) 
+		&= \nabla_X(\id(Y)) - \nabla_Y(\id(X)) - \id([X, Y])  && \text{ applying \eqref{d1}}\\ 
+		&= \nabla_X(Y) - \nabla_Y(X) - [X, Y]  && \id \text{ is identity  }\\ 
+		&= T^{\nabla}(X, Y) && \text{ by definition}\\ 
+	\end{align*}
+\end{proof}
+
+\section*{Q4}
+
+We want to show 
+
+\begin{equation}
+	(\d(\d s)(X, Y)) = \R(X, Y)s
+\end{equation}
+
+where $s \in \Omega^0(M; E)$ and $X, Y \in X(M)$.
+
+\begin{proof}
+	We just need to apply the definition and compute
+
+	\begin{align*}
+		(\d(\d s)(X, Y)) 
+		&= \nabla_X(\d(s)(Y)) - \nabla_Y(\d(s)X) - \d(s)([X, Y]) && \text{ applying \eqref{d1}} \\ 
+		&= \nabla_X \nabla_Y s - \nabla_Y \nabla_X s - \nabla_{[X, Y]}s  && \text{ applying \eqref{d0}} \\ 
+		&= \R(X, Y)s && \text{ By definition }
+	\end{align*}
+\end{proof}
+
+\section*{Q5}
+
+We want to verify the Bianchi Identity 
+
+\begin{equation}
+	\d\R = 0
+\end{equation}
+
+where $\R$ is the curvature, and $\d: \Omega^2(M; \End(E)) \rightarrow \Omega^3(M; \End(E))$
+
+\begin{proof}
+	This involves a bit of calculations. 
+	Let us evaluate $\d \R(X, Y, Z)s$ where $X, Y, Z \in \X(M)$ and $s \in \G(E)$.
+
+
+\begin{dmath}
+	\d \R(X, Y, Z)s 
+	=
+	\n_X \R(Y, Z) s + \n_Y \R(Z, X) s + \n_Z \R(X, Y) s \nonumber 
+    -\R([X, Y], Z) s - \R([Y, Z], X) s - \R([Z, X], Y) s 
+	=
+	\n_X(R(Y,Z)s) - R(Y, Z)\n_Xs + \n_Y(R(Z,X)s) - R(Z, X)\n_Ys + \n_Z(R(X,Y)s) - R(X, Y)\n_Zs   \nonumber 
+    -\R([X, Y], Z) s - \R([Y, Z], X) s - \R([Z, X], Y) s 
+	=
+	\n_X\n_Y\n_Z s - \n_X\n_Z\n_Y s - \n_X \n_{[Y, Z]}s - \n_Y \n_Z \n_X s + \n_Z \n_Y \n_X s + \n_{[Y, Z]}\n_X s 
+	+ \n_Y\n_Z\n_X s - \n_Y\n_X\n_Z s - \n_Y \n_{[Z, X]}s - \n_Z \n_X \n_Y s + \n_X \n_Z \n_Y s + \n_{[Z, X]}\n_Y s
+	+ \n_Z\n_X\n_Y s - \n_Z\n_Y\n_X s - \n_Z \n_{[X, Y]}s - \n_X \n_Y \n_Z s + \n_Y \n_X \n_Z s + \n_{[X, Y]}\n_Z s 
+	- \n_{[X, Y]}\n_Z s + \n_Z\n_{[X, Y]}s + \n_{[[X, Y], Z]}s
+	- \n_{[Y, Z]}\n_X s + \n_X\n_{[Y, Z]}s + \n_{[[Y, Z], X]}s
+	- \n_{[Z, X]}\n_Y s + \n_Y\n_{[Z, X]}s + \n_{[[Z, X], Y]}s
+\end{dmath}
+
+All terms shall cancel, except 
+
+\begin{align}
+\n_{[[X, Y], Z]}s + \n_{[[Y, Z], X]}s + \n_{[[Z, X], Y]}s
+&= \n_{[[X, Y], Z] + [[Y, Z], X] + [[Z, X], Y]} s &&\\ 
+&= \n_{0} s  && \text{ Jacobi identity} \\
+&= 0
+\end{align} 
+
+So we conclude $\d \R = 0$ as desired.
+\end{proof}
+\end{document}

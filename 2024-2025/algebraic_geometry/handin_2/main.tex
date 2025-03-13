@@ -1,0 +1,434 @@
+\documentclass{article}
+\usepackage[tmargin=2.5cm,rmargin=3cm,lmargin=3cm,bmargin=3cm]{geometry} 
+% Top margin, right margin, left margin, bottom margin, footnote skip
+\usepackage[utf8]{inputenc}
+\usepackage{biblatex}
+\addbibresource{./references.bib}
+% linktocpage shall be added to snippets.
+\usepackage{hyperref,theoremref}
+\hypersetup{
+	colorlinks, 
+	linkcolor={red!40!black}, 
+	citecolor={blue!50!black},
+	urlcolor={blue!80!black},
+	linktocpage % Link table of content to the page instead of the title
+}
+
+\usepackage{blindtext}
+\usepackage{titlesec}
+\usepackage{amsthm}
+\usepackage{thmtools}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{titlesec}
+\usepackage{xcolor}
+\usepackage{multicol}
+\usepackage{hyperref}
+\usepackage{import}
+
+
+\newtheorem{theorem}{Theorema}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}{Corollarium}[section]
+\newtheorem{proposition}{Propositio}[theorem]
+\theoremstyle{definition}
+\newtheorem{definition}{Definitio}[section]
+
+\theoremstyle{definition}
+\newtheorem{axiom}{Axioma}[section]
+
+\theoremstyle{remark}
+\newtheorem{remark}{Observatio}[section]
+\newtheorem{hypothesis}{Coniectura}[section]
+\newtheorem{example}{Exampli Gratia}[section]
+
+% Proof Environments
+\newcommand{\thm}[2]{\begin{theorem}[#1]{}#2\end{theorem}}
+
+%TODO mayby proof environment shall have more margin
+% \renewenvironment{proof}{\vspace{0.4cm}\noindent\small{\emph{Demonstratio.}}}{\qed\vspace{0.4cm}}
+% \renewenvironment{proof}{{\bfseries\emph{Demonstratio.}}}{\qed}
+\renewcommand\qedsymbol{Q.E.D.}
+% \renewcommand{\chaptername}{Caput}
+% \renewcommand{\contentsname}{Index Capitum} % Index Capitum 
+\renewcommand{\emph}[1]{\textbf{\textit{#1}}}
+\renewcommand{\ker}[1]{\operatorname{Ker}{#1}}
+
+%\DeclareMathOperator{\ker}{Ker}
+
+% New Commands
+\newcommand{\orb}[2]{\text{Orb}_{#1}({#2})}
+\newcommand{\stab}[2]{\text{Stab}_{#1}({#2})}
+\newcommand{\im}[1]{\text{im}{\ #1}}
+\newcommand{\se}[2]{\text{send}_{#1}({#2})}
+\newcommand{\bb}[1]{\mathbb{#1}} %TODO add this line to nvim snippets
+\newcommand{\pf}{\mathbb{P}^3_{F_2}} %TODO add this line to nvim snippets
+
+\title{Assignment 2, Algebraic Geometry}
+\author{Harry Han; s2162783} 
+\date{\today}
+
+
+\begin{document}
+\maketitle
+
+\section*{Exercise 1}
+Consider the irreducible cubic $C: y^2z + yz^2 = x^3$ over the field $\mathbb{F}_2$ of two elements (i.e. the field of integers modulo 2).
+
+\begin{enumerate}
+    \item Find all points on $C$.
+    \item Show that $C$ is smooth.
+    \item Let $O = [0 : 1 : 0] \in C$. Compute the group law on $C$ with $O$ as the identity element, i.e., compute the sums of all possible points on $C$.
+\end{enumerate}
+
+In answering question 1, let $f = y^2z + z^2 y -x ^3$ so that $C = V(f)$.
+
+\subsection*{Answer 1}
+\begin{proof}
+	There are only 8 points in $\pf$, namely 
+
+	\begin{enumerate}
+		\item $p_1 = [0:0:1]$, $f(p_1) = 0$
+		\item $p_2 = [0:1:0]$, $f(p_2) = 0$
+		\item $p_3 = [0:1:1]$, $f(p_3) = 0$
+		\item $p_4 = [1:0:0]$, $f(p_4) = 1$
+		\item $p_5 = [1:0:1]$, $f(p_5) = 1$
+		\item $p_6 = [1:1:0]$, $f(p_6) = 1$
+		\item $p_7 = [1:1:1]$, $f(p_7) = 1$
+	\end{enumerate}
+
+	So $C = \{p_1, p_2, p_3 \}$.
+\end{proof}
+
+\subsection*{Answer 2}
+\begin{proof}
+	Note 
+	$$\frac{\partial f}{\partial x} = -3x^2 = x^2, \frac{\partial f}{\partial y} = z^2+ 2yz = z^2, 
+	\frac{\partial f}{\partial z} = y^2 + 2yz = y^2$$
+	Computations shows $\nabla f(p_1) = (0, 1, 0)$, $\nabla f(p_2) = (0, 0, 1)$ and $\nabla f(p_3) = (0, 1, 1)$. 
+	Since $\nabla f$ never vanishes on $V(f)$, by definition $V(f)$ is smooth.
+\end{proof}
+
+\subsection*{Answer 3}
+
+The tangent line at the point $[0:1:0]$ is $z=0$; label it as $L$. 
+The intersection multiplicity of $L$ and $C$ at $[0:1:0]$, after applying the affine transformation $y \mapsto z$, is
+
+$$
+\dim \frac{k[[x, y]]}{(y^2z + z^2y -x^3, y)} = \dim \frac{[[x,y]]/(y)}{(yz^2 + zy^2 - x^3)/(y)}= \dim \frac{k[x]}{(x^3)} = 3
+$$
+
+So $[0:1:0]$ is a inflection point, and by theorem 2.3.7 for any three colinear points $A, B, C$, $A + B+ C = 0$.
+Notice that the three points of our concern, $p_1, p_2, p_3$ lie on the line $x = 0$, so we can summarise the group laws as follow: 
+
+\begin{enumerate}
+	\item $p_2$ is identity,
+	\item $p_1 + p_3 + p_2 = p_2 \implies p_1 + p_3 = p_2$ (As $p_2$ is identity)
+\end{enumerate}
+
+Since the group is only of $3$ elements, $3p_1 = 0$.
+In particular, as $2p_1 = p_3, 3p_1 = 0$, this group is cyclic of order 3.
+
+Indeed, we can deduce this result without any explicit calculation as there is only one group with $3$ elements, namely $\bb{Z}_3$.
+
+\newpage
+
+\section*{Exercise 2}
+Consider the cuspidal cubic $C: y^2z = x^3$ over $\mathbb{C}$. Let $C_{sm} \subset C$ be the set of smooth points.
+
+\begin{enumerate}
+    \item Show that the map $C \to C$ given by $t \mapsto [t : 1 : t^3]$ is injective and its image is given by $C_{sm}$.
+    \item Given two smooth points $P,Q \in C_{sm}$ define the line $L(P,Q)$ from $P$ to $Q$ as follows:
+    \begin{itemize}
+        \item If $P = Q$, then $L(P,Q)$ is the tangent line.
+        \item If $P \neq Q$, then $L(P,Q)$ is the unique line in $\mathbb{P}^2$ containing $P$ and $Q$.
+    \end{itemize}
+    Show that for any $P,Q \in C_{sm}$, the line $L(P,Q)$ intersects $C$ only in smooth points.
+    \item Let $O = [0 : 1 : 0] \in C_{sm}$. Define the group law on $C_{sm}$ as follows. Consider $P,Q \in C_{sm}$. Denote the intersection points of $L(P,Q)$ with $C_{sm}$ by $P,Q,R$ (counted with multiplicity). Denote the intersection points of $L(R,O)$ with $C_{sm}$ by $R,O, P + Q$ (counted with multiplicity). Show that
+    \[
+    [t : 1 : t^3] + [s : 1 : s^3] = [t + s : 1 : (t + s)^3]
+    \]
+    i.e., $C \to C_{sm}$ is an isomorphism of groups. You do not need to prove that $+$ is a group operation (that is, you can assume that a version of Theorem 2.3.5 holds for $C_{sm}$).
+    
+    \textit{Hint: The proof of Proposition 2.3.6 still works in our situation (you do not need to verify this).}
+\end{enumerate}
+
+In all the answers below, denote $f = y^2z - x^3$ so that $C = V(f)$.
+
+\subsection*{Answser 1}
+
+\begin{proof}
+	The map $\mathfrak{f} : \bb{C} \rightarrow C$ given by $t \mapsto [t:1:t^3]$ is injective.
+	For $t \neq s$, assuming for the sake of contradiction that $[t:1:t^3] = [s:1:s^3]$, there would exist $\lambda \in \bb{C}$ such that $t \lambda = s$ and $1 \lambda = \lambda$. 
+	The latter says $\lambda =1$, and the former says $t = \lambda t = s$ which is a contradiction. 
+
+	Define the function $f = y^2 z - x^3$, and $V(f) = C$. 
+	Gradiant of $f$ is $\nabla f = (-3x^2, 2yz, y^2)$, which equal 0 iff $x = y = 0$. 
+	There is only one point in $C$ whose $x,y$ coordinates are zero, namely $[0:0:1]$, so $C_{sm} = C \smallsetminus \{[0:0:1]\}$
+
+	For a point $p \in C$, if its $y$ coordinate is zero, its $x$ coordinate must also be zero, and $p$ must be the singular point $[0:0:1]$. 
+	Thus we may assume any points $p \in C_{sm}$ has non-zero $y$ coordinate and can be written in the form of $[t: 1: t']$. 
+	Plugging into $f$ we find it must satify the equation $t' = t ^3$, that is, any points in $C_{sm}$ can be written in the form of $[t: 1: t^3]$.
+	This means the image of the map $\mathfrak{f}$ defined above is precisely $C_{sm}$.
+\end{proof}
+
+\subsection*{Answer 2}
+
+Let us first consider the case for tangent line.
+
+Any points $p \in C_{sm}$ can be written in the form of $[t: 1 : t^3]$. 
+The tangent line at $p$ is given by the equation $g = -3t^2x + 2t^3 y + z = 0$. 
+Note $g([0:0:1])  = 1 \neq 0$, so the tangent line must not pass through the singular point $[0:0:1]$.
+
+For any two points in $C_{sm}$ written in the form of $[t: 1: t^3]$ and $[s: 1: s^3]$ where $t \neq s$, the line passing through them is given by the equation 
+
+$$f = \det \begin{pmatrix}
+	x & y & z \\
+	t & 1 & t^3 \\
+	s & 1 & s^3
+\end{pmatrix} = 0
+$$
+
+We find $f([0:0:1]) = t -s \neq 0$, so it must not pass through the singular point $[0:0:1]$.
+
+\subsection*{Answer 3}
+
+The gradient at $O$ of the function $f$ is $\nabla f ([0: 1: 0]) = (0, 0, 1)$, so the tangent line at $O$ is the line $l: z = 0$.
+Let us compute the multiplicity of the intersection of $l$ and $C$ at $O$ under the affine transformation $y \mapsto z$.
+
+$$
+\dim \frac{k[[x, y]]}{(z^2y - x^3, y)} = \dim \frac{k[[x]]}{(x^3)} = 3
+$$
+  
+So $O$ is a point of inflection, and by proposition 2.3.6 for any points $A, B, C$ such that $A + B + C = 0$ iff they are colinear.
+
+As shown earlier any points $p_t$ in $C_{sm}$ can written in the form of $[t: 1 : t^3]$. 
+The line passing through $p_t$ and $O$ is defined by the equation
+
+$$
+\det \begin{pmatrix}
+	x & y & z \\
+	0 & 1 & 0\\
+	t & 1 & t^3 
+\end{pmatrix} = 0 \iff xt^3 - zt = 0
+$$
+
+This equation has a third solution $[-t: 1 : -t^3]$ besides $[0: 1: 0]$ and $[t: 1: t^3]$ so by proposition 2.3.6
+
+$$
+[t: 1: t^3] + O + [-t: 1: -t^3] = O
+$$
+
+So we conclude the following group law:
+
+\begin{equation}\label{eq:inverse_q2}
+	-[t: 1: t^3] = [-t: 1: -t^3].
+\end{equation}
+
+For any two distinct points $p_t, p_s \in C_{sm}$, the line passing through them is given by the equation
+
+$$
+\det \begin{pmatrix}
+	x & y & z \\
+	t & 1 & t^3 \\
+	s & 1 & s^3
+\end{pmatrix} = 0 
+$$
+
+Plugging in $(x, y, z) = (-t - s, 1, -(t+s)^3)$ we get 
+
+\begin{align*}
+	&\det \begin{pmatrix}
+		-(t + s) & 1 & -(t + s)^3 \\
+		t & 1 & t^3 \\
+		s & 1 & s^3
+	\end{pmatrix} \\
+	&= -(t + s)(s^3 - t^3) - (ts^3 - t^3s) - (t - s)(t + s)^3 \\
+	&= -(t + s)(s-t)(s^2 +st +t^2) - (ts)(s + t)(s-t) - (t - s)(t + s)^3 \\
+	&= (t-s)((t + s)(s^2 +st +t^2) + (ts)(s + t)) - (t - s)(t + s)^3 \\
+	&= (t - s)(t^3 + 3st^2 + 3ts^2 + s^3) - (t - s)(t + s)^3 \\ 
+	&= (t-s)(t+s)^3 - (t-s)(t+s)^3 = 0
+\end{align*}
+
+So $[t: 1: t^3], [s: 1: s^3], [-(t+s): 1: -(t+s)^3]$ are colinear
+
+\begin{align*}
+	[t: 1: t^3] + [s: 1: s^3] 
+	&= -  [-(t+s): 1: -(t+s)^3] &&\text{by proposition 2.3.6}\\
+	&= [t + s: 1: (t+s)^3]	&&\text{by equation \ref{eq:inverse_q2}}
+\end{align*}
+
+as desired.
+
+Last but not least we need to verify the addition of $p_t = [t: 1 : t^3] $ by itself.
+The tangent line at $p_t$ is given by the equation $ l : -3t^2x + 2t^3 y + z = 0$.
+Plugging in the point $[-2t: 1: -(2t)^3]$
+
+\begin{align*}
+	l([-t: 1: -t^3]) &= 6t^3 + 2 t^3 + 8 (-t^3) = 0 
+\end{align*}
+
+It means 
+
+\begin{align*}
+	[t: 1: t^3] + [t: 1: t^3] 
+	&= -  [-2t: 1: (-2t)^3] &&\text{by proposition 2.3.6}\\
+	&= [2t: 1: (2t)^3]	&&\text{by equation \ref{eq:inverse_q2}}
+\end{align*}
+
+as desired.
+
+\newpage
+
+\section*{Exercise 3}
+Consider the cubic $C: x^3 + y^3 + z^3 - 5xyz = 0$ over $\mathbb{C}$.
+
+\begin{enumerate}
+    \item Show that it is smooth.
+    \item Consider the three points $O = [0 : 1 : -1]$, $P = [1 : 2 : 1]$, and $Q = [-1 : 0 : 1]$ on $C$. With the group structure on $C$ where $O$ is the identity element, compute $-P$, $-Q$, and $P + Q$.
+    \item Find the orders of the points $P$ and $Q$, i.e., the smallest natural numbers $n_P, n_Q$ such that $n_P P = O$ and $n_Q Q = O$.
+\end{enumerate}
+
+In the answers below define the function $f = x^3 + y^3 + z^3 - 5xyz$ so that $C = V(f)$.
+
+\subsection*{Answer 1}
+
+The gradient of $f$ is 
+
+$$
+\nabla f = (3x^2 - 5yz, 3y^2 - 5xz, 3z^2 - 5xy)
+$$
+
+Setting all components to zero, 
+
+\begin{align}
+	3x^2 - 5yz &= 0 \label{x2}\\ 
+	3y^2 - 5xz &= 0 \label{y2}\\
+	3z^2 - 5xy &= 0 \label{z2}
+\end{align}
+
+We can manipulate the terms 
+
+\begin{align}
+	27y^2x - 45x^2z &= 0 && \text{multiplying \eqref{x2} by }9x \\
+	27y^2x - 75yz^2 &= 0 && \text{subsituting } 3x^2 = 5yz \text{ which is }\eqref{y2} \\
+	27y^2x - 125xy^2 &= 0 && \text{subsituting } 3z^2 = 5xy \text { which is } \eqref{z2} \label{y2y}\\
+	xy^2 &= 0 && \text{simplying from \eqref{y2y}} \label{xy}
+\end{align}
+
+Equation $\eqref{xy}$ says either $x = 0$ or $y = 0$.
+If $x = 0$, however, $\eqref{y2}$ will become $y^2 = 0 \implies y = 0$, and \eqref{z2} will become $z^2 = 0 \implies z = 0$, and the only solution for the gradient to be zero is $[0:0:0] \notin \mathbb{P}^2_{\bb{C}}$.
+If $y = 0$, $\eqref{x2}$ will become $x^2 = 0 \implies x = 0$, and \eqref{z2} will become $z^2 = 0 \implies z = 0$, and the only solution for the gradient to be zero is $[0:0:0]$, which is also not part of $\mathbb{P}^2_{\bb{C}}$.
+This means $\nabla f$ never vanishes on the curce $C$, so $C$ is smooth.
+
+\subsection*{Answer 2}
+
+Let us calculate the Hessian of $f$
+
+\begin{align}
+	Hess(f) 
+	&= \begin{pmatrix}
+		\frac{\partial ^2 f}{\partial x^2} & \frac{\partial ^2 f}{\partial x \partial y} & \frac{\partial ^2 f}{\partial x \partial z} \\ 
+		\frac{\partial ^2 f}{\partial y \partial x} & \frac{\partial ^2 f}{\partial y^2} & \frac{\partial ^2 f}{\partial y \partial z} \\ 
+		\frac{\partial ^2 f}{\partial z \partial x} & \frac{\partial ^2 f}{\partial z \partial y} & \frac{\partial ^2 f}{\partial z^2}
+	\end{pmatrix}\\
+	&=
+	\begin{pmatrix}
+		6x & -5z & -5y \\
+		-5z & 6y & -5x \\
+		-5y & -5x & 6z
+	\end{pmatrix} \\
+	& = 
+	6x(36yz - 25x^2) + 5z(-30z^2 - 25xy) - 5y(25xz + 30 y^2) \\
+	& = 216xyz - 150x^3 - 150z^3 - 125xyz -125 xyz -150y^3 \\
+	& = -150(x^3 + y^3 + z^3) -34 xyz
+\end{align}
+
+$Hess(f)$ is clearly not a multiple of $f$.
+Moreover, since $V(f)$ is smooth and $Hess(f)(O) = f(O) = 0$, $O$ is a point of inflection by theorem 2.1.3,
+we can use proposition 2.3.6 to compute the group law on $C$ with $O$ as the identity element.
+
+\textbf{Find -P}
+
+$-P, P, O$ lies on the same point, so we need to solve the following system of equation 
+
+\begin{equation}
+	\begin{cases}
+		x^3 + y^3 + z^3 - 5xyz = 0 \\
+		\det \begin{pmatrix}
+			x & y & z \\
+			1 & 2 & 1 \\
+			0 & 1 & -1
+		\end{pmatrix} = 0
+	\end{cases}
+\end{equation}
+
+For the sake of computation we may assume $x = 1$, and the equation beomes to 
+
+\begin{equation}
+	\begin{cases}
+		1 + y^3 + z^3 - 5yz = 0 \\
+		\det \begin{pmatrix}
+			1 & y & z \\
+			1 & 2 & 1 \\
+			0 & 1 & -1
+		\end{pmatrix} = 0
+		\iff y + z = 3
+	\end{cases}
+\end{equation}
+
+Notice our function is completely symetric, that is, if we permute $x,y,z$ by any element of $S_3$, $f$ stays the same. 
+This means $f([x_1: x_2: x_3]) = 0 \iff f([x_{\sigma(1)}:x_{\sigma(2)}:x_{\sigma(3)}]) = 0$  where $\sigma \in S_3$.
+In the second term of the above equation we want to find some element $p = [x: y :z]$ such that $x =1, y + z = 3$. 
+Notice we can permute $y$ and $z$ of the point $P = [1: 2: 1]$ to get $[1: 1: 2]$ satisfying $y + z = 3$.
+Plugging into the equation we confirm that $[1: 1: 2]$ is a point in $C$ and $-P = [1: 1: 2]$.
+
+\textbf{Find -Q}
+
+$-Q, Q, O$ lies on the same point, so we need to solve the following system of Equation  
+
+\begin{equation}
+	\begin{cases}
+		x^3 + y^3 + z^3 - 5xyz = 0 \\
+		\det \begin{pmatrix}
+			x & y & z \\
+			-1 & 0 & 1 \\
+			0 & 1 & -1
+		\end{pmatrix} = 0
+	\end{cases}
+\end{equation}
+
+By a similar trick to find $-P$ we found $-Q = [-1: 1: 0]$ satisfying both equations.
+
+\textbf{Find $P + Q$}
+
+Notice that $(P + Q) -P - Q = 0$, so $P + Q$ is the point colinear with $-P$ and $-Q$, thus $P + Q$ must lie on 
+
+\begin{equation}
+	\det \begin{pmatrix}
+		x & y & z \\
+		1 & 1 & 2 \\
+		-1 & 1 & 0
+	\end{pmatrix} = 0 \iff -x - y + z = 0
+\end{equation}
+
+Notice the gradient at $-P$ is $\nabla f(P) = (-7, -7, 7)$.
+So the tangent line at $P$ is $-7x - 7y + 7z$, which is the same line passing through $P$ and $Q$.
+
+As tangent line has multiplicity more than 1, and $C$ is a cubic of degree three, we conclude there are no more intersections between $C$ and $x - y + z =0$.
+Thus $P + Q = -P = [1: 1: 2]$.
+
+\subsection*{Answer 3}
+
+Notice that $Hess(f)(Q) = 0$, so $Q$ is a point of inflection and a torsion point, that is $Q + Q + Q = 0$. 
+This means the order of $Q$ is a divisor of 3. 
+As 3 is prime the order of Q is either $3$ or $1$, but $Q$ is not the identity element, so the order of $Q$ is 3.
+
+As shown in the previous exercise $P + Q = -P \implies 2P = -Q \implies 6 P = -3 Q = 0$, so order of $P$ is a divisor of $6$, either 1, 2 , 3, or 6.
+The order can not be one as $P$ is not the identity. 
+It can neither be 2, as $P + P = -Q$ and $-Q$ is not the identity.
+If the order is three, then $0 = P +  P + P = P - Q \implies P = Q $, which is also wrong. 
+So the order of $P$ must be 6.
+
+\end{document}

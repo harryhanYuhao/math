@@ -1,0 +1,553 @@
+\documentclass{article}
+
+% \usepackage[tmargin=2.5cm,rmargin=3cm,lmargin=3cm,bmargin=3cm]{geometry} 
+% Top margin, right margin, left margin, bottom margin, footnote skip
+\usepackage[utf8]{inputenc}
+\usepackage{biblatex}
+\addbibresource{./references.bib}
+% linktocpage shall be added to snippets.
+\usepackage{hyperref,theoremref}
+\hypersetup{
+	colorlinks, 
+	linkcolor={red!40!black}, 
+	citecolor={blue!50!black},
+	urlcolor={blue!80!black},
+	linktocpage % Link table of content to the page instead of the title
+}
+
+\usepackage{blindtext}
+\usepackage{titlesec}
+\usepackage{amsthm}
+\usepackage{thmtools}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{titlesec}
+\usepackage{xcolor}
+\usepackage{multicol}
+\usepackage{hyperref}
+\usepackage{import}
+\usepackage{breqn}
+
+
+\newtheorem{theorem}{Theorema}[section]
+\newtheorem{lemma}{Lemma}
+\newtheorem{corollary}{Corollarium}[section]
+\newtheorem{proposition}{Propositio}[theorem]
+\theoremstyle{definition}
+\newtheorem{definition}{Definitio}[section]
+
+\theoremstyle{definition}
+\newtheorem{axiom}{Axioma}[section]
+
+\theoremstyle{remark}
+\newtheorem{remark}{Observatio}[section]
+\newtheorem{hypothesis}{Coniectura}[section]
+\newtheorem{example}{Exampli Gratia}[section]
+
+% Proof Environments
+\newcommand{\thm}[2]{\begin{theorem}[#1]{}#2\end{theorem}}
+
+%TODO mayby proof environment shall have more margin
+\renewenvironment{proof}{\vspace{0.4cm}\noindent\small{\emph{Demonstratio.}}}{\qed\vspace{0.4cm}}
+% \renewenvironment{proof}{{\bfseries\emph{Demonstratio.}}}{\qed}
+\renewcommand\qedsymbol{Q.E.D.}
+% \renewcommand{\chaptername}{Caput}
+% \renewcommand{\contentsname}{Index Capitum} % Index Capitum 
+\renewcommand{\emph}[1]{\textbf{\textit{#1}}}
+\renewcommand{\ker}[1]{\operatorname{Ker}{#1}}
+\renewcommand{\t}{\vartheta}
+\newcommand{\x}{\chi}
+\newcommand{\D}{\mathbb{D}_R(0)}
+
+%\DeclareMathOperator{\ker}{Ker}
+
+% New Commands
+\newcommand{\bb}[1]{\mathbb{#1}} %TODO add this line to nvim snippets
+\newcommand{\orb}[2]{\text{Orb}_{#1}({#2})}
+\newcommand{\stab}[2]{\text{Stab}_{#1}({#2})}
+\newcommand{\im}[1]{\text{im}{\ #1}}
+\newcommand{\se}[2]{\text{send}_{#1}({#2})}
+
+\title{Analytical Number Theory Handin 3}
+\author{Harry Han, s2162783} 
+\date{\today}
+
+\begin{document}
+\maketitle
+
+
+Throughout this assignment, the modulus $q$ will always denote an integer $\geq 2$.
+
+\section*{Problem 1}
+Let $\chi$ be a Dirichlet character mod $q$ and consider its theta function
+\begin{equation*}
+    \vartheta(t;\chi) := \sum_{n \in \mathbb{Z}} \chi(n) e^{-\pi n^2 t/q},
+\end{equation*}
+defined for $t > 0$. Note that $\chi(-1)^2 = \chi(1) = 1$ and so $\chi(-1) \in \{-1,1\}$. We say $\chi$ is \emph{even} if $\chi(-1) = 1$. We say $\chi$ is \emph{odd} if $\chi(-1) = -1$.
+
+\begin{enumerate}
+    \item[(a)] Show that if $\chi$ is odd, then $\vartheta(t;\chi) \equiv 0$ and if $\chi$ is even, then
+    \begin{equation*}
+        \vartheta(t;\chi) = 2 \sum_{n=1}^{\infty} \chi(n)e^{-\pi n^2 t/q}.
+    \end{equation*}
+    \item[(b)] If $\chi$ is any Dirichlet character mod $q$, show that
+		\begin{equation}\label{theta_bound_large_t}
+        |\vartheta(t;\chi)| \leq 4 e^{-\pi t/q} \quad \text{if } t > 0.23 q, \quad 
+    \end{equation}
+	and
+	\begin{equation}
+		\quad |\vartheta(t;\chi)| \leq 4 \frac{\sqrt{q}}{t} \quad \text{if } 0 < t \leq 0.25 q.
+	\end{equation}
+    \textbf{Hint:} You may find the elementary inequality $e^x - 1 \geq x$ for all $x > 0$ useful.
+\end{enumerate}
+
+\subsection*{(a)}
+
+At first we shall confirm $\vartheta$ is defined, i.e., prove that the seires
+\begin{equation}
+	\sum_{n \in \mathbb{Z}} \chi(n) e^{-\pi n^2 t/q} \label{q1convergent}
+\end{equation}
+converges for $t > 0$, which can be achieved by proving it is absolutely convergent.
+\begin{align}
+	\sum_{n \in \mathbb{Z}} \left|\chi(n) e^{-\pi n^2 t/q}\right| 
+	&\leq \sum_{n \in \mathbb{Z}} \left|e^{-\pi n^2 t/q}\right| \label{q1a1}\\
+	&= \underbrace{\left|\chi(0)e^{-\pi 0^2 t/q}\right|}_{0} +
+	2 \sum_{n = 1}^{\infty} \left|e^{-\pi n^2 t/q}\right| \\ 
+	&= 2 \sum_{n = 1}^{\infty} \left|e^{-\pi n^2 t/q}\right| \label{q1a2} \\ 
+	&= 2 \sum_{n = 1}^{\infty} \left|e^{-\pi n t/q}\right| < \infty \label{q1a3}
+\end{align}
+where in $\eqref{q1a1}$ the fact $|\chi(n)| \leq 1$ is used; in \eqref{q1a2} we used the fact that $\chi(0) = 0$; \eqref{q1a3} is convergent as it is a geometric series with ratio $e^{-\pi t/q} < 1$, provided $t > 0$.
+As the series \eqref{q1convergent} is absolutely convergent, it is convergent, and thus $\vartheta(t;\chi)$ is well-defined.
+
+When $\chi$ is odd, $\chi(-n) = \chi(-1) \chi(n) = - \chi(n)$ for any $n \in \bb{Z}$. 
+Thus equation \eqref{q1convergent}, which is absolultely convergent and thus the order of summation can be rearragned, becomes
+\begin{align}
+	\sum_{n \in \mathbb{Z}} \chi(n) e^{-\pi n^2 t/q} 
+	&= \lim_{N \rightarrow  \infty}\sum_{|n| \leq N } \chi(n) e^{-\pi n^2 t/q} 
+	\\
+	&= \underbrace{\left|\chi(0)e^{-\pi 0^2 t/q}\right|}_{0} + \lim_{N \rightarrow  \infty} \left(
+	\sum_{n = 1}^{N} \chi(n) e^{-\pi n^2 t/q} + \sum_{n = -N}^{-1} \chi(n) e^{-\pi n^2 t/q}  \right) 
+	\\
+	&= \lim_{N \rightarrow  \infty} \sum_{n = 1}^{N} \left(\chi(n) e^{-\pi n^2 t/q} +  \chi(-n) e^{-\pi (-n)^2 t/q}\right) 
+	\\
+	&= \lim_{N \rightarrow  \infty} \sum_{n = 1}^{N} \left(\chi(n) e^{-\pi n^2 t/q} -  \chi(n) e^{-\pi n^2 t/q}\right) = 0
+\end{align}
+That is, $\vartheta(t;\chi) \equiv 0$ when $\chi$ is odd.
+
+When $\chi$ is even, $\chi(-n) = \chi(-1) \chi(n) = \chi(n)$ for any $n \in \bb{Z}$.
+With the exact same arguments as above
+\begin{align}
+	\sum_{n \in \mathbb{Z}} \chi(n) e^{-\pi n^2 t/q} 
+	&= \lim_{N \rightarrow  \infty}\sum_{|n| \leq N } \chi(n) e^{-\pi n^2 t/q} 
+	\\
+	&= \underbrace{\left|\chi(0)e^{-\pi 0^2 t/q}\right|}_{0} + \lim_{N \rightarrow  \infty} \left(
+	\sum_{n = 1}^{N} \chi(n) e^{-\pi n^2 t/q} + \sum_{n = -N}^{-1} \chi(n) e^{-\pi n^2 t/q}  \right) 
+	\\
+	&= \lim_{N \rightarrow  \infty} \sum_{n = 1}^{N} \left(\chi(n) e^{-\pi n^2 t/q} +  \chi(-n) e^{-\pi (-n)^2 t/q}\right) 
+	\\
+	&= \lim_{N \rightarrow  \infty} \sum_{n = 1}^{N} \left(\chi(n) e^{-\pi n^2 t/q} +  \chi(n) e^{-\pi n^2 t/q}\right) 
+	\\ 
+	&= 2 \sum_{n = 1}^{\infty} \chi(n) e^{-\pi n^2 t/q} 
+\end{align}
+which gives the desired result.
+
+\subsection*{(b)}
+\subsubsection*{part 1}
+We have proved that, in part (a),
+\begin{align}
+	|\t(t; \x)| = \sum_{n \in \mathbb{Z}} \left|\chi(n) e^{-\pi n^2 t/q}\right| 
+	\leq 2 \sum_{n = 1}^{\infty} \left|e^{-\pi n t/q}\right| \\ 
+\end{align}
+Note $e^{-\pi n^2 t/q} > 0$ for all $t$. Evaluting this term using the summation formula for geometric series gives 
+\begin{align}
+	|\t(t; \x)| 
+	&\leq 2 \sum_{n = 1}^{\infty} \left|e^{-\pi n t/q}\right| \\ 
+	&= 2 \frac{e^{-\pi t/q}}{1 - e^{-\pi t/q}} \\
+\end{align}
+
+For $t > 0.23q$, $\frac{t}{q} > 0.23$. 
+Notice $e^{-\pi 0.23} \approx 0.48$, and as $\exp$ is a monotonic increasing function, a bigger value in $t/q$ leads to a smaller $-\pi t / q$, so $e^{-\pi t / q} < 0.48 <  0.5$, meaning $1 - e^{-\pi t/q} > \frac{1}{2}$. 
+Inverting and multiplying the inequality by $2 e^{-\pi t/q}$ gives
+$$
+2 \frac{e^{-\pi t/q}}{1 - e^{-\pi t/q}}  < 4 e^{-\pi t/q}
+$$
+as desired.
+
+
+
+
+
+
+
+\subsubsection*{part 2}
+Picking $N = \lfloor \sqrt{\frac{q}{t}}\rfloor$, we have
+\begin{align}
+	|\t(t; \x) |
+	&\leq 2 \sum_{n = 1}^{\infty} e^{-\pi n^2 t/q}  \\
+	& = 2 \left( \sum_{n = 1}^{N} e^{-\pi n^2 t/q}
+	+ \sum_{n = N}^{\infty} e^{-\pi n^2 t/q} \right)  \label{q1part2_I_II}
+\end{align}
+Label $I =  \sum_{n = 1}^{N} e^{-\pi n^2 t/q}$, and $II =  \sum_{n = N}^{\infty} e^{-\pi n^2 t/q}$.
+For $t > 0.23 q > 0$ (recall $q$ is always positive) we have the trivial ineqality that $0 < e^{-\pi n^2 t / q} < 1$, so $I < N \leq \sqrt{\frac{q}{t}}$. 
+Next let us bound $II$.
+
+Note 
+\begin{align}
+	\sum_{n = N}^{\infty} e^{-\pi n^2 t/q} 
+	&= \sum_{l = 1}^{\infty} e^{-\pi (N + l)^2 t/q} 
+\end{align}
+For each $l \geq 1$, $(N + l)^2 > Nl > 0$, meaning $-\pi (N + l)^2 t/q < -\pi Nl t/q$. 
+As $\exp$ is a monotonically increasing function we have $e^{-\pi (N + l)^2 t/q} < e^{-\pi Nl t/q}$, so we can bound the above sum by
+\begin{align}
+	\sum_{l = 1}^{\infty} e^{-\pi (N + l)^2 t/q} 
+	&< \sum_{l = 1}^{\infty} e^{-\pi Nl t/q} \\
+\end{align}
+Now, the RHS of the inequality becomes a geometric seriese, evaluting it gives 
+\begin{align}
+	\sum_{l = 1}^{\infty} e^{-\pi Nl t/q} 
+	&= \frac{e^{-\pi N t/q}}{1 - e^{-\pi N t/q}} \\
+	&= \frac{1}{e^{\pi N t/q} - 1} \\
+	&\leq \frac{1}{\pi N t/q} \label{q1part2_second_last}
+\end{align}
+where in the last step we used the inequality $e^x - 1 \geq x$ for all $x > 0$.
+I claim that for any $0 \leq u \leq 0.25$, 
+\begin{align}\label{q1part2_key}
+	\lfloor \sqrt{\frac{1}{u}}\rfloor \sqrt{u}  \geq \frac{1}{2}
+\end{align}
+Since $0 <t < 0.25 q$, $\frac{t}{q} < 0.25$.
+Setting $u = \frac{t}{q}$,
+$$
+N \sqrt{\frac{t}{q}} \geq \frac{1}{2} \implies N \frac{t}{q} \geq \frac{1}{2} \sqrt{\frac{t}{q}} \implies \frac{1}{N t /q} \leq \frac{2}{\sqrt{t/q}}
+$$
+
+Plugging in to \eqref{q1part2_second_last} gives 
+$$
+\sum_{l = 1}^{\infty} e^{-\pi Nl t/q} \leq \frac{1}{\pi N t/q} \leq \frac{2}{\pi \sqrt{ t/q}}
+$$
+and since $\frac{2}{\pi} < 1$, this gives the $II < \sqrt{\frac{q}{t}}$
+
+By \eqref{q1part2_I_II} $|\t(t;\x)| < 2(I + II)$. 
+Combining the bounds for $I$ and $II$ gives $|\t(t;\x)| < 4 \sqrt{\frac{q}{t}}$ which is the deisred inequality.
+
+It remains to prove \eqref{q1part2_key}. 
+Since $0<u\leq 0.25$, $\frac{1}{u} \geq 4$ and $\sqrt{\frac{1}{u}} \geq 2$. 
+Let us label $\sqrt{\frac{1}{u}}$ as $v$, and inequality \eqref{q1part2_key} becomes
+$$
+\lfloor \sqrt{\frac{1}{u}}\rfloor \sqrt{u}  = \frac{\lfloor v \rfloor}{v} \geq \frac{1}{2}
+$$
+If $v$ is an integer, 
+$\frac{\lfloor v \rfloor}{v}  = 1 > \frac{1}{2}$.
+If $v$ is not an integer, $v < \lfloor v \rfloor + 1$, meaning 
+$$
+\frac{\lfloor v \rfloor}{v} > \frac{\lfloor v \rfloor}{\lfloor v \rfloor + 1} > \frac{1}{2} 
+$$
+as $\lfloor v \rfloor \geq 2$. In either case the desired inequality holds.
+\newpage
+
+
+
+
+
+
+
+
+
+
+
+
+\section*{Problem 2}
+Let $\chi$ be an even Dirichlet character mod $q$. Recall the $L$ function defined by $\chi$ is given by
+\begin{equation*}
+    L(z;\chi) := \sum_{n=1}^{\infty} \frac{\chi(n)}{n^z}, \quad \text{when } \operatorname{Re} z > 1.
+\end{equation*}
+Show that for every $n \geq 1$,
+\begin{equation*}
+    q^{z/2}\pi^{-z/2}\Gamma(z/2) \chi(n)n^{-z} = \int_{0}^{\infty} \chi(n)e^{-\pi n^2 u/q} u^{z/2-1} \;du.
+\end{equation*}
+Summing over $n \geq 1$, conclude that for $\operatorname{Re} z > 1$,
+\begin{equation*}
+    q^{z/2}\pi^{-z/2}\Gamma(z/2)L(z;\chi) = \frac{1}{2} \int_{0}^{\infty} \vartheta(u;\chi) u^{z/2-1} \; du. \quad (\dagger)
+\end{equation*}
+\textbf{Hint:} To justify interchanging the infinite sum and integral, use the result:
+If $\sum_{n \geq 1} |f_n(u)| \leq g(u)$ for all $u > 0$ and $\int_0^{\infty} g(u)du < \infty$, then
+\begin{equation*}
+    \sum_{n=1}^{N} \int_0^{\infty} f_n(u) du = \int_0^{\infty} \sum_{n=1}^{N} f_n(u) du = \int_0^{\infty} \sum_{n=1}^{\infty} f_n(u) du.
+\end{equation*}
+
+\subsection*{Part 1}
+We want to prove the following
+\begin{equation*}
+    q^{z/2}\pi^{-z/2}\Gamma(z/2) \chi(n)n^{-z} = \int_{0}^{\infty} \chi(n)e^{-\pi n^2 u/q} u^{z/2-1} \;du.
+\end{equation*}
+
+Make the change of variables $t = \pi n^2 u / q$ in the $u$ integral so that $du = q (\pi n^2)^{-1} dt$ and $u^{z/2 - 1} = \pi^{1-z/2}n^{2-z}q^{z/2 -1}t^{z/2 - 1}$.
+Hence,
+\begin{align}
+    \int_0^{\infty} \x(n)e^{-\pi n^2 u / q} u^{z/2 - 1} \,du 
+	&= \int_0^{\infty} \x(n)e^{-t} z^{z/2 - 1} \left( \frac{q}{\pi n^2}\right)^{z/2 -1} \frac{q}{\pi n^2}\,dt  \\
+	&= \left( \frac{q}{\pi n^2}\right)^{z/2 -1} \frac{q}{\pi n^2} \int_0^{\infty} e^{-t} z^{z/2 - 1}  \,dt  \x(n) \\
+	&= q^{z/2}\pi^{-z/2}\Gamma(z/2) \chi(n)n^{-z}
+\end{align}
+for all $n \geq 1$. 
+In the last step we apply the defintion of $\Gamma(z) = \int_0^{\infty}e^{-t}z^{t-1} \;dt$.
+
+Hence, for any $N \in \mathbb{N}^+$
+\begin{equation*}
+	q^{z/2}\pi^{-z/2}\Gamma(z/2)  \sum_{n=1}^{N} \frac{\x(n)}{n^z} = \sum_{n=1}^{N} \int_{0}^{\infty} \chi(n)e^{-\pi n^2 u/q} u^{z/2-1} \;du
+\end{equation*}
+
+\subsection*{Part 2}
+
+Define $f_n(u) = \chi(n)e^{-\pi n^2 u/q} u^{z/2-1}$.
+Note
+\begin{dmath}
+	\sum_{n=1}^{\infty} |f_n(u)| 
+	\leq \sum_{n=1}^{\infty} |e^{-\pi n^2 u/q} u^{z/2-1}|  
+	= \sum_{n=1}^{\infty} |e^{-\pi n^2 u/q}| u^{x/2-1}
+\end{dmath}
+setting $x = Re(z) > 1$. 
+The last equality is true since for any $z \in \bb{C}, r \in \bb{R}$, $|r^z| = r^{Re(z)}$.
+By results of Exercise 1, 
+\begin{dmath}
+	\sum_{n=1}^{\infty} |e^{-\pi n^2 u/q}| \leq
+    \begin{cases}
+        2e^{-\pi u / q} , & u \geq 0.25 q, \\
+		2\sqrt{\frac{q}{t}}, & 0 < u < 0.25 q.
+    \end{cases}
+\end{dmath}
+Multiplying by $u^{x/2 - 1}$, we define $g(u)$ to be
+\begin{align}
+	g(u) :=
+    \begin{cases}
+		2e^{-\pi u / q} u^{x/2 - 1} , & u \geq 0.25 q, \\
+		2 u^{x/2 - 3/2}\sqrt{q}, & 0 < u < 0.25 q.
+    \end{cases}
+\end{align}
+
+Thus 
+$$
+\sum_{n=1}^{\infty} |f_n(u)| < g(x) \text{ for all } u > 0
+$$
+
+Integrating $g(u)$ gives 
+
+\begin{dmath}
+\int_0^{\infty} g(u) \;du = \int_0^{0.25q} 2 u^{x/2 - 3/2}\sqrt{q} \;du + \int_{0.25q}^{\infty} 2e^{-\pi u / q} u^{x/2 - 1} \;du
+\end{dmath}
+Notice $x > 1$ so $x/2 - 3/2 > -1$, and
+$$
+\int_0^{0.25q} 2 u^{x/2 - 3/2}\sqrt{q} \;du  = 2 \sqrt{q} \frac{(0.25q)^{\frac{x}{2} - 0.5}}{x/2 - 0.5} < \infty
+$$
+
+The second integrand is also integrable and finite, so $\int_0^{\infty}g(u)du < 0$.
+
+Thus, we can use the theorem of HAn to exchange the order of summation and integration, and obtain
+
+\begin{align}
+	q^{z/2}\pi^{-z/2}\Gamma(z/2)  \sum_{n=1}^{\infty} L(z; \x) 
+	&=q^{z/2}\pi^{-z/2}\Gamma(z/2)  \sum_{n=1}^{\infty} \frac{\x(n)}{n^z} \\
+	&= \lim_{N \rightarrow \infty}\sum_{n=1}^{N} \int_{0}^{\infty} \chi(n)e^{-\pi n^2 u/q} u^{z/2-1} \;du \\
+	&= \lim_{N \rightarrow \infty} \int_{0}^{\infty}\sum_{n=1}^{N} \chi(n)e^{-\pi n^2 u/q} u^{z/2-1} \;du \\
+	&= \int_{0}^{\infty} \frac{1}{2}\t(u; \x) u^{z/2-1} \;du
+\end{align}
+as desired.
+
+
+
+
+
+
+
+
+
+
+\newpage
+
+
+\section*{Problem 3}
+For the remaining part of the assignment, assume that $\chi$ is an even Dirichlet character mod $q$ whose theta function satisfies the functional equation:
+\begin{equation}
+	\vartheta(t;\chi) = c_{\chi,1} \sqrt{\frac{q}{u}} \vartheta(t^{-1};\bar{\chi}), \quad \text{for all } t > 0,
+\end{equation}
+where $c_{\chi,1} := q^{-1} \sum_{k=1}^{q} \chi(k)e^{2\pi i k/q}$.
+
+Split the integral in $(\dagger)$ so that for $\operatorname{Re} z > 1$,
+\begin{equation}\label{q3_split}
+    q^{z/2}\pi^{-z/2}\Gamma(z/2)L(z;\chi) = \frac{1}{2} \int_0^1 \vartheta(u;\chi) u^{z/2-1} du + \frac{1}{2} \int_1^{\infty} \vartheta(u;\chi) u^{z/2-1} du.
+\end{equation}
+Using the functional equation, show that:
+\begin{equation}\label{q3_part_1_goal}
+    2q^{z/2}\pi^{-z/2}\Gamma(z/2)L(z;\chi) = \sqrt{q} c_{\chi,1} \int_1^{\infty} t^{(1-z)/2-1}\vartheta(t;\chi) dt + \int_1^{\infty} t^{z/2-1}\vartheta(t;\chi) dt.
+\end{equation}
+Show that the sum of the integrals on the right defines an analytic function on the whole complex plane $\mathbb{C}$. This provides the analytic continuation of $L(z;\chi)$.
+
+\subsubsection*{Part 1}
+Applying the functional equation to the first integral in \eqref{q3_part_1_goal} gives
+\begin{align}
+	\int_0^1 \vartheta(u;\chi) u^{z/2-1} du 
+	&= \int_0^1 c_{\chi,1} \sqrt{\frac{q}{u}} \vartheta(u^{-1};\bar{\chi})u^{z/2 - 1} du \quad \text{for all } t > 0, \\ 
+\end{align}
+make the substitution $t = u^{-1}$, so $u = t^{-1}$ and $du = -t^{-2}dt$ to get 
+\begin{align}
+	\int_0^1 \vartheta(u;\chi) u^{z/2-1} du 
+	& = \lim_{\epsilon \rightarrow 0} \int_{\epsilon}^1 \vartheta(u;\chi) u^{z/2-1} du \\ 
+	&= \lim_{\epsilon \rightarrow  0} c_{\chi,1} \sqrt{q} \int_{\epsilon}^{1} 
+	\sqrt{\frac{1}{u}} \vartheta(u^{-1};\bar{\chi})u^{z/2 - 1} du
+	\\ 
+	&= \lim_{\epsilon \rightarrow  0} - c_{\chi,1} \sqrt{q} \int_{t(\epsilon)}^{t(1)} 
+	t^{1/2} \vartheta(t;\bar{\chi})t^{-z/2 + 1} t^{-2}  dt
+	\\ 
+	&= \lim_{R \rightarrow  \infty} - c_{\chi,1} \sqrt{q} \int_{R}^{1} 
+	 \vartheta(t;\bar{\chi})t^{-z/2 + 1 -2 + 1/2} dt
+	\\ 
+	&=  c_{\chi,1} \sqrt{q} \int^{\infty}_{1} 
+	 \vartheta(t;\bar{\chi})t^{(1-z)/2 - 1} dt
+\end{align}
+Substituting back to \eqref{q3_split} gives the desired result.
+
+
+\subsection*{Part 2}
+We want to show that both integral in the RHS of the equation \eqref{q3_part_1_goal} define analytic functions on the whole complex plane $\mathbb{C}$, which would gives a analytic continuation of $L(z;\chi)$.
+
+Let us first consider 
+$
+g (z) = \int_1^{\infty} t^{z/2-1}\vartheta(t;\chi) dt.
+$
+Define $g_N (z) := \int_1^{N} t^{z/2-1}\vartheta(t;\chi) dt $ for $N > 0$, so 
+$\lim_{R \rightarrow \infty} g_N = g$. (Pointwise convergence)
+
+Let us integrating each $g_N$ on any closed loop $\gamma$ over the complex plane  
+\begin{align}
+	\int_{\gamma} g_N(z) dz 
+	&= \int_{\gamma} \int_1^{N} t^{z/2-1}\vartheta(t;\chi) dt dz 
+	\label{q4exchange_integral}
+	\\
+	&= \int_1^{N} \int_{\gamma}  t^{z/2-1}\vartheta(t;\chi) dz dt 
+	\\
+	\label{q4holomorphic}
+	&= \int_1^{N} \vartheta(t;\chi) \int_{\gamma}  t^{z/2-1} dz dt 
+	\\
+	&= 0
+\end{align}
+
+Where in \eqref{q4exchange_integral} we used Fubini's theorem to exchange the order of integration. 
+In \eqref{q4holomorphic}, notice that $t$ is a constant greater than or equal to $1$ in the inner integeral, thus $t^{z/2 - 1}$ is holomorphic over all $\bb{C}$. 
+Thus by Cauchy's theorem, the integral over any closed loop is zero.
+Hence by Moreva's theorem each $g_N$ is holomorphic on $\mathbb{C}$.
+
+Picking any finite $R$ and consider the set $\D = \{z \in \bb{C}: |z| \leq R\}$.
+Note:
+\begin{align}
+	\sup_{z \in \D} |g_N(z) - g(z)|
+	& = \sup_{z \in \D} \left| \int_{N}^{\infty} t^{z/2-1}\vartheta(t;\chi) dt \right| \\
+	&\leq \int_{N}^{\infty} \sup_{z \in \D} \left| t^{z/2-1} \right| |\vartheta(t;\chi) | dt 
+\end{align}
+For real number $t$, $|t^z| = t^{Re(z)}$. The maximum of $Re(z/2 -1)$ for $z \in \D$ is $R/2 - 1$, so 
+
+$$
+	\int_{N}^{\infty} \sup_{z \in \D} \left| t^{z/2-1} \right| |\vartheta(t;\chi) | dt 
+	\leq
+	\int_{N}^{\infty} t^{R/2-1}  |\vartheta(t;\chi) | dt 
+$$
+
+Picking big enough $N$ such that $N > 0.23q$, and apply \eqref{theta_bound_large_t} which is proved in exercise 1, we have
+
+$$
+	\int_{N}^{\infty} t^{R/2-1}  |\vartheta(t;\chi) | dt 
+	\leq
+	\int_{N}^{\infty} t^{R/2-1}  4e^{-\pi t /q} dt 
+$$
+Set $u = \pi t / q$ and substitute to get 
+$$
+	\int_{N}^{\infty} t^{R/2-1}  4e^{-\pi t /q} dt 
+	= 4 \left(\frac{q}{\pi}\right)^{R/2}\int^{\infty}_{\pi N / q} u^{R/2-1} e^{-u} du
+$$
+
+By lemma \ref{lemma:1} $\lim_{n \rightarrow \infty}\int^{\infty}_{n} u^{R/2-1} e^{-u} du = 0 $. 
+As a result
+$$
+\lim_{N \rightarrow  \infty }\sup_{z \in \D} |g_N(z) - g(z)| \leq \lim_{N \rightarrow \infty} 4 \left(\frac{q}{\pi}\right)^{R/2}\int^{\infty}_{\pi N / q} u^{R/2-1} e^{-u} du  = 0 
+$$
+Meaning $g_N$ converges uniformly to $g$ on $\D$.
+
+As each of $g_N$ is analytic and converges uniformly to $g$ on $\D$, $g$ is analytic on $\D$ for all $R > 0$.
+Since for all $z \in \bb{C}$ we can find $\D$ such that $z \in \D$, we conclude that $g$ is analytic on the whole complex plane $\bb{C}$.
+
+The proof for the other intergral is exactly the same, thus we conclude that the sum of the integrals on the right defines an analytic function on the whole complex plane $\mathbb{C}$, which provides the analytic continuation of $L(z;\chi)$.
+
+
+
+\newpage
+
+\section*{Problem 4}
+Suppose $\chi$ is an even Dirichlet character mod $q$, where $q$ is prime. Given that $c_{\chi,1}c_{\chi,1} = q^{-1}$, apply the previous question to show:
+\begin{equation*}
+    q^{(1-z)/2}\pi^{-(1-z)/2}\Gamma((1-z)/2)L(1-z;\chi) = \sqrt{q} c_{\chi,1} q^{z/2}\pi^{-z/2}\Gamma(z/2)L(z;\chi).
+\end{equation*}
+This is the functional equation for $L(z;\chi)$ when $\chi$ is an even character.
+
+In part 1 of exercise 3 we have proved that 
+\begin{align}
+	\int_0^1 \vartheta(u;\chi) u^{z/2-1} du =  c_{\chi,1} \sqrt{q} \int^{\infty}_{1} \vartheta(t;\bar{\chi})t^{(1-z)/2 - 1} dt
+\end{align}
+
+By the exact same arguments
+\begin{align}
+	\int_1^{\infty} \vartheta(u;\chi) u^{z/2-1} du =  c_{\chi,1} \sqrt{q} \int^{1}_{0} \vartheta(t;\bar{\chi})t^{(1-z)/2 - 1} dt
+\end{align}
+
+Combining these two gives
+\begin{align}
+	\int_0^{\infty} \vartheta(u;\chi) u^{z/2-1} du =  c_{\chi,1} \sqrt{q} \int_{0}^{\infty} \vartheta(t;\bar{\chi})t^{(1-z)/2 - 1} dt
+\end{align}
+Substituting $\dagger$ gives 
+$$
+q^{z/2}\pi^{-z/2}\Gamma(z/2)L(z;\chi) = c_{\chi,1} \sqrt{q} q^{(1-z)/2}\pi^{-(1-z)/2}\Gamma((1-z)/2)L(1-z;\bar{\chi}) 
+$$
+multiplying both side by $c_{\bar{\chi}, 1}q^{1/2}$
+
+\begin{align}
+ &q^{1/2} c_{\bar{\chi}, 1} q^{z/2}\pi^{-z/2}\Gamma(z/2)L(z;\chi) 
+ \\
+ &=  c_{\bar{\chi}, 1} c_{\chi,1} q q^{(1-z)/2}\pi^{-(1-z)/2}\Gamma((1-z)/2)L(1-z;\bar{\chi}) \\ 
+ &= q^{(1-z)/2}\pi^{-(1-z)/2}\Gamma((1-z)/2)L(1-z;\bar{\chi})
+\end{align}
+where in the last step we used the identity$c_{\bar{\chi}, 1}c_{\chi, 1} = q^{-1}$, which gives the desired result.
+
+
+\begin{lemma}\label{lemma:1}
+	For a finite $R > 0$ 
+	\begin{equation}
+		\lim_{n \rightarrow \infty}\int_{n}^{\infty} t^{R} e^{-t} dt = 0
+	\end{equation}
+\end{lemma}
+\begin{proof}
+	Assuming $R > 0$, we need the following inequality:
+	$e^{-t} t^{R-1} \leq t^{-2}$ for all $t > N$ when $N/\log(N) \geq R + 1$.
+
+	% Notice that when $t = N$ and $\frac{N}{\log(N)} = R + 1$, $e^{-t}t^{R-1} = t^{-2}$.
+	% 
+	% Note
+	% \begin{align}
+	% 	\frac{d}{dt} e^{-t}t^{R-1} - t^{-2} 
+	% 	&= -e^{-t}t^{R-1} + (R-1)e^{-t}t^{R-2} + 2t^{-3} \\ 
+	% \end{align}
+	%
+	% Setting it to zero gives
+	% \begin{align}
+	% 	0 &= -e^{-t}t^{R-1} + (R-1)e^{-t}t^{R-2} + 2t^{-3} \\ 
+	% 	  & \implies 
+	% 	0 = -e^{-t}t^{R+2} + (R-1)e^{-t}t^{R+1} + 2 \\ 
+	% 	  & \implies 
+	% 	2 = e^{-t}\left(t^{R+2} - (R-1)t^{R+1}\right) \\ 
+	% \end{align}
+	Notice $N / N\log(N)$ is monotonically increasing for $x > e$ and $\lim_{N \rightarrow \infty} N / \log(N) = \infty$, so for any $R$ we can pick some $N$ such that $n/log(n) > R+1$ for all $n > N$.
+	Picking this $N$ for the lower limit of the integration thus the above integral is bounded by
+	$$
+	0 <  \int_{n}^{\infty} t^{R} e^{-t} dt \leq \int_{n}^{\infty} t^{-2} dt < \frac{1}{n}
+	$$
+	Setting $n \rightarrow \infty$ gives the desired result.
+\end{proof}
+
+\end{document}

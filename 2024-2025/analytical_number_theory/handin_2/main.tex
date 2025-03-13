@@ -1,0 +1,347 @@
+\documentclass{article}
+
+% \usepackage[tmargin=2.5cm,rmargin=3cm,lmargin=3cm,bmargin=3cm]{geometry} 
+% Top margin, right margin, left margin, bottom margin, footnote skip
+\usepackage[utf8]{inputenc}
+\usepackage{biblatex}
+\addbibresource{./references.bib}
+% linktocpage shall be added to snippets.
+\usepackage{hyperref,theoremref}
+\hypersetup{
+	colorlinks, 
+	linkcolor={red!40!black}, 
+	citecolor={blue!50!black},
+	urlcolor={blue!80!black},
+	linktocpage % Link table of content to the page instead of the title
+}
+
+\usepackage{blindtext}
+\usepackage{titlesec}
+\usepackage{amsthm}
+\usepackage{thmtools}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{titlesec}
+\usepackage{xcolor}
+\usepackage{multicol}
+\usepackage{hyperref}
+\usepackage{import}
+
+
+\newtheorem{theorem}{Theorema}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}{Corollarium}[section]
+\newtheorem{proposition}{Propositio}[theorem]
+\theoremstyle{definition}
+\newtheorem{definition}{Definitio}[section]
+
+\theoremstyle{definition}
+\newtheorem{axiom}{Axioma}[section]
+
+\theoremstyle{remark}
+\newtheorem{remark}{Observatio}[section]
+\newtheorem{hypothesis}{Coniectura}[section]
+\newtheorem{example}{Exampli Gratia}[section]
+
+% Proof Environments
+\newcommand{\thm}[2]{\begin{theorem}[#1]{}#2\end{theorem}}
+
+%TODO mayby proof environment shall have more margin
+% \renewenvironment{proof}{\vspace{0.4cm}\noindent\small{\emph{Demonstratio.}}}{\qed\vspace{0.4cm}}
+% \renewenvironment{proof}{{\bfseries\emph{Demonstratio.}}}{\qed}
+\renewcommand\qedsymbol{Q.E.D.}
+% \renewcommand{\chaptername}{Caput}
+% \renewcommand{\contentsname}{Index Capitum} % Index Capitum 
+\renewcommand{\emph}[1]{\textbf{\textit{#1}}}
+\renewcommand{\ker}[1]{\operatorname{Ker}{#1}}
+
+%\DeclareMathOperator{\ker}{Ker}
+
+% New Commands
+\newcommand{\bb}[1]{\mathbb{#1}} %TODO add this line to nvim snippets
+\newcommand{\orb}[2]{\text{Orb}_{#1}({#2})}
+\newcommand{\stab}[2]{\text{Stab}_{#1}({#2})}
+\newcommand{\im}[1]{\text{im}{\ #1}}
+\newcommand{\se}[2]{\text{send}_{#1}({#2})}
+\renewcommand{\hat}[1]{\widehat{#1}}
+\newcommand{\G}{\mathcal{G}}
+\newcommand{\g}{\mathfrak{g}}
+\newcommand{\hG}{\hat{G}}
+\newcommand{\Log}{\text{Log}}
+
+
+\begin{document}
+
+\section{Q1}
+
+\subsection{Part 1} 
+Claim: $L(z; \chi)$ is holomorphic and never vanishes for $z \in X, $ where $X \:= \{z: \Re(z) > 1 \}$.
+
+\begin{proof}
+	Define $t_n$ and $P_n$ as the $n$th term and the $n$th partial sum of $L(z; \chi)$ respectively, i.e., $t_n = \frac{\chi(n)}{n^z}$, $P_n = \sum_{k=1}^{n} t_k$.
+	Note
+	$$
+	|t_n| = \left|\frac{\chi(n)}{n^z} \right| \leq \frac{1}{n^{\Re(z)}}
+	$$
+
+	$\Re(z) > 1$ for all $z \in X$, so $\sum_{n=1}^{\infty} \frac{1}{n^{\Re(z)}}$ converges absolutely by $p$ test. 
+And by Weierstrass M-test, $P_n$ converges uniformly to $L(z; \chi)$ on $X$.
+The fact that $|L(z, \chi)| \leq \sum_{n=1}^{\infty} \frac{1}{n^{\Re(z)}}$ also shows that $L(z, \chi)$ converges absolutely for all $z \in X$.
+
+Each $t_n$ is holomorphic, so each $P_n$ as finite sum of holomorphic functions is holomorphic. 
+As $P_n$ converges uniformly to $L(z; \chi)$ for $z \in X$, $L(z; \chi)$ is holomorphic.
+
+The fact that $\chi$ and is completely multiplicative leads $f(n) = \frac{\chi(n)}{n^z}$ to be completely multiplicative, as 
+
+\begin{equation}\label{eq:completely_multiplicative}
+	f(m)f(n) = \frac{\chi(m)}{m^z} \frac{\chi(n)}{n^z} = \frac{\chi(m)\chi(n)}{(mn)^z} = \frac{\chi(mn)}{(mn)^z} = f(mn)
+\end{equation}
+
+As $f(n)$ is multiplicative and $P_n$ converge absolutely for all applicable $z$, by proposition 2.3 from the lecture notes $L(z; \chi) = \prod_{p} \frac{1}{1- \chi(p)p^{-z}} = \prod_p (1 + u_p)$ where $u_p = \frac{\chi(p)p^{-z}}{1 - \chi(p) p ^{-z}}$. 
+If $u_p = -1$, $\chi(p) p ^{-z} = -1 +  \chi(p) p ^{-z} \implies -1 = 0$, which is absurd, so $u_p \neq -1 $ for all $p$ and $z \in X$. 
+Applying proposition 2.1 from lecture notes, which states that $\prod_{n=1}^{\infty} (1+a_n) = 0$ iff some $a_n = -1$, we conclude $L(z; \chi) \neq 0 $ for all $z \in X.$
+\end{proof}
+
+\subsection{Part 2}
+
+We want to prove that 
+
+\begin{equation}
+	\frac{L'(z; \chi)}{L(z; \chi)} = - \sum_p \frac{\chi(p) \log(p)}{p^z - \chi(p)}
+\end{equation}
+where $z \in X$.
+
+As shown in lemma \ref{lm:log_to_Log} the following defines a branch of logarithm for $L(z; \chi)$ such that 
+\begin{equation}\label{log_l}
+\log(L(z; \chi)) = - \sum_p \Log(1-\chi(p)p^{-z})
+\end{equation}
+
+and this series converges uniformly in the desired domain.
+So the derivative of the LHS of \ref{log_l} equals to the the derivative of the series summed up terms by term. 
+
+Let us calculate the derivative 
+
+\begin{align}
+	\frac{L'(z; \chi)}{L(z; \chi)}
+	&=\frac{d}{dz} \log(L(z; \chi)) 
+	\\&= \frac{d}{dz} \left(- \sum_p \Log(1-\chi(p)p^{-z})\right) 
+	\\&=  - \sum_p  \frac{d}{dz} \Log(1-\chi(p)p^{-z}) 
+	\\&=  - \sum_p \frac{\chi(p) \log(p) p^{-z}}{1-\chi(p) p^{-z}} 
+	= - \sum_p \frac{\chi(p) \log(p)}{p^z - \chi(p)}
+\end{align}
+
+in calculating the derivative we used that fact that $\chi(p)$ is a constant independent of $z$ and $\frac{d}{dz}p^{z} = \log(p) p^z$.
+This gives the desired equality.
+
+\begin{lemma}\label{log_ineq}
+	For $|w| < \frac{1}{2}$, $|\Log(1 - w)| < 2|w|$
+\end{lemma}
+
+\begin{proof}
+	This inequality follows from the manipulations of the terms of the taylor expansions of $\Log$. 
+
+	\begin{align}
+		|\Log(1-w)| 
+		&= \left|\sum_{n=1}^{\infty}\frac{w^n}{n}\right| \\
+		&\leq \sum_{n=1}^{\infty}\left|\frac{w^n}{n}\right| \\
+		&< \sum_{n=1}^{\infty}\left|w^n\right| \\
+		&< \sum_{n=0}^{\infty}|w|(\frac{1}{2})^n \\
+		&= 2 |w|
+	\end{align}
+
+	Also note that the Taylor series for $\Log(1-w)$ converges absolutely for $-1< |w| < 1$, so all the manipulations make sense.
+\end{proof}
+
+% TODO: 
+\begin{lemma}\label{lm:log_to_Log}
+The following equation defines a branch of logarithm for $L(z; \chi)$ such that 
+\begin{equation}\label{log_1}
+	\log(L(z; \chi)) = - \sum_p \Log(1-\chi(p)p^{-z})
+\end{equation}
+
+and it converges uniformly for $z \in X$.
+
+\end{lemma}
+
+\begin{proof}
+	As shown in part one of question 1 $f(n) = \frac{\chi(n)}{n^{z}}$ is completely multiplicative and the function $L(z; \chi)$ defined as the series $\sum_{n >0} f(n)$ converges absolutely for $z \in X$. 
+	Applying lemma 2.3 from the lecture notes, $L(z; \chi) = \prod_{p} \frac{1}{1- \chi(p)p^{-z}} = \prod_p (1 + u_p)$ where $u_p = \frac{\chi(p)p^{-z}}{1 - \chi(p) p ^{-z}}$.
+
+	Define $\log(P_n) = \sum_{p \in \{\text{first n primes}\}} \Log(1 + u_p)$. 
+	Note 
+	
+	\begin{align*}
+		\exp(\log(P_n))
+		=& \prod_{ {p \in \{\text{first n primes}\}}} \exp(\Log (1+ u_p))\\
+		=& \prod_{ {p \in \{\text{first n primes}\}}}  (1+ u_p)
+	\end{align*}
+
+	Thus by continuity of $\exp$ and $\log$ functions, 
+	\begin{align*}
+		L(z; \chi) 
+		= & \prod_{p} (1 + u_p) \\
+		=& \lim_{n \rightarrow \infty} \prod_{ p \in \{\text{first n primes}\} } 1 + u_p \\
+		=& \lim_{n \rightarrow \infty} \exp(\log(P_n)) \\
+		=& \exp(\lim_{n \rightarrow \infty} \log(P_n)) \\
+		=& \exp(\lim_{n \rightarrow \infty} \sum_{p \in \{\text{first n primes}\}} \Log(1 + u_p)) \\
+		=& \exp(\sum_{p} \Log(1 + u_p)) \\
+		=& \exp( - \sum_{p} \Log(1 - \chi(p)p^{-z})) \\
+	\end{align*}
+
+	So $- \sum_{p} \Log(1 - \chi(p)p^{-z})$ is indeed a branch of logarithm for $L(z; \chi)$ and equation \ref{log_1} holds.
+
+	To show \ref{log_1} converges uniformly, note that all prime $p \geq 2$, $|\chi(p) p^{-z}| \leq | p^{-z}| < \frac{1}{2}$ while $z \in X$.
+	So $|\Log(1- \chi(p)p^{-z})| \leq 2|\chi(p)p^{-z}| \leq 2 |p^{-z}| $ by lemma \ref{log_ineq}.
+	
+	Since $0 < \sum_{p} 2|p^{-z}| < 2\sum_{n \geq 1} n^{-z} < \infty$ for all $z \in X$, by Weierstrass M-test the series $-\sum_{p} \Log(1-\chi(p)p^{-z})$ converges uniformly for $z \in X$.
+\end{proof}
+
+\section{Q2}
+
+$G$ is finite abelian group. I claim $\#\hat{G} \leq \#G $.
+
+Label the set of all maps $G \rightarrow \bb{C}$ as $\G$. 
+
+We shall prove that $\G$ is a vector space over $\bb{C}$ whose dimension is $\#G$, and $\hG$ is a set of linearly independent vectors of this vector space, and our claims ensues.
+
+\begin{proof}[Proof: $\G$ is a vector space over $\bb{C}$]
+
+	Let $u, v \in \G$. 
+	Define $ u + v: G \rightarrow \bb{C}$ as $(u + v)(g) = u(g) + v(g)$.
+	This makes $\G$ an abelian group under addition, with identity element being the zero map, $i_{\G} (g) = 0$ for all $g \in G$, and inverse of $u$ being $-u$ defined as $(-u)(g) = -u(g)$.
+	Closure of group is obvious. 
+	The associtivity follows as addition in $\bb{C}$ is associtive.
+
+	For $c \in \bb{C}, g\in G, u \in \G$, define the scalar multiplication $cu: G \rightarrow \bb{C}$ as $(cu)(g) = c \cdot u(g)$. 
+	This scalar multiplication together with addition defined above makes $\G$ a vector space over the field $\bb{C}$.
+	
+	Let $c_1, c_2 \in \bb{C}, u, v \in \G$, and $g \in G$.
+	Validating each of the vector space axioms is straghtforward. 
+
+	\begin{enumerate}
+		\item $(c_1c_2)u = c_1(c_2u)$ as for all $g \in G$, $((c_1c_2)u)(g) = (c_1c_2)(u(g)) = c_1(c_2u(g)) = c_1(c_2u)(g)$
+		\item $c(u + v) = cu + cv$ as for all $g \in G$, $c(u + v)(g) = c(u(g) + v(g)) = cu(g) + cv(g) = (cu + cv)(g)$
+		\item $(c_1 + c_2)u = c_1u + c_2u$ as for all $g \in G$, $((c_1 + c_2)u)(g) = (c_1 + c_2)u(g) = c_1u(g) + c_2u(g) = (c_1u + c_2u)(g)$
+		\item $1u = u$ as for all $g \in G$, $1u(g) = 1 \cdot u(g) = u(g)$
+	\end{enumerate}
+\end{proof} 
+
+\begin{proof}[Proof: $\G$ has dimension $\#G$]
+	For each $g_i \in G$, $1 \leq i \leq \#G$, define a vector $\g_i \in \G$ as $\g_i(g_j) = \delta^i_j$, where $\delta^i_j$ is the Kronecker delta. 
+ 
+	Note that any $\mathfrak{v} \in \G$ can be written as $\mathfrak{v} = \sum_{i=1}^{\#G} \mathfrak{v}(g_i) \g_i$, so $\mathcal{B}$ is a spanning set for $\G$.
+	Assuming that $\sum_{i=1}^{\#G} c_i\g_i = 0$ for some $c_i \in \bb{C}$, by construction $(\sum_{i=1}^{\#G} c_i\g_i) (g_j) = c_j = 0$, so each of $c_i$ is zero and $\mathcal{B}$ is linearly independent.
+	As a result, as long as $G$ is finite, the set $\mathcal{B} = \{\g_i: 1\ \leq i \leq \#G\}$ is both spanning and linearly independent thus a basis for $\G$, and the dimension of $\G$ is $\#\mathcal{B} = \#G$.
+\end{proof}
+
+\begin{proof}[Proof: $\hG$ is linearly independent]
+	As noted in the lecture there exists a bilinear form on $\G$ $\langle -, - \rangle: \G \times \G \rightarrow \bb{C}$ defined thus
+
+	\begin{equation}\label{eq:inner_product}
+		\langle u, v \rangle = \frac{1}{\#G} \sum_{g \in G} u(g) \overline{v(g)},
+	\end{equation}
+	where $u, v \in \G$.
+	The important property of \ref{eq:inner_product} as shown in lecture is that 
+	$$
+	 \langle e, f \rangle = 
+	 \begin{cases}
+		1 & \text{if } e = f\\ 
+		0 & \text{if } e \neq f
+	 \end{cases}
+	$$
+
+	where $e, f \in \hG$. 
+
+	To show $\langle -, - \rangle$ is bilinear is also straightforward. 
+	$$
+	\begin{aligned}
+		\langle u + v, w \rangle &= \frac{1}{\#G} \sum_{g \in G} (u(g) + v(g)) \overline{w(g)} \\
+		&= \frac{1}{\#G} \sum_{g \in G} u(g) \overline{w(g)} + v(g) \overline{w(g)} \\
+		&= \langle u, w \rangle + \langle v, w \rangle
+	\end{aligned}
+	$$
+
+	$$
+	\begin{aligned}
+		\langle cu, w \rangle &= \frac{1}{\#G} \sum_{g \in G} c u(g) \overline{w(g)} \\
+		&= c \frac{1}{\#G} \sum_{g \in G} u(g) \overline{w(g)} \\
+		&= c \langle u, w \rangle 
+	\end{aligned}
+	$$
+
+	As $\langle u, v \rangle = \overline{\langle v, u \rangle}$, the bilinearity in the second term follows. 
+
+	Any bilinear form taken one value of 0 must produce 0, this is because $\langle 0, f \rangle = \langle 0 + 0, f \rangle = 2 \langle 0, f \rangle \implies \langle 0, f \rangle = 0 $ for all $f$.
+
+	To prove $\hG$ is linearly independent is now a standard exercise on applying the definition
+
+	\begin{align*} 
+		\sum_{f \in \hG} c_f f = 0 
+		&\implies \langle \sum_{f \in \hG} c_f f, f' \rangle = \langle 0, f' \rangle = 0 \\
+		&\implies \sum_{f \in \hG} c_f \langle f, f' \rangle =
+		 c_{f'} = 0
+	\end{align*}
+
+	Where $f' \in \hG$. This implies all of the coefficients $c_f$ are zero, and $\hG$ is linearly independent.
+\end{proof}
+
+By the standard theorem of linear algebra, the number of elements in a linearly independent set is less than or equal to the dimension of the vector space, so $\#\hG \leq \#G$.
+
+
+\section{Q3}
+
+Consider the finite group $G_9$ consists of all the invertible elements of $Z/9Z$. 
+
+Let us first find all the elements of $G_9$. Since Euclidean algorithm applies for any $z \in \bb{Z}$, the smallest positive integer $n$ such that the following equation holds is the greatest common divisor of $z$ and $9$.  
+
+$$
+z k + 9 k' = n = gcd(z, 9)
+$$
+
+where $k, k' \in \bb{N}$. 
+Notice this equation means that if $gcd(z, 9) = 1$, $\exists k, z k \equiv 1 \mod 9$ and $z$ is invertible, and if $gcd(z, 9) \neq 1$, there does not exist $k$ such that $z k \equiv 1 \mod 9$, so is $z$ is not invertible.
+
+This means the elements of $G_9$ are precisely $[n]$, where $n$ is coprime to $9$.
+
+$$
+G_9 = \{[1], [2], [4], [5], [7], [8]\}
+$$
+
+The last step is to verify that $G_9$ is indeed a group. 
+All elements of $G_9$ are invertible, and since each element is coprime to $9$, the product of two elements is also coprime to $9$, so the product of two elements is also in $G_9$. 
+$G_9$ is group then follows.
+
+Note that $[2]^2 = [4], [2]^3 = [8], [2]^4 = [7], [2]^5 = [5], [2]^6 = [1]$. So $G_9$ is generated by $[2]$, and $G_9 \cong Z / 6Z$.
+
+For any $u \in \hat{G_9}$,
+$u([2])^6 = u([2]^6) = u([1]) = 1$. 
+As shown in \ref{lm:homo} in any group homomorphism the identity must map to identity, so $u([2]) $  is one of the sixth root of unity, i.e. $ u([2]) = \exp(2 k \pi / 6)$, $0 \leq k \leq 5$,
+Once $u([2])$ is defined, $u$ is uniquely determined as any elements of $G_9$ can be written as $[2]^l$ for some $l$, and $u([2]^l) = u([2])^l$.
+In this way six elements of $\hat{G_9}$, $u_i, 1 \leq i \leq 6$, are found.
+Since $\# \hat{G_9} \leq \# G_9 = 6$, we have found all the elements of $\hat{G_9}$.
+
+\begin{lemma}\label{lm:homo}
+	In a group homomorphism $\phi: G \rightarrow H$, $\phi(1_G) = 1_H$
+\end{lemma}
+
+\begin{proof}
+	This is a standard application of definition 
+	\begin{align*}
+		\phi(1_g) 
+		= \phi(1_g 1_g)
+		= \phi(1_g) \phi(1_g) 
+		\rightarrow \phi(1_g) = 1_h
+	\end{align*}
+\end{proof}
+
+\section{Q4}
+
+The real valued Dirichelet character,$\chi$, must sent $[2]$ into a real number. Among all sixth roots of unity, only $1$ and $-1$ are real.
+
+If $\chi[2] = 1$, $\chi$ will send everything to $1$ and $\chi$ is the principle character. 
+So the only non principle real character send $[2]$ to $-1$.
+
+Apply the definition $\chi(916) = \chi ([7]) = \chi([2]^4) = 1$
+
+\end{document}

@@ -1,0 +1,113 @@
+\documentclass{article}
+
+% \usepackage[tmargin=2.5cm,rmargin=3cm,lmargin=3cm,bmargin=3cm]{geometry} 
+% Top margin, right margin, left margin, bottom margin, footnote skip
+\usepackage[utf8]{inputenc}
+\usepackage{biblatex}
+\addbibresource{./references.bib}
+% linktocpage shall be added to snippets.
+\usepackage{hyperref,theoremref}
+\hypersetup{
+	colorlinks, 
+	linkcolor={red!40!black}, 
+	citecolor={blue!50!black},
+	urlcolor={blue!80!black},
+	linktocpage % Link table of content to the page instead of the title
+}
+
+\usepackage{blindtext}
+\usepackage{titlesec}
+\usepackage{amsthm}
+\usepackage{thmtools}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{titlesec}
+\usepackage{xcolor}
+\usepackage{multicol}
+\usepackage{hyperref}
+\usepackage{import}
+
+
+\newtheorem{theorem}{Theorema}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}{Corollarium}[section]
+\newtheorem{proposition}{Propositio}[theorem]
+\theoremstyle{definition}
+\newtheorem{definition}{Definitio}[section]
+
+\theoremstyle{definition}
+\newtheorem{axiom}{Axioma}[section]
+
+\theoremstyle{remark}
+\newtheorem{remark}{Observatio}[section]
+\newtheorem{hypothesis}{Coniectura}[section]
+\newtheorem{example}{Exampli Gratia}[section]
+
+% Proof Environments
+\newcommand{\thm}[2]{\begin{theorem}[#1]{}#2\end{theorem}}
+
+%TODO mayby proof environment shall have more margin
+% \renewenvironment{proof}{\vspace{0.4cm}\noindent\small{\emph{Demonstratio.}}}{\qed\vspace{0.4cm}}
+% \renewenvironment{proof}{{\bfseries\emph{Demonstratio.}}}{\qed}
+\renewcommand\qedsymbol{Q.E.D.}
+% \renewcommand{\chaptername}{Caput}
+% \renewcommand{\contentsname}{Index Capitum} % Index Capitum 
+\renewcommand{\emph}[1]{\textbf{\textit{#1}}}
+\renewcommand{\ker}[1]{\operatorname{Ker}{#1}}
+\renewcommand{\c}{\cos(\theta)}
+\newcommand{\s}{\sin(\theta)}
+
+%\DeclareMathOperator{\ker}{Ker}
+
+% New Commands
+\newcommand{\bb}[1]{\mathbb{#1}} %TODO add this line to nvim snippets
+\newcommand{\orb}[2]{\text{Orb}_{#1}({#2})}
+\newcommand{\stab}[2]{\text{Stab}_{#1}({#2})}
+\newcommand{\im}[1]{\text{im}{\ #1}}
+\newcommand{\se}[2]{\text{send}_{#1}({#2})}
+
+\date{\today}
+
+\begin{document}
+\section{Q1}
+We claim $\cos(\frac{ \pi}{9})$ is algebraic over $\bb{Q}$. 
+
+\begin{proof}
+	Let us begin by finding the formula for $\cos(3 \theta)$
+	\begin{align*}
+		\cos(3 \theta) 
+		&= \cos(2 \theta + \theta) \\	
+		&= \cos(2 \theta) \cos(\theta) - \sin(2 \theta) \sin(\theta) \\	
+		&= (2\cos(\theta)^2 - 1) \c - 2\s\c\s \\
+		&= 2 \c^3 - \c - 2\s^2 \c \\ 
+		&= 2 \c^3 - \c + 2(\c^2 -1)\c \\
+		&= 4 \c^3 - 3 \c ^2
+	\end{align*}
+
+	We know that $\cos(\frac{\pi}{3}) = \frac{1}{2}$, so, setting $\cos(\frac{\pi}{9}) $ as $x$, using the formula just deduced, we find it is the solution to the polynomials
+
+	\begin{equation}\label{min_pol}
+		8x^3 - 6x -1
+	\end{equation}
+
+	Let us check if this polynomial is reducible. 
+	Since it is of degree three, it is reducible iff it has a root in $\bb{Q}$. 
+	The leading coefficients of the polynomial is $8$ and the constant term of the polynomial is $1$, meaning any rational roots of it must be $\pm 1, \pm \frac{1}{2}, \pm \frac{1}{4}$ or $\pm \frac{1}{8}$. 
+	Plugging in these values we find none of them are roots, so we conclude that the minimal polynomial is \ref{min_pol}.
+\end{proof}
+
+\section{Q2}
+
+We want to prove that for any $n \in \bb{N}$, $n > 0$, there is a field extension of $\bb{Q}$ of degree $n$.
+
+\begin{proof}
+	For $n=1$, $\bb{Q}$ itself is a field extension of degree $1$.
+
+	For $n > 1$, $\bb{Q}((2)^{\frac{1}{n}})$ is a field extension of degree $n$. 
+	To prove this, note that an annihilating polynomial of $(2)^\frac{1}{n}$ is an $n$ degree polynomial $f =x^n - 2$. 
+	Applying Eisenstein's criterion  we found $f$ is irreducible, thus the minimal polynomial of $(2)^{\frac{1}{n}}$.
+	Again apply theorem 5.1.5 from lecture notes we conclude $\bb{Q}((2)^{\frac{1}{n}})$ is of degree $n$ over $\bb{Q}$.
+\end{proof}
+
+\end{document}

@@ -1,0 +1,99 @@
+\documentclass{article}
+
+\usepackage[tmargin=2.5cm,rmargin=3cm,lmargin=3cm,bmargin=3cm]{geometry} 
+% Top margin, right margin, left margin, bottom margin, footnote skip
+\usepackage[utf8]{inputenc}
+\usepackage{biblatex}
+\addbibresource{./references.bib}
+% linktocpage shall be added to snippets.
+\usepackage{hyperref,theoremref}
+\hypersetup{
+	colorlinks, 
+	linkcolor={red!40!black}, 
+	citecolor={blue!50!black},
+	urlcolor={blue!80!black},
+	linktocpage % Link table of content to the page instead of the title
+}
+
+\usepackage{blindtext}
+\usepackage{titlesec}
+\usepackage{amsthm}
+\usepackage{thmtools}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{titlesec}
+\usepackage{xcolor}
+\usepackage{multicol}
+\usepackage{hyperref}
+\usepackage{import}
+
+
+\newtheorem{theorem}{Theorema}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}{Corollarium}[section]
+\newtheorem{proposition}{Propositio}[theorem]
+\theoremstyle{definition}
+\newtheorem{definition}{Definitio}[section]
+
+\theoremstyle{definition}
+\newtheorem{axiom}{Axioma}[section]
+
+\theoremstyle{remark}
+\newtheorem{remark}{Observatio}[section]
+\newtheorem{hypothesis}{Coniectura}[section]
+\newtheorem{example}{Exampli Gratia}[section]
+
+% Proof Environments
+\newcommand{\thm}[2]{\begin{theorem}[#1]{}#2\end{theorem}}
+
+%TODO mayby proof environment shall have more margin
+\renewenvironment{proof}{\vspace{0.4cm}\noindent\small{\emph{Demonstratio.}}}{\qed\vspace{0.4cm}}
+% \renewenvironment{proof}{{\bfseries\emph{Demonstratio.}}}{\qed}
+\renewcommand\qedsymbol{Q.E.D.}
+% \renewcommand{\chaptername}{Caput}
+% \renewcommand{\contentsname}{Index Capitum} % Index Capitum 
+\renewcommand{\emph}[1]{\textbf{\textit{#1}}}
+\renewcommand{\ker}[1]{\operatorname{Ker}{#1}}
+
+%\DeclareMathOperator{\ker}{Ker}
+
+% New Commands
+\newcommand{\bb}[1]{\mathbb{#1}} %TODO add this line to nvim snippets
+\newcommand{\orb}[2]{\text{Orb}_{#1}({#2})}
+\newcommand{\stab}[2]{\text{Stab}_{#1}({#2})}
+\newcommand{\im}[1]{\text{im}{\ #1}}
+\newcommand{\se}[2]{\text{send}_{#1}({#2})}
+
+\title{Galois Thoery}
+\author{Harry Han, S2162783} 
+\date{\today}
+
+\begin{document}
+\maketitle
+% \tableofcontents
+\section*{Q1}
+
+The Degree of the extension of $\bb{Q}(2^{\frac{1}{4}})$ is $4$. 
+
+$2^{\frac{1}{4}}$ is the root of the polynomial $x^4 - 2 = 0$, which is irreducible by Eisenstein's criterion (by plugging in $2$); thus it is its minimal polynomial.
+As a result, we can apply theorem 5.1.5 to conclude that this field extension is of degree 4 and the basis are $1, 2^{\frac{1}{4}}, 2^{\frac{1}{2}}, 2^{\frac{3}{4}}$.
+
+\section*{Q2}
+The Galois group, $Gal(\bb{Q}(2^{\frac{1}{4}}): \bb{Q})$ is isomorphic to $C_2$.
+
+\begin{proof}
+	We want to classify the automorphism of $Q(2^{\frac{1}{4}})$ over $\bb{Q}$.
+	Let $\theta$ be such an automorphism. 
+	Note that 
+	$$
+	\theta(2^{\frac{1}{4}})^4 = \theta(2) = 2
+	$$
+
+	So $\theta(2^{\frac{1}{4}})$ is a root of $x^4 - 2 = 0$.
+	Since all basis of $\bb{Q}(2^{\frac{1}{4}})$ are elements of $\bb{R}$, $\bb{Q}(2^{\frac{1}{4}}) \subset \bb{R}$, so we conclude that $\theta(2^{\frac{1}{4}}) = 2^{\frac{1}{4}}$  or $\theta(2^{\frac{1}{4}}) = -2^{\frac{1}{4}}$.
+	Once $\theta(2^{\frac{1}{4}})$ is determined, $\theta$ is determined as well by Lemma 4.3.6.
+	So there are only two elements in $Gal(\bb{Q}(2^{\frac{1}{4}}), \bb{Q})$, and it must be isomorphic to $Z / 2Z \cong C_2 $.
+\end{proof}
+
+\end{document}
