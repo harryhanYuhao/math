@@ -159,7 +159,7 @@ We have proved that, in part (a),
 	|\t(t; \x)| = \sum_{n \in \mathbb{Z}} \left|\chi(n) e^{-\pi n^2 t/q}\right| 
 	\leq 2 \sum_{n = 1}^{\infty} \left|e^{-\pi n t/q}\right| \\ 
 \end{align}
-Note $e^{-\pi n^2 t/q} > 0$ for all $t$. Evaluting this term using the summation formula for geometric series gives 
+Note $e^{-\pi n^2 t/q} > 0$ for all $t$. Evaluting this term using the summation formula for geometric series (which is valid, as $1< e^{-\pi t /q} < 1$) gives 
 \begin{align}
 	|\t(t; \x)| 
 	&\leq 2 \sum_{n = 1}^{\infty} \left|e^{-\pi n t/q}\right| \\ 
@@ -186,7 +186,7 @@ Picking $N = \lfloor \sqrt{\frac{q}{t}}\rfloor$, we have
 	|\t(t; \x) |
 	&\leq 2 \sum_{n = 1}^{\infty} e^{-\pi n^2 t/q}  \\
 	& = 2 \left( \sum_{n = 1}^{N} e^{-\pi n^2 t/q}
-	+ \sum_{n = N}^{\infty} e^{-\pi n^2 t/q} \right)  \label{q1part2_I_II}
+	+ \sum_{n = N + 1}^{\infty} e^{-\pi n^2 t/q} \right)  \label{q1part2_I_II}
 \end{align}
 Label $I =  \sum_{n = 1}^{N} e^{-\pi n^2 t/q}$, and $II =  \sum_{n = N}^{\infty} e^{-\pi n^2 t/q}$.
 For $t > 0.23 q > 0$ (recall $q$ is always positive) we have the trivial ineqality that $0 < e^{-\pi n^2 t / q} < 1$, so $I < N \leq \sqrt{\frac{q}{t}}$. 
@@ -306,7 +306,7 @@ Note
 	\leq \sum_{n=1}^{\infty} |e^{-\pi n^2 u/q} u^{z/2-1}|  
 	= \sum_{n=1}^{\infty} |e^{-\pi n^2 u/q}| u^{x/2-1}
 \end{dmath}
-setting $x = Re(z) > 1$. 
+setting $x = Re(z) > 1$. (Note $u$ is the variable of integration and is always positive) .
 The last equality is true since for any $z \in \bb{C}, r \in \bb{R}$, $|r^z| = r^{Re(z)}$.
 By results of Exercise 1, 
 \begin{dmath}
@@ -340,7 +340,11 @@ $$
 \int_0^{0.25q} 2 u^{x/2 - 3/2}\sqrt{q} \;du  = 2 \sqrt{q} \frac{(0.25q)^{\frac{x}{2} - 0.5}}{x/2 - 0.5} < \infty
 $$
 
-The second integrand is also integrable and finite, so $\int_0^{\infty}g(u)du < 0$.
+The second integrand, upon change of variable $t = \pi u /q$ is
+$$
+\int_{0.25q}^{\infty} 2e^{-\pi u / q} u^{x/2 - 1} \;du = \int_{0.25q}^{\infty} 2e^{-t} \left(\frac{q}{\pi}\right)^{x/2 - 1} t^{x/2 - 1} \frac{q}{\pi} \;dt 
+$$
+which is also integrable and finite as shown in Lemma 1 (proved in the last page).  So $\int_0^{\infty}g(u)du$ as a sum of finite integral, is defined and finite.
 
 Thus, we can use the theorem of HAn to exchange the order of summation and integration, and obtain
 
@@ -386,7 +390,7 @@ Show that the sum of the integrals on the right defines an analytic function on 
 Applying the functional equation to the first integral in \eqref{q3_part_1_goal} gives
 \begin{align}
 	\int_0^1 \vartheta(u;\chi) u^{z/2-1} du 
-	&= \int_0^1 c_{\chi,1} \sqrt{\frac{q}{u}} \vartheta(u^{-1};\bar{\chi})u^{z/2 - 1} du \quad \text{for all } t > 0, \\ 
+	&= \int_0^1 c_{\chi,1} \sqrt{\frac{q}{u}} \vartheta(u^{-1};\bar{\chi})u^{z/2 - 1} du \quad \text{for all } t > 0, 
 \end{align}
 make the substitution $t = u^{-1}$, so $u = t^{-1}$ and $du = -t^{-2}dt$ to get 
 \begin{align}
@@ -434,7 +438,7 @@ Let us integrating each $g_N$ on any closed loop $\gamma$ over the complex plane
 Where in \eqref{q4exchange_integral} we used Fubini's theorem to exchange the order of integration. 
 In \eqref{q4holomorphic}, notice that $t$ is a constant greater than or equal to $1$ in the inner integeral, thus $t^{z/2 - 1}$ is holomorphic over all $\bb{C}$. 
 Thus by Cauchy's theorem, the integral over any closed loop is zero.
-Hence by Moreva's theorem each $g_N$ is holomorphic on $\mathbb{C}$.
+Hence by Moreva's theorem, as each $g_N$ is continuous, it is holomorphic on $\mathbb{C}$.
 
 Picking any finite $R$ and consider the set $\D = \{z \in \bb{C}: |z| \leq R\}$.
 Note:
@@ -464,7 +468,7 @@ $$
 	= 4 \left(\frac{q}{\pi}\right)^{R/2}\int^{\infty}_{\pi N / q} u^{R/2-1} e^{-u} du
 $$
 
-By lemma \ref{lemma:1} $\lim_{n \rightarrow \infty}\int^{\infty}_{n} u^{R/2-1} e^{-u} du = 0 $. 
+By lemma \ref{lemma:1} (proved in the last page) $\lim_{n \rightarrow \infty}\int^{\infty}_{n} u^{R/2-1} e^{-u} du = 0 $. 
 As a result
 $$
 \lim_{N \rightarrow  \infty }\sup_{z \in \D} |g_N(z) - g(z)| \leq \lim_{N \rightarrow \infty} 4 \left(\frac{q}{\pi}\right)^{R/2}\int^{\infty}_{\pi N / q} u^{R/2-1} e^{-u} du  = 0 
@@ -474,7 +478,15 @@ Meaning $g_N$ converges uniformly to $g$ on $\D$.
 As each of $g_N$ is analytic and converges uniformly to $g$ on $\D$, $g$ is analytic on $\D$ for all $R > 0$.
 Since for all $z \in \bb{C}$ we can find $\D$ such that $z \in \D$, we conclude that $g$ is analytic on the whole complex plane $\bb{C}$.
 
-The proof for the other intergral is exactly the same, thus we conclude that the sum of the integrals on the right defines an analytic function on the whole complex plane $\mathbb{C}$, which provides the analytic continuation of $L(z;\chi)$.
+The proof of analyticity for the other intergral is exactly the same, thus we conclude that the sum of the integrals on the right defines an analytic function on the whole complex plane $\mathbb{C}$. 
+
+Thus 
+
+\begin{dmath}
+	L(z; \chi) = \left(\frac{1}{2} \sqrt{q} c_{\chi,1} \int_1^{\infty} t^{(1-z)/2-1}\vartheta(t;\chi) dt + \int_1^{\infty} t^{z/2-1}\vartheta(t;\chi) dt \right) (2q^{z/2}\pi^{-z/2}\Gamma(z/2))^{-1}
+\end{dmath}
+
+As each function of the RHS defines analytical function over all complex plane, they constitute the analytic continuation of $L(z;\chi)$.
 
 
 
@@ -516,38 +528,29 @@ multiplying both side by $c_{\bar{\chi}, 1}q^{1/2}$
 where in the last step we used the identity$c_{\bar{\chi}, 1}c_{\chi, 1} = q^{-1}$, which gives the desired result.
 
 
+\newpage
 \begin{lemma}\label{lemma:1}
 	For a finite $R > 0$ 
 	\begin{equation}
 		\lim_{n \rightarrow \infty}\int_{n}^{\infty} t^{R} e^{-t} dt = 0
 	\end{equation}
+	In particular, for each finite $n>0$ and $R>0$ the integral 
+	$$
+		\int_{n}^{\infty} t^{R} e^{-t} dt < \infty
+	$$
 \end{lemma}
 \begin{proof}
-	Assuming $R > 0$, we need the following inequality:
-	$e^{-t} t^{R-1} \leq t^{-2}$ for all $t > N$ when $N/\log(N) \geq R + 1$.
+	Assuming $R$ is finite and $R > 0$, it is clear that, using iterative L'Hopital's rule, $\lim_{t \rightarrow \infty} e^{-t}t^{R+2} = 0$.
+	That is, there exists $N > 0$ such that for all $n > N,$ $e^{-t}t^{R+2} < t^{-2}$.
 
-	% Notice that when $t = N$ and $\frac{N}{\log(N)} = R + 1$, $e^{-t}t^{R-1} = t^{-2}$.
-	% 
-	% Note
-	% \begin{align}
-	% 	\frac{d}{dt} e^{-t}t^{R-1} - t^{-2} 
-	% 	&= -e^{-t}t^{R-1} + (R-1)e^{-t}t^{R-2} + 2t^{-3} \\ 
-	% \end{align}
-	%
-	% Setting it to zero gives
-	% \begin{align}
-	% 	0 &= -e^{-t}t^{R-1} + (R-1)e^{-t}t^{R-2} + 2t^{-3} \\ 
-	% 	  & \implies 
-	% 	0 = -e^{-t}t^{R+2} + (R-1)e^{-t}t^{R+1} + 2 \\ 
-	% 	  & \implies 
-	% 	2 = e^{-t}\left(t^{R+2} - (R-1)t^{R+1}\right) \\ 
-	% \end{align}
-	Notice $N / N\log(N)$ is monotonically increasing for $x > e$ and $\lim_{N \rightarrow \infty} N / \log(N) = \infty$, so for any $R$ we can pick some $N$ such that $n/log(n) > R+1$ for all $n > N$.
-	Picking this $N$ for the lower limit of the integration thus the above integral is bounded by
+	For all $n > N$, which is picked for the lower limit of the integration, and note that $t^R e^{-t} > 0$ for all $t>0$, the above integral is bounded by
 	$$
 	0 <  \int_{n}^{\infty} t^{R} e^{-t} dt \leq \int_{n}^{\infty} t^{-2} dt < \frac{1}{n}
 	$$
 	Setting $n \rightarrow \infty$ gives the desired result.
+
+	To prove the second claim, we just need to realise that $t^{R}e^{-t}$ is continuous and bounded for any $t \geq 0$, thus it is integrable over any finite interval in the positive real line.
+	Combining this with the first claim gives the desired result.
 \end{proof}
 
 \end{document}
