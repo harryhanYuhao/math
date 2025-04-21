@@ -1,0 +1,227 @@
+\documentclass{article}
+
+\usepackage[tmargin=2.5cm,rmargin=3cm,lmargin=3cm,bmargin=3cm]{geometry} 
+% Top margin, right margin, left margin, bottom margin, footnote skip
+\usepackage[utf8]{inputenc}
+\usepackage{biblatex}
+\addbibresource{./references.bib}
+% linktocpage shall be added to snippets.
+\usepackage{hyperref,theoremref}
+\hypersetup{
+	colorlinks, 
+	linkcolor={red!40!black}, 
+	citecolor={blue!50!black},
+	urlcolor={blue!80!black},
+	linktocpage % Link table of content to the page instead of the title
+}
+
+\usepackage{blindtext}
+\usepackage{titlesec}
+\usepackage{amsthm}
+\usepackage{thmtools}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{titlesec}
+\usepackage{xcolor}
+\usepackage{multicol}
+\usepackage{hyperref}
+\usepackage{import}
+
+
+\newtheorem{theorem}{Theorema}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}{Corollarium}[section]
+\newtheorem{proposition}{Propositio}[theorem]
+\theoremstyle{definition}
+\newtheorem{definition}{Definitio}[section]
+
+\theoremstyle{definition}
+\newtheorem{axiom}{Axioma}[section]
+
+\theoremstyle{remark}
+\newtheorem{remark}{Observatio}[section]
+\newtheorem{hypothesis}{Coniectura}[section]
+\newtheorem{example}{Exampli Gratia}[section]
+
+% Proof Environments
+
+%TODO mayby proof environment shall have more margin
+% \renewenvironment{proof}{{\bfseries\emph{Demonstratio.}}}{\qed}
+\renewcommand\qedsymbol{Q.E.D.}
+% \renewcommand{\chaptername}{Caput}
+% \renewcommand{\contentsname}{Index Capitum} % Index Capitum 
+\renewcommand{\emph}[1]{\textbf{\textit{#1}}}
+\renewcommand{\ker}[1]{\operatorname{Ker}{#1}}
+
+%\DeclareMathOperator{\ker}{Ker}
+
+% New Commands
+\newcommand{\bb}[1]{\mathbb{#1}} %TODO add this line to nvim snippets
+\newcommand{\orb}[2]{\text{Orb}_{#1}({#2})}
+\newcommand{\stab}[2]{\text{Stab}_{#1}({#2})}
+\newcommand{\im}[1]{\text{im}{\ #1}}
+\newcommand{\se}[2]{\text{send}_{#1}({#2})}
+
+\title{Ars Amatoriae}
+\author{Publius Ovidius Naso} 
+\date{\today}
+
+\begin{document}
+
+\section*{Exercise 1}
+This problem is an exercise in some ways that the Nullstellensatz fails over $\mathbb{R}$.
+
+\begin{enumerate}
+    \item Find an ideal $I$ of $\mathbb{R}[x]$ that satisfies all of:
+    \begin{enumerate}
+        \item $I$ is maximal (so $1 \notin I$).
+        \item $I$ is not of the form $(x - \lambda)$ for some $\lambda \in \mathbb{R}$.
+        \item The subset $V(I)$ of $\mathbb{A}^1_{\mathbb{R}}$ defined by $I$ is empty.
+    \end{enumerate}
+    
+    \item Show that any algebraic set $X \subseteq \mathbb{A}^n_{\mathbb{R}}$ can be defined by a single polynomial $f$ (i.e., by a principal ideal). 
+    
+    \textbf{Hint:} First work out why $V(x^2 - 1, x + y) = V((x^2 - 1)^2 + (x + y)^2)$ as subsets of $\mathbb{A}^2_{\mathbb{R}}$.
+    
+    \item Show that $(0,0) = V(x,y) \subset \mathbb{A}^2_{\mathbb{C}}$ is not defined by any principal ideal. That is, show that if $f \in \mathbb{C}[x,y]$, then $V(f) \neq \{(0,0)\}$. 
+    
+    \textbf{Hint:} $I(\{(0,0)\}) = (x, y)$. Use the Nullstellensatz and unique factorization of polynomials to show that if $V(f) = \{(0,0)\}$, then $x | f$ and $y | f$.
+\end{enumerate}
+
+\subsection*{1}
+
+The required ideal is $I = (x^2 + 1)$.
+It is maximal as $\bb{R}[x] / I \cong \bb{C}$ is a field. 
+
+\subsection*{2}
+
+By the definition of the algebraic set $X \subseteq A_R^n$, $X = V(I)$, for some ideal $I \subset R[x_1, \cdots, x_n]$. Since $R[x_1, \cdots, x_n]$ is Noetherian, $I = (f_1, \cdots, f_m)$ for some functions $f_i \in \bb{R}[x_1, \cdots, x_n]$, $1 \leq i \leq m$.
+
+I claim that the $V(f_1, f_2, \cdots, f_m) = V(f_1^2 + f_2^2 + \cdots + f_m^2)$.
+
+If $x \in V(f_1, f_2, \cdots, f_m)$, $f_i(x) = 0$ for all $ 1 \leq i \leq n$, and $f_1^2(x) + \cdots + f_m^2(x)$ must equal to $0$. 
+So $x \in V(f_1^2 + f_2^2 + \cdots + f_m^2)$, meaning $V(f_1, f_2, \cdots, f_m) \subseteq V(f_1^2 + f_2^2 + \cdots + f_m^2)$.
+
+Conversely, if $x \in V(f_1^2 + f_2^2 + \cdots + f_m^2)$, this means $f_1^2(x) + f_2^2(x) + \cdots + f_m^2(x) = 0$. 
+However, all of $f_i^2(x)$ are non-negative as we are working on real numbers, and the only way the sum of non-negative numbers are zero is that all of them are zero. 
+This means $f_i(x) = 0$ for all $1 \leq i \leq n$, and $x \in V(f_1, f_2, \cdots, f_m)$, i.e., $V(f_1^2 + f_2^2 + \cdots + f_m^2) \subseteq V(f_1, f_2, \cdots, f_m)$.
+
+Thus we conclude that $V(f_1^2 + f_2^2 + \cdots + f_m^2) = V(f_1, f_2, \cdots, f_m)$ and our proof is done.
+
+\subsection*{3}
+
+Assuming $(0, 0) = V(f)$ for some $f \in \bb{C}[x,y]$. 
+$f$ can not be a constant, otherwise $V(f) = \emptyset$ we $f \neq 0$ and $V(f) = A_C^2$ when $f = 0$.
+$f$ can not be only a function of $x$ alone, otherwise $f(0, 0) = f(0, 1) = 0$ and $V(f)$ must contains $(0, 1)$. 
+For same reason $f$ can not be a function of $y$ alone.
+Thus, $f$ is a non constant polynomial in both $x$ and $y$.
+
+Regard $f \in \bb{C}[x] [y]$, that is, $f$ is a polynomial in $y$ with coefficients in $\bb{C}[x]$. 
+The leading term of $f$ is either a constant or non-zero polynomial in $x$. 
+In either case there are only finitely many $x$ such that the leading term of $f$ is zero, this means that there are at most finitely many $x$ such that $f$ is constant (as, for $f$ to be constant, the leading term of $f$ must be zero).
+
+For all other $x$, evaluate the coefficients of $f$ at $x$ gives a non-constant polynomial in $y$ with coefficients in $\bb{C}$.
+As $\bb{C}$ is algebraically closed, this polynomial has some roots. Thus we have proved that $f(V)$ contains infinitely many points, which gives rises to a contradiction.
+ 
+\section*{Exercise 2}
+Let $C \subset P^2$ be an irreducible curve with the equation $f(x, y, z) = 0$, where $[x : y : z] \in P^2$.
+
+The cone $\hat{C} \subset P^3$ is defined to be the surface with the equation $f(x, y, z) = 0$, where $[x : y : z : w] \in P^3$ (the equation is independent of the coordinate $w$). Recall that $C \times P^1$ is a projective variety via the embedding
+\[ C \times P^1 \subset P^2 \times P^1 \subset P^5, \]
+where the last map is the Segre embedding. Show that $\hat{C}$ is birational to $C \times P^1$.
+
+\textbf{Hint:} Recall that the function field of a projective variety coincides with the function field of its open affine chart given by setting one of the homogeneous coordinates to be nonzero (Lemma 3.12.3).
+
+\begin{proof}
+	The cone $\hat{C}$, by definition, must intersects $U_w$. So by lemma 3.12.3,  (by taking $w$ to be a constant) its function field is 
+	$$
+	k(\hat{C}) = k(\hat{C} \cap U_w) = \frac{k(x, y, z)}{(f(x, y, z))}
+	$$
+
+	Now, consider the variety $C\times P^1$ via the Segre embedding. Denote coordinates of $P^5$ as $[x_0: y_0: z_0: x_1:y_1:z_1]$.
+	And in general, a point in $P^5$ is part of $C \times P^1$ if it is in the form of $[ax: ay: az: bx: by: bz]$ where $f(x, y,z) = 0$ for $[a:b] \in P^1$.
+	As a result, $C \times P^1$ is $V(f(x_0, y_0, z_0), x_0z_1 - z_0x_1, x_0y_1 - y_0x_1)$.
+
+	Assuming $C$ is non-empty (otherwise there is nothing to be proved), $C \subset P^2$ must intersect one of $U_x, U_y$ or $U_z$. 
+	Without loss of any generality, let $C$ intersects with $U_x$, this means $C \times P^1$ must intersects with $U_{x_1}$. 
+	Invoke theorem $3.12.3$, we see 
+	$$
+		k(C \times P^1) = k(C \times P^1 \cap U_{z_1}) = \frac{k(x_0, y_0, z_0, y_1, z_1)}{(f(x_0, y_0, z_0), x_0z_1 - z_0, x_0y_1 - y_0)}.
+	$$
+	Now, we can substitute $y_1 = \frac{y_0}{x_0}$, $z_1 = \frac{z_0}{x_0}$ (and restricting properly the domain) to get 
+	$$
+		k(C \times P^1) = \frac{k(x_0, y_0, z_0)}{(f(x_0, y_0, z_0))} = k(\hat{C}).
+	$$
+	This is what we desired.
+\end{proof}
+
+\section*{Exercise 3}
+Consider the cubic surface $S: wx^2 + xyz + y^3 = 0$ in $P^3_{\mathbb{C}}$.
+
+\begin{enumerate}
+    \item Show that $S$ is irreducible and find all singular points.
+    
+    \textbf{Hint:} To show irreducibility, assume the polynomial factors and look at the terms depending on $w$.
+    
+    \item Find all lines on $S$.
+\end{enumerate}
+
+\subsection*{1}
+
+\begin{proof}
+	Assuming $S$ is not irreducible, then $S = S_1 \cdot S_2$ for some $S_1, S_2 \in \bb{C}[w,x,y,z]$.
+	Since each monomial of $S$ does not share common factors, neither of $S_1$, $S_2$ will be monomial.
+	$S$ contains $w$, so $S_1$ or $S_2$ must contain $w$, but the other is not a monomial, so the product of $S_1, S_2$ must contains more than one term of $w$, which $S$ does not.
+	So we conclude $S$ is irreducible.
+
+	Take the partial derivative of $S$ with respect to $w$, $x$, $y$, and $z$gives 
+	\begin{align}
+		\frac{\partial S }{ \partial x} &= 2wx + yz \\	 
+		\frac{\partial S }{ \partial y} &= xz + 3y^2  \label{2}\\
+		\frac{\partial S }{ \partial z} &= xy \\
+		\frac{\partial S }{ \partial w} &= x^2  \label{4}
+	\end{align}
+	To find the singular points is to solve all of the above partial derivative equal to 0.
+	\eqref{4} forces $ x = 0$. 
+	When $x = 0$, \eqref{2} forces $ y = 0$.
+	Plugging in to the equations we see when $x = y = 0$ all the partials equals zero, and $x = y = 0$ is part of the Cubic surface defined by $S$.
+	So we conclude all singular points are of the form $[0:0:a:b]$, for any $[a:b] \in P_{\bb{C}}$.
+\end{proof}
+
+\subsection*{2}
+
+Notice that a point is singular point of $S$ iff it is contained in the line $L: x = y = 0$.
+The line $L$ is contained in the plane $\Pi: x = 0$. 
+If plugging $x = 0$ into $S$, we see $y$ is forced to be $0$, so the intersection of $\Pi$ and $S$ is precisely the line $L$.
+
+If $S$ contains any other line, say $L_2$, this line must cross the plane $\Pi$ at some point. 
+But the only intersection of $S$ and $\Pi$ is the line $L$, so $L_2$ must crosses $L$ at some point. 
+So there is another plane $\Pi_2$, which contains both $L$ and $L_2$.
+In conclusion, if $S$ contains any line other than $L$, this line must be contained in some plane containing $L$.
+
+So we can find all planes containing $L$ and find if there are any lines in the intesection of these planes and $S$.
+
+All the planes containing $L$ have the equation 
+\begin{align}\label{q3}
+	ax + by = 0,
+\end{align}
+for $[a:b] \in P_C^1$.
+If $b = 0$, the equation becomes $x = 0$, which, substituting into $S$ gives $y = 0$, and the intersection is the line $L$. 
+
+Assuming $b \neq 0$ and dividing \eqref{q3} by $b$ gives $y = -\frac{a}{b} x$. 
+Substituting back to $S$ gives 
+$$
+	w x^2  - \frac{a}{b} x^2z + \frac{a^3}{b^3} x^3 = 0.
+$$
+We may assume $x \neq 0$, as if $x = 0$, we are back to the line $L$.
+So dividing by $x^2$ gives
+$$
+	w - \frac{a}{b} z + \frac{a^3}{b^3} x = 0.
+$$
+Recall $a,b$ are constants so the intersection of \eqref{q3} and $S$, in this case, is the intersection of two plane thus a line.
+
+In summary, there are infinitely many lines in $S$.
+One of them is the line $x = y = 0$. 
+All others are in the form $ax + by = w - \frac{a}{b}z + \frac{a^3}{b^3} x = 0$ for $[a:b] \in P_C^1$.
+\end{document}

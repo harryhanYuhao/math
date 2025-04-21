@@ -1,0 +1,490 @@
+\documentclass{article}
+
+\usepackage[tmargin=2.5cm,rmargin=3cm,lmargin=3cm,bmargin=3cm]{geometry} 
+% Top margin, right margin, left margin, bottom margin, footnote skip
+\usepackage[utf8]{inputenc}
+\usepackage{biblatex}
+\addbibresource{./references.bib}
+% linktocpage shall be added to snippets.
+\usepackage{hyperref,theoremref}
+\hypersetup{
+	colorlinks, 
+	linkcolor={red!40!black}, 
+	citecolor={blue!50!black},
+	urlcolor={blue!80!black},
+	linktocpage % Link table of content to the page instead of the title
+}
+
+\usepackage{breqn}
+\usepackage{blindtext}
+\usepackage{titlesec}
+\usepackage{amsthm}
+\usepackage{thmtools}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{titlesec}
+\usepackage{xcolor}
+\usepackage{multicol}
+\usepackage{hyperref}
+\usepackage{import}
+\usepackage[bb=boondox]{mathalfa}
+
+
+\newtheorem{theorem}{Theorema}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}{Corollarium}[section]
+\newtheorem{proposition}{Propositio}[theorem]
+\theoremstyle{definition}
+\newtheorem{definition}{Definitio}[section]
+
+\theoremstyle{definition}
+\newtheorem{axiom}{Axioma}[section]
+
+\theoremstyle{remark}
+\newtheorem{remark}{Observatio}[section]
+\newtheorem{hypothesis}{Coniectura}[section]
+\newtheorem{example}{Exampli Gratia}[section]
+
+% Proof Environments
+\newcommand{\thm}[2]{\begin{theorem}[#1]{}#2\end{theorem}}
+
+%TODO mayby proof environment shall have more margin
+% \renewenvironment{proof}{{\bfseries\emph{Demonstratio.}}}{\qed}
+\renewcommand\qedsymbol{Q.E.D.}
+% \renewcommand{\chaptername}{Caput}
+% \renewcommand{\contentsname}{Index Capitum} % Index Capitum 
+\renewcommand{\emph}[1]{\textbf{\textit{#1}}}
+\renewcommand{\ker}[1]{\operatorname{Ker}{#1}}
+\renewcommand{\S}{\sum_{\substack{p \leq x \\ p \equiv a \mod q}}}
+
+%\DeclareMathOperator{\ker}{Ker}
+
+% New Commands
+\newcommand{\bb}[1]{\mathbb{#1}} %TODO add this line to nvim snippets
+\newcommand{\orb}[2]{\text{Orb}_{#1}({#2})}
+\newcommand{\stab}[2]{\text{Stab}_{#1}({#2})}
+\newcommand{\im}[1]{\text{im}{\ #1}}
+\newcommand{\se}[2]{\text{send}_{#1}({#2})}
+
+\title{Analytical Number Theory Handin 4}
+\author{Harry Han; s2162783} 
+\date{\today}
+
+\begin{document}
+\maketitle
+
+For two integers $a$ and $q$ with $q \geq 2$ and $\gcd(a, q) = 1$, consider the arithmetic progression:
+\[ AP_{a,q} = \{a + mq : m \in \mathbb{Z} \}. \]
+The goal of this assignment is to show that
+\begin{equation}
+    \pi(x; q) \sim \frac{1}{\varphi(q)} \frac{x}{\log x},
+\end{equation}
+where
+\[ \pi(x; q) = \sum_{\substack{p \leq x \\ p \equiv a \mod q}} 1 \]
+counts the number of primes $p \in AP_{a,q}$ which are no greater than $x$. Here, $\varphi$ is the Euler totient function.
+
+We adapt D. Newman's proof of the PNT, given in lecture. To do this, we introduce the functions:
+\begin{align*}
+    \theta_q(x) &= \varphi(q) \sum_{\substack{p \leq x \\ p \equiv a \mod q}} \log p, \\
+    \Phi_{q,a}(z) &= \varphi(q) \sum_p \frac{1(p) \log p}{p^z},
+\end{align*}
+where $1$ is the indicator function for $AP_{a,q}$. An important step in the proof is the analytic continuation of
+\[ \frac{\Phi_{q,a}(z) - 1}{z - 1} \]
+to some open set containing $\{z : \operatorname{Re} z \geq 1 \}$. This was worked out in Workshop 5, and you may use this without proof.
+
+\section*{Problems}
+	
+\subsection*{Q1}
+
+Show that if $\theta_q(x) \sim x$, then (1) holds by completing the following steps. Fix any $0 < \epsilon < 1$ and let $x > 1$.
+
+\subsubsection*{1}
+Show that
+\[ \varphi(q)(1-\epsilon)[\pi(x; q) - \pi(x^{1-\epsilon}; q)] \log x \leq \theta_q(x) \leq \varphi(q)[\pi(x; q)] \log x. \]
+
+\begin{proof}
+Let us break down the inequality into two halves.
+\begin{align}\label{first_half}
+	\theta_q(x) \leq \varphi(q)\pi(x; q)\log x
+\end{align}
+and 
+\begin{align}\label{second_half}
+ \varphi(q)(1-\epsilon)[\pi(x; q) - \pi(x^{1-\epsilon}; q)] \log x \leq \theta_q(x).
+\end{align}
+
+Recall $\theta_q(x) = \varphi (q) \sum_{\substack{p \leq x \\ p \equiv a \mod q}} \log p$ and $\pi(x; q) = \sum_{\substack{p \leq x \\ p \equiv a \mod q}} 1$. 
+
+As $\log$ is a monotonically increasing function, $\log p < \log x$ for all $p < x$, which leads to
+$$
+\sum_{\substack{p \leq x \\ p \equiv a \mod q}} \log p 
+\leq \S \log x = \log x \S 1
+$$
+Multiplying both sides by $\varphi(x)$, which is positive, gives 
+$$
+\varphi(q) \S \log p \leq \varphi(q) \log x \S 1.
+$$
+This is \eqref{first_half}, which is what we desired.
+
+To prove \eqref{second_half} requires the key observation that 
+$$
+\pi(x;q) - \pi(x^{1-\epsilon};q) = \sum_{\substack{p \leq x \\ p \equiv a \mod q}} 1 - \sum_{\substack{p \leq x^{1-\epsilon} \\ p \equiv a \mod q}} 1 
+= \sum_{\substack{x^{1-\epsilon} < p \leq x \\ p \equiv a \mod q}} 1
+$$
+
+Note for $p > x^{1 - \epsilon}$, taking logarithm of both sides gives $\log p > (1 - \epsilon) \log x$, so 
+
+$$
+(1 - \epsilon) \log x \sum_{\substack{x^{1-\epsilon} < p \leq x \\ p \equiv a \mod q}} 1 
+= \sum_{\substack{x^{1-\epsilon} < p \leq x \\ p \equiv a \mod q}} (1 - \epsilon) \log x 
+\leq \sum_{\substack{x^{1-\epsilon} < p \leq x \\ p \equiv a \mod q}} \log p 
+\leq \S \log p
+$$
+Multiplying both sides by $\varphi(q)$ gives 
+
+$$
+\varphi(q)(1-\epsilon)[\pi(x; q) - \pi(x^{1-\epsilon}; q)] \log x  = 
+\varphi(q) (1 - \epsilon) \log x \sum_{\substack{x^{1-\epsilon} < p \leq x \\ p \equiv a \mod q}} 1 
+\leq 
+\varphi(q) \S \log p
+$$
+
+which is \eqref{second_half}.
+\end{proof}
+
+
+\subsubsection*{2}
+Show that
+\begin{align}\label{q1_2_1}
+(1-\epsilon)\pi(x^{1-\epsilon}; q) \log x \leq (1-\epsilon)x^{1-\epsilon} \log x,
+\end{align}
+and hence deduce that
+\begin{align}\label{q1_2_2}
+\theta_q(x) \leq \varphi(q)\pi(x; q) \log x \leq \frac{1}{1-\epsilon} \theta_q(x) + \frac{1}{x^{\epsilon}} \varphi(q)x \log x.
+\end{align} 
+
+For \eqref{q1_2_1}, all we need to prove is for $x \geq 1$,
+\begin{align} \label{pi<x}
+	\pi(x; q) \leq x.
+\end{align}
+This equation is obviously true, as $\pi(x;q)$ counts the number of primes less than or equal to $x$ in the arithmetic progression $AP_{a,q}$, and there are at most $x$ positive integer less than $x$.
+Since $x > 1$ and $1-\epsilon > 0$, $x^{1-\epsilon} > 1$, so the expression $\pi(x^{1- \epsilon})$ makes sense.
+Applying \eqref{pi<x} and multiply both side by $(1-\epsilon)\log(x)$, which is a positive number as $\epsilon <1$ and $x > 1$, gives \eqref{q1_2_1}.
+
+To prove \eqref{q1_2_2}, let us first expand \eqref{second_half}:
+\begin{align*}
+	\varphi(q)(1-\epsilon)\pi(x; q) \log x \leq \theta_q(x) + \varphi(q) \log x (1 - \epsilon)\pi(x^{1-\epsilon}; q)
+\end{align*}
+
+Apply equation \eqref{q1_2_1} to the second term on the right-hand side, we get 
+\begin{align*}
+	\varphi(q)(1-\epsilon)\pi(x; q) \log x \leq \theta_q(x) + \varphi(q) \log x (1 - \epsilon)x^{1-\epsilon} \log x
+\end{align*}
+
+Divide both sides by the positive number $(1- \epsilon)$, and write $x^{1-\epsilon}$ as $x \frac{1}{x^{\epsilon}}$ gives the desired result \eqref{q1_2_2}.
+
+\subsubsection*{3}
+Show that if $\theta_q(x) \sim x$, then for any $b_1 < 1 < b_2$,
+\begin{align}\label{bound}
+b_1 \leq \frac{\pi(x; q)\log(x)\varphi(q)}{x} \leq b_2
+\end{align}
+holds for large $x$. 
+Hence, show that
+\begin{align}\label{true_bound}
+ \pi(x; q) \sim \frac{x}{\varphi(q) \log x}.
+\end{align}
+
+\begin{proof}
+	The definition of $\theta_q(x) \sim x$ means that for any $m < 1 < n$, there exists some $X > 0$ such that for all $x > X$ we have $m \leq \frac{\theta_q(x)}{x} \leq n$.
+
+	Let us divide both sides of equation \eqref{first_half} by the positive number $x$:
+	\begin{align*}
+		\frac{\theta_q(x)}{x} \leq \frac{\varphi(q)\pi(x; q) \log x}{x}
+	\end{align*}
+
+	Pick $X_1$ big enough so that for all $x > X_1$ we have $b_1 \leq \frac{\theta_q(x)}{x}$. 
+	This leads to
+	\begin{align*}
+		b_1 \leq \frac{\theta_q (x)}{x}
+		\leq \frac{\varphi(q)\pi(x; q) \log x}{x}
+	\end{align*}
+
+	To prove the upper bound we need to first divide both sides of \eqref{q1_2_2} by the positive number $x$
+	\begin{align*}
+		\frac{\varphi(q)\pi(x; q) \log x}{x} \leq \frac{1}{1-\epsilon} \frac{\theta_q(x)}{x} + \frac{1}{x^{\epsilon}} \varphi(q) \log x
+	\end{align*}
+	Take note that $\varphi(q)$ is a constant, and, by applying L'Hopital's rule, for any $\epsilon > 0$, we have $\lim_{x \to \infty} \frac{\log x}{x^{\epsilon}} = 0$.
+	By definition of $\theta_q(x) \sim x$, there exists $X_2$ such that for $x > X_2 $, $\frac{\theta_q(x)}{x} \leq 1 + \frac{b_2 - 1}{3}$. 
+	Now, pick $\epsilon > 0$ small enough such that $\frac{1}{1-\epsilon} < \dfrac{1 + 2\frac{b_2 - 1}{3}}{1 + \frac{b_2 - 1}{3}}$
+	therefore
+	\begin{align*}
+		\frac{1}{1-\epsilon} \frac{\theta_q(x)}{x} + \frac{1}{x^{\epsilon}} \varphi(q) \log x 
+		\leq
+		1 + 2\frac{ b_2 - 1}{3} + \frac{1}{x^{\epsilon}} \varphi(q) \log x .
+	\end{align*}
+	Now, $\lim_{x \to \infty} \frac{\varphi(q) \log x}{x^{\epsilon}} = 0$, so there exists $X_3$ such that for all $x > X_3$ we have $\frac{\varphi(q)\log x}{x^{\epsilon}} < \frac{b_2 - 1}{3}$
+
+	Choosing $X$ to be the greatest among the $X_1, X_2, X_3$ defined above, and we see for all $x > X$,
+
+	\begin{align*}
+		\frac{\varphi(q)\pi(x; q) \log x}{x} \leq \frac{1}{1-\epsilon} \frac{\theta_q(x)}{x} + \frac{1}{x^{\epsilon}} \varphi(q) \log x
+		\leq
+		b_2
+	\end{align*}
+	Which is what we desired.
+
+	Once \eqref{bound} is proven, mutiply all sides by $\frac{x}{\log x \varphi(q)}$, which is a positve number, gives for any $b_1 < 1 < b_2 $ we have 
+	$$
+		b_1 \frac{x }{\log x \varphi(q)} \leq 
+		\pi(x; q)
+		\leq b_2 \frac{x}{\log x \varphi(q)}
+	$$
+	which is the definition for \eqref{true_bound}.
+\end{proof}
+
+\subsection*{Q2}
+
+Show that if the limit
+\begin{align}\label{limit_integral}
+\lim_{R \to \infty} \int_1^R \frac{\theta_q(x) - x}{x^2} \,dx
+\end{align}
+exists, then $\theta_q(x) \sim x$.
+
+\begin{proof}
+	If it is not true that $\theta_q(x) \sim x$, there either there is a $\lambda > 1$ such that for all $N > 0$ there exists some $x > N$ such that $\theta(x) \geq \lambda x$, or there is a $\lambda < 1$ such that for all $N > 0$ there exists some $x > N$ such that $\theta(x) \leq \lambda x$.
+	In either case we will show the limit diverges. 
+	The desired statement follows by contraposition.
+
+	In the first case, suppose there is a $\lambda > 1$ such that for all $N > 0$ there exists some $x > N$ such that $\theta(x) \geq \lambda x$.
+	Let $x_1$ be the promised value greater than $1$ such that
+	$\theta(x_1) \geq \lambda x_1$. 
+	Let $x_2$ be the promised value greater than $\lambda x_1$ such that $\theta(x_2) \geq \lambda x_2$. 
+	This process can be repeated indefinitely to give us a sequence $x_i$ such that each $x$ in this sequence satisfies $\theta(x) \geq \lambda x$, and $x_{i+1} > \lambda x_i$.
+
+	We can write the limit \eqref{limit_integral} as the partial sum $I_n$, where
+	$$
+	I_1 = \int_1^{x_1} \frac{\theta_q(x) - x}{x^2} \,dx,
+	I_2 = \int_{x_1}^{\lambda x_1} \frac{\theta_q(x) - x}{x^2} \,dx, \cdots
+	$$
+	In general, if $n > 1$ is odd
+	$$
+	I_n = \int_{\lambda x_{(n-1)/2}}^{x_{(n+1)/2}} \frac{\theta_q(x) - x}{x^2} \,dx,
+	$$
+	and if $n$ is even
+	$$
+	I_n = \int_{x_{n/2}}^{\lambda x_{n/2}} \frac{\theta_q(x) - x}{x^2} \,dx,
+	$$
+
+	Note, when $n$ is even, as $\theta_q (x)$ is an increasing function,
+	$$
+	I_n = \int_{x_{n/2}}^{\lambda x_{n/2}} \frac{\theta_q(x) - x}{x^2} \,dx
+	\geq 
+	\int_{x_{n/2}}^{\lambda x_{n/2}} \frac{\lambda x_{n/2} - x}{x^2} \,dx 
+	=
+	\underbrace{
+		\int_{1}^{\lambda} \frac{\lambda -t}{t^2} dt
+	}_{\text{change of variable } x_n t = x}
+	= \lambda -1 - \log \lambda > 0
+	$$
+	In the last step, notice the integrand $\lambda - t > 0 $ for $1<t < \lambda$.
+	Since $I_n$ is always greater than a positive constant when $n$ is even, the partial sum does not converge to $0$, so the limit \eqref{limit_integral} does not exist.
+
+	%%%% Second case
+
+	Similarly in the second case, suppose there is a $\lambda < 1$ such that for all $N > 0$ there exists some $x > N$ such that $\theta(x) \leq \lambda x$. 
+	Without loss of any generality let $\lambda > 0$.
+
+	Let $x_1$ be the promised value greater than $\lambda^{-1}$ such that
+	$\theta(x_1) \leq \lambda x_1$.
+	This makes $\lambda x_1 > 1$.
+	Let $x_2$ be the promised value greater than $\lambda x_1$ such that $\theta(x_2) \leq \lambda x_2$. 
+	This process can be repeated indefinitely to give us a sequence $x_i$ such that each $x$ in this sequence satisfies $\theta(x) \leq \lambda x$, and $x_{i+1} > \lambda x_i$.
+
+	We can write the limit \eqref{limit_integral} as the partial sum $I_n$, where 
+	$$
+	I_1 = \int_1^{\lambda x_1} \frac{\theta_q(x) - x}{x^2} \,dx,
+	I_2 = \int^{x_1}_{\lambda x_1} \frac{\theta_q(x) - x}{x^2} \,dx
+	$$
+	where in general, if $n > 1$ is odd
+	$$
+	I_n = \int^{\lambda x_{(n+1)/2}}_{x_{(n-1)/2}} \frac{\theta_q(x) - x}{x^2} \,dx,
+	$$
+	and if $n$ is even
+	$$
+	I_n = \int^{x_{n/2}}_{\lambda x_{n/2}} \frac{\theta_q(x) - x}{x^2} \,dx,
+	$$
+
+	Note, when $n$ is even, as $\theta_q (x)$ is an increasing function,
+	$$
+	I_n = \int^{x_{n/2}}_{\lambda x_{n/2}} \frac{\theta_q(x) - x}{x^2} \,dx
+	\leq 
+	\int^{x_{n/2}}_{\lambda x_{n/2}} \frac{\lambda x_{n/2} - x}{x^2} \,dx 
+	=
+	\underbrace{
+		\int^{1}_{\lambda} \frac{\lambda -t}{t^2} dt
+	}_{\text{change of variable } x_n t = x}
+	= - (\lambda -1 - \log \lambda) < 0
+	$$
+	In the last step, notice $\lambda - t < 0 $ for $\lambda <t < 1 $, so the definite integral must be negative.
+	Since $I_n$ is always smaller than a negative constant when $n$ is even, the partial sum does not converge to $0$, so the limit \eqref{limit_integral} does not exist.
+\end{proof}
+
+\subsection*{Q3}
+
+Let $F(z) := \int_0^\infty f(t)e^{-zt}dt$ where $f(t) = \theta_q(e^t)e^{-t} - 1$. Show that for $\operatorname{Re} z > 1$,
+\begin{align}
+	\varphi(q) \sum_p \frac{\mathbb{1}(p) \log p}{p^z} = z \int_1^\infty \frac{\theta_q(u)}{u^{z+1}} du = z \int_0^\infty f(t)e^{-t(z-1)}dt + \frac{z}{z-1}.
+\end{align}
+Hence, show that
+\begin{align}
+F(z) = \frac{\Phi_{q,a}(z+1)}{z+1} - \frac{1}{z} = \left[ \Phi_{q,a}(z+1) - \frac{1}{z} \right] \frac{1}{z+1} - \frac{1}{z+1} 
+\end{align} 
+when $\operatorname{Re} z > 0$.
+
+	Let us first prove that 
+	\begin{align}
+		\varphi(q) \sum_p \frac{1(p) \log p}{p^z} = z \int_1^\infty \frac{\theta_q(u)}{u^{z+1}} du 
+	\end{align}
+	Note, as $\varphi(q)$ is a positive constant, by dividing both sides by it we see this equation is equivalent to 
+	\begin{align}\label{q3_1}
+		\sum_p \frac{\mathbb{1}(p) \log p}{p^z} 
+		= z \int_1^\infty \frac{1}{u^{z+1}} \sum_{\substack{p \leq u  \\ p \equiv a \mod q}} \log p du
+	\end{align}
+	Let us label the $n$th prime in the arithmetic progression $AP_{a,q}$ as $\rho_n$. 
+	Note, LHS of \eqref{q3_1} by definition is 
+	\begin{align}\label{expected_pa}
+		\sum_p \frac{\mathbb{1}(p) \log p}{p^z} = \frac{\log \rho_1}{\rho_1^z} + \frac{\log \rho_2}{\rho_2^z} + \cdots
+	\end{align}
+	Between $\rho_n$ and $\rho_{n+1}$, the value of $\sum_{\substack{p \leq x^{1-\epsilon} \\ p \equiv a \mod q}} \log p $ is constant, the the RHS of \eqref{q3_1} can be written as 
+	$$
+	z \int_{\rho_1}^{\rho_{2}} \frac{1}{u^{z+1}} \log \rho_1 du + z \int_{\rho_2}^{\rho_{3}} \frac{1}{u^{z+1}} (\log(\rho_1) + \log (\rho_2)) du + \cdots
+	$$
+	Let us denote the $n$th term of the partial sum of RHS as $R_n$, which by definition is equal to 
+	$$
+	R_n = z \int_{\rho_n}^{\rho_{n+1}} \frac{1}{u^{z+1}} \sum_{i = 1}^{n} \log \rho_i du
+	$$
+	
+	Let us evaluate the integral
+	\begin{align}
+		z \int_{\rho_n}^{\rho_{n + 1}} \frac{1}{u^{z+1}} du = \frac{1}{\rho_n^z} - \frac{1}{\rho_{n+1}^z}
+	\end{align}
+
+	So 
+	\begin{align*}
+		R_1 &= \frac{\log \rho_1}{\rho_1^z} - \frac{\log \rho_1}{\rho_2^z} \\
+		R_2 &= \frac{\log \rho_1}{\rho_2^z} + \frac{\log \rho_2}{\rho_2^z}  - \frac{\log \rho_1}{\rho_3^z} - \frac{\log \rho_2}{\rho_3^z}\\
+		R_3 &= \frac{\log \rho_1}{\rho_3^z} + \frac{\log \rho_2}{\rho_3^z} + \frac{\log \rho_3}{\rho_2^z} - \frac{\log \rho_1}{\rho_4^z} - \frac{\log \rho_2}{\rho_4^z} - \frac{\log \rho_3}{\rho_4^z}\\
+		\cdots \\
+		R_n &= \sum_{i = 1}^n \frac{\log \rho _i}{\rho_n^z} - \sum_{i = 1}^{n+1} \frac{\log \rho_i}{\rho_{n+1}^z}
+	\end{align*}
+	For the sake of simplicity, let us denote $[a, b] = \dfrac{\log(\rho_a)}{\rho_b^z}$.
+	If we compute the partial sum 
+	\begin{align*}
+		R_1 &= [1, 1] - [1, 2] \\
+		R_1 + R_2  &= [1, 1] + [2, 2] - [1, 3] - [2, 3] \\
+		R_1 + R_2 + R_3  &= [1, 1] + [2, 2] + [3, 3] - [1, 4] - [2, 4] - [3,4] \\
+		\cdots \\ 
+		\sum_{i = 1}^n R_i &= \sum_{i = 1}^n [i, i] - \sum_{i = 1}^{n} [i, n+1]
+	\end{align*}
+
+	Compare with our expected partial sum \eqref{expected_pa}, it is clear that the positive terms match, and we only need to show that as $n \rightarrow \infty$, the negative terms, which is $\sum_{i = 1}^{n} [i, n+1]$, vanish.
+
+	Note
+	\begin{align*}
+		\left |\sum_{i = 1}^{n} [i, n+1] \right|
+		\leq \sum_{i = 1}^{n} \left|\frac{\log \rho_i}{\rho_{n+1}^z}  \right|
+		\leq \frac{n \log \rho_n}{\rho_{n+1}^{Re(z)}}
+		\leq \frac{n \log \rho_{n+1}}{\rho_{n+1}^{Re(z)}}
+		\leq \frac{\rho_{n+1} \log \rho_{n+1}}{\rho_{n+1}^{Re(z)}}
+	\end{align*}
+	Where in the last two steps we used the fact that $\rho_{n+1} \geq \rho_n$, and $\rho_{n+1} > n$ (the latter is obvious, as there are at most $n-1$ prime numbers smaller than $n$).
+	Moreover, by Dirichelet's theorem $\rho_{n+1} \rightarrow \infty$ as $n \rightarrow \infty$.
+
+	Note that, as $Re(z) > 1$
+	$$
+	 0 \leq \lim_{n \rightarrow  \infty} \frac{\rho_{n+1} \log \rho_{n+1}}{\rho_{n+1}^{Re(z)}} =
+		\lim_{x \rightarrow  \infty}\frac{x \log x}{x^z} = 0.
+	$$ 
+	So the negative terms vanish, the partial sums coincide, and the limit \eqref{q3_1} holds.
+
+Next we are to prove the second equality.
+
+\begin{align}
+	 z \int_1^\infty \frac{\theta_q(u)}{u^{z+1}} du = z \int_0^\infty f(t)e^{-t(z-1)}dt + \frac{z}{z-1}.
+\end{align}
+
+Make the change of variable $u = e^t$ into $z \int_1^\infty \frac{\theta_q(u)}{u^{z+1}} du $ gives 
+
+$$
+z \int_1^\infty \frac{\theta_q(u)}{u^{z+1}} du 
+=
+z \int_0^\infty \theta_q(e^t)e^{-tz-t}e^t dt 
+=
+z \int_0^\infty \theta_q(e^t)e^{-zt} dt
+$$
+Everything left is mere manipulations of the terms
+
+\begin{dmath}
+z \int_0^\infty \theta_q(e^t)e^{-zt} dt 
+= z \int_0^\infty \theta_q(e^t)e^{-t}e^{-tz+t} dt
+= z \int_0^\infty (\theta_q(e^t)e^{-t} -1 )e^{-tz+t} + e^{-tz + t} dt
+= z \int_0^\infty f(t)e^{-t(z-t)}dt + z\int_0^{\infty} e^{-t(z - 1)} dt
+= z \int_0^\infty f(t)e^{-t(z-t)}dt + \frac{z}{z-1}
+\end{dmath}
+as desired.
+
+Upon this point we have proved that 
+
+\begin{align}
+	\varphi(q) \sum_p \frac{\mathbb{1}(p) \log p}{p^z} = z \int_1^\infty \frac{\theta_q(u)}{u^{z+1}} du = z \int_0^\infty f(t)e^{-t(z-1)}dt + \frac{z}{z-1}.
+\end{align}
+Applying the definition, the above equation is equivalent to 
+$$\Psi_{q,a}(z) = z F(z-1) + \frac{z}{z-1}.$$
+Upon rearranging it gives 
+$$\frac{\Psi_{q,a}(z)}{z} - \frac{1}{z-1} = F(z-1),$$
+this equation, as per our assumptions, holds for $Re(z) > 1$.
+Changing $ z -1 $ to $z$ will change the domain of validicity to $Re(z) > 0$, and it gives
+$$\frac{\Psi_{q,a}(z + 1)}{z + 1} - \frac{1}{z} = F(z) $$ as desired.
+
+Now, notice that $-\frac{1}{z} = - \frac{1}{z(z+1)} - \frac{1}{z+1}$
+plugging in to the above equation gives
+\begin{align}\label{key}
+F(z) = \frac{\Psi_{q,a}(z + 1)}{z + 1} - \frac{1}{z(z+1)} - \frac{1}{z+1}  = \left(\Psi_{q,a}(z+1) - \frac{1}{z}\right)\frac{1}{z+1} - \frac{1}{z+1} \end{align} as desired.
+
+\subsection*{Q4}
+
+Show that $F$ in Question 3 can be analytically continued to some open set containing $\{\operatorname{Re} z \geq 0\}$ and complete the proof that (1) holds.
+
+\begin{proof}
+	Now, as have been shown in the workshop, the function $\Phi_{q,a}(z) - \frac{1}{z-1}$ has an analytic continuation in some open set containing $\{z: Re(z) \geq 1\}$. 
+	Change the variable $z$ to $z+1$ gives the function $\Phi_{q,a}(z+1) - \frac{1}{z}$ has an analytic continuation in some open set containing $\{z: Re(z) \geq 0\}$.
+		
+	Taking note of the equation \eqref{key}, and recall that $\frac{1}{z+1}$ is analytical in $\{z: Re(z) \geq 0\}$, we conclude that $F(z)$ has an analytic continuation in some open set containing $\{z: Re(z) \geq 0\}$.
+
+	In the lecture notes it have been shown that $\theta(x) = \sum_p \log(p) \geq bx$ for some constant $b > 0$. 
+	Since $\theta_q(x) \leq \theta(x)$, it is also bounded by the same expression, i.e., $bx$. 
+	Make the change of variable $x = e^t$ gives $\theta_q(e^t)e^{-t} \leq b$.
+
+	Now, theorem 6.2 states that if $F(z)$ has analytic continuation in some open set containing $\{z: Re(z) \geq 0\}$ (which it does), and $G(0)$, defined properly in the same theorem, exist and is equal to $F(0)$. 
+
+	Now, consider 
+
+	\begin{align}\label{last}
+		\int_1^{\infty} \frac{\theta_q(x) -x }{x^2}dx.
+	\end{align}
+
+	Make the change of variable $x = e^t$ gives 
+	$$
+		\int_0^{\infty} \frac{\theta_q(e^x) - e^t}{e^{2t}} e^t dt
+		= \int_0^{\infty} \theta_q(e^x)e^{-t} - 1dt
+		= \int_0^{\infty} f(t)dt = G(0) = F(0) < \infty
+	$$
+	So it must converges. 
+
+	Exercise 2 shows that if \eqref{last} converges, then $\theta(x) \sim x$. 
+	Exercise 1 shows that if $\theta(x) \sim x$ then (1) holds.
+	So we conclude that our proof is complete.
+\end{proof}
+
+
+\end{document}

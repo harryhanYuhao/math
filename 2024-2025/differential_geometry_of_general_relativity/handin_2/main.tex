@@ -1,0 +1,286 @@
+\documentclass{article}
+
+\usepackage[tmargin=2.5cm,rmargin=3cm,lmargin=3cm,bmargin=3cm]{geometry} 
+% Top margin, right margin, left margin, bottom margin, footnote skip
+\usepackage[utf8]{inputenc}
+\usepackage{biblatex}
+\addbibresource{./references.bib}
+% linktocpage shall be added to snippets.
+\usepackage{hyperref,theoremref}
+\hypersetup{
+	colorlinks, 
+	linkcolor={red!40!black}, 
+	citecolor={blue!50!black},
+	urlcolor={blue!80!black},
+	linktocpage % Link table of content to the page instead of the title
+}
+
+\usepackage{blindtext}
+\usepackage{breqn}
+\usepackage{titlesec}
+\usepackage{amsthm}
+\usepackage{thmtools}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{titlesec}
+\usepackage{xcolor}
+\usepackage{multicol}
+\usepackage{hyperref}
+\usepackage{import}
+
+
+\newtheorem{theorem}{Theorema}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}{Corollarium}[section]
+\newtheorem{proposition}{Propositio}[theorem]
+\theoremstyle{definition}
+\newtheorem{definition}{Definitio}[section]
+
+\theoremstyle{definition}
+\newtheorem{axiom}{Axioma}[section]
+
+\theoremstyle{remark}
+\newtheorem{remark}{Observatio}[section]
+\newtheorem{hypothesis}{Coniectura}[section]
+\newtheorem{example}{Exampli Gratia}[section]
+
+% Proof Environments
+\newcommand{\thm}[2]{\begin{theorem}[#1]{}#2\end{theorem}}
+
+%TODO mayby proof environment shall have more margin
+\renewenvironment{proof}{\vspace{0.4cm}\noindent\small{\emph{Demonstratio.}}}{\qed\vspace{0.4cm}}
+% \renewenvironment{proof}{{\bfseries\emph{Demonstratio.}}}{\qed}
+\renewcommand\qedsymbol{Q.E.D.}
+% \renewcommand{\chaptername}{Caput}
+% \renewcommand{\contentsname}{Index Capitum} % Index Capitum 
+\renewcommand{\emph}[1]{\textbf{\textit{#1}}}
+\renewcommand{\ker}[1]{\operatorname{Ker}{#1}}
+
+%\DeclareMathOperator{\ker}{Ker}
+
+% New Commands
+\newcommand{\bb}[1]{\mathbb{#1}} %TODO add this line to nvim snippets
+\newcommand{\orb}[2]{\text{Orb}_{#1}({#2})}
+\newcommand{\stab}[2]{\text{Stab}_{#1}({#2})}
+\newcommand{\im}[1]{\text{im}{\ #1}}
+\newcommand{\se}[2]{\text{send}_{#1}({#2})}
+
+\title{GGR Handin 2}
+\author{Harry Han; S2162783} 
+\date{\today}
+
+\begin{document}
+\maketitle
+
+\section*{Q1}
+By setting $w =  \int_{c}^z \exp(-\phi(t))dt $ as a function of $z$	for some constant $c$, taking exterior derivative, and applying the fundamental theorem of calculus give
+$$
+	dw = \exp(-\phi(z))dz.
+$$
+Let $\Omega(w) = \exp(\phi(z))$ as an implicit function of $w$, by substitution 
+\begin{equation}\label{eq:1}
+	g = dz^2 + \exp(2\phi(z)) (-dt^2 + dx^2 + dy^2) = \Omega(w)^2(-dt^2 + dx^2 + dy^2 + dw^2)
+\end{equation}
+
+The metric $g$ written in this way is manifestly conformal flat.
+
+\section*{Q2}
+
+\subsection*{(a)}
+
+Let $\theta^0 = e^{\phi}dt, \theta^1 = e^{\phi} dx, \theta^2 = e^{\phi} dy, \theta^3 = dz$. 
+The constants $\eta_{00} = - 1, \eta_{11} = \eta_{22} = \eta_{33} = 1$, and all others are zero.
+Therefore $\omega_i^0 = -\omega_{0i}$, and $\omega^1_i = \omega_{1i}$, $\omega^2_i = \omega_{2i}$, $\omega^3_i = \omega_{3i}$.
+In particular, $\omega^0_{i} = \omega^i_0$, $\omega^1_i = - \omega^i_1$, $\omega^2_i = - \omega^i_2$, $\omega^3_i = - \omega^i_3$.
+
+Lable $\frac{d \phi}{dz} = \phi'$, let us first caclulate $d \theta^i$
+
+\begin{align*}
+	d\theta^0 &= e^{\phi} \phi' dz \wedge dt \\
+	d\theta^1 &= e^{\phi} \phi' dz \wedge dx \\
+	d\theta^2 &= e^{\phi} \phi' dz \wedge dy \\
+	d\theta^3 &= 0
+\end{align*}
+
+Now apply the first structure equations
+
+\begin{align*}
+	d\theta^0 &= e^{\phi} \phi' dz \wedge dt = \omega^0_1 \wedge \theta^1 - \omega^0_2 \wedge \theta^2 - \omega^0_3 \wedge \theta^3 \\
+	d\theta^1 &= e^{\phi} \phi' dz \wedge dx = -\omega^1_0 \wedge \theta^0 -  \omega^1_2 \wedge \theta^2 - \omega^1_3 \wedge \theta^3 \\ 
+	d\theta^2 &= e^{\phi} \phi' dz \wedge dy = -\omega^2_0 \wedge \theta^0 - \omega^2_1 \wedge \theta^1  - \omega^2_3 \wedge \theta^3 \\ 
+	d\theta^3 &= 0 = -\omega^3_0 \wedge \theta^0 - \omega^3_1 \wedge \theta^1 - \omega^3_2 \wedge \theta^2 
+\end{align*}
+We may guess that $\omega^0_1, \omega^0_2, \omega^1_2$ to be zero, and consequently
+\begin{align*}
+	\omega_{13} = e^{\phi} \phi' dx\\ 
+	\omega_{23} = e^{\phi} \phi' dy\\
+	\omega_{03} = - e^{\phi} \phi' dt\\
+\end{align*}
+
+\subsection*{(b)}
+We want to use the second structure equation $\Omega_{ab} = d \omega_{ab} + \omega^a_c \wedge \omega_{cb}$ to find the curvature two forms. 
+First let us differentiate the $\omega$s.
+
+\begin{align*}
+	d\omega_{13} = - e^{\phi}((\phi')^2 + \phi'')dx \wedge dz\\
+	d\omega_{23} = - e^{\phi}((\phi')^2 + \phi'')dy \wedge dz\\
+	d\omega_{03} = e^{\phi}((\phi')^2 + \phi'')dt \wedge dz\\
+\end{align*}
+
+Now 
+\begin{align*}
+	\Omega_{01} &= d\omega_{01} + \omega^{~b}_{0} \wedge w_{b1} = w_{03} \wedge w_{31} = e^{2\phi} (\phi')^2 dt \wedge dx \\
+	\Omega_{12} &= d\omega_{12} + \omega^{~b}_1 \wedge w_{b2} = w_{13} \wedge w_{32} = - e^{2\phi} (\phi')^2 dx \wedge dy \\
+	\Omega_{13} &= d\omega_{13} + \omega^{~b}_{1} \wedge w_{b3} = d\omega_{13} =  - e^{\phi}((\phi')^2 + \phi'')dx \wedge dz \\
+	\Omega_{02} &= d\omega_{02} + \omega^{~b}_{0} \wedge w_{b2} = w_{03} \wedge w_{32} = e^{2\phi} (\phi')^2 dt \wedge dy \\
+	\Omega_{23} &= d\omega_{23} + \omega^{~b}_{2} \wedge w_{b3} = d\omega_{23} =  - e^{\phi}((\phi')^2 + \phi'')dy \wedge dz \\
+	\Omega_{03} &= d\omega_{03} + \omega^{~b}_{0} \wedge w_{b3} = d\omega_{03} =  e^{\phi}((\phi')^2 + \phi'')dt \wedge dz \\
+\end{align*}
+
+\subsection*{(c)}
+Note 
+\begin{align*}
+	\theta^0 \wedge \theta^1 = e^{2\phi} dt \wedge dx \\ 
+	\theta^0 \wedge \theta^2 = e^{2\phi} dt \wedge dy \\ 
+	\theta^0 \wedge \theta^3 = e^{\phi} dt \wedge dz \\ 
+	\theta^1 \wedge \theta^2 = e^{2\phi} dx \wedge dy \\
+	\theta^1 \wedge \theta^3 = e^{\phi} dx \wedge dz \\
+	\theta^2 \wedge \theta^3 = e^{\phi} dy \wedge dz \\
+\end{align*}
+
+As a result, 
+\begin{dmath}
+\frac{1}{2} \Omega_{ab} \theta^a \theta^b =
+e^{4\phi}(\phi')^2 (dt \wedge dx)^2 
+- e^{4\phi}(\phi')^2 (dx \wedge dy)^2
++ e^{4\phi}(\phi')^2 (dt \wedge dy)^2 
+- e^{2\phi}((\phi')^2 + \phi'') (dx \wedge dz)^2 
+- e^{2\phi}((\phi')^2 + \phi'') (dy \wedge dz)^2 
++ e^{2\phi}((\phi')^2 + \phi'') (dt \wedge dz)^2
+= -\frac{1}{4} R_{\mu \nu \rho \sigma} (dx^{\mu} \wedge dx^{\nu}) ( dx^{\rho} \wedge dx^{\sigma})
+\end{dmath}
+
+We can read off the coefficients 
+\begin{align*}
+	R_{txtx} &= - e^{4\phi}(\phi')^2 \\ 
+	R_{tyty} &= - e^{4\phi}(\phi')^2 \\ 
+	R_{tztz} &= - e^{2\phi}((\phi')^2 + \phi'') \\
+	R_{xyxy} &= e^{4\phi}(\phi')^2 \\
+	R_{xzxz} &= e^{2\phi}((\phi')^2 + \phi'') \\ 
+	R_{yzyz} &= e^{2\phi}((\phi')^2 + \phi'') \\ 
+\end{align*}
+
+\subsection*{(d)}
+Since $g_{\mu \nu}$ is diagonal, $g^{\mu \nu}$ is simply its inverse and equals to $g^{\mu \nu} = \text{diag}(-e^{-2\phi}, e^{-2\phi}, e^{-2\phi}, 1)$.
+
+The formula for Ricci Tensor is 
+$$
+	R_{\mu \nu} = g^{\rho \sigma} R_{\rho \mu \nu \sigma}
+$$
+
+So 
+\begin{dmath}
+	R_{tt} 
+	= g^{xx} R_{xttx} + g^{yy}R_{ytty} + g^{zz} R_{zttz} 
+	= e^{2\phi}(\phi')^2 + e^{2\phi}(\phi')^2 + e^{2\phi}((\phi')^2 + \phi'')
+	= 2 e^{2\phi}(\phi')^2 + e^{2\phi}((\phi')^2 + \phi'') 
+	= 3 e^{2\phi}(\phi')^2 + e^{2\phi} \phi''
+\end{dmath}
+Upon calculation $-R_{xx} = - R_{yy} = R_{tt}$, and
+\begin{dmath}
+	R_{zz} 
+	= g^{tt}R_{tzzt} g^{xx} R_{xzzx} + g^{yy}R_{yzzy} +
+	= - (\phi')^2 + \phi'' - (\phi')^2 - \phi'' - (\phi')^2 - \phi''
+	= -3 (\phi')^2 - 3 \phi''
+\end{dmath}
+Apply Einstein's equation $R_{\mu \nu} = - \Lambda g_{\mu \nu}$
+\begin{align*}
+	\Lambda g_{tt} &=  e^{2\phi}\Lambda = 3 e^{2\phi}(\phi')^2 + e^{2\phi} \phi'' \\
+	\Lambda g_{zz} &= - \Lambda = -3 (\phi')^2 - 3 \phi''
+\end{align*}
+
+Upon solving the equations, we find $\frac{1}{3}\Lambda =  (\phi')^2$ as desired.
+
+\subsection*{(e)}
+
+If $\Lambda = 0$, then $\phi' = 0$ so $\phi(z) = C$ for some constant $C$.
+Apply equation \eqref{eq:1}, the metric becomes 
+$$
+g = D (-dt^2 + dx^2 + dy^2 + dw^2)
+$$
+where $D = e^{2C}$ is a constant. 
+This shows that the metric is isometric to Minkowski spacetime.
+
+\subsection*{(f)}
+
+Let $\Lambda > 0$, recall $g_{\mu \nu} = 0$ if $\mu \neq \nu$. 
+In this case, moreover, $g_{\mu \nu} = g_{\nu \mu}$.
+Since $(\phi')^2 = \frac{1}{3} \Lambda$ is a constants, $\phi'$ must also be a constant, meaning $\phi'' = 0$.
+
+In such cases
+\begin{align*}
+	R_{txtx} &= - e^{4\phi}(\phi')^2 = (\phi')^2 (-e^{2\phi} e^{2\phi}) = -(\phi')^2 (g_{xt}g_{tx} - g_{xx} g_{tt} ) \\
+	R_{tyty} &= - e^{4\phi}(\phi')^2 = (\phi')^2 (-e^{2\phi} e^{2\phi}) = -(\phi')^2 (g_{ty}g_{yt}- g_{yy} g_{tt} ) \\
+	R_{tztz} &= - e^{2\phi}(\phi')^2 = (\phi')^2 (-e^{2\phi}) = -(\phi')^2 (g_{tz}g_{zt}- g_{tt} g_{zz} ) \\
+	R_{xyxy} &= - e^{4\phi}(\phi')^2 = (\phi')^2 (e^{2\phi} e^{2\phi}) = -(\phi')^2 (g_{xy}g_{yx}- g_{yy} g_{xx} ) \\
+	R_{xzxz} &= e^{2\phi}(\phi')^2 = (\phi')^2 (-e^{2\phi}) = -(\phi')^2 (g_{xz}g_{zx}- g_{xx} g_{zz} ) \\
+	R_{yzyz} &= e^{2\phi}(\phi')^2 = (\phi')^2 (-e^{2\phi}) = -(\phi')^2 (g_{yz}g_{zy}- g_{yy} g_{zz} ) \\
+\end{align*}
+Define 
+$$
+	T_{\mu \nu \rho \sigma} = g_{\nu \rho} g_{\mu \sigma} - g_{\mu \rho} g_{\nu \sigma}
+$$
+If three of the indeces are the same  
+$$
+T_{\nu \nu \nu \sigma} = g_{\nu \nu} g_{\nu \sigma} - g_{\nu \nu} g_{\nu \sigma} = 0
+$$
+all other combinations are up to a permutation, so the term $T$ must be zero.
+If three of the indeces are distinct, one of the $g_{\nu \rho}$ and $g_{\mu \sigma}$ must have distinct indeces, and one of the $g_{\mu\rho}$ and $g_{\nu \sigma}$ must also have distinct indeces. 
+Recall $g_{\mu \nu} = 0$ if $\mu \neq \nu$, so the term $T$ must be zero too.
+
+So we conclude 
+$$
+R_{\mu \nu \rho \sigma} = -(\phi')^2 T_{\mu \nu \rho \sigma} = -(\phi')^2 (g_{\nu \rho} g_{\mu \sigma} - g_{\mu \rho} g_{\nu \sigma})
+$$
+Substituting $R = -4 \Lambda = -12 (\phi')^2$ gives the desried result.
+
+\section*{Q3}
+
+Put $\Lambda = 3$ and $\phi(z) = z$, the metric becomes 
+$$
+g = dz^2 + e^{2z}(-dt^2 + dx^2 + dy^2)
+$$
+We want to show this metric is not geodesically complete.
+
+Consider a null geodesic $\gamma(s)$ in $t,z$ plane where $x,y$ are constant and $s$ is the affine parameter.
+Write $\dot{\gamma(s)} = \dot{z} \frac{\partial}{\partial z} + \dot{t} \frac{\partial}{\partial t}$, the geodesic equation becomes 
+$$
+g(\dot{\gamma}, \dot{\gamma}) = 0 \implies \dot{z}^2 - e^{2z} \dot{t}^2 = 0
+$$
+Since $\frac{\partial }{\partial t}$ is a Killing vector, we have 
+$$
+g(\dot{\gamma}, \frac{\partial}{\partial t}) = E \implies -e^{2z} \dot{t} =E
+$$
+Substitute this back to the geodesic equation gives
+\begin{align*}
+	(\dot{z}^2) + E \dot{t} = 0 
+	& \implies \dot{t} = C \dot{z}^2
+\end{align*}
+where $C$ is the constant $-\frac{1}{E}$.
+Substituting back to geodesic equation again gives 
+$$
+\dot{z}^2 - e^{2z} C^2 \dot{z}^4 = 0 
+$$
+We may assume $\dot{z} \neq 0$, so it becomes
+$$
+1 = e^{2z} C^2 \dot{z}^2 \implies \pm 1 = C \dot{z} e^{z}
+$$
+Choosing arbitrarily the positive sign and integrate both sides respect to $s$ gives 
+$$
+	s + D = \int C e^{z} dz = C e^{z}
+$$
+We may choose appropriate coordinate so that the constant $C = 1$. 
+Choose the solution with $D = 0$ and solve for $z$ we get $z = \log(s)$, which diverges to infinity when $s$ approach $0$ from the positive.
+As there exists a null geodesic that diverges to infinity with respect to finite affine parameter, we conclude that this metric is not geodesically complete.
+\end{document}

@@ -1,0 +1,288 @@
+\documentclass[twocolumn]{article}
+
+\usepackage[margin=0.25in]{geometry} % Top margin, right margin, left margin, bottom margin, footnote skip
+\usepackage[utf8]{inputenc}
+\usepackage{biblatex}
+\addbibresource{./references.bib}
+% linktocpage shall be added to snippets.
+\usepackage{hyperref,theoremref}
+\hypersetup{
+	colorlinks, 
+	linkcolor={red!40!black}, 
+	citecolor={blue!50!black},
+	urlcolor={blue!80!black},
+	linktocpage % Link table of content to the page instead of the title
+}
+
+\usepackage{blindtext}
+\usepackage{titlesec}
+\usepackage{keytheorems}
+\usepackage{amsthm}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{titlesec}
+\usepackage{xcolor}
+% \usepackage{multicol}
+\usepackage{hyperref}
+\usepackage{import}
+
+
+
+
+%TODO mayby proof environment shall have more margin
+\renewenvironment{proof}{\vspace{0.4cm}\noindent\small{\emph{Demonstratio.}}}{\qed\vspace{0.4cm}}
+% \renewenvironment{proof}{{\bfseries\emph{Demonstratio.}}}{\qed}
+\renewcommand\qedsymbol{Q.E.D.}
+% \renewcommand{\chaptername}{Caput}
+% \renewcommand{\contentsname}{Index Capitum} % Index Capitum 
+\renewcommand{\emph}[1]{\textbf{\textit{#1}}}
+\renewcommand{\ker}[1]{\operatorname{Ker}{#1}}
+
+\DeclareMathOperator{\sech}{sech}
+\DeclareMathOperator{\csch}{csch}
+
+\newcommand{\X}{\mathfrak{X}}
+\newcommand{\n}{\nabla}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{C^{\infty}}
+\newcommand{\CY}{\mathfrak{C}}
+\newcommand{\p}{\partial}
+\newcommand{\G}{\Gamma}
+\newcommand{\g}{\gamma}
+\newcommand{\dg}{\dot{\gamma}}
+\newcommand{\N}{\textit{\underline{NOTE} }}
+\newcommand{\W}{\Omega}
+\newcommand{\ot}{\otimes}
+
+\usepackage{tcolorbox}
+\tcbuselibrary{theorems}
+\newtcbtheorem{fdefi}{Definitio}%
+{fonttitle=\bfseries}{th}
+\newtcbtheorem{fthm}{Theorema}%
+{fonttitle=\bfseries}{th}
+
+\newtheorem{thm}{THM}
+\newtheorem{lemma}{Lemma}
+\newtheorem{corollary}[thm]{Corollarium}
+\theoremstyle{definition}
+\newtheorem{example}[thm]{Exampli Gratia}
+\newtheorem{remark}[thm]{Remark}
+\newtheorem{defi}[thm]{DEF}
+
+
+
+
+\begin{document}
+% \tableofcontents
+\begin{fdefi}{Notation}{}
+	\begin{enumerate}
+		\item $X, Y, Z, W \in \X(M)$ denotes vector fields. 
+		\item $\alpha, \beta \in \W^1$ is one forms, unless specified otherwise.
+		\item (1,2)-tensors fields are section of bundle $TM \otimes T^{*}M^{\ot 2}$. 
+		It is equivalent to a a trilinear map $\W^1(M) \times \X(M) \times \X(M) \rightarrow C^{\infty}(M)$, or a bilinear map $\X(M) \times \X(M) \to \X(M)$.
+	\end{enumerate}
+\end{fdefi}
+
+\hrulefill
+\section{Connections}
+
+\begin{defi}
+	An \emph{affine connection} on $M$ is an $\R$ bilinear map 
+	$$
+		\n: \X (M) \times \X(M) \to \X (M), (X,Y) \mapsto \n_X Y
+	$$
+	satisfying for all $X, Y \in \X(M)$ and $f \in \C(M)$: 
+	\begin{enumerate}
+		\item $\n_{fX} Y = f \n_X Y$
+		\item $\n_{X} fY = X(f) Y + f \n_X Y$
+	\end{enumerate}
+
+	Define connection coefficients $\G^k_{ij}$ by $\n_{\p_i}\p_j = \G_{ij}^k \p_k$.
+\end{defi}
+\N Affine connection is not (1,2) tensor field. But different between affine connection is.
+
+\N A vector field $Y$ is parallel if $\n_X Y = 0$ for all $X$.
+
+\begin{defi}
+	Let $\n$ be an affine connection on $M$.
+	The \emph{torsion} of $\n$ is $(1,2)$ tensor field $T$ defined by
+	$$
+	(X, Y) \mapsto T(X, Y) = \n_X Y - \n_Y X - [X, Y]
+	$$
+	
+	\emph{Curvature} is $(1,3)$ tensor field $R$ defined by
+	$$
+	(X,Y,Z) \mapsto R(X, Y)Z = \n_X \n_Y Z - \n_Y \n_X Z - \n_{[X, Y]} Z
+	$$
+
+	An affine connection with zero curvation is called \emph{flat}, for which
+	$$
+		\n_X \n_Y Z-  \n_Y \n_X Z = \n_{[X, Y]} Z \text{ (flat connection) }
+	$$
+	whereas one with zero torsion is called \emph{symmetric} or \emph{torsion-free}, for which
+	$$
+	\n_X Y - \n_Y X = [X, Y] \text{ (torsion free)}
+	$$
+
+	Define $ T(\p_i, \p_j) := T_{ij}^k \p_k$, and 
+	$$T_{ij}^k = \G_{ij}^k - \G_{ji}^k$$
+	Define $R_{ijk}^l \p_l = R(\p_i, \p_j)\p_k$, and 
+	$$R_{ijk}^l = \p_i \G_{jk}^l - \p_j \G_{ik}^l + \G_{jk}^m\G_{im}^l - \G_{ik}^m \G_{jm}^l$$
+\end{defi}
+\begin{defi}
+	The \emph{Ricci} tensor is a (0,2) tensor defined by $Ric(X,Y) = tr(Z \mapsto R(Z,X)Y)$, or 
+	$$
+	R_{ij} = R_{kij}^k = g^{kl} R_{kijl}
+	$$
+	Ricci tensor may not be symmetric. 
+	Ricci tensor of Levi-Civita connection is symmetric.
+\end{defi}
+
+
+\begin{defi}[Extension of Connection]
+	For $f \in \C(M)$. Define 
+	$$
+		\n_X f = X(f)
+	$$
+	For one form $\alpha \in \W^1(M)$, define 
+	$$
+		\n_X(\alpha (Y)) = (\n_X \alpha)(Y) - \alpha(\n_X Y)
+	$$
+
+	For $\Phi$, which is $(1,1)$ tensor, define $\n_X \Phi$ to be an $(1,1)$ tensor such that 
+	$$
+		\n_X \Phi(Y) = \n_X(\Phi(Y)) - \Phi(\n_X Y)
+	$$
+	For $(1,2)$ tensor $T$, define $\n_X T$ to be a $(1,2)$ tensor such that
+	$$
+		\n_X T(Y, Z) = \n_X(T(Y, Z)) - T(\n_X Y, Z) - T(Y, \n_X Z)
+	$$
+\end{defi}
+
+\begin{defi}[Cyclic Operator]
+	Define the cyclic operator $\CY$ be 
+	$$
+		\CY(X, Y, Z) = A(X, Y, Z) + A(Y, Z, X) + A(Z, X, Y)
+	$$
+\end{defi}
+
+\begin{fthm}{Bianchi Identities}{}
+	\begin{enumerate}
+		\item Algebraic Bianchi identity 
+			$$
+				\CY R(X, Y) Z = \CY(\n_X T)(Y, Z) + \CY T (T (X, Y),Z)
+			$$
+		\item Differential Bianchi identity 
+			$$
+				\CY((\n_Z R)(X, Y))W + \CY R(T(X, Y), Z)W = 0
+			$$
+	\end{enumerate}
+\end{fthm}
+
+\begin{defi}[Koszul Connections]
+	A \emph{Koszul connection} on a vector bundle $E \rightarrow  M$ is an $\R$ bilinear map 
+	$$
+		\n: \X (M) \times \G(E) \to \G (E), (X,s) \mapsto \n_X s
+	$$
+	satisfying for all $X \in \X(M)$, $s \in \G(E)$, and $f \in \C(M)$: 
+	\begin{enumerate}
+		\item $\n_{fX} s = f \n_X s$
+		\item $\n_{X} fs = X(f) s + f \n_X s$
+	\end{enumerate}
+
+\end{defi}
+
+\N Koszul connection is not tensorial, but their different is.
+
+\N A section $s$ is parallel if $\n_X s = 0$ for all $X$.
+
+\N Koszul Connection may not have a torsion tensor, but will have a curvature tensor defined as 
+$$
+	R(X, Y)s = \n_X \n_Y s - \n_Y \n_X s - \n_{[X, Y]} s
+$$
+A Koszul connection is \emph{flat} the curvature is zero.
+
+\begin{defi}[Covariant Derivative]
+	Let $\n$ be a Koszul connection on vector bundle $E \rightarrow M$. 
+	\emph{Covariant derivative} on $\G(\g^{*} E)$ induced by $\n$ is the $\R$ linear map 
+	$$
+	\frac{D}{dt} : \G(\g^* E) \rightarrow \G(\g^* E)
+	$$
+	satisfying 
+	\begin{enumerate}
+		\item For all $s \in G(E)$, where $\dot{\g} = \gamma_* (\frac{d}{dt})$
+			$$
+			\frac{D}{dt} \g^*s = \g^* \n_{\dot{\g}} s
+			$$
+		\item for all $f \in \C(I)$ and $\sigma \in \G(\g^*E)$
+			$$
+			\frac{df}{dt} \sigma + f \frac{D \sigma}{dt}
+			$$
+	\end{enumerate}
+
+	$\sigma \in \G(\g^*E)$ is \emph{parallel} if $\frac{D \sigma}{dt} = 0$.
+\end{defi}
+
+\begin{corollary}
+	Suppose $s \in \G(E)$ such that $\n_X s = 0$ for all $X$, and if $s(p) = 0$ for some $p$ then $s \equiv 0$.
+\end{corollary}
+
+\section{Riemannian Metric}
+
+\begin{defi}[Flat and Sharp]
+	 For a vector space $V$ with inner product $\langle -, - \rangle$. 
+	 The musical isomorphism is defined as
+	 \begin{align*}
+		 \flat &: V \rightarrow V^*, v \mapsto v^{\flat} = \langle v, - \rangle \\
+		 \sharp &:  V^* \rightarrow V, \lambda \rightarrow  \lambda^{\sharp} = \langle \lambda^{\sharp}, v \rangle = \lambda(v) \ \forall v
+	 \end{align*}
+\end{defi}
+
+\begin{thm}[Sylvester Law of Inertia]
+	Let $E^{s,t}$ be a $t = s+t$ dimensional inner product space, with $s$ keys positive inner product and $t$ negative. That is, the inner product takes the form $(dx^1)^2 + \cdots + (dx^s)^2 - (dx^{s+1})^2 - \cdots - (dx^n)^2$.
+	Every $n$ dimensional inner product space is isometric to $E$.
+\end{thm}
+
+\section{Differential Geometry}
+
+\begin{defi}[Closed and Exact]
+	A form $\alpha$ is \emph{closed} if $d \alpha = 0$, and \emph{exact} if $\alpha = d \beta$ for some $\beta$.
+\end{defi}
+\begin{thm}
+	\begin{enumerate}
+		\item $d \alpha(X, Y) = X \alpha (Y) + Y \alpha(X) - \alpha([X, Y])$.
+	\end{enumerate}
+\end{thm}
+
+\section{Trig Identities}
+
+\textbf{Trig}
+\begin{align*}
+\tan(x \pm y) &= \frac{\tan x \pm \tan y}{1 \mp \tan x \tan y}\\
+\tan(2x) &= \frac{2\tan x}{1 - \tan^2 x} \\
+\tan^2 x &= \frac{1 - \cos(2x)}{1 + \cos(2x)}
+\end{align*}
+\begin{align*}
+	d \tan(x) &= \sec^2(x) dx\\
+	d \cot(x) &= - \csc^2(x) dx\\
+	d \sec(x) &= \sec(x)\tan(x) dx\\
+	d \csc(x) &= - \csc(x)\cot(x) dx\\
+\end{align*}
+
+\textbf{Hyperbolic}
+\begin{align*}
+\cosh^2 x - \sinh^2 x &= 1 \\
+\sinh(x \pm y) &= \sinh x \cosh y \pm \cosh x \sinh y \\
+\cosh(x \pm y) &= \cosh x \cosh y \pm \sinh x \sinh y \\
+\tanh(x \pm y) &= \frac{\tanh x \pm \tanh y}{1 \pm \tanh x \tanh y}
+\end{align*}
+
+\begin{align*}
+	d \tanh(x) &= \sech^2(x) dx\\
+	d \sech(x) &= \sech(x)\tanh(x) dx\\
+\end{align*}
+
+
+\end{document}
+
