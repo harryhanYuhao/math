@@ -1,0 +1,76 @@
+\usepackage[margin=0.25in]{geometry} % Top margin, right margin, left margin, bottom margin, footnote skip
+\usepackage[utf8]{inputenc}
+\usepackage{biblatex}
+\addbibresource{./references.bib}
+% linktocpage shall be added to snippets.
+\usepackage{hyperref,theoremref}
+\hypersetup{
+	colorlinks, 
+	linkcolor={red!40!black}, 
+	citecolor={blue!50!black},
+	urlcolor={blue!80!black},
+	linktocpage % Link table of content to the page instead of the title
+}
+
+\usepackage{blindtext}
+\usepackage{titlesec}
+\usepackage{keytheorems}
+\usepackage{amsthm}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{titlesec}
+\usepackage{xcolor}
+% \usepackage{multicol}
+\usepackage{hyperref}
+\usepackage{import}
+
+
+
+
+%TODO mayby proof environment shall have more margin
+\renewenvironment{proof}{\vspace{0.4cm}\noindent\small{\emph{Demonstratio.}}}{\qed\vspace{0.4cm}}
+% \renewenvironment{proof}{{\bfseries\emph{Demonstratio.}}}{\qed}
+\renewcommand\qedsymbol{Q.E.D.}
+% \renewcommand{\chaptername}{Caput}
+% \renewcommand{\contentsname}{Index Capitum} % Index Capitum 
+\renewcommand{\emph}[1]{\textbf{\textit{#1}}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\R}{\mathbb{R}}
+\renewcommand{\S}{\mathbb{S}}
+\newcommand{\B}{\mathcal{B}}
+\renewcommand{\P}{\mathcal{P}}
+\newcommand*\interior[1]{#1^{\circ}}
+\newcommand*\closure[1]{\overline{#1}} % (or \bar{#1})
+
+\usepackage[most]{tcolorbox}
+
+\tcbuselibrary{theorems}
+\newtcbtheorem{fdefi}{Definitio}%
+{fonttitle=\bfseries}{th}
+\newtcbtheorem{fthm}{Theorema}%
+{fonttitle=\bfseries}{th}
+\newtcbtheorem{eg}{\textit{E.G.}}
+{colback=white,              % background of the box
+    colframe=black,             % dark frame color
+    coltitle=black,             % title text color
+	colbacktitle=gray!10!white,
+	colback=gray!10!white,
+    fonttitle=\bfseries,        % title font
+    boxrule=1pt,              % border thickness
+    arc=2mm,                    % rounded corners
+    boxsep=0.7mm,                 % inner spacing
+    enhanced,
+}{th}
+
+\theoremstyle{definition}
+\newtheorem{thm}{THM}
+\newtheorem{lemma}{Lemma}
+\newtheorem{corollary}[thm]{Corollarium}
+\newtheorem{example}[thm]{Exampli Gratia}
+\newtheorem{defi}[thm]{DEF}
+
+\theoremstyle{remark}
+\newtheorem{remark}[thm]{Remark}
+

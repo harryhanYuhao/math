@@ -54,13 +54,27 @@
 \newcommand{\N}{\textit{\underline{NOTE} }}
 \newcommand{\W}{\Omega}
 \newcommand{\ot}{\otimes}
+\renewcommand{\dg}{\dot{\gamma}}
 
-\usepackage{tcolorbox}
+\usepackage[most]{tcolorbox}
+
 \tcbuselibrary{theorems}
 \newtcbtheorem{fdefi}{Definitio}%
 {fonttitle=\bfseries}{th}
 \newtcbtheorem{fthm}{Theorema}%
 {fonttitle=\bfseries}{th}
+\newtcbtheorem{eg}{\textit{E.G.}}
+{colback=white,              % background of the box
+    colframe=black,             % dark frame color
+    coltitle=black,             % title text color
+	colbacktitle=gray!10!white,
+	colback=gray!10!white,
+    fonttitle=\bfseries,        % title font
+    boxrule=1pt,              % border thickness
+    arc=2mm,                    % rounded corners
+    boxsep=0.7mm,                 % inner spacing
+    enhanced,
+}{th}
 
 \newtheorem{thm}{THM}
 \newtheorem{lemma}{Lemma}
@@ -158,6 +172,11 @@
 	$$
 		\n_X T(Y, Z) = \n_X(T(Y, Z)) - T(\n_X Y, Z) - T(Y, \n_X Z)
 	$$
+
+	Note 
+	$$
+		X g(Y, Z) = (\n_X g)(Y, Z) + g(\n_X Y, Z) + g(Y, \n_X Z)
+	$$
 \end{defi}
 
 \begin{defi}[Cyclic Operator]
@@ -240,9 +259,250 @@ A Koszul connection is \emph{flat} the curvature is zero.
 \end{defi}
 
 \begin{thm}[Sylvester Law of Inertia]
-	Let $E^{s,t}$ be a $t = s+t$ dimensional inner product space, with $s$ keys positive inner product and $t$ negative. That is, the inner product takes the form $(dx^1)^2 + \cdots + (dx^s)^2 - (dx^{s+1})^2 - \cdots - (dx^n)^2$.
+	Let $E^{s,t}$ be a $t = s+t$ dimensional inner product space, with $s$ keys positive inner product and $t$ negative. That is, the inner product takes the form $(dx^1)^2 + \cdots + (dx^s)^2 - (dx^{s+1})^2 - \cdots - (dx^n)^2$
 	Every $n$ dimensional inner product space is isometric to $E$.
+	$(s, t)$ is callled the signature.
 \end{thm}
+
+\begin{defi}[Metric]
+	A metric of signature $(s,t)$ is a section $g \in \G(\odot ^2 T^*M)$, such that for each $p$, $g_p$ is a inner product on $T_pM$ of signature $(s, t)$.
+	In particular, a metric needs to be non-degenerate, bilinear, and symmetric.
+	\emph{Non-degenerate} means that if there exists $w$ suchg that for all $v \in T_pM$, $g(v, w) = 0$, then $w = 0$.
+\end{defi}
+
+\begin{defi}
+	A \emph{lorentzian manifold} is one whose metric hass the signature $(n-1,1)$.
+	The $(3,1)$ lorentzian manifold $(M, g)$ with metric $-dt^2 + dx^2 + dy^2 + dz^2$ is \emph{Minkowski spacetime}.
+\end{defi}
+
+\begin{defi}
+	Let $(M, g)$ and $(M', g')$ be two Riemannian manifolds, and $f: M \rightarrow M'$ a diffeomorphism. 
+	Then $f$ is \emph{isometric} if $f^*g' = g$.
+	That is 
+	$$
+	g_p(X_p, Y_p) = f^*g'(X_p, Y_p) = g'_{F(p)}((F_*)_p(X_p), (F_*)_p(Y_p))
+	$$
+\end{defi}
+
+\begin{eg}{}{}
+	Let $(M, g)$ and $(N, g)$ be riemannian manifolds and let $i: N \rightarrow M$ be an isometric embedding. Any isometry $\Psi$ of $(M, g)$ which preserves $i(N)$ induces isometry of $(N, h)$.
+	\tcblower
+	The isometry $\Psi$ induce diffeomorphism $\psi$ on $N$ such that $\Psi \circ i = i \circ \psi$. 
+	Assuming $\Psi$ preserves $g$, we want to show that $\psi$ preserves $h$.
+	$\psi^*h = \psi^*i^*g = (i \circ \psi)^* g = (\Psi \circ i)^*g = i^* \Psi^* g = i^* g = h$.
+\end{eg}
+
+\begin{fthm}{Levi-Civita Connection}{}
+	Each riemannian maniford admits a torsionless, metric compatible connection, called Levi-Civita Connection.
+	That is
+	$$
+		\n_X Y - \n_Y X = [X, Y], \ \n g = 0
+	$$
+	The connection coefficients of this connection is \emph{Christoffel symbols}.
+	$$
+		\G_{ij}^m = \frac{1}{2} g^{km}(\p_i g_{jk} + \p_j g_{ik} - \p_k g_{ij} )
+	$$
+\end{fthm}
+
+\begin{defi}[Killing Vector]
+	A vector field $X$ is a Killing vector field if $\mathcal{L}_X(g) = 0$, that is 
+	$$
+	Xg(Y, Z) = g([X, Y], Z) + g(Y, [X, Z])
+	$$
+\end{defi}
+
+\begin{thm}
+	Let $(M, g)$ be riemannian manifold with Levi-Civita connection $\n$. A Killing vector field $X$ obeys the killing equation 
+	$$
+		g(\n_Y X, Z) + g(Y, \n_Z X) = 0
+	$$
+	Relabing $\n_i X = (\n_i X^k) \p_k$, we have 
+	$$
+		g(\n_i X, \p_j) = \n_i X
+	$$
+	Thus killing equation is equivalent to 
+	$$
+		\n_i X_j + \n_j X_i = 0
+	$$
+	Write in local coordinate, we have 
+	$$
+		\p_u X_v + \p_v X_u = 2 \G_{uv}^p X_p
+	$$
+	Where $X_v$ denotes $dv(X)$
+	% TODO: UNCLEAR
+\end{thm}
+
+\begin{thm}
+	For all sections $U, V \in \G(\dg TM)$
+	$$
+	\frac{d}{dt} g(U, V) = g(\frac{DU}{dt} , V) + g(U, \frac{DV}{dt})
+	$$
+\end{thm}
+
+\begin{thm}[Geodesics of Levi-Civita]
+	Let $\g$ be an affinely parametrised geodiscis of the manifold $(M, g)$.
+	Then $g(\dg, \dg)$ is constant.
+	The geodesic is 
+	\begin{enumerate}
+		\item \emph{timelike} if $g(\dg, \dg) < 0$;
+		\item \emph{null} if $g(\dg, \dg) = 0$;
+		\item \emph{spacelike} if $g(\dg, \dg) > 0$;
+	\end{enumerate}
+\end{thm}
+
+\section{Riemann Curvature}
+\begin{defi}
+	\emph{Riemann curvature} tensor is a $(0, 4)$ tensor defined by 
+	$$
+	Riem(X, Y, Z, W) = g(R(X, Y)Z, W)
+	$$
+	Note 
+	\begin{align*}
+		Riem(X, Y, Z, W) &= -Riem(Y, X, Z, W) \\
+		Riem(X, Y, Z, W) &= Riem(X, Y, W, Z) \\
+		Riem(X, Y, Z, W) &= Riem(W, Z, X, Y) \\
+		Riem(X, Y, Z, W) &+ Riem(Y, Z, X, W) + Riem(Z, X, Y, W) = 0
+	\end{align*}
+\end{defi}
+
+\N $R_{ijkl} = R_{ijk}^{\ \ \ m} g_{ml}$
+
+\begin{eg}{Calculation of Ricci}{}
+	$R_{ij} = R_{kij}^k = g^{kl}R_{kijl} = g^{lk}R_{ljik} = R_{lji}^l = R_{ji} $ 
+\end{eg}
+
+\begin{defi}[Ricci Scalar]
+	Ricci scalar is $R := g^{ij}R_{ij}$
+\end{defi}
+
+\begin{fdefi}{Einstein tenser}{}
+	\emph{Einstein tensor} of a Levi-Civita connection is 
+	$$
+	Ein(X, Y) = Ric(X, Y) - \frac{1}{2}g(X, Y)R
+	$$
+\end{fdefi}
+
+\begin{defi}[Einstein Manifold]
+	A riemannian manifold is an \emph{Einstein Manifold} if 
+	$$
+	Ric = \lambda g, \text{ equivalently } R_{ij} = \lambda g_{ij}
+	$$
+	For some constant $\lambda$.
+\end{defi}
+
+Let $G$ denote Einstein tensor, so $G_{ij} = R_{ij} - \frac{1}{2}g_{ij}R$.
+
+\begin{thm}
+	$$
+\n ^{j} G_{jk} := g^{ij}\n_{i} G_{jk} = \n^j(R_{ij} - \frac{1}{2}g_{ij}R)= 0
+	$$
+\end{thm}
+
+\begin{eg}{Schur's Lemma}{}
+	In an connected $n$ dimensional manifold with $n \geq 3$, if $Ric = fg$ for some $f \in \C(M)$, then $f$ is constant function.
+
+	\tcblower
+	Since $R_{ij} = fg_{ij}$, taking the trace $R = g^{ij}R_{ij} = g^{ij}g_{ij}f = nf$, so 
+	$$R_{ij} = \frac{1}{n} g_{ij} R$$.
+	Differentiating and trace 
+	$$
+		g^{jk} \n_{k}R_{ij} = \frac{1}{n} \p_i R 
+	$$
+	However, we know that $G$ has zero divergence, that is, 
+	$$
+		g^{jk} \n_{k}R_{ij} = \frac{1}{2} \p_i R 
+	$$
+	So $\p_i R = 0$. That is, $R$ is constant, so if $f$.
+\end{eg}
+
+\begin{fthm}{Cartan's Method of Moving Frame}{}
+	Let $(e_a)$ be a local orthonormal frame and $(\theta ^a)$ its dual frame.
+	Relative to a local chart, $e_a = e^i_a \p_i$ and $\theta^a = \theta^a_i dx^i$.
+
+	We can show that $e^i_a \theta^b_i = \delta^a_b$, and $e^i_a \theta^a_j = \delta^i_j$.
+	We can define connection one form as 
+	$$
+	\n_X e_a= \omega^b_{\ a}(X) e_b
+	$$
+	Define $g(e_a, e_b) = \eta_{ab}$, and 
+	$$
+	\omega_{ab} = \eta_{ac} \omega^c_{\ b} = - \omega_{ba}
+	$$
+	\emph{First Structure Equation} is
+	\begin{align}
+		d \theta^a + \omega^a_{\ b} \wedge \theta^b = 0
+	\end{align}
+
+	\emph{Second Structure Equation} is
+	\begin{align}
+		d \omega^a_{\ b} + \omega^a_{\ c} \wedge \omega^c_{\ b} = \Omega^a_{\ b}
+	\end{align}
+	Define 
+	$$
+		- \W_{ba} = \W_{ab} = \eta_{ac}\W^c_{\ b} 
+	$$
+	Where $\W^a_{\ b} \in \W^2(U)$ is curvature two form defined by 
+	$$
+		\W(X,Y)^a_{\ b} e_a = R(X, Y) e_b
+	$$
+	Riemann curvature can be calculated by 
+	\begin{align}
+		\frac{1}{2} \W_{ab}(\theta^a \wedge \theta^b) = - \frac{1}{4} R_{ijkl}(dx^i \wedge dx^j)(dx^k \wedge dx^l)
+	\end{align}
+\end{fthm}
+
+\begin{defi}[Hodge Star Operator]
+	For an inner product space $V$, $\wedge^{\bullet}V = \bigoplus^n_{k=0} \wedge^k V$, which is the exterior algebra of $V$, where $\wedge^0 V = \R$ and $\wedge^1 V = V$, are equipped with an inner product defined thus:
+	\begin{enumerate}
+		\item for $\lambda, \mu \in \wedge^0 V = \R$, $\langle \lambda, \mu \rangle = \lambda \mu$;
+		\item $\wedge^k V$ and $\wedge^l V$ is orthogonal (inner product is zero) if $k \neq l$;
+		\item $\langle v_1 \wedge v_2 \cdots \wedge v_k, w_1 \wedge \cdots \wedge w_k \rangle = det\langle v_i, w_j \rangle$
+	\end{enumerate}
+	Given an orthonormal basis $(e_1, \cdots, e_n)$ of $V$, define the volume form $vol = e_1\wedge e2 \wedge \cdots \wedge e_n$. 
+	Define a linear transformation $\star: \wedge^k V \mapsto \wedge^{n-k}V$ for each $\beta \in \wedge^{k} V$ thus
+	$$
+	\alpha \wedge \star \beta = \langle \alpha, \beta \rangle vol, \text{ for all } \alpha \in \wedge^{k} V
+	$$
+\end{defi}
+
+\begin{example}
+	For $dx^i$ being orthonormal basis in $n$ dimensional manifold.
+	$\langle dx^1 \wedge dx^2, dx^1 \wedge dx^2 \rangle = 1$
+
+	Indeed for any $I$, permutation of indeces of length $k$,
+	$\langle dx^I , dx^I \rangle = 1$
+	If $I,J$ are two permutation of different length, or there does not exists any permutation $\sigma$ such that $\sigma I = J$, then $\langle dx^I, dx^J \rangle = 0$.
+\end{example}
+\begin{example}
+In Riemann 4 dimensional manifold with signature $(4, 0)$ or $(2,2)$, $\star \star = id$, while those with signature $(3,1)$, $\star \star = - id$.
+
+Take 4 dimensional Riemann manifold with metric $(4,0)$ and basis $dx^1, dx^2, dx^3, dx^4$ for example.
+\begin{align*}
+	\star dx^1 &= dx^2 \wedge dx^3 \wedge dx^4 \\
+	\star dx^2 &= - dx^1 \wedge dx^3 \wedge dx^4 \\
+	\star dx^3 &=  dx^1 \wedge dx^2 \wedge dx^4 \\
+	\star dx^4 &= - dx^1 \wedge dx^2 \wedge dx^3 \\
+	\star dx^1 \wedge dx^2 &=  dx^2 \wedge dx^3 \\
+	\star dx^1 \wedge dx^3 &=  - dx^2 \wedge dx^4 \\
+\end{align*}
+
+\end{example}
+
+\section{General Relativity}
+\begin{fthm}{Postulates of GR}{}
+	\begin{description}
+		\item[\textbf{Postulate 1}] The space time is connected four-dimensional lorentzian manifold $(M, g)$.
+		\item[\textbf{Postulate 2}] Free particles in the spacetime follow timelike or null geodesics of Levi-Civita connection.
+		\item[\textbf{Postulate 3}] The distribution of matter in the spacetime is described by the energy-momentum tensor, $T$, a symmetric $(0,2)$ tensor field which as zero divergence, $\n^u T_{uv} = g^{iu} \n_i T_{uv}= 0$
+		\item[\textbf{Postulate 4}] The curvature of the spacetime is related to the energy-momentum tensor via \emph{Einstein Equation}
+			$$
+			G_{uv} = R_{uv} - \frac{1}{2}R g_{uv} = 8\pi G T_{uv},
+			$$
+		where $G$ is Newton's gravitational constant.
+	\end{description}
+	Since $T$ is divergence free, any space time satisfying Einstein equation is an Einstein manifold. 
+	(Obvious by taking the trace $\n^i = g^{ij} \n_j$ on both sides)
+\end{fthm}
 
 \section{Differential Geometry}
 
@@ -260,7 +520,6 @@ A Koszul connection is \emph{flat} the curvature is zero.
 \textbf{Trig}
 \begin{align*}
 \tan(x \pm y) &= \frac{\tan x \pm \tan y}{1 \mp \tan x \tan y}\\
-\tan(2x) &= \frac{2\tan x}{1 - \tan^2 x} \\
 \tan^2 x &= \frac{1 - \cos(2x)}{1 + \cos(2x)}
 \end{align*}
 \begin{align*}

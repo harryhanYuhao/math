@@ -1,0 +1,78 @@
+\documentclass[twocolumn]{article}
+
+\input{./preamble.tex}
+
+\begin{document}
+% \tableofcontents
+\begin{fdefi}{Notation}{}
+	\begin{enumerate}
+		\item $W, U, V, W_i, U_i, V_i$, $i \in \Z$, denote open set;
+		\item $X, Y$ denotes topological space;
+		\item At most countable means countable or finite, countable means there is bijection to $\N$
+	\end{enumerate}
+\end{fdefi}
+\hrulefill
+
+\section{Basics}
+
+\begin{defi}
+	\begin{enumerate}
+		\item \emph{closure} of set $A$ is 
+			$$
+				\closure{A} = \bigcap \{ U \mid U \text{ is closed and } A \subseteq U \}
+			$$
+		\item \emph{interior} of set $A$ is 
+			$$
+				\interior{A} = \bigcup \{ U \mid U \text{ is open and } U \subseteq A \}
+			$$
+		\item \emph{boundary} of set $A$ is 
+			$$
+			\partial A = \closure{A} \smallsetminus \interior{A} 
+			$$
+		\item A set $A$ in topological space $X$ is dense if $\closure{A} = X$.
+	\end{enumerate}
+\end{defi}
+
+\begin{thm}
+	A subset of $\R$ is open if and only if it is the at most countable union of disjoint non-empty open interval.
+\end{thm}
+
+\begin{remark}
+	Any family of non-empty open intervals in $\R$ is at most countable. 
+	This is because any non-empty open interval in $\R$ contains at least one rational number.
+\end{remark}
+
+\begin{defi}
+	A metric space is complete is every Cauchy sequence converges.
+\end{defi}
+
+\begin{defi}
+	A collection of subset $\B$ of $X$ ($\B \subseteq \P(X)$ ) is a basis for topology on $X$ if 
+	\begin{enumerate}
+		\item $\cup \B = X$
+		\item For any $U, V \in \B$ there exists $W \in \B$ such that $W \subset  U \cap V$
+	\end{enumerate}
+\end{defi}
+
+\section{New Topologies From Old}
+
+\begin{defi}[Quotient Topology]
+	Let $X$ be a topological space, $Y$ any set, and $f: X \rightarrow Y$ a surjective map.
+	Define a subset $U \subset Y$ to be open if and only if $f^{-1}(U)$ is open in $X$. 
+	This is the quotient topology.
+\end{defi}
+
+\begin{defi}[Equivalence relationship]
+	An relationship $\sim$ is an equivalence relationship if it is 
+	\begin{enumerate}
+		\item reflexive: $x \sim x$ for all $x$
+		\item symmetric: $x \sim y \implies y \sim x$
+		\item transitive: if $x \sim y $ and $y \sim z$, then$ \implies x \sim z$
+	\end{enumerate}
+\end{defi}
+
+\begin{example}
+	Real projective space $\R P^n$ is $\S^n \slash \sim$, where $x \sim y $ if and only if $ x = y$ or $x = -y$.
+\end{example}
+\end{document}
+
