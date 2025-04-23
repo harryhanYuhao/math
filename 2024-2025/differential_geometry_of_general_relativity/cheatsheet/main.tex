@@ -1,6 +1,7 @@
+% TODO: ADD example calculation of geodesics
 \documentclass[twocolumn]{article}
 
-\usepackage[margin=0.25in]{geometry} % Top margin, right margin, left margin, bottom margin, footnote skip
+\usepackage[a4paper, margin=0.3in]{geometry} % Top margin, right margin, left margin, bottom margin, footnote skip
 \usepackage[utf8]{inputenc}
 \usepackage{biblatex}
 \addbibresource{./references.bib}
@@ -15,6 +16,9 @@
 }
 
 \usepackage{blindtext}
+\usepackage{mathrsfs}
+\usepackage{yhmath}
+\usepackage{breqn}
 \usepackage{titlesec}
 \usepackage{keytheorems}
 \usepackage{amsthm}
@@ -28,9 +32,6 @@
 \usepackage{import}
 
 
-
-
-%TODO mayby proof environment shall have more margin
 \renewenvironment{proof}{\vspace{0.4cm}\noindent\small{\emph{Demonstratio.}}}{\qed\vspace{0.4cm}}
 % \renewenvironment{proof}{{\bfseries\emph{Demonstratio.}}}{\qed}
 \renewcommand\qedsymbol{Q.E.D.}
@@ -49,6 +50,8 @@
 \newcommand{\CY}{\mathfrak{C}}
 \newcommand{\p}{\partial}
 \newcommand{\G}{\Gamma}
+% mathscr is from mathrsfs
+\renewcommand{\L}{\mathscr{L}}
 \newcommand{\g}{\gamma}
 \newcommand{\dg}{\dot{\gamma}}
 \newcommand{\N}{\textit{\underline{NOTE} }}
@@ -258,6 +261,17 @@ A Koszul connection is \emph{flat} the curvature is zero.
 	 \end{align*}
 \end{defi}
 
+\begin{eg}{}{}
+	Let $(e_1, \cdots, e_n)$ denote basis and $(\theta^1, \cdots, \theta)$ denote canonical dual bases. 
+	Let $\langle e_i, e_j\rangle = \eta_{ij}$, and $[\eta^{ij}]$ be the inverse of $[\eta_{ij}]$.
+	Let $v = v^ie_i$, we have 
+	$$
+	v^{\flat}(e_j) = v^i \eta_{ij} := v_i
+	$$
+	and $v^{\flat}= v_i \theta^{i}$.
+	Similarly, let $\alpha = \alpha_i \theta^i$, and $\alpha^i = \eta^{ij}\alpha_j$, and we have $\alpha^{\sharp} = \alpha^i e_i$.
+\end{eg}
+
 \begin{thm}[Sylvester Law of Inertia]
 	Let $E^{s,t}$ be a $t = s+t$ dimensional inner product space, with $s$ keys positive inner product and $t$ negative. That is, the inner product takes the form $(dx^1)^2 + \cdots + (dx^s)^2 - (dx^{s+1})^2 - \cdots - (dx^n)^2$
 	Every $n$ dimensional inner product space is isometric to $E$.
@@ -284,13 +298,14 @@ A Koszul connection is \emph{flat} the curvature is zero.
 	$$
 \end{defi}
 
-\begin{eg}{}{}
+\begin{example}
 	Let $(M, g)$ and $(N, g)$ be riemannian manifolds and let $i: N \rightarrow M$ be an isometric embedding. Any isometry $\Psi$ of $(M, g)$ which preserves $i(N)$ induces isometry of $(N, h)$.
-	\tcblower
+
+	\textbf{solution}:
 	The isometry $\Psi$ induce diffeomorphism $\psi$ on $N$ such that $\Psi \circ i = i \circ \psi$. 
 	Assuming $\Psi$ preserves $g$, we want to show that $\psi$ preserves $h$.
 	$\psi^*h = \psi^*i^*g = (i \circ \psi)^* g = (\Psi \circ i)^*g = i^* \Psi^* g = i^* g = h$.
-\end{eg}
+\end{example}
 
 \begin{fthm}{Levi-Civita Connection}{}
 	Each riemannian maniford admits a torsionless, metric compatible connection, called Levi-Civita Connection.
@@ -304,6 +319,36 @@ A Koszul connection is \emph{flat} the curvature is zero.
 	$$
 \end{fthm}
 
+\begin{example}
+	\textbf{Proof of the Theorem}
+
+	$\n g = 0$ means 
+	\begin{align*}
+		0 &= (\n_X g)(Y, Z) = Xg(Y, Z) - g(\n_X Y, Z) - g(Y, \n_X Z)\\
+		0 &= (\n_Y g)(X, Z) = Yg(X, Z) - g(\n_Y X, Z) - g(X, \n_Y Z)\\
+		0 &= (\n_Z g)(Y, X) = Zg(Y, X) - g(\n_Z Y, X) - g(Y, \n_Z X)
+	\end{align*}
+	Substract the third from the first two we geometry
+
+	\begin{dmath}
+		 (\n_X g)(Y, Z) (\n_Y g)(X, Z) + - (\n_Z g)(Y, X) 
+		 =
+ Xg(Y, Z) - g(\n_X Y, Z) - g(Y, \n_X Z) +
+ Yg(X, Z) - g(\n_Y X, Z) - g(X, \n_Y Z)
+		 - Zg(Y, X) + g(\n_Z Y, X) + g(Y, \n_Z X)
+		 = g(Z, \n_X Y + \n_Y X) + g(X, \n_Y Z - \n_Z Y) + g(Y, \n_X Z - \n_Z X)
+	\end{dmath}
+	Using torsion free, that is 
+	$$
+		\n_X Y - \n_Y X = [X, Y]
+	$$
+	We can rewrite the right-handside of the equation as 
+	$$
+	2g(\n_X Y,Z) + g(X, [Y,Z]) + g(Y, [X,Z]) - g(Z, [X,Y])
+	$$
+	Plugging in, we are done.
+\end{example}
+
 \begin{defi}[Killing Vector]
 	A vector field $X$ is a Killing vector field if $\mathcal{L}_X(g) = 0$, that is 
 	$$
@@ -311,7 +356,11 @@ A Koszul connection is \emph{flat} the curvature is zero.
 	$$
 \end{defi}
 
-\begin{thm}
+\N If $g$ does not depend on variable $u$, $\p_u$ is a Killing vector field.
+
+\N Killing vector field is a real vector space.
+
+\begin{fthm}{Killing Equation}{}
 	Let $(M, g)$ be riemannian manifold with Levi-Civita connection $\n$. A Killing vector field $X$ obeys the killing equation 
 	$$
 		g(\n_Y X, Z) + g(Y, \n_Z X) = 0
@@ -328,9 +377,9 @@ A Koszul connection is \emph{flat} the curvature is zero.
 	$$
 		\p_u X_v + \p_v X_u = 2 \G_{uv}^p X_p
 	$$
-	Where $X_v$ denotes $dv(X)$
+	Where $X^v$ denotes $dv(X)$ and $X_v = g_{uv}X^u$.
 	% TODO: UNCLEAR
-\end{thm}
+\end{fthm}
 
 \begin{thm}
 	For all sections $U, V \in \G(\dg TM)$
@@ -512,6 +561,41 @@ Take 4 dimensional Riemann manifold with metric $(4,0)$ and basis $dx^1, dx^2, d
 \begin{thm}
 	\begin{enumerate}
 		\item $d \alpha(X, Y) = X \alpha (Y) + Y \alpha(X) - \alpha([X, Y])$.
+		\item 
+			\begin{dmath}
+				d \alpha(X_0, X_1, \cdots, X_k) 
+				= \sum_{i=0}^k (-1)^i X_i \alpha(X_0, \cdots, \widehat{X_i}, \cdots, X_k) + \sum_{0\leq i < j \leq k} (-1)^{i+j} \alpha([X_i, X_j], X_0, \cdots, \widehat{X_i}, \cdots, \widehat{X_j}, \cdots, X_k)	
+			\end{dmath}
+		\item $\L_X f = X(f)$
+		\item $\L_XY = [X, Y]$
+		\item $\L_X \alpha (Y) = \L_X (\alpha Y) - \alpha(\L_{X}Y) = X(\alpha(Y)) - \alpha([X,Y])$
+		\item $\L_X g (Y, Z) = \L_X (g(Y, Z)) - g([X, Y], Z) - g(Y, [X, Z])$
+		\item $d F^* \alpha = F^* d \alpha$
+	\end{enumerate}
+\end{thm}
+
+\begin{thm}
+	Let $T \in \mathscr{T}^r_s(M)$ and $X \in \mathscr{X}(M)$.
+	$\L_X(T) \in \mathscr{T}^r_s(M)$ is defined as, for $Y_i \in \mathscr{X}(M), \alpha_i \in \omega^1(M)$ 
+	\begin{dmath}
+		(\L_XT)(Y_1, \cdots, Y_s, \alpha_1, \cdots, \alpha_r) = XT(Y_1, \cdots, Y_s, \alpha_1, \cdots, \alpha_r) 
+		- \sum T(Y_1, \cdots, [X, Y_i], \cdots, Y_s, \alpha_1, \cdots, \alpha_r)
+		- \sum T(Y_1, \cdots, Y_s, \alpha_1, \cdots, \L_X\alpha_i, \cdots, \alpha_r)
+	\end{dmath}
+\end{thm}
+
+\begin{thm}
+	$d \in Der_1(M)$, $\mathscr{L} \in Der_0(M)$, 
+	\begin{enumerate}
+		\item Lie bracket if $R$ linear but not $C(M)$ linear. $[X, fY] = X(f)Y + f[X, Y]$,
+		\item Leibniz Rules: $\L(X \otimes Y) = \L X \otimes Y + X \otimes \L Y$
+		\item $\L \circ d = d \circ \L$
+		\item $[d,[d, D]] = 0$ for any $D \in Der_k$
+		\item $i_X \circ i_X = 0$
+		\item $i_{fX} = fi_X $
+		\item $\L_X = [d, i_X] \iff \L_X \alpha = i_X d \alpha + di_X \alpha$
+		\item $[\L_X, i_Y] = i_{[X, Y]} \iff \L_X i_Y \alpha = i_Y \L_x \alpha + i_{[X, Y]} \alpha$
+		\item $[\L_x, \L_y] = \L_{[X, Y]} \iff  \L_x \L_y  \alpha= \L_x \L_y \alpha +  \L_{[X, Y]} \alpha $
 	\end{enumerate}
 \end{thm}
 
