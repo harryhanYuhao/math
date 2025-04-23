@@ -3,11 +3,11 @@
 *.txt
 *.ipynb
 *.aux
-*..gz
+*.gz
 *.latexmk
 *.fls
 *.fdb_latexmk
-*.synctex.gz
+*.synctex*
 *.blg
 *.log
 *.out
@@ -15,7 +15,7 @@
 *.nav
 *.snm
 *.vrb
-*.synctex.gz
+*.synctex.gz*
 *.bcf
 *.xml
 *.*/handin
