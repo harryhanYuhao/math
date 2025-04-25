@@ -1,0 +1,669 @@
+\documentclass[twocolumn]{article}
+
+\usepackage[a4paper, margin=0.3in]{geometry} % Top margin, right margin, left margin, bottom margin, footnote skip
+\usepackage[utf8]{inputenc}
+\usepackage{biblatex}
+\addbibresource{./references.bib}
+% linktocpage shall be added to snippets.
+\usepackage{hyperref,theoremref}
+\hypersetup{
+	colorlinks, 
+	linkcolor={red!40!black}, 
+	citecolor={blue!50!black},
+	urlcolor={blue!80!black},
+	linktocpage % Link table of content to the page instead of the title
+}
+
+\usepackage{blindtext}
+\usepackage{mathrsfs}
+\usepackage{yhmath}
+\usepackage{breqn}
+\usepackage{titlesec}
+\usepackage{keytheorems}
+\usepackage{amsthm}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{titlesec}
+\usepackage{xcolor}
+% \usepackage{multicol}
+\usepackage{hyperref}
+\usepackage{import}
+
+
+\renewenvironment{proof}{\vspace{0.4cm}\noindent\small{\emph{Demonstratio.}}}{\qed\vspace{0.4cm}}
+% \renewenvironment{proof}{{\bfseries\emph{Demonstratio.}}}{\qed}
+\renewcommand\qedsymbol{Q.E.D.}
+% \renewcommand{\chaptername}{Caput}
+% \renewcommand{\contentsname}{Index Capitum} % Index Capitum 
+\renewcommand{\emph}[1]{\textbf{\textit{#1}}}
+\renewcommand{\ker}[1]{\operatorname{Ker}{#1}}
+\newcommand{\p}{\partial}
+\newcommand{\A}{\mathbb{A}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\F}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\C}{\mathbb{C}}
+
+\DeclareMathOperator{\mult}{mult}
+\DeclareMathOperator{\csch}{csch}
+\DeclareMathOperator{\Hess}{Hess}
+
+\renewcommand{\P}{\mathbb{P}}
+
+\usepackage[most]{tcolorbox}
+
+\tcbuselibrary{theorems}
+\newtcbtheorem{fdefi}{Definitio}%
+{fonttitle=\bfseries}{th}
+\newtcbtheorem{toverify}{TO VERIFY!}
+{
+    colframe=red,             % dark frame color
+    coltitle=black,             % title text color
+	colbacktitle=gray!10!white,
+	colback=gray!10!white,
+    fonttitle=\bfseries,        % title font
+    boxrule=1pt,              % border thickness
+    arc=2mm,                    % rounded corners
+    boxsep=0.7mm,                 % inner spacing
+    enhanced,
+}{th}
+\newtcbtheorem{fthm}{Theorema}%
+{fonttitle=\bfseries}{th}
+\newtcbtheorem{eg}{\textit{E.G.}}
+{colback=white,              % background of the box
+    colframe=black,             % dark frame color
+    coltitle=black,             % title text color
+	colbacktitle=gray!10!white,
+	colback=gray!10!white,
+    fonttitle=\bfseries,        % title font
+    boxrule=1pt,              % border thickness
+    arc=2mm,                    % rounded corners
+    boxsep=0.7mm,                 % inner spacing
+    enhanced,
+}{th}
+
+\theoremstyle{definition}
+\newtheorem{thm}{THM}
+\newtheorem{lemma}[thm]{Lemma}
+\newtheorem{prop}[thm]{Prop}
+\newtheorem{corollary}[thm]{Corollarium}
+\newtheorem{example}[thm]{Exampli Gratia}
+\newtheorem{defi}[thm]{DEF}
+\theoremstyle{remark}
+\newtheorem{remark}[thm]{Remark}
+
+
+\begin{document}
+% \tableofcontents
+\begin{fdefi}{Notation}{}
+	\begin{enumerate}
+		\item
+	\end{enumerate}
+\end{fdefi}
+\hrulefill
+
+\section{The Fundamentals}
+
+\begin{thm}[Conics as Bilinear Forms]
+	Given a conic
+	$$
+	C : ax^2 + bxy + cy^2 + dxz + e yz + fz^2 = 0
+	$$
+	It can be expressed as 
+	\begin{dmath*}
+	v^T 
+	\begin{pmatrix}
+		a & \frac{b}{2} & \frac{d}{2} \\
+		\frac{b}{2} & c & \frac{e}{2} \\
+		\frac{d}{2} & \frac{e}{2} & f
+	\end{pmatrix}
+	v = 0
+	\end{dmath*}
+\end{thm}
+
+\begin{thm}[LDL Decomposition]
+\begin{dmath*}
+\mathbf{A} = \mathbf{L} \mathbf{D} \mathbf{L}^T =
+\begin{pmatrix}
+1 & 0 & 0 \\
+L_{21} & 1 & 0 \\
+L_{31} & L_{32} & 1
+\end{pmatrix}
+\begin{pmatrix}
+D_1 & 0 & 0 \\
+0 & D_2 & 0 \\
+0 & 0 & D_3
+\end{pmatrix}
+\begin{pmatrix}
+1 & L_{21} & L_{31} \\
+0 & 1 & L_{32} \\
+0 & 0 & 1
+\end{pmatrix}
+=
+\begin{pmatrix}
+	D_1 &  & \text{symmetric} \\
+L_{21} D_1 & L_{21}^2 D_1 + D_2 &  \\
+L_{31} D_1 & L_{31} L_{21} D_1 + L_{32} D_2 & L_{31}^2 D_1 + L_{32}^2 D_2 + D_3
+\end{pmatrix}
+\end{dmath*}
+
+\begin{defi}[Multiplicity]
+	Given a curve $C \subset \P^2$ of degree $d$. Its multiplicity at the point $P = [0:0:1]$, denoted as $\mult_P(C)$, is the smallest $n$ such that $h_n(x, y)$ is non zero, where 
+	$$
+		C: f(x,y,z) = z^dh_0(x,y) + z^{d-1}h_1(x,y) + \cdots + h_d(x,y) = 0
+	$$
+	That is $\mult_P(C) = n - \delta$, where $\delta$ is the highest degree of $z$ and $n$ is the degree of the curve.
+\end{defi}
+\begin{example}
+	The curve $y^2z = x^3$ at $[0:0:1]$ has multiplicity $3-1 = 2$.
+\end{example}
+
+\begin{defi}[Singular]
+	A point does not lie on the curve if its multiplicy is $0$.
+	$P$ is singular if $\mult_P(C) \geq 2$.
+\end{defi}
+
+\begin{defi}[Transverse]
+	Suppose $C_1, C_2$ are two curves in $\P^2$ intersecting at $P$. 
+	This intersection is \emph{transverse} if 
+	\begin{enumerate}
+		\item $P$ is smooth both at $C_1, C_2$;
+		\item The tangent line of $P$ at $C_1$, $C_2$ are different;
+	\end{enumerate}
+\end{defi}
+\end{thm}
+
+\begin{defi}
+	\emph{Formal power series} of two variable over a ring $R$, denoted as $k[[x, y]]$, is all formulae in the form 
+	$$
+	\sum_{n\geq 0} a_{nm}x^n y^n
+	$$
+	Note an element of this series has an inverse iff it has a non-zero constant terms.
+\end{defi}
+
+\begin{fthm}{Intersection Multiplicity}{}
+	The \emph{intersection multiplicity} of two polynomials without common factors $f,g \in k[x, y]$ are the dimension of the $k$-vector space $R / (f, g)$, where $R = k[[x, y]]$.\\
+
+	More generally, the intersection multiplicity of the curve $C_1, C_2$ defined by $f, g \in k[x, y, z]$ at $P = [0:0:1]$, denoted as $I_P(C_1, C_2)$, is the intersection multiplicity of the polynomial $f(x, y, 1)$ and $g(x, y, 1)$.
+	\tcblower
+	\begin{enumerate}
+		\item $I_p(C_1, C_2) \geq \mult_P(C_1)\mult_P(C_2)$
+		\item Assuming $f(x. y, z), g(x, y, z)$ are homogeneous polynomial without common factor and $f(P) = g(P) = 0$ for some $P \in \P^2$, then $$I_p(f,g) \geq 1$$
+		\item Suppose further more that $h$ is another homogeneous polynomial with $h(P) = 0$, then 
+			$$
+			I_P(f, gh) = I_P(f, g) + I_P(f, h)
+			$$
+		\item Suppose $h \neq 0$
+			$$
+			I_P(f, gh) = I_P(f, g) 
+			$$
+		\item The intersection of $f, g$ are travsverse iff $I_P(f, g) = 1$.
+	\end{enumerate}
+\end{fthm}
+
+\begin{toverify}{}{}
+	 If $f(P) = 0$ while $h(P) \neq 0$
+			$$
+				I_P(f, h) = 0
+			$$
+\end{toverify}
+
+\begin{toverify}{Bezout's Theorem}
+	In $\P^n_k$, where $k$ is algebraically closed, let $f, g \in k[x_1, \cdots, x_n]$ be homogeneous polynomial with no common factors.
+	The solutions $f=g=0$ has $deg(f)deg(g)$ solutions counted with multiplicity.
+\end{toverify}
+
+\begin{thm}[Consequences of Bezout's Theorem]
+	Let $f$ be a homogeneous polynomial in $\P^n$, let $L$ be a degree one homogeneous polynomial.
+	\begin{enumerate}
+		\item If $f$ is smooth, that is $\p_i f = 0$ for all $i$, then $f$ is irreducible.
+		\item Point $P$ lies on the line $L$ iff $\mult_P(L) = 1$.
+		\item Let $C$ be an irreducible curve with $d \geq 2$, $P, Q \in C$ are distinct points. Then 
+			$$\mult_P(C) + \mult_Q(C) \leq d$$
+		\item Let $C$ be an irreducible curve with $d \geq 2$, $P \in C$
+			$\mult_P(C)  < d$
+		\item Irreducible cubic has at most $1$ singular point.
+		\item Irreducible quartics has at most $3$ singular point. (If there are four, there is a unique conic passing through all 4 and one extra )
+	\end{enumerate}
+\end{thm}
+
+\begin{toverify}{}
+	How about reducible cubics and conics in the preceding example?
+\end{toverify}
+
+\subsection{Independent Conditions on Curves}
+
+In $\P^n$, (there are $n+1$ variables) a degree $d$ homogeneous polynomial has dimension
+$\binom{n+d}{n}$ 
+
+Let us focus on $\P^2$. 
+Denote the vector space of degree $d$ homogeneous polynomial in $\P^2$ as $S_d$. $\dim(S_d) = \frac{(d+1)(d+2)}{2}$.
+
+\begin{defi}[Independent Conditions]
+	Let $\Sigma \subset \P^2$ be a set of points. 
+	$S_d(\Sigma)$ denotes the vector space of degree $d$ curves passing through all points in $\Sigma$.
+	$\Sigma$ imposes independent condition on degree-$d$ curves if $S_d(\Sigma) = \dim{S_d} - |\Sigma|$.
+\end{defi}
+
+\begin{example}
+	For $\dim{S_1} = 3$
+	\begin{enumerate}
+		\item Any single points imposes independent condition on $S_1$
+		\item Two points impose independent condition if they are distict
+		\item Three points imposes independent condition iff they are non-coliear
+		\item For $n \geq 4$ points, they never impose independent condition.
+	\end{enumerate}
+
+	For $\dim{S_2} = 6$
+	\begin{enumerate}
+		\item Any $1, 2, 3$ points imposes independent condition  iff they are distict.
+		\item Any 4 points imposes independent condition iff they are distict and non colinear.
+		\item Five points imposes independent conditions iff no $4$ of them are colinear
+		\item 6 points imposes independent conditions iff they doe not line on a conic.
+	\end{enumerate}
+\end{example}
+
+\begin{thm}
+	Assuming $k$ is algebraically closed. Consider $S_d$.
+	\begin{enumerate}
+		\item Suppose $a > d$ points lie on a line $L: f = 0$, then $S_d(\Sigma) = f S_{d-1}(\Sigma \backslash L)$
+		\item Suppose $a > 2d$ points lie on a conic $C: g = 0$, then $S_d(\Sigma) = g S_{d-2}(\Sigma \backslash G)$
+	\end{enumerate}
+\end{thm}
+
+\begin{thm}[Independent condition on cubics]
+	Consider $8$ distinct points $P_1, \cdots, P_8$. Suppose at most $3$ points lie on a line and at most $6$ points lies on an irreducible cubic. They impose independent conditions on $S_3$.
+\end{thm}
+
+\begin{thm}[Chasles]
+	Let $f:C_1, g:C_2$ be two cubics intersecting precisely at $9$ distict points $P_1, \cdots, P_9$. 
+	Any cubic passing through $P_1, \cdots, P_8$ can be written as $af + bg$ and will pass through $P_9$.
+\end{thm}
+
+\section{Cubic Curves}
+
+\begin{defi}
+	Let $C \subset \P^2$ be a projective curve. A point $P \in C$ is an \emph{inflection point} if it is smooth and $I_P(L, C) \geq 3$, where $L$ is the tangent line at $P$.
+\end{defi}
+
+\begin{thm}[Hessian]
+	Suppose $f(s, y,z)$ is a homogeneous polynomial. 
+	Its \emph{Hessian} is 
+	$$
+	\Hess(f) = \det 
+	\begin{pmatrix}
+		\p_{xx} f & \p_{xy} f & \p_{xz} f \\
+		\p_{yx} f & \p_{yy} f & \p_{yz} f \\
+		\p_{zx} f & \p_{zy} f & \p_{zz} f
+	\end{pmatrix}
+	$$
+	\begin{enumerate}
+		\item $\Hess(f)$ is a multiple of $f$ iff $f$ factors into linear polynomials.
+		\item If $\Hess(f)$ is not a multiple of $f$. The points $P$ such that $\Hess(f)(P) = 0$ is either a singular or inflection point.
+		\item For $P \in C$ whose tangent line $L$ is not a component of $C$, we have 
+			$$
+				I_P(C, L) = I_P(\Hess(f), L) + 2
+			$$
+		\item If $P \in C$ is a singular or inflection point, $\Hess(f)(C) = 0$.
+	\end{enumerate}
+
+\end{thm}
+
+\begin{prop}
+	Suppose $k$ is algebraically closed field of characteristic not $2$. 
+	Any smooth cubics has $9$ distinct inflection points.
+\end{prop}
+
+\begin{fthm}{Weiestrass Form}{}
+	Weiestraa Form of Cubic is 
+	$$
+		y^2z = x^3 + axz^2 + b z^3
+	$$
+	\begin{enumerate}
+		\item Any smooth cubic in $\P^2$ can be projectively transformed into Weiestrass form;
+		\item The determinant is $\Delta = 4a^3 + 27b^2$.
+		\item The Weiestrass cobic is smooth iff 
+			\begin{enumerate}
+				\item  if the ground field is characteristic $2$, either $a$ or $b$ is not a square.
+				\item Otherwise, $\Delta \neq 0$.
+			\end{enumerate}
+	\end{enumerate}
+\end{fthm}
+
+\begin{thm}	A smooth (thus irreducible) cubic $C \subset \P^2$ can be projectively transformed into 
+	\begin{enumerate}
+		\item \emph{Legendre form} $y^2z = x(x-z)(x-l)(x-\lambda z)$, for $\lambda \neq 0, 1$
+		\item \emph{Nodal Cubic }$y^2z = x^2(x+z)$
+		\item \emph{Cupiscal Cubic }$y^2z = x^3$
+	\end{enumerate}
+\end{thm}
+
+\begin{thm}
+	Let $C \subset \P^2$ be a reducible cubic. It can be transformed into one of the following
+	\begin{enumerate}
+		\item $x(zy + x^2) = 0$
+		\item $x(zx + x^2) = 0$
+		\item $xyz = 0$
+		\item $xy(x+y) = 0$
+		\item $x^2y = 0$
+		\item $x^3 = 0$
+	\end{enumerate}
+\end{thm}
+
+\subsection{Group law on cubic curves}
+\begin{defi}
+	In $\P^2$, any line $L$ intersects a cubic $C$ at precisely $3$ points counting multiplicity. 
+	If $A, B, C$ lines on both $L$ and $C$, denote $A*B = C$. 
+	Pick any points in $C$ as origin, labelled as $O$. The group law on $C$ is $A+B = (A*B)*O$.
+\end{defi}
+
+\begin{thm}[Properties of Group Law]
+	Let $E$ be an elliptic curve in $\P^2$.
+	\begin{enumerate}
+		\item If $O$ is an inflection point, the point $A,B, C$ lines on the line iff $A + B + C = O$.
+		\item If $O$ is an inflection point, a three torsion point (points A such that $3A = O$) is the same as inflection point.
+	\end{enumerate}
+\end{thm}
+
+\begin{thm}
+	Consider a smooth Weierstrass Cubic $y^2z = x^3 + axz^2 + bz^3$ with $O = [0:1:0]$. 
+	For  $P = [x_1, y_1, 1]$ and $Q = [x_2, y_2, 1]$, define 
+	$$\lambda = \begin{cases}
+		\frac{y_2 - y_1}{x_2 - x_1} \text{ if } P \neq Q \\ 
+		\frac{3x_1^2 + a}{2y_1} \text{ if } P=Q
+	\end{cases} 
+	$$
+	Set $x_3 = \lambda^2 - x_1-x_2$, then $P+Q = [x_3: \lambda(x_1 - x_3) - y_1:1]$
+\end{thm}
+
+\begin{thm}[Mordell] 
+	Let $E$ be a elliptic curve over $\Q$. It is a finitely generated abelian group, that is 
+	$$
+	E(\Q) \cong  \Z^r \times \prod_{j=1}^s \Z / n_j \Z
+	$$
+	The number $r$ is the rank of $E$.
+	Moreover, the torsion group of $E(\Q)$ must be $\Z \backslash n\Z$ for $1 \leq n \leq 10$ or $Z \backslash 2m \Z \times \Z \backslash 2\Z$ for $1 \leq m \leq 4$.
+\end{thm}
+
+\begin{fthm}{Nagell-Lutz theorem}{}
+	Conider elliptic curve $E: y^2z = x^3 + axz^2 + bz^3$, with $a, b \in \Z$ and $O = [0:1:0]$.
+	If $A$ is a point of finite order, it must either be $O$ or in the form of $[x:y:1]$, while $y $ either is $0$(in this case $2A = 0$) or $y^2$ divides $4a^3 + 27b^2 = \Delta$ .
+\end{fthm}
+
+\begin{prop} 
+	\begin{enumerate}
+		\item $|\P^n(\F_p)| = 1 + p + p^2 + \cdots p^n = \frac{p^{n+1}-1}{p-1}$
+		\item $|E(\F_p)| \leq 2p + 1$
+	\end{enumerate}
+\end{prop}
+
+\section{Commutative Algebra}
+
+\begin{defi}][Algebraic Subset]
+	$U \subset \A^n$ is algebraic if there exists some ideal $I \in k[x_1, \cdots, x_n]$ such that $U = V(I)$.
+\end{defi}
+
+\begin{toverify}{Algebraic Laws on $V, I$}{}
+
+\end{toverify}
+
+\subsection{Polynomial and Rational functions in Affine Space}
+
+\begin{defi}
+Let $X \subset \A^n, Y \subset \A^m$. 
+A polynomial map $X \rightarrow Y$ is function of the form $P \mapsto (f_1(P), f_2(P), \cdots, f_m(P))$ for polynomials of $n$ variable $f_i$.
+\end{defi}
+
+\begin{defi}[Coordinate ring]
+	Let $X = V(I)$. The coordinate ring $k[X] = k[x_1, \cdots, x_n ] \backslash I$. 
+	The coordinate ring is a $k$-algebra, and can be considered as functional $X \rightarrow k$.
+\end{defi}
+
+\begin{defi}[Pull Back]
+	Consider a polynomial function $f: X \rightarrow Y$, it induces a pullback $f^*: k[Y] \rightarrow k[X]$ defined as $f^*(\lambda)(x) = \lambda(f(x))$
+\end{defi}
+
+\begin{example}
+	Consder cubic $C:y^2 - x^3$ in $\A^2$, and the map $f:\A \rightarrow C$ defined as $f(t) = (t^2, t^3)$.
+	The pullback $f^*: k[C] \rightarrow k[\A]$ is given by
+	$f^*{p(x,y)} = p(t^2, t^3)$
+\end{example}
+
+\begin{thm}
+	If $f$ is injective, $f^*$ is surjective. 
+	If $f$ is surjective, $f^*$ is injective.
+\end{thm}
+
+\begin{defi}[Reduced]
+	A ring $R$ is reduced if for all $f \in R$, $f^n = 0 \implies f= 0$
+
+	The ring $k[x_1, \cdots, x_n]/I$ is reduced iff $I$ is radical.
+\end{defi}
+
+\begin{defi}[Affine Algebraic Set]
+	Affine algebraic set in $\A^n$ is the same as $\frac{k[x_1, \cdots, x_n]}{I}$ for some $I$.
+\end{defi}
+
+\begin{defi}[Affine Variety]
+	An affine variety is an irreducible affine algebraic set.
+\end{defi}
+
+\begin{example}[Prime ideals in 1 and 2 D]
+	Prime ideals in $k[x]$ are either zero, the whole ring, or maximal (in form of $(x-a)$), as $k[x]$ is PID.
+
+	Prime ideals in $k[x,y]$  are either zero, the whole ring, maximal (in the form of $(x-a, y-b)$, or in the form of $(f)$, where $f$ is irreducible polynomial.
+\end{example}
+
+\begin{example}
+	$y^2 - x^3$ is irreducible. It is not isomorphic to $\A$ but is birational to $\A$.
+\end{example}
+
+\begin{defi}[Integral]
+	Let $R$ be an integral domain and $K$ its field of fractions.
+	\begin{enumerate}
+		\item An element $\alpha \in K$ is \emph{integral} if there are $a_0, \cdots, a_{n-1} \in R$ such that $\alpha^n + a_{n-1}\alpha^{n-1} \cdots + a_0 = 0$
+		\item \emph{Integral closure} of $R$, denoted as $\overline{R}$, is all elements integral over $R$.
+		\item $R$ is integrally closed if $\overline{R} = R$.
+	\end{enumerate}
+\end{defi}
+
+\begin{defi}[Normal Variety]
+	The normalisation of an affine variety $X$ is the $\tilde{X}$ such that $k[\tilde{X}] = \overline{k[X]}$.
+
+	An variety is smooth if and only if it is normal (equals to its normalisation).
+\end{defi}
+
+\begin{thm}UFD are integrally closed \end{thm}
+
+\begin{eg}{}{}
+	The integral closure of $k[x,y] \backslash (x^3 - y^2)$ is $k[t]$.
+	\tcblower
+	Label $C: x^3 - y^2$. 
+	Define $f: \A \rightarrow C$ as $t \mapsto (t^2, t^3)$. This is a bijective map. This means the pullback, $f^*: k[C] \rightarrow k[t]$, is injective. 
+	This means $k[C] \subset k[t] \implies \overline{k[C]} \subset \overline{k[t]} = k[t]$.
+
+	Note we can have $t = \frac{y}{x} \implies t^2 - x = 0$, thus $t$ is integral over $k[C]$, that is $\overline{k[t]} \subset \overline{k[C]}$.
+	Combining the two inclusion we are done.
+\end{eg}
+
+\begin{defi}[Functional Field]
+	Let $X$ be an affine variety in $\A^n$. The \emph{functional field} of $X$, labeld as $k(X)$, is the field of fraction of $k[X]$. 
+	Notice, it is (probably) not a subfield of $k(x_1, \cdots, x_n)$.
+
+	Elements in $k(X)$ are \emph{rational functions} on $X$.
+	A rational function is \emph{regular} at $P$ if it can be written as $\frac{f}{g}$ with $g(P) \neq 0$.
+	The domain of the definition $\phi$ is $dom(\phi) \subset X$ is the subset where the function is regular.
+\end{defi}
+
+\begin{example}
+	The function field of $C: x^3 - y^2$ is $k(\frac{x}{y}) = k(t)$. Take note that $x, y \notin k(\frac{x}{y})$.
+\end{example}
+
+\begin{defi}[Rational Function]
+	Rational functions from $X \subset \A^n$ to $Y \subset \A^m$ are denoted as $f: X \dasharrow Y$, which is collection of $m$ rational function of $k(X)$ .
+\end{defi}
+
+\begin{defi}[Dominant and Birational]
+	A map $\phi: X \dasharrow Y$ is dominant if $\phi^* k[Y] \dasharrow k(X)$ is injective.
+	$\phi$ is birational if $\phi^* k(X) \dasharrow k(Y)$ is bijective.
+
+	Or equivalently, a dominant rational map $\phi X \dasharrow Y$ is birational if there exists another dominant rational map $\psi: Y \dasharrow X$ such that $\psi \circ \phi = id$ and $\phi \circ \psi = id$.
+\end{defi}
+
+\begin{example}
+	In $\A^2$, $y = x^2 $ and $xy = 1$ are not isomorphic, but they are birational.
+
+	$C_1: y -x^2$ is birational to $\A$,
+	with map $(t) \mapsto (t, t^2)$ and $(x, y) \mapsto (\frac{y}{x})$.
+
+	$C_2: yx  - 1$ is birational to $\A$,
+	with map $t \mapsto (t, 1/t)$ and $(x, y) \mapsto (x)$.
+
+	In $\A^3$, $yz = x^3$ and $xyz = 1$ are birational by the similar trick.
+
+	$S_1: yz - x^3$ is birational to $\A^2$ by $(u, v) \mapsto (u, \frac{u^3}{v}, v)$ and $(x,y,z) \mapsto (x, z)$.
+
+	$S_2: xyz - 1$ is birational to $\A^2$ by $(u, v) \mapsto (u, v, \frac{1}{uv})$ and $(x,y,z) \mapsto (x, y)$.
+\end{example}
+
+\subsection{Projective Varieties}
+
+\begin{defi}[Homogeneous Ideal]
+	An ideal $I$ is \emph{homogeneous} if for every $f \in I$, each homogeneous component of $f$ is also in $I$.
+
+	A ideal is homogeneous iff it is generated by homogeneous polynomials.
+\end{defi}
+
+\begin{thm}[Projective Nullstellensatz]
+	Let $I \subset k[x_0, \cdots, x_n]$ be a homogeneous ideal.
+	\begin{enumerate}
+		\item $V(I) = \emptyset$ iff $(x_0, x_1, \cdots, x_n) \subset \sqrt{I}$.
+		\item  If $V(I) \neq \emptyset$, then $\sqrt{I} = I(V(I))$.
+	\end{enumerate}
+\end{thm}
+
+\textbf{TODO} section 2.4 
+
+\begin{defi}
+\begin{enumerate}
+	\item A \emph{rational function} $\phi X \dasharrow \C$ is function in the form $\phi = \frac{f}{g}$ for $f, g$ being homogeneous.
+	\item It is \emph{regular} at $P \in X$ if we can arrange $g(P) \neq 0$;
+	\item \emph{Domain of function} are the sets at which $\phi$ is regular;
+	\item \emph{function field} $k(X)$ is the field of rational function on $X$.
+\end{enumerate}
+\end{defi}
+
+\begin{thm}
+	Denote $U_i$ as the open set $U_i \subset \P^n$ given by $x_i \neq 0$.
+
+	If $X \cap U_i \neq \emptyset$, then $k(X) \cong k(X \cap U_i)$.
+	If $X\cap U_i \neq \emptyset$ and $X \cap U_j \neq \emptyset$, then they are birational.
+\end{thm}
+
+\begin{defi}
+	A proejctive variety $X$ is \emph{rational} if it is birational to $\P^n$.
+\end{defi}
+
+\section{Surface}
+
+\begin{defi}[Smooth]
+	A surface $S: f(x,y,z,w) \in \P^3$ is \emph{smooth} if the gradient $\nabla f$ is not zero at any point on $S$.
+	
+	Suppose $S: f(x,y,z,w) = 0$ is surface with a smooth point $P\in S$. The \emph{tangent plane} at $P$ is $\nabla f \cdot (x,y,z,w) = 0$.
+\end{defi}
+
+\begin{defi}[Cone]
+	Let $C \subset \P^2$ be a curve defined by $f(x, y,z) = 0$. The \emph{cone} on $C$ is a surface $\hat{C} \subset \P^3$ defined by $f(x,y,z) = 0$.
+
+	The point $[0:0:0:1]$ is singular.
+	If $C$ is smooth, then $\hat{C}$ is singular at $[0:0:0:1]$ and smooth elsewhere.
+	If $C$ is irreducible, then $\hat{C}$ is irreducible.
+\end{defi}
+
+\begin{toverify}{Lines in $\P^3$}{}
+	Get the correct formula for lines: line passing through any two points, line as intersection of two planes, any planes containing the line.
+	When is the two line contained in the same plane, etc.
+\end{toverify}
+
+\begin{fthm}{Segre Embedding}{}
+	The Segre embedding is the map $\phi \P^n \times \P^m \rightarrow \P^N$ with $N = (n+1)(m+1) - 1$ given bay 
+	$$
+	[x_0: \cdots : x_n] , [y_0: \cdots: y_m] \mapsto [\{x_iy_j\}_{i=0 \cdots n, j=0 \cdots m}]
+	$$
+
+	Or, the image of the segra embedding is the variety in $\P^{N}$ with vanishing ideal being the determinant of the 2 by 2 minors of the following matrix. 
+	Take note the minors do not need to be close to each other.
+	$$ 
+	\begin{pmatrix}
+		z_{00} & z_{01} & \cdots & z_{0m} \\ 
+		z_{10} & z_{11} & \cdots & z_{1m} \\ 
+		\vdots & \vdots & \ddots & \vdots \\ 
+		z_{n0} & z_{n1} & \cdots & z_{nm} 
+	\end{pmatrix}
+	$$
+\end{fthm}
+
+\begin{prop}
+	A smooth quadric surface $S \in \P^3_{\C}$ is isomorphic to $P^1_{\C} \times P^1_{\C}$ as projective variety.
+\end{prop}
+\begin{proof}
+	Every smooth quadric surface $S$ is equivalent to $x^2 + y^2 + z^2 + w^2 = 0$. Let $z_{00} = x-iy, z_{11} = x+iy, z_{01} = iz + w, z_{10} = iz -w$,so $z_{00} z_{11} - z_{01} z_{10} = x^2 + y^2 + z^2 + w^2 = 0$.
+\end{proof}
+
+\subsection{Lines on Surfaces}
+
+
+\begin{thm}
+Let $S \subset \P^3$ be a surface.
+	\begin{enumerate}
+		\item When $d = 2$ (quadric surface) If $S$ is smooth, it is isomorphic to $\P^1 \times \P^1$ and it has two rulings by line. If it is not, it is isomorphic to a cone and it has one ruling by lines.
+		\item If $d \geq 3$, then $S$ contains at most $(d-2)(11d-6)$ lines. \item If $d = 4$, there are at most 64 lines.
+		\item A smooth cubic surfaces contains exactly 27 lines.
+		\item If $S$ is irreducible cubic surface, one of the following holds	\begin{enumerate}
+			\item $S$ has infinitely many singular points,
+			\item $S$ is isomorphic to the cone on an irreduccible cubic on $\P^2$
+			\item It contains exactly 27 lines (smooth case)
+			\end{enumerate}
+		\item If $S$ is an irreducible cubic surface and $P$ is a singular point of $S$. $S$ contains a line that passes through $P$ (TODO: PROVE THIS)
+		\item Suppose $\Pi \in \P^3$ is a plane and $S$ is a cubic. Their intersection can be one of the following 
+			\begin{enumerate}
+				\item Irreducible cubic 
+				\item Union of an irreducible cubic and a line 
+				\item union of three lines (may be with multiplicity)
+			\end{enumerate}
+		\item Suppose $L\subset S$ is a line, $S$ is cubic surface, then there exists some plane $\Pi$ containing $L$ such that $\Pi \cap S$ is union of three lines.
+	\end{enumerate}
+\end{thm}
+
+\begin{fthm}{Algorithm to find lines on surfaces}{}
+	Let $S \subset \P^3$ be a surface defined by $f(x,y,z,w) = 0$. 
+	\begin{enumerate}
+		\item Find a plane $\Pi$ intersecting $S$ along a Union of lines $L_i$ (Try to find the singular points).
+		\item Any line $L \in \P^3$ intersects the plane $\Pi$, so it must intersect $S$ some $L_i$.
+		\item For any two lines, there is a plane containing them, so $L$ must be contained in the plane $\Pi$ containing one of the lines
+		\item All plane containing any line can be find easily.
+		\item Find the intersection of the this family of plane with $S$. There are several possibility: the intersection is irreducible conics (containing no more lines), or there are more lines in the intersections. 
+	\end{enumerate}
+\end{fthm}
+
+\subsection{Blow ups}
+
+\begin{defi}[Blow up in $\A^2$]
+	Parametrise $\A^2 \times \P^1$ by $(x,y), [\alpha: \beta]$. \emph{Blow up} of $\A^2$ at origin is the subset $Bl_{0,0} \A^2 \times \P^1$ defined by $x \beta = \alpha y$.
+\end{defi}
+
+\begin{defi}[General blow up]
+	Let $Z \subset \A^n$ be the subvariety of dimension $n - k - 1$ with $I(Z) = (g_0, \cdots, g_k) \subset k[x_1, \cdots, x_n]$.
+
+	The blowup of $A^n$ centered at $Z$ is the subvariety $Bl_Z \A^n \subset \A^n \times \P^k$ defined by 
+	$$
+	u_i g_j(x) = u_j g_i(x) \text{ for } i \neq j
+	$$
+	where $[u_0: \cdots : u_k] \in \P^k$
+\end{defi}
+
+\end{document}
+
+% LIST OF TYPOS
+% 4.3.6 z_11 = x+iy
