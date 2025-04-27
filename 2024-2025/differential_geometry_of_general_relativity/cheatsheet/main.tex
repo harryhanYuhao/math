@@ -1,6 +1,7 @@
 \documentclass[twocolumn]{article}
 \usepackage[a4paper, margin=0.3in]{geometry} % Top margin, right margin, left margin, bottom margin, footnote skip
 
+
 \usepackage[utf8]{inputenc}
 \usepackage{biblatex}
 \addbibresource{./references.bib}
@@ -30,19 +31,19 @@
 \usepackage{hyperref}
 \usepackage{import}
 
-
 \renewenvironment{proof}{\vspace{0.4cm}\noindent\small{\emph{Demonstratio.}}}{\qed\vspace{0.4cm}}
 % \renewenvironment{proof}{{\bfseries\emph{Demonstratio.}}}{\qed}
 \renewcommand\qedsymbol{Q.E.D.}
 % \renewcommand{\chaptername}{Caput}
 % \renewcommand{\contentsname}{Index Capitum} % Index Capitum 
-\renewcommand{\emph}[1]{\textbf{\textit{#1}}}
+% \renewcommand{\emph}[1]{\textbf{\textit{#1}}}
+\renewcommand{\emph}[1]{{\color{blue!70!black}\sffamily\bfseries #1}}
 \renewcommand{\ker}[1]{\operatorname{Ker}{#1}}
 
 \DeclareMathOperator{\sech}{sech}
 \DeclareMathOperator{\csch}{csch}
 
-\newcommand{\X}{\mathfrak{X}}
+\newcommand{\X}{\mathscr{X}}
 \newcommand{\n}{\nabla}
 \newcommand{\R}{\mathbb{R}}
 \newcommand{\C}{C^{\infty}}
@@ -78,10 +79,10 @@
     enhanced,
 }{th}
 
+\theoremstyle{definition}
 \newtheorem{thm}{THM}
 \newtheorem{lemma}{Lemma}
 \newtheorem{corollary}[thm]{Corollarium}
-\theoremstyle{definition}
 \newtheorem{example}[thm]{Exampli Gratia}
 \newtheorem{remark}[thm]{Remark}
 \newtheorem{defi}[thm]{DEF}
@@ -214,7 +215,7 @@
 
 \end{defi}
 
-\N Koszul connection is not tensorial, but their different is.
+\N Koszul connection is not tensorial, but their difference is.
 
 \N A section $s$ is parallel if $\n_X s = 0$ for all $X$.
 
@@ -222,7 +223,11 @@
 $$
 	R(X, Y)s = \n_X \n_Y s - \n_Y \n_X s - \n_{[X, Y]} s
 $$
-A Koszul connection is \emph{flat} the curvature is zero.
+A Koszul connection is \emph{flat} if the curvature is zero.
+
+\begin{defi}[Connection Coefficients]
+	The \emph{connection coefficients}, $\omega_{i\ a}^{\ b} \in \C(M)$ relative a local frame of $s$, $e_a$, is $\n_{\p_i} e_a = \omega_{i\ a}^{\ b} e_b$
+\end{defi}
 
 \begin{defi}[Covariant Derivative]
 	Let $\n$ be a Koszul connection on vector bundle $E \rightarrow M$. 
@@ -238,7 +243,7 @@ A Koszul connection is \emph{flat} the curvature is zero.
 			$$
 		\item for all $f \in \C(I)$ and $\sigma \in \G(\g^*E)$
 			$$
-			\frac{df}{dt} \sigma + f \frac{D \sigma}{dt}
+			\frac{D}{dt}(f \sigma) = \frac{df}{dt} \sigma + f \frac{D \sigma}{dt}
 			$$
 	\end{enumerate}
 
@@ -248,6 +253,18 @@ A Koszul connection is \emph{flat} the curvature is zero.
 \begin{corollary}
 	Suppose $s \in \G(E)$ such that $\n_X s = 0$ for all $X$, and if $s(p) = 0$ for some $p$ then $s \equiv 0$.
 \end{corollary}
+
+\begin{defi}
+	Let $\n$ be an affine connection on $M$, and a smooth curve $\gamma: I \rightarrow M$, is a \emph{geodesic} if its velocity $\dg = \g_{*}(\frac{d}{dt})$, which is a section of $\g^* TM \rightarrow I$, is self parallel, that is 
+	$$
+		\frac{D}{dt} \dg = 0
+	$$
+	Writing in local coordinate, $\dg = \dg^i \p_i$ is geodesic if and only if the functions $\dg^i(t)$ satisfy the ODE
+	$$
+	\ddot{\g}^k(t) + \G_{ij}^{\ \ k}(\g(t)) \dg^i(t) \dg^j(t) = 0
+	$$
+
+\end{defi}
 
 \section{Riemannian Metric}
 
@@ -354,8 +371,15 @@ A Koszul connection is \emph{flat} the curvature is zero.
 	Plugging in, we are done.
 \end{example}
 
+\begin{thm}
+	Writing in local coordinate, a vector field $\xi = \xi^{\mu} \p_{\mu} $ is \emph{parallel} ($\n_X \xi = 0$ for all $X \in \X(M)$) if and only if it satisfies the following PDE. (${\rho}$ is a dummy variable, just showing we need to iterate over all $\rho$ for each of the $i$ equation.)
+	$$
+	(\p_i \xi^{\rho} + \xi^{\mu} \G_{i\mu}^{ \rho})\p_{\rho} = 0 \text{ for all } i
+	$$
+\end{thm}
+
 \begin{defi}[Killing Vector]
-	A vector field $X$ is a Killing vector field if $\mathcal{L}_X(g) = 0$, that is 
+	A vector field $X$ is a Killing vector field if $\L_X(g) = 0$, that is 
 	$$
 	Xg(Y, Z) = g([X, Y], Z) + g(Y, [X, Z])
 	$$
@@ -387,7 +411,7 @@ A Koszul connection is \emph{flat} the curvature is zero.
 \end{fthm}
 
 \begin{thm}
-	For all sections $U, V \in \G(\dg TM)$
+	For all sections $U, V \in \G(\g^* TM)$
 	$$
 	\frac{d}{dt} g(U, V) = g(\frac{DU}{dt} , V) + g(U, \frac{DV}{dt})
 	$$
@@ -396,12 +420,9 @@ A Koszul connection is \emph{flat} the curvature is zero.
 \begin{thm}[Geodesics of Levi-Civita]
 	Let $\g$ be an affinely parametrised geodiscis of the manifold $(M, g)$.
 	Then $g(\dg, \dg)$ is constant.
-	The geodesic is 
-	\begin{enumerate}
-		\item \emph{timelike} if $g(\dg, \dg) < 0$;
-		\item \emph{null} if $g(\dg, \dg) = 0$;
-		\item \emph{spacelike} if $g(\dg, \dg) > 0$;
-	\end{enumerate}
+	The geodesic is \emph{timelike} if $g(\dg, \dg) < 0$; \emph{null} if $g(\dg, \dg) = 0$; \emph{spacelike} if $g(\dg, \dg) > 0$.
+
+	Let $X$ be a Killing vector field, then $g(\dg, X)$ is constant along the geodesic $\g$.
 \end{thm}
 
 \section{Riemann Curvature}
@@ -457,8 +478,8 @@ Let $G$ denote Einstein tensor, so $G_{ij} = R_{ij} - \frac{1}{2}g_{ij}R$.
 
 	\tcblower
 	Since $R_{ij} = fg_{ij}$, taking the trace $R = g^{ij}R_{ij} = g^{ij}g_{ij}f = nf$, so 
-	$$R_{ij} = \frac{1}{n} g_{ij} R$$.
-	Differentiating and trace 
+	$$R_{ij} = \frac{1}{n} g_{ij} R$$
+	Differentiating and trace (recall $ \n g = 0$)
 	$$
 		g^{jk} \n_{k}R_{ij} = \frac{1}{n} \p_i R 
 	$$
@@ -578,6 +599,19 @@ Take 4 dimensional Riemann manifold with metric $(4,0)$ and basis $dx^1, dx^2, d
 \begin{defi}[Closed and Exact]
 	A form $\alpha$ is \emph{closed} if $d \alpha = 0$, and \emph{exact} if $\alpha = d \beta$ for some $\beta$.
 \end{defi}
+
+\begin{example}[Jacobian and Pushforward]
+	Assuming there is local coordinate $(x^1, x^2, \cdots, x^n) \subset M$ and $F : M \rightarrow N$ defined as $f(x^I) = (f_1(x^I), f_2(x^I), \cdots, f_m(X^I))$.
+	The push forward of $f$ acting on $\frac{\p}{\p_{x^1}}$ is 
+	$$
+	F_* |_p \left.\frac{\p }{\p x^i}\right|_p = \frac{\p f_j}{\p x^i}(p) \left.\frac{\p}{\p y^j}\right|_{F(p)}
+	$$
+
+	For example, with $(r, \theta)  \mapsto (r\cos(\theta), r \sin(\theta)) = (x, y)$, 
+	$$
+		\frac{\p}{\p \theta} = -r \sin(\theta) \frac{\p}{\p x} + r \cos(\theta) \frac{\p}{\p y} = -y \frac{\p}{\p x} + x \frac{\p }{\p y}.
+	$$
+\end{example}
 \begin{thm}
 	\begin{enumerate}
 		\item $d \alpha(X, Y) = X \alpha (Y) + Y \alpha(X) - \alpha([X, Y])$.
@@ -625,7 +659,7 @@ Take 4 dimensional Riemann manifold with metric $(4,0)$ and basis $dx^1, dx^2, d
 		\item $\L_X f = X (f)$
 		\item $\L_X df = d \L_X f = d(Xf)$
 		\item $\L_X Y = [X, Y]$
-		\item $\L_X f \alpha \otimes \beta = (\L_X f) \alpha \otimes \beta + f (\L_X \alpha) \times \beta + f \alpha \otimes \L_X(\beta)$.
+		\item $\L_X f \alpha \otimes \beta = (\L_X f) \alpha \otimes \beta + f (\L_X \alpha) \otimes \beta + f \alpha \otimes \L_X(\beta)$.
 	\end{enumerate}
 
 	When writing in the reduced form, the usual Leibniz rule still follows, for example 
