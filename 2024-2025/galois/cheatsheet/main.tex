@@ -1,0 +1,556 @@
+\documentclass[twocolumn]{article}
+
+\usepackage[a4paper, margin=0.3in]{geometry} % Top margin, right margin, left margin, bottom margin, footnote skip
+\usepackage[utf8]{inputenc}
+\usepackage{biblatex}
+\addbibresource{./references.bib}
+% linktocpage shall be added to snippets.
+\usepackage{hyperref,theoremref}
+\hypersetup{
+	colorlinks, 
+	linkcolor={red!40!black}, 
+	citecolor={blue!50!black},
+	urlcolor={blue!80!black},
+	linktocpage % Link table of content to the page instead of the title
+}
+
+\usepackage{blindtext}
+\usepackage{mathrsfs}
+\usepackage{yhmath}
+\usepackage{breqn}
+\usepackage{titlesec}
+\usepackage{keytheorems}
+\usepackage{amsthm}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{titlesec}
+\usepackage{xcolor}
+% \usepackage{multicol}
+\usepackage{hyperref}
+\usepackage{import}
+
+
+% \renewenvironment{proof}{{\bfseries\emph{Demonstratio.}}}{\qed}
+\renewcommand\qedsymbol{Q.E.D.}
+% \renewcommand{\chaptername}{Caput}
+% \renewcommand{\contentsname}{Index Capitum} % Index Capitum 
+\renewcommand{\emph}[1]{\textbf{\textit{#1}}}
+\renewcommand{\ker}[1]{\operatorname{Ker}{#1}}
+\newcommand{\p}{\partial}
+\newcommand{\A}{\mathbb{A}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\F}{\mathbb{F}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+
+\DeclareMathOperator{\mult}{mult}
+\DeclareMathOperator{\csch}{csch}
+\DeclareMathOperator{\Fix}{Fix}
+
+\renewcommand{\P}{\mathbb{P}}
+
+\usepackage[most]{tcolorbox}
+
+\tcbuselibrary{theorems}
+\newtcbtheorem{fdefi}{Definitio}%
+{fonttitle=\bfseries}{th}
+\newtcbtheorem{toverify}{TO VERIFY!}
+{
+    colframe=red,             % dark frame color
+    coltitle=black,             % title text color
+	colbacktitle=gray!10!white,
+	colback=gray!10!white,
+    fonttitle=\bfseries,        % title font
+    boxrule=1pt,              % border thickness
+    arc=2mm,                    % rounded corners
+    boxsep=0.7mm,                 % inner spacing
+    enhanced,
+}{th}
+\newtcbtheorem{fthm}{Theorema}%
+{fonttitle=\bfseries}{th}
+\newtcbtheorem{eg}{\textit{E.G.}}
+{colback=white,              % background of the box
+    colframe=black,             % dark frame color
+    coltitle=black,             % title text color
+	colbacktitle=gray!10!white,
+	colback=gray!10!white,
+    fonttitle=\bfseries,        % title font
+    boxrule=1pt,              % border thickness
+    arc=2mm,                    % rounded corners
+    boxsep=0.7mm,                 % inner spacing
+    enhanced,
+}{th}
+
+\theoremstyle{definition}
+\newtheorem{thm}{THM}
+\newtheorem{lemma}[thm]{Lemma}
+\newtheorem{prop}[thm]{Prop}
+\newtheorem{corollary}[thm]{Corollarium}
+\newtheorem{example}[thm]{Exampli Gratia}
+\newtheorem{defi}[thm]{DEF}
+\theoremstyle{remark}
+\newtheorem{remark}[thm]{Remark}
+
+
+\begin{document}
+% \tableofcontents
+\begin{fdefi}{Notation}{}
+	\begin{enumerate}
+		\item $R$ denotes ring. 
+			Ring homomorphism need to preserve additive and multiplicative indentity.
+		\item $X, Y$ denotes sets.
+	\end{enumerate}
+\end{fdefi}
+\hrulefill
+
+\section{Fundamentals}
+
+\subsection{Group}
+
+\begin{defi}[Group Actions]
+	A group $G$ can act on the set $X$. 
+	$1_G$ must act trivially ($\forall x \in X,  1_G x = x$).
+
+	The action is \emph{faithful} if $\forall x, gx = hx\implies g =h$.
+
+	Let $S \subset G$ (only a subset). The \emph{fixed set} of $S$ is 
+	$\Fix(S) = \{x \in X| sx = x,\ \forall s \in S\}$
+\end{defi}
+\begin{remark}
+	$\Fix(gSg^{-1}) = g \Fix(S)$
+\end{remark}
+
+\subsection{Ring}
+\begin{defi}[Ring]
+	Ring homomorphisim requires $\phi(1) = 1$.
+\end{defi}
+
+\begin{thm}[Coprime]
+	Elements $r$, $s$ of a ring $R$ is coprime iff $a|r$ and $a|s$ implies $a$ is a unit.
+
+	If $R$ is PID 
+	$$
+	\exists m, n \in R, mr + ns = 1 \iff r, s \text{ are coprime }
+	$$ 
+\end{thm}
+
+\begin{defi}[Equalizer]
+	Let $X, Y$ be sets. 
+	Let $S \subset \{\text{ functions } X \rightarrow  Y\}$.
+
+	The \emph{equalizer} of $S$ is 
+	$$
+		Eq(S) = \{x \in X| f(x) = g(x), \forall f, g \in S\}
+	$$
+\end{defi}
+
+\subsection{Field}
+
+\begin{thm}[Field homomorphism]
+	\begin{enumerate}
+		\item Field homomorphism is ring homomorphism in fields,
+		\item Every field homomorphism is injective,
+		\item Let $K, L$ be field, let $S$ denotes any subset of all homomorphism $K \rightarrow L$. $Eq(S)$ is a subfield.
+		\item Let $p$ be a prime and $0 < i < p$. $p $ divides $ \binom{p}{i}$.
+		\item Let $p$ be a prime and $R$ a ring of characteristic $p$. 
+			The map $r \rightarrow r^p$ is a homomorphism, called Frobenius homomorphism.
+		\item In a field of characteristic $p$, every element has at most one $p$-th root.
+		\item In finite a field of characteristic $p$, every element has exactly one $p$th root.
+	\end{enumerate}
+\end{thm}
+
+\subsection{Polynomials}
+
+\begin{lemma}[Gauss]
+	If $R$ is UFD, $R[X]$ also is.
+
+	If $R$ is UFD, let $F$ denote its field of fractions. 
+	$p \in R$ is irreducible in $R$ if and only if it is irreducible in $F$.
+\end{lemma}
+
+\begin{thm}[Mod p Method]
+	Write $f(x) = a_n x^n + a_{n-1}x^{n-1} \cdots a_0$.
+	If there exists some prime $p$ such that $p$ does not divide $a_n$ and $\overline{f} \in \F$ is irreducible, then $f$ is irreducible.
+\end{thm}
+
+\begin{example}
+	$f(t) = 9 + 14t - 8t^3$. Take $p = 7$ and $\overline{f}= 2 -t^3$. By plugging in all 7 elements in $\F_7$, we find there is no solution so $f$ is irreducible.
+\end{example}
+
+\begin{thm}[Eisenstein's Criterion]
+	Write $f(x) = a_n x^n + a_{n-1}x^{n-1} \cdots a_0$.
+	If there exists some prime $p$ such that 
+	\begin{enumerate}
+		\item $p \nmid a_n$;
+		\item $p | a_{n-1}, \cdots, a_0$;
+		\item $p^2 \nmid  a_0$;
+	\end{enumerate}
+	Then $f$ is irreducible over $\Q$.
+\end{thm}
+
+\begin{example}
+	Let $p$ be a prime. 
+	The $p$th \emph{cyclotomic polynomial} is 
+	$$
+		\Phi(t) = 1 + t + t^2 + \cdots + t^{p-1} = \frac{t^p - 1}{t - 1}
+	$$
+	$\Phi(t)$ is irreducible.
+
+	If $p$ is not prime, the formula is different.
+\end{example}
+
+\section{Field Extension}
+
+\begin{defi}[Field Extension]
+	A field extension is a homomorphism between fields $\phi: K \rightarrow L$. 
+	As all homomorphisms are injective, $K$ can be regarded as a subfield of $L$.
+
+	The notation $L:K$ denote $L$ is an extension of $K$.
+\end{defi}
+
+\begin{example}
+	$L := \Q(\sqrt{2}, \sqrt{3}) = \Q(\sqrt{2} + \sqrt{3}) := K$
+	$K \subset L$ is obvious.
+	Note $(\sqrt{2} + \sqrt{3})^3 = 11 \sqrt{2} + 9 \sqrt{3} \implies \sqrt{2} \in K$ and we are done.
+
+	$L : \Q$ has degree 4.
+\end{example}
+
+\begin{toverify}{Give Bouteous examples of field extension}{}
+
+\end{toverify}
+
+\begin{defi}[Homomorphism over subfield]
+	Let $M : K, M' : K$ be field extensions of $K$. A homomorphism $\phi: M \rightarrow M'$ over $K$ is one that preserves all elements of $K$.
+\end{defi}
+
+\begin{remark}
+	Recall equalizer is a subfield. If $\phi$ is a homomorphism over some subset, the subset must be a subfield.
+\end{remark}
+
+\begin{thm}
+	If $\alpha$ has minimal polynomial $p$ over $K$, $K(\alpha) \cong K[t]/p$.
+\end{thm}
+
+\begin{defi}[Degree]
+	Degree of field extension $M : K$ is the dimension of $M$ as a $K$ vector space, and is labelled as $[M : K]$
+
+	Specifically, if $M$ is simple extension and $ M = K(\alpha)$, $[M : K]$ equals the degree of the minimal polymnomial of $\alpha$.
+	If $\alpha$ is transcedental, the degree is infinite.
+
+	The \emph{degree of the element} $\alpha$ over $K$ is $[K(\alpha): K]$.
+
+	The extension is \emph{finite} if $[M : K]$ is finite.
+\end{defi}
+
+\begin{example}
+	Consider the field $\F_p := \Z / p\Z$, where $p = 2$ is prime.
+	The polynomial $f=1 + t + t^2$ is irreducible over $\F_2$. 
+	So $F(\alpha)$, where $\alpha$ has minimal polynomial $f$ is a field extension of degree $2$, thus having four elements. 
+	In this way we have constructed characteristic 2 field $\F_{2^2}$.
+\end{example}
+
+\begin{thm}
+	Let $M : L : K$ be field extensions. 
+	$$[L(\alpha): L] \leq[ K(\alpha) : K]$$
+\end{thm}
+
+\begin{defi}[Finitely Generated]
+	The extension $L:K$ is \emph{finitely generated} if $L = K(U)$ for some finite set $U \subset L$.
+\end{defi}
+
+\begin{defi}[Algebraic]
+	The extension $L:K$ is \emph{algebraic} if every element of $L$ is algebraic over $K$.
+\end{defi}
+
+\begin{thm}
+	Let $M:L:K$ be field extensions,
+	$$[M:K] = [M:L][L:K]$$
+\end{thm}
+
+\begin{thm}
+	Let $M = K(\alpha_1, \alpha_2, \cdots, \alpha_n)$.
+	$$[M:K] \leq [K(\alpha_1):K][K(\alpha_2):K] \cdots[K(\alpha_n):K]$$
+\end{thm}
+
+\begin{thm}
+	The following conditions on a field extension $M:K$ is equivalent:
+	\begin{enumerate}
+		\item $M:K$ if finite,
+		\item $M:K$ is finitely generated and algebraic,
+		\item $M = K(\alpha_1, \alpha_2, \cdots \alpha_n)$ for finite set of $\alpha$, each of which is algebraic over $K$.
+	\end{enumerate}
+\end{thm}
+
+\begin{thm}
+	For a simple extension $K(\alpha) :K$, the following is equivalent:
+	\begin{enumerate}
+		\item $K(\alpha): K$ is finite,
+		\item $K(\alpha): K$ is algebraic,
+		\item $\alpha$ is algebraic over $K$
+	\end{enumerate}
+\end{thm}
+
+\section{Splitting Field}
+
+\begin{thm}
+	If $\alpha, \alpha'$ has the same minimal polynomial over $K$, there exists exactly one isomorphism $\phi K(\alpha) \rightarrow K(\alpha')$ such that $\phi(\alpha) = \alpha'$
+\end{thm}
+
+\begin{thm}
+	If $f$ is a degree $n$ irreducible polynomial over $K$, there exists a field $M$ such that $f$ splits in $M$, and $[M:K] < n!$ (factorial) .
+\end{thm}
+
+\begin{thm}
+	For every polynomial $f$ over $K$, there is a unique splitting field $SF_{K}(f) = K (\alpha_1, \alpha_2, \cdots, \alpha_n)$, where $\alpha_i$ are the roots of $f$.
+
+	Moreover, there are \emph{at most $[SF_{K}(f):K]$} automorphisms of $SF_{K}(f)$ over $K$ (Which is the order of the Galois group). 
+	If the extension is \emph{separable, finite, and normal}, there are exactly $[SF_{K}(f):K]$ automorphisms of $SF_{K}(f)$ over $K$.
+\end{thm}
+
+\section{Galois Group}
+
+\begin{defi}
+	The Galois group $Gal(M:K)$ is the group of automorphism of $M$ over $K$.
+	The Galois group $Gal_K(f)$, where $f$ is a polynomial, is $Gal(SF_{K}(f):K)$.
+\end{defi}
+
+\begin{defi}[Conjugate]
+	Let $M:K$ be a field extension. $A = (\alpha_1, \alpha_2, \cdots, \alpha_n)$ and $B = (\beta_1, \cdots, \beta_n)$ are conjugate over $K$ iff for all $f \in K[t_1, t_2, \cdots, t_n]$, $f(A) = 0 \iff f(B) = 0$
+\end{defi}
+
+\begin{thm}
+	Let $f$ be a polynomial of degree $n$ over $K$ with roots $A = (\alpha_1, \cdots, \alpha_n)$.
+	\begin{enumerate} 
+		\item $Gal_K(f)$ is precisely the subgroup of $A \subset S_n$ such that 
+			$(\alpha_1, \cdots, \alpha_n)$ is conjugate to $A = \{(\sigma: \alpha_{\sigma(1)}, \cdots, \alpha_{\sigma(n)}) \text{ is conjugate to } (\alpha_{\sigma(1)}, \cdots, \alpha_{\sigma(n)})\}$
+		\item The elements of $Gal_K(f)$ maps the roots of $f$ to $f$, and is completely determined by its action on the roots of $f$. (It acts faithfully).
+		\item If $f$ is irreducible, $Gal_K(f)$ is transitive on the roots of $f$. (There exists automorphism mapping any element to its conjugates.)
+	\end{enumerate}
+\end{thm}
+
+\begin{defi}[Normality]
+	An extension $L:K$ is \emph{normal} if every $\alpha \in L$ splits in $L$. 
+	This is equivalent to any irreducible polynomial in $K$ either splits in $L$ or has no roots in $L$.
+\end{defi}
+
+\begin{thm}[Normal and Splitting field]
+	A extension of $K$ is \emph{finite and normal} if and only if it is the splitting field of some polynomial in $K$.
+\end{thm}
+
+\begin{thm}[On Normality]
+	Let $M:L:K$ be field extension, with $M:K$ finite
+	\begin{enumerate}
+		\item $L:K$ is normal if and only if $\phi L = L$ for all $\phi \in Gal(M:K)$
+		\item If $L:K$ is normal extension then $Gal(M:L)$ is a normal subgroup of $Gal(M:K)$, and 
+			$$
+				\frac{Gal(M:K)}{Gal(M:L)} \cong Gal(L:K)
+			$$
+	\end{enumerate}
+\end{thm}
+
+\section{Separable}
+
+\begin{defi}
+	An irreducible polynomial is \emph{separable} if it does not have repeated roots in the splitting field.
+
+	An arbitrary polynomial is separable if all of its irreducible factors are separable.
+
+	Let $M:K$ be a field extension. 
+	An element $m \in M$ is \emph{separable} if its minimal polynomial is separable.
+	The extension $M:K$ is \emph{separable} if every element of $M$ is separable.
+\end{defi}
+
+
+\begin{defi}[Formal Derivative]
+	The formal derivative of a polynomial $f$ follows the same formula as the case in $\R$.
+	The operator for formal derivative is $D$.
+\end{defi}
+
+\begin{thm}
+	The $f$ be non zero polynomial over field $K$. The following are equivalent 
+	\begin{enumerate}
+		\item $f$ has repeated root in $SF_K(f)$;
+		\item $f$ and $Df$ have a common root in $SF_K(f)$;
+		\item $f$ and $Df$ have a non constant common factor in $K[t]$.
+	\end{enumerate}
+\end{thm}
+
+\begin{prop}
+	Any irreducible polynomial over a field of characteristic $0$ is separable.
+	Any irreducible polynomial over finite field is separable.
+
+	An irreducible polynomial $f$ is \emph{inseparable} if and only if $Df = 0$. (Obvious by the point 3 of previous thm)
+\end{prop}
+
+\begin{thm}
+	Let $M:L:K$ be field extensions. 
+	If $M:K$ is algebraic, so is $M:L$ and $L:K$.
+\end{thm}
+
+\begin{thm}
+	Let $M:L:K$ be algebraic field extensions. 
+	If $M:K$ is separable, so is $M:L$ and $L:K$.
+\end{thm}
+
+\begin{proof}
+	$L:K$ is obviously separable.
+	Let $\alpha \in L$. 
+	Let $m_L$ be the minimal polynomial of $\alpha$ in $L$, and $m_K$ be the minimal polynomial of $\alpha$ in $K$. 
+	Note $m_L | m_K$. Since $m_K$ has no repeated roots, so is $m_L$.
+\end{proof}
+
+\begin{thm}
+	$|Gal(M:K)| = [M:K]$ for every \emph{finite, normal, separable} extension $M$.
+\end{thm}
+
+\begin{fthm}{Galois Correspondence Theorem}{}
+	Let $M:K$ be a finite, normal, separable extension.
+	Let $\mathscr{F}$ denote intermediate fields of $M:K$;
+	let $\mathscr{G}$ denote the subgroups of $Gal(M:K)$
+
+	\begin{enumerate}
+		\item The function $Gal(M, -): \mathscr{F} \rightarrow \mathscr{G}$ and $Fix: \mathscr{G} \rightarrow \mathscr{F}$ are mutually inverse.
+		\item $|Gal(M:L)| = [M:L]$, and $[M: Fix(H)] = |H|$.
+		\item Let $L \in \mathscr{F}$, then $L$ is normal extension of $K$ if and only if $Gal(M:L)$ is a normal subgroup of $Gal(M:K)$.
+			Moreover, in such case, 
+			$$\frac{Gal(M:K)}{Gal(M:L)} \cong Gal(L:K)$$.
+	\end{enumerate}
+\end{fthm}
+
+\begin{thm}
+	For a polynomial $f$, how to find the galois group
+	\begin{enumerate}
+		\item $Gal_K(f)$ acts faithfully on the roots of $f$.
+		\item $|Gal_K(f)|$ divides $k!$, where $k$ is the number of the distinct roots of $f$ in the splitting field.
+		\item If $\alpha, \beta$ are conjugate (having the same minimal polynomial), there exists an element in $Gal_K(f)$ that maps $\alpha$ to $\beta$.
+		\item If $f$ is irreducible, $Gal_K(f)$ is transitive on the roots of $f$.
+	\end{enumerate}
+\end{thm}
+
+\begin{thm}
+	Let $M:K$ be a normal and separable extension. 
+	If $\alpha \neq K$, there exists some $g \in Gal(M:K)$ such that $g(\alpha) \neq \alpha$.
+\end{thm}
+
+\section{Solvability by Radicals}
+
+\begin{defi}
+	Let $\Q^{rad}$ denote the smallest subfield of $\C$ (by definition it contains the prime subfield $\Q$) such that for $\alpha \in \C$, 
+	$$
+		\alpha^n \in \Q^{rad} \implies \alpha \in \Q^{rad}
+	$$
+
+	A nonzero polynomial is \emph{solvable by radicals} if all of its roots are radical.
+\end{defi}
+
+\begin{thm}
+	For all $K$ and, $Gal_K(t^n - 1)$ is abelian.
+\end{thm}
+
+\begin{thm}
+	If $t^n -1 $ splits in $K$, for all $\alpha \in K$ $Gal_{K}(t^n - \alpha)$ is abelian.
+\end{thm}
+
+\begin{proof}
+	The key observation is that, for all $\phi \in Gal_{K}(t^n - \alpha)$, $\frac{\phi(a)}{a}$ is roots of unity (preserved by $\phi$).
+	And for any roots of $t^n - \alpha$,  labelled as $r_1, r_2$, $\frac{r_1}{r_2} = \frac{\phi(r_1)}{\phi(r_2)} \implies \frac{\phi(r_1)}{r_1} = \frac{\phi(r_2)}{r_2}$.
+\end{proof}
+
+\begin{defi}
+	Let $M:K$ be a finite normal separable extension of fields. 
+	This extension is \emph{solvable} if there exists finite intermediate fields $L_i$ such that
+	$$
+	K = L_0 \subset L_1 \subset L_2 \cdots \subset L_n = M
+	$$
+	and each $L_{i+1}:L_i$ is normal, and$Gal(L_{i+1}:L_i)$ is abelian.
+\end{defi}
+
+\begin{thm}
+	$M:K$ is solvable if and only if $Gal(M:K)$ is solvable.
+\end{thm}
+
+\begin{defi}
+	$$\Q^{sol} = \{\alpha \in\C,: \alpha \text{ is contained in some solvablesubfield over } \Q \}$$
+
+	We have $\Q^{sol} = \Q^{rad}$
+
+	This means every radical number is contained in the subfield that is finite, normal, solvable extension of $\Q$.
+\end{defi}
+
+\begin{thm}
+	Let $f$ be an irreducible polynomial over a field $K$, with $SF_K(f):K$ being separable. $deg(f)$ divides $[SF_K(f):K] = |Gal_K(f)|$.
+\end{thm} 
+
+\begin{thm}
+	A prime degree irreducible polynomial over $\Q$ with exactly two unreal roots is not solvable by radicals.
+\end{thm}
+
+\section{Finite Field}
+
+\begin{thm}
+	Let $M:K$ be a field extension and $K$ is finite.
+	$M:K$ must be a separable extension. 
+\end{thm}
+
+\begin{proof}
+	For the first part let us prove that every irreducible polynomial over finite field $K$ is separable, that is have no repeated roots. 
+
+	If $f$ does have repeated roots, since $Df = 0$ it must be of the form 
+	$$
+		f = b_0 + b_1 t^p + \cdots p_n t^{np}
+	$$
+	Now, since $K$ is finite, for each $b_i$ there is some $c_i$ such that $c_i^p = b_i$, and 
+	$$
+	f = (c_i t^{ip})^p
+	$$
+	which is reducible.
+\end{proof}
+
+\begin{thm}
+	Let $M:K$ be a field extension and both $M$ and $K$ are finite. Then $M$ must be a normal extension.
+\end{thm}
+
+\begin{proof}
+	We now $M = SF_{\F_p}$ so it is normal over $\F_p$, which must be normal over $K$.
+\end{proof}
+
+\begin{thm}
+	Here is the complete classification of finite fields
+	\begin{enumerate}
+		\item All finite fields are of order $p^n$, where $p$ is a prime and the characteristic of the field \item $\F_{p^n} \cong SF_{\F_p}(t^{p^n} - t)$
+		\item There exists a unique field of order $p^n$ for all $p$ and $n$
+		\item $Gal(\F_{p^n}: \F_p) \cong \Z / n\Z$ is generated by the Frobenius automorphism and is of order $n$.
+		\item $Gal(\F_{p^n}: \F_{p^m}) \cong \Z / \frac{n}{m} \Z$
+		\item Subfields of $\F_{p^n}$ are of the form $\F_{p^m}$, where $m$ divides $n$.
+	\end{enumerate}
+\end{thm}
+
+\begin{proof}[Proof of 2]
+	Lable $t^{p^n} - t = f$	, we have $Df = -1$, so there are $f$ has no repeated roots, meaning $SP_{\F_p}(f)$ has at least $p^n$ elements.
+
+	Now, consider $a,b \in SP_{\F_p}(f)$, it is easy to show that their sum, product, and inverse are also in $SP_{\F_p}(f)$, so $SP_{\F_p}(f)$ is a field.
+\end{proof}
+
+\begin{proof}[Proof of 4]
+	It is clear that $[\F_{p^n}:\F]$ is of degree $n$. (Counting in finite vector space). 
+	Now, consider Frobenius automorphism.
+	If it is of degree $m$, less than $n$, it means $t^{p^m} - t = 0$ has $p^n$ roots, which is impossible.
+\end{proof}
+
+\begin{proof} [Proof of 5]
+	Clear from Galois correspondence theorem.
+\end{proof}
+
+\section{Facts}
+
+\begin{thm}
+	A non trivial Galois extension may have trivial Galois group.
+
+	Example is $\Q(3^{\frac{1}{3}}):\Q$.
+\end{thm}
+
+
+\end{document}

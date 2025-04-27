@@ -1,7 +1,6 @@
-% TODO: ADD example calculation of geodesics
 \documentclass[twocolumn]{article}
-
 \usepackage[a4paper, margin=0.3in]{geometry} % Top margin, right margin, left margin, bottom margin, footnote skip
+
 \usepackage[utf8]{inputenc}
 \usepackage{biblatex}
 \addbibresource{./references.bib}
@@ -272,6 +271,12 @@ A Koszul connection is \emph{flat} the curvature is zero.
 	Similarly, let $\alpha = \alpha_i \theta^i$, and $\alpha^i = \eta^{ij}\alpha_j$, and we have $\alpha^{\sharp} = \alpha^i e_i$.
 \end{eg}
 
+\begin{example}[Example of calculating musical isomorphism]
+	Assuming we have metric $g = 2du dv + u^2(dx^2 + dy^2)$.
+	Note $\p_u ^{\flat} = \langle \p_u, - \rangle$, and $\p_d^{\flat}(\p_v) = 1$ and otherwise $0$. Thus $\p_u^{\flat} = dv$.
+	Similarly, $\p_v^{\flat} = du, \p_x^{\flat} = u^2 dx, \p_y^{\flat} = u^2 dy$.
+\end{example}
+
 \begin{thm}[Sylvester Law of Inertia]
 	Let $E^{s,t}$ be a $t = s+t$ dimensional inner product space, with $s$ keys positive inner product and $t$ negative. That is, the inner product takes the form $(dx^1)^2 + \cdots + (dx^s)^2 - (dx^{s+1})^2 - \cdots - (dx^n)^2$
 	Every $n$ dimensional inner product space is isometric to $E$.
@@ -500,6 +505,21 @@ Let $G$ denote Einstein tensor, so $G_{ij} = R_{ij} - \frac{1}{2}g_{ij}R$.
 	\end{align}
 \end{fthm}
 
+\N On \emph{Notation}
+$v_1 \wedge v_2 := v_1 \otimes v_2 - v_2 \otimes v_1$; $v_1v_2 = \frac{1}{2}(v_1\otimes v_2 + v_2\otimes v_1)$.
+
+\begin{example}
+	For metric $g: 2dudv + u^2(dx^2 + dy^2)$, use Witt frame $\theta^+ = du, \theta^- = dv, \theta^1 = udx, \theta^2 = udy$, $g = 2 \theta^2+\theta^{-} + (\theta^1)^2 + (\theta^2)^2$, and the matrix is 
+	$ 
+	\begin{pmatrix}
+		0 & 1 & 0 & 0 \\
+		1 & 0 & 0 & 0 \\
+		0 & 0 & 1 & 0 \\
+		0 & 0 & 0 & 1 \\
+	\end{pmatrix}
+	$
+\end{example}
+
 \begin{defi}[Hodge Star Operator]
 	For an inner product space $V$, $\wedge^{\bullet}V = \bigoplus^n_{k=0} \wedge^k V$, which is the exterior algebra of $V$, where $\wedge^0 V = \R$ and $\wedge^1 V = V$, are equipped with an inner product defined thus:
 	\begin{enumerate}
@@ -595,13 +615,45 @@ Take 4 dimensional Riemann manifold with metric $(4,0)$ and basis $dx^1, dx^2, d
 		\item $i_{fX} = fi_X $
 		\item $\L_X = [d, i_X] \iff \L_X \alpha = i_X d \alpha + di_X \alpha$
 		\item $[\L_X, i_Y] = i_{[X, Y]} \iff \L_X i_Y \alpha = i_Y \L_x \alpha + i_{[X, Y]} \alpha$
-		\item $[\L_x, \L_y] = \L_{[X, Y]} \iff  \L_x \L_y  \alpha= \L_x \L_y \alpha +  \L_{[X, Y]} \alpha $
+		\item $[\L_X, \L_Y] = \L_{[X, Y]} \iff  \L_X \L_Y  \alpha= \L_X \L_Y \alpha +  \L_{[X, Y]} \alpha $
 	\end{enumerate}
 \end{thm}
+
+\begin{example}[Calculation of Lie Derivative]
+	To calculate Lie derivative relies on the following four formulae:
+	\begin{enumerate}
+		\item $\L_X f = X (f)$
+		\item $\L_X df = d \L_X f = d(Xf)$
+		\item $\L_X Y = [X, Y]$
+		\item $\L_X f \alpha \otimes \beta = (\L_X f) \alpha \otimes \beta + f (\L_X \alpha) \times \beta + f \alpha \otimes \L_X(\beta)$.
+	\end{enumerate}
+
+	When writing in the reduced form, the usual Leibniz rule still follows, for example 
+	$$
+		\L du^2 = 2du \L du
+	$$
+	
+	\emph{Explicit calculation}: take $g = 2dudv + (\lambda x^2 + \mu y^2)du^2 + dx^2 + dy^2$, and $X = a(u)\p_x + b(u)x\p_v$.
+
+	Note 
+	$ \L_X du = d\L_X u  = d(X(u)) = 0$, $ \L_X dv = d\L_X v = d(bx) = b'du + bdx$, $\L_X dx = d \L_X x = da = a'du$, $\L_X dy = 0$.
+
+	Now
+	\begin{dmath}
+		\L_X g = 
+		2\L_X(du)dv + 2 \L_X(dv)du + \L_X(\lambda x^2 + \mu y^2)du^2 + 2\L_X(du) + 2\L_X(dx) + 2\L_X(dy)
+		= 2(b'du + dbx)du + 2 \lambda ax du^2 + 2a'dxdu
+	\end{dmath}
+\end{example}
 
 \section{Trig Identities}
 
 \textbf{Trig}
+\begin{align}
+	\sin(3x) &= 3 \sin x - 4 \sin^3 x \\
+	\cos(3x) &= 4 \cos^3 x - 3 \cos x \\ 
+	\tan(3x) &= \frac{3 \tan x - \tan^3 x}{1 - 3 \tan^2 x} \\
+\end{align}
 \begin{align*}
 \tan(x \pm y) &= \frac{\tan x \pm \tan y}{1 \mp \tan x \tan y}\\
 \tan^2 x &= \frac{1 - \cos(2x)}{1 + \cos(2x)}
