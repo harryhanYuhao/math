@@ -15,6 +15,7 @@
 }
 
 \usepackage{blindtext}
+\usepackage{bm}
 \usepackage{mathrsfs}
 \usepackage{yhmath}
 \usepackage{breqn}
@@ -31,12 +32,12 @@
 \usepackage{import}
 
 
-\renewenvironment{proof}{\vspace{0.4cm}\noindent\small{\emph{Demonstratio.}}}{\qed\vspace{0.4cm}}
 % \renewenvironment{proof}{{\bfseries\emph{Demonstratio.}}}{\qed}
 \renewcommand\qedsymbol{Q.E.D.}
 % \renewcommand{\chaptername}{Caput}
 % \renewcommand{\contentsname}{Index Capitum} % Index Capitum 
-\renewcommand{\emph}[1]{\textbf{\textit{#1}}}
+\renewcommand{\emph}[1]{{\color{blue!70!black}\sffamily\bfseries #1}}
+
 \renewcommand{\ker}[1]{\operatorname{Ker}{#1}}
 \newcommand{\p}{\partial}
 \newcommand{\A}{\mathbb{A}}
@@ -96,12 +97,6 @@
 
 \begin{document}
 % \tableofcontents
-\begin{fdefi}{Notation}{}
-	\begin{enumerate}
-		\item
-	\end{enumerate}
-\end{fdefi}
-\hrulefill
 
 \section{The Fundamentals}
 
@@ -185,7 +180,8 @@ L_{31} D_1 & L_{31} L_{21} D_1 + L_{32} D_2 & L_{31}^2 D_1 + L_{32}^2 D_2 + D_3
 \begin{fthm}{Intersection Multiplicity}{}
 	The \emph{intersection multiplicity} of two polynomials without common factors $f,g \in k[x, y]$ are the dimension of the $k$-vector space $R / (f, g)$, where $R = k[[x, y]]$.\\
 
-	More generally, the intersection multiplicity of the curve $C_1, C_2$ defined by $f, g \in k[x, y, z]$ at $P = [0:0:1]$, denoted as $I_P(C_1, C_2)$, is the intersection multiplicity of the polynomial $f(x, y, 1)$ and $g(x, y, 1)$.
+	More generally, the intersection multiplicity of the curve $C_1, C_2$ defined by $f, g \in k[x, y, z]$ at $P = [0:0:1]$, denoted as $I_P(C_1, C_2)$, is the intersection multiplicity of the polynomial $f(x, y, 1)$ and $g(x, y, 1)$. 
+	If $P$ is not $[0:0:1]$, find a projective transformation $T$ such that $TP = [0:0:1]$ and repeat the process.
 	\tcblower
 	\begin{enumerate}
 		\item $I_p(C_1, C_2) \geq \mult_P(C_1)\mult_P(C_2)$
@@ -202,17 +198,10 @@ L_{31} D_1 & L_{31} L_{21} D_1 + L_{32} D_2 & L_{31}^2 D_1 + L_{32}^2 D_2 + D_3
 	\end{enumerate}
 \end{fthm}
 
-\begin{toverify}{}{}
-	 If $f(P) = 0$ while $h(P) \neq 0$
-			$$
-				I_P(f, h) = 0
-			$$
-\end{toverify}
-
-\begin{toverify}{Bezout's Theorem}
-	In $\P^n_k$, where $k$ is algebraically closed, let $f, g \in k[x_1, \cdots, x_n]$ be homogeneous polynomial with no common factors.
+\begin{thm}[Bezout's Theorem]
+	In $\P^2_k$, where $k$ is algebraically closed, let $f, g \in k[x_1, x_2, x_3]$ be homogeneous polynomial with no common factors.
 	The solutions $f=g=0$ has $deg(f)deg(g)$ solutions counted with multiplicity.
-\end{toverify}
+\end{thm}
 
 \begin{thm}[Consequences of Bezout's Theorem]
 	Let $f$ be a homogeneous polynomial in $\P^n$, let $L$ be a degree one homogeneous polynomial.
@@ -227,10 +216,6 @@ L_{31} D_1 & L_{31} L_{21} D_1 + L_{32} D_2 & L_{31}^2 D_1 + L_{32}^2 D_2 + D_3
 		\item Irreducible quartics has at most $3$ singular point. (If there are four, there is a unique conic passing through all 4 and one extra )
 	\end{enumerate}
 \end{thm}
-
-\begin{toverify}{}
-	How about reducible cubics and conics in the preceding example?
-\end{toverify}
 
 \subsection{Independent Conditions on Curves}
 
@@ -288,7 +273,7 @@ Denote the vector space of degree $d$ homogeneous polynomial in $\P^2$ as $S_d$.
 \end{defi}
 
 \begin{thm}[Hessian]
-	Suppose $f(s, y,z)$ is a homogeneous polynomial. 
+	Suppose $f(x, y, z)$ is a homogeneous polynomial. 
 	Its \emph{Hessian} is 
 	$$
 	\Hess(f) = \det 
@@ -316,7 +301,7 @@ Denote the vector space of degree $d$ homogeneous polynomial in $\P^2$ as $S_d$.
 \end{prop}
 
 \begin{fthm}{Weiestrass Form}{}
-	Weiestraa Form of Cubic is 
+	Weiestrass form of cubic is 
 	$$
 		y^2z = x^3 + axz^2 + b z^3
 	$$
@@ -404,10 +389,6 @@ Denote the vector space of degree $d$ homogeneous polynomial in $\P^2$ as $S_d$.
 	$U \subset \A^n$ is algebraic if there exists some ideal $I \in k[x_1, \cdots, x_n]$ such that $U = V(I)$.
 \end{defi}
 
-\begin{toverify}{Algebraic Laws on $V, I$}{}
-
-\end{toverify}
-
 \subsection{Polynomial and Rational functions in Affine Space}
 
 \begin{defi}
@@ -446,8 +427,28 @@ A polynomial map $X \rightarrow Y$ is function of the form $P \mapsto (f_1(P), f
 \end{defi}
 
 \begin{defi}[Affine Variety]
-	An affine variety is an irreducible affine algebraic set.
+	An affine variety is an irreducible affine algebraic set, that is, it is not the union of two proper algebraic sets.
 \end{defi}
+
+\begin{thm}
+	An algebraic set is \emph{irreducible} iff its coordinate ring is an integral domain. 
+	In particular, if the coordinate ring is of one variable, it is irreducible.
+\end{thm}
+
+\begin{example}[\emph{Find Irreducible Components}]
+	To find the irreducible components of algebraic set $V(I)$ is the same to express the ideal $I$ as intersection of prime ideals. 	
+	Note, if $I = (fg, h)$, then $I = (f, h) \cap (g, h)$.
+	
+	Consider ideal $I = (x^2 - yz, x(1-z))$. 
+	Apply the above observation to gives $I =(x^2-yz, x) \cap (x^2 - yz, 1-z) = (yz, x) \cap (x^2-y, 1-z) = (y, x) \cap (z, x) \cap (x^2 -y, 1-z)$.
+	These three components are irreducible, as the corresponding coordinate rings are all of one variable.
+
+	Consider another ideal $I = (x^2 + y^2 - z^2 -1, x+y-z-1)$. 
+	Now, $x^2 + y^2 - z^2 - 1 = (x+z)(x-z) + y^2 - 1$.
+	We may substitute $x -z =1 - y$, which gives $(x+z)(1 - y)+ (y+1)(y - 1) = (1 - y) ( x+z - y- 1)$. 
+	Again, apply the above observation to gives $I = (1- y, x+y-z-1) \cap (x + z - y - 1), x + y - z - 1).$
+	These two components can be reduced to $(y-1, x -z)$ and $(x-1, y-z)$ respectively, both of which are irreducible.
+\end{example}
 
 \begin{example}[Prime ideals in 1 and 2 D]
 	Prime ideals in $k[x]$ are either zero, the whole ring, or maximal (in form of $(x-a)$), as $k[x]$ is PID.
@@ -476,8 +477,9 @@ A polynomial map $X \rightarrow Y$ is function of the form $P \mapsto (f_1(P), f
 
 \begin{thm}UFD are integrally closed \end{thm}
 
-\begin{eg}{}{}
+\begin{eg}{Example of Birational}{}
 	The integral closure of $k[x,y] \backslash (x^3 - y^2)$ is $k[t]$.
+
 	\tcblower
 	Label $C: x^3 - y^2$. 
 	Define $f: \A \rightarrow C$ as $t \mapsto (t^2, t^3)$. This is a bijective map. This means the pullback, $f^*: k[C] \rightarrow k[t]$, is injective. 
@@ -485,6 +487,17 @@ A polynomial map $X \rightarrow Y$ is function of the form $P \mapsto (f_1(P), f
 
 	Note we can have $t = \frac{y}{x} \implies t^2 - x = 0$, thus $t$ is integral over $k[C]$, that is $\overline{k[t]} \subset \overline{k[C]}$.
 	Combining the two inclusion we are done.
+\end{eg}
+
+\begin{eg}{Another Birational Example}{}
+	In $\A^3$, the curves defined by $f = x^3+y+zy^2$ and $g = x^3 + y^2 + z$are biraional. 
+	Let $X = V(f), Y = V(g)$.
+	Upon a change of variable $y \mapsto w$ for $f$, it becomes $x^3 + w + zw^2$. 
+	Note there is an variety $V(\mathscr{F})$ with function $\mathscr{F} = x^3 + wy^2 + zw^2$, and $X = V(\mathscr{F}) \cap U_y, Y = V(\mathscr{F}) \cap U_w $. 
+	So $X$ and $Y$ are birational.
+
+	Define map $X \dasharrow Y$ as $x \mapsto \frac{x}{y}, w \mapsto \frac{1}{y}, z \mapsto \frac{z}{y}$, and define map $Y \mapsto X$ as $x \mapsto \frac{x}{w}, y \mapsto \frac{1}{w}, z \mapsto \frac{z}{w}$. 
+	It is easy to check they are biratoinal maps.
 \end{eg}
 
 \begin{defi}[Functional Field]
@@ -527,6 +540,27 @@ A polynomial map $X \rightarrow Y$ is function of the form $P \mapsto (f_1(P), f
 	$S_2: xyz - 1$ is birational to $\A^2$ by $(u, v) \mapsto (u, v, \frac{1}{uv})$ and $(x,y,z) \mapsto (x, y)$.
 \end{example}
 
+\subsection{Rationality}
+
+\begin{defi}
+	An irreducible curve $C \in \P^2$ is \emph{rational} if there is a non-constant map $\phi: \P^1 \rightarrow \P^2$ given by $[a:b] \mapsto [p(a,b), q(a,b), r(a,b)]$ for some homogeneous polynomials $p, q, r$ of the same degree $\geq 1$ whose image is contained in $C$. 
+	In such case $\phi$ is called an \emph{regular map} $\phi \rightarrow C$.
+\end{defi}
+
+\underline{NOTE:} We can prove that all regular maps are surjective.
+
+\begin{example}
+	Consider conics $C: x^2 + y^2 = c^2$. 
+	Then 
+	$ [\frac{t^2 - 1}{t^2 + 1}: \frac{2t}{t^2 + 1}: \frac{1}{}] $
+	lies on $C$. 
+	Clearing the denominator gives $t^2 -1,2t, t^2+1$ as an example of rational map.
+\end{example}
+
+\begin{prop}
+	In $\P^2,$, all irreducible conics and an irreducible singular cubics are rational.
+\end{prop}
+
 \subsection{Projective Varieties}
 
 \begin{defi}[Homogeneous Ideal]
@@ -543,7 +577,6 @@ A polynomial map $X \rightarrow Y$ is function of the form $P \mapsto (f_1(P), f
 	\end{enumerate}
 \end{thm}
 
-\textbf{TODO} section 2.4 
 
 \begin{defi}
 \begin{enumerate}
@@ -581,11 +614,6 @@ A polynomial map $X \rightarrow Y$ is function of the form $P \mapsto (f_1(P), f
 	If $C$ is irreducible, then $\hat{C}$ is irreducible.
 \end{defi}
 
-\begin{toverify}{Lines in $\P^3$}{}
-	Get the correct formula for lines: line passing through any two points, line as intersection of two planes, any planes containing the line.
-	When is the two line contained in the same plane, etc.
-\end{toverify}
-
 \begin{fthm}{Segre Embedding}{}
 	The Segre embedding is the map $\phi \P^n \times \P^m \rightarrow \P^N$ with $N = (n+1)(m+1) - 1$ given bay 
 	$$
@@ -593,7 +621,7 @@ A polynomial map $X \rightarrow Y$ is function of the form $P \mapsto (f_1(P), f
 	$$
 
 	Or, the image of the segra embedding is the variety in $\P^{N}$ with vanishing ideal being the determinant of the 2 by 2 minors of the following matrix. 
-	Take note the minors do not need to be close to each other.
+	Take note that minors do not need to be next to each other.
 	$$ 
 	\begin{pmatrix}
 		z_{00} & z_{01} & \cdots & z_{0m} \\ 
@@ -641,11 +669,48 @@ Let $S \subset \P^3$ be a surface.
 	\begin{enumerate}
 		\item Find a plane $\Pi$ intersecting $S$ along a Union of lines $L_i$ (Try to find the singular points).
 		\item Any line $L \in \P^3$ intersects the plane $\Pi$, so it must intersect $S$ some $L_i$.
-		\item For any two lines, there is a plane containing them, so $L$ must be contained in the plane $\Pi$ containing one of the lines
+		\item For any two lines with an intersection, there is a plane containing them, so $L$ must be contained in the plane $\Pi$ containing one of the lines
 		\item All plane containing any line can be find easily.
 		\item Find the intersection of the this family of plane with $S$. There are several possibility: the intersection is irreducible conics (containing no more lines), or there are more lines in the intersections. 
 	\end{enumerate}
 \end{fthm}
+
+\begin{example}
+	We are considering lines in $\P_3$ and coordinates parametrised by $[x:y:z:w] = \bm{x}$.
+	\begin{enumerate}
+		\item The unique line passing through two different points $\bm{c}_1, \bm{c}_2$ are $(s, t)\mapsto (s\bm{c}_1 + t\bm{c}_2)$.
+		\item Each line can be written as intersection of two planes $\Pi_1 : \bm{p}_1 \cdot \bm{x} = 0 , \Pi_2: \bm{p}_2 \cdot \bm{x} = 0$. 
+			The relationship between $\bm{p}_i, \bm{c}_i$ are 
+			$$
+				\begin{pmatrix}
+					\bm{p}_1 & \bm{p}_2	
+				\end{pmatrix}	
+				\begin{pmatrix}
+					\bm{c}_1 \\ \bm{c}_2	
+				\end{pmatrix} = 
+				\begin{pmatrix}
+					0 & 0 \\ 0 & 0
+				\end{pmatrix}
+			$$
+		\item Two lines are in the same plane if and only if they intersects at one point.
+		\item Let $l_1$ be represented by $\bm{c}_1, \bm{c}_2, \bm{p}_1, \bm{p}_2$ respectively for first and second notation, $l_2$ be represented by $\bm{c}_1', \bm{c}_2', \bm{p}_1', \bm{p}_2'$.
+			They are in the same plane if and only if 
+			$$
+			\det 
+			\begin{pmatrix}
+				\bm{p}_1 \\ \bm{p}_2\\
+				\bm{p}_1'\\ \bm{p}_2'
+			\end{pmatrix} = 0
+			\iff 
+			\det 
+			\begin{pmatrix}
+				\bm{c}_1 \\ \bm{c}_2\\
+				\bm{c}_1'\\ \bm{c}_2'
+			\end{pmatrix} = 0
+			$$
+			(These two conditions are equivalent).
+	\end{enumerate}
+\end{example}
 
 \subsection{Blow ups}
 
@@ -663,10 +728,37 @@ Let $S \subset \P^3$ be a surface.
 	where $[u_0: \cdots : u_k] \in \P^k$
 \end{defi}
 
+\begin{example}
+	Consider $S: f = x^2 + xz^2 + y^3$ in $\A^3$, and the blow up at $\hat{S}\subset \A^3 \times \P^2$ at $ P = (0,0,0) $. 
+
+	Write coordinate of $\P^3$ as $[u:v:w]$, now, the equation of the blow up is 
+	\begin{align*}
+		xv = yu \\ 
+		xw = zu \\ 
+		yw = zv
+	\end{align*}
+	Assuming $u \neq 0$, we may set $u = 1$, and $xv = u, xw = z$, meaning
+	$x^2 + x^3w^2 + x^3v^3 = 0$.
+	We may assume $x \neq 0$ (The exceptional set is then $x = 0$), 
+	thus the blow up is given by the following equations 
+	\begin{align*}
+		\hat{f} = 1 + xw^2 + xv^3 = 0 \\ 
+		xv = y \\ 
+		xw = z
+	\end{align*}
+	The blowup $\hat{S}$ can be regarded as a curve in $\A^3_{x, v, w}$.
+	The charts for $v \neq 0$ and $w \neq 0$ are exactly the same.
+
+	To find the singular points of $\hat{S} \in \A^3$ follows the standard method. 
+	We find the points at which $\nabla \hat{f} = 0$. 
+	Recall we are in $\A^3$, so $(0,0,0)$ may be a valid singular point.
+
+	It turns out that this curve only have a singular point in the chart $w \neq 0$, and the singular point is $z = u = v = 0$. 
+	So the only singular point is at $(0,0,0)[0:0:1]$.
+\end{example}
+
 \end{document}
 
-% TODO:Add workshop examples 
-% TODO:Add blow up example recorded in notes
 
 % LIST OF TYPOS
 % 4.3.6 z_11 = x+iy
