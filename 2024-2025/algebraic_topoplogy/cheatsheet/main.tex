@@ -1,0 +1,233 @@
+\documentclass[twocolumn]{article}
+
+\input{preamble.tex}
+
+\begin{document}
+
+\begin{fdefi}{Notation}{}
+	\begin{enumerate}
+		\item Let \cover ba a covering map. Denote $H = p_* \f(\tX, \tx_0)$ and $G = \f(X, x_0)$.
+	\end{enumerate}
+\end{fdefi}
+
+\section{Homotopy}
+
+\begin{thm}[Rectration]
+	Suppose $A$ is a \emph{retract} of $X$ via the retraction map $r: X \rightarrow A$ and the inclusion map $i: A \hookrightarrow X$. 
+	Then, $i_*$ is injective, and $r_*$ is surjective.
+
+	A \emph{deformation retract} is a retract with extra datum $id_X \hp i \circ r$
+\end{thm}
+
+\begin{thm}
+	Suppose $A$ is a retract with retraction $r: X \ra A$. 
+	Then $i_*: \f(A, a) \ra \f(X, a)$ is injective, and 
+	$r^* : \f(X, a) \ra \f(A, a)$ is surjective.
+\end{thm} 
+
+\begin{thm}
+	If $r: X \ra R$ is a strong deformation rectract, then 
+	$i_*$ is isomorphism.
+\end{thm}
+
+\begin{thm}
+	If $f: X \rightarrow X \hp id$, then $f_*: \f(X, x) \rightarrow \f(X, f(x))$ is an ismorphism of fundamental groups. 
+\end{thm}
+
+\begin{thm}
+	Let $x_1, x_2$ be \pc by the path $\g$, i.e. $\g(0) = x_1$ and $\g(1) = x_2$. 
+	Then there is an isomorphism $\g_{\#}: \f(X, x_1) \rightarrow \f(X, x_2)$.
+	$\g_{\#}$ is push forward of loop at $x_1$ to a loop at $x_2$. If $g$ is a loop at $x_1$, $ \g_{\#} g = \overline{\g} * g * \g$.
+\end{thm}
+
+\begin{thm}[Homotopy lifting property]
+\[
+\begin{tikzcd}
+	Y \times \{0\} \arrow[r, "H_0"] \arrow[hookrightarrow]{d}& E \arrow[d, "p"] \\
+Y \times I \arrow[r, "h"] \arrow[ru, "H", dashed] & B
+\end{tikzcd}
+\]
+	\end{thm}
+
+	\begin{defi}[Covering Space]
+		The covering space of $X$ is the space $\tilde{X}$ such that there is a continuous covering map $p: \tilde{X} \rightarrow X$, such that for each point $x \in X$ there exists a open neighborhood $U \ni x$, and $p^{-1}(U)$ is a disjoint union of open sets $V_i$, each of which is isomorphic to $U$ via $p$.
+	\end{defi}
+
+	\begin{thm}
+		The covering space of $X$ satisfies the homotopy lifting property with respect to any $Y$ uniquely. (There exists a unique $H$ making the triangle commute.)
+	\end{thm}
+
+	\begin{thm}
+		Let $\g: I \rightarrow X$ be a path and fixed a point $\tilde{x_0}$ in the fiber of $x_0$. There exists unique path $\tilde{\g}: I \rightarrow  \tilde{X}$ which starts at $\tilde{x_0}$ and lifts $\g$, i.e., $p \circ \tilde{\g} = \g$
+	\end{thm}
+
+	\begin{thm}
+		Let $h: I \times I \rightarrow X$ be a (relative) homotopy of paths $h(-, 0) := \g_0$ and $h(-, 1) := \g_1$, and fix a point $\tilde{x_0}$ in the fiber of $x_0 = \g_0(0) = \g_1(0)$. 
+
+		Suppose $\tilde{\g_0}: I \rightarrow \tilde{X}$ is a lift of $\g$ starting at $\tilde{\g_0}(0) = \tilde{x_0}$. 
+		Then, there exists a unique homotopy of paths $\tilde{h}: I \times I \rightarrow \tilde{X}$ which lifts $h$ and $\tilde{h}(-, 0) = \tilde{\g}$.
+	\end{thm}
+
+\section{Covering Spaces}
+
+\begin{thm}
+	Let $p: \tX \ra X $ be a covering, then
+	\begin{enumerate}
+		\item $p_* \f(\tX, \tx_0) \ra \f(X, x_0)$ is injective
+		\item $\f(\tX, \tx_0)$ is a subgroup of $\f(X, x_0)$.
+		\item $\f(\tX, \tx_0)$
+	\end{enumerate}
+\end{thm}
+
+\begin{thm}[Lifting Theorem]
+	If $p: (\tX, \tx_0) \ra (X, x_0)$ is a covering and there is a map $g: (Y, y_0) \ra (X, x_0)$ with $Y$ \pc and locally \pc. 
+	There exists a lift $(Y, y_0) \rightarrow (\tX, \tx_0)$ if and only if 
+	$g_* \f(Y, y_0) $ is a subgroup of $ p_* \f(\tX, \tx_0)$.
+	If such is the case, the lift is unique.
+\end{thm}
+
+\begin{corollary}
+	The universal cover of $X$ also covers any other covering space of $X$.
+	Moreover, universal cover of $X$ is unique up to homeomorphism.
+\end{corollary}
+
+\subsection{Action on Fiber}
+
+\begin{defi}
+	Define the right action of $\f(X, x_0)$ on the fiber $F_{x_0}$ as 
+	the lift of loop $\tilde{\alpha}$ evaluated starting at $\tx$ evaluted at $1$.
+	This is a right $G$ action.
+
+	Let $G_{\tx}$ denote the stablizer of $\tx \in F_{x_0}$.
+	Recall stablizer of element in the same orbit are conjugate subgroups.
+\end{defi}
+
+\begin{thm}
+	If $X$ is connective, $G$ act transitively.
+\end{thm}
+
+\begin{thm}
+	If $\tX$ is \pc, there is a one-to-one correspondence between right cosets and fiber points, that is, a bijection 
+	$$G_{\tx} \setminus G \rightarrow F_{x_0}$$
+\end{thm}
+
+\begin{thm}
+	If $\tX$ is simply connected, there is bijection $G \ra F_{x_0}$
+\end{thm}
+
+
+\section{Deck Transformations}
+
+\begin{defi}
+	Let \cover be a covering space.
+	\emph{Deck Transformation}, denoted by $D$ is the the set of homeomorphism $\tX \rightarrow \tX$ that preserves the covering map, that is, $p \circ D = p$.
+\end{defi}
+
+\begin{defi}
+	A covering is normal if $H = p_*(\f{\tX, \tx_0})$ is a normal subgroup of $G$.
+\end{defi}
+
+\begin{thm}
+	Let $\tX$ be \pc and locally \pc covering space of $X$.
+	Then $D = N(H) / H$.
+	Recall
+	$$
+		N(H) = \{g \in G: gHg \subset H \}
+	$$
+	$N$ is the normaliser of $H$, that is, the biggest subgroup of $G$ containing $H$ such that $H$ is a normal subgroup. 
+
+	In particalur, if $\tX$ is a universal cover, $D \cong G$.
+\end{thm}
+
+\section{List of Fundamental Groups}
+
+\begin{center}
+\begin{tabular}{@{}lll@{}}
+	\textbf{Spacs} & \( \pi_1 \) & Note\\
+\midrule
+\( \mathbb{R}^n \) & \( \{e\} \) \\
+\( \mathbb{R}^2 \setminus \{0\} \) & \( \mathbb{Z} \) \\
+\( \mathbb{R}^n \setminus \{0\} \) & \( \{e\} \) \\
+\( S^1 \) & \( \mathbb{Z} \) \\
+\( S^n, n \geq 2 \) & \( \{e\} \) \\
+\( T^n = (S^1)^n \) & \( \mathbb{Z}^n \) \\
+\( \mathbb{RP}^n, n \geq 2 \) & \( \mathbb{Z}_2 \) \\
+\( \mathbb{CP}^n, n \geq 1 \) & \( \{e\} \) & $\mathbb{CP}^2 \cong S^2$\\
+Klein Bottle & \( \langle a, b \mid aba^{-1}b \rangle \) \\
+Mobius Strip & \( \mathbb{Z} \) \\
+Figure 8, $S^1 \vee S^1$ &  \( \langle a, b \rangle \) \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\subsection{Circle}
+
+The angle map of $\alpha: S^1 \ra S^1$ is a lift $\theta: I \ra \R$ along the covering map $\R \ra S: t \ra e^{2\pi i t}$
+
+The degree of the angle map is $\theta(1) - \theta(0)$.
+
+\begin{prop}
+	Given map $f, g: S \ra S$, $deg(fg) = deg(f) + deg(g)$ and $deg(f(g)) = deg(f)deg(g)$.
+\end{prop}
+
+\subsection{Mobius Band}
+
+Note mobius band is homeomorphic $\R \times [0, 1] \setminus (x, y) \sim (x + 1, 1 - y)$.
+
+The \textit{universal cover} is $\R \times [0, 1]$.
+
+\begin{center}
+\begin{tikzpicture}[
+decoration={
+  markings,
+  mark=at position 0.5 with {\arrow{>}}}
+] 
+\draw[postaction=decorate] (0,0) -- (2,0);
+\draw (2,0) -- (2,-2);
+\draw[postaction=decorate] (2,-2) -- (0,-2);
+\draw (0,0) -- (0,-2);
+\end{tikzpicture}
+\end{center}
+
+The \textit{deck transformation} is generated by 
+$$s_a: (x, y) \mapsto (x+1, 1-y)$$
+
+Note $s_a^n: (x, y) \mapsto (x + n, y^*), \ \ n \in \N$,
+where $y^* = y$ if $ n$ is even and otherwise $y^* = 1-y$.
+
+In particular, $D \cong \mathbb{Z}$.
+
+
+\subsection{Klein Bottle}
+
+Recall Klein bottle is $\R^2 \setminus (x, y) \sim (x+1, 1- y), (x,y) \sim (x, y) \sim (x , y + 1)$.
+
+$\R^2$ is its \textit{universal cover}.
+
+Deck transformation of its universal cover is generated by 
+
+$$
+	s_a: (x, y) \mapsto (x, y + 1), s_b: (x, y) \mapsto (x+1, 1-y)
+$$
+
+The only relation between them are $s_b \circ s_a \circ s_b^{-1} \circ s_a$.
+
+So fundamental group of Klein Bottle is $(a, b | bab^{1}a = 1)$
+
+
+
+
+\section{Point Set Topology}
+
+\begin{defi}[Locally (Path-)connected]
+	$X$ is locally (path-)connected if it admits a basis of (path-)connected open sets.
+	In other words, for every $x $ every neighborhood $U \ni x$ is (path-)connected.
+\end{defi}
+
+\begin{example}
+	Topologist's sine curve is connected butn ot path-connected. 
+	If connecting the sine curve with the verital bar, it is path-connected but not locally \pc.
+\end{example}
+
+\end{document}
+

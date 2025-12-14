@@ -1,4 +1,6 @@
-\usepackage[margin=0.25in]{geometry} % Top margin, right margin, left margin, bottom margin, footnote skip
+\usepackage[a4paper, margin=0.3in]{geometry} % Top margin, right margin, left margin, bottom margin, footnote skip
+
+
 \usepackage[utf8]{inputenc}
 \usepackage{biblatex}
 \addbibresource{./references.bib}
@@ -13,6 +15,10 @@
 }
 
 \usepackage{blindtext}
+\usepackage{mathtools}
+\usepackage{mathrsfs}
+\usepackage{yhmath}
+\usepackage{breqn}
 \usepackage{titlesec}
 \usepackage{keytheorems}
 \usepackage{amsthm}
@@ -24,29 +30,46 @@
 % \usepackage{multicol}
 \usepackage{hyperref}
 \usepackage{import}
+\usepackage{tikz}
+\usepackage{tikz-cd}
+\usetikzlibrary{arrows.meta, decorations.markings, calc}
+\usepackage{scalerel}
+\usepackage{stackengine,wasysym}
+\usepackage{booktabs}
+\usepackage{amsmath}
 
+% \renewcommand\tilde[1]{\ThisStyle{%
+%   \setbox0=\hbox{$\SavedStyle#1$}%
+%   \stackengine{-.1\LMpt}{$\SavedStyle#1$}{%
+%     \stretchto{\scaleto{\SavedStyle\mkern.2mu\AC}{.5150\wd0}}{.6\ht0}%
+%   }{O}{c}{F}{T}{S}%
+% }}
 
-
-
-%TODO mayby proof environment shall have more margin
 \renewenvironment{proof}{\vspace{0.4cm}\noindent\small{\emph{Demonstratio.}}}{\qed\vspace{0.4cm}}
 % \renewenvironment{proof}{{\bfseries\emph{Demonstratio.}}}{\qed}
 \renewcommand\qedsymbol{Q.E.D.}
-% \renewcommand{\chaptername}{Caput}
-% \renewcommand{\contentsname}{Index Capitum} % Index Capitum 
-\renewcommand{\emph}[1]{\textbf{\textit{#1}}}
-\newcommand{\Z}{\mathbb{Z}}
-\newcommand{\N}{\mathbb{N}}
+\renewcommand{\emph}[1]{{\color{blue!70!black}\sffamily\bfseries #1}}
+\renewcommand{\ker}[1]{\operatorname{Ker}{#1}}
+
+\newcommand{\tX}{\tilde{X}}
+\newcommand{\tx}{\tilde{x}}
+\newcommand{\ra}{\rightarrow}
 \newcommand{\R}{\mathbb{R}}
-\renewcommand{\S}{\mathbb{S}}
-\newcommand{\B}{\mathcal{B}}
-\renewcommand{\P}{\mathcal{P}}
-\newcommand*\interior[1]{#1^{\circ}}
-\newcommand*\closure[1]{\overline{#1}} % (or \bar{#1})
+\newcommand{\cover}{$p: (\tX, \tx_0) \ra (X, x_0)$ }
+\newcommand{\G}{\Gamma}
+% mathscr is from mathrsfs
+\renewcommand{\L}{\mathscr{L}}
+\newcommand{\g}{\gamma}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\f}{\pi_1}
+\newcommand{\hp}{\simeq}
+\newcommand{\pc}{path-connected }
+\DeclarePairedDelimiter\ceil{\lceil}{\rceil}
+\DeclarePairedDelimiter\floor{\lfloor}{\rfloor}
+
+
 
 \usepackage[most]{tcolorbox}
-
-\renewcommand{\emph}[1]{{\color{blue!70!black}\sffamily\bfseries #1}}
 
 \tcbuselibrary{theorems}
 \newtcbtheorem{fdefi}{Definitio}%
@@ -69,18 +92,10 @@
 \theoremstyle{definition}
 \newtheorem{thm}{THM}
 \newtheorem{lemma}{Lemma}
-\newtheorem{corollary}[thm]{Corollarium}
+\newtheorem{corollary}[thm]{PROP}
+\newtheorem{prop}[thm]{PROP}
 \newtheorem{example}[thm]{Exampli Gratia}
+\newtheorem{remark}[thm]{Remark}
 \newtheorem{defi}[thm]{DEF}
 
-\theoremstyle{remark}
-\newtheorem{remark}[thm]{Remark}
-
-\usepackage{afterpage}
-
-\newcommand\blankpage{%
-    \null
-    \thispagestyle{empty}%
-    \addtocounter{page}{-1}%
-    \newpage}
 

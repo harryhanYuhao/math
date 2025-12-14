@@ -83,6 +83,10 @@
 \end{defi}
 
 \begin{thm}
+	Every metric space is first countable.
+\end{thm}
+
+\begin{thm}
 	Suppose $X$ is a first countable space, $A$ is any subset of $X$, and $x$ is any point of $X$.
 	\begin{enumerate}
 		\item $x \in \closure{A}$ if and only if $x$ is a limit of a sequence of points in $A$.
@@ -145,6 +149,33 @@
 
 \section{Compact}
 
+\begin{thm}[Properties of Compact Spaces]
+	\begin{enumerate}
+		\item Every closed subset of a compact space is compact.
+		\item Every compact subset of a Hausdorff space is closed.
+		\item Every compact subset of a metric space is bounded.
+		\item Every product of compact spaces is compact.
+		\item Every quotient of a compact space is compact.
+	\end{enumerate}
+\end{thm}
+
+\begin{defi}
+	A set $X$ is \emph{limit point compact} if every infinite subset of $X$ has a limit point in $X$. 
+	A set $X$ is \emph{sequentially compact} if every sequence in $ X $ has convergent subsequence in $X$.
+\end{defi}
+
+\begin{thm}
+	Compact implies limit point compact.
+\end{thm}
+
+\begin{thm}
+	For first countable Hausdorff space, limit point compactness implies sequential compactness.
+\end{thm}
+
+\begin{thm}
+	For metric space and second countable space, sequential compactness implies compactness.
+\end{thm}
+
 \begin{thm}[Closed Map Theorem]
 	Let $X$ be compact and $Y$ be Hausdorff. $f: X \rightarrow Y$ continuous, then
 	\begin{enumerate}
@@ -203,8 +234,47 @@
 	Then every continuous function $f: A \rightarrow [0, 1]$ can be extended to a continuous function $F: X \rightarrow [0, 1]$.
 \end{thm}
 
+\begin{defi}
+	For a compact topological space $X$, we may set an algebra of continuous function $C(X)$, starting from constant function and function given by Tietze extension theorem. 
+
+	We define the norm of $f \in C(X)$ as $\sup |f(x)|$.
+\end{defi}
+
 \begin{thm}[Stone-Weierstrass Theorem]
-	Let $X$ be a compact Hausdorff space and $f: X \rightarrow \R$ be a continuous function. 
+	Let $A$ denote the subalgebra of $C(X)$ consisting of all functions that are constant and functions guaranteed by Tietze theorem. 
+	$\closure{A} = C(X)$, that is, for all $g$ and for all $\epsilon$, there exists $f \in A$ such that $\sup |g(x) - f(x)| < \epsilon$.
+\end{thm}
+
+\section{Connecteness}
+
+\begin{thm}
+	Every product of finitely many \emph{connected} spaces is connected. 
+	Every quotient of connected space is connected.
+
+	Every product of finitely many \emph{path-connected} spaces is connected. 
+	Every quotient of path-connected space is connected.
+\end{thm}
+
+\begin{thm}[Connected Components]
+	Each connected component of a topological space is closed.
+
+	Each component is a disjoint union of path components.
+\end{thm}
+
+\begin{defi}[Locally connected]
+	$X$ is locally (path-)connected if every point $x$ is contained in a (path-)connected neighborhood.
+\end{defi}
+
+\begin{thm}
+	A topological space can be connected but not locally connected. It can be locally connected but not connected.
+\end{thm}
+
+\begin{thm}
+	If $X$ is locally connected, every connected component of $X$ is open.
+\end{thm}
+
+\begin{thm}
+	If $X$ is locally path-connected, it is connected if and only if it is path-connected.
 \end{thm}
 
 \end{document}

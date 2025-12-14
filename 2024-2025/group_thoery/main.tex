@@ -1,0 +1,359 @@
+\documentclass[twocolumn]{article}
+\usepackage[a4paper, margin=0.3in]{geometry} % Top margin, right margin, left margin, bottom margin, footnote skip
+
+
+\usepackage[utf8]{inputenc}
+\usepackage{biblatex}
+\addbibresource{./references.bib}
+% linktocpage shall be added to snippets.
+\usepackage{hyperref,theoremref}
+\hypersetup{
+	colorlinks, 
+	linkcolor={red!40!black}, 
+	citecolor={blue!50!black},
+	urlcolor={blue!80!black},
+	linktocpage % Link table of content to the page instead of the title
+}
+
+\usepackage{afterpage}
+
+\newcommand\blankpage{%
+    \null
+    \thispagestyle{empty}%
+    \addtocounter{page}{-1}%
+    \newpage}
+
+
+\usepackage{blindtext}
+\usepackage{mathrsfs}
+\usepackage{yhmath}
+\usepackage{breqn}
+\usepackage{titlesec}
+\usepackage{keytheorems}
+\usepackage{amsthm}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{titlesec}
+\usepackage{xcolor}
+% \usepackage{multicol}
+\usepackage{hyperref}
+\usepackage{import}
+
+% \renewenvironment{proof}{\vspace{0.4cm}\noindent\small{\emph{Demonstratio.}}}{\qed\vspace{0.4cm}}
+% \renewenvironment{proof}{{\bfseries\emph{Demonstratio.}}}{\qed}
+\renewcommand\qedsymbol{Q.E.D.}
+% \renewcommand{\chaptername}{Caput}
+% \renewcommand{\contentsname}{Index Capitum} % Index Capitum 
+% \renewcommand{\emph}[1]{\textbf{\textit{#1}}}
+\renewcommand{\emph}[1]{{\color{blue!70!black}\sffamily\bfseries #1}}
+\renewcommand{\ker}[1]{\operatorname{Ker}{#1}}
+
+% \DeclareMathOperator{\ker}{Ker}
+
+\newcommand{\X}{\mathscr{X}}
+\newcommand{\n}{\nabla}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{C^{\infty}}
+\newcommand{\CY}{\mathfrak{C}}
+\newcommand{\p}{\partial}
+\newcommand{\G}{\Gamma}
+% mathscr is from mathrsfs
+\renewcommand{\L}{\mathscr{L}}
+\newcommand{\g}{\gamma}
+\newcommand{\dg}{\dot{\gamma}}
+\newcommand{\N}{\textit{\underline{NOTE} }}
+\newcommand{\W}{\Omega}
+\newcommand{\ot}{\otimes}
+\renewcommand{\dg}{\dot{\gamma}}
+
+\usepackage[most]{tcolorbox}
+
+\tcbuselibrary{theorems}
+\newtcbtheorem{fdefi}{Definitio}%
+{fonttitle=\bfseries}{th}
+\newtcbtheorem{fthm}{Theorema}%
+{fonttitle=\bfseries}{th}
+\newtcbtheorem{eg}{\textit{E.G.}}
+{colback=white,              % background of the box
+    colframe=black,             % dark frame color
+    coltitle=black,             % title text color
+	colbacktitle=gray!10!white,
+	colback=gray!10!white,
+    fonttitle=\bfseries,        % title font
+    boxrule=1pt,              % border thickness
+    arc=2mm,                    % rounded corners
+    boxsep=0.7mm,                 % inner spacing
+    enhanced,
+}{th}
+
+\theoremstyle{definition}
+\newtheorem{thm}{THM}
+\newtheorem{prop}[thm]{PROP}
+\newtheorem{lemma}[thm]{LEM}
+\newtheorem{corollary}[thm]{Corollarium}
+\newtheorem{example}[thm]{Exampli Gratia}
+\newtheorem{remark}[thm]{Remark}
+\newtheorem{defi}[thm]{DEF}
+
+
+\begin{document}
+% \tableofcontents
+
+\begin{defi}
+	Let $H \leq G$, $g \in G$. 
+	\emph{Left coset} of $H$ in $G$ is the set $g H := \{gh: h in H\}$.
+	\emph{Right coset} of $H$ in $G$ is the set $H g := \{hg: h in H\}$.
+\end{defi}
+
+\begin{defi}[Center]
+	Center $Z(G)$ of the group $G$ is the set of all $z \in G$ such that $zg = gz$ for all $g$.
+\end{defi}
+
+\begin{defi}[Index of Group]
+	Let $H \leq G$. 
+	The index of the group is the number of distinct left cosets of $H$ in $G$. 
+\end{defi}
+
+\begin{thm}[First Isomorphism Theorem]
+	Let $\phi: G \to H$ be a group homomorphism. 
+	Then $G / \ker(\phi) \cong H$
+\end{thm}
+
+\begin{thm}[Second Isomorphism Theorem]
+	Let $H, S \triangleleft G$. 
+	Then 
+	$$
+	\frac{HS}{S} \cong \frac{H}{H\cap S}
+	$$
+\end{thm}
+
+\begin{thm}[Third Isomorphism Theorem]
+	$$
+		\frac{G / N}{H / N} \cong \frac{G}{H}
+	$$
+\end{thm}
+
+\begin{prop}
+	If $H, S \lhd G$ and $H \cap S = \{e\}$, then $HK \cong H \times K$.
+\end{prop}
+
+\begin{prop}
+	Let $G$ be a finite group and $H, K$ its subgroups, with at least one of which is normal. 
+	Moreover, if $[H]$ and $[G:K]$ are coprime, then $H \leq K$.
+
+	If $|G| $ has prime decomposition $ p^I q^J$ (regarding $I, J$ as multindeces, or vectors). 
+	The condition is precisely $|H| = p^{I'}$ and $|K| = p^I c$, where $I'$ is strictly less than or equal to $I$ in every index.
+	That is, $|K|$ contains all the prime factor of $H$ to the maximum possible degree.
+\end{prop}
+
+\begin{proof}
+	First consider $K \lhd G$.
+
+	The proof exploits the facts that $HK \leq G$, when $K \lhd G, HK / K \leq G / K$, and Legrange theorem. 
+
+	Also note, If $h \in H$ and $h \notin K$, as $G$ is a finite group, there will be equally amount of elements of $H$ in each coset of $K$ that contains some element of $H$.
+\end{proof}
+
+\begin{thm}[Free Group Representation of Dihedral Group]
+	$$D_5 \cong \langle a, b | a^2, b^5, (ab)^2 \rangle \cong \langle a, b | a^2, b^2, (ab)^5 \rangle$$
+\end{thm}
+
+\begin{thm}[Sylow Theorem]
+	Let $|G| = n$ and suppose $n = p^q r$
+	\begin{enumerate}
+		\item There exists Sylow subgroup
+		\item Any Sylow $p$ subgroups are conjugate 
+		\item $n_p | r$ and $n_p \equiv 1 \mod p$.
+	\end{enumerate}	
+\end{thm}
+
+To prove Sylow theorem involves heavily on group actions.
+
+\begin{proof}[Proof of 1]
+	Let $X$ be the subset of $A$ with $|A| = p^m$. 
+	$G$ acts on $X$ by left translation.
+
+	If there is an orbit whose order does not divide $p$, by orbit stabilizer theorem there is a the kernel must be a group of order $p^m$.
+
+	We figure out $|X|$ is not divisible by $p$. Therefore there must be such an orbit.
+\end{proof}
+
+
+\begin{lemma}
+	Let $p$ be a prime and $G$ a finite $p$ group acting on set $X$.
+	The number of fixed point in $X \equiv |X| \mod p$. 
+\end{lemma}
+
+\begin{defi}
+	Let $G$ be a group and $H \leq G$. 
+	Normalizer of $H$ is 
+	$$
+	N_G(H) = \{g \in G: gHg^{-1} \in H\}
+	$$
+\end{defi}
+
+$N_G(H)$ is the largest subgroup $N$ of $G$ such that $H \lhd N$. 
+
+\begin{thm}
+	Let $G$ be a finite group. 
+	\begin{enumerate}
+		\item For any subgroup $H \leq G$, we have 
+			$$
+				[G: N_G{H}] = \text{ The number of distinct conjugate of } H
+			$$
+	\end{enumerate}
+\end{thm}
+
+\begin{thm}
+	A group of order $p^2$ is abelian. 
+\end{thm}
+\section*{Permuation Group}
+
+\begin{lemma}
+Let $\sigma = (a_1 a_2 a_3 \cdots a_k)$ then 
+$$
+	\tau \sigma \tau^{-1} = (\tau(a_1) \tau(a_2) \cdots \tau(a_k))
+$$
+\end{lemma}
+
+\begin{lemma}[Subgroups of $S_4$]
+	Let $N = \{(), (12)(34), (13)(24), (14)(23)\}$. 
+	$S_4 / N \cong D_3$. 
+\end{lemma}
+
+\begin{example}
+Conjugacy class of $S_5$
+
+% use a table 
+\begin{tabular}{|c|c|c|}
+	\hline
+	Cycle Type & \# perms & Even / Odd \\
+	\hline 
+	5    & 24 & E \\
+	\hline
+	4,1    & 30 & O \\
+	\hline
+	3, 2    & 20 & O \\
+	\hline
+	3, 1, 1    & 20 & E \\
+	\hline
+	2, 2, 1    & 15 & E \\
+	\hline
+	2, 1, 1 ,1    & 10 & O \\
+	\hline
+	1, 1, 1 ,1, 1    & 1 & E \\
+	\hline
+\end{tabular}
+
+In particular, the class equation for $A_5$ is $1 + 12 + 12 + 15 + 20$
+
+\end{example}
+
+\begin{thm}
+	For $n \geq 3$, $A_n$ is generated by 3 cycles.
+\end{thm}
+
+
+\section*{Jordan Holder}
+
+\begin{defi}[Composition series]
+	Composition series for $G$ is a chain of subgroups $\{e\} = G_0 \lhd G_1 \lhd \cdots \lhd G_s = G$ 
+
+	Such that $G_i \neq G_{i+1}$ and $G_{i+1} / G_i$ is simple for all $i$.
+\end{defi}
+
+\begin{thm}[Jordan Holder Theorem]
+	Let $G$ be a finite group. 
+	$G$ has a composition series, and any two composition series of $G$ has the same length and same composition factors upto rearrangements.
+\end{thm}
+
+\begin{thm}
+	Composition series of group $G$ can be built from $N \lhd G$ and $G / N$ by the correspondence theorem.
+\end{thm}
+
+
+\subsection*{Solvable Groups}
+
+\begin{defi}[Subnormal Series]
+	Let $G$ be a group. 
+	A subnormal series is a series of subgroups 
+	$\{e\} = G_0 \lhd G_1 \lhd \cdots \lhd G_s = G$
+\end{defi}
+
+\begin{defi}
+	A group is solvable if it has subnormal series such that the adjacent quotents are abelian, that is $G_{i+1} / G_{i}$ is abelian.
+\end{defi}
+
+\begin{defi}
+	A group is solvable if and only if the composition factors are all cyclic.
+\end{defi}
+
+\begin{thm}
+	Let $G$ be a group and $N \lhd G$. $G$ is solvable if and only if both $G$ and $G/N$ are. 
+\end{thm}
+
+\begin{thm}
+	$G$ is solvable, then any subgroup of $G$ also is. They do not need to be normal.
+\end{thm}
+
+\begin{defi}[Derived Series]
+	The derived series of the group $G$ is the series of commutator $G'$, where 
+	$$G' = \langle aba^{-1}b^{-1} | a, b \in G \rangle $$
+\end{defi}
+
+Lable $[a, b] = aba^{-1}b^{-1}$.
+Note that $[a, b][b, a]  =e $ and $z[a, b]z^{-1} = [zaz^{-z}, zbz^{-1}]$.
+
+\begin{thm}
+	Let $G$ be a group and $H \lhd G$. $G / H$ is abelian if and only if $G' \subset H$.
+\end{thm}
+
+\begin{thm}
+	Group $G$ is solvable if and only if its derived series terminate at $\{e\}$.
+\end{thm}
+
+\section*{Memorandum}
+
+\subsection*{Small simple groups}
+
+\begin{itemize}
+	\item 60: $A_5 \cong {\rm PSL}_2(4) \cong {\rm PSL}_2(5)$.
+	\item 168: ${\rm PSL}_2(7) \cong {\rm PSL}_3(2)$.
+	\item 360: $A_6 \cong {\rm PSL}_2(9)$.
+	\item 504: ${\rm PSL}_2(8)$.
+	\item 660: ${\rm PSL}_2(11)$.
+	\item 1092: ${\rm PSL}_2(13)$.
+	\item 2448: ${\rm PSL}_2(17)$.
+\end{itemize}
+
+\subsection*{Outline of Proof of Jordan Holder Theorem}
+
+Step 1: Composition series exists for finite group by induction.\\
+Step 2: Assuming there are two composition series of $G$, $H_1 \lhd H_2 \lhd \cdots \lhd H_{n-1} \lhd H_{n} = G$ and $S_1 \lhd S_2 \lhd \cdots \lhd S_{n-1} \lhd S_n = G$.
+
+There are two cases: 
+1. $H_{n-1} = S_{n-1}$ we are done.  
+
+2. $H_{n-1} \neq S_{n-1}$.
+
+Notice $H_{n-1}S_{n-1}$ is another normal subgroup of $G$, containing $H_{n-1}$ and $S_{n-1}$. This means it must be $G$.
+
+Lable $H_{n-1} \cap S_{n-1} = K$, which is a normal subgroup of $G$.
+Now, $\frac{S_{n-1}}{K} = \frac{S_{n-1}H_{n-1}}{H_{n-1}}$, $\frac{H_{n-1}}{K} = \frac{S_{n-1}H_{n-1}}{S_{n-1}} = \frac{G}{S_{n-1}}$.
+
+Until this step the proof is almost done.
+Just write down four distinct composition seris of $H, K, S$ and compare them, and use induction.
+
+\subsection*{Outline of Proof of Sylow's theorem}
+
+Sylow 2: 
+Let $P$ be a $p$ group, $H$ another one. 
+$H$ acts on $G / P$, the left coset, by left translation. 
+$|G / P |  = r$, so there must be at least one fixed point, $xP$, say, that is $hxP = xP \implies P, H$ are conjugate.
+
+
+\afterpage{\blankpage}
+\end{document}
+
+
