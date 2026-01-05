@@ -1,6 +1,69 @@
-\section{Q1, Q2. Existence and Degree of Hilbert Polynomial}
+\section{Q1. Existence of Hilbert Polynomial}
 
 The aim of this section is to prove Hilbert polynomial of an variety exists and has degree equal to the dimension of the variety.
+
+We shall first define Hilbert's function. 
+\begin{definition}[Hilbert's function]
+	Let $R = k[x_0, \cdots, x_n]$ be a polynomial ring over a field $k$ graded by degree.
+	Let $M$ be a finitely generated graded $R$-module with decomposition 
+	$$
+		M = \bigoplus_{d \in \mathbb{Z}} M_d
+	$$
+	The Hilbert's function of $M$ is defined as
+	$$
+		H_M(k) = \dim_k(M_k)
+	$$
+	for all integers $d \in \mathbb{Z}$.
+\end{definition}
+
+The surprising theorem is that there exists a polynomial $P_M(t) \in \mathbb{Q}[t]$ such that $P_M(k) = H_M(k)$ for all large enough integers $k$.
+
+\begin{theorem}
+Let $M$ be a finitely generated graded module over the polynomial ring $R_n := \mathbb{K}[x_0, \dots, x_n]$. Then there exists a polynomial $P_M(t) \in \mathbb{Q}[t]$ of degree at most $n$ such that for all sufficiently large integers $k$:
+\[ H_M(k) = P_M(k) \]
+where $H_M(k)$ is the Hilbert function of $M$.
+\end{theorem}
+
+\begin{proof}
+We proceed by induction on the number of variables $n$.
+
+\textbf{Base Case:} Since the ring $R$ has $n+1$ indeterminants, we shall start with $n = -1$, where the ring is $R_{-1} = \mathbb{K}$. 
+Since $M$ is a finitely generated module over a field, it is a finite-dimensional vector space. 
+By a standard result in linear algebra, 
+$$
+\dim(N \oplus M) = \dim(N) + \dim(M),
+$$
+the graded components $M_k$ must be zero for all sufficiently large $k$. 
+Thus, the dimension function becomes eventually zero, which corresponds to the zero polynomial $P_M(t) \equiv 0$. 
+This polynomial has degree $-\infty$ (or $0$), which satisfies the condition $\deg(P_M) \le -1$.
+
+\textbf{Inductive Step:}
+Assume the theorem holds for $n-1$. Let $M$ be a finitely generated graded module over $R_n$. Consider the module homomorphism defined by multiplication by $x_n$:
+\[ \phi: M \to M, \quad m \mapsto x_n m \]
+Since $\phi$ maps the graded component $M_k$ to $M_{k+1}$, we can examine the kernel and cokernel of this map. Let:
+\begin{align*}
+M' &= \ker(\phi) = \{m \in M \mid x_n m = 0\} \\
+M'' &= \operatorname{coker}(\phi) = M / x_n M
+\end{align*}
+Both $M'$ and $M''$ are finitely generated graded $R_n$-modules. Crucially, the element $x_n$ annihilates both modules. Therefore, they can be viewed as finitely generated graded modules over the quotient ring $R_n / \langle x_n \rangle \cong \mathbb{K}[x_0, \dots, x_{n-1}] = R_{n-1}$.
+
+By the induction hypothesis, there exist polynomials $P_{M'}$ and $P_{M''}$ of degree at most $n-1$ such that for $k \gg 0$:
+\[ \dim(M'_k) = P_{M'}(k) \quad \text{and} \quad \dim(M''_k) = P_{M''}(k) \]
+
+Now, consider the restriction of multiplication by $x_n$ to the $k$-th graded component. We have an exact sequence of $\mathbb{K}$-vector spaces:
+\[ 0 \longrightarrow M'_k \longrightarrow M_k \xrightarrow{\cdot x_n} M_{k+1} \longrightarrow M''_{k+1} \longrightarrow 0 \]
+
+Using the additivity of dimension in exact sequences, we obtain:
+\[ \dim(M_{k+1}) - \dim(M_k) = \dim(M''_{k+1}) - \dim(M'_k) \]
+
+For sufficiently large $k$, we can substitute the Hilbert polynomials for the dimensions on the right-hand side:
+\[ \dim(M_{k+1}) - \dim(M_k) = P_{M''}(k+1) - P_{M'}(k) \]
+
+Let $f(k) = P_{M''}(k+1) - P_{M'}(k)$. Since $P_{M'}$ and $P_{M''}$ are polynomials of degree at most $n-1$, their difference $f(t)$ is a polynomial in $\mathbb{Q}[t]$ of degree at most $n-1$.
+
+Lemma \ref{ap:diff-int-val} states that if a function $H(k)$ satisfies $H(k+1) - H(k) = f(k)$ for $k \gg 0$, where $f(t)$ is a polynomial of degree $d$, then $H(k)$ agrees with a polynomial of degree $d+1$ for large $k$.
+This is our desired Hilbert polynomial $P_M(t)$ of degree at most $n$.
+\end{proof}
 
 \begin{lemma}[Graded prime filtration]
 Let $R = \bigoplus_{d \ge 0} R_d$ be a Noetherian $\mathbb{Z}$-graded ring and let
@@ -45,28 +108,19 @@ as graded $R$-modules, where $M[a_j]$ denotee the shifting of grading by $a_j$, 
 	Therefore there is a filtration $0 \subset M \subset M'$. This contradicts the maximality of $M$. Therefore $N/M = 0$ and the proof is complete.
 \end{proof}
 
-We will prove the following theorem.
+We will prove the following generalised theorem, which includes the existence of Hilbert polynomial for projective varieties as a special case.
+This theorem is the \emph{answer} to both Q1 and Q2.
 
 \begin{theorem}
-	Let $N$ be a finitely generated graded module over the Neotherian graded ring $R = k[x_0, \cdots, x_n]$.
-	The degree of the Hilbert polynomial $P_N(t)$ equals $\dim V(\Ann(N))$.
+	Let $N$ be a finitely generated graded module over the Neotherian graded ring $R = k[x_0, \cdots, x_n]$. 
+	For large enough integers $k$, there exists a polynomial $P_N(t) \in \mathbb{Q}[t]$ such that $P_N(k) = H_N(k)$.
+	Moreover, the degree of the Hilbert polynomial $P_N(t)$ equals $\dim V(\Ann(N))$.
 \end{theorem}
 
 \begin{proof}
-	Given an exact sequence  $0 \rightarrow N' \rightarrow N \rightarrow N'' \rightarrow 0$, and assume the theorem holds for $N'$ and $N''$. 
-	Then we have $P_{N'} + P_{N''} = P_{N}$.
-
-	Furthermore
-	$$
-		V(\Ann(N)) =  V(\Ann(N')) \cup V(\Ann(N'')).
-	$$
-	Therefore 
-	$
-	\dim V(\Ann(N)) = \max\{\dim V(\Ann(N')), \dim V(\Ann(N''))\} = \deg(P_{N'} + P_{N''}) = \deg(P_N).
-	$.
-
-	We can apply induction on the length of the graded prime filtration of $N$ to reduce to the case $N = (R/\q)[a]$ for some homogeneous prime ideal $\q \subset R$ and some integer $a \in \mathbb{Z}$.
-	Moreover, shifting the grading does not change the degree of Hilbert polynomial, so we can further reduce to the case $N = R/\q$.
+	Let $\q$ be a homogeneous prime ideal of $R$. 
+	We shall first prove the theorem for $N = R/\q$.
+	There are two cases, $\q = (x_0, \cdots, x_n)$ or otherwise. 
 
 	If $\q = (x_0, \cdots, x_n)$, then $P_M \equiv 0$. The convention is that the zero polynomial and the empty set both have dimension $-1$, so the theorem holds in this case.
 
@@ -78,7 +132,7 @@ We will prove the following theorem.
 
 	All the above homomorphisms are of degree 0, therefore we have 
 	$$
-		P_{R/\q}(t) - P_{R/\q}(t-1) = P_{R/(\q, x_i)}(t).
+		H_{R/\q}(t) - H_{R/\q}(t-1) = H_{R/(\q, x_i)}(t).
 	$$
 	and 
 	$$
@@ -93,6 +147,19 @@ We will prove the following theorem.
 	$$
 		\deg(P_{R/\q}) = \deg(P_{R/(\q, x_i)}) + 1 = \dim V(\q, x_i) + 1 = \dim V(\q).
 	$$
-	This completes the proof.
+	Given an exact sequence  $0 \rightarrow N' \rightarrow N \rightarrow N'' \rightarrow 0$, and assume the theorem holds for $N'$ and $N''$. 
+	Then we have $P_{N'} + P_{N''} = P_{N}$.
+	Therefore the theorem holds for all $N = R/\q$.
+
+	Furthermore
+	$$
+		V(\Ann(N)) =  V(\Ann(N')) \cup V(\Ann(N'')).
+	$$
+	Therefore 
+	$
+	\dim V(\Ann(N)) = \max\{\dim V(\Ann(N')), \dim V(\Ann(N''))\} = \deg(P_{N'} + P_{N''}) = \deg(P_N).
+	$.
+
+
 \end{proof}
 
