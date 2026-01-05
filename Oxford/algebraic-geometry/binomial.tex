@@ -1,0 +1,154 @@
+\section{Binomial Coefficients and Integer-Valued Polynomials}
+
+\subsection{Binomial Coefficients}
+
+This section establishes some well-known facts about binomial coefficients used in the earlier proofs.
+
+\begin{definition}[Binomial Coefficient]
+    For any non-negative integers $n$ and $k$, the binomial coefficient $\binom{n}{k}$ is defined as
+	\begin{equation}\label{binom-def1}
+        \binom{n}{k} = \frac{n!}{k!(n-k)!}
+    \end{equation}
+    where $n!$ is the factorial of $n$, defined as $n! = n \times (n-1) \times \dots \times 1$ with the convention that $0! = 1$. If $k > n$, we define $\binom{n}{k} = 0$.
+\end{definition}
+
+$\binom{n}{k}$ represents the number of ways to choose $k$ elements from a set of $n$ elements without regard to ordering. 
+
+The justification is straightforward: to choose $k$ items, we have $n$ choices for the first item, $n-1$ for the second, and so on, down to $n-k+1$ for the $k$-th item. This gives the product $n(n-1)\dots(n-k+1) = \frac{n!}{(n-k)!}$. However, because the order of selection does not matter, each subset of size $k$ has been counted $k!$ times (the number of ways to arrange $k$ items). Dividing by $k!$ corrects this overcounting, yielding the integer-valued formula $\frac{n!}{k!(n-k)!}$.
+
+Since this counting process must result in a whole number, it gives the following result, $\binom{n}{k}$ with $0 \leq k \leq n$ are always non-negative integers.
+
+\begin{lemma}
+	For any non-negative integers $n$ and $k$ with $k \leq n$, the binomial coefficient $\binom{n}{k}$ is a non-negative integer.
+\end{lemma}
+
+
+If regarding $n$ as a constant and $k$ as a variable, we have 
+\begin{equation}\label{bi-exp}
+\binom{n + k}{n} = \frac{(n + k)(n + k - 1) \dots (k + 1)}{n!} = \frac{1}{n!} k^n + \frac{n(n + 1)}{2 \cdot n!} k^{n - 1} + \dots
+\end{equation}
+This shows that $\binom{n+k}{n}$ is a polynomial in $k$ of degree $n$ with leading coefficient $\frac{1}{n!}$.
+
+Pascal's identity has proved to be useful for inductive proofs and recursive relations.
+\begin{lemma}[Pascal's Identity]
+    For any non-negative integers $n$ and $k$ with $1 \leq k \leq n$, the following identity holds:
+    \begin{equation}\label{pascal}
+        \binom{n}{k} = \binom{n-1}{k-1} + \binom{n-1}{k}
+    \end{equation}
+\end{lemma}
+
+\begin{proof}
+    Using the factorial definition of the binomial coefficient, we can expand the right-hand side of the equation:
+    \[
+        \binom{n-1}{k-1} + \binom{n-1}{k} = \frac{(n-1)!}{(k-1)!(n-k)!} + \frac{(n-1)!}{k!(n-k-1)!}
+    \]
+    To add these fractions, we find a common denominator, which is $k!(n-k)!$. We multiply the first term by $\frac{k}{k}$ and the second term by $\frac{n-k}{n-k}$:
+    \[
+        = \frac{(n-1)! \cdot k}{k!(n-k)!} + \frac{(n-1)! \cdot (n-k)}{k!(n-k)!}
+    \]
+    Factoring out the common terms in the numerator:
+    \[
+        \frac{(n-1)! \left[ k + (n-k) \right]}{k!(n-k)!} = \frac{(n-1)! \cdot n}{k!(n-k)!}
+    \]
+    Since $(n-1)! \cdot n = n!$, we arrive at:
+    \[
+       \frac{n!}{k!(n-k)!} = \binom{n}{k}
+    \]
+    which completes the proof.
+\end{proof}
+
+The definition \eqref{binom-def1} can be expressed as 
+\begin{equation}\label{binom-def2}
+\binom{n}{k} = \frac{n!}{k!(n-k)!} =  \frac{n(n-1)(n-2)\cdots(n-k+1)}{k!} = \frac{\prod_{i=0}^{k-1}(n-i)}{k!}
+\end{equation}
+This equation is valide for any real number $n$ and non-negative integer $k$.
+We define this as the extension of binomial coefficient to real numbers.
+In particular, this formula is allows us to define $\binom{n}{k}$ when $n$ is a negative integer, or $n$ is an integer but smaller than $k$.
+
+The following lemma follow from direct computations
+\begin{lemma}\label{ap:binom-neg}
+\begin{enumerate}
+	\item If $n$ is non-negative integer but $n < k$, then $\binom{n}{k} = 0$.
+	\item If $n$ is a negative integer 
+		$$
+			\binom{n}{k} = (-1)^k \binom{k - n - 1}{k}
+		$$
+\end{enumerate}
+\begin{proof}
+    \begin{enumerate}
+        \item Suppose $n$ is a non-negative integer and $n < k$. In the sequence of integers $\{n, n-1, n-2, \dots, n-k+1\}$, we start at $n$ and decrease by 1 for each of the $k$ terms. Since $0 \le n < k$, the number 0 must be included in this sequence (specifically, the term where $i=n$). Since one of the factors in the product is 0, the entire product vanishes. Thus, $\binom{n}{k} = 0$.
+
+        \item Suppose $n$ is a negative integer. We can write the product as:
+        \[
+            \binom{n}{k} = \frac{(n)(n-1)(n-2)\cdots(n-k+1)}{k!}
+        \]
+        There are exactly $k$ factors in the numerator. We factor out a $-1$ from each of these $k$ terms:
+        \[
+            \binom{n}{k} = (-1)^k \frac{(-n)(-n+1)(-n+2)\cdots(-n+k-1)}{k!}
+        \]
+        We can rearrange the terms in the numerator to be in descending order:
+        \[
+            \binom{n}{k} = (-1)^k \frac{(k-n-1)(k-n-2)\cdots(-n+1)(-n)}{k!} = (-1)^k \binom{k-n-1}{k}
+        \]
+    \end{enumerate}
+\end{proof}
+
+\subsection{Integer-Valued Polynomials}
+
+Let $P \in \mathbb{Q}[x]$ be a polynomial. It is an \textit{integer-valued polynomial} if $P(n) \in \mathbb{Z}$ for all sufficiently large integers $n$.
+Obviously all polynomial in $\mathbb{Z}[x]$ are integer-valued polynomials, but there are integer-valued polynomials with rational coefficients that are not in $\mathbb{Z}[x]$, such as $\binom{x}{2} = \frac{x(x-1)}{2}$. 
+
+The following theorem states that $\binom{x}{k}$ spans all integer-valued polynomials. 
+
+\begin{theorem}
+	If $P \in \mathbb{Q}[x]$ and $P(x)$ is integer for all integers $x$ sufficiently large, then there exists integers $c_0, c_1, \cdots, c_n$ such that 
+	$$
+	P(x) = c_0 \binom{x}{0} + c_1 \binom{x}{1} + c_2 \binom{x}{2} + \cdots + c_k \binom{x}{n}
+	$$
+	Note that $\binom{x}{0} = 1$.
+\end{theorem}
+
+\begin{proof}
+	We shall prove by induction on the degree of $P$.	
+	If $\deg(P) = 0$, $P(x) = c_0$ for some integers $c_0$.
+
+	If $\deg(P) = n$. 
+	Notice that $Q(x) = P(x) - P(x-1)$ must be an integer for all sufficiently large integers $x$, and $\deg(Q) = n-1$.
+	Therefore our induction hypothesis applies, and there are integers $c_0, c_1, \cdots, c_{n-1}$ such that
+	$$	Q(x) = c_0 \binom{x}{0} + c_1 \binom{x}{1} + c_2 \binom{x}{2} + \cdots + c_{n-1} \binom{x}{n-1} $$
+
+	Notice that for any integers $k$, $P(k) = P(0) + Q(1) + Q(2) + \cdots Q(k) = P_0 + \sum_{i = 1}^k Q(i)$.
+
+	For any integer $m \geq 0 $, recall $\binom{1}{m+1}=0$. Therefore
+	\begin{dmath}
+		\sum_{i = 1}^{k} \binom{i}{m} 
+		= \binom{1}{m + 1} + \binom{1}{m} + \sum_{i = 2}^{k} \binom{i}{m} 
+		= \binom{2}{m + 1} + \binom{2}{m} + \sum_{i = 3}^{k} \binom{i}{m} 
+		= \binom{k + 1}{m + 1}
+	\end{dmath}
+	Therefore $P$ can be expressed 
+	\begin{align*}
+		P(x) = P(0) + \sum_{i = 0}^{n-1} c_i\binom{x+1}{i+1} 
+	\end{align*}
+	The term $\sum_{i = 0}^{n-1} c_i\binom{x+1}{i+1}$, is always an integer; therefore $P(0)$ must be an integer.
+
+	Moreover, using Pascal's identity we have $\binom{x+1}{n} = \binom{x}{n} + \binom{x}{n-1}$.
+	This means $P$ can be expressed as some linear combination of $\binom{x}{0}, \binom{x}{1}, \cdots, \binom{x}{n}$ with integer coefficients.
+\end{proof}
+
+The direct consequence of this proof is that, if $P(x)$ takes integer values for all large enough integers $x$, then $P(x)$ must takes integer values for all integers $x$.
+As a result, the term integer-valued polynomial makes sense.
+
+The following lemma will be useful. 
+
+\begin{lemma}\label{ap:diff-int-val}
+	Let $P, Q \in \mathbb{Q}[x]$. If $P(x) - P(x-1) = Q(x)$ and $Q(x)$ is an integer-valued polynomial of degree $k$, $P(x)$ an integer-valued polynomial of degree $k + 1$.
+\end{lemma}
+
+\begin{proof}
+	Assuming $P(x) - P(x-1) = \sum_{i=0}^{k} c_k \binom{x}{k}$ for integer coefficients $c_i, 0 \leq i \leq n$. 
+	By pascal's identity $P(x) = P(0) + \sum_{i=0}^{k}c_{i}\binom{x}{k+1}$. 
+	The results follows immediately.
+\end{proof}
+
+\end{lemma}

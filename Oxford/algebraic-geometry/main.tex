@@ -1,0 +1,25 @@
+\documentclass{article}
+
+\input{preamble.tex}
+
+\title{Algebraic Geometry Mini-project}
+\author{Candidate Number: 1099144} 
+\date{\today}
+
+\begin{document}
+
+\maketitle
+\tableofcontents
+
+% Include command process each file independently, thus is more efficient than input
+% But it will force page break and cannot share commands between files
+\include{hilbert_polynomial}
+
+\include{examples}
+
+\begin{appendices}
+	\input{binomial}
+\end{appendices}
+
+% \printbibliography
+\end{document}

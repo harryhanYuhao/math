@@ -1,0 +1,132 @@
+\section{Question 1. Simplicial Objects}
+
+The goal of this mini-project to to study simplicial objects, cotriple cohomology, and Hoschild cohomology.
+
+Our first goal is to define simplex category and simplicial objects, and show that simplicial sets are equivalent to sequences of sets with face and degenerate maps satisfying certain identities, which is the goal of question 1.
+
+\subsection{Simplex Category}
+
+\begin{definition}[Simplex Category \cite{lurie}]
+	The \emph{simplex category}, denoted as $\D$, is defined as
+	\begin{enumerate}
+		\item Its objects linearly ordered finite sets $[n] = \{0 < 1 < \cdots < n\}$ for all $n \geq 0$.
+	\item Its morphisms are given by order-preserving maps.
+	\end{enumerate}
+	Simplex category is also known as the category of combinatorial simplices
+\end{definition}
+
+It is clear that $\D$ is equivalent to the category of all finite non-empty totally ordered sets with order-preserving maps. 
+
+For each $n, j \in \N, 0\leq j \leq n$, define \emph{face} and \emph{degenerate} maps repectively as $\D$, $\epsilon^{j,n}: [n - 1] \to [n]$ and $\eta^{j, n}: [n + 1] \to [n]$ given by
+\begin{equation}
+	\epsilon^{j, n}(i) = \begin{cases}
+		i & i < j \\
+		i + 1 & i \geq j
+	\end{cases}, \quad
+	\eta^{j,n}(i) = \begin{cases}
+		i & i \leq j \\
+		i - 1 & i > j
+	\end{cases}.
+\end{equation}
+
+Concretely, the face map $\epsilon^{j, n}$ is the only injective and order-preserving maps from $[n - 1]$ to $[n]$ that misses $j \in [n]$, and the degenerate map $\eta^{j, n}$ is the only surjective and order-preserving map from $[n + 1]$ to $[n]$ that hits $j \in [n]$ twice.
+
+Since the domain and codomain of the face and degenerate maps will always be clear from the context, we will drop the superscripts and denote them as $d^j$ and $s^j$.
+
+Let $i < j$. 
+The composition of face maps $\epsilon^j \epsilon^i$ is the unique injective and order-preserving map from $[n - 2]$ to $[n]$ that misses both $i$ and $j \in [n]$. 
+A moment of thought shows that this map is the same as $\epsilon^i \epsilon^{j - 1}$.
+There are similar relations for the compositions of degenerate maps and mixed compositions of face and degenerate maps. 
+All of the identities are listed below.
+
+% TODO: check the middle case
+\begin{align}
+	\epsilon^j\epsilon^i &= \epsilon^i\epsilon^{j - 1}, \quad i < j \label{sim1} \\
+	\eta^j\eta^i &= \eta^i\eta^{j + 1}, \quad i \leq j  \label{sim2} \\
+	\eta^j \epsilon^i &= \begin{cases}
+		\epsilon^i \eta^{j - 1} & j < i \\
+		\text{id} & j = i, i + 1 \\
+		\epsilon^{i - 1} \eta^j & j > i + 1
+	\end{cases} \label{sim3}
+\end{align}
+
+Let me introduce a temporary notation for order-preserving maps in $\D$.
+For an order-preserving map $\alpha: [m] \to [n]$, denote it as a sequence $[a_0, a_1, \cdots, a_m]$ where $a_i = \alpha[i]$.
+For example the face map $\epsilon^0 : [2] \rightarrow [3]$ can be denoted as $[1, 2, 3]$, and the degenerate map $\eta^1: [3] \to [2]$ can be denoted as $[0, 1, 1, 2]$.
+
+For any order-preserving map $\alpha: [m] \to [n]$, it must have the form 
+$$
+[\underbrace{\alpha_0, \cdots, \alpha_0}_{c_0}, \underbrace{\alpha_1, \cdots, \alpha_1}_{c_1}, \cdots, \underbrace{\alpha_k, \cdots, \alpha_{k-1}}_{c_{k-1}}]
+$$
+where $\alpha_i \in [n]$, $\alpha_i < \alpha_j$ if $i < j$ and $\sum c_i = m+1$.
+This notation means precisely that $\alpha$ sends the first $c_0$ elements of $[m]$ to $\alpha_0$, the next $c_1$ elements to $\alpha_1$, and so on.
+
+Consider the surjective map $\eta': [m] \rightarrow [k]$ defined as 
+$$
+[\underbrace{0, \cdots, 0}_{c_0}, \underbrace{1, \cdots, 1}_{c_0}, \cdots, \underbrace{k - 1, \cdots, k - 1}_{c_{k-1}}] 
+$$
+Notice that $\eta'$ can be written as a composition of degenerate maps
+$$
+\eta' = \underbrace{\eta^{m - c_k} \cdots \eta^{m - c_k}}_{c_{k - 1} - 1} \cdots \underbrace{\eta^{c_1} \cdots \eta^{c_1}}_{c_1 - 1} \underbrace{\eta^0 \cdots \eta^0}_{c_0 - 1}.
+$$
+
+Consider the injective map $\epsilon': [k] \rightarrow [n]$ defined as 
+$$
+[\alpha_0, \alpha_1, \cdots, \alpha_{k-1}].
+$$
+Similarly, $\epsilon'$ can be written as a composition of face maps
+It is clear that $\alpha = \epsilon' \eta'$. 
+Therefore, we have proved the following two theorems.
+\begin{lemma}
+	Every morphism in the simplex category $\D$ can be written as a composition of face and degenerate maps.
+\end{lemma} 
+
+\begin{lemma}\label{epi-mono-simplex}
+	Every morphism $\alpha: [m] \to [n]$ in the simplex category $\D$ has a unique epi-mono factorisation $\alpha = \epsilon \eta$ where $\eta: [m] \to [k]$ is a composition of degenerate maps and $\epsilon: [k] \to [n]$ is a composition of face maps.
+\end{lemma}
+
+We are now ready to define simplicial objects.
+
+\subsection{Simplical Objects}
+
+\begin{definition}[Simplicial Object \cite{lurie}]
+	A \emph{simplicial object} in the category $\A$ is a contravariant functor
+	a functor $X: \D \to \A$. 
+	It forms a functor category $[\D\op, \A]$, denoted as $\CS\A$, whose objects are simplicial objects in $\A$ and morphisms are natural transformations between such functors.
+\end{definition}
+
+\begin{definition}[Cosimplicial Object \cite{lurie}]
+	A \emph{cosimplicial object} in the category $\A$ is a covariant functor
+	a functor $X: \D \to \A$. 
+\end{definition}
+
+
+Let $X$ be a simplicial object.
+Define $X_n := X([n])$.
+We shall define the face map $\d_j: X_n \rightarrow X_{n-1}$ as the map induced by the face map on $\D$, $\epsilon^j: [n - 1] \to [n]$. 
+That is $\d_j = X \epsilon^j$. 
+Similarly, denote $\s_j: X_n \to X_{n + 1}$ the map induced by the degenerate map $\eta^j: [n + 1] \to [n]$, i.e., $s_j = Xs^j$.
+Since $X$ is contravariant, $\d_j$ and $\s_j$ will satify the following identities, reversing the order of composition compared to \eqref{sim1}, \eqref{sim2}, and \eqref{sim3}. 
+
+\begin{align}
+	\d_i \d_j &= \d_{j - 1} \d_i, \quad i < j \label{simp1} \\
+	\d_i \s_j &= \begin{cases}
+		\s_{j - 1} \d_{i} & j < i \\
+		\text{id} & j = i, i + 1 \\
+		\s_{j} \d_{i - 1} & j > i + 1
+	\end{cases} \label{simp2} \\
+	\s_i \s_j &= \s_{j + 1} \s_i, \quad i \leq j  \label{simp3} 
+\end{align}
+
+Since $\epsilon^j$ and $\eta^j$ generates all morphisms in $\D$, the morphisms $\d_j$ and $\s_j$ will generate all relevant morphisms in $\A$ relevant to $X$ (Recall $X \in [\D\op, \A]$). 
+This gives a crucial observation. 
+
+\begin{remark}\label{sim-set-data}
+The data given by a simplicial object $X$ is equivalent to the data of a sequence of object $\{X_n\}_{n \geq 0}$ together with face and degenerate maps $\d_j: X_n \to X_{n - 1}$ and $\s_j: X_n \to X_{n + 1}$ satisfying the identities \eqref{simp1}, \eqref{simp2}, and \eqref{simp3}.
+Therefore, a simplicial object can be visualised as the following diagram: 
+$$
+\cdots \substack{\xrightarrow{\d_i} \\ \xleftarrow{\s_j}} X_n \substack{\xrightarrow{\d_i} \\ \xleftarrow{\s_j}} X_{n - 1} \substack{\xrightarrow{\d_i} \\ \xleftarrow{\s_j}} \cdots \substack{\xrightarrow{\d_i} \\ \xleftarrow{\s_j}} X_1 \substack{\xrightarrow{\d_i} \\ \xleftarrow{\s_j}} X_0
+$$
+\end{remark}
+This is the \emph{answer} to question 1.
+

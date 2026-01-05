@@ -1,0 +1,93 @@
+% Top margin, right margin, left margin, bottom margin, footnote skip
+\usepackage[utf8]{inputenc}
+\usepackage{biblatex}
+\addbibresource{./references.bib}
+% linktocpage shall be added to snippets.
+\usepackage{hyperref,theoremref}
+\hypersetup{
+	colorlinks, 
+	linkcolor={red!40!black}, 
+	citecolor={blue!50!black},
+	urlcolor={blue!80!black},
+	linktocpage % Link table of content to the page instead of the title
+}
+
+\usepackage{blindtext}
+\usepackage{titlesec}
+\usepackage{amsthm}
+\usepackage{thmtools}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{titlesec}
+\usepackage{xcolor}
+\usepackage{multicol}
+\usepackage{breqn}
+\usepackage{hyperref}
+\usepackage{import}
+\usepackage{libertinus}           % Load the Libertinus font
+\usepackage{mathbbol}
+\usepackage{bm}
+\usepackage{mathrsfs}
+
+\usepackage{chngcntr}
+\counterwithin*{equation}{section}
+\renewcommand{\theequation}{\thesection.\arabic{equation}}
+
+\usepackage{tikz}
+\usepackage{tikz-cd}
+\usetikzlibrary{arrows.meta, positioning, calc, arrows}
+% \usepackage{calrsfs}
+
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{corollary}[theorem]{Corollarium}
+
+\theoremstyle{definition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{problem}{Problem}
+
+
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{example}[theorem]{Exampli Gratia}
+% Proof Environments
+\newcommand{\thm}[2]{\begin{theorem}[#1]{}#2\end{theorem}}
+
+% \renewenvironment{proof}{{\bfseries\emph{Demonstratio.}}}{\qed}
+
+\newcommand{\A}{\mathcal{A}}
+\newcommand{\B}{\mathcal{B}}
+
+
+\newcommand{\D}{\bm{\Delta}}
+\renewcommand{\S}{\textbf{Set}}
+\newcommand{\CS}{\mathcal{S}}
+\newcommand{\sS}{\textbf{sSet}}
+\newcommand{\op}{^{\text{op}}}
+\newcommand{\N}{\mathbb{N}}
+\renewcommand{\L}{\Lambda}
+\newcommand{\C}{\mathcal{C}}
+\newcommand{\F}{\text{Fun}}
+\newcommand{\RM}{\textbf{R-Mod}}
+\newcommand{\MR}{\textbf{Mod-R}}
+\newcommand{\Mk}{\textbf{Mod-k}}
+
+% face and degenerate maps
+\renewcommand{\d}{\partial}
+\newcommand{\s}{\sigma}
+
+\newcommand{\Ch}{\textit{\textbf{Ch}}}
+
+\newcommand{\T}{\text{Tor}}
+\newcommand{\E}{\text{Ext}}
+\newcommand{\id}{\text{id}}
+
+\newcommand{\im}{\text{Im}}
+
+\let\H\relax
+\DeclareMathOperator{\H}{\text{Hom}}
+
+\renewcommand{\emph}{\textbf}
+

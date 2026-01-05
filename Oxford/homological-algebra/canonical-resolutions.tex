@@ -1,0 +1,242 @@
+\section{Q6. Canonical Resolutions}
+
+This section aims to solve the following problem.
+
+\begin{problem}
+	Let $R$ be a ring and $(F, U)$ the free-forgetful adjunction between the category between $\RM$ and $\S$.
+	$\perp := FU$, therefore, is a comonad on $\RM$. 
+	Pick an $M\in \RM$, we can construct a simplicial set $\perp^\bullet M$.
+	Let $N$ be a right $R$-module, and define $E$ as $-\otimes_{R}$. Therefore $E(\perp^\bullet M)$ is a also an simplicial object.
+
+	Recall Dold-Kan correspondence that an simplicial object induces a normalised chain complex via the functor $N$.
+	Define $H_n(M, E)$ as the $n$-th homology of the normalised chain complex $N(E(\perp^\bullet M))$.
+	Prove that 
+	\begin{equation}\label{p6}
+		H_n(M, E) \cong \T^R_n(M, N)
+	\end{equation}
+\end{problem}
+
+The key to solve this problem is the fact that the chain complex $N(\perp^\bullet M)$ is a free resolution of $M$. 
+Therefore \eqref{p6} follows from the definition of Tor-functor.
+
+Recall each term in $N(\perp^\bullet M)$ is given by
+\[
+	N(\perp^\bullet M)_n = \bigcap_{i=1}^n \ker(d_i) \subset \perp^{n+1} M = (FU)^{n+1} M
+\]
+Since $F$ is free functor, each term in the chain complex is a free $R$-module.
+So the only obstacle is to show the chain complex is exact.
+\begin{theorem}\label{canonical-resolution-exact}
+	For any $M \in \RM$, the normalised chain complex $N(\perp^\bullet M)$ is exact. 
+\end{theorem}
+
+This theorem is can be proved in several steps via the method in contractible simplicial objects.
+
+\begin{definition}[Contractible]
+	A simplicial object $X$ is \emph{contractible} if there exists maps $s_{f}: X_n \to X_{n+1}$ for each $n\geq 0$ such that
+	\begin{align}
+		\d_{n+1}f_{n} &= \id \label{contractible1} \\
+		\d_{i}f_{n} &= f_{n-1}\d_{i} \quad \text{for } 0 \leq i \leq n \label{contractible2} 
+	\end{align}
+\end{definition}
+
+The following lemma is evident.
+
+\begin{lemma}\label{contractible-exact}
+	If $X$ is a contractible simplicial object, then the associated normalised chain complex $N(X)$ is exact.
+\end{lemma}
+
+\begin{proof}
+	Let $X$ be a contractible simplicial object with contracting homotopies $f_n: X_n \to X_{n+1}$.
+	The associated normalised chain complex $N(X)$ has differential $d_n = \d_n|_{N(X)_n}$.
+	
+	Combining these we have the following diagram.
+	\begin{equation*}
+	\begin{tikzcd}
+		\cdots \arrow{r} & 
+		N_{n+1}(X) \arrow{r}{\d_{n+1}}&
+		N_n(X) \arrow{r}{\d_n} \arrow[shift left]{l}{f_n}&
+		N_{n-1}(X) \arrow{r}       \arrow[shift left]{l}{f_{n-1}}&
+		\cdots 
+	\end{tikzcd}
+	\end{equation*}
+	Here, we have use some abuse of notation as $\im{f_n}$ may not lie in $N_{n+1}(X)$. 
+
+	Assuming $x \in N_n(X)$ with $\d_n x = 0$. 
+	Since $N_n(X) = \bigcap_{i=0}^{n-1}\ker \d_i$, we conclude $\d_i x = 0$ for all $0 \leq i \leq n$. 
+	By \eqref{contractible2}, we have $\d_i f_n(x) = f_{n-1} \d_i x = 0$ for all $0 \leq i \leq n$, that is $f_n(x) \in N_{n+1}(X)$.
+	Again, applying \eqref{contractible1}, we have $\d_{n+1} f_n(x) = x$, so $x \in \im{\d_{n+1}}$.
+
+	This shows that $\ker{\d_n} \subset \im{\d_{n+1}}$.
+	Therefore the chain complex $N(X)$ is exact.
+\end{proof}
+
+The following lemma is also crucial.
+\begin{lemma}\label{adjoint-contractible}
+	Suppose that $U: \A \rightarrow \B$ has a left adjoint $F: \B \rightarrow \A$.
+	Then for any $A \in \A$, the simplicial object $U(\perp_\bullet A)$ is contractible.
+\end{lemma}
+
+\begin{proof}
+	Define $f_n = \eta U\perp^n$, we can see all the required conditions hold.
+\end{proof}
+
+From now the argument is easy.
+Using the notation of lemma \ref{adjoint-contractible}, let $\A = \RM$, $\B = \S$ and $A = M$. 
+Therefore $U(\perp_\bullet M)$ is a contractible simplicial set.
+Since forgetful functor does not change the mapping or the underlying set structure, but only forgets the module structure, therefore $\perp_\bullet M$ is also contractible as a simplicial set.
+Therefore, applying lemma \ref{contractible-exact}, the normalised chain complex $N(\perp^\bullet M)$ is exact, which completes the proof for theorem \ref{canonical-resolution-exact}.
+
+\section{Q7. Relative Homology and Hochschild Homology}
+
+Given a ring homomorphism $f: R \to k$, there is a forgetful functor $U: \MR \to \Mk$.
+It has a left adjoint $F: \Mk \to \MR$ defined by $F(M) = M \otimes_k R$.
+Therefore $(F, U)$ constittutes a comonad $\perp = FU$ on $\MR$, and thus we can construct a simplicial object $\perp_\bullet M$ for any $M \in \MR$.
+
+By definition of $(F, U)$, it is evident that $\perp M = M \otimes_k R$, and thus $\perp_n = \perp^{n+1} M = M \otimes_k R^{\otimes n}$.
+Note that Lemma \ref{adjoint-contractible} still holds in this case, so the normalised chain complex $N(\perp_\bullet M)$ is exact considered as complex of $k$-modules.
+
+Based on this observation, we define Bar resolution as follows.
+
+The relative $\T$ group $\T^{R/k}(M, N)$ is defined as the homology of the normalised chain complex $N(\perp_\bullet M \otimes_R N)$.
+Similarly, the relative $\E$ group $\E_{R/k}^n(M, N)$ is defined as the cohomology of the normalised cochain complex $N(\H_R(\perp_\bullet M, N))$.
+
+\begin{definition}[Bar Resolution] 
+	Given a ring homomorphism $k \to R$ and an $R$-module $M$, and its associated comonad $\perp = FU$ on $\MR$ as defined above,
+	the \emph{Bar resolution} of $M$ over $k$ is the unnormalised chain complex a $\perp_\bullet M$ considered as a chain complex of $k$-modules.
+
+	Precisely, each term in the Bar resolution is given by 
+	\[
+		\beta_n(R, M) = \perp_n M = M \otimes_k R^{\otimes (n+1)}
+	\]
+\end{definition}
+
+We are now ready to define Hochschild homology and cohomology.
+\begin{definition}[Hochschild Homology and Cohomology]
+	Let $k$, $R$ be rings with a ring homomorphism $k \to R$. 
+	Then we have the free-forgetful adjunction $(F, U)$ between $\MR$ and $\Mk$ as above, and a comonad $\perp = FU$ on $\MR$.
+
+	Define $R^e$ as the enveloping algebra $R \otimes_k R^{op}$.
+	The \emph{Hochschild homology} $HH_n(R, M)$ is defined as the relative $\T$ group $\T^{R/k}_n(R^e, N)$.
+	The \emph{Hochschild cohomology} $HH^n(R, M)$ is defined as the relative $\E$ group $\E_{R/k}^n(R^e, N)$.
+\end{definition}
+
+We want to solve the following problem. 
+\begin{problem}
+	If $R$ is flat as a $k$-module prove that 
+	$$
+	HH_n(R, N) \cong \T_n^{R^e}(R, N)
+	$$
+	where the right hand side is the usual Tor-functor over the ring $R^e$.
+	If $R$ is projective as a $k$-module prove that 
+	$$
+	HH^n(R, N) \cong \E^n_{R^e}(R, N)
+	$$
+	where the right hand side is the usual Ext-functor over the ring $R^e$.
+\end{problem}
+
+\begin{proof}
+	If each $R$ is flat as a $k$-module, then every $R^{\otimes n}$ is also a flat $k$ module, as tensor product preserves flatness.
+	Therefore each term in the Bar resolution $\beta_n(R, R) = R^e \otimes_k R^{\otimes n}$ is also flat as an $R^e$-module by the change of ring flatness property.
+	Therefore the Bar resolution is a flat resolution of $R^e$ as an $R^e$-module, and $HH^n(R, N)$ computes the $n$-th homology group of the complex $\beta_\bullet(R, R^e) \otimes_{R} N$, which is the same as $\T_n^{R^e}(R, N)$.
+
+	One caveat is that $\T$ is usually defined via projective resolutions, but here we have flat resolution. 
+	This creates no problem since derived functors forms a universal $\delta$-functor, and computation via flat resolutions will gives the same result.
+
+	The proof for cohomology case is exactly the same by replacing flat modules with projective modules, and tensor product with Hom-functor.
+\end{proof}
+
+\section{Further Discussion}
+
+This section provides some further discussion on the relation between Hochschild homology and Kahler differentials, and introduces Andre-Quillen cohomology.
+Most of the content here is based on \cite{weibel}.
+
+Let us first define Kahler differentials. 
+
+\begin{definition}[Kahler Differentials]
+	Let $k \to R$ be a ring homomorphism.
+	The module of \emph{Kahler differentials} $\Omega_{R/k}$ is defined as the $R$-module generated by symbols $d r$ for each $r \in R$, subject to the following relations:
+	\begin{align*}
+		d(r_1 + r_2) &= dr_1 + dr_2 \\
+		d(r_1 r_2) &= r_1 dr_2 + r_2 dr_1 \\
+		d(k) &= 0 \quad \text{for all } k \in k
+	\end{align*}
+\end{definition}
+
+If $M$ is a $k$-derivation is a $k-$module homomorphism $D: R \to M$ such that $D(r_1 r_2) = r_1 D(r_2) + r_2 D(r_1)$ for all $r_1, r_2 \in R$.
+The map $d: R \to \Omega_{R/k}$ defined by $r \mapsto dr$ is a $k$-derivation.
+Denote the set of all $k$-derivations from $R$ to $M$ as $\text{Der}_k(R, M)$. 
+It is an $R$ module via $(rD)(r') = r D(r')$ for all $r, r' \in R$ and $D \in \text{Der}_k(R, M)$.
+
+
+We have the following universal property. 
+\begin{theorem}[Universal Property of Kahler Differentials]
+	For any $R$-module $M$, there is a natural isomorphism
+	\[
+		\H_R(\Omega_{R/k}, M) \cong \text{Der}_k(R, M)
+	\]
+\end{theorem}
+
+\subsection{HKR Theorem} 
+
+We have the following statement at degree one. 
+
+\begin{theorem}
+For a $k$-algebra $R$, its module of Kahler differentials $\Omega_{R/k}$ is isomorphic to the first Hochschild homology $HH_1(R, R)$.
+\end{theorem}
+
+For degree greater than one, define degree-$n$ Kahler forms as follows.
+\begin{definition}[Kahler n-forms]
+	Let $k \to R$ be a ring homomorphism.
+	The module of \emph{Kahler n-forms} $\Omega^n_{R/k}$ is defined as the $n$-th exterior power of $\Omega_{R/k}$:
+	\[
+		\Omega^n_{R/k} := \bigwedge^n_R \Omega_{R/k}
+	\]
+\end{definition}
+
+By restricting to a well behaved class of rings, we have the following beautiful result connecting Hochschild homology and Kahler differentials.
+
+\begin{theorem}[Hochschild-Kostant-Rosenberg theorem]
+	If $k$ is a field and $A$ is a commutative $k$-algebra satisfying:
+	\begin{enumerate}
+		\item $A$ is finitely regenerated 
+		\item The $A$ module of Kahler differentials $\Omega_{A/k}$ is projective
+	\end{enumerate}
+	Then there is an isomorphism of $A$-algebras 
+	\[
+		HH_n(A, A) \cong \Omega^n_{A/k}
+	\]
+
+	Dually, there is a isomorphism of Hochschild cohomology and wedge product of Kahler differentials:
+	\[
+		HH^n(A, A) \cong \bigwedge^n_A Der_k(A, A)
+	\]
+\end{theorem}
+
+This theorem is proved by Weibel \cite{weibel} in Theorem 9.4.7.
+
+\subsection{Andre-Quillen Cohomology}
+
+We are now ready to state Andre-Quillen cohomology. 
+
+\begin{definition}[Andre-Quillen Cohomology]
+	Let $k \to R$ be a ring homomorphism, and $M$ an $R$-module.
+	The \emph{Andre-Quillen cohomology} $D^n(R/k, M)$ with values in an $R-$module $M$ is a cotriple cohomology of $R$ wtih coefficients in $Der_k(-, M)$:
+	\[
+		D^n(R/k, M) := H^n(R; Der_k(-, M))
+	\]
+\end{definition}
+
+Its relation to Hochschild theory is via the following theorm by Barr. 
+
+\begin{theorem}[Barr]
+	Suppose $C_\bullet(R)$ is an $R-$module chain complex, natural in $R$ for each commutative $k-$algebra $R$, such that 
+	\begin{enumerate}
+		\item $H_0(C_\bullet(R)) \cong \Omega(R/k)$ for all $R$
+		\item If $R$ is a polynomial algebra over $k$, $C_\bullet(R) \rightarrow \Omega(R/k)$ is a split exact resolution 
+		\item For each $p$ there is a functor $F_p: k-\textbf{mod} \rightarrow k-\textbf{mod}$ such that $C_p(R) \cong R\otimes_k F_p(UR)$, where $UR$ is the underlying $k-$module of $R$.
+	\end{enumerate}
+	Then there is a natural isomorphism 
+	\[
+		D^n(R/k, M) \cong H^n(\H_R(C_\bullet(R), M))
+	\]
+\end{theorem}

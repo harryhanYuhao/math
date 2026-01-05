@@ -1,0 +1,280 @@
+\section{Q4. Adjunction and Monads}
+
+\subsection{Definitions of Monads and Adjunctions}
+
+Let us first recall the definition of monads. 
+
+\begin{definition}[Monad \cite{maclane}]
+	A \emph{monad} (also called a triple) acting on a category $\C$ is a triple $(\top, \eta, \mu)$ where 
+	\begin{itemize}
+		\item $\top: \C \to \C$ is an endofunctor,
+		\item $\eta: \text{id}_{\C} \Rightarrow \top$ is a natural transformation called the unit,
+		\item $\mu: \top \circ \top \Rightarrow \top$ is a natural transformation called the multiplication.
+	\end{itemize}
+	such that we have the following three commutative diagrams.
+	\begin{equation}\label{monad-associativity}
+		\begin{tikzcd}
+			\top\circ \top \circ \top (X) \arrow{r}{\top\mu_X} \arrow{d}{\mu_{\top X}} & \top \circ \top (X) \arrow{d}{\mu_X} \\
+			\top \circ \top(X) \arrow{r}{\mu_X} & \top(X)
+		\end{tikzcd}
+	\end{equation}
+	\begin{equation}\label{monad-unit}
+		\begin{tikzcd}
+			\top(X) \arrow{r}{\eta_{\top(X)}} \arrow{dr}{\text{id}_{\top(X)}} & \top \circ \top (X) \arrow{d}{\mu_X} \\
+			 & \top(X)
+		\end{tikzcd}, \quad
+		\begin{tikzcd}
+			\top(X) \arrow{r}{\top(\eta_X)} \arrow{dr}{\text{id}_{\top(X)}} & \top \circ \top (X) \arrow{d}{\mu_X} \\
+			 & \top(X)
+		\end{tikzcd}
+	\end{equation}
+	These three associtativity diagram can be summarised as the following identities for each object $X \in \C$, which will be crucial in the proof of construction of simplicial and cosimplicial objects from comonads and monads.
+	\begin{align}
+		\mu (\top \mu) =& \mu (\mu \top)\\ 
+		\mu (\top \eta)=& \mu (\top \eta) = \text{id}
+	\end{align}
+\end{definition}
+
+Also recall the definition of adjunction. 
+
+\begin{definition}[Adjunction \cite{maclane}]
+	An \emph{adjunction} between two categories $\A$ and $\B$ is a pair of functors $F: \A \rightleftarrows \B: G$ together with a natural isomorphism of hom-sets
+	\begin{equation}
+		\H_{\B}(F(X), Y) \cong \H_{\A}(X, G(Y))
+	\end{equation}
+	for all objects $X \in \A$ and $Y \in \B$. 
+	In this case, we say that $F$ is left adjoint to $G$, and $G$ is right adjoint to $F$, denoted as $F \dashv G$.
+\end{definition}
+
+For a morphism $f: F(X) \rightarrow Y$, we shall denote its corresponding morphism under the natural isomorphism as $\overline{f}: X \rightarrow G(Y)$. 
+The naturality condition can be summarised as 
+\begin{equation}
+\overline{F(X) \xrightarrow{f} Y \xrightarrow{g} Y'} =  X \xrightarrow{\overline{f}} G(Y) \xrightarrow{G(g)} G(Y')
+\end{equation}
+and 
+\begin{equation}
+\overline{X' \xrightarrow{f} X \xrightarrow{g} G(Y)} = F(X') \xrightarrow{F(f)} F(X) \xrightarrow{\overline{g}} Y
+\end{equation}
+For each $X \in A$, define $\eta_X = \overline{F(X) \xrightarrow{\text{id}} F(X)}$, which is a morphism from $X$ to $GF(X)$.
+Similarly, for each $Y \in B$, define $\epsilon_Y = \overline{G(Y) \xrightarrow{\text{id}} G(Y)}$, which is a morphism from $FG(Y)$ to $Y$.
+
+We have the following standard results from category theory.
+
+\begin{lemma}\label{Unit-Counit}
+	$\eta: \text{id}_{\A} \Rightarrow GF$ and $\epsilon: FG \Rightarrow \text{id}_{\B}$ are natural transformations called the unit and counit of the adjunction.
+	Their commutative diagrams for naturality are as follows, where $X, X' \in \A, Y, Y' \in \B, f: A \rightarrow A'$ and $g: B \rightarrow B'$, 
+	\begin{equation}
+		\begin{tikzcd}
+			X \arrow{r}{f} \arrow{d}{\eta_{X}} &  X' \arrow{d}{\eta_{X'}} \\
+			GF(X) \arrow{r}{f} & GF(X')
+		\end{tikzcd}
+		\quad
+		\begin{tikzcd}
+			F G (Y) \arrow{r}{FG g} \arrow{d}{\epsilon_{FG(Y)}} &  FG (Y') \arrow{d}{\epsilon_Y} \\
+			Y \arrow{r}{g} & Y'
+		\end{tikzcd}
+	\end{equation}
+\end{lemma}
+
+\begin{lemma}\label{commutative-units-counit}
+	For $X \in \A$ and $Y \in \B$, the following two diagrams commute.
+	\begin{equation}\label{adj-triangle}
+		\begin{tikzcd}
+			F(X) \arrow{r}{F(\eta_X)} \arrow{dr}{\text{id}_{F(X)}} & FGF(X) \arrow{d}{\epsilon_{F(X)}} \\
+			 & F(X)
+		\end{tikzcd}
+		\quad
+		\begin{tikzcd}
+			G(Y) \arrow{r}{\eta_{G(Y)}} \arrow{dr}{\text{id}_{G(Y)}} & GFG(Y) \arrow{d}{G(\epsilon_{Y})} \\
+			 & G(Y)
+		\end{tikzcd}
+	\end{equation}
+\end{lemma}
+
+\subsection{Monads from Adjunctions}
+
+We can construct a monad from an adjunction as follows.
+
+\begin{theorem}
+	Let $F: \A \rightleftarrows \B: G$ be an adjunction with unit $\eta$ and counit $\epsilon$. 
+	Define $\top = G\circ F$. 
+	Unit of $\top$ is given by the unit of adjunction $\eta: \text{id}_{\A} \to G \circ F$. 
+	Multiplication is induced by the counit 
+	$$
+		\mu : \top \circ \top = GFGF \xrightarrow{G \epsilon F} GF = \top.
+	$$
+	Then $(\top, \eta, \mu)$ is a monad acting on the category $\A$.
+\end{theorem}
+
+\begin{proof}
+	We need to check the three conditions of monads separately.
+
+	First consider the diagram
+	\begin{equation}
+		\begin{tikzcd}
+			F G F G  (Y) \arrow{r}{FG \epsilon_x} \arrow{d}{\epsilon_{FG(Y)}} &  FG (Y) \arrow{d}{\epsilon_Y} \\
+			F G (Y) \arrow{r}{\epsilon_X} & Y
+		\end{tikzcd}
+	\end{equation}
+	Notice this is exactly the diagram for naturality of $\epsilon$ shown in lemma \ref{Unit-Counit}, with $Y = FG(Y)$, $Y' = Y$.
+	Left compose this diagram with $G$ and right compose with $F$, we have the following commutative diagram
+	\begin{equation}
+		\begin{tikzcd}
+			G F G F G F (Y) \arrow{r}{GFG\epsilon_{F(Y)}} \arrow{d}{G \epsilon_{FGF(Y)}} &  G F G F(Y) \arrow{d}{G \epsilon_{F(X)}} \\
+			G F G F(Y) \arrow{r}{G\epsilon_{F(Y)}} & G F(Y)
+		\end{tikzcd}
+	\end{equation}
+	This is exactly the associativity diagram \eqref{monad-associativity} for the monad $(\top, \eta, \mu)$.
+
+	By lemma \ref{commutative-units-counit} we have the following two commutative diagrams.
+	$$
+		\begin{tikzcd}
+			F(X) \arrow{r}{F(\eta_X)} \arrow{dr}{\text{id}_{F(X)}} & FGF(X) \arrow{d}{\epsilon_{F(X)}} \\
+			 & F(X)
+		\end{tikzcd}
+		\quad
+		\begin{tikzcd}
+			G(Y) \arrow{r}{\eta_{G(Y)}} \arrow{dr}{\text{id}_{G(Y)}} & GFG(Y) \arrow{d}{G(\epsilon_{Y})} \\
+			 & G(Y)
+		\end{tikzcd}
+	$$
+	Precompose the left diagram with $G$ and postcompose with $F$ gives us 
+	$$
+		\begin{tikzcd}
+			GF(X) \arrow{r}{GF(\eta_X)} \arrow{dr}{\text{id}_{GF(X)}} & GFGF(X) \arrow{d}{G\epsilon_{F(X)}} \\
+			 & GF(X)
+		\end{tikzcd}
+		\quad
+		\begin{tikzcd}
+			G F (Y) \arrow{r}{\eta_{GF(Y)}} \arrow{dr}{\text{id}_{G(Y)}} & GFGF(Y) \arrow{d}{G\epsilon_{F(Y)}} \\
+			 & G(Y)
+		\end{tikzcd}
+	$$
+	Which is exactly the two diagrams in \eqref{monad-unit} for the monad $(\top, \eta, \mu)$.
+	Hence we have verified all the conditions for $(\top, \eta, \mu)$ and conclude that it is indeed a monad acting on the category $\A$.
+
+\end{proof}
+
+\subsection{Comonads from Adjunctions}
+
+The definition of Comonads is dual to that of monad by reversing all the arrows. 
+The preciese definition is listed below.
+ 
+\begin{definition}[Comonad \cite{maclane}]
+	A \emph{comonad}, also called \emph{cotriple}, acting on a category $\C$ is a triple $(\perp, \epsilon, \delta)$ where 
+	\begin{itemize}
+		\item $\perp: \C \to \C$ is an endofunctor,
+		\item $\epsilon: \perp \Rightarrow \text{id}_{\C}$ is a natural transformation called the counit,
+		\item $\delta: \perp \Rightarrow \perp \circ \perp$ is a natural transformation called the comultiplication.
+	\end{itemize}
+	such that we have the following three commutative diagrams.
+	\begin{equation}\label{comonad-coassociativity}
+		\begin{tikzcd}
+			\perp (X) \arrow{r}{\delta_{X}} \arrow{d}{\delta_{X}} & \perp \circ \perp (X) \arrow{d}{\perp \delta_X} \\
+			\perp \circ \perp(X) \arrow{r}{\delta_{\perp X}} & \perp \circ \perp \circ \perp(X)
+		\end{tikzcd}
+	\end{equation}
+	\begin{equation}\label{comonad-counit}
+		\begin{tikzcd}
+			\perp(X) \arrow{r}{\delta_{X}} \arrow{dr}{\text{id}} & \perp \circ \perp (X) \arrow{d}{\epsilon_{\perp(X)}} \\
+			 & \perp(X)
+		\end{tikzcd}, \quad
+		\begin{tikzcd}
+			\perp(X) \arrow{r}{\delta_{X}} \arrow{dr}{\text{id}} & \perp \circ \perp (X) \arrow{d}{\perp\epsilon_{X}} \\
+			 & \perp(X)
+		\end{tikzcd}
+	\end{equation}
+	These three coassocitativity diagram can be summarised as the following identities for each object $X \in \C$, which will be crucial in the proof of construction of simplicial and cosimplicial objects from comonads and monads.
+	\begin{align}
+		(\perp \delta) \delta =& (\delta \perp) \delta \label{comonad-asso} \\ 
+		(\epsilon \perp)=& (\perp \epsilon) = \text{id} \label{comonad-counit-id}
+	\end{align}
+\end{definition}
+
+We may construct a comonad from an adjunction as follows.
+
+\begin{theorem}
+	Let $F: \A \rightleftarrows \B: G$ be an adjunction with unit $\eta$ and counit $\epsilon$. 
+	Define $\perp = F\circ G$. 
+	Counit of $\perp$ is given by the counit of adjunction $\epsilon: F \circ G \to \text{id}_{\B}$. 
+	Comultiplication is induced by the unit 
+	$$
+		\delta : \perp = F G \xrightarrow{F \eta G} F G F G = \perp \circ \perp.
+	$$
+	Then $(\perp, \epsilon, \delta)$ is a comonad acting on the category $\B$.
+\end{theorem}
+
+The proof is exactly dual to that of monads from adjunctions, by reversing all the arrows, and is therefore omitted here.
+
+Here is an important observation.
+
+\begin{remark}
+	A monad on $\A$ is the same as a comonad on the opposite category $\A^{op}$.
+\end{remark}
+
+\section{Simplical Objects and Monads}
+
+A comonad may induce a simplicial object.
+
+\begin{theorem}
+	Let $(\perp, \epsilon, \delta)$ be a comonad acting on a category $\A$.
+	Define a simplicial object $\perp_{\bullet}$ in $\A$ as follows.
+	\begin{itemize}
+		\item For each $n \geq 0$, define $\perp_n := \perp[n] = \perp^{n+1} A$. Here $\perp^{n+1}$ means compostion of $\perp$ with itself $n+1$ times.
+
+		\item For each $n \geq 1$ and $0 \leq i \leq n$, define the face maps $\d_i^n: \perp_n \to \perp_{n-1}$ as
+		\begin{equation}
+			\d_i^n = \perp^i \epsilon \perp^{n-i} \quad : \quad \perp^{n+1} A \to \perp^n A
+		\end{equation}
+
+		\item For each $n \geq 0$ and $0 \leq i \leq n$, define the degeneracy maps $\sigma_i^n: \perp_n \to \perp_{n+1}$ as
+		\begin{equation}
+			\sigma_i^n = \perp^i \delta \perp^{n-i}\quad : \quad \perp^{n+1} A \to \perp^{n+2} A
+		\end{equation}
+	\end{itemize}
+	Then $(\perp_{\bullet}, \d_i, \sigma_i)$ is a simplicial object in the category $\A$.
+\end{theorem}
+As usually, the domain and the range of the face and degeneracy maps will always be evident from the context, and the superscript will therefore be omitted.
+
+\begin{proof}
+	We will verify $\perp_\bullet$ is indeed a monad following the remark \ref{sim-set-data}; i.e., the faces and degeneracy map satisfy the simplicial identities listed in \eqref{simp1} to \eqref{simp3}.
+
+	We shall first of all unpack the notation. 
+	\begin{align*}
+		\d_i \sigma_i   =& \perp^i(\epsilon \perp) \delta \perp^{n-i} \\ 
+						=& \perp^i (\text{id}) \perp^{n-i} \quad \text{by \eqref{comonad-asso}} \\	
+						=& \text{id} 
+	\end{align*}
+
+	Similarly, 
+	\begin{align*}
+		\d_{i+1} \sigma_i =& \perp^i(\perp \epsilon) \delta \perp^{n-i} \\ 
+						=& \perp^i (\text{id}) \perp^{n-i} \quad \text{by \eqref{comonad-counit-id}} \\	
+						=& \text{id} 
+	\end{align*}
+
+	All the rest of the identities can be verified in a similar manner by applying \eqref{comonad-asso} and \eqref{comonad-counit-id} at the appropriate places.
+\end{proof}
+
+Dually, a monad may induce a cosimplicial object. 
+
+\begin{theorem}
+	Let $(\top, \eta, \mu)$ be a monad acting on a category $\A$.
+	Define a cosimplicial object $L^{\bullet}$ in $\A$ as follows.
+	\begin{itemize}
+		\item For each $n \geq 0$, define $L^n := \top^{n+1} A$. Here $\top^{n+1}$ means compostion of $\top$ with itself $n+1$ times.
+
+		\item For each $n \geq 0$ and $0 \leq i \leq n$, define the coface maps $\d^i_n: \top^n \to \top^{n+1}$ as
+		\begin{equation}
+			\d^i_n = \top^i \eta \top^{n-i} \quad : \quad \top^{n+1} A \to \top^{n+2} A
+		\end{equation}
+
+		\item For each $n \geq 1$ and $0 \leq i \leq n-1$, define the codegeneracy maps $\sigma^i_n: \top^n \to \top^{n-1}$ as
+		\begin{equation}
+			\sigma^i_n = \top^i \mu \top^{n-i}\quad : \quad \top^{n+1} A \to \top^{n} A
+		\end{equation}
+	\end{itemize}
+	Then $(\top^{\bullet}, \d^i, \sigma^i)$ is a cosimplicial object in the category $\A$.
+\end{theorem}
+
+The proof is exactly identity to that of simplicial objects from comonads, by reversing all the arrows, and is therefore omitted here.
