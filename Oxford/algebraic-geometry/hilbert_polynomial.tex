@@ -5,161 +5,65 @@ The aim of this section is to prove Hilbert polynomial of an variety exists and 
 We shall first define Hilbert's function. 
 \begin{definition}[Hilbert's function]
 	Let $R = k[x_0, \cdots, x_n]$ be a polynomial ring over a field $k$ graded by degree.
-	Let $M$ be a finitely generated graded $R$-module with decomposition 
+	Let $N$ be a finitely generated graded $R$-module with decomposition 
 	$$
-		M = \bigoplus_{d \in \mathbb{Z}} M_d
+		N = \bigoplus_{d \in \mathbb{Z}} N_d
 	$$
-	The Hilbert's function of $M$ is defined as
+	The Hilbert's function of $N$ is defined as
 	$$
-		H_M(k) = \dim_k(M_k)
+		H_N(k) = \dim_k(N_k)
 	$$
 	for all integers $d \in \mathbb{Z}$.
 \end{definition}
 
-The surprising theorem is that there exists a polynomial $P_M(t) \in \mathbb{Q}[t]$ such that $P_M(k) = H_M(k)$ for all large enough integers $k$.
+The surprising theorem is that there exists a polynomial $P_N(t) \in \mathbb{Q}[t]$ such that $P_N(k) = H_N(k)$ for all large enough integers $k$.
 
-\begin{theorem}
-Let $M$ be a finitely generated graded module over the polynomial ring $R_n := \mathbb{K}[x_0, \dots, x_n]$. Then there exists a polynomial $P_M(t) \in \mathbb{Q}[t]$ of degree at most $n$ such that for all sufficiently large integers $k$:
-\[ H_M(k) = P_M(k) \]
-where $H_M(k)$ is the Hilbert function of $M$.
+\begin{theorem}\label{thm:hilbert-polynomial}
+Let $N$ be a finitely generated graded module over the polynomial ring $R_n := \mathbb{K}[x_0, \dots, x_n]$. Then there exists a polynomial $P_N(t) \in \mathbb{Q}[t]$ of degree at most $n$ such that for all sufficiently large integers $k$:
+\[ H_N(k) = P_N(k) \]
+where $H_N(k)$ is the Hilbert function of $N$.
 \end{theorem}
 
 \begin{proof}
 We proceed by induction on the number of variables $n$.
 
 \textbf{Base Case:} Since the ring $R$ has $n+1$ indeterminants, we shall start with $n = -1$, where the ring is $R_{-1} = \mathbb{K}$. 
-Since $M$ is a finitely generated module over a field, it is a finite-dimensional vector space. 
+Since $N$ is a finitely generated module over a field, it is a finite-dimensional vector space. 
 By a standard result in linear algebra, 
 $$
 \dim(N \oplus M) = \dim(N) + \dim(M),
 $$
-the graded components $M_k$ must be zero for all sufficiently large $k$. 
-Thus, the dimension function becomes eventually zero, which corresponds to the zero polynomial $P_M(t) \equiv 0$. 
-This polynomial has degree $-\infty$ (or $0$), which satisfies the condition $\deg(P_M) \le -1$.
+the graded components $N_k$ must be zero for all sufficiently large $k$. 
+Thus, the dimension function becomes eventually zero, which corresponds to the zero polynomial $P_N(t) \equiv 0$. 
+This polynomial has degree $-\infty$ (or $0$), which satisfies the condition $\deg(P_N) \le -1$.
 
 \textbf{Inductive Step:}
-Assume the theorem holds for $n-1$. Let $M$ be a finitely generated graded module over $R_n$. Consider the module homomorphism defined by multiplication by $x_n$:
-\[ \phi: M \to M, \quad m \mapsto x_n m \]
-Since $\phi$ maps the graded component $M_k$ to $M_{k+1}$, we can examine the kernel and cokernel of this map. Let:
+Assume the theorem holds for $n-1$. Let $N$ be a finitely generated graded module over $R_n$. Consider the module homomorphism defined by multiplication by $x_n$:
+\[ \phi: N \to N, \quad m \mapsto x_n m \]
+Since $\phi$ maps the graded component $N_k$ to $N_{k+1}$, we can examine the kernel and cokernel of this map. Let:
 \begin{align*}
-M' &= \ker(\phi) = \{m \in M \mid x_n m = 0\} \\
-M'' &= \operatorname{coker}(\phi) = M / x_n M
+N' &= \ker(\phi) = \{m \in N \mid x_n m = 0\} \\
+N'' &= \operatorname{coker}(\phi) = N / x_n N
 \end{align*}
-Both $M'$ and $M''$ are finitely generated graded $R_n$-modules. Crucially, the element $x_n$ annihilates both modules. Therefore, they can be viewed as finitely generated graded modules over the quotient ring $R_n / \langle x_n \rangle \cong \mathbb{K}[x_0, \dots, x_{n-1}] = R_{n-1}$.
+Both $N'$ and $N''$ are finitely generated graded $R_n$-modules. Crucially, the element $x_n$ annihilates both modules. Therefore, they can be viewed as finitely generated graded modules over the quotient ring $R_n / \langle x_n \rangle \cong \mathbb{K}[x_0, \dots, x_{n-1}] = R_{n-1}$.
 
-By the induction hypothesis, there exist polynomials $P_{M'}$ and $P_{M''}$ of degree at most $n-1$ such that for $k \gg 0$:
-\[ \dim(M'_k) = P_{M'}(k) \quad \text{and} \quad \dim(M''_k) = P_{M''}(k) \]
+By the induction hypothesis, there exist polynomials $P_{N'}$ and $P_{N''}$ of degree at most $n-1$ such that for $k \gg 0$:
+\[ \dim(N'_k) = P_{N'}(k) \quad \text{and} \quad \dim(N''_k) = P_{N''}(k) \]
 
 Now, consider the restriction of multiplication by $x_n$ to the $k$-th graded component. We have an exact sequence of $\mathbb{K}$-vector spaces:
-\[ 0 \longrightarrow M'_k \longrightarrow M_k \xrightarrow{\cdot x_n} M_{k+1} \longrightarrow M''_{k+1} \longrightarrow 0 \]
+\[ 0 \longrightarrow N'_k \longrightarrow N_k \xrightarrow{\cdot x_n} N_{k+1} \longrightarrow N''_{k+1} \longrightarrow 0 \]
 
 Using the additivity of dimension in exact sequences, we obtain:
-\[ \dim(M_{k+1}) - \dim(M_k) = \dim(M''_{k+1}) - \dim(M'_k) \]
+\[ \dim(N_{k+1}) - \dim(N_k) = \dim(N''_{k+1}) - \dim(N'_k) \]
 
 For sufficiently large $k$, we can substitute the Hilbert polynomials for the dimensions on the right-hand side:
-\[ \dim(M_{k+1}) - \dim(M_k) = P_{M''}(k+1) - P_{M'}(k) \]
+\[ \dim(N_{k+1}) - \dim(N_k) = P_{N''}(k+1) - P_{N'}(k) \]
 
-Let $f(k) = P_{M''}(k+1) - P_{M'}(k)$. Since $P_{M'}$ and $P_{M''}$ are polynomials of degree at most $n-1$, their difference $f(t)$ is a polynomial in $\mathbb{Q}[t]$ of degree at most $n-1$.
+Let $f(k) = P_{N''}(k+1) - P_{N'}(k)$. Since $P_{N'}$ and $P_{N''}$ are polynomials of degree at most $n-1$, their difference $f(t)$ is a polynomial in $\mathbb{Q}[t]$ of degree at most $n-1$.
 
 Lemma \ref{ap:diff-int-val} states that if a function $H(k)$ satisfies $H(k+1) - H(k) = f(k)$ for $k \gg 0$, where $f(t)$ is a polynomial of degree $d$, then $H(k)$ agrees with a polynomial of degree $d+1$ for large $k$.
-This is our desired Hilbert polynomial $P_M(t)$ of degree at most $n$.
+This is our desired Hilbert polynomial $P_N(t)$ of degree at most $n$.
 \end{proof}
 
-\begin{lemma}[Graded prime filtration]
-Let $R = \bigoplus_{d \ge 0} R_d$ be a Noetherian $\mathbb{Z}$-graded ring and let
-$N$ be a finitely generated graded $R$-module. Then there exists a finite
-ascending chain of graded submodules
-\[
-0 = N_0 \subset N_1 \subset \cdots \subset N_t = N
-\]
-such that for each $j = 1,\dots,t$ there exist a homogeneous prime ideal
-$\mathfrak{q}_j \subset R$ and an integer $a_j \in \mathbb{Z}$ with
-\[
-	N_j / N_{j-1} \cong (R/\mathfrak{q}_j)[a_j]
-\]
-as graded $R$-modules, where $M[a_j]$ denotee the shifting of grading by $a_j$, i.e., $M[c]_l = M_{c+j}$.
-\end{lemma}
 
-\begin{proof}
-	Let $\Sigma$ denote the set of all submodules of $N$ which admits such a grading. 
-	$\Sigma$ is non-empty since it contains the zero submodule. 
-	Apply Zorn's lemma to get a maximal element $M$ in $\Sigma$.
-
-	Let $N/M$ be non-zero, otherwise there are nothing to prove.
-	Consider the set of annihilators of non-zero homogeneous elements in $N/M$:
-	\[	\mathcal{A} = \{ \operatorname{Ann}_R(x) \mid x \in N/M \text{ is homogeneous and } x \neq 0 \}. \]
-	Since $R$ is Noetherian, $\mathcal{A}$ has a maximal element, say $\mathfrak{q} = \operatorname{Ann}_R(x)$ for some homogeneous $x \in N/M$.
-	We claim that $\q$ is a prime ideal. 
-	
-	First note that $\q$ must be a homogeneous idea. 
-	Therefore we only need to consider homogeneous elements in $R$.
-	Let $a,b \in R$ be homogeneous elements such that $ab \in \q$. 
-	If $b \notin \q$, then by definition $a\in \Ann_R(bx) \supset \q$. 
-	By maximality, therefore, $\Ann(bx) = \Ann_(x) = \q$ thus $a \in \q$.
-
-	This prove the $\q$ is a homogeneous prime ideal. 
-	Suppose $m \in N_l$. 
-	Define the module $A$ as the maximal module such that $Am \subset N/M$.
-	Therefore $A\cong (R/\q)[-l]$. Let $M' \in N$ be the preimage of $A$ in $N$, 
-	we have 
-	$$
-	M'/M \cong (R /\q)[-l]
-	$$
-	Therefore there is a filtration $0 \subset M \subset M'$. This contradicts the maximality of $M$. Therefore $N/M = 0$ and the proof is complete.
-\end{proof}
-
-We will prove the following generalised theorem, which includes the existence of Hilbert polynomial for projective varieties as a special case.
-This theorem is the \emph{answer} to both Q1 and Q2.
-
-\begin{theorem}
-	Let $N$ be a finitely generated graded module over the Neotherian graded ring $R = k[x_0, \cdots, x_n]$. 
-	For large enough integers $k$, there exists a polynomial $P_N(t) \in \mathbb{Q}[t]$ such that $P_N(k) = H_N(k)$.
-	Moreover, the degree of the Hilbert polynomial $P_N(t)$ equals $\dim V(\Ann(N))$.
-\end{theorem}
-
-\begin{proof}
-	Let $\q$ be a homogeneous prime ideal of $R$. 
-	We shall first prove the theorem for $N = R/\q$.
-	There are two cases, $\q = (x_0, \cdots, x_n)$ or otherwise. 
-
-	If $\q = (x_0, \cdots, x_n)$, then $P_M \equiv 0$. The convention is that the zero polynomial and the empty set both have dimension $-1$, so the theorem holds in this case.
-
-	Assume $\q \neq (x_0, \cdots, x_n)$. Pick $x_i \notin \q$.
-	Consider the exact sequence 
-	$$
-		0 \rightarrow R/\q[-1] \xrightarrow{\cdot x_i} R/\q \rightarrow R/(\q, x_i) \rightarrow 0.
-	$$
-
-	All the above homomorphisms are of degree 0, therefore we have 
-	$$
-		H_{R/\q}(t) - H_{R/\q}(t-1) = H_{R/(\q, x_i)}(t).
-	$$
-	and 
-	$$
-		V(\Ann(R/(\q, x_i))) = V(\q, x_i) = V(\q) \cap V(x_i).
-	$$
-	Since $x_i \notin \q$, we have $\dim V(\q, x_i) = \dim V(\q) - 1$. 
-	By induction on the dimension, we have
-	$$
-		\deg(P_{R/(\q, x_i)}) = \dim V(\q, x_i) = \dim V(\q) - 1.
-	$$
-	Therefore 
-	$$
-		\deg(P_{R/\q}) = \deg(P_{R/(\q, x_i)}) + 1 = \dim V(\q, x_i) + 1 = \dim V(\q).
-	$$
-	Given an exact sequence  $0 \rightarrow N' \rightarrow N \rightarrow N'' \rightarrow 0$, and assume the theorem holds for $N'$ and $N''$. 
-	Then we have $P_{N'} + P_{N''} = P_{N}$.
-	Therefore the theorem holds for all $N = R/\q$.
-
-	Furthermore
-	$$
-		V(\Ann(N)) =  V(\Ann(N')) \cup V(\Ann(N'')).
-	$$
-	Therefore 
-	$
-	\dim V(\Ann(N)) = \max\{\dim V(\Ann(N')), \dim V(\Ann(N''))\} = \deg(P_{N'} + P_{N''}) = \deg(P_N).
-	$.
-
-
-\end{proof}
 

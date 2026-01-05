@@ -1,0 +1,101 @@
+\section{Q2. Degree of Hilbert Polynomial and Dimension of Variety}
+
+Q2 asks to prove that degree of Hilbert polynomial associated with a variety equalsto its dimension.
+
+We first need the following lemma about graded prime filtration.
+
+\begin{lemma}[Graded prime filtration]
+Let $R = \bigoplus_{d \ge 0} R_d$ be a Noetherian $\mathbb{Z}$-graded ring and let
+$N$ be a finitely generated graded $R$-module. Then there exists a finite
+ascending chain of graded submodules
+\[
+0 = N_0 \subset N_1 \subset \cdots \subset N_t = N
+\]
+such that for each $j = 1,\dots,t$ there exist a homogeneous prime ideal
+$\mathfrak{q}_j \subset R$ and an integer $a_j \in \mathbb{Z}$ with
+\[
+	N_j / N_{j-1} \cong (R/\mathfrak{q}_j)[a_j]
+\]
+as graded $R$-modules, where $M[a_j]$ denotee the shifting of grading by $a_j$, i.e., $M[c]_l = M_{c+j}$.
+\end{lemma}
+
+\begin{proof}
+	Let $\Sigma$ denote the set of all submodules of $N$ which admits such a grading. 
+	$\Sigma$ is non-empty since it contains the zero submodule. 
+	Apply Zorn's lemma to get a maximal element $M$ in $\Sigma$.
+
+	Let $N/M$ be non-zero, otherwise there are nothing to prove.
+	Consider the set of annihilators of non-zero homogeneous elements in $N/M$:
+	\[	\mathcal{A} = \{ \operatorname{Ann}_R(x) \mid x \in N/M \text{ is homogeneous and } x \neq 0 \}. \]
+	Since $R$ is Noetherian, $\mathcal{A}$ has a maximal element, say $\mathfrak{q} = \operatorname{Ann}_R(x)$ for some homogeneous $x \in N/M$.
+	We claim that $\q$ is a prime ideal. 
+	
+	First note that $\q$ must be a homogeneous idea. 
+	Therefore we only need to consider homogeneous elements in $R$.
+	Let $a,b \in R$ be homogeneous elements such that $ab \in \q$. 
+	If $b \notin \q$, then by definition $a\in \Ann_R(bx) \supset \q$. 
+	By maximality, therefore, $\Ann(bx) = \Ann_(x) = \q$ thus $a \in \q$.
+
+	This prove the $\q$ is a homogeneous prime ideal. 
+	Suppose $m \in N_l$. 
+	Define the module $A$ as the maximal module such that $Am \subset N/M$.
+	Therefore $A\cong (R/\q)[-l]$. Let $M' \in N$ be the preimage of $A$ in $N$, 
+	we have 
+	$$
+	M'/M \cong (R /\q)[-l]
+	$$
+	Therefore there is a filtration $0 \subset M \subset M'$. This contradicts the maximality of $M$. Therefore $N/M = 0$ and the proof is complete.
+\end{proof}
+
+We will prove the following generalised theorem, which includes the existence of Hilbert polynomial for projective varieties as a special case.
+This theorem is the \emph{answer} to Q2.
+
+\begin{theorem}
+	Let $N$ be a finitely generated graded module over the Neotherian graded ring $R = k[x_0, \cdots, x_n]$. 
+	The degree of the Hilbert polynomial $P_N(t)$ equals dimension of the variety defined by the annihilator ideal of $N$, i.e.,
+	$$		\deg(P_N) = \dim V(\Ann(N))$$.
+\end{theorem}
+
+\begin{proof}
+	Let $\q$ be a homogeneous prime ideal of $R$. 
+	We shall first prove the theorem for $N = R/\q$.
+	There are two cases, $\q = (x_0, \cdots, x_n)$ or otherwise. 
+
+	If $\q = (x_0, \cdots, x_n)$, then $P_M \equiv 0$. The convention is that the zero polynomial and the empty set both have dimension $-1$, so the theorem holds in this case.
+
+	Assume $\q \neq (x_0, \cdots, x_n)$. Pick $x_i \notin \q$.
+	Consider the exact sequence 
+	$$
+		0 \rightarrow R/\q[-1] \xrightarrow{\cdot x_i} R/\q \rightarrow R/(\q, x_i) \rightarrow 0.
+	$$
+
+	All the above homomorphisms are of degree 0, therefore we have 
+	$$
+		P_{R/\q}(t) - P_{R/\q}(t-1) = P_{R/(\q, x_i)}(t).
+	$$
+	and 
+	$$
+		V(\Ann(R/(\q, x_i))) = V(\q, x_i) = V(\q) \cap V(x_i).
+	$$
+	Since $x_i \notin \q$, we have $\dim V(\q, x_i) = \dim V(\q) - 1$. 
+	By induction on the dimension, we have
+	$$
+		\deg(P_{R/(\q, x_i)}) = \dim V(\q, x_i) = \dim V(\q) - 1.
+	$$
+	Therefore 
+	$$
+		\deg(P_{R/\q}) = \deg(P_{R/(\q, x_i)}) + 1 = \dim V(\q, x_i) + 1 = \dim V(\q).
+	$$
+	Given an exact sequence  $0 \rightarrow N' \rightarrow N \rightarrow N'' \rightarrow 0$, and assume the theorem holds for $N'$ and $N''$. 
+	Then we have $P_{N'} + P_{N''} = P_{N}$.
+	Therefore the theorem holds for all $N = R/\q$.
+
+	Furthermore
+	$$
+		V(\Ann(N)) =  V(\Ann(N')) \cup V(\Ann(N'')).
+	$$
+	Therefore 
+	$
+	\dim V(\Ann(N)) = \max\{\dim V(\Ann(N')), \dim V(\Ann(N''))\} = \deg(P_{N'} + P_{N''}) = \deg(P_N).
+	$.
+\end{proof}
