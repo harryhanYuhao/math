@@ -11,7 +11,15 @@ Before dive deep into the theoretical discussion of the degree, let us first com
 
 \subsection{Examples of Degree}
 
-\begin{example}[Degree of Hypersurface]
+\begin{example}[Degree of Projective Space]
+	Consider the projective space $\P^n$ as a subvariety of $\P^m$ via the trivial embedding $\P^n \cong Z(x_{n+1}, \cdots, x_m) \subset \P^m$ for any $m \geq n$.
+	Let $L$ be the linear subspace of dimension $m - n$ defined by $L = Z(x_1, \cdots, x_n)$.
+	
+	There intersectin is precisely one point $[1, 0, \cdots, 0]$. So we have $\deg(\P^n) = 1$.
+	
+	Take note that the leading coefficient of the Hilbert polynomial of $\P^n$ is $\frac{1}{n!} = c$, and $\deg(\P^n) = n! \cdot c$.
+\end{example}
+\begin{example}[Degree of Hypersurfaces]\label{ex:degree-hypersurface}
 	Let $X \in P^n$ be a hypersurface corresponding to a degree $d$ polynomial $f$.
 	The dimension of $X$ is $n-1$, so we investigate its intersection with a $1$-dimensional linear subspace, denoted as $L$, which is spaned by $n-1$ different linear polynomials $l_1, \cdots, l_{n-1}$.
 	
@@ -22,23 +30,45 @@ Before dive deep into the theoretical discussion of the degree, let us first com
 	Say the reduced polynomial is $g(x, y)$. The problem is equivalent to find number of its solution in $[x, y] \in \P^1$. 
 	There are two cases to consider.
 
-	If $[0, 1]$ is a solution, then $g$ can be written as $y^sf(x)$, where $f(x)$ has degree at most $d - 1$. By fundamental theorem of algebra, $f(x)$ has at most $d - 1$ solutions in $\P^1$, so in total there are at most $d$ solutions.
+	If $[1, 0]$ is a solution, then $g$ can be written as $y^sf(x)$, where $f(x)$ has degree at most $d - 1$. By fundamental theorem of algebra, $f(x)$ has at most $d - 1$ solutions in $\P^1$, so in total there are at most $d$ solutions.
 
-	If $[0, 1]$ is not a solution, then we can set $y = 1$ and consider $g(x, 1)$ as a polynomial of one variable $x$ with degree $d$.
+	If $[1, 0]$ is not a solution, then we can set $y = 1$ and consider $g(x, 1)$ as a polynomial of one variable $x$ with degree $d$.
 	By fundamental theorem of algebra, it has at most $d$ solutions in $\P^1$.
 
 	In both cases, we have at most $d$ solutions in $L \cap X$. 
 	The maximum number of solutions is attained when we choose $L$ general linear position, so we have $\deg(X) = d$.
+
+	Take note that the leading coefficient of the Hilbert polynomial of $X$ is $\frac{d}{(n-1)!} = c$, and $\deg(X) = (n-1)! \cdot c$.
+\end{example}
+
+\begin{example}[Degree of the Twisted Cubic]
+	As shown in the previous example, the twisted cubic is the 1-dimensional projective variety defined as the image of the degree-3 Veronese map of $\P^1$ into $\P^3$
+	\[
+		\nu_3: \P^1 \to \P^3, \quad [s:t] \mapsto [s^3 : s^2 t : s t^2 : t^3]
+	\]
+
+	On the first coordinatec chart, the map is 
+	\[
+		\nu_3: \A^1 \to \A^3, \quad [s:1] \mapsto [s^3, s^2, s, 1]
+	\]
+
+	In fact, $V = \{(s^3, s^2, s^1)\} \in \A^3$ is the affine variety corresponding to the idea $(z^2-y, z^3 - x)$.
+	Take a affine plane, say $z = x$. 
+	There are three intersections, namely $(0, 0, 0), (1, 1, 1), (-1, 1, -1)$.
+
+	So we conclude that the degree of the twisted cubic is $3$.
+
+	Take note that the leading coefficient of the Hilbert polynomial of the twisted cubic is $\frac{3}{1!} = c$, and $\deg(X) = 1! \cdot c$.
 \end{example}
 
 \subsection{Properties of Degree}
 
-We have the following important theorem relating degree of varieties to their Hilbert polynomials.
+We have the following important theorem relating degree of the varieties to their Hilbert polynomials.
 
 \begin{theorem}\label{thm:degree-hilbert-polynomial}
 	Let $V$ be a $k$-dimensional projective variety in $\mathbb{P}^n$ with Hilbert polynomial $P_V(t)$.
 	If the leading coefficient of $P_V(t)$ is $c_k$, then
-	\[\deg(V) = k! \cdot c_k\]
+	\[\deg(V) =  c_k \cdot k!\]
 	where $k!$ denotes the factorial of $k$.
 \end{theorem}
 
@@ -51,34 +81,49 @@ So we only provide a sketch of the proof here.
 \begin{proof}[Sketch of proof]
 The idea of the proof is to reduce the general case to the hypersurface case via a birational map.
 
-In example
+In example \ref{ex:degree-hypersurface}, we have shown that the degree of a hypersurface corresponding to degree $d$ polynomial in \(\P^n\) is \(d\). 
+In example \ref{ex:hilbert-poly-hypersurface}, we showed that its Hilbert polynomial is
 \[
-\dim_k (R)_t=\binom{t+n}{n}-\binom{t+n-d}{n}=\frac{d\,t^{\,n-1}}{(n-1)!}+\text{(lower)}.
+\binom{t+n}{n}-\binom{t+n-d}{n}=\frac{d\,t^{\,n-1}}{(n-1)!}+\text{(lower terms)}.
 \]
-Thus a hypersurface of degree \(d\) has Hilbert polynomial whose leading term
-is \(d\,t^{n-1}/(n-1)!\); i.e. \(\deg(X)=d\) appears as the coefficient times \((n-1)!\).\medskip
+In $\P^n$, the dimension of a hypersurface is $n-1$, so the leading coefficient multiplied by $(n-1)!$ equals $d$, which is the degree of the hypersurface.
 
-2. \emph{Reduction to the hypersurface case via generic linear projection.}
-Choose a generic linear projection
-\(\pi:\P^n\setminus H' \to H\cong\P^{m+1}\) with center a linear subspace \(H'\)
-of codimension \(m+2\), so that \(\pi\) restricts to a birational map
-\(\pi|_X: X \dashrightarrow X'=\pi(X)\subset H\) and \(X'\) is a hypersurface
-in \(\P^{m+1}\). (Such a projection exists for generic choice of \(H'\) and \(H\).)
-By birationality and standard results on linear projections, the degree of \(X\)
-equals the degree of the hypersurface \(X'\), i.e. \(\deg(X)=\deg(X')\).\medskip
+We reduce the general case to hypersurfaces via general linear projections. 
+For every pair of linear subspace $(H, H')$ in $\P^n$ such that $\dim(H) + \dim(H') = n - 1$ and $H' \cap H = \emptyset$. 
+Can define a projection map \(\pi:\P^n\setminus H' \to H\cong\P^{m+1}\) which maps $x\in \P^n / H'$ to the unique point in $H$ that intersects with the subspace spanned by $x$ and $H'$.
 
-3. \emph{Comparison of Hilbert polynomials under finite integral extensions.}
-Let \(R'=k[y_0,\dots,y_{m+1}]/I(X')\) be the homogeneous coordinate ring of
-\(X'\). The inclusion $k[y_0,\dots,y_{m+1}]\hookrightarrow k[x_0,\dots,x_n]$
-induces an inclusion $R'\hookrightarrow R_X$ which makes $R_X$ a finitely generated
-$R'$-module (integral extension). From this one shows that
+Let $X$ be an irreducible subvariety of $\P^n$ with dimension $\leq n - 2$, let $H$ be an generic $m + 1$-dimensional linear subspace of $\P^n$, and let $H '$ be $ n - m -2$ dimensional linear subspace disjoint from $H$ and $X$, then the image of $X$ under the projection $\pi$ is birational to $X$. 
+Also note that the image $X' = \pi(X)$ is a hypersurface in $\P^{m+1}$. 
+So what it remains to show is that the degree and leading coefficient of Hilbert polynomial are preserved under such birational map.
+
+Let $R$ and $R'$ be the homogeneous coordinate rings of $X \subset \mathbb{P}^n$
+and $X' \subset \mathbb{P}^{m+1}$, respectively.  
+The linear projection $\pi : X \dashrightarrow X'$ induces an inclusion of graded
+rings
 \[
-\dim_k (R_X)_t = \dim_k (R')_t + O(t^{m-1})\qquad(t\to\infty),
+R' \hookrightarrow R.
 \]
-so the leading coefficient (the coefficient of $t^m$) of $P_X(t)$ equals that of
-$P_{X'}(t)$. Combining this with step (1) applied to the hypersurface \(X'\)
-gives
+Since $\pi$ is birational, $R$ is integral over $R'$, hence a finite graded
+$R'$-module.
+
+Therefore there exist homogeneous elements $f_1,\dots,f_r \in R$ such that
 \[
-P_X(t)=\deg(X')\,\frac{t^m}{m!}+\text{(lower degree terms)}=\deg(X)\,\frac{t^m}{m!}+\text{(lower)}.
+R = \sum_{i=1}^r R' f_i.
+\]
+Consequently, there exists an integer $s>0$ such that for all $k \gg 0$,
+\[
+\dim_k R_{k-s} \;\le\; \dim_k R'_k \;\le\; \dim_k R_k.
+\]
+Equivalently, for the Hilbert polynomials,
+\[
+P_X(k-s) \;\le\; P_{X'}(k) \;\le\; P_X(k)
+\quad \text{for all } k \gg 0.
+\]
+
+These inequalities imply that $P_X$ and $P_{X'}$ have the same degree and the
+same leading coefficient.  Since $X'$ is a hypersurface of degree $d$ in
+$\mathbb{P}^{m+1}$, we conclude
+\[
+P_X(t) = \frac{d}{m!} t^m + \text{(lower terms)}.
 \]
 \end{proof}
