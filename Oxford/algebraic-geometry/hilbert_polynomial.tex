@@ -65,5 +65,122 @@ Lemma \ref{ap:diff-int-val} states that if a function $H(k)$ satisfies $H(k+1) -
 This is our desired Hilbert polynomial $P_N(t)$ of degree at most $n$.
 \end{proof}
 
+When regarding the Hilbert polynomial of a projective variety $X \subset \P^n$, if we apply an automorphism of $P^n$, the Hilbert polynomial remains unchanged, as automorphisms of $\P^n$ induce isomorphisms of the corresponding homogeneous coordinate rings, which preserve the graded structure and dimensions of the graded components.
+This is an important \emph{invariance} property of Hilbert polynomials.
+
+However, as will be shown in the example \ref{iso-diff-hil}, two isomorphic varieties may have different Hilbert polynomials.
+
+This is summarized in the following theorem. 
+
+\begin{theorem}
+	Hilbert polynomial of a projective variety $X \subset \P^n$ is unchanged under automorphisms of $\P^n$.
+	However, two isomorphic varieties may have different Hilbert polynomials.
+\end{theorem}
 
 
+\subsection{Examples of Hilbert Polynomials}
+
+\begin{example}[Hilbert Polynomial for $\P^n$]
+	The Hilbert polynomial of the projective space $\P^n$ is the Hilbert polynomial associated with the module $M = R_n = k[x_0, \cdots, x_n]$ on by $n+1$ inderminate coordinates $[x_0: x_1: \ldots : x_n]$.
+	The $i$-th graded component $M_i$ is the vector space spanned by all monomials of degree $i$ in the $n+1$ inderminants $x_0, \cdots, x_n$.
+
+	Therefore 
+	\begin{align*}
+		M_0 &= \text{span} \{1 \} & \implies \dim{M_0} = 1 \\ 
+		M_1 &= \text{span} \{x_0, x_1, \ldots, x_n \} & \implies \dim{M_1} = n+1 \\
+		M_2 &= \text{span} \{x_0^2, x_0x_1, \ldots, x_n^2 \} & \implies \dim{M_2} = \frac{(n+1)(n+2)}{2}
+	\end{align*}
+	In general, the dimension of $M_d$ is the number of ways to distribute $d$ items into $n+1$ bins while allowing empty bins. 
+	Standard combinatorial arguments therefore shows, as a function of the grading $k$,
+	\begin{equation}\label{HP-Pn}
+		P_{\P^n}(k) = \dim{M_k} = \binom{n+k}{n} = \frac{(n+k)!}{n!k!} = \frac{(n+k)(n+k-1)\cdots(k + 1)}{n!}
+	\end{equation}
+	And this is our desired Hilbert polynomial.
+	In fact, the evaluation of this polynomial at any non-negative integer $d$ matches the dimension of $M_d$.
+
+	In particular, $P_{\P^n}(k)$ is a polynomial of degree $n$, anmd it has leading term
+	$$ \frac{k^n}{n!} $$
+
+	It is clear that the above arguments also works if we consider the trivil inclusion $\P^n \subset P^m$ for any $m \geq n$, where $\P^n$ is identified with the variety $V(x_{n+1}, \cdots, x_m) \subset \P^m$.
+	So the Hilbert polynomial in this case is also given by equation \eqref{HP-Pn}.
+\end{example}
+
+\begin{example}\label{ex:hilbert-poly-hypersurface}
+	Let $X \in \P^n$ be the variety $V(f)$, where $f$ is a homogeneous polynomial of degree $d$.
+	The Hilbert polynomial of $X$ is associated to the module $M = k[x_0, \cdots, x_n]/f$.
+
+	Let $R$ denote the ring $k[x_0, \cdots, x_n]$, and $R_k$ denote the $k$-th graded component of $R$, i.e., the vector space spanned by all monomials of degree $k$.
+	We have the following short exact sequence of graded $R$-modules
+	\[
+		0 \rightarrow R_{k-d} \xrightarrow{\cdot f} R_k \rightarrow M_k \rightarrow 0
+	\]
+	where the middle map is the multiplication by $f$.
+	Therefore,
+	$$
+		P_M(k) = \dim{M_k} = \dim{R_k} - \dim{R_{k-d}} = \binom{n+k}{n} - \binom{n+k-d}{n}
+	$$
+	Since $n, d$ are constants, this is a polynomial of $k$, and therefore the desired Hilbert polynomial.
+	As in the previous example, the degree of this polynomial is $n$.
+
+	Let us compute the its leading term.
+	Write $\binom{n+k}{n} = \sum_{i = 0}^{n} a_i k^i$. 
+	By previous example, $a_n = \frac{1}{n!}$.
+	Therefore 
+	$$
+		P_M(k) = \sum_{i = 0}^{n} a_i k^i - \sum_{i = 0}^{n} a_i (k - d)^i = \sum_{i = 0}^{n} a_i \left( k^i - (k - d)^i \right)
+	$$
+	
+	When $i = n$, the term in the summand is 
+	$$
+	\frac{1}{n!} \left( k^n - (k - d)^n \right) = \frac{1}{n!} \left( k^n - k^n + n d k^{n-1} - \binom{n}{2} d^2 k^{n-2} + \ldots \right)
+	$$
+	Which gives the term of highest degree
+	$$
+	\frac{dk^{n-1}}{(n-1)!}
+	$$
+	Since all other terms in the summand will not give a term with higer degree, this is the leading term.
+
+	Finally, the arithmetic genus of $X$ is 
+	$$
+		(-1)^{n-1} (P_M(0) - 1) = (-1)^{n-1} \left( \binom{n}{n} - \binom{n - d}{n} - 1 \right) = (-1)^{n} \binom{n - d}{n}
+	$$
+
+	By lemma \ref{ap:binom-neg}, if $ 0 \leq d \leq n$,  $\binom{n - d}{n} = 0$, and the arithmetic genus is $0$.
+	If $d > n$, by the same lemma $\binom{n - d}{n} = (-1)^n \binom{d - 1}{n}$, and the arithmetic genus is $\binom{d - 1}{n}$.
+
+	It is clear the $k[x, y, z]/ (xy -z^2) \cong k[x, y]$, so this variety is isomorphic to $\P^1$. 
+	Take note, however, $P_{\P_1}(k) = \binom{k+1}{1} = k + 1$, which is different from the hilbert polynomial computed above.
+\end{example}
+
+\begin{example}\label{iso-diff-hil}
+	The image of the degree-2 Veronese map of $\P$ to $\P^2$ is a conic defined by a single quadric equation.
+	\[
+		\nu_2: \P^1 \to \P^2, \quad [s:t] \mapsto [s^2 : s t : t^2]
+	\]
+	Its homogeneous ideal is generated by three quadrics: 
+	\[
+		I = (xy - z^2)
+	\]
+
+	The $k$-th grading is generated by all monimials of degree $k$ in $x, y, z$, modulo the relation $xy = z^2$, which is precisely the monomials involving $x$, $y$, and at most degree one of $z$.
+	There are $k+1$ such monomials without $z$, and $k$ such monomials with $z$.
+	So the hilbert polynomial is
+	\[
+		P(k) = 2k + 1
+	\]
+\end{example}
+
+\begin{example}[Twisted Cubic]
+	The twisted cubic is defined as the image of the degree-3 Veronese map of $\P^1$ into $\P^3$
+	\[
+		\nu_3: \P^1 \to \P^3, \quad [s:t] \mapsto [s^3 : s^2 t : s t^2 : t^3]
+	\]
+	Its homogeneous ideal is generated by three quadrics: 
+	\[
+		I = (x_1 x_3 - x_2^2, x_0 x_2 - x_1^2, x_0 x_3 - x_1 x_2 )
+	\]
+
+	Similar to the arguments in \ref{iso-diff-hil}, the coordinate ring $k[x_0, x_1, x_2, x_3]/I$ is spanned by $x_0, x_3$, and at most degree 1 of $x_1$ or $x_2$.
+	
+	This gives it hilbert polynomial to be $3k+1$.
+\end{example}
