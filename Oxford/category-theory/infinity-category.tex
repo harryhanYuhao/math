@@ -1,0 +1,146 @@
+\section{\texorpdfstring{$\infty$}--category via Simplicial Sets}
+
+With the definitions of horns and simplices settled, we are now ready to present one defintion of small $\infty$-categories via simplicial sets.
+
+\subsection{Weak Kan Extension Condition}
+
+\begin{definition}[$\infty$-category]\label{def:infinity-cat}
+	An $\infty$-category, $\mathcal{D}$ is a simplicial set that satisfies the inner horn-filling conditions.
+
+	Specifically, for each $n \geq 2$ and $0 < i < n$, any map of from the $i$th horn $f: \L^n_i \to \mathcal{D}$ can be extended to a map $\overline{f}: \Delta^n \to \mathcal{D}$ such that the following diagram commutes:
+
+$$
+\begin{tikzpicture}[>=Stealth]
+  % Nodes
+	\node (A) {$\L^n_i$};
+	\node[right=of A] (B) {$\mathcal{D}$};
+	\node[below=of A] (C) {$\Delta^n$};
+
+  % Arrows (legs of the right triangle)
+	\draw[->] (A) -- node[above] {$f$} (B);
+	\draw[->, dotted] (C) -- node[below right] {$\exists \tilde{f}$} (B);
+
+  \draw[right hook->] (A) -- node[below left] {} (C);
+\end{tikzpicture}
+$$
+
+The maps between simplicial sets are natural transformations in $[\D\op, \S]$.
+There is no requirement for uniqueness of the extension.
+
+This condition is also known as the \emph{weak Kan extension condition}, and $\infty$-category is also called \emph{weak Kan complex} \cite{boardman2006homotopy}.
+\end{definition}
+
+% TODO: is this correct?
+In the language of model categories, $\infty$-categories are precisely the fibrant objects in the Joyal model structure on $\sS$ \cite{joyal}.
+
+In this definition, the objects of the $\infty$-category $\mathcal{D}$ are given by the $0$-simplices $\mathcal{D}_0$, the morphisms between two objects $x, y \in \mathcal{D}_0$ are given by the $1$-simplices $f \in \mathcal{D}_1$ such that $d_1(f) = x$ and $d_0(f) = y$. 
+Higher objects are given by higher simplices in a similar manner.
+
+An important aspect of this definition is that it allows the composition of morphisms.
+For example, given two morphisms $f: x \to y$ and $g: y \to z$ in $\mathcal{D}$, they correspond to two $1$-simplices, and, therefore, a $1$-horn $\L^2_1$ in $\mathcal{D}$.
+By the inner horn-filling condition, there exists a $2$-simplex $\sigma \in \mathcal{D}_2$ that fills the horn.
+The face map $d^2_1(\sigma)$ then gives a $1$-simplex from $x$ to $z$, which we denote as $g \circ f: x \to z$.
+While this composition is not unique, all possible choices of compositions are homotopic via $2$-simplices in $\mathcal{D}$, as we will explain later.
+
+\subsection{Nerves of Categories}
+
+Our first examples of $\infty$-category are the nerves of ordinary categories.
+
+\begin{definition}[Nerves]
+	Let $\mathcal{C}$ be an ordinary category.
+	Regard $[n]$ as an ordinary category where the objects are elements in $[n]$ and there is a unique morphism from $i$ to $j$ if and only if $i \leq j$.
+	The \emph{nerve} of $\C$, denoted as $N(\C)$, is the simplicial set defined as
+	\begin{enumerate}
+		\item The $n$-simplices are the set of functors from $[n]$ to $\C$, i.e.,
+			\begin{equation*}
+				N(\C)_n := N(\mathcal{C})([n]) = \F_{\text{Cat}}([n], \mathcal{C}),
+			\end{equation*}
+		\item The structure maps are induced by the pullbacks along morphisms in $\D$.
+			That is for $f \in \H_{\D}([m], [n])$ and $G \in N(\C)([n])$, $N(\C)(f): N(\C)_n \rightarrow N(\C)_m$
+			\begin{equation*}
+				N(\C)(f) (G) = G \circ f
+			\end{equation*}
+	\end{enumerate}
+\end{definition}
+
+Recall the category $[n]$ is the category induced by the order in the set 
+$$\{0 \leq 1 \leq 2 \leq 3 \leq \cdots \leq n\},$$
+where a unique morphism exists from $i$ to $j$ if and only if $i \leq j$. 
+This is indeed a category, as the identity morphisms of the element $i$ is represented by $i \leq i$, and any compositions of morphisms leads to a unique morphism due to the transitivity of the order relation.
+
+A function from $[n]$ to $\C$ is, therefore, precisely $n+1$ objects in $\C$ with a chain of $n$ morphisms between them, as shown below.
+\begin{equation}\label{Nerve-n-chain}
+	X_0 \xrightarrow{f_1} X_1 \xrightarrow{f_2} X_2 \xrightarrow{f_3} X_3 \xrightarrow{f_{4}} \cdots \xrightarrow{f_n} X_{n}
+\end{equation}
+Specifically, $N(\C)_0$ is precisely the objects in $\C$, and $N(\C)_1$ is the collection of morphisms in $\C$.
+
+\begin{remark}\label{nerve-encodes-cat}
+	Because $N(\C)_0$ is the objects in $\C$, and $N(\C)_1$ is the morphisms in $\C$, the nerve $N(\C)$ encodes all the data of the ordinary category $\C$. 
+\end{remark}
+
+\begin{remark}\label{nerve-face-deg}
+Basic chasing of diagrams shows that the face map, $d_i: N(\C)_{n} \rightarrow N(\C)_{n-1}$ sends $n$-chain in \ref{Nerve-n-chain} to $(n-1)$-chain in the following way:
+\begin{enumerate}
+	\item if $i = 0$, it removes the first object and the first morphism, i.e., \ref{Nerve-n-chain} is sent to
+		\begin{equation}
+			X_1 \xrightarrow{f_2} X_2 \xrightarrow{f_3} X_3 \xrightarrow{f_{4}} \cdots \xrightarrow{f_n} X_{n}
+		\end{equation}
+	\item if $0 < i < n$, it removes the $i$-th object and composes the $(i-1)$-th and $i$-th morphisms, i.e., \ref{Nerve-n-chain} is sent to
+		\begin{equation}
+			X_0 \xrightarrow{f_1} \cdots \xrightarrow{f_{i-1}} X_{i-1} \xrightarrow{f_{i+1} \circ f_i} X_{i+1} \xrightarrow{f_{i+2}} \cdots \xrightarrow{f_n} X_{n}
+		\end{equation}
+	\item if $i = n$, it removes the last object and the last morphism, i.e., \ref{Nerve-n-chain} is sent to
+		\begin{equation}
+			X_0 \xrightarrow{f_1} X_1 \xrightarrow{f_2} X_2 \xrightarrow{f_3} \cdots \xrightarrow{f_{n-1}} X_{n-1}
+		\end{equation}
+\end{enumerate}
+
+Similarly, the degenerate map $s_i: N(\C)_n \to N(\C)_{n+1}$ sends the $n$-chain in \ref{Nerve-n-chain} to the $(n+1)$-chain
+\begin{equation}
+	X_0 \xrightarrow{f_1} \cdots \xrightarrow{f_{i}} X_{i} \xrightarrow{\text{id}_{X_i}} X_i \xrightarrow{f_{i+1}} \cdots \xrightarrow{f_n} X_{n}
+\end{equation}
+\end{remark}
+
+The nerves by construction are simplicial sets. An important property is that they are also $\infty$-categories, as stated in the following theorem.
+
+\begin{theorem}
+	Let $\C$ be an ordinary category.
+	Its nerve $N(\C)$ satisfies the inner horn-filling conditions; therefore is an $\infty$-category.
+	Moreover, the extension $\overline{f}: \Delta^n \to N(\C)$ of the map $f: \L^n_i \to N(\C)$ is unique.
+\end{theorem}
+
+$$
+\begin{tikzpicture}[>=Stealth]
+  % Nodes
+	\node (A) {$\L^n_i$};
+	\node[right=of A] (B) {$\C$};
+	\node[below=of A] (C) {$\Delta^n$};
+
+  % Arrows (legs of the right triangle)
+	\draw[->] (A) -- node[above] {$f$} (B);
+	\draw[->, dotted] (C) -- node[below right] {$\exists ! \tilde{f}$} (B);
+
+  \draw[right hook->] (A) -- node[below left] {} (C);
+\end{tikzpicture}
+$$
+
+\begin{proof}
+	Because inner horns are $\L^i_n$ such that $0 < i < n$, we only need to consider the cases for $n \geq 2$.
+
+	Notice $\L^i_n$ has $n$ vertices (the set of vertices is $\L^i_n[0]$). Lable these vertices as $X_0, X_1, \cdots, X_n$.
+	Given $f$, we want to find a natural transformations $\tilde{f}\in [\D\op, \S]$, that is, a class of maps $\alpha_{[n]}: \Delta^n \rightarrow N(\C)_n$.
+
+	Notice $\alpha_{[0]}$, a set of $n$ vertices, is completely determined by $f$, so is any $\alpha_{[k]}$ for $k < n - 1$, as $\L^i_n$ only misses one $(n-1)$-simplex, which is the $i$th face, and the only $n$-simplex.
+	Therefore, we have the $n$-chain of objects and morphisms in $\C$:
+	\begin{equation*}
+		X_0 \xrightarrow{f_1} X_1 \xrightarrow{f_2} X_2 \xrightarrow{f_3} X_3 \xrightarrow{f_{4}} \cdots \xrightarrow{f_n} X_{n}
+	\end{equation*}
+	Where $X_j = \alpha_{[0]}(j)$ and $f_j$ is the morphism from $X_{j-1}$ to $X_j$ induced by $\alpha_{[1]}$. 
+	The existence of $f_i$ is clear for $n \geq 3$. 
+	For $n = 2$, the only inner horn is $\L^2_1$, which contains the morphisms from $X_0$ to $X_1$ and from $X_1$ to $X_2$, so $f_1$ and $f_2$ are also well-defined.
+
+	This is precisely $\alpha_{[n]}[n]$ we are looking for.
+	And the missing $i$-th face is given by the face map $d_i$ applied to this $n$-chain.
+
+\end{proof}
+

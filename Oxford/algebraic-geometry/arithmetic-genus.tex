@@ -1,2 +1,64 @@
 \section{Arithmetic Genus}
 
+The arithematic genus of a projective variety $X$ is defined thus
+\begin{definition}[Arithmetic Genus]
+	Let $X \subseteq \mathbb{P}^n$ be a projective variety of dimension $d$ with Hilbert polynomial $P_X(t)$. The \textbf{arithmetic genus} of $X$ is defined to be
+	\[
+		p_a(X) = (-1)^d (P_X(0) - 1).
+	\]
+\end{definition}
+
+Corollary \ref{cor:int-const-term} states that the constant term of the Hilbert polynomial is always an integer, this means the arithmetic genus is always an integer as well.
+
+\begin{theorem}
+	Arithmetic genus is integer-valued.	
+\end{theorem}
+
+Let us calculate the arithematic genus in several examples.
+
+\begin{example}[$\P^n$]
+	Consider the projective space $\P^n$. We know from Example \ref{example:hilbert-polynomial-pn} that its Hilbert polynomial is given by
+	\[
+		P_{\P^n}(t) = \binom{t+n}{n}.
+	\]
+	Evaluating at $t=0$, we have $P_{\P^n}(0) = \binom{n}{n} = 1$. Thus, the arithmetic genus is
+	\[
+		p_a(\P^n) = (-1)^n (1 - 1) = 0.
+	\]	
+\end{example}
+
+\begin{example}[Twisted Cubic]
+	We have seen in Example \ref{ex:hilbert-poly-twisted-cubic} that the Hilbert polynomial of the twisted cubic is $3k + 1$. So its arithmetic genus is $0$.
+\end{example}
+
+\begin{example}[Hypersurface in $\P^n$]
+	Let $X \subseteq \P^n$ be a hypersurface defined by a single homogeneous polynomial of degree $d$. From Example \ref{ex:hilbert-poly-hypersurface}, we have the Hilbert polynomial
+	\[
+		P_X(t) = \binom{t+n}{n} - \binom{t+n-d}{n}.
+	\]
+
+	Finally, its arithmetic genus of
+	$$
+		(-1)^{n-1} (P_M(0) - 1) = (-1)^{n-1} \left( \binom{n}{n} - \binom{n - d}{n} - 1 \right) = (-1)^{n} \binom{n - d}{n}
+	$$
+
+	By lemma \ref{ap:binom-neg}, if $ 0 \leq d \leq n$,  $\binom{n - d}{n} = 0$, and the arithmetic genus is $0$.
+	If $d > n$, by the same lemma $\binom{n - d}{n} = (-1)^n \binom{d - 1}{n}$, and the arithmetic genus is $\binom{d - 1}{n}$.
+\end{example}
+
+Since Hilbert polynomial is preserved under automorphisms of the projective space, the arithmetic genus is also preserved.
+In the previous sections, we have shown that neither the degree of a projective variety or its Hilbert polynomial is preserved under isomorphisms.
+
+However, in the example of the twisted cubic, we see it has the same arithmetic genus as $\P^1$, which it is isomorphic to.
+
+In general, we have the following theorem.
+\begin{theorem}
+Let $X$ and $Y$ be projective varieties over a field $k$, both of pure dimension $d$.
+If $\varphi:X\xrightarrow{\;\cong\;}Y$ is an isomorphism of $k$-varieties, then
+\[
+p_a(X)=p_a(Y),
+\]
+\end{theorem}
+
+This proof require ideas in sheaf cohomology, which is beyond the scope of this course, so we do not include it here.
+

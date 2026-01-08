@@ -100,7 +100,7 @@ Obviously all polynomial in $\mathbb{Z}[x]$ are integer-valued polynomials, but 
 
 The following theorem states that $\binom{x}{k}$ spans all integer-valued polynomials. 
 
-\begin{theorem}
+\begin{theorem}\label{ap:th:int-val-decomp}
 	If $P \in \mathbb{Q}[x]$ and $P(x)$ is integer for all integers $x$ sufficiently large, then there exists integers $c_0, c_1, \cdots, c_n$ such that 
 	$$
 	P(x) = c_0 \binom{x}{0} + c_1 \binom{x}{1} + c_2 \binom{x}{2} + \cdots + c_k \binom{x}{n}
@@ -138,6 +138,11 @@ The following theorem states that $\binom{x}{k}$ spans all integer-valued polyno
 
 The direct consequence of this proof is that, if $P(x)$ takes integer values for all large enough integers $x$, then $P(x)$ must takes integer values for all integers $x$.
 As a result, the term integer-valued polynomial makes sense.
+
+\begin{lemma}[Intege Valued Polynomial]\label{ap:le:int-val-poly}
+	If $P \in \mathbb{Q}[x]$ takes integers values for all sufficiently large integers $x$, then $P(x)$ takes integer values for all integers $x$.
+\end{lemma}
+
 
 Since the denominators of $\binom{x}{k}$ is $k!$, we have the following lemma.
 
