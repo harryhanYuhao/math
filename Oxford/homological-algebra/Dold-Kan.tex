@@ -18,7 +18,7 @@ Given a simplicial object, $A$ in the abelian category $\A$, we can construct a 
 	$$
 \end{definition}
 
-Note that the map $\d_n \d_{n-1} = \d_{n-1}\d_{n-1}$ by thesimplicial identity \eqref{simp2}, so $dd N_n(A) = \d_{n-1} \d_{n-1} \bigcap_{i = 0}^{n-1} \ker(\d_i) = 0$, so $N(A)$ is a well defined chain complex.
+Note that the map $\d_n \d_{n-1} = \d_{n-1}\d_{n-1}$ by the simplicial identity \eqref{simp2}, so $dd N_n(A) = \d_{n-1} \d_{n-1} \bigcap_{i = 0}^{n-1} \ker(\d_i) = 0$, and $N(A)$ is a well defined chain complex.
 
 Let $f: A \to B$ be a map of simplicial objects. 
 Recall the map between simplical objects is a natural transformation, or, precisely, a sequence of maps $f_n: A_n \rightarrow B_n$ that makes the following diagram commute for all morphisms $\alpha: [m] \to [n]$ in $\D$:
@@ -50,8 +50,9 @@ $N(f)$ can be visualised as the following diagram
 Since each $\d_n$ is a restriction of the corresponding face map in the simplicial object, each smaller square in diagram \eqref{chain-map-N} is one copy of the the commutative diagram \eqref{natural-transformation-N}.
 Therefore the digram \eqref{chain-map-N} commutes, and $N(f)$ is a well-defined map of chain complexes.
 
-Moreover, $N$ preserves the indentity and covariant composition of maps by a similar argument using the naturality condition of maps between simplicial objects. 
-In this way we have shown that $N$ defines a functor from the category of simplicial objects in $\A$ to the category of positive chain complexes in $\A$.
+If $f = \text{id}$, then each $f_n = \text{id}_{A_n}$, and therefore $N(f) = \text{id}_{N(A)}$.
+If $g: B \to C$ is another map of simplicial objects, then for each $n$, $(g f)_n = g_n f_n$, and therefore $N(gf)_n = g_n f_n|_{N_n(A)} = N(g)_n N(f)_n$. This proves that $N$ prerves identities and covariantly preserves composition of morphisms.
+Therefore $N$ defines a covariant functor from the category of simplicial objects in $\A$ to the category of positive chain complexes in $\A$.
 That is,
 \begin{equation}
 	N: [\D\op, \A] \to \Ch_{\geq 0}(\A).
@@ -60,7 +61,7 @@ That is,
 \subsection{Functor in Opposite Direction}
 
 
-We may define another functor $K: \Ch_{\geq 0}(A) \rightarrow \CS\A$ in the opposite direction of $N$.
+We may define another functor \cite{weibel} $K: \Ch_{\geq 0}(A) \rightarrow \CS\A$ in the opposite direction of $N$, where $\A$ is an abelian category.
 
 Let $C$ be a positive chain complex in $\A$. 
 We need to construct a simplicial object $K(C): \D\op \to \A$.
@@ -70,14 +71,26 @@ Define $K(C)[n] := K_n(C)$ to be the finite direct sum
 \begin{equation}
 	K_n(C) := \bigoplus_{p \leq n}\bigoplus_{\eta} C_p[\eta],
 \end{equation}
-Where $\eta$ runs over all surjective maps $\eta: [n] \to [p]$ in $\D$, and $C_p[\eta]$ is a copy of $C_p$ indexed by $\eta$, and $C_p$ is the $p$-th object in the chain complex $C$.
+Where $\eta$ runs over all surjective maps $\eta: [n] \to [p]$ in $\D$, and $C_p[\eta]$ is a copy of $C_p$ indexed by $\eta$, with $C_p$ is the $p$-th object in the chain complex $C$.
+Here, the index by $\eta$ is a notational device to distinguish different copies of $C_p$ in the direct sum.
 
 Concretely, 
 $$
 K_0(C) = C_0, \quad K_1(C) = C_0 \oplus C_1, \quad K_2(C) = C_0 \oplus C_1^{\oplus 2} \oplus C_2,  \cdots
 $$
 
-Given a map $\alpha: [m] \rightarrow [n] \in \D$, we need to define the corresponding map $K(C)(\alpha): K_n(C) \to K_m(C)$.
+\begin{remark}\label{Number-n-p-sur}
+Let $L(n, p)$ denote the number of surjective maps from $[n]$ to $[p]$ in $\D$.
+We have the following results from purely combinatorics. 
+	\begin{enumerate}
+		\item $L(m, 0) = 1$ for all $m \geq 0$.
+		\item $L(m, m) = 1$ for all $m \geq 0$.
+		\item $L(n, m) = 0$ if $n < m$
+		\item $L(n, m) = \binom{n+m+1}{m}$, which is the number of ways to put $n+1$ items into $m + 1$ bins allowing empty bins.
+	\end{enumerate}
+\end{remark}
+
+Given a map $\alpha: [m] \rightarrow [n] \in \D$, we define the corresponding map $K(C)(\alpha): K_n(C) \to K_m(C)$ in the following way.
 Since each $K_n(C)$ is a direct sum of copies of $C_p$ indexed by surjective maps $\eta: [n] \to [p]$, it suffices to define the map on each summand $C_p[\eta]$.
 
 We have the following commutative diagram 
@@ -87,11 +100,11 @@ We have the following commutative diagram
 		{[q]} \arrow{r}{\epsilon} & {[p]}
 	\end{tikzcd}
 \end{equation}
-Where $\epsilon \eta'$ is the unique epi-mono factorisation of $\eta \alpha$ as in theorem \ref{epi-mono-simplex}.
+Where $\epsilon \eta'$ is the unique epi-mono factorisation of $\eta \alpha$ as in theorem \ref{epi-mono-simplex} ($\eta$ is epic, $\epsilon$ is monic).
 There are three cases to consider.
 \begin{enumerate}
-	\item If $q = p$, define $K(C)(\alpha)|_{C_p[\eta]} : C_p[\eta] \to C_p[\eta'] \subset K_m(C)$ to be the identity map $\text{id}_{C_p}$ between the two copies of $C_p$.
-	\item If $q = p-1$ and the map $\epsilon$ is an inclusion. That is, $\epsilon = \epsilon_p$, the $p$-th face map in $\D$, we define $K(C)(\alpha)|_{C_p[\eta]} : C_p[\eta] \to C_{p-1}[\eta'] \subset K_m(C)$ to be the differential $d: C_p \to C_{p-1}$ in the chain complex $C$.
+	\item If $q = p$, define $K(C)(\alpha)|_{C_p[\eta]} : C_p[\eta] \to C_q[\eta'] \subset K_m(C)$ to be the identity map $\text{id}_{C_p}$ between the two copies of $C_p$.
+	\item If $q = p-1$ and the map $\epsilon$ is an inclusion. That is, $\epsilon = \epsilon_p$, the $p$-th face map in $\D$ ($\epsilon: [p-1] \rightarrow [p]$ that only misses $p$), we define $K(C)(\alpha)|_{C_p[\eta]} : C_p[\eta] \to C_{p-1}[\eta'] \subset K_m(C)$ to be the differential $d: C_p \to C_{p-1}$ in the chain complex $C$.
 	\item In all other cases, define $K(C)(\alpha)|_{C_p[\eta]}$ to be the zero map
 \end{enumerate}
 
@@ -99,13 +112,96 @@ Our first task is to show that this definition of $K(C)$ is well-defined simplic
 There are two things to be checked. 
 \begin{enumerate}
 	\item Identities map in $\D$ are sent to identity maps in $\A$.
-	\item Composition of maps in $\D$ are sent to contravariant composition of maps in $\A$
+		Let us check its commutative diagram on each summand.
+		\begin{equation}
+	\begin{tikzcd}
+		{[n]} \arrow{r}{\text{id}} \arrow{d}{\eta'} & {[n]} \arrow{d}{\eta} \\
+		{[q]} \arrow{r}{\epsilon} & {[p]}
+	\end{tikzcd}
+	\cong
+	\begin{tikzcd}
+		{[n]} \arrow{r}{\text{id}} \arrow{d}{\eta} & {[n]} \arrow{d}{\eta} \\
+		{[p]} \arrow{r}{\text{id}} & {[p]}
+	\end{tikzcd}
+	\end{equation}
+	Since $\eta$ is surjective, and $\text{id}$ is injective, the unique epi-mono factorisation of $\eta \circ \text{id}$ is $\text{id} \circ \eta$.
+	Soe by the first case of our definition, $K(C)(\text{id})|_{C_p[\eta]}$ is the identity map on each summand $C_p$, therefore $K(C)(\text{id}) = \text{id}_{K(C)}$.
+	\item Composition of maps in $\D$ are sent to contravariant composition of maps in $\A$. 
+		Again, let us check its commutative diagram on each summand. 
+$$
+\begin{tikzcd}
+	{[m']}\arrow{r}{\alpha'} \arrow{d}{\eta''}& {[m]} \arrow{r}{\alpha} \arrow{d}{\eta'} & {[n]} \arrow{d}{\eta} \\
+	{[q']}\arrow{r}{\epsilon'}  &{[q]} \arrow{r}{\epsilon} & {[p]}
+\end{tikzcd}
+$$
+There are several cases to consider. Firstly, if both $\epsilon $ and $ \epsilon'$ and $\epsilon$ are identities, then $\epsilon \circ \epsilon'$ is identity and we have map on each summand is identity, so the composition holds.
+If one of $\epsilon$ or $\epsilon'$ is identity while the other is inclusion, then their composition is inclusion, and corresponding map is the differential, so the composition holds.
+In all other case we have the zero map, and the composition holds as well. (Recall composition of two differentials is zero in a chain complex.)
 \end{enumerate}
-Both verifications are straightforward using the commutative diagram \eqref{K-diagram}.
-%TODO: show well-defined
 
+This shows that for each positive chain complex $C$ in $\A$, our definition of $K(C)$ is indeed a simplicial object in $\A$.
+
+To show $K$, is indeed a functor recall that a map of chain complexes $f: C \to D$ is a sequence of maps $f_n: C_n \to D_n$ that makes the following diagram commute
+\begin{equation}
+	\begin{tikzcd}
+		\cdots \arrow{r} & 
+		C_n \arrow{r}{\d_n} \arrow{d}{f_n} &
+		C_{n-1} \arrow{r}{\d_{n-1}} \arrow{d}{f_{n-1}}&
+		C_{n-2} \arrow{r}{\d_{n-2}} \arrow{d}{f_{n-2}} &
+		\cdots\\
+		\cdots \arrow{r} &
+		D_n \arrow{r}{\d_n} &
+		D_{n-1} \arrow{r}{\d_{n-1}} &
+		D_{n-2} \arrow{r}{\d_{n-2}} &
+		\cdots
+	\end{tikzcd}
+\end{equation}
+
+Our defintion of the $n$-simplex $K_n(C)$ and $K_n{D}$ is 
+\begin{equation*}
+	K_n(C) := \bigoplus_{p \leq n}\bigoplus_{\eta} C_p[\eta], \quad
+	K_n(D) := \bigoplus_{p \leq n}\bigoplus_{\eta} D_p[\eta].
+\end{equation*}
+We therefore define the induced map $K(f): K(C) \to K(D)$ is on each summand $C_p[\eta]$ as the map $f_p: C_p \to D_p$ between the two copies of $C_p$ and $D_p$ indexed by $\eta$.
+
+To show that this is indeed a simplicial map we need to show that they satisfy the following naturality condition 
+
+\begin{equation}\label{simplical-map-K}
+	\begin{tikzcd}
+		{K(C)_n} \arrow{r}{\alpha} \arrow{d}{(Kf)_n} & {K(C)_m} \arrow{d}{(Kf)_m} \\
+		{K(D)_n} \arrow{r}{\alpha} & {K(D)_m}
+	\end{tikzcd}
+\end{equation}
+where we have abused the notation, and use $\alpha: K(C)_n \rightarrow K(C)_m$ to denote that map induced by the order preserving map $\alpha: [m] \rightarrow [n]$ in $\D$
+
+Let us first examine the upper right path $(Kf)_m \circ \alpha$. 
+Again, we analyse its action on each summand $C_p[\eta]$ in $K(C)_n$.
+
+By our definition, we need to consider the following commutative diagram
+$$
+\begin{tikzcd}
+		{[m]} \arrow{r}{\alpha} \arrow{d}{\eta'} & {[n]} \arrow{d}{\eta} \\
+		{[q]} \arrow{r}{\epsilon} & {[p]}
+	\end{tikzcd}
+$$
+The map $\alpha|_{C_p[\epsilon]}$ depends on the nature of$\epsilon$.
+
+Let us consider the lower left path on \ref{simplical-map-K}, that is $\alpha \circ (Kf)_n$. 
+The key observation is that the square for $\alpha: K(D)_n \rightarrow K(D)_m$ is the same one!
+
+So there are any three cases to consider, depending on the nature of $\epsilon$.
+\begin{enumerate}
+	\item If $\epsilon$ is identity, then both paths are the identity map on the summand $C_p[\eta]$ ($D_p[\eta]$), so the square of course commutes 
+	\item If $\epsilon: [n-1] \rightarrow [n]$ is inclusion, then the induced $\alpha|_{C_p[\eta]}$ and $\alpha|_{D_p{\eta}}$ are both the differential maps in the chain complexes $C$ and $D$ respectively, they commute with the map $f$ as $f$ is a chain map.
+	\item In all other cases the induced map is zero and is of course commutative.
+\end{enumerate}
+
+Moreover, the fact $K$ preserves identities and composition of morphisms covariantly is direct from our definitions
+
+So we conclude that $K$ defines a covariant functor from the category of positive chain complexes in $\A$ to the category of simplicial objects in $\A$.
 
 \subsection{Dold-Kan Correspondence}
+
 
 The purpose of introducing the two functors $N$ and $K$ is to establish the Dold-Kan correspondence between simplicial objects in an abelian category $\A$ and positive chain complexes in $\A$.
 This is stated in the following theorem. 
@@ -145,7 +241,7 @@ By our definition of $K$, it acts on the unique $C_n = C_n[\text{id}_{[n]}]$ in 
 \end{equation*}
 
 In this diagram, by definition $\text{id}\circ\epsilon^i$ will contains all elements in $[n]$ except $i$. 
-Therefore, when $i \neq n$, the induced map on the summand $C_n$ is zero; therefore $C_n \subset NK(C)_n$.
+Therefore, when $i \neq n$, the induced map on the summand $C_n$ is zero, and $C_n \subset NK(C)_n$.
 Moreover, when $i = n$, the induced map on the summand $C_n$ is the differential $d: C_n \to C_{n - 1}$ in the chain complex $C$.
 
 In similar fashion we can show for any other summand $C_p[\eta]$ in $K_n(C)$ the induced map will be zero.
@@ -158,7 +254,7 @@ Firstly, define a natural simplicial map $\psi_A: KN(A) \rightarrow A$ as follow
 For each $\eta: [n] \rightarrow  [p]$, the corresponding summand $KN(A)_n$ is $N_p(A)$, is a subobject of $A_p$.
 We can define restriction of $\psi_A$ to this summand to be $N_p(A) \subset A_p \xrightarrow{\eta} A_n$, where the map $\eta: A_p \rightarrow A_n$ is the induced map by the morphism $\eta$ in $\D$.
 
-For a morphism $\alpha: [m] \to [n]$ in $\D$, we have the following commutative diagram 
+For a morphism $\alpha: [m] \to [n]$ in $\D$, we have the following commutative diagram; therefore $\psi$ is indeed a natural transformation.
 \begin{equation*}
 	\begin{tikzcd}
 		KN_n(A) \supset \arrow{d}{\alpha} & N_p(A) \arrow{d}{\epsilon} & \subset A_p\arrow{r}{\eta} & A_n  \arrow{d}{\alpha}\\
@@ -166,13 +262,11 @@ For a morphism $\alpha: [m] \to [n]$ in $\D$, we have the following commutative 
 	\end{tikzcd}
 \end{equation*}
 
-We can show this diagram is commutative, therefore $\psi$ is indeed a natural transformation.
-
 Notice that $N \psi_A: NKN(A) \rightarrow N(A)$ is an isomorphism by the previous part of the proof $NK(NA) \cong NA$. 
 
-We can use the following lemma to conclude that $\psi_A$ is an isomorphism, therefore $KN(A) \cong A$.
+We can use the following lemma, which is lemma 8.4.5 in \cite{weibel} to conclude that $\psi_A$ is an isomorphism, therefore $KN(A) \cong A$.
 
-\begin{lemma}\cite{weibel}
+\begin{lemma}
 	Let $f: A \to B$ be a map of simplicial objects in an abelian category $\A$. 
 	If the induced map of normalised chain complexes $N(f): N(A) \to N(B)$ is an isomorphism, then $f$ is an isomorphism.
 \end{lemma}
@@ -182,7 +276,7 @@ We can use the following lemma to conclude that $\psi_A$ is an isomorphism, ther
 Simplicial homotopy between two simplicial maps is defined as follows.
 
 \begin{definition}[Simplicial Homotopy \cite{weibel}]\label{simplicial-homotopy}
-Given two maps of simplicial objects $f, g: A \to B$, a \emph{simplicial homotopy} from $f$ to $g$ is a collection of $n+1$ maps $h_i: A_n \to B_{n + 1}$ for each $n \geq 0$ such that the following identities hold for all $n \geq 0$ and $0 \leq i \leq n + 1$:
+Given two maps of simplicial objects $f, g: A \to B$, where $A$ and $B$ are objects in abelian category $\A$, a \emph{simplicial homotopy} from $f$ to $g$ is a collection of $n+1$ maps $h_i: A_n \to B_{n + 1}$ for each $n \geq 0$ such that the following identities hold for all $n \geq 0$ and $0 \leq i \leq n + 1$:
 \begin{align}
 	\d_0 h_0 &= f  \label{homotopy1}\\ 
 	\d_{n + 1} h_n &= g  \label{homotopy2}\\
@@ -198,14 +292,14 @@ Given two maps of simplicial objects $f, g: A \to B$, a \emph{simplicial homotop
 	\end{align}
 \end{definition}
 
-It can be shown that simplicial homotopy has a one-to-one correspondence with the following commutative diagram. 
+It can be shown \cite{weibel} that simplicial homotopy in abelian category has is one-to-one correspondent to the following commutative diagram. 
 \begin{figure} 
 	\centering
 \begin{tikzpicture}[>=Stealth]
   % Nodes
-	\node (A) {$A \times \D[1]$};
-	\node[left=of A] (D) {$A \times \D[0]$};
-	\node[right=of A] (B) {$A \times \D[0]$};
+	\node (A) {$A \times \Delta[1]$};
+	\node[left=of A] (D) {$A \times \Delta[0]$};
+	\node[right=of A] (B) {$A \times \Delta[0]$};
 	\node[below=of A] (C) {$B$};
 
   % Arrows (legs of the right triangle)
@@ -219,9 +313,9 @@ It can be shown that simplicial homotopy has a one-to-one correspondence with th
 \label{simplicial-homotopy-diagram}
 \end{figure}
 
-Where $\text{id} \times \epsilon: A \times \D[0]$ is defined as $(a, \alpha) \mapsto (A, \epsilon_0 \circ \alpha)$, for $\alpha: [n] \to [0]$ in $\D$.
+Where $\text{id} \times \epsilon: A \times \Delta[0]$ is defined as $(a, \alpha) \mapsto (a, \epsilon \circ \alpha)$, for $\alpha: [n] \to [0]$ in $\Delta[0]$.
 
-Notice that $\D[1]_n = \H([n], [1])$ has exactly $n + 2$ elements, corresponding to the $n + 2$ surjective maps from $[n]$ to $[1]$. 
+Notice that $\Delta[1]_n = \H([n], [1])$ has exactly $n + 2$ elements, corresponding to the $n + 2$ surjective maps from $[n]$ to $[1]$. 
 Label them as $\alpha_i, -1 \leq i \leq n$.
 So for each $n$, the map $ \gamma: A\times \D[1] \rightarrow B$ is determined by $n+2$ maps $\gamma^n_i: A_n \rightarrow B_n$ each corresponding to $\alpha_i \in \D[1]_n$.
 For a temporary measure we call $\gamma$ as the middle map.
@@ -260,16 +354,16 @@ Here is an important lemma
 	Note that $s_n$ is a map from $A_n$ to $B_{n + 1}$. 
 	I claim that 
 	\begin{equation}\label{chain-homotopy-eq}
-		\d_{n+1} s_n - s_{n-1} \d_n = (-1)^n f
+		\d_{n+1} s_n - s_{n-1} \d_n = (-1)^n f,
 	\end{equation}
-	, therefore $\{(-1)^n s_n\}$ is a chain homotopy from $0$ to $f_*$.
+	therefore $\{(-1)^n s_n\}$ is a chain homotopy from $0$ to $f_*$.
 \begin{equation*}
 	\begin{tikzcd}
 		\cdots \arrow{r} & 
-		N_n(A) \arrow{r}{\d_n} \arrow{d}{f_n} &
+		N_n(A) \arrow{r}{\d_n} \arrow{d}{f_{*n}} &
 		\cdots \arrow{r}{\d_2} &
-		N_1(A) \arrow{r}{\d_1} \arrow{d}{f_1} \arrow{dl}{s_1}&
-		N_0(A) \arrow{r} \arrow{d}{f_0} \arrow{dl}{s_0}&
+		N_1(A) \arrow{r}{\d_1} \arrow{d}{f_{*1}} \arrow{dl}{s_1}&
+		N_0(A) \arrow{r} \arrow{d}{f_{*0}} \arrow{dl}{s_0}&
 		0 \\
 		\cdots \arrow{r} &
 		N_n(B) \arrow{r}{\d_n} &
@@ -290,36 +384,46 @@ Here is an important lemma
 		= -f \quad \text{by equation \eqref{homotopy1}}
 	\end{dmath}
 
-	All other cases can be proved similarly by expanding the left hand side of equation \eqref{chain-homotopy-eq} and applying equations \eqref{homotopy1} - \eqref{homotopy4} repeatedly to cancel out terms.
+	In general, we have 
+	$$
+	\d_{n+1} s_n = \sum_{i=0}^{n} (-1)^i \d_{n+1} h_i = (-1)^n \d_{n+1} h_n + \sum_{i=0}^{n-1} (-1)^i h_i \d_n
+	$$
+	And 
+	$$
+	s_{n-1} \d_n = \sum_{i=0}^{n-1} (-1)^i h_i \d_n
+	$$
+	Subtracting the two equations we have
+	$$\d_{n+1} s_n - s_{n-1} \d_n = (-1)^n \d_{n+1} h_n = (-1)^n f$$
+	which is the desired equation.
 \end{proof}
 
 There is a converse to lemma \ref{homotopy-chain-homotopy1}. 
 
 \begin{lemma}\label{homotopy-chain-homotopy2}
-	For two chain homotopic maps $f, g: C \rightarrow C'$, the corresponding simplicial maps $K(f), K(g): K(C) \rightarrow K(C')$ are simplicially homotopic.
+	For two chain homotopic maps $f, g: C \rightarrow C'$, the corresponding simplicial maps $K(f), K(g): K(C) \rightarrow K(C')$ are simplicially homotopic \cite{weibel}.
 \end{lemma}
 
 \begin{proof}
 	Assuming we have the chain homotopy $s_n: C_n \rightarrow C'_{n+1}$ from $f$ to $g$. 
-	We shall define $h_i: K(C)_n \rightarrow K(C''_{n+1})$ according to the following procedure. 
+	We shall define $h_i: K(C)_n \rightarrow K(C'_{n+1})$ according to the following procedure. 
 	\begin{enumerate}
 		\item On the unique summand $C_n$ of $K_n(C)$ corresponding to the identity map $\text{id}_{[n]}: [n] \to [n]$, define
 		\begin{equation}
 			h_i|_{C_n} = \begin{cases}
 				\sigma_i f & i < n - 1 \\
 				\sigma_{n - 1} f - \sigma_{n}s_{n-1}d & i = n - 1 \\
-				\sigma_{n }( f - s_{n-1}d) - s_n & i = n - 1 \\
+				\sigma_{n }( f - s_{n-1}d) - s_n & i = n  \\
 			\end{cases}
 		\end{equation}
 	\item On the summand $C_{n-1}[\eta]$ of $K(C)_n$ corresponding to a surjective map $\eta: [n] \to [n - 1]$. 
-			Let $j$ be the integer such that $\eta_{j} = \eta_{j+1}$. 
-			We can write $\eta =  \text{id}_{n-1} \circ \eta_j$, where $\eta_j$ is the $j$-th degenerate map in $\D$. 
-			Note that $C_{n-1}[\text{id}_{n-1}]$ is isomorphic to $C_{n-1}[\eta_i]$.
+			Let $j$ be the integer such that $\eta(j) = \eta(j+1)$. 
+			We can write $\eta =  \text{id}_{n-1} \circ \eta^j$, where $\eta^j$ is the $j$-th degenerate map in $\D$. 
+			Note that $\epsilon^i$ maps $C_{n-1}[\text{id}_{n-1}]$ isomorphically to $C_{n-1}[\eta^i]$.
 			This is because we have the following commutative diagram 
 \begin{equation*}
 	\begin{tikzcd}
-		{[n - 1]} \arrow{r}{\epsilon^i} \arrow{d}{\text{id}} & {[n]} \arrow{d}{\eta_i} \\
-		{[n - 1]} \arrow{r}{\epsilon} & {[n - 1]}
+		{[n - 1]} \arrow{r}{\epsilon^i} \arrow{d}{\text{id}} & {[n]} \arrow{d}{\eta^i} \\
+		{[n - 1]} \arrow{r}{\text{id}} & {[n - 1]}
 	\end{tikzcd}
 \end{equation*}
 We have already defined the maps $h_i$ on $C_{n-1}[\text{id}_{n-1}]$, define $h'_i$ be the restriction of $h_i$ to $C_{n-1}[\text{id}_{n-1}]$. 
@@ -327,7 +431,7 @@ We define
 $$
 h_i|_{C_{n-1}[\eta]} =
 \begin{cases}
-	\sigma_j h'_{i-1} & j < i\\'
+	\sigma_j h'_{i-1} & j < i\\
 	\sigma_{j+1} h'_{i} & j \geq i
 \end{cases}
 $$

@@ -36,11 +36,117 @@ In the language of model categories, $\infty$-categories are precisely the fibra
 In this definition, the objects of the $\infty$-category $\mathcal{D}$ are given by the $0$-simplices $\mathcal{D}_0$, the morphisms between two objects $x, y \in \mathcal{D}_0$ are given by the $1$-simplices $f \in \mathcal{D}_1$ such that $d_1(f) = x$ and $d_0(f) = y$. 
 Higher objects are given by higher simplices in a similar manner.
 
-An important aspect of this definition is that it allows the composition of morphisms.
-For example, given two morphisms $f: x \to y$ and $g: y \to z$ in $\mathcal{D}$, they correspond to two $1$-simplices, and, therefore, a $1$-horn $\L^2_1$ in $\mathcal{D}$.
-By the inner horn-filling condition, there exists a $2$-simplex $\sigma \in \mathcal{D}_2$ that fills the horn.
-The face map $d^2_1(\sigma)$ then gives a $1$-simplex from $x$ to $z$, which we denote as $g \circ f: x \to z$.
-While this composition is not unique, all possible choices of compositions are homotopic via $2$-simplices in $\mathcal{D}$, as we will explain later.
+The inner horn-filling condition precisely encodes the composition of morphisms and higher homotopies between them.
+Figure \ref{fig:infinity-cat-composition} explains the composition of $1$-simplices.
+
+A map of simplicial set $\L^2_1 \rightarrow \mathcal{D}$ consists of two $1$-simplices $f, g \in \mathcal{D}_1$ such that $d_0(f) = d_1(g)$, as shown on the left figure \ref{fig:infinity-cat-composition}.
+An extension of this map to $\Delta^2 \to \mathcal{D}$ gives a $2$-simplex in $\sigma$ that fills the horn, with the condition that $d_2(\sigma) = f$ and $d_0(\sigma) = g$, as shown on the right of the following diagram.
+Therefore, we may define the composition of $f$ and $g$ via the face map $g \circ f = d_1(\sigma)$.
+
+Note the the inner horn-filling need not be unique, so the composition may not be unique either.
+We will show later that the composition is unique up to homotopy.
+
+% Demonstration of composition
+\begin{figure}
+	\centering 
+\begin{tikzpicture}[every node/.style={font=\small}, line cap=round, scale=0.8]
+  % coordinates
+  \coordinate (L) at (0,0);      % left vertex
+  \coordinate (R) at (3,0);      % right vertex
+  \coordinate (T) at (1.5,2);    % top vertex
+
+  % vertices as filled circles
+  \node[draw,fill,inner sep=1.8pt, circle] (vL) at (L) {};
+  \node[draw,fill,inner sep=1.8pt, circle] (vR) at (R) {};
+  \node[draw,fill,inner sep=1.8pt, circle] (vT) at (T) {};
+
+  % edges with labels
+  \draw[thick] (vL) -- node[midway, left] {$f$} (vT);
+  \draw[thick] (vT) -- node[midway, right] {$g$} (vR);
+
+  % labels for vertices
+  \node[below left=2pt of vL]  {$d_1(f)$};
+  \node[below right=2pt of vR] {$d_0(g)$};
+  \node[above=2pt of vT]       {$d_0(f)=d_1(g)$};
+
+\end{tikzpicture}
+\qquad \qquad
+\begin{tikzpicture}[line cap=round, font=\small, scale=0.8]
+
+  % coordinates
+  \coordinate (L) at (0,0);
+  \coordinate (R) at (3,0);
+  \coordinate (T) at (1.5,2.2);
+  % \node at ($(L)+(R)+(T)/3$) {$\sigma$};
+
+  % shaded triangle
+  \fill[gray!20] (L) -- (R) -- (T) -- cycle;
+
+  % edges
+  \draw[thick] (L) -- node[midway, below] {$h$} (R);
+  \draw[thick] (L) -- node[midway, left] {$f$} (T);
+  \draw[thick] (T) -- node[midway, right] {$g$} (R);
+
+  % vertices
+  \foreach \p in {L,R,T}
+    \node[draw, fill, circle, inner sep=2pt] at (\p) {};
+
+	\node at (barycentric cs:L=1,R=1,T=1) {$\sigma$};
+\end{tikzpicture}
+\caption{Composition of 1-simplices via inner horn-filling condition}
+\label{fig:infinity-cat-composition}
+\end{figure}
+
+
+Let us now give some examples of $\infty$-categories.
+
+\begin{example}
+	$\Delta^0$ gives the trivial $\infty$-category with one object and one morphism.
+\end{example}
+
+\begin{example}
+	In general $\Delta^k$ is a an $\infty$-category for all positive integer $k$.
+	The reason is the following.
+
+	Since we only need to fill the inner horns, we only need to consider simplicial maps from $\L^n_i$ to $\Delta^k$ for $n \geq 2$.
+	Take $\L^2_1$ for example, we want to fill the horn by finding an extension of the map $f: \L^2_1 \to \Delta^k$ to $g: \Delta^2 \to \Delta^k$.
+
+	We may have an intuitive arguments through the figure \ref{fig:infinity-cat-composition}. 
+	Since $\L^2_1$ contains all the vertices of $\Delta^2$, the map $f$ sends the three vertices of $\Delta^2$ to three vertices in $\Delta^k$, which forms a $2$-simplex in $\Delta^k$.
+	Therefore, we can just identify $\Delta^2$ as the image $f(\Delta^2)$ in $\Delta^k$.
+	In fact, we can see this is the unique extension, and $\Delta^k$ is a actually a Kan complex.
+
+
+	If the above argument is not convincing enough, let us wade through the commutative diagrams.
+	Consider the following commutative diagram.
+$$
+\begin{tikzpicture}[->, >=Stealth]
+  % Nodes
+	\node (A) {$\Delta^2[1]$};
+	\node[right=of A] (B) {$\Delta^2[0]$};
+	\node[below=of B] (C) {$\Delta^k[0]$};
+	\node[below=of A] (D) {$\Delta^k[1]$};
+
+  % Arrows (legs of the right triangle)
+  \draw (A) -- node[above] {$d_1$} (B);
+  \draw (A) -- node[right] {$g_1$} (D);
+  \draw (B) -- node[right] {$g_0$} (C);
+  \draw (D) -- node[below] {$d_1$} (C);
+
+\end{tikzpicture}
+$$
+
+There is only one element in $\Delta^2[1]$ that is not contained in $\L^2_1[1]$, namely this element is $\alpha: [1] \rightarrow [2]$ that send $0$ to $0$ and $1$ to $2$.
+Let us take this element through the above commutative diagram.
+
+Note that $d_1 \alpha \in \Delta^2[0]$ is the map that sends $0$ to $0$, which is contained in $\L^2_1[0]$.
+By horn-filling condition must equal to $d_1 f_0(\alpha)$
+Similarly, $d_0 \alpha = d_0 f_0(\alpha)$.
+Notice that in $\Delta^k$ there is a unique 1-simplex $\eta$ such that $d_1 \eta = d_1 f_0(\alpha)$ and $d_0 \eta = d_0 f_0(\alpha)$, and we shall define $g_1(\alpha) = \eta$.
+
+How the natural transformation $g$ acts on the rest of simplices can be defined similarly.
+\end{example}
+
 
 \subsection{Nerves of Categories}
 

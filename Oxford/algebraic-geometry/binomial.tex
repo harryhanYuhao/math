@@ -9,7 +9,7 @@ This section establishes some well-known facts about binomial coefficients used 
 	\begin{equation}\label{binom-def1}
         \binom{n}{k} = \frac{n!}{k!(n-k)!}
     \end{equation}
-    where $n!$ is the factorial of $n$, defined as $n! = n \times (n-1) \times \dots \times 1$ with the convention that $0! = 1$. If $k > n$, we define $\binom{n}{k} = 0$.
+    where $n!$ is the factorial of $n$, defined as $n! = n \times (n-1) \times \dots \times 1$ with the convention that $0! = 1$. 
 \end{definition}
 
 $\binom{n}{k}$ represents the number of ways to choose $k$ elements from a set of $n$ elements without regard to ordering. 
@@ -57,11 +57,23 @@ Pascal's identity has proved to be useful for inductive proofs and recursive rel
     which completes the proof.
 \end{proof}
 
+We also have a combinatorial proof of Pascal's identity.
+$\binom{n}{k}$ is the number of way to choose $k$ items from $n$ items. Pick any one of the $n$ items. There are two cases. 
+Firstly, this item is chosen, so we need to choose $k-1$ items from the remaining $n-1$ items, gives $\binom{n-1}{k-1}$ ways. 
+Secondly, this item is not chosen, so we need to choose all $k$ items from the remaining $n-1$ items, gives $\binom{n-1}{k}$ ways.
+
 The definition \eqref{binom-def1} can be expressed as 
 \begin{equation}\label{binom-def2}
 \binom{n}{k} = \frac{n!}{k!(n-k)!} =  \frac{n(n-1)(n-2)\cdots(n-k+1)}{k!} = \frac{\prod_{i=0}^{k-1}(n-i)}{k!}
 \end{equation}
 This equation is valide for any real number $n$ and non-negative integer $k$.
+This gives a natural extension of binomial coefficient. 
+\begin{definition}[General Binomial Coefficient]
+	For any real number $n$ and non-negative integer $k$, the binomial coefficient $\binom{n}{k}$ is defined as
+	$$
+		\binom{n}{k} = \frac{n(n-1)(n-2)\cdots(n-k+1)}{k!} = \frac{\prod_{i=0}^{k-1}(n-i)}{k!}
+	$$
+\end{definition}
 We define this as the extension of binomial coefficient to real numbers.
 In particular, this formula is allows us to define $\binom{n}{k}$ when $n$ is a negative integer, or $n$ is an integer but smaller than $k$.
 
@@ -105,7 +117,7 @@ The following theorem states that $\binom{x}{k}$ spans all integer-valued polyno
 	$$
 	P(x) = c_0 \binom{x}{0} + c_1 \binom{x}{1} + c_2 \binom{x}{2} + \cdots + c_k \binom{x}{n}
 	$$
-	Note that $\binom{x}{0} = 1$.
+	Note that $c_0\binom{x}{0} = c_0$.
 \end{theorem}
 
 \begin{proof}

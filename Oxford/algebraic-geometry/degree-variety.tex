@@ -1,8 +1,8 @@
 \section{Degree of a Variety}
 
 The degree if a variety is an important invariant in algebraic geometry. 
-Its definition is
-\begin{definition}[Degree of a Variety]\label{def:degree-variety}
+Its definition is the following.
+\begin{definition}[Degree of a Variety]\label{def:degree-variety}\cite{Invitation-AG}
 	Let $V$ be a $k$-dimensional projective variety in $\mathbb{P}^n$.
 	The degree of $V$, denoted $\deg(V)$, is defined as the largest number of points in the intersection of $V$ with a subspace $L$ of codimension $k$ in $\mathbb{P}^n$.
 \end{definition}
@@ -14,6 +14,9 @@ Before dive deep into the theoretical discussion of the degree, let us first com
 \begin{example}[Degree of Point]\label{ex:degree-point}
 	Let $P$ be a point in $\P^n$. It is of dimension $0$, its hypersurface of codimension $0$ is $\P^n$ itself. 
 	Clearly there is always one intersection point, and $\deg(P) = 1$.
+
+	Note that the Hilbert polynomial of a point is $P_P(t) = 1$, whose leading coefficient is $1 = c$.
+	Thus $\deg(P) = 0! \cdot c$.
 \end{example}
 
 \begin{example}[Degree of Projective Space]
@@ -23,6 +26,8 @@ Before dive deep into the theoretical discussion of the degree, let us first com
 	There intersectin is precisely one point $[1, 0, \cdots, 0]$. So we have $\deg(\P^n) = 1$.
 	
 	Take note that the leading coefficient of the Hilbert polynomial of $\P^n$ is $\frac{1}{n!} = c$, and $\deg(\P^n) = n! \cdot c$.
+
+	Note that the leading coefficient of the Hilbert polynomial of $\P^n$ is $\frac{1}{n!} = c$, and $\deg(\P^n) = n! \cdot c$.
 \end{example}
 
 \begin{example}[Degree of Hypersurfaces]\label{ex:degree-hypersurface}
@@ -45,6 +50,10 @@ Before dive deep into the theoretical discussion of the degree, let us first com
 	The maximum number of solutions is attained when we choose $L$ general linear position, so we have $\deg(X) = d$.
 
 	Take note that the leading coefficient of the Hilbert polynomial of $X$ is $\frac{d}{(n-1)!} = c$, and $\deg(X) = (n-1)! \cdot c$.
+
+	In example \ref{ex:hilbert-poly-hypersurface}, we have shown that the leading term of Hilbert polynomial of $X$ is 
+	$\frac{d}{(n-1)!}$.
+	So we have $\deg(X) = (n-1)! \cdot c$.
 \end{example}
 
 \begin{example}[Degree of the Twisted Cubic]
@@ -67,9 +76,11 @@ Before dive deep into the theoretical discussion of the degree, let us first com
 	Take note that the leading coefficient of the Hilbert polynomial of the twisted cubic is $\frac{3}{1!} = c$, and $\deg(X) = 1! \cdot c$.
 \end{example}
 
+
 \subsection{Properties of Degree}
 
-We have the following important theorem relating degree of the varieties to their Hilbert polynomials.
+In all the above examples, we found that the degree of the variety equals the leading coefficient of its Hilbert polynomial multiplied by the factorial of its dimension.
+We give a sketch of the proof of this important theorem below.
 
 \begin{theorem}\label{thm:degree-hilbert-polynomial}
 	Let $V$ be a $k$-dimensional projective variety in $\mathbb{P}^n$ with Hilbert polynomial $P_V(t)$.

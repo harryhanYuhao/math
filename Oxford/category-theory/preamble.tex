@@ -30,29 +30,27 @@
 
 \usepackage{tikz}
 \usepackage{tikz-cd}
-\usetikzlibrary{arrows.meta, positioning, calc, arrows}
+\usetikzlibrary{arrows.meta, positioning, calc, arrows, decorations.pathreplacing}
 % \usepackage{calrsfs}
 
 
 \newtheorem{theorem}{Theorem}[section]
 \newtheorem{lemma}[theorem]{Lemma}
-\newtheorem{corollary}{Corollarium}[section]
-\newtheorem{proposition}{Proposition}[theorem]
+\newtheorem{corollary}[theorem]{Corollarium}
+\newtheorem{proposition}[theorem]{Proposition}
 \theoremstyle{definition}
-\newtheorem{definition}{Definition}[section]
+\newtheorem{definition}[theorem]{Definition}
 
 \theoremstyle{definition}
-\newtheorem{axiom}{Axioma}[section]
+\newtheorem{axiom}[theorem]{Axioma}
 
 \theoremstyle{remark}
-\newtheorem{remark}{Remark}[section]
-\newtheorem{hypothesis}{Coniectura}[section]
-\newtheorem{example}{Exampli Gratia}[section]
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{hypothesis}[theorem]{Coniectura}
+\newtheorem{example}[theorem]{Example}
 % Proof Environments
 \newcommand{\thm}[2]{\begin{theorem}[#1]{}#2\end{theorem}}
 
-% \renewenvironment{proof}{{\bfseries\emph{Demonstratio.}}}{\qed}
-\renewcommand\qedsymbol{Q.E.D.}
 
 \newcommand{\D}{\bm{\Delta}}
 \renewcommand{\S}{\textbf{Set}}
@@ -62,6 +60,7 @@
 \renewcommand{\L}{\Lambda}
 \newcommand{\C}{\mathcal{C}}
 \newcommand{\F}{\text{Fun}}
+\newcommand{\HomU}{\underline{\text{Hom}}}
 
 \let\H\relax
 \DeclareMathOperator{\H}{\text{Hom}}

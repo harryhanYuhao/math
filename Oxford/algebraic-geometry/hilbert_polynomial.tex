@@ -1,11 +1,11 @@
 \section{Q1. Existence of Hilbert Polynomial}
 
-The aim of this section is to prove Hilbert polynomial of an variety exists and has degree equal to the dimension of the variety.
+The aim of this section is to prove Hilbert polynomial of an variety exists.
 
 We shall first define Hilbert's function. 
 \begin{definition}[Hilbert's function]
-	Let $R = k[x_0, \cdots, x_n]$ be a polynomial ring over a field $k$ graded by degree.
-	Let $N$ be a finitely generated graded $R$-module with decomposition 
+	Let $R = k[x_0, \cdots, x_n]$ be a polynomial ring graded by degree over a field $k$.
+	Let $N$ be a finitely generated graded $R$-module with graded decomposition 
 	$$
 		N = \bigoplus_{d \in \mathbb{Z}} N_d
 	$$
@@ -13,21 +13,23 @@ We shall first define Hilbert's function.
 	$$
 		H_N(k) = \dim_k(N_k)
 	$$
-	for all integers $d \in \mathbb{Z}$.
+	for all integers $d \in \mathbb{Z}$, where dimension of $N_k$ is calculated as a vector space over the field $k$.
 \end{definition}
 
 The surprising theorem is that there exists a polynomial $P_N(t) \in \mathbb{Q}[t]$ such that $P_N(k) = H_N(k)$ for all large enough integers $k$.
 
 \begin{theorem}\label{thm:hilbert-polynomial}
-Let $N$ be a finitely generated graded module over the polynomial ring $R_n := \mathbb{K}[x_0, \dots, x_n]$. Then there exists a polynomial $P_N(t) \in \mathbb{Q}[t]$ of degree at most $n$ such that for all sufficiently large integers $k$:
+Let $N$ be a finitely generated graded module over the polynomial ring $R_n := k[x_0, \dots, x_n]$. Then there exists a polynomial $P_N(t) \in \mathbb{Q}[t]$ of degree at most $n$ such that for all sufficiently large integers $k$:
 \[ H_N(k) = P_N(k) \]
 where $H_N(k)$ is the Hilbert function of $N$.
 \end{theorem}
 
+Our proof was inspired by \cite{blog}.
+
 \begin{proof}
 We proceed by induction on the number of variables $n$.
 
-\textbf{Base Case:} Since the ring $R$ has $n+1$ indeterminants, we shall start with $n = -1$, where the ring is $R_{-1} = \mathbb{K}$. 
+\textbf{Base Case:} Since the ring $R$ has $n+1$ indeterminants, we shall start with $n = -1$, where the ring is $R_{-1} = K$. 
 Since $N$ is a finitely generated module over a field, it is a finite-dimensional vector space. 
 By a standard result in linear algebra, 
 $$
@@ -45,7 +47,7 @@ Since $\phi$ maps the graded component $N_k$ to $N_{k+1}$, we can examine the ke
 N' &= \ker(\phi) = \{m \in N \mid x_n m = 0\} \\
 N'' &= \operatorname{coker}(\phi) = N / x_n N
 \end{align*}
-Both $N'$ and $N''$ are finitely generated graded $R_n$-modules. Crucially, the element $x_n$ annihilates both modules. Therefore, they can be viewed as finitely generated graded modules over the quotient ring $R_n / \langle x_n \rangle \cong \mathbb{K}[x_0, \dots, x_{n-1}] = R_{n-1}$.
+Both $N'$ and $N''$ are finitely generated graded $R_n$-modules. Crucially, the element $x_n$ annihilates both modules. Therefore, they can be viewed as finitely generated graded modules over the quotient ring $R_n / \langle x_n \rangle \cong k[x_0, \dots, x_{n-1}] = R_{n-1}$.
 
 By the induction hypothesis, there exist polynomials $P_{N'}$ and $P_{N''}$ of degree at most $n-1$ such that for $k \gg 0$:
 \[ \dim(N'_k) = P_{N'}(k) \quad \text{and} \quad \dim(N''_k) = P_{N''}(k) \]
@@ -65,7 +67,12 @@ Lemma \ref{ap:diff-int-val} states that if a function $H(k)$ satisfies $H(k+1) -
 This is our desired Hilbert polynomial $P_N(t)$ of degree at most $n$.
 \end{proof}
 
-When regarding the Hilbert polynomial of a projective variety $X \subset \P^n$, if we apply an automorphism of $P^n$, the Hilbert polynomial remains unchanged, as automorphisms of $\P^n$ induce isomorphisms of the corresponding homogeneous coordinate rings, which preserve the graded structure and dimensions of the graded components.
+For a projective variety $X \subset \P^n$, we can consider its homogeneous coordinate ring $S(X) = k[x_0, \cdots, x_n]/I(X)$, which is a finitely generated graded module over the polynomial ring $R_n = k[x_0, \cdots, x_n]$.
+So our theorem above applies.
+Let the Hilbert polynomial of this module be the Hilbert polynomial of the variety $X$.
+In addition, we denote the Hilbert polynomial of $X$ as $P_X(t)$.
+
+When regarding the Hilbert polynomial of a projective variety $X \subset \P^n$, if we apply an automorphism of $\P^n$, the Hilbert polynomial remains unchanged, as automorphisms of $\P^n$ induce isomorphisms of the corresponding homogeneous coordinate rings, which preserve the graded structure and dimensions of the graded components.
 This is an important \emph{invariance} property of Hilbert polynomials.
 
 However, as will be shown in the example \ref{iso-diff-hil}, two isomorphic varieties may have different Hilbert polynomials.
@@ -116,7 +123,7 @@ So the constant term of $P(k)$ is $c_0$.
 	$$
 		P_X(k) = 1
 	$$
-	of degree 0.
+	The polynomial has degree $0$.
 \end{example}
 
 \begin{example}[Hilbert Polynomial for $\P^n$]\label{example:hilbert-polynomial-pn}
@@ -140,13 +147,13 @@ So the constant term of $P(k)$ is $c_0$.
 	In particular, $P_{\P^n}(k)$ is a polynomial of degree $n$, anmd it has leading term
 	$$ \frac{k^n}{n!} $$
 
-	It is clear that the above arguments also works if we consider the trivil inclusion $\P^n \subset P^m$ for any $m \geq n$, where $\P^n$ is identified with the variety $V(x_{n+1}, \cdots, x_m) \subset \P^m$.
+	It is clear that the above arguments also works if we consider the trivil inclusion $\P^n \subset \P^m$ for any $m \geq n$, where $\P^n$ is identified with the variety $V(x_{n+1}, \cdots, x_m) \subset \P^m$.
 	So the Hilbert polynomial in this case is also given by equation \eqref{HP-Pn}.
 \end{example}
 
 \begin{example}\label{ex:hilbert-poly-hypersurface}
 	Let $X \in \P^n$ be the variety $V(f)$, where $f$ is a homogeneous polynomial of degree $d$.
-	The Hilbert polynomial of $X$ is associated to the module $M = k[x_0, \cdots, x_n]/f$.
+	The Hilbert polynomial of $X$ is associated to the module $M = k[x_0, \cdots, x_n]/(f)$.
 
 	Let $R$ denote the ring $k[x_0, \cdots, x_n]$, and $R_k$ denote the $k$-th graded component of $R$, i.e., the vector space spanned by all monomials of degree $k$.
 	We have the following short exact sequence of graded $R$-modules
@@ -159,9 +166,8 @@ So the constant term of $P(k)$ is $c_0$.
 		P_M(k) = \dim{M_k} = \dim{R_k} - \dim{R_{k-d}} = \binom{n+k}{n} - \binom{n+k-d}{n}
 	$$
 	Since $n, d$ are constants, this is a polynomial of $k$, and therefore the desired Hilbert polynomial.
-	As in the previous example, the degree of this polynomial is $n$.
 
-	Let us compute the its leading term.
+	Let us compute its leading term.
 	Write $\binom{n+k}{n} = \sum_{i = 0}^{n} a_i k^i$. 
 	By previous example, $a_n = \frac{1}{n!}$.
 	Therefore 
@@ -178,10 +184,6 @@ So the constant term of $P(k)$ is $c_0$.
 	\frac{dk^{n-1}}{(n-1)!}
 	$$
 	Since all other terms in the summand will not give a term with higer degree, this is the leading term.
-
-
-	It is clear the $k[x, y, z]/ (xy -z^2) \cong k[x, y]$, so this variety is isomorphic to $\P^1$. 
-	Take note, however, $P_{\P_1}(k) = \binom{k+1}{1} = k + 1$, which is different from the hilbert polynomial computed above.
 \end{example}
 
 \begin{example}\label{iso-diff-hil}
@@ -200,6 +202,9 @@ So the constant term of $P(k)$ is $c_0$.
 	\[
 		P(k) = 2k + 1
 	\]
+
+	It is clear the $k[x, y, z]/ (xy -z^2) \cong k[x, y]$, so this variety is isomorphic to $\P^1$. 
+	Take note, however, $P_{\P_1}(k) = \binom{k+1}{1} = k + 1$, which is different from the hilbert polynomial computed above.
 \end{example}
 
 \begin{example}[Twisted Cubic]\label{ex:hilbert-poly-twisted-cubic}

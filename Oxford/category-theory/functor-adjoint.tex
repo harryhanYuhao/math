@@ -1,0 +1,22 @@
+\section{Functor and Adjunctions in \(\infty\)-Categories}
+
+\begin{definition}[Functor between \(\infty\)-Categories]
+	A functor between $\infty$-categories is simply a morphism between the underlying simplicial sets.
+\end{definition}
+
+Our definition of adjoint come frome Lurie \cite{lurie}.
+
+\begin{definition}[Adjoint Functors]
+	Let $\mathcal{C}$ and $\mathcal{D}$ be $\infty$-categories, and $L, R$ functors shown as below
+	$$
+	\mathcal{C} \stackrel{\overset{L}{\leftarrow}}{\underset{R}{\to}} \mathcal{D}
+	$$
+
+	They are said to be adjoint functors if there exists a unit transformation
+	\[u: \mathrm{id}_{\mathcal{C}} \to R L\]
+	such that for every objects $c \in \mathcal{C}$ and $d \in \mathcal{D}$, the induced map
+\[\mathrm{Hom}_{\mathcal{C}}(L d, c) \to \mathrm{Hom}_{\mathcal{D}}(RL d, R c) \xrightarrow{\hom_{\mathcal{D}}(u, R_c)} \mathrm{Hom}_{\mathcal{D}}(d, R c)
+	\]
+	is an equivalence of spaces.
+\end{definition}
+

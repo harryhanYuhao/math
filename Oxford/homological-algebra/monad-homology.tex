@@ -191,6 +191,27 @@ The preciese definition is listed below.
 	\end{align}
 \end{definition}
 
+Moreover, since $\epsilon: \perp \Rightarrow \text{id}$ is a natural transformation, for any morphism $f: X \to Y$ in $\C$, the following diagram commutes.
+\begin{equation}
+	\begin{tikzcd}
+		\perp(X) \arrow{r}{\perp(f)} \arrow{d}{\epsilon_X} &  \perp(Y) \arrow{d}{\epsilon_Y} \\
+		X \arrow{r}{f} & Y
+	\end{tikzcd}
+\end{equation}
+
+Taking $X = \perp A$, $Y = A$, and $f = \epsilon_A$ gives us the following commutative diagram.
+\begin{equation*}
+	\begin{tikzcd}
+		\perp \perp (A) \arrow{r}{\perp \epsilon_A} \arrow{d}{\epsilon_{\perp A}} &  \perp(A) \arrow{d}{\epsilon_A} \\
+		\perp(A) \arrow{r}{\epsilon_A} & A
+	\end{tikzcd}
+\end{equation*}
+
+This diagram can be summarised as the following identity 
+\begin{equation}\label{comod-3}
+	\epsilon(\epsilon \perp) = \epsilon(\perp \epsilon)
+\end{equation}
+
 We may construct a comonad from an adjunction as follows.
 
 \begin{theorem}
@@ -236,19 +257,41 @@ A comonad may induce a simplicial object.
 \end{theorem}
 As usually, the domain and the range of the face and degeneracy maps will always be evident from the context, and the superscript will therefore be omitted.
 
-\begin{proof}
-	We will verify $\perp_\bullet$ is indeed a monad following the remark \ref{sim-set-data}; i.e., the faces and degeneracy map satisfy the simplicial identities listed in \eqref{simp1} to \eqref{simp3}.
+Let us first of all unpack these complicated notations.
+Notice that $\delta \perp A \subset \perp \perp A$. 
+If we want to apply $\epsilon: \perp A \Rightarrow \text{id}$ to this, we are actually applying $\epsilon_{\perp A}: \perp \perp A \rightarrow \perp A$.
 
-	We shall first of all unpack the notation. 
+Let us consider  $\d^n_i = \perp^i \epsilon \perp^{n-i}: \perp_n \rightarrow \perp_{n-1}$. 
+The domain of $\d^n_i$ is $\perp^{n+1}A$. 
+Again, $\epsilon \perp_{n-1}$ is the short-hand notation for $\epsilon_{\perp^{n-i}A}:\perp (\perp^{n-i}A) \rightarrow \perp^{n-i}A$.
+The functor $\perp: \A \rightarrow \A$ is applied $i$ times to the map $\epsilon_{\perp^{n-i}A}$, so the domain and range of $\d^n_i$ is indeed $\perp^{n+1}A = \perp_n A$ and $\perp^n A = \perp_{n-1}$ respectively.
+
+\begin{proof}
+	We will verify $\perp_\bullet$ is indeed a simplicial object following the remark \ref{sim-set-data}; i.e., the faces and degeneracy map satisfy the simplicial identities listed in \eqref{simp1} to \eqref{simp3}.
+
+	Let us consider $\d^{n+1}_i \sigma^n_i$ first.
+	By definition 
+	$$
+	\d^{n+1}_i = \perp^i \epsilon \perp^{n+1 - i} \quad \quad \sigma^n_i = \perp^i \delta \perp^{n - i}
+	$$
+	Take note the domain of $\epsilon_{n+1-i}$ is $\perp^{n+2 - i} A$, which is also the range of $\delta_{\perp^{n-i}}$.
+	Denote $\perp^{n-i} A = B$, we have
+	$$
+	\perp B \xrightarrow{\delta_B} \perp \perp B \xrightarrow{\epsilon_{\perp B}} \perp B
+	$$
+	By \eqref{comonad-asso} this composition is identity.
+	Thus $\d^{n+1}_{i} \sigma^n_i $ = $\perp^i \text{id} = \text{id}$. (As $\perp$ is a functor that preserves identity maps.)
+
+	Weibel presented my previous argument in the following concise notation \cite{weibel}.
 	\begin{align*}
-		\d_i \sigma_i   =& \perp^i(\epsilon \perp) \delta \perp^{n-i} \\ 
+		\d_i \sigma_i   =& \perp^i(\epsilon_{\perp^{n-i}} \perp) \delta \perp^{n-i} \\ 
 						=& \perp^i (\text{id}) \perp^{n-i} \quad \text{by \eqref{comonad-asso}} \\	
 						=& \text{id} 
 	\end{align*}
 
 	Similarly, 
 	\begin{align*}
-		\d_{i+1} \sigma_i =& \perp^i(\perp \epsilon) \delta \perp^{n-i} \\ 
+		\d_{i+1} \sigma_i =& \perp^i(\perp \epsilon_{\perp^{n-i}}) \delta \perp^{n-i} \\ 
 						=& \perp^i (\text{id}) \perp^{n-i} \quad \text{by \eqref{comonad-counit-id}} \\	
 						=& \text{id} 
 	\end{align*}
@@ -277,4 +320,4 @@ Dually, a monad may induce a cosimplicial object.
 	Then $(\top^{\bullet}, \d^i, \sigma^i)$ is a cosimplicial object in the category $\A$.
 \end{theorem}
 
-The proof is exactly identity to that of simplicial objects from comonads, by reversing all the arrows, and is therefore omitted here.
+The proof is exactly dual to that the previous proof of simplicial objects from comonads, by reversing all the arrows and the order of composition.

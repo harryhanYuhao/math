@@ -1,6 +1,7 @@
 \section{Bezout's Theorem}
 
 In this section we will prove Bezout's theorem in $\P^2$
+Our discussion in this sections is inspired by \cite{Hartshorne-AG}.
 
 \begin{theorem}[Bezout's Theorem]
 	Let $X, Y \subseteq \P^2$ be projective varieties over an algebraically closed field $k$ having degrees $\deg(X)$ and $\deg(Y)$ respectively.
@@ -39,6 +40,7 @@ We first need an extension of lemma \ref{graded-prime-filtration}.
 	The \emph{multiplicity} of the module $M$ at the homogeneous prime ideal $\p$ is defined as the length of the localisation $M_{\p}$ over the local ring $R_{\p}$. It is denoted as $\mu_{\p}(M)$.
 \end{definition}
 
+\begin{definition}[Intersection Multiplicity]
 Let $Y \subset \P^n$ be a projective variety of dimension $r$ defined by homogeneous ideal $I$.
 Let $H$ be a hypersurface in not containing $Y$ defined by homogeneous ideal $J = (f)$.
 We have $Y \cap H = Z_1 \cup Z_2 \cup \cdots Z_s$ of dimension $r-1$. 
@@ -47,6 +49,7 @@ We define the \emph{intersection multiplicity} of $Y$ and $H$ at $Z_i$ as
 $$
 	I(Y, H; Z_i) := \mu_{\p_i}(R/(I + J)).
 $$
+\end{definition}
 
 We have the following theorem. 
 

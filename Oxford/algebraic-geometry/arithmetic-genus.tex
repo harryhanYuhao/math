@@ -37,7 +37,7 @@ Let us calculate the arithematic genus in several examples.
 		P_X(t) = \binom{t+n}{n} - \binom{t+n-d}{n}.
 	\]
 
-	Finally, its arithmetic genus of
+	Finally, its arithmetic genus is
 	$$
 		(-1)^{n-1} (P_M(0) - 1) = (-1)^{n-1} \left( \binom{n}{n} - \binom{n - d}{n} - 1 \right) = (-1)^{n} \binom{n - d}{n}
 	$$
@@ -52,7 +52,7 @@ In the previous sections, we have shown that neither the degree of a projective 
 However, in the example of the twisted cubic, we see it has the same arithmetic genus as $\P^1$, which it is isomorphic to.
 
 In general, we have the following theorem.
-\begin{theorem}
+\begin{theorem}\cite{Hartshorne-AG}
 Let $X$ and $Y$ be projective varieties over a field $k$, both of pure dimension $d$.
 If $\varphi:X\xrightarrow{\;\cong\;}Y$ is an isomorphism of $k$-varieties, then
 \[
@@ -62,3 +62,13 @@ p_a(X)=p_a(Y),
 
 This proof require ideas in sheaf cohomology, which is beyond the scope of this course, so we do not include it here.
 
+For the sake of completeness, here I stated the definition of arithmetic genus using sheaf cohomology.
+
+\begin{definition}[Arithmetic Genus \cite{Hartshorne-AG}]
+	Let $X$ be a projective variety of dimension $d$ over a field $k$.
+	The \textbf{arithmetic genus} of $X$ is defined to be
+	\[
+		p_a(X) = (-1)^d (\chi(\mathcal{O}_X) - 1),
+	\]
+	where $\chi(\mathcal{O}_X) = \sum_{i=0}^d (-1)^i \dim_k H^i(X, \mathcal{O}_X)$ is the Euler characteristic of the structure sheaf $\mathcal{O}_X$.
+\end{definition}
