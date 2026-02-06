@@ -1,4 +1,4 @@
-\section{Q6. Canonical Resolutions}
+\section{Canonical Resolutions}
 
 This section aims to solve the following problem.
 
@@ -32,7 +32,7 @@ So the only obstacle is to show the chain complex is exact.
 This theorem is can be proved in several steps via the method in contractible simplicial objects.
 
 \begin{definition}[Contractible]
-	A simplicial object $X$ is \emph{contractible} if there exists maps $s_{f}: X_n \to X_{n+1}$ for each $n\geq 0$ such that
+	A simplicial object $X$ is \emph{contractible} if there exists maps $f_{n}: X_n \to X_{n+1}$ for each $n\geq 0$ such that
 	\begin{align}
 		\d_{n+1}f_{n} &= \id \label{contractible1} \\
 		\d_{i}f_{n} &= f_{n-1}\d_{i} \quad \text{for } 0 \leq i \leq n \label{contractible2} 
@@ -77,8 +77,47 @@ The following lemma is also crucial.
 \end{lemma}
 
 \begin{proof}
-	Define $f_n = \eta U\perp^n$, we can see all the required conditions hold.
+	Recall that $\perp = FU, \top = UF, \eta: \id \Rightarrow \top, \epsilon: \perp \Rightarrow \id$ are the comonad and monad structures associated to the adjunction $(F, U)$.
+
+	Unwrapping the notation, the simplicial object $U(\perp_\bullet A)$ has terms
+	\[	U(\perp^n A) = U(FU)^n A = \top^n U(A) \]
+	and face and degenerate maps given by
+	\begin{align*}
+		\d_i &= U \perp^i \epsilon \perp^{n - i} = \top^i U(\epsilon_{\perp^{n - i} A}) \\
+		\s_j &= U \perp^j \eta \perp^{n - j} = \top^j \eta_{U(\perp^{n - j} A)}
+	\end{align*}
+	
+	Let us define $f_n: U(\perp^n A) \to U(\perp^{n+1} A)$ as
+	\[
+		f_n = \top^{n+1} \eta U
+	\]
+	Let us verify that $f_n$ satisfies \eqref{contractible1} and \eqref{contractible2}.
+
+	By property of adjoint we have the following commutative diagram:
+	$$
+	\begin{tikzcd}
+			U(A) \arrow{r}{\eta_{U(A)}} \arrow{dr}{\text{id}_{U(A)}} & UFU(A) \arrow{d}{U(\epsilon_{A})} \\
+			 & U(A)
+	\end{tikzcd}
+		$$
+		Applying the functor $\top^{n+1}$ to the diagram gives us
+		$$
+		\top^{n+1} U (\epsilon_A)\circ \top^{n+1} \eta_{U(A)} = \id
+		$$
+		This is exactly 
+		\[
+			\d_{n+1} f_n = \id 
+		\]
+
+		The verification of \eqref{contractible2} is similar, as we have 
+		$$
+		\d_i f_n = (\top^n \eta U)(U \perp^i \epsilon \perp^{n - i} ) = f_{n-1}\d_i
+		$$
 \end{proof}
+\begin{remark}
+	Weibel \cite{weibel} defines $f_n = \eta U\perp^n$ in proposition 8.6.10.
+	I could not verify the contractible condition with this definition.
+\end{remark}
 
 From now the argument is easy.
 Using the notation of lemma \ref{adjoint-contractible}, let $\A = \RM$, $\B = \S$ and $A = M$. 
@@ -86,11 +125,11 @@ Therefore $U(\perp_\bullet M)$ is a contractible simplicial set.
 Since forgetful functor does not change the mapping or the underlying set structure, but only forgets the module structure, therefore $\perp_\bullet M$ is also contractible as a simplicial set.
 Therefore, applying lemma \ref{contractible-exact}, the normalised chain complex $N(\perp^\bullet M)$ is exact, which completes the proof for theorem \ref{canonical-resolution-exact}.
 
-\section{Q7. Relative Homology and Hochschild Homology}
+\section{Relative Homology and Hochschild Homology}
 
 Given a ring homomorphism $f: R \to k$, there is a forgetful functor $U: \MR \to \Mk$.
 It has a left adjoint $F: \Mk \to \MR$ defined by $F(M) = M \otimes_k R$.
-Therefore $(F, U)$ constittutes a comonad $\perp = FU$ on $\MR$, and thus we can construct a simplicial object $\perp_\bullet M$ for any $M \in \MR$.
+Therefore $(F, U)$ constitutes a comonad $\perp = FU$ on $\MR$, and thus we can construct a simplicial object $\perp_\bullet M$ for any $M \in \MR$.
 
 By definition of $(F, U)$, it is evident that $\perp M = M \otimes_k R$, and thus $\perp_n = \perp^{n+1} M = M \otimes_k R^{\otimes n}$.
 Note that Lemma \ref{adjoint-contractible} still holds in this case, so the normalised chain complex $N(\perp_\bullet M)$ is exact considered as complex of $k$-modules.

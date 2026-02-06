@@ -1,8 +1,10 @@
-\section{Question 1. Simplicial Objects}
+\section{Simplicial Objects}
 
-The goal of this mini-project to to study simplicial objects, cotriple cohomology, and Hoschild cohomology.
+The goal of this mini-project to to study simplicial objects, cotriple cohomology, and Hochschild cohomology.
 
 Our first goal is to define simplex category and simplicial objects, and show that simplicial sets are equivalent to sequences of sets with face and degenerate maps satisfying certain identities, which is the goal of question 1.
+
+The definitions in this section are mostly taken from \cite{lurie}, yet the proofs are original.
 
 \subsection{Simplex Category}
 
@@ -31,7 +33,7 @@ For each $n, j \in \N, 0\leq j \leq n$, define \emph{face} and \emph{degenerate}
 
 Concretely, the face map $\epsilon^{j, n}$ is the only injective and order-preserving maps from $[n - 1]$ to $[n]$ that misses $j \in [n]$, and the degenerate map $\eta^{j, n}$ is the only surjective and order-preserving map from $[n + 1]$ to $[n]$ that hits $j \in [n]$ twice.
 
-Since the domain and codomain of the face and degenerate maps will always be clear from the context, we will denote them as $d^j$ and $s^j$ hereafter.
+Since the domain and codomain of the face and degenerate maps will always be clear from the context, we will denote them as $\epsilon^j$ and $\eta^j$ hereafter.
 
 Let $i < j$. 
 The composition of face maps $\epsilon^j \epsilon^i$ is the unique injective and order-preserving map from $[n - 2]$ to $[n]$ that misses both $i$ and $j \in [n]$. 
@@ -133,4 +135,8 @@ $$
 $$
 \end{remark}
 This is the \emph{answer} to question 1.
+
+\begin{problem}
+	Given a simplicial object, the data of the simplicial object is equivalent to the data of a sequence of objects together with face and degenerate maps satisfying the simplicial identities.
+\end{problem}
 

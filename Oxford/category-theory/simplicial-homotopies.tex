@@ -173,7 +173,7 @@ We can define a simplicial category $\mathfrak{C}[J]$ as follows:
 \end{enumerate}
 
 
-$\mathfrak{C}$ actually defines a functor from the category of simplicial sets to the category of simplicial categories 
+$\mathfrak{C}$ actually defines a functor from the category of simplicial sets to the category of simplicial categories \cite{lurie} 
 \begin{align*}
 	\mathfrak{C}&: \sS \rightarrow \textbf{sCat} \\
 	\Delta^{n} &\mapsto \mathfrak{C}[\Delta^{n}]
@@ -187,11 +187,11 @@ If $\C$ is a simplicial category, we can define its simplicial \emph{nerve} (or 
 	$$
 \end{definition}
 
-Lurie showed the following proposition.
+Lurie \cite{lurie} showed the following proposition.
 \begin{proposition}
 	Let $\C$ be a simplicial category such that for every pair of objects $X, Y \in \C$, the mapping simplicial set $\mathrm{Map}_{\C}(X, Y)$ is a Kan complex. Then the simplicial nerve $N(\C)$ is an $\infty$-category.
 \end{proposition}
 
 We know that simplicial sets are enriched over themselves. 
 Moreover, if we restrict to the full subcategory of simplicial sets consisting of Kan complexes, denoted as $\textbf{Kan}$, then $\textbf{Kan}$ is a simplicial category where the mapping simplicial sets are also Kan complexes.
-So Lurire's proposition implies that the simplicial nerve $N(\textbf{Kan})$ is an $\infty$-category.'
+So Lurire's proposition implies that the simplicial nerve $N(\textbf{Kan})$ is an $\infty$-category.

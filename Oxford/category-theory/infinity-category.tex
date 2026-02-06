@@ -30,7 +30,11 @@ There is no requirement for uniqueness of the extension.
 This condition is also known as the \emph{weak Kan extension condition}, and $\infty$-category is also called \emph{weak Kan complex} \cite{boardman2006homotopy}.
 \end{definition}
 
-% TODO: is this correct?
+\begin{remark}
+	The reason for calling it \textit{weak} Kan complex is because we have a different condition for \emph{Kan complex}, which requires filling all horns, including the outer horns.
+\end{remark}
+
+
 In the language of model categories, $\infty$-categories are precisely the fibrant objects in the Joyal model structure on $\sS$ \cite{joyal}.
 
 In this definition, the objects of the $\infty$-category $\mathcal{D}$ are given by the $0$-simplices $\mathcal{D}_0$, the morphisms between two objects $x, y \in \mathcal{D}_0$ are given by the $1$-simplices $f \in \mathcal{D}_1$ such that $d_1(f) = x$ and $d_0(f) = y$. 
@@ -250,3 +254,4 @@ $$
 
 \end{proof}
 
+As a result, nerves of ordinary categories provide a large class of examples of $\infty$-categories.

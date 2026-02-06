@@ -1,4 +1,4 @@
-\section{Question 2. Dold-Kan Correspondence}
+\section{Dold-Kan Correspondence}
 
 \subsection{Nomalised Chain Complex}
 
@@ -125,7 +125,7 @@ There are two things to be checked.
 	\end{tikzcd}
 	\end{equation}
 	Since $\eta$ is surjective, and $\text{id}$ is injective, the unique epi-mono factorisation of $\eta \circ \text{id}$ is $\text{id} \circ \eta$.
-	Soe by the first case of our definition, $K(C)(\text{id})|_{C_p[\eta]}$ is the identity map on each summand $C_p$, therefore $K(C)(\text{id}) = \text{id}_{K(C)}$.
+	So by the first case of our definition, $K(C)(\text{id})|_{C_p[\eta]}$ is the identity map on each summand $C_p$, therefore $K(C)(\text{id}) = \text{id}_{K(C)}$.
 	\item Composition of maps in $\D$ are sent to contravariant composition of maps in $\A$. 
 		Again, let us check its commutative diagram on each summand. 
 $$
@@ -134,7 +134,7 @@ $$
 	{[q']}\arrow{r}{\epsilon'}  &{[q]} \arrow{r}{\epsilon} & {[p]}
 \end{tikzcd}
 $$
-There are several cases to consider. Firstly, if both $\epsilon $ and $ \epsilon'$ and $\epsilon$ are identities, then $\epsilon \circ \epsilon'$ is identity and we have map on each summand is identity, so the composition holds.
+There are several cases to consider. Firstly, if both $\epsilon $ and $ \epsilon'$ and $\epsilon$ are identities, then $\epsilon \circ \epsilon'$ is identity and we have map on each summand to be identity, so the composition holds.
 If one of $\epsilon$ or $\epsilon'$ is identity while the other is inclusion, then their composition is inclusion, and corresponding map is the differential, so the composition holds.
 In all other case we have the zero map, and the composition holds as well. (Recall composition of two differentials is zero in a chain complex.)
 \end{enumerate}
@@ -184,7 +184,7 @@ $$
 		{[q]} \arrow{r}{\epsilon} & {[p]}
 	\end{tikzcd}
 $$
-The map $\alpha|_{C_p[\epsilon]}$ depends on the nature of$\epsilon$.
+The map $\alpha|_{C_p[\epsilon]}$ depends on the nature of $\epsilon$.
 
 Let us consider the lower left path on \ref{simplical-map-K}, that is $\alpha \circ (Kf)_n$. 
 The key observation is that the square for $\alpha: K(D)_n \rightarrow K(D)_m$ is the same one!
@@ -230,7 +230,7 @@ Applying our previous definition, $NK(C)_n$, which is the $n$-th object in the n
 	NK(C)_n &= \bigcap_{i = 0}^{n - 1} \ker(\d_i: K_n(C) \to K_{n - 1}(C)) 
 \end{align*}
 
-By our definition, the face map $\d_i: K_n(C) \to K_{n - 1}(C)$ is induced by the face map $\epsilon^i: [n - 1] \to [n]$ in $\D$. 
+The face map $\d_i: K_n(C) \to K_{n - 1}(C)$ is induced by the face map $\epsilon^i: [n - 1] \to [n]$ in $\D$. 
 By our definition of $K$, it acts on the unique $C_n = C_n[\text{id}_{[n]}]$ in the summand of $K_n$ according to the commutative diagram below.
 
 \begin{equation*}
@@ -271,7 +271,13 @@ We can use the following lemma, which is lemma 8.4.5 in \cite{weibel} to conclud
 	If the induced map of normalised chain complexes $N(f): N(A) \to N(B)$ is an isomorphism, then $f$ is an isomorphism.
 \end{lemma}
 
-\section{Q3. Simplicial Homotopy}
+This gives the answer to the following question. 
+
+\begin{problem}
+	There is an equivalence of categories between the category of simplicial objects in an abelian category $\A$ and the category of positive chain complexes in $\A$. This equivalence is given by the Dold-Kan correspondence functors $N$ and $K$.
+\end{problem}
+
+\section{Simplicial Homotopy}
 
 Simplicial homotopy between two simplicial maps is defined as follows.
 
@@ -292,8 +298,9 @@ Given two maps of simplicial objects $f, g: A \to B$, where $A$ and $B$ are obje
 	\end{align}
 \end{definition}
 
-It can be shown \cite{weibel} that simplicial homotopy in abelian category has is one-to-one correspondent to the following commutative diagram. 
-\begin{figure} 
+\begin{lemma}
+Simplicial homotopy in abelian category is one-to-one correspondent to the following commutative diagram. 
+$$ 
 	\centering
 \begin{tikzpicture}[>=Stealth]
   % Nodes
@@ -309,17 +316,118 @@ It can be shown \cite{weibel} that simplicial homotopy in abelian category has i
 	\draw[->] (D) -- node[below left] {$f$} (C);
     \draw[->] (A) -- node[left] {$\gamma$} (C);
 \end{tikzpicture}
-\caption{Simplicial Homotopy Diagram}
 \label{simplicial-homotopy-diagram}
-\end{figure}
-
+$$
 Where $\text{id} \times \epsilon: A \times \Delta[0]$ is defined as $(a, \alpha) \mapsto (a, \epsilon \circ \alpha)$, for $\alpha: [n] \to [0]$ in $\Delta[0]$.
+
+\end{lemma}
 
 Notice that $\Delta[1]_n = \H([n], [1])$ has exactly $n + 2$ elements, corresponding to the $n + 2$ surjective maps from $[n]$ to $[1]$. 
 Label them as $\alpha_i, -1 \leq i \leq n$.
 So for each $n$, the map $ \gamma: A\times \D[1] \rightarrow B$ is determined by $n+2$ maps $\gamma^n_i: A_n \rightarrow B_n$ each corresponding to $\alpha_i \in \D[1]_n$.
-For a temporary measure we call $\gamma$ as the middle map.
+We can define $\gamma(a, \alpha_i) = \gamma_i(a) $ for $a \in A_n$.
+\begin{proof}
+	Given a simplicial homotopy $h_i: A_n \to B_{n + 1}$ from $f$ to $g$, we can define the middle map $\gamma$ by
+\begin{enumerate}
+	\item $\gamma^n_{-1} =g$
+	\item $\gamma^n_n = f$
+	\item $\gamma^n_i = \d_{i+1} g_i$ for $0 \leq i <n$.
+\end{enumerate}
 
+Let $\hat{\alpha}$ be the unique map $[n] \rightarrow [0]$, let $a\in A_n$. It is clear that
+$$
+\id \times \epsilon_0: (a, \hat{\alpha}) \mapsto (a, \alpha_n) \quad \id \times \epsilon_1: (a, \hat{\alpha}) \mapsto (a, \alpha_{-1})
+$$
+So $\gamma \circ (\id \times \epsilon_0)(a, \hat{\alpha}) = \gamma(a, \alpha_n) = f(a)$ and $\gamma \circ (\id \times \epsilon_1)(a, \hat{\alpha}) = \gamma(a, \alpha_{-1}) = g(a)$, and we have verified the two triangles in the diagram commute.
+What remains is to show that $\gamma$ is indeed a simplicial map by showing it satifies the naturality condition, that is 
+$$
+\d_i \gamma^n = \gamma^{n-1} \d_i \quad \sigma_i \gamma^n = \gamma^{n+1} \sigma_i
+$$
+
+The next step of the proof needs the following an identity about $\alpha_i$
+\begin{equation}\label{alpha-face}
+\begin{cases}
+	\d_i \alpha_k = \alpha_k \circ \epsilon_i = \alpha_{k-1} & i \leq k \\ 
+	\d_i \alpha_k = \alpha_k \circ \epsilon_i = \alpha_k & i > k \\
+\end{cases}
+\end{equation}
+In this equation we have abuse the notation to denote $\alpha_k$ as the map $[n] \to [1]$ or $[n-1] \to [1]$ depending on the context, where $\alpha_k(i) = 0$ for $i \leq k$ and $\alpha_k(i) = 1$ for $i > k$.
+
+Let us first prove the face map condition $\d_i \gamma^n = \gamma^{n-1} \d_i$.
+Here we have several cases to consider.
+\begin{enumerate}
+	\item For $i \leq k$, we have
+		$$
+		\d_i \gamma^n (a, \alpha_k) = \d_i \d_{k+1} h_k (a) = \d_k \d_{i} h_k (a) 
+		$$
+		In the same time 
+		\begin{dmath}
+		\gamma^{n-1} \d_i (a, \alpha_k) 
+		= \gamma^{n-1} (\d_i a, \alpha_{k-1})  \quad \text{by equation \eqref{alpha-face}}
+		= \d_k h_{k-1} \d_i (a) \quad \text{by simplicial identity}
+		\end{dmath}
+	\item For $i > k$, we have 
+		\begin{dmath*}
+		\d_i \gamma^n (a, \alpha_k) 
+		= \d_i \d_{k+1} h_k (a) 
+		= \d_i \d_{k+1} h_{k+1} (a) \quad \text{by equation \eqref{homotopy3}}
+		\end{dmath*}
+		while
+		\begin{dmath*}
+		\gamma^{n-1} \d_i (a, \alpha_k) 
+		= \gamma^{n-1} (\d_i a, \alpha_{k}) 
+		= \d_{k+1} h_{k} \d_{i} (a)
+		= \d_{k+1} \d_{i+1} h_{k} (a) \quad \text{by equation \eqref{homotopy3}}
+		= \d_i \d_{k+1} h_{k} (a) \quad \text{by simplicial identity}
+		\end{dmath*}
+\end{enumerate}
+
+Next we prove the degeneracy map condition $\sigma_i \gamma^n = \gamma^{n+1} \sigma_i$.
+Similarly, we need the following identity about $\alpha_k$ 
+\begin{equation}\label{alpha-deg}
+\begin{cases}
+	\sigma_i \alpha_k = \alpha_k \circ \eta_i = \alpha_{k+1} & i \leq k \\ 
+	\sigma_i \alpha_k = \alpha_k \circ \eta_i = \alpha_k & i > k \\ 
+\end{cases}
+\end{equation}
+Again, we have several cases to consider.
+\begin{enumerate}
+	\item For $i \leq k$, we have
+		\begin{dmath*}
+		\sigma_i \gamma^n (a, \alpha_k) 
+		= \sigma_i \d_{k+1} h_k (a)
+		= \d_{k+2} \sigma_i h_k (a) \quad \text{by simplicial identity}
+		= \d_{k+2} h_{k+1} \sigma_i (a) \quad \text{by \eqref{homotopy3}}
+		\end{dmath*}
+		while
+		\begin{dmath*}
+		\gamma^{n+1} \sigma_i (a, \alpha_k)
+		= \gamma^{n+1} (\sigma_i a, \alpha_{k+1})  \quad \text{by equation \eqref{alpha-face}}
+		= \d_{k+2} h_{k+1} \sigma_i (a) 
+		\end{dmath*}
+		Which are equal.
+	\item For $i > k$, we have
+		\begin{dmath*}
+		\sigma_i \gamma^n (a, \alpha_k) 
+		= \sigma_i \d_{k+1} h_k (a)
+		= \d_{k+1} \sigma_{i-1} h_k (a) \quad \text{by \eqref{homotopy3}}
+		\end{dmath*}
+		while
+		\begin{dmath*}
+		\gamma^{n+1} \sigma_i (a, \alpha_k)
+		= \gamma^{n+1} (\sigma_i a, \alpha_{k})  \quad \text{by equation \eqref{alpha-face}}
+		= \d_{k+1} h_{k} \sigma_{i} (a) 
+		= \d_{k+1} \sigma_{i-1} h_k (a) \quad \text{by \eqref{homotopy3}}
+		\end{dmath*}
+\end{enumerate}
+So we have proved that $\gamma$ is indeed a simplicial map.
+
+To show the one-to-one correspondence we still need to construct a simplicial homotopy from a given commutative diagram as above.
+Given $\gamma$, define the simplicial homotopy $h_i: A_n \to B_{n + 1}$ by $\gamma^{n+1}_i \sigma_i$.
+The computation to verify the four identities in definition \ref{simplicial-homotopy} is similar to the previous part of the proof.
+\end{proof}
+
+For a temporary measure we call $\gamma$ as the middle map.
 The following lemma is evident 
 
 \begin{lemma}\label{homotopy-relation}
@@ -347,6 +455,7 @@ Here is an important lemma
 \end{lemma}
 
 \begin{proof}
+	This proof is adapted from \cite{weibel}.
 	By lemma \ref{homotopy-relation}, $f \simeq g \iff f-g \simeq 0$. 
 	So it suffices to show that if $f \simeq 0$, then $f_* = N(f) \simeq 0$ as chain maps.
 
@@ -404,6 +513,7 @@ There is a converse to lemma \ref{homotopy-chain-homotopy1}.
 \end{lemma}
 
 \begin{proof}
+	This proof is adapted from \cite{weibel}.
 	Assuming we have the chain homotopy $s_n: C_n \rightarrow C'_{n+1}$ from $f$ to $g$. 
 	We shall define $h_i: K(C)_n \rightarrow K(C'_{n+1})$ according to the following procedure. 
 	\begin{enumerate}
@@ -439,5 +549,95 @@ $$
 	We can write $\eta = \eta' \eta_j$,  and proceed similarly as in step 2.
 	\end{enumerate}
 
-	It is a lengthy but straightforward verification to check that the maps $h_i$ defined above satisfy equations \eqref{homotopy1} - \eqref{homotopy4} in definition \ref{simplicial-homotopy}.
+Now, we need to check that the maps $h_i$ defined above satisfy equations \eqref{homotopy1} - \eqref{homotopy4} in definition \ref{simplicial-homotopy}.
+
+
+On the unique summand $C_n$ of $K_n(C)$ corresponding to the identity map $\text{id}_{[n]}: [n] \to [n]$. 
+Let us assum $n\geq2$. The case for $n=0,1$ are similar and easier to check.
+
+\begin{enumerate}
+	\item For equation \eqref{homotopy1}, we have
+	$$
+	\d_0 h_0|_{C_n} = \d_0 \sigma_0 f = f
+	$$
+	\item For equation \eqref{homotopy2}, we have
+	\begin{align}
+		\d_{n+1} h_n|_{C_n} 
+		=& \d_{n+1} (\sigma_{n }( f - s_{n-1}d) - s_n) \\
+		=& ( f - s_{n-1}d) - d s_n  \quad \text{by lemma \ref{face-differential}} \\
+		= &g \quad \text{by the definition of chain homotopy}
+	\end{align}
+\item For equation \eqref{homotopy3}, we have several cases to consider.
+	\begin{enumerate}
+		\item For $i < j$, we have
+		\begin{align}
+			\d_i h_j|_{C_n} 
+			=& \d_i \sigma_j f \\
+			=& \sigma_{j-1} \d_i f \quad \text{by simplicial identity} \\
+			=& h_{j-1} \d_i|_{C_n} 
+		\end{align}
+		\item For $i = j \neq 0$, we have
+		\begin{align}
+			\d_j h_j|_{C_n} 
+			=& \d_j (\sigma_{j} f) \\
+			=& \d_{j} h_{j - 1}|_{C_n}\quad \text{by simplicial identity} \\ 
+		\end{align}
+		\item For $i > j + 1$, we have
+		\begin{align}
+			\d_i h_j|_{C_n} 
+			=& \d_i \sigma_j f \\
+			=& \sigma_j \d_{i - 1} f \quad \text{by simplicial identity} \\
+			=& h_j \d_{i - 1}|_{C_n} 
+		\end{align}
+	\end{enumerate}
+\item For equation \eqref{homotopy4}, we have several cases to consider.
+	\begin{enumerate}
+		\item For $i \leq j$, 
+		Let us investigate what the map $\sigma_i$ is on the summand $C_{n-1}[\eta]$. 
+		Note we have commutative diagram
+\begin{equation*}
+\begin{tikzcd}
+		{[n]} \arrow{r}{\eta^i} \arrow{d}{\text{id}} & {[n - 1]} \arrow{d} \\
+		{[n - 1]} \arrow{r}{\text{id}} & {[n - 1]}
+\end{tikzcd}
+\end{equation*}
+		So the map will always be isomorphisms. Thus the following calculation holds.
+		\begin{align}
+			\sigma_i h_j|_{C_n} 
+			=& \sigma_i \sigma_j f \\
+			=& \sigma_{j+1} \sigma_i f \quad \text{by simplicial identity} \\
+			=& h_{j+1} \sigma_i|_{C_n} 
+		\end{align}
+		\item For $i > j$, we have for similar reason
+		\begin{align}
+			\sigma_i h_j|_{C_n} =h_{j} \sigma_{i - 1}|_{C_n} 
+		\end{align}
+	\end{enumerate}
+\end{enumerate}
+
+Now, for the rest of summand we may assume by induction that the homotopy conditions hold for all the maps $h'$. 
+The calculation is similar to the above cases, by applying the simplicial identities and the definitions of $h_i$ on those summands.
+
 \end{proof}
+
+
+
+We have use the following lemma in the above proof.
+\begin{lemma}\label{face-differential}
+	The $\d^n : K_n(C) \rightarrow K_{n-1} C$ defined on the unique summand $C_n$ of $K_n(C)$ corresponding to the identity map $\text{id}_{[n]}: [n] \to [n]$ is given by differential map $d: C_n \rightarrow C_{n-1}$
+\end{lemma}
+\begin{proof}
+	We only need to check the following commutative diagram
+	\begin{equation*}
+	\begin{tikzcd}
+		{[n - 1]} \arrow{r}{\epsilon^n} \arrow{d}{\text{id}} & {[n]} \arrow{d}{\id} \\
+		{[n - 1]} \arrow{r}{\text{inclusion}} & {[n]}
+	\end{tikzcd}
+\end{equation*}
+\end{proof}
+
+Therefore we have established the \emph{answer} to the following question. 
+
+\begin{problem}
+	Under the Dold-Kan correspondence, simplicially homotopic maps correspond to chain homotopic maps.
+\end{problem}

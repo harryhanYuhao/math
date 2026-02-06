@@ -1,4 +1,4 @@
-\section{Q4. Adjunction and Monads}
+\section{Adjunction and Monads}
 
 \subsection{Definitions of Monads and Adjunctions}
 
@@ -28,7 +28,7 @@ Let us first recall the definition of monads.
 			 & \top(X)
 		\end{tikzcd}
 	\end{equation}
-	These three associtativity diagram can be summarised as the following identities for each object $X \in \C$, which will be crucial in the proof of construction of simplicial and cosimplicial objects from comonads and monads.
+	The three commutative diagrams can be summarised as the following identities for each object $X \in \C$, which will be crucial in the proof of construction of simplicial and cosimplicial objects from comonads and monads.
 	\begin{align}
 		\mu (\top \mu) =& \mu (\mu \top)\\ 
 		\mu (\top \eta)=& \mu (\top \eta) = \text{id}
@@ -58,7 +58,7 @@ and
 For each $X \in A$, define $\eta_X = \overline{F(X) \xrightarrow{\text{id}} F(X)}$, which is a morphism from $X$ to $GF(X)$.
 Similarly, for each $Y \in B$, define $\epsilon_Y = \overline{G(Y) \xrightarrow{\text{id}} G(Y)}$, which is a morphism from $FG(Y)$ to $Y$.
 
-We have the following standard results from category theory.
+We have the following two standard results from category theory \cite{maclane}.
 
 \begin{lemma}\label{Unit-Counit}
 	$\eta: \text{id}_{\A} \Rightarrow GF$ and $\epsilon: FG \Rightarrow \text{id}_{\B}$ are natural transformations called the unit and counit of the adjunction.
@@ -93,7 +93,7 @@ We have the following standard results from category theory.
 
 \subsection{Monads from Adjunctions}
 
-We can construct a monad from an adjunction as follows.
+We can construct a monad from an adjunction as follows \cite{weibel}.
 
 \begin{theorem}
 	Let $F: \A \rightleftarrows \B: G$ be an adjunction with unit $\eta$ and counit $\epsilon$. 
@@ -227,6 +227,11 @@ We may construct a comonad from an adjunction as follows.
 
 The proof is exactly dual to that of monads from adjunctions, by reversing all the arrows, and is therefore omitted here.
 
+This gives the answer to the question.
+\begin{problem}
+	If we have adjunction pairs $(F, U)$, we can construct a monad $UF$ and a comonad $FU$.
+\end{problem}
+
 Here is an important observation.
 
 \begin{remark}
@@ -235,7 +240,7 @@ Here is an important observation.
 
 \section{Simplical Objects and Monads}
 
-A comonad may induce a simplicial object.
+A comonad may induce a simplicial object \cite{weibel}.
 
 \begin{theorem}
 	Let $(\perp, \epsilon, \delta)$ be a comonad acting on a category $\A$.
@@ -269,7 +274,8 @@ The functor $\perp: \A \rightarrow \A$ is applied $i$ times to the map $\epsilon
 \begin{proof}
 	We will verify $\perp_\bullet$ is indeed a simplicial object following the remark \ref{sim-set-data}; i.e., the faces and degeneracy map satisfy the simplicial identities listed in \eqref{simp1} to \eqref{simp3}.
 
-	Let us consider $\d^{n+1}_i \sigma^n_i$ first.
+	\begin{enumerate}
+		\item Let us consider $\d^{n+1}_i \sigma^n_i$ first.
 	By definition 
 	$$
 	\d^{n+1}_i = \perp^i \epsilon \perp^{n+1 - i} \quad \quad \sigma^n_i = \perp^i \delta \perp^{n - i}
@@ -289,14 +295,25 @@ The functor $\perp: \A \rightarrow \A$ is applied $i$ times to the map $\epsilon
 						=& \text{id} 
 	\end{align*}
 
+	\item 
 	Similarly, 
 	\begin{align*}
 		\d_{i+1} \sigma_i =& \perp^i(\perp \epsilon_{\perp^{n-i}}) \delta \perp^{n-i} \\ 
 						=& \perp^i (\text{id}) \perp^{n-i} \quad \text{by \eqref{comonad-counit-id}} \\	
 						=& \text{id} 
 	\end{align*}
+	\item For the same reasoning, we have
+		$$
+		\begin{cases}
+			\d^{n+1}_i \sigma^n_j = \perp^i \epsilon \perp^{j-i}	 \delta \perp^{n-j} = \sigma^{n-1}_{j-1} \d^n_i & \text{if } i < j \\
+			\d^{n+1}_i \sigma^n_j = \perp^j \delta \perp^{i-j} \epsilon \perp^{n-i + 1} = \sigma^{n-1}_j \sigma^n_{i-1} & \text{if } i > j + 1 \\
+			\d^{n-1}_i \d^{n}_j = \perp^i \epsilon \perp^{j - i} \epsilon \perp^{n-j} = \d^{n-1}_{j-1} \d^n_i & \text{if } i < j \\ 
+			\sigma^{n+1}_i \sigma^n_j = \perp^i \delta \perp^{j - i} \delta \perp^{n-j} = \sigma^{n+1}_{j+1} \sigma^n_i & \text{if } i \leq j
+		\end{cases}
+		$$
+	\end{enumerate}
 
-	All the rest of the identities can be verified in a similar manner by applying \eqref{comonad-asso} and \eqref{comonad-counit-id} at the appropriate places.
+	And we have verified all the simplicial identities.
 \end{proof}
 
 Dually, a monad may induce a cosimplicial object. 
@@ -320,4 +337,10 @@ Dually, a monad may induce a cosimplicial object.
 	Then $(\top^{\bullet}, \d^i, \sigma^i)$ is a cosimplicial object in the category $\A$.
 \end{theorem}
 
-The proof is exactly dual to that the previous proof of simplicial objects from comonads, by reversing all the arrows and the order of composition.
+The proof is exactly dual to the previous proof of simplicial objects from comonads, by reversing all the arrows and the order of composition.
+
+This gives the answer to the question. 
+
+\begin{problem}
+	We can obtain a simplicial object from a comonad, and a cosimplicial object from a monad.
+\end{problem}
