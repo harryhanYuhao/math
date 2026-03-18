@@ -1,0 +1,58 @@
+\begin{tikzpicture}
+	\begin{pgfonlayer}{nodelayer}
+		\node [style=green] (0) at (-4, 3.75) {};
+		\node [style=green] (1) at (-4, 1.5) {};
+		\node [style=none] (3) at (-4.5, 4.25) {$x_i$};
+		\node [style=none] (4) at (-4.5, 2) {$x_j$};
+		\node [style=green] (10) at (-4, -1.25) {};
+		\node [style=red] (11) at (-2, 3.75) {};
+		\node [style=red] (12) at (-2, 1.5) {};
+		\node [style=red] (15) at (-1.75, -0.5) {};
+		\node [style=red] (16) at (-1.75, -1.5) {};
+		\node [style=none] (18) at (-6, 3.75) {};
+		\node [style=none] (19) at (-6, 1.5) {};
+		\node [style=none] (22) at (9.25, 3.75) {};
+		\node [style=none] (23) at (9.25, 1.5) {};
+		\node [style=none] (27) at (9.5, -1.5) {};
+		\node [style=none] (28) at (9.5, -0.5) {};
+		\node [style=none] (29) at (-4.5, -0.75) {$x_{2m+1}$};
+		\node [style=none] (31) at (-1, 2.25) {$x_j+x_{2m_1}$};
+		\node [style=none] (34) at (-0.25, 0.5) {$\sum_{i=1}^{2m+1} x_i $};
+		\node [style=none] (35) at (-0.75, -1) {$x_{2m_1}$};
+		\node [style=none] (36) at (-1.25, 4.25) {$x_i+x_{2m_1}$};
+		\node [style=red] (37) at (2, 1.5) {};
+		\node [style=red] (38) at (4.75, -0.5) {};
+		\node [style=green] (39) at (2, 3.75) {};
+		\node [style=green] (40) at (4.75, -1.5) {};
+		\node [style=green] (41) at (3.75, -1.5) {};
+		\node [style=red] (42) at (3.75, 1.5) {};
+		\node [style=green] (43) at (3, 3.75) {};
+		\node [style=red] (44) at (3, -0.5) {};
+		\node [style=none] (45) at (6.75, 4.25) {};
+		\node [style=none] (46) at (6.75, 2) {};
+		\node [style=none] (47) at (6.75, 0) {$\sum_{k\neq i} x_k $};
+		\node [style=none] (48) at (6.75, 4.25) {};
+		\node [style=none] (49) at (6.75, 4.25) {$x_i + x_{2m+1}$};
+		\node [style=none] (50) at (6.75, 2) {$x_i + x_j + x_{2m+1}$};
+	\end{pgfonlayer}
+	\begin{pgfonlayer}{edgelayer}
+		\draw (0) to (11);
+		\draw (1) to (12);
+		\draw (0) to (15);
+		\draw (1) to (15);
+		\draw (10) to (16);
+		\draw (10) to (15);
+		\draw (10) to (12);
+		\draw (10) to (11);
+		\draw (18.center) to (0);
+		\draw (1) to (19.center);
+		\draw (11) to (22.center);
+		\draw (12) to (23.center);
+		\draw (28.center) to (15);
+		\draw (16) to (27.center);
+		\draw (39) to (37);
+		\draw (41) to (42);
+		\draw (40) to (38);
+		\draw (43) to (44);
+	\end{pgfonlayer}
+\end{tikzpicture}

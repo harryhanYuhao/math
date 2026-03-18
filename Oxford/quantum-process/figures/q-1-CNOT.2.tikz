@@ -1,0 +1,45 @@
+\begin{tikzpicture}
+	\begin{pgfonlayer}{nodelayer}
+		\node [style=green] (0) at (-4, 3) {};
+		\node [style=green] (1) at (-4, 1.5) {};
+		\node [style=none] (3) at (-5.75, 3.5) {$x_i$};
+		\node [style=none] (4) at (-4.5, 2.25) {$x_i+x_j$};
+		\node [style=green] (10) at (-4, -1.25) {};
+		\node [style=red] (11) at (2, 3) {};
+		\node [style=red] (12) at (2, 1.5) {};
+		\node [style=red] (15) at (2.25, -0.5) {};
+		\node [style=red] (16) at (2.25, -1.5) {};
+		\node [style=none] (18) at (-6, 3) {};
+		\node [style=none] (19) at (-6, 1.5) {};
+		\node [style=none] (22) at (4, 3) {};
+		\node [style=none] (23) at (4, 1.5) {};
+		\node [style=none] (27) at (4.25, -1.5) {};
+		\node [style=none] (28) at (4.25, -0.5) {};
+		\node [style=none] (29) at (-4.5, -0.75) {$x_{2m+1}$};
+		\node [style=none] (30) at (3, 3.5) {};
+		\node [style=none] (31) at (4, 2) {$x_i+x_j+x_{2m_1}$};
+		\node [style=none] (34) at (4, 0.25) {$\sum_{k \neq i} x_k$};
+		\node [style=none] (35) at (3.25, -1) {$x_{2m_1}$};
+		\node [style=none] (36) at (3, 3.5) {$x_i+x_{2m_1}$};
+		\node [style=green] (37) at (-5.25, 3) {};
+		\node [style=red] (38) at (-5.25, 1.5) {};
+		\node [style=none] (39) at (-4.5, 3.5) {$x_i$};
+		\node [style=none] (40) at (-6.5, 2.25) {$x_j$};
+	\end{pgfonlayer}
+	\begin{pgfonlayer}{edgelayer}
+		\draw (0) to (11);
+		\draw (1) to (12);
+		\draw (0) to (15);
+		\draw (1) to (15);
+		\draw (10) to (16);
+		\draw (10) to (15);
+		\draw (10) to (12);
+		\draw (10) to (11);
+		\draw (18.center) to (0);
+		\draw (1) to (19.center);
+		\draw (11) to (22.center);
+		\draw (12) to (23.center);
+		\draw (28.center) to (15);
+		\draw (16) to (27.center);
+	\end{pgfonlayer}
+\end{tikzpicture}

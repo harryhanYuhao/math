@@ -1,0 +1,41 @@
+\begin{tikzpicture}
+	\begin{pgfonlayer}{nodelayer}
+		\node [style=none] (6) at (-4, -0.75) {$\vdots$};
+		\node [style=green] (8) at (-4, -2) {};
+		\node [style=none] (9) at (-4.75, -1.25) {$2m$};
+		\node [style=green] (10) at (-4, -3.75) {};
+		\node [style=red] (14) at (2, -2) {};
+		\node [style=red] (15) at (2, -3) {};
+		\node [style=red] (16) at (2, -4) {};
+		\node [style=none] (17) at (2, -0.75) {$\vdots$};
+		\node [style=none] (18) at (-6, 1) {};
+		\node [style=none] (21) at (-6, -2) {};
+		\node [style=none] (22) at (4, 1) {};
+		\node [style=none] (25) at (4, -2) {};
+		\node [style=none] (27) at (4, -4) {};
+		\node [style=none] (28) at (4, -3) {};
+		\node [style=green] (29) at (-4.25, 2) {};
+		\node [style=green] (30) at (-4.5, 1) {};
+		\node [style=red] (31) at (2, 1) {};
+		\node [style=red-phase] (33) at (-4.25, 3.25) {$\alpha$};
+	\end{pgfonlayer}
+	\begin{pgfonlayer}{edgelayer}
+		\draw (8) to (14);
+		\draw (8) to (15);
+		\draw (10) to (16);
+		\draw (10) to (15);
+		\draw (10) to (14);
+		\draw (8) to (21.center);
+		\draw (14) to (25.center);
+		\draw (28.center) to (15);
+		\draw (16) to (27.center);
+		\draw (29) to (31);
+		\draw (31) to (30);
+		\draw (29) to (33);
+		\draw (18.center) to (30);
+		\draw (31) to (22.center);
+		\draw (10) to (31);
+		\draw (29) to (15);
+		\draw (30) to (15);
+	\end{pgfonlayer}
+\end{tikzpicture}
