@@ -2,7 +2,6 @@
 	\begin{pgfonlayer}{nodelayer}
 		\node [style=none] (6) at (-4, -0.75) {$\vdots$};
 		\node [style=green] (8) at (-4, -2) {};
-		\node [style=none] (9) at (-4.75, -1.25) {$2m$};
 		\node [style=green] (10) at (-4, -3.75) {};
 		\node [style=red] (14) at (2, -2) {};
 		\node [style=red] (15) at (2, -3) {};

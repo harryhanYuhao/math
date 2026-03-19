@@ -1,0 +1,78 @@
+\begin{tikzpicture}
+	\begin{pgfonlayer}{nodelayer}
+		\node [style=none] (1) at (4, 1) {};
+		\node [style=none] (2) at (3.5, 1) {};
+		\node [style=none] (3) at (4.5, 1) {};
+		\node [style=none] (4) at (3.5, -1.5) {};
+		\node [style=none] (5) at (1.5, -1.5) {};
+		\node [style=none] (6) at (4.5, -1.5) {};
+		\node [style=none] (8) at (2.5, -0.75) {$\vdots$};
+		\node [style=none] (9) at (5.75, -0.75) {$\vdots$};
+		\node [style=llong-gate] (10) at (4, -0.5) {$\vec{Q}_1$};
+		\node [style=red] (11) at (4, 2.5) {};
+		\node [style=none] (12) at (3.5, 0.25) {};
+		\node [style=none] (13) at (1.5, 0.25) {};
+		\node [style=none] (14) at (4.5, 0.25) {};
+		\node [style=green] (17) at (1.5, 1) {$\frac{\pi}{4}$};
+		\node [style=none] (18) at (-5, 0.25) {};
+		\node [style=none] (19) at (-5.5, 0.25) {};
+		\node [style=none] (20) at (-7.5, 0.25) {};
+		\node [style=none] (21) at (-4.5, 0.25) {};
+		\node [style=none] (22) at (-2.5, 0.25) {};
+		\node [style=green-phase] (23) at (-5, 1.5) {$\frac{\pi}{4}$};
+		\node [style=long-gate] (24) at (-5, -0.5) {$\vec{P}$};
+		\node [style=none] (25) at (-5.5, -1.5) {};
+		\node [style=none] (26) at (-7.5, -1.5) {};
+		\node [style=none] (27) at (-4.5, -1.5) {};
+		\node [style=none] (28) at (-2.5, -1.5) {};
+		\node [style=none] (29) at (-6.5, -0.5) {$\vdots$};
+		\node [style=none] (30) at (-3.25, -0.5) {$\vdots$};
+		\node [style=none] (31) at (-2.5, 2.25) {};
+		\node [style=red] (32) at (-7.5, 2.25) {};
+		\node [style=none] (33) at (-0.75, 0.25) {$=$};
+		\node [style=none] (34) at (8.25, 1) {};
+		\node [style=none] (35) at (7.75, 1) {};
+		\node [style=none] (36) at (8.75, 1) {};
+		\node [style=none] (37) at (7.75, -1.5) {};
+		\node [style=none] (39) at (8.75, -1.5) {};
+		\node [style=none] (41) at (6.75, -0.75) {$\vdots$};
+		\node [style=none] (42) at (9.75, -0.75) {$\vdots$};
+		\node [style=llong-gate] (43) at (8.25, -0.5) {$\vec{Q}_2$};
+		\node [style=red] (44) at (8.25, 2.5) {};
+		\node [style=none] (45) at (7.75, 0.25) {};
+		\node [style=none] (47) at (8.75, 0.25) {};
+		\node [style=none] (50) at (11.5, 1) {};
+		\node [style=none] (51) at (12.5, 1) {};
+		\node [style=none] (52) at (11.5, -1.5) {};
+		\node [style=none] (53) at (12.5, -1.5) {};
+		\node [style=none] (54) at (14.25, -1.5) {};
+		\node [style=none] (55) at (13.5, -0.75) {$\vdots$};
+		\node [style=llong-gate] (56) at (12, -0.5) {$C_{0,0}$};
+		\node [style=none] (58) at (11.5, 0.25) {};
+		\node [style=none] (59) at (12.5, 0.25) {};
+		\node [style=none] (60) at (14.25, 0.25) {};
+		\node [style=none] (61) at (14.25, 1) {};
+	\end{pgfonlayer}
+	\begin{pgfonlayer}{edgelayer}
+		\draw (5.center) to (4.center);
+		\draw (13.center) to (12.center);
+		\draw (11) to (1.center);
+		\draw (17) to (2.center);
+		\draw (20.center) to (19.center);
+		\draw (21.center) to (22.center);
+		\draw (18.center) to (23);
+		\draw (26.center) to (25.center);
+		\draw (27.center) to (28.center);
+		\draw (32) to (31.center);
+		\draw (44) to (34.center);
+		\draw (3.center) to (35.center);
+		\draw (45.center) to (14.center);
+		\draw (6.center) to (37.center);
+		\draw (53.center) to (54.center);
+		\draw (59.center) to (60.center);
+		\draw (58.center) to (47.center);
+		\draw (36.center) to (50.center);
+		\draw (39.center) to (52.center);
+		\draw (51.center) to (61.center);
+	\end{pgfonlayer}
+\end{tikzpicture}

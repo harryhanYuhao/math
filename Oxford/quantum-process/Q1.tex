@@ -69,7 +69,7 @@ This gives the desired answer for question 1.3.
 
 \subsubsection{One qubit Logical Operations}
 
-Let us apply a $X$ gate with phase $\alpha$ to on the first qubit of the encoder.
+Let us apply a $X$ gate with phase $\alpha$ to on one qubit of the encoder.
 
 \begin{align*}
 	\tikzfig{q-1-4.1} \qquad &\xrightarrow{cc}  \qquad \tikzfig{q-1-4.2}  \qquad &\xrightarrow{sc}  \\
@@ -103,9 +103,16 @@ We can label each the parity of each qubit.
 	\tikzfig{q-1-CNOT.2} 
 \end{align*}
 
-It it evident that this is equivalent to 
+It is equivalent to 
 $$
 \tikzfig{q-1-CNOT.3}
 $$
 
 Thus a single CNOT gate between the $i$th and $j$th logical qubits can be implemented by four CNOT gates in the physical qubits.
+
+\subsection{Fault Tolerance}
+
+The single qubit logical operations are transverse thus fault tolerant. 
+One error before the CNOT operation, however, can propagate to two as shown below. Thus the CNOT operation is not fault tolerant.
+
+The simultaneous H gates is fault tolerant as, as it is transverse.

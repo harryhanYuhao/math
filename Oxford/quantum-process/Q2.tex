@@ -1,0 +1,53 @@
+\section{Q2}
+
+\subsection{Post Selected Pauli Projection}
+
+Note we have the following identity
+
+\begin{align*}
+	\tikzfig{q-2-1.1} 
+\end{align*}
+
+So we have 
+\ctikzfig{q-2-1.2}
+
+where $\vec{Q} = Z \otimes \vec{P}$
+
+
+\subsection{Two Pauli and Clifford}
+
+The goal of this section is to show that for any $j, k \in \{0, 1\}$, we have Pauli $\vec{Q}_1, \vec{Q}_2$ and Clifford $C_{i, j}$ such that the following identity holds 
+
+\begin{equation}\label{question:q2}
+	\tikzfig{q-2-question}
+\end{equation}
+
+We have the following identity
+\begin{align*}
+	\tikzfig{q-2-2.1}
+\end{align*}
+
+Define $\vec{Q_1} = Z \otimes \vec{P}$, $\vec{Q_2} = X \otimes \vec{I}$, and $C_{0,0} = H \otimes \vec{I}$, we have 
+
+\begin{equation}\label{q2-2-answer}
+	\tikzfig{q-2-2.2}
+\end{equation}
+
+which is the \eqref{question:q2} for $j = k = 0$.
+
+For Pauli matrix $Q$, its eigenspaces are $E(Q, 1)$ with eigenvalue $1$ and $E(Q, -1)$ with eigenvalue $-1$. 
+$\Pi^0 Q$ is the projection to $E(Q, 1)$ and maps $E(Q, -1)$ to $0$, while $\Pi^1 Q$ is the projection to $E(Q, -1)$ and maps $E(Q, 1)$ to $0$. 
+
+In the ZX notation they are represented 
+\ctikzfig{q-2-2.3}
+
+Note that the eigenspace of $-Q$ with eigenvalue $1$ is exactly $E(Q, -1)$,
+therefore $\Pi^0_{\vec{-Q}} = \Pi^1_{\vec{Q}}$, i.e.,
+
+\begin{equation}\label{q-2-2-answer.2}
+\tikzfig{q-2-2.4}
+\end{equation}
+
+Using the trick which we used to derive \eqref{q2-2-answer}, and apply \eqref{q-2-2-answer.2}, we can find the answer for cases where $j,k$ are not both zero.
+
+
