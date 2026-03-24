@@ -22,32 +22,46 @@ The goal of this section is to show that for any $j, k \in \{0, 1\}$, we have Pa
 	\tikzfig{q-2-question}
 \end{equation}
 
-We have the following identity
+The desired Paulis are $\vec{Q_1} = Z \otimes \vec{P}$, $\vec{Q_2} = X \otimes \vec{I}$.
+The desired Cliffords are shown in the following cases.
+
+\subsubsection{Case 0,0}
+We have
+$C_{0,0} = H \otimes \vec{I}$.
+
+Plugin to $\eqref{question:q2}$, we have
 \begin{align*}
 	\tikzfig{q-2-2.1}
 \end{align*}
+ 
+which is desired.
 
-Define $\vec{Q_1} = Z \otimes \vec{P}$, $\vec{Q_2} = X \otimes \vec{I}$, and $C_{0,0} = H \otimes \vec{I}$, we have 
+\subsubsection{Case 0,1}
 
-\begin{equation}\label{q2-2-answer}
+I claim that $C_{0,1} = (X H) \otimes P$ works, where $P$ is the Pauli corresponding to the initial Pauli measurement.
+
+Check the following diagram
+\begin{align*}
 	\tikzfig{q-2-2.2}
-\end{equation}
+\end{align*}
 
-which is the \eqref{question:q2} for $j = k = 0$.
+Where in the last step we used the fact that $P = \bigotimes P_i$ and $PP = I$ (as $P$ is Pauli).
+In the second last step we use the following identity
 
-For Pauli matrix $Q$, its eigenspaces are $E(Q, 1)$ with eigenvalue $1$ and $E(Q, -1)$ with eigenvalue $-1$. 
-$\Pi^0 Q$ is the projection to $E(Q, 1)$ and maps $E(Q, -1)$ to $0$, while $\Pi^1 Q$ is the projection to $E(Q, -1)$ and maps $E(Q, 1)$ to $0$. 
+\ctikzfig{q-2-2-Pi-measure}
 
-In the ZX notation they are represented 
-\ctikzfig{q-2-2.3}
+\begin{proof}
+\begin{align*}
+	\tikzfig{q-2-2.3}
+\end{align*}
+\end{proof}
 
-Note that the eigenspace of $-Q$ with eigenvalue $1$ is exactly $E(Q, -1)$,
-therefore $\Pi^0_{\vec{-Q}} = \Pi^1_{\vec{Q}}$, i.e.,
+\subsubsection{Case 1,0}
 
-\begin{equation}\label{q-2-2-answer.2}
-\tikzfig{q-2-2.4}
-\end{equation}
+Using the same argument as above we see 
+I claim that $C_{1,0} = I \otimes P$.
 
-Using the trick which we used to derive \eqref{q2-2-answer}, and apply \eqref{q-2-2-answer.2}, we can find the answer for cases where $j,k$ are not both zero.
+\subsubsection{Case 1,1}
 
-
+Using the same argument as above we see 
+I claim that $C_{1,1} = (X H) \otimes I$.

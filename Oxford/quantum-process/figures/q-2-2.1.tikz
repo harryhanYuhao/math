@@ -33,7 +33,7 @@
 		\node [style=none] (63) at (15.25, -1.25) {};
 		\node [style=none] (64) at (15.25, -1.25) {$\vec{Q_1}$};
 		\node [style=none] (65) at (21, -1.25) {$\vec{Q_2}$};
-		\node [style=none] (66) at (24.75, -1.25) {$C$};
+		\node [style=none] (66) at (24.75, -1.25) {$C_{0,0}$};
 		\node [style=none] (67) at (28.25, 1.75) {$=$};
 		\node [style=none] (68) at (31.75, 1.75) {};
 		\node [style=none] (69) at (31.25, 1.75) {};
