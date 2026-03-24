@@ -1,0 +1,41 @@
+\subsubsection{Case 1,0}
+
+Let us calculate what does $\vec{Q}_1, \vec{Q}_2$ do with state $1, 0$.
+Use our calculation in \eqref{q2-1-cal}, we see, if $v$ is the eigenvector of $\vec{P}$ with eigenvalue $1$, and $w$ is the eigenvector with eigenvalue $-1$, then 
+
+\begin{equation}\label{q2-2-10-cal}
+	\begin{split}
+	v 
+	&\xrightarrow{\Pi^1 \vec{Q}_1} e^{\frac{\pi}{4}i} |1\rangle \otimes v 
+	\xrightarrow{\Pi^0 \vec{Q}_2} e^{\frac{\pi}{4}i} \frac{1}{\sqrt{2}}|+\rangle \otimes v  \\
+	w 
+	&\xrightarrow{\Pi^1 \vec{Q}_1}  |0\rangle \otimes w 
+	\xrightarrow{\Pi^0 \vec{Q}_2} \frac{1}{\sqrt{2}}|+\rangle \otimes w  \\
+	\end{split}
+\end{equation}
+
+Using our notation in \eqref{q2-1}, we see the operation which is the left hand side of \eqref{question:q2} is 
+$$
+\sqrt{2} | 0 \rangle \otimes W 
+$$
+
+Our calculation in \eqref{q2-1-cal} shows that 
+\begin{equation}
+	\begin{split}
+		v &\xrightarrow{\sqrt{2} | 0 \rangle \otimes W} \sqrt{2} |0\rangle \otimes v \\
+		w &\xrightarrow{\sqrt{2} | 0 \rangle \otimes W} \sqrt{2} e^{\frac{\pi}{4}i} |0\rangle \otimes w
+	\end{split}
+\end{equation}
+
+Comparing with \eqref{q2-2-10-cal}, we see we need to find a Clifford $C_{0,1}$ such that 
+\begin{equation}
+	\begin{split}
+		C_{0, 1} |+\rangle \otimes v & = 2 e^{-\frac{\pi}{4}} |0\rangle \otimes v \\
+		C_{0, 1} |+\rangle \otimes w & = 2 e^{\frac{\pi}{4}} |0\rangle \otimes w \\
+	\end{split}
+\end{equation}
+
+Let $P = N^{\dagger} Z_1 N$, where $Z_1$ is the Pauli $Z$ acting on the first qubit. 
+I claim that $C_{0,1} = H \otimes N^{\dagger} S_1 N$ works, where $S_1 = e^{-\frac{\pi}{4}} |0 \rangle \langle 0| +  e^{\frac{\pi}{4}} |1 \rangle \langle 1|$
+The verification is straightforward, as $H |+\rangle = 2 |0\rangle$,
+and $N^{\dagger}S_1N$ exactly sends $v$ to $e^{-\frac{\pi}{4}} v$ and $w$ to $e^{\frac{\pi}{4}} w$, where $v$ and $w$ are the eigenvectors of $P$ with eigenvalues $1$ and $-1$ respectively.

@@ -30,7 +30,7 @@
 		\node [style=none] (31) at (10.5, 1.5) {};
 		\node [style=none] (32) at (12.5, 1.5) {};
 		\node [style=green] (33) at (12.5, 2.25) {};
-		\node [style=green] (34) at (7.5, 2.25) {$\frac{\pi}{4}$};
+		\node [style=green-phase] (34) at (7.5, 2.25) {$\frac{\pi}{4}$};
 	\end{pgfonlayer}
 	\begin{pgfonlayer}{edgelayer}
 		\draw (2.center) to (1.center);
@@ -43,7 +43,7 @@
 		\draw (30.center) to (29.center);
 		\draw (31.center) to (32.center);
 		\draw (28) to (14.center);
-		\draw (34) to (15.center);
 		\draw (17.center) to (33);
+		\draw (15.center) to (34);
 	\end{pgfonlayer}
 \end{tikzpicture}

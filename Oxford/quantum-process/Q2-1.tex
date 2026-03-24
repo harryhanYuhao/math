@@ -1,0 +1,42 @@
+\section{Q2}
+
+\subsection{Post Selected Pauli Projection}
+
+Note we have the following identity
+
+\begin{align*}
+	\tikzfig{q-2-1.1} 
+\end{align*}
+
+So we have 
+\begin{equation}\label{q2-1}
+	W=\tikzfig{q-2-1.2}
+\end{equation}
+
+where $\vec{Q} = Z \otimes \vec{P}$, and we denote the map with $W$.
+
+Let us analyze how does \eqref{q2-1} work.
+It is clear that 
+
+$$
+\tikzfig{q-2-1.3} = |0\rangle + e^{\frac{\pi}{4}i} |1\rangle
+$$
+
+Assuming $\vec{P}$ has eigenvector $v$ with eigenvalue $1$, and eigenvector $w$ with eigenvalue $-1$, then $\vec{Q}$ has eigenvector $|0\rangle \otimes v$ and $|1\rangle \otimes w$ with eigenvalue $1$, and eigenvector $|1\rangle \otimes v$ and $|0\rangle \otimes w$ with eigenvalue $-1$. 
+(This is because we added a $Z$ in the first qubit, which has eigenvalue $1$ for $|0\rangle$ and $-1$ for $|1\rangle$.)
+
+The measurement $\Pi^0 \vec{Q}$ projects the state to the eigenspace of $\vec{Q}$ with eigenvalue $1$. 
+while $\Pi^1 \vec{Q}$ projects the state to the eigenspace with eigenvalue $-1$.
+Thus
+\begin{equation}\label{q2-1-cal}
+\begin{split}
+	\Pi^0 \vec{Q} \left( \tikzfig{q-2-1.3} \otimes v \right) &= |0\rangle \otimes v \\
+	\Pi^0 \vec{Q} \left( \tikzfig{q-2-1.3} \otimes w \right) &= e^{\frac{\pi}{4}i}|1\rangle \otimes w \\
+	\Pi^1 \vec{Q} \left( \tikzfig{q-2-1.3} \otimes v \right) &= e^{\frac{\pi}{4}i}|1\rangle \otimes v \\
+	\Pi^1 \vec{Q} \left( \tikzfig{q-2-1.3} \otimes w \right) &= |0\rangle \otimes v 
+\end{split}
+\end{equation}
+This means
+$$
+W(v) = v, W(w) = e^{\frac{\pi}{4}i} w
+$$

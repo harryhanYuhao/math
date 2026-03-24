@@ -1,0 +1,33 @@
+\begin{tikzpicture}
+	\begin{pgfonlayer}{nodelayer}
+		\node [style=none] (0) at (-2, -3.75) {};
+		\node [style=none] (1) at (-2.5, -3.75) {};
+		\node [style=none] (2) at (-4, -3.75) {};
+		\node [style=none] (3) at (-1.5, -3.75) {};
+		\node [style=none] (4) at (0, -3.75) {};
+		\node [style=green-phase] (5) at (-2, -0.75) {$\frac{\pi}{4}$};
+		\node [style=gate] (6) at (-2, -3.75) {$P$};
+		\node [style=red] (7) at (-2, -1.75) {};
+		\node [style=green-phase] (8) at (-2, -2.5) {$\pi$};
+		\node [style=none] (14) at (0.75, -2) {$=$};
+		\node [style=none] (24) at (3.75, -3.75) {};
+		\node [style=none] (25) at (3.25, -3.75) {};
+		\node [style=none] (26) at (1.75, -3.75) {};
+		\node [style=none] (27) at (4.25, -3.75) {};
+		\node [style=green-phase] (28) at (3.75, -0.75) {$\frac{\pi}{4}$};
+		\node [style=gate] (29) at (3.75, -3.75) {$P$};
+		\node [style=red] (30) at (3.75, -1.75) {};
+		\node [style=gate] (31) at (6, -3.75) {$P$};
+		\node [style=none] (32) at (8, -3.75) {};
+	\end{pgfonlayer}
+	\begin{pgfonlayer}{edgelayer}
+		\draw (2.center) to (1.center);
+		\draw (3.center) to (4.center);
+		\draw (6) to (7);
+		\draw (7) to (5);
+		\draw (26.center) to (25.center);
+		\draw (29) to (30);
+		\draw (30) to (28);
+		\draw (32.center) to (27.center);
+	\end{pgfonlayer}
+\end{tikzpicture}
