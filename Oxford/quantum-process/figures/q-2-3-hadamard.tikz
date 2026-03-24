@@ -1,0 +1,58 @@
+\begin{tikzpicture}
+	\begin{pgfonlayer}{nodelayer}
+		\node [style=red] (0) at (-7.75, 1) {};
+		\node [style=H] (1) at (-6.5, 1) {};
+		\node [style=green] (2) at (-5.25, 1) {};
+		\node [style=H] (3) at (-4, 1) {};
+		\node [style=none] (4) at (-2.75, 1) {};
+		\node [style=none] (5) at (-7.75, -1) {};
+		\node [style=red] (6) at (-5.25, 0) {};
+		\node [style=green] (7) at (-5.25, -1) {};
+		\node [style=green] (8) at (-2.75, -1) {};
+		\node [style=red] (9) at (-0.75, 1) {};
+		\node [style=none] (13) at (1.75, 1) {};
+		\node [style=none] (14) at (-0.75, -1) {};
+		\node [style=red] (15) at (0.5, -0.25) {};
+		\node [style=green] (16) at (0.5, -1) {};
+		\node [style=none] (18) at (-2, 0) {$=$};
+		\node [style=H] (19) at (0.5, 0.25) {};
+		\node [style=red] (20) at (0.5, 1) {};
+		\node [style=none] (22) at (6.5, 1) {};
+		\node [style=none] (23) at (3.5, -1) {};
+		\node [style=none] (27) at (2.75, 0) {$=$};
+		\node [style=H] (28) at (5, 0) {};
+		\node [style=red] (29) at (5, 1) {};
+		\node [style=red] (30) at (5, -1) {};
+		\node [style=none] (31) at (11.5, 0) {};
+		\node [style=none] (32) at (9, 0) {};
+		\node [style=none] (33) at (7.5, 0) {$=$};
+		\node [style=H] (34) at (10.25, 0) {};
+		\node [style=none] (35) at (-2, 0.5) {$cc$};
+		\node [style=none] (36) at (-2, 0.25) {};
+		\node [style=none] (37) at (-2, 1) {$sp$};
+		\node [style=none] (38) at (2.75, 0.5) {$id, sp$};
+		\node [style=none] (39) at (7.5, 0.75) {$id$};
+	\end{pgfonlayer}
+	\begin{pgfonlayer}{edgelayer}
+		\draw (0) to (1);
+		\draw (1) to (2);
+		\draw (3) to (2);
+		\draw (3) to (4.center);
+		\draw (6) to (2);
+		\draw (8) to (7);
+		\draw (7) to (5.center);
+		\draw (7) to (6);
+		\draw (16) to (14.center);
+		\draw (16) to (15);
+		\draw (9) to (20);
+		\draw (20) to (13.center);
+		\draw (20) to (19);
+		\draw (19) to (15);
+		\draw (29) to (22.center);
+		\draw (29) to (28);
+		\draw (28) to (30);
+		\draw (30) to (23.center);
+		\draw (34) to (32.center);
+		\draw (34) to (31.center);
+	\end{pgfonlayer}
+\end{tikzpicture}

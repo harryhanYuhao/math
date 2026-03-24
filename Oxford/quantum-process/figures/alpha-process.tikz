@@ -1,0 +1,11 @@
+\begin{tikzpicture}
+	\begin{pgfonlayer}{nodelayer}
+		\node [style=none] (0) at (1, 0) {};
+		\node [style=green-phase] (1) at (0, 0) {$\alpha$};
+		\node [style=none] (2) at (-1, 0) {};
+	\end{pgfonlayer}
+	\begin{pgfonlayer}{edgelayer}
+		\draw (1) to (0.center);
+		\draw (2.center) to (1);
+	\end{pgfonlayer}
+\end{tikzpicture}

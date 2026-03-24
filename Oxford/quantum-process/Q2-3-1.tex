@@ -1,0 +1,71 @@
+\subsection{Clifford and T with Measurement}
+
+Clifford + T computation are performed in the following three steps.
+\begin{enumerate}
+	\item Prepare the states $\ket{0}^{\otimes n}$,
+	\item Perform a sequence of Clifford + T gates,
+	\item Measure in $Z$ basis.
+\end{enumerate}
+
+Since we will eventually measure in the $Z$ basis, we have the following observation
+
+\begin{remark}
+	Postpending a $\tikzfig{Z-dual}$ to any ancilla quibit will not effect the final measurement result, as we are measuring in the $Z$ basis.
+\end{remark}
+
+\subsubsection{Pauli and Clifford}
+
+If we have an initial state of $\ket{T}$, we can perform a $T$ gate on any part of the circuit by a Pauli measurement $\Pi^0 (Z \otimes Z \otimes \vec{I})$ in the following way.
+
+\begin{align}\label{eq:embed-S}
+	\tikzfig{q-2-3-1}
+\end{align}
+
+Thus for a Clifford + T circuit, we can let the Clifford gates remain the same and replace each $T$ gate with the above Pauli measurement. 
+The number of $\ket{T}$ required is exactly equal to the number of $T$ gates in the original circuit.
+If there are two consecutive $T$ gates, we can add an identity clifford between them. 
+In this way, we have simulated a Clifford + T circuit with alternating Pauli measurements and Clifford gates.
+
+\subsubsection{Only Pauli}
+
+Next, we would like to show that we can simulate any Clifford with Pauli measurement.
+We demonstrate this in several steps.
+
+\begin{lemma}[S state with measurement]\label{lm:Pauli-S}
+	We can simulate $S$ state by two $Z$ measurements and two $\ket{T}$ in the followng way
+	\begin{equation}
+		\tikzfig{q-2-3-S-state}
+	\end{equation}
+\end{lemma}
+
+\begin{lemma}[Multiple of $\frac{\pi}{4}$ state]\label{lm:mul-Z-state}
+	Using $k$ $Z$ measurements and $k$ $\ket{T}$, we can simulate the state $\ket{\frac{k\pi}{4}} $ in the exact same way as in lemma \ref{lm:Pauli-S}.
+	Importantly, it means we can 
+	\begin{enumerate}
+		\item simulate a $\tikzfig{Z-state}$ with 8 $Z$ measurements and 8 $\ket{T}$,
+		\item simulate a $\tikzfig{Z-Pi-state}$ with 4 $Z$ measurements and 4 $\ket{T}$.
+	\end{enumerate}
+\end{lemma}
+
+
+\begin{lemma}[State to Process]
+	If we have an ancilla quibit in state $\tikzfig{alpha-state}$, we can embed a $\tikzfig{alpha-process}$ in to the circuit with a $Z\otimes Z \otimes I$ measurement.
+\end{lemma}
+
+\begin{proof}
+	This can be done in the exact same way as in \eqref{eq:embed-S}, by replacing the $\ket{T}$ state with $\tikzfig{alpha-state}$.	
+\end{proof}
+
+
+\begin{lemma}
+	Using 9 $Z$ measurements and 8 ancilla $\ket{T}$, we can simulate the state $\tikzfig{X-state}$ in the ancilla qubit.
+\end{lemma}
+
+\begin{proof}
+	By	lemma \ref{lm:mul-Z-state}, we can simulate $\tikzfig{Z-state}$ with 8 $Z$ measurements and 8 $\ket{T}$.
+
+	Now use the following $Z$ measurement
+	$$
+	\tikzfig{q-2-3-sim-X-state}
+	$$
+\end{proof}
