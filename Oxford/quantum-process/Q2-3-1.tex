@@ -69,3 +69,27 @@ We demonstrate this in several steps.
 	\tikzfig{q-2-3-sim-X-state}
 	$$
 \end{proof}
+
+\begin{lemma}[Hadamard]
+	Using 9 $Z$ measurements, one $X\otimes Z$ measurement and 8 ancilla $\ket{T}$, we can simulate the Hadamard gate in the circuit.
+\end{lemma}
+
+\begin{proof}
+	$$
+		\tikzfig{q-2-3-hadamard}
+	$$
+\end{proof}
+
+\begin{lemma}
+	Using 9 $Z$ measurements, 1 $X\otimes X$ measurement and one $Y \otimes Y$ measurements, and 8 ancilla $\ket{T}$, we can simulate CNOT circuit in the circuit.
+\end{lemma}
+
+\begin{proof}
+	We start from a $\tikzfig{X-state}$ in the ancilla qubit and follow the following computation
+
+	$$
+	\tikzfig{q-2-3-cnot}
+	$$
+\end{proof}
+
+Now, we have shown that Pauli can simulate CNOT, hadamard, $Z(\frac{\pi}{2})$, and $T$ gates, which are the generators of Clifford + T.
