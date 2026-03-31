@@ -1,0 +1,141 @@
+\section{Quantum Computation with Universal Gate}
+
+
+In the effort to build quantum computers one task is especially important: to find some small sets of gates that can effectively simulate any unitary operations.
+Let us first concentrate on the single-qubit unitary operations.
+
+
+There are infinitely many single qubit unitary operations, making it impossible to exactly synthesize any arbitrary operation with a finite set of gates. 
+\footnote{On classical computers, NAND gate alone is sufficient to implement any Boolean function.}
+Therefore, we relax our goal to find a finite set of gates that can approximate any single qubit unitary operation to arbitrary precision in the sense defined below. 
+
+\begin{definition}[Error of approximation]
+	If $U$ is the unitary operation we wish to implement while $V$ is the actual implementation in practice. 
+	The \emph{error} of approximation is defined as  
+	\begin{equation}
+		E(U, V) = \max_{\ket{\psi}} \frac{\| (U - V) \ket{\psi} \|}{\| \ket{\psi} \|}.
+	\end{equation}
+\end{definition}
+
+\begin{definition}[Universal Gate]
+A set of quantum gates is called \emph{universal} if any unitary operation can be aproximated with arbitraily small error by a finite sequence of gates from the set.
+\end{definition}
+
+\begin{remark}[Soundness of Definition of Error]
+	Let $\ket{\psi}$ be the initial state of the system, which is evolved according to unitary $U$ or $V$, and then measured via POVM measurement $M$. 
+	Let $P_U$ and $P_V$ denote the probability of obtaining the corresponding measurement outcome when the operator $U$ or $V$ are performed, respectively. 
+
+	Then 
+	$$
+	|P_U - P_V| = | \bra{\psi} U^\dagger M U \ket{\psi} - \bra{\psi} V^\dagger M V \ket{\psi} |
+	$$
+	Let $\ket{\Delta} := (U - V)\ket{\psi}$, we have 
+	\begin{align*}
+		|P_U - P_V| 
+		& = | \bra{\psi} U^\dagger M \ket{\Delta} + \bra{\Delta} M V \ket{\psi} | & \\
+		&\leq | \bra{\psi} U^\dagger M \ket{\Delta} | + |\bra{\Delta} M V \ket{\psi} | &\\
+		& \leq \| \ket{M^\dagger U \psi} \| \cdot \| \ket{\Delta} \| + \| \ket{M V \psi} \| \cdot \| \ket{\Delta} \|  & \text{(by Cauchy-Schwarz)}\\ 
+		& \leq 2 \| \ket{\Delta} \| &  \| \ket{M^\dagger U \psi}\| \leq 1\\
+		& = 2 E(U, V) &
+	\end{align*}
+
+	This means if $E(U, V)$ is small, the probability of obtaining a different measurement outcome is also small, which is exactly what we expect for the definition of error.
+\end{remark}
+
+\begin{proposition}[Cumulation of Error]\label{prop:cumulation-of-error}
+	If we have a sequence of unitary operations $U_1, U_2, \cdots, U_n$ and their approximations $V_1, V_2, \cdots, V_n$ with error $E(U_i, V_i)$, then 
+	$$
+	E(U_1 U_2 \cdots U_n, V_1 V_2 \cdots V_n) \leq \sum_{i=1}^n E(U_i, V_i).
+	$$
+\end{proposition}
+
+\begin{proof}
+	Let us first consider $E(U_1U_2, V_1V_2)$
+	By definition
+\begin{align*}
+	E(U_1U_2, V_1V_2) 
+	& = \max_{\|\ket{\psi}\| = 1} \| (U_1 U_2 - V_1 V_2) \ket{\psi} \|&\\
+	& = \max_{\|\ket{\psi}\| = 1} \| (U_1 U_2 - U_1 V_2 + U_1 V_2 - V_1 V_2) \ket{\psi} \| &\\
+	& \leq \max_{\|\ket{\psi}\| = 1} \| \| (U_1 U_2 - U_1 V_2) \ket{\psi} \| + \| (U_1 V_2 - V_1 V_2) \ket{\psi} \| & \\
+	& = E(U_2, V_2) + E(U_1, V_1) &
+\end{align*}
+The general case will follow from induction.
+\end{proof}
+
+
+In the process of understading single qubit unitary operations, it is helpful to visualize the state of a single qubit as a point on the surface of a sphere in the following way.
+
+Let $\ket{1} = \begin{pmatrix}1 \\ 0\end{pmatrix}$ and $\ket{0} = \begin{pmatrix}0 \\ 1\end{pmatrix}$ be the standard basis of $\mathbb{C}^2$
+Any qubit $\ket{\psi}$ can be written $\ket{\psi} = a \ket{0} + b \ket{1}$ for some $a , b \in \mathbb{C}$ such that $|a|^2 + |b|^2 = 1$.
+If we write $|a| = \cos \frac{\theta}{2}$ and $|b| = \sin \frac{\theta}{2}$, then for some phase factors $e^{i \alpha}$ and $e^{i \beta}$, we have
+$$
+\ket{\psi} = e^{i \beta} \left(\cos \frac{\theta}{2} \ket{0} + e^{i \alpha} \sin \frac{\theta}{2} \ket{1}\right),
+$$
+
+We can represent $\ket{\psi}$ as a point on the unit sphere, where $\theta$ and $\alpha$ denote the polar and azimuthal angles. 
+This is called a Bloch sphere.
+
+\begin{figure}[htbp]
+	\centering
+	\includegraphics[width=0.5\textwidth]{./figures/bloch.png}
+	\caption{Bloch Sphere}
+	\label{fig:Bloch Sphere}
+\end{figure}
+
+It terms out the unitary operations on a single qubit can be represented as rotations on the Bloch sphere.
+For example, the the following Pauli operators
+$$X = \begin{pmatrix}
+0 & 1\\
+1 & 0
+\end{pmatrix}, \quad Y = \begin{pmatrix}0 & -i\\
+i & 0
+\end{pmatrix}, \quad Z = \begin{pmatrix}1 & 0\\
+0 & -1
+\end{pmatrix},
+$$
+correspond to the rotations of $\pi$ along the $x, y$ and $z$ axes, respectively, where $x, y, z$ axis are  
+
+\subsection{Universality of Hadamard and T Gates}
+
+An important set of universal gate which we discuss in detail here is Hadamard + T gate. 
+
+\begin{theorem}
+	The set $\{H, T\}$ is a universal gate set for single qubit unitary operations, where 
+	\begin{equation*}
+		H = \frac{1}{\sqrt{2}} \begin{pmatrix}
+		1 & 1\\
+		1 & -1
+		\end{pmatrix}, \quad T = \begin{pmatrix}
+		1 & 0\\
+		0 & e^{i\pi/4}
+		\end{pmatrix}.
+	\end{equation*}
+\end{theorem}
+
+\begin{proof}
+	We can write
+	$$
+	T = \cos \frac{\pi}{8} I - i \sin \frac{\pi}{8} Z, \quad H = \frac{1}{\sqrt{2}} (X + Z).
+	$$
+	where $X, Z$ are the Pauli X and Z operators, respectively. 
+	Calculation shows that 
+	$$
+	THTH = \cos^2\frac{\pi}{8} I - i \sin \frac{\pi}{8} \left( \cos \frac{\pi}{8} (X + Z) + \sin \frac{\pi}{8} Y \right),
+	$$
+	This is rotation along the axis $(\cos\frac{\pi}{8}, \sin\frac{\pi}{8}, \cos\frac{\pi}{8})$ through an angle $\theta$ defined by $\cos \frac{\theta}{2} = \cos^2 \frac{\pi}{8}$.
+	We can show that $\theta$ is a irrational multiple of $\pi$.
+	Therefore repeated applications of $THTH$ can approximate any rotation along the axis $(\cos\frac{\pi}{8}, \sin\frac{\pi}{8}, \cos\frac{\pi}{8})$ to arbitrary precision.
+
+	By the same calculation we can show that $HTHT$ is a rotation along the axis $(\cos\frac{\pi}{8}, -\sin\frac{\pi}{8}, \cos\frac{\pi}{8})$ through the same angle $\theta$. 
+	Repeated applications of $HTHT$ can approximate any rotation along the axis $(\cos\frac{\pi}{8}, -\sin\frac{\pi}{8}, \cos\frac{\pi}{8})$ to arbitrary precision.
+
+	As shown in the appendix, any single qubit unitary $U$ can be represented as 
+	$$
+	U = R_{\hat{n}}(\alpha) R_{\hat{m}}(\beta) R_{\hat{n}}(\gamma),
+	$$
+	where $\hat{n}$ and $\hat{m}$ are two non-parallel axes, and $R_{\hat{n}}{\alpha}$ denotes the rotation along axis $\hat{n}$ through angle $\alpha$.
+
+	Previous paragraphs shows that for any $\epsilon > 0$, $H$ and $T$ can be used to approximate generate $V_1, V_2, V_3$ such that $E(R_{\hat{n}}(\alpha), V_1) < \epsilon$, $E(R_{\hat{m}}(\beta), V_2) < \epsilon$ and $E(R_{\hat{n}}(\gamma), V_3) < \epsilon$.
+	Applying proposition \ref{prop:cumulation-of-error} we see $E(U, V_1 V_2 V_3) < 3 \epsilon$, proving the universality of $H$ and $T$.
+\end{proof}
+

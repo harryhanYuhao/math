@@ -1,18 +1,29 @@
 \begin{tikzpicture}
 	\begin{pgfonlayer}{nodelayer}
-		\node [style=red] (1) at (-2.75, -0.75) {};
-		\node [style=green] (2) at (-4.5, 0.5) {};
-		\node [style=green] (3) at (-2.75, 0.5) {};
-		\node [style=none] (4) at (-1, 0.5) {};
-		\node [style=red] (5) at (1.25, 0) {};
-		\node [style=none] (6) at (2.75, 0) {};
-		\node [style=none] (7) at (0, 0) {$=$};
-		\node [style=none] (8) at (0, 0.75) {$sp$};
+		\node [style=red] (1) at (0.25, -0.75) {};
+		\node [style=green] (2) at (-1.5, 0.5) {};
+		\node [style=green] (3) at (0.25, 0.5) {};
+		\node [style=none] (4) at (2, 0.5) {};
+		\node [style=red] (5) at (4.25, 0) {};
+		\node [style=none] (6) at (5.75, 0) {};
+		\node [style=none] (7) at (3, 0) {$=$};
+		\node [style=none] (8) at (3, 0.75) {$sp$};
+		\node [style=red] (9) at (-4.5, -0.75) {};
+		\node [style=green] (10) at (-6.25, 0.5) {};
+		\node [style=none] (12) at (-2.75, 0.5) {};
+		\node [style=gate] (13) at (-4.5, 0.5) {$Z$};
+		\node [style=none] (14) at (-5, 0.5) {};
+		\node [style=none] (15) at (-4, 0.5) {};
+		\node [style=none] (16) at (-4.5, 0) {};
+		\node [style=none] (17) at (-2.25, -0.25) {$=$};
 	\end{pgfonlayer}
 	\begin{pgfonlayer}{edgelayer}
 		\draw (2) to (3);
 		\draw (3) to (4.center);
 		\draw (1) to (3);
 		\draw (6.center) to (5);
+		\draw (10) to (14.center);
+		\draw (16.center) to (9);
+		\draw (15.center) to (12.center);
 	\end{pgfonlayer}
 \end{tikzpicture}

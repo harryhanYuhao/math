@@ -5,7 +5,7 @@
 		\node [style=none] (6) at (-4, -0.75) {$\vdots$};
 		\node [style=red] (8) at (-4, -2) {};
 		\node [style=none] (9) at (-4.75, -1.25) {$2m$};
-		\node [style=green] (10) at (-4, -4.25) {};
+		\node [style=red] (10) at (-4, -4.25) {};
 		\node [style=green] (11) at (2, 1) {};
 		\node [style=green] (14) at (2, -2) {};
 		\node [style=green] (15) at (2, -3.5) {};
@@ -27,7 +27,6 @@
 		\draw (8) to (14);
 		\draw (0) to (15);
 		\draw (8) to (15);
-		\draw (10) to (16);
 		\draw (10) to (15);
 		\draw (10) to (14);
 		\draw (10) to (11);
@@ -36,6 +35,7 @@
 		\draw (11) to (22.center);
 		\draw (14) to (25.center);
 		\draw (28.center) to (15);
-		\draw (16) to (27.center);
+		\draw (10) to (39);
+		\draw (39) to (27.center);
 	\end{pgfonlayer}
 \end{tikzpicture}
