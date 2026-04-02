@@ -1,0 +1,81 @@
+\section{Exact Synthesis of Clifford+T Circuits}
+
+\subsection{Overview of Algorithm}
+
+In this section we present an algorithm for the exact synthesis of single qubit unitaries over the Clifford+T gate set, provided it is possible. 
+The algorithm was proposed by Kliuchnikov et al. \cite{exact-clifford+t}.
+
+The key insight is the following theorem, which relates the set of unitaries that can be implemented by Clifford+T circuits with the ring $\Z\left[\frac{1}{\sqrt{2}}, i\right]$.
+\begin{theorem}\label{unitary-iff-clifford+t}
+	Denote $\mathcal{CT}(2)$ as the set of all $2 \times 2$ unitary matrices that can be exactly implemented by a single qubit Clifford+T circuit. 
+	Then $U \in \mathcal{CT}(2)$ if and only if $U \in U(\Z\left[\frac{1}{\sqrt{2}}, i\right])$, which is to say it is an unitary matrix with entries in $\Z\left[\frac{1}{\sqrt{2}}, i\right]$.
+
+	In such case, moreover, it can be written in the following form
+	\begin{equation}\label{clifford+t-form}
+	\begin{pmatrix}
+		a & b^\dagger \omega^k \\ 
+		b & a^\dagger \omega^k \\	
+	\end{pmatrix}
+	\end{equation}
+	where $a, b \in \Z\left[\frac{1}{\sqrt{2}}, i\right]$, $\omega = e^{\pi i/4}$ and $k$ is an integer, and $\dagger$ denotes the complex conjugate.
+\end{theorem}
+
+
+% \begin{remark}\label{rk:first-column-matters}
+% Notice that 
+% $$
+% \begin{pmatrix}
+% 		a & b^\dagger \omega^k \\ 
+% 		b & a^\dagger \omega^k \\	
+% 	\end{pmatrix} T^n 
+% 	= \begin{pmatrix}
+% 		a & b^\dagger \omega^{k+n} \\ 
+% 		b & a^\dagger \omega^{k+n} \\	
+% \end{pmatrix}
+% $$
+% This means we only need to regard the first column of any unitary matrix in finding a Clifford+T circuit that implements it.
+% As for any $U, V \in \mathcal{CT}(2)$ with the same first column, we have $U = VT^n$ for some integer $n$.
+% \end{remark}
+
+
+\begin{definition}[Least Denominator Exponent]\label{def:lde}
+	The least denominator exponent of a vector or matrix $u$ with entries in the ring $\Z[\sq, i]$, denoted as $\lde(u)$, is the smallest non-negative integer $k$ such that $\sqrt{2}^k u$ has entries in $\Z[\omega]$.
+\end{definition}
+
+By theorem \ref{unitary-iff-clifford+t}, all $U$ that can be implemented by Clifford+T circuits have entries in $\Z[\sq, i]$, so they have a well-defined least denominator exponent.
+
+Least denominator exponent is a measure of how far a unitary matrix is from being implementable by Clifford gates alone, as Clifford gates have entries in $\Z[i]$ and thus have least denominator exponent $0$.
+We can use the following theorem to reduce the least denominator exponent of a unitary matrix by applying $H$ and $T$ gates.
+
+\begin{theorem}\label{lde-reduction}
+	Let $U \in \mathcal{CT}(2)$,
+	let $\text{lde-tl}(U)$ denote $\lde(|z|^2),$ where $z$ is its top left entry.
+	Assuming $\text{lde-tl}(U) \geq 4$
+	Then there exists $k \in \{0, -1, -2, -3\}$ such that $\text{lde-tl}(H T^k U) = \text{ldt-tl}(U) - 1$.
+\end{theorem}
+
+There are only finitely many unit-vectors $v$ such that $\lde(|v|^2) \leq 4$.
+As the column of a unitary matrix $U \in \mathcal{CT}(2)$ is a unit-vector, we can reduce $\text{ldt-tl}(U)$ it to small enough number, after which we can find a Clifford+T circuit that implements it by brute-force search.
+
+We list the steps of the algorithm below for clarity.
+
+\begin{algorithm}
+	\caption{Exact Synthesis of Single Qubit Unitaries over Clifford+T}
+	\hspace*{\algorithmicindent} \textbf{Input:} $U \in \mathcal{CT}(2)$ \\
+\hspace*{\algorithmicindent} \textbf{Output:} a sequence of $H$ and $T$ gates that implements $U$
+\begin{algorithmic}[1]
+	\State $M \gets U, R \gets I$ \Comment{$M$ is temporary matrix, $R$ stores the result}
+	\While{$\text{lde-tl}(M) \geq 4$} \label{while-loop-exact-synthesis}
+	\State find $k \in \{0, -1, -2, -3\}$ such that $\text{lde-tl}(H T^k M) = \text{lde-tl}(M) - 1$ \Comment{Guaranteed by theorem \ref{lde-reduction}}
+\State $M \gets H T^k M$ 
+\State $R \gets R T^{-k} H$
+\EndWhile 
+\State Using brute force to find a sequence of $H$ and $T$ gates that implements $M$. Label this sequence as $M_s$\Comment{There are only finitely many options with $\lde \leq 2$}
+\State $R \gets M_s \cdot R$
+\State \textbf{return} $R$
+\end{algorithmic}
+\end{algorithm}
+
+The major work of the algorithm is the while loop in line \ref{while-loop-exact-synthesis}.
+After each iteration, the result is appended with $TH, SH, $ or $TSH$. 
+So the run time of the algorithm is linear in number of the gates in the output circuit.

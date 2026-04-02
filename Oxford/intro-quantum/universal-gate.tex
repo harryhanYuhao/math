@@ -62,6 +62,38 @@ A set of quantum gates is called \emph{universal} if any unitary operation can b
 The general case will follow from induction.
 \end{proof}
 
+\begin{proposition}[Computaion of Error]
+	Assuming $U - V$ is normal, 
+	$$
+	E(U, V) = \| U - V \| = | \lambda_{\max} |,
+	$$
+	Where $\lambda_{\max}$ is the eigenvalue of $U - V$ with the largest modulus.
+\end{proposition}
+
+\begin{proof}
+	This is the standard result about matrix norm from numerical linear algebra. \footnote{
+		The 2-norm of the matrix $M$ is defined as $\max_{v} \frac{|Mv|}{|v|}$
+	}.
+
+	Write $M = U - V$. 
+	Since $M$ is normal by spectral theorem $M$ can be decompose into $\lambda_1\ket{u_1}\bra{u_1} + \lambda_2 \ket{u_2} \bra{u_2}$, where $\lambda_1, \lambda_2$ are its eigenvalues and $\ket{u_1}, \ket{u_2}$ are its orthogonal eigenvectors.
+
+	Therefore any vector $\alpha$ can be written as $\alpha = a \ket{u_1} + b \ket{u_2}$ for some $a, b \in \mathbb{C}$, and we have
+
+	\begin{align*}
+		\frac{\|M \ket{\alpha}^2 \|}{\| \ket{\alpha}\|^2} 
+				 &= \frac{\|M (a \ket{u_1} + b \ket{u_2})\|^2}{|a|^2 + |b|^2} 
+				 &\\ 
+				 & = \frac{\|a \lambda_1 \ket{u_1} + b \lambda_2 \ket{u_2}\|^2}{|a|^2 + |b|^2} 
+				 &\\ 
+				 & \leq \frac{ |a|^2 |\lambda_1|^2 + |b|^2 |\lambda_2|^2}{|a|^2 + |b|^2}
+				 & \text{triangular inequality}\\ 
+				 & \leq \frac{\max(|\lambda_1|, |\lambda_2|)^2 (|a|^2 + |b|^2)}{|a|^2 + |b|^2}
+				 &\\ 
+				 & = \max(|\lambda_1|, |\lambda_2|)^2 &
+	\end{align*}
+	Taking the square root on both sides concludes the proof.
+\end{proof}
 
 In the process of understading single qubit unitary operations, it is helpful to visualize the state of a single qubit as a point on the surface of a sphere in the following way.
 

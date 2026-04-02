@@ -1,2 +1,61 @@
-\begin{tikzpicture}
+$$
+\begin{tikzpicture}[
+  >=Latex,
+  node distance=10mm and 20mm,
+  every node/.style={font=\small},
+  mat/.style={
+    matrix of math nodes,
+    left delimiter=(,
+    right delimiter=),
+    nodes={inner sep=1pt, text depth=0.2ex, text height=1.0ex},
+    column sep=4pt,
+    row sep=2pt
+  }
+]
+
+% Top left: Start matrix
+\node[font=\small] (startlbl) at (-1.6,2.4) {};
+\node[mat] (A) at (0,2.4) {
+  1 & 0 & 0 \\
+  0 & 1 & 0 \\
+  0 & 0 & 1 \\
+};
+
+% Self-loop / curved arrow on top right
+\draw[->, thick, bend left=35] (A.east) to node[midway, above right=-1pt] {$\mathcal{C}$} ($(A.east)+(2.1,0.0)$);
+\draw[->, very thick, bend left=35] ($(A.east)+(2.1,0.0)$) to (A.east);
+
+% Middle matrix
+\node[mat, below=20mm of A] (B) {
+  1 & 1 & 0 \\
+  1 & 1 & 0 \\
+  0 & 0 & 0 \\
+};
+
+% Down arrow A -> B
+\draw[->, thick] (A.south) -- node[midway, left=2pt] {$k{+}{+}$} node[midway, right=2pt] {$T$} (B.north);
+
+% Bottom-left matrix
+\node[mat, below left=18mm and 6mm of B] (C) {
+  0 & 0 & 0 \\
+  1 & 1 & 0 \\
+  1 & 1 & 0 \\
+};
+
+\draw[->, thick, bend right=20] (B.south west) to node[midway, left] {$H$} (C.north);
+\draw[->, thick, bend right=20]  (C.north east) to node[midway, right] {$T$} node[midway, left] {$k{+}{+}$} (B.south);
+
+% Bottom-right matrix
+\node[mat, right=28mm of C] (D) {
+  1 & 1 & 0 \\
+  0 & 0 & 0 \\
+  1 & 1 & 0 \\
+};
+
+% Arrow C -> D (S)
+\draw[->, thick] (C.east) -- node[midway, above] {$S$} (D.west);
+
+% Curved arrow D -> B (T)
+\draw[->, thick, bend right=28] (D.north east) to node[midway, above right] {$T$} (B.east);
 \end{tikzpicture}
+$$
