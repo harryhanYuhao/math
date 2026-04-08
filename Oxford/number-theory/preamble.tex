@@ -1,0 +1,65 @@
+\usepackage[utf8]{inputenc}
+\usepackage{biblatex}
+\addbibresource{./references.bib}
+% linktocpage shall be added to snippets.
+\usepackage{hyperref,theoremref}
+\hypersetup{
+	colorlinks, 
+	linkcolor={red!40!black}, 
+	citecolor={blue!50!black},
+	urlcolor={blue!80!black},
+	linktocpage % Link table of content to the page instead of the title
+}
+
+\usepackage{blindtext}
+\usepackage{titlesec}
+\usepackage{amsthm}
+\usepackage{thmtools}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{titlesec}
+\usepackage{xcolor}
+\usepackage{multicol}
+\usepackage{hyperref}
+\usepackage{import}
+\usepackage{breqn}
+\usepackage{libertinus}           % Load the Libertinus font
+
+\usepackage[toc,page]{appendix}
+
+
+\usepackage{chngcntr}
+\counterwithin*{equation}{section}
+\renewcommand{\theequation}{\thesection.\arabic{equation}}
+
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{corollary}[theorem]{Corollary}
+
+\theoremstyle{definition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{problem}{Problem}
+\newtheorem{example}[theorem]{Example}
+
+
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+
+% Proof Environments
+\renewcommand{\ker}[1]{\operatorname{Ker}{#1}}
+\newcommand{\coker}[1]{\operatorname{Coker}{#1}}
+
+
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\q}{\mathfrak{q}}
+\renewcommand{\a}{\mathfrak{a}}
+
+% squareroot minus d
+\newcommand{\smd}{\sqrt{-d}}
+
+ 
+\newcommand{\Qd}{\mathbb{Q}[\sqrt{-d}]}
+\renewcommand{\O}{\mathcal{O}}

@@ -1,0 +1,50 @@
+This is the central problem of this mini-project
+\begin{problem}
+	Let $p$ be an odd prime and let $k \equiv 2 \mod 4$. 
+	We can write $k = r^2d$ where $d$ is square-free. 
+	We want to investigate the integer solution of the following equation
+\begin{equation*}
+	y^p = x^2 + k
+\end{equation*}
+\end{problem}
+
+\section{Q1}
+
+In this section, we assume the class number of $\Q[\smd]$, denoted as $h(\Q[\smd])$, is not divisible by $p$, and $x, y$ are coprime.
+
+The diopantine equation can be factorised in $\Qd$ as 
+
+$$
+	y^p = (x+ r \smd) (x - r \smd)
+$$
+
+I claim that in $\O_{\Qd}$, $(x + r \smd)$ and $(x - r \smd)$ are coprime. 
+Let $m$ be a common divisor of $(x + r \smd)$ and $(x - r \smd)$, then 
+\begin{enumerate}
+	\item $m$ is a divisor of their sum $2x$
+	\item $m$ is a divisor of $y^p$ 
+\end{enumerate}
+If $m$ divides $x$, as $x$ and $y$ are coprime, $m$ must be a unit. 
+If $m = 2$, then $y^p$ is even which implies $y$ is even. 
+As $k$ is even, $x^2$ is even, which implies $x$ is even, contradicting the fact $x$ is coprime to $y$.
+So $m$ can only be a unit, which proves the claim.
+
+As a result, we can write $\langle x + r\smd \rangle$ as $\mathfrak{a}^p$ for some ideal $\mathfrak{a}$ in $\O_{\Qd}$. 
+
+Since $h(\Q[\smd])$ is not divisible by $p$, $\a$ is a principal ideal, so we can find some $\alpha \in \O_{\Qd}$ such that $\langle \alpha\rangle = \a$. 
+We can write $\alpha = a + b\smd$ for $a, b \in \Z$, then we have 
+$(a + b\smd)^p = u(x + r\smd)$ for some unit $u$ in $\O_{\Qd}$. (We know the unit group of $\O_{\Qd}$ is $\{\pm 1\}$.)
+
+Let us use the binomial expansion to expand $(a + b\smd)^p$ 
+$$
+	(a + b\smd)^p = a^p + \binom{p}{1} a^{p-1} b \smd + \binom{p}{2} a^{p-2} b^2 (\smd)^2 + \cdots + b^p (\smd)^p
+$$
+Note the term with $\smd$ can be written as 
+\begin{dmath*}
+	b\smd \left( \binom{p}{1} a^{p-1} + \binom{p}{3} a^{p-3} b^2 (\smd)^2 + \cdots + \binom{p}{p} b^{p-1} (\smd)^{p-1} \right) = b \smd f(a, b) = r
+\end{dmath*}
+where $f(a, b)$ is some homogeneous polynomial of degree $p-1$ in $a$ and $b$.
+It is evident that $b$ is a divisor of $r$. 
+We can try all possible values of $b$ and check if the corresponding $a$ is an integer.
+In this way, we can find all possible integer solutions (if any exists) of the original diophantine equation.
+

@@ -1,21 +1,23 @@
 \subsection{Two Pauli and Clifford}
 
-The goal of this section is to show that for any $j, k \in \{0, 1\}$, we have Pauli $\vec{Q}_1, \vec{Q}_2$ and Clifford $C_{i, j}$ such that the following identity holds 
+The goal of this section is to show that for any measurement outcome $j, k \in \{0, 1\}$, we have Pauli $\vec{Q}_1, \vec{Q}_2$ and Clifford $C_{i, j}$ such that the following identity holds 
+
+
 
 \begin{equation}\label{question:q2}
 	\tikzfig{q-2-question}
 \end{equation}
 
-The desired Paulis are $\vec{Q_1} = Z \otimes \vec{P}$, $\vec{Q_2} = X \otimes \vec{I}$.
+The desired Paulis are $\vec{Q_1} = Z \otimes \vec{P}$ ($Z$ in the first qubit and $\vec{P}$ in the others), $\vec{Q_2} = X \otimes \vec{I}$ ($X$ in the first qubit and identity on all others).
 The desired Cliffords are shown in the following cases.
 
 \subsubsection{Case 0,0}
 I claim 
-$C_{0,0} = H \otimes \vec{I}$ works. (Since $H$ is a Clifford, $C_{0,0}$) is indeed a Clifford curcuit.)
+$C_{0,0} = H \otimes \vec{I}$ works. (Since $H$ is a Clifford, $C_{0,0}$ is indeed a Clifford curcuit.
 
 Plugin to $\eqref{question:q2}$, we have
 \begin{align*}
 	\tikzfig{q-2-2.1}
 \end{align*}
  
-which is desired.
+which is what we desired.

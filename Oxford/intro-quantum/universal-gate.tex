@@ -62,20 +62,27 @@ A set of quantum gates is called \emph{universal} if any unitary operation can b
 The general case will follow from induction.
 \end{proof}
 
-\begin{proposition}[Computaion of Error]
-	Assuming $U - V$ is normal, 
+The definition of error is echoes the definition of matrix 2-norm.
+
+\begin{definition}[Matrix 2-norm]
+	The matrix 2-norm of a matrix $M$ is defined as 
 	$$
-	E(U, V) = \| U - V \| = | \lambda_{\max} |,
+	\| M \| = \max_{\ket{\psi}} \frac{\| M \ket{\psi} \|}{\| \ket{\psi} \|}.
+	$$
+\end{definition}
+
+\begin{proposition}[Computation of 2-Norm]
+	Assuming $M$ is normal\footnote{A matrix $M$ is normal if $M M^\dagger = M^\dagger M$.}, 
+	Then
+	$$
+	\| M \| = \max_{\ket{\psi}} \frac{\| M \ket{\psi} \|}{\| \ket{\psi} \|} = ||\lambda_{\max}|,
 	$$
 	Where $\lambda_{\max}$ is the eigenvalue of $U - V$ with the largest modulus.
 \end{proposition}
 
 \begin{proof}
-	This is the standard result about matrix norm from numerical linear algebra. \footnote{
-		The 2-norm of the matrix $M$ is defined as $\max_{v} \frac{|Mv|}{|v|}$
-	}.
+	This is the standard result about matrix norm. 
 
-	Write $M = U - V$. 
 	Since $M$ is normal by spectral theorem $M$ can be decompose into $\lambda_1\ket{u_1}\bra{u_1} + \lambda_2 \ket{u_2} \bra{u_2}$, where $\lambda_1, \lambda_2$ are its eigenvalues and $\ket{u_1}, \ket{u_2}$ are its orthogonal eigenvectors.
 
 	Therefore any vector $\alpha$ can be written as $\alpha = a \ket{u_1} + b \ket{u_2}$ for some $a, b \in \mathbb{C}$, and we have
@@ -93,6 +100,26 @@ The general case will follow from induction.
 				 & = \max(|\lambda_1|, |\lambda_2|)^2 &
 	\end{align*}
 	Taking the square root on both sides concludes the proof.
+\end{proof}
+
+\begin{corollary}[Computation of Error]\label{cor:computation-of-error}
+	Let $U$ and $V$ be two unitary operations, then 
+	$$
+	E(U, V) = \| U - V \| = \| UV^\dagger - I \| = |\lambda_{\max}|,
+	$$
+	where $\lambda_{\max}$ is the eigenvalue of $UV^\dagger - I$ with the largest modulus.
+\end{corollary}
+
+\begin{proof}
+	$ \| U - V \| = \| UV^\dagger - I \| $ follows from proposition \ref{prop:cumulation-of-error} on cumulation of error. 
+	$UV^\dagger - I$ is normal because 
+	\begin{align*}
+		(UV^\dagger - I)(UV^\dagger - I)^\dagger 
+		& = (UV^\dagger - I)(VU^\dagger - I) &\\
+		& = UV^\dagger VU^\dagger - UV^\dagger - VU^\dagger + I &\\
+		& = I - UV^\dagger - VU^\dagger + I &\\
+		& = (VU^\dagger - I)(UV^\dagger - I) = (UV^\dagger - I)^\dagger (UV^\dagger - I) &
+	\end{align*}
 \end{proof}
 
 In the process of understading single qubit unitary operations, it is helpful to visualize the state of a single qubit as a point on the surface of a sphere in the following way.

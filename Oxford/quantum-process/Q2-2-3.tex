@@ -1,7 +1,14 @@
-\subsubsection{Case 1,0}
+\subsubsection{Case 1,0} \label{section:case-1-0}
 
-Let us calculate what does $\vec{Q}_1, \vec{Q}_2$ do with state $1, 0$.
-Use our calculation in \eqref{q2-1-cal}, we see, if $v$ is the eigenvector of $\vec{P}$ with eigenvalue $1$, and $w$ is the eigenvector with eigenvalue $-1$, then 
+The first part of our circuit is shown below
+
+\begin{equation}\label{solution-effect}
+\tikzfig{q-2-2-case-1-0}
+\end{equation}
+Let analyze what does circuit do with do with measurement outcome $1, 0$.
+
+The input of the circuit is a state in $n$-qubit space.
+Use our calculation in \eqref{q2-1-cal}, if $v$ is the eigenvector of $\vec{P}$ with eigenvalue $1$, and $w$ is the eigenvector with eigenvalue $-1$, the above circuit calculates as follows
 
 \begin{equation}\label{q2-2-10-cal}
 	\begin{split}
@@ -14,12 +21,13 @@ Use our calculation in \eqref{q2-1-cal}, we see, if $v$ is the eigenvector of $\
 	\end{split}
 \end{equation}
 
-Using our notation in \eqref{q2-1}, we see the operation which is the left hand side of \eqref{question:q2} is 
+Using our notation in \eqref{q2-1}, we see that our desired operation, which is the left hand side of \eqref{question:q2}, is 
 $$
 \sqrt{2} | 0 \rangle \otimes W 
 $$
+since $\tikzfig{X-state} = \sqrt{2} \ket{0}$.
 
-Our calculation in \eqref{q2-1-cal} shows that 
+Our calculation in \eqref{q2-1-cal} shows that, if $v$ is the eigenvector of $\vec{P}$ with eigenvalue $1$, and $w$ is the eigenvector with eigenvalue $-1$, the desired operation is
 \begin{equation}
 	\begin{split}
 		v &\xrightarrow{\sqrt{2} | 0 \rangle \otimes W} \sqrt{2} |0\rangle \otimes v \\
@@ -35,7 +43,7 @@ Comparing with \eqref{q2-2-10-cal}, we see we need to find a Clifford $C_{0,1}$ 
 	\end{split}
 \end{equation}
 
-Let $P = N^{\dagger} Z_1 N$, where $Z_1$ is the Pauli $Z$ acting on the first qubit. 
-I claim that $C_{0,1} = H \otimes N^{\dagger} S_1 N$ works, where $S_1 = e^{-\frac{\pi}{4}} |0 \rangle \langle 0| +  e^{\frac{\pi}{4}} |1 \rangle \langle 1|$
+We decompose our Palui $\vec{P} = N^{\dagger} Z_1 N$ for some clifford $N$, where $Z_1$ is the Pauli $Z$ acting on the first qubit. 
+I claim that $C_{0,1} = H \otimes N^{\dagger} S_1 N$ works, where $S_1 = e^{-\frac{\pi}{4}} |0 \rangle \langle 0| +  e^{\frac{\pi}{4}} |1 \rangle \langle 1|$.
 The verification is straightforward, as $H |+\rangle = 2 |0\rangle$,
 and $N^{\dagger}S_1N$ exactly sends $v$ to $e^{-\frac{\pi}{4}} v$ and $w$ to $e^{\frac{\pi}{4}} w$, where $v$ and $w$ are the eigenvectors of $P$ with eigenvalues $1$ and $-1$ respectively.

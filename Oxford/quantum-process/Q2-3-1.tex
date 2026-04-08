@@ -7,24 +7,33 @@ Clifford + T computation are performed in the following three steps.
 	\item Measure in $Z$ basis.
 \end{enumerate}
 
-Since we will eventually measure in the $Z$ basis, we have the following observation
-
-\begin{remark}
-	Postpending a $\tikzfig{Z-dual}$ to any ancilla quibit will not effect the final measurement result, as we are measuring in the $Z$ basis.
-\end{remark}
 
 \subsubsection{Pauli and Clifford}
 
-If we have an initial state of $\ket{T}$, we can perform a $T$ gate on any part of the circuit by a Pauli measurement $\Pi^0 (Z \otimes Z \otimes \vec{I})$ in the following way.
+
+% \begin{equation}
+% 	\tikzfig{q-2-3- pauli-measure}
+% \end{equation}
+
+
+We can inject the magic $T$ state into any qubit of our circuit with the following Pauli gadget.
 
 \begin{align}\label{eq:embed-S}
 	\tikzfig{q-2-3-1}
 \end{align}
 
-Thus for a Clifford + T circuit, we can let the Clifford gates remain the same and replace each $T$ gate with the above Pauli measurement. 
+As shown in the the remark in section \ref{remark:alternating-pauli-clifford}, the gadget can be implemented with alternating Pauli measurements and Clifford gates on an extra ancilla qubit prepared in $\ket{T}$, where subsequent Pauli the Clifford gates only depend on the previous measurement outcomes.
+
+Thus for a Clifford + T circuit, we can let the Clifford gates remain the same and replace each $T$ gate with the above Pauli measurement construction. 
+As product of two clifford gate is still a clifford gate, the construction guarantees that there is a Pauli measurement between each clifford gate. 
+We still need to make sure that no two Pauli measurements are next to each other. 
+The only way this may take place is that there are two consective $T$ gates on the same qubit. 
+However, two $T$ gates make an $S$ gate which is part of Clifford, so there is no such problem, and we conclude that Pauli measurement alternates with Clifford.
+
 The number of $\ket{T}$ required is exactly equal to the number of $T$ gates in the original circuit.
-If there are two consecutive $T$ gates, we can add an identity clifford between them. 
 In this way, we have simulated a Clifford + T circuit with alternating Pauli measurements and Clifford gates.
+
+
 
 \subsubsection{Only Pauli}
 

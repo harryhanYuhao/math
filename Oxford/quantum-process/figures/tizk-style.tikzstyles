@@ -13,5 +13,9 @@
 \tikzstyle{long-gate}=[shape=rectangle, text height=1.5ex, text depth=0.25ex, yshift=-0.5mm, fill=white, draw=black, minimum height=15mm, minimum width=6mm, font={\small}, tikzit category=circuit]
 \tikzstyle{llong-gate}=[shape=rectangle, text height=1.5ex, text depth=0.25ex, yshift=-0.5mm, fill=white, draw=black, minimum height=18mm, minimum width=6mm, font={\small}, tikzit category=circuit]
 
+
+
+\tikzstyle{ket}=[fill=white, minimum height=12mm, draw=black, shape=regular polygon, regular polygon sides=3, regular polygon rotate=-30, scale=0.7, inner sep=1pt, tikzit category=circuit, tikzit shape=rectangle, tikzit fill=green]
+
 % Edge styles
 \tikzstyle{dash}=[-,dashed]
