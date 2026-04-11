@@ -26,11 +26,15 @@ Thus $C_{1,1} = (X H) \otimes (-P N^{\dagger} S_1 N)$ would work.
 
 \subsubsection{Remark}\label{remark:alternating-pauli-clifford}
 
-We know that if a Pauli $P$ can be written as  $P = C P' C^\dagger$, where $C$ is a clifford and $P'$ is another Pauli, then 
+We have the following important lemma.
+
+\begin{lemma}\label{lemma:measure-conjugate}
+If a Pauli $P$ can be written as  $P = C P' C^\dagger$, where $C$ is a clifford and $P'$ is another Pauli, then 
 \begin{equation}\label{eq:measure-conjugate}
-\Pi P = C \Pi P' C^\dagger
+	\Pi^{i} P = C \Pi^{i} P' C^\dagger
 \end{equation}
-where $\Pi P$ denote the ONB measurement in the eigenbasis of $P$ with either $0$ or $1$ as the measurement outcome.
+where $\Pi^{i} P$ denote the ONB measurement in the eigenbasis of $P$ with outcome $i$.
+\end{lemma}
 
 Our previous calculation shows that for outcome $i, j$, our post selected Clifford is 
 \begin{enumerate}

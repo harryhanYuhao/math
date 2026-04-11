@@ -28,7 +28,7 @@ Thus for a Clifford + T circuit, we can let the Clifford gates remain the same a
 As product of two clifford gate is still a clifford gate, the construction guarantees that there is a Pauli measurement between each clifford gate. 
 We still need to make sure that no two Pauli measurements are next to each other. 
 The only way this may take place is that there are two consective $T$ gates on the same qubit. 
-However, two $T$ gates make an $S$ gate which is part of Clifford, so there is no such problem, and we conclude that Pauli measurement alternates with Clifford.
+However, two $T$ gates make an $S$ gate which is part of Clifford, so there is no such problem, and we conclude that alternating Pauli measurement with Clifford with ancilla $\ket{T}$ can simulate any Clifford + T circuit.
 
 The number of $\ket{T}$ required is exactly equal to the number of $T$ gates in the original circuit.
 In this way, we have simulated a Clifford + T circuit with alternating Pauli measurements and Clifford gates.
@@ -37,68 +37,158 @@ In this way, we have simulated a Clifford + T circuit with alternating Pauli mea
 
 \subsubsection{Only Pauli}
 
-Next, we would like to show that we can simulate any Clifford with Pauli measurement.
-We demonstrate this in several steps.
+Our quantum circuit model, including the last measurement in $Z$ basis shown below 
 
-\begin{lemma}[S state with measurement]\label{lm:Pauli-S}
-	We can simulate $S$ state by two $Z$ measurements and two $\ket{T}$ in the followng way
-	\begin{equation}
-		\tikzfig{q-2-3-S-state}
-	\end{equation}
+\begin{equation}
+	\tikzfig{q-2-measurement-model}
+\end{equation}
+
+where section $A$ is state preparation, section $B$ is sections of alternating Pauli measurements and Clifford gates, and section $C$ is the final measurement in $Z$ basis, which themselves are Pauli measurements as well.
+
+Note we can apply lemma \ref{lemma:measure-conjugate} to move each Clifford gate to the right of section $C$ in the following way 
+$$
+	\tikzfig{q-2-measurement-model-move-clifford}
+$$
+In this way, $P_2'$ and $C_2'$s depend on the first measurement outcome.
+
+Indeed, we can move all Clifford gates to the right of section $C$ in the same way.
+
+The Clifford gates on the right of section $C$ do not have any effect on the final measurement probability outcome by Born's rule.
+
+\subsection{Only Commuting Pauli}
+
+We take the following lemma for granted
+\begin{lemma}\label{lemma:clifford-non-commuting}
+	For any non-commuting pauli $P$ and $Q$, there exists a Clifford $C$ such that $C P C^\dagger = X_1$ and $C Q C^\dagger = Z_1$. where $X_1$ and $Z_1$ are the Pauli $X$ and $Z$ acting on the first qubit.
 \end{lemma}
 
-\begin{lemma}[Multiple of $\frac{\pi}{4}$ state]\label{lm:mul-Z-state}
-	Using $k$ $Z$ measurements and $k$ $\ket{T}$, we can simulate the state $\ket{\frac{k\pi}{4}} $ in the exact same way as in lemma \ref{lm:Pauli-S}.
-	Importantly, it means we can 
-	\begin{enumerate}
-		\item simulate a $\tikzfig{Z-state}$ with 8 $Z$ measurements and 8 $\ket{T}$,
-		\item simulate a $\tikzfig{Z-Pi-state}$ with 4 $Z$ measurements and 4 $\ket{T}$.
-	\end{enumerate}
-\end{lemma}
+Using this lemma, we can prove the following theorem
 
-
-\begin{lemma}[State to Process]
-	If we have an ancilla quibit in state $\tikzfig{alpha-state}$, we can embed a $\tikzfig{alpha-process}$ in to the circuit with a $Z\otimes Z \otimes I$ measurement.
-\end{lemma}
+\begin{theorem}\label{theorem:non-commuting-pauli}
+	Let $P, Q$ be two non-commuting Pauli. 
+	Then $\Pi^j Q \Pi^i P \propto C_j \Pi^i P$ for some Clifford $C_j$ depending on the measurement outcome $j$ of $\Pi^j Q$.
+	Moreover, $\Pi^j Q$ outcome following a $P$ measurement gives $\frac{1}{2}$ chance for each outcome $j$.
+\end{theorem}
 
 \begin{proof}
-	This can be done in the exact same way as in \eqref{eq:embed-S}, by replacing the $\ket{T}$ state with $\tikzfig{alpha-state}$.	
+	Use lemma \ref{lemma:clifford-non-commuting}, we can find a Clifford $C$ such that $C P C^\dagger = X_1$ and $C Q C^\dagger = Z_1$. So we only need to verify the case when $P = X_1$ and $Q = Z_1$ with explicit calculation.
+	In particular, we only need to verify the computation on the first qubit as the rest of the qubits are not affected by the measurement and Clifford gates.
+
+	\begin{align*}
+		\Pi^0 Z_1 \Pi^0 X_1 &= 
+		\begin{pmatrix} 1 & 0 \\ 0 & 0 \end{pmatrix} 
+		\cdot 
+		\frac{1}{2} \begin{pmatrix} 1 & 1 \\ 1 & 1 \end{pmatrix}
+		=
+		\frac{1}{2} \begin{pmatrix} 1 & 1 \\ 0 & 0 \end{pmatrix}	
+		\propto
+		\begin{pmatrix} 1 & 1 \\ 1 & -1 \end{pmatrix} 
+		\begin{pmatrix} 1 & 1 \\ 1 & 1	\end{pmatrix}
+		= H \cdot \Pi^0 X_1
+	\end{align*}
+	\begin{align*}
+		\Pi^1 Z_1 \Pi^0 X_1 &= 
+		\begin{pmatrix} 0 & 0 \\ 0 & 1 \end{pmatrix} 
+		\cdot 
+		\frac{1}{2} \begin{pmatrix} 1 & 1 \\ 1 & 1 \end{pmatrix}
+		=
+		\frac{1}{2} \begin{pmatrix} 0 & 0 \\ 1 & 1 \end{pmatrix}	
+		\propto
+		\begin{pmatrix} 1 & -1 \\ 1 & 1 \end{pmatrix} 
+		\begin{pmatrix} 1 & 1 \\ 1 & 1	\end{pmatrix}
+		=  \begin{pmatrix} 1 & -1 \\ 1 & 1 \end{pmatrix} \cdot \Pi^0 X_1
+	\end{align*}
+	\begin{align*}
+		\Pi^0 Z_1 \Pi^1 X_1 &= 
+		\begin{pmatrix} 1 & 0 \\ 0 & 0 \end{pmatrix} 
+		\cdot 
+		\frac{1}{2} \begin{pmatrix} 1 & -1 \\ 1 & -1 \end{pmatrix}
+		=
+		\frac{1}{2} \begin{pmatrix} 1 & -1 \\ 0 & 0 \end{pmatrix}	
+		\propto
+		\begin{pmatrix} 1 & 1 \\ 1 & -1 \end{pmatrix} 
+		\begin{pmatrix} 1 & -1 \\ 1 & -1	\end{pmatrix}
+		= H \cdot \Pi^1 X_1
+	\end{align*}
+	\begin{align*}
+		\Pi^1 Z_1 \Pi^1 X_1 &= 
+		\begin{pmatrix} 0 & 0 \\ 0 & 1 \end{pmatrix} 
+		\cdot 
+		\frac{1}{2} \begin{pmatrix} 1 & 1 \\ -1 & -1 \end{pmatrix}
+		=
+		\frac{1}{2} \begin{pmatrix} 0 & 0 \\ 1 & -1 \end{pmatrix}	
+		\propto
+		\begin{pmatrix} 1 & -1 \\ 1 & 1 \end{pmatrix} 
+		\begin{pmatrix} 1 & 1 \\ 1 & 1	\end{pmatrix}
+		=  \begin{pmatrix} 1 & -1 \\ 1 & 1 \end{pmatrix} \cdot \Pi^1 X_1
+	\end{align*}
+
+	Notice that in all cases we can write $\Pi^i Z \Pi^j X = C_i \Pi^j X$ for some Clifford $C_i$ depending only on the measurement outcome $i$ of $\Pi^i Z$.
+
+	We know that $\Pi^0 X \ket{\psi} = \ket{+} = \frac{\ket{0} + \ket{1}}{\sqrt{2}}$, by Born's rule the probability of outcome $j$ for $\Pi^j Z$ is $\bra{+} \Pi^j Z \ket{+} = \frac{1}{2}$ for both $j = 0, 1$. 
+	(Note that we do not need to worry about $\Pi^0 X \ket{\psi} = 0$, as the probability of this measurement outcome is zero).
+	For the exact same reasoning the probability of outcome $j$ for $\Pi^j Z$ is also $\frac{1}{2}$ when the input state is $\Pi^1 X \ket{\psi} \propto \ket{-} = \frac{\ket{0} - \ket{1}}{\sqrt{2}}$.
+	This completes the proof.
 \end{proof}
 
+From the answer to the previous part we can simulate a Clifford + T circuit with only Pauli measurements with ancilla $\ket{T}$.
+Assuming our sequence of measurements is $\Pi^{i_n}S_n, \cdots \Pi^{i_1}S_1$. (In this notation the first measurement is $\Pi^{i_1}S_1$ and the last measurement is $\Pi^{i_n}S_n$.)
+We can start with $k = 2$ and check if $\Pi^{i_k} S_i$ commutes with all of the previous measurements $\Pi^{i_1}S_1, \cdots, \Pi^{i_{k-1}}S_{k-1}$.
+If it does we preceed to the next $k$. 
+If it does not, $S_k$ must anticommute with at least one of the previous measurement, which we label as $P$.
+Since all of the previous measurements commute with each other, we and move the measurement $P$ to right before $\Pi^{i_k} S_k$ without affecting anything.
+Now use theorem \ref{theorem:non-commuting-pauli} to replace $\Pi^{i_k} S_k \Pi^j P$ with $C_j \Pi^j P$ for some Clifford $C_j$ depending on the measurement outcome $j$ of $\Pi^j P$. We know the measurement outcome $j$ is $\frac{1}{2}$ for each $j$ by theorem regardless of the input state, so we may just pick randomly $C_0$ and $C_1$ with probability $\frac{1}{2}$ each.
+This extra Clifford gate can be moved to the end of the circuit and be absorbed into the final measurement as we have done in the previous section.
 
-\begin{lemma}
-	Using 9 $Z$ measurements and 8 ancilla $\ket{T}$, we can simulate the state $\tikzfig{X-state}$ in the ancilla qubit.
-\end{lemma}
+The algorithm is shown in detail in \ref{alg:commuting-pauli}
 
-\begin{proof}
-	By	lemma \ref{lm:mul-Z-state}, we can simulate $\tikzfig{Z-state}$ with 8 $Z$ measurements and 8 $\ket{T}$.
+\begin{algorithm}\label{alg:commuting-pauli}
+	\caption{Cliffort + T with commuting Pauli measurements}
+	\hspace*{\algorithmicindent} \textbf{Input:} A Clifford + T circuit 
 
-	Now use the following $Z$ measurement
-	$$
-	\tikzfig{q-2-3-sim-X-state}
-	$$
-\end{proof}
+	\hspace*{\algorithmicindent} \textbf{Output:} A series of commuting Pauli measurement on $\ket{0} \otimes \ket{T}$ that simulates the given Clifford + T circuit.
+\begin{algorithmic}[1]
+	\State Use algorithm from previous section to find a series of Pauli measurements $\Pi^{i_n}S_n, \cdots \Pi^{i_1}S_1$ with ancilla $\ket{T}$ that simulates the given Clifford + T circuit.
+	\State $R \gets \Pi^{i_1} S_1$ \Comment{$R$ is our final output of commuting Paulis}
+	\State $k \gets 2$
+	\While{$k \leq n$}
+	\If{$\Pi^{i_k} S_k$ commutes with all the measurements in $R$} 
+		\State $R \gets \Pi^{i_k} S_k R$
+	\Else
+	\State Let $P$ be the measurement in $R$ that does not commute with $\Pi^{i_k} S_k$.
+	\State Use theorem \ref{theorem:non-commuting-pauli} to find Clifford $C_j$ such that $\Pi^{i_k} S_k \Pi^j P \propto C_j \Pi^j P$ for $j = 0, 1$.
+	\State Pick randomly $C_j$ with probability $\frac{1}{2}$ for each $j$.
+	\State Move $C_j$ to the end of the circuit and absorb it into the final measurement. (In this process all the pauli measurements $\Pi^{i_{m}} S_m$ for $m > k$ are changed accordingly to $C_j$.
+	\EndIf
+	\State $k \gets k + 1$
+	\EndWhile 
+\end{algorithmic}
+\end{algorithm}
 
-\begin{lemma}[Hadamard]
-	Using 9 $Z$ measurements, one $X\otimes Z$ measurement and 8 ancilla $\ket{T}$, we can simulate the Hadamard gate in the circuit.
-\end{lemma}
+\subsection{Only \texorpdfstring{$\ket{T}$}{}}
 
-\begin{proof}
-	$$
-		\tikzfig{q-2-3-hadamard}
-	$$
-\end{proof}
+It is possible to simulate Clifford + T circuit with an equivalent circuit of commuting Pauli measurements with initial states in $\ket{T}^{k}$ by the following way.
 
-\begin{lemma}
-	Using 9 $Z$ measurements, 1 $X\otimes X$ measurement and one $Y \otimes Y$ measurements, and 8 ancilla $\ket{T}$, we can simulate CNOT circuit in the circuit.
-\end{lemma}
 
-\begin{proof}
-	We start from a $\tikzfig{X-state}$ in the ancilla qubit and follow the following computation
 
-	$$
-	\tikzfig{q-2-3-cnot}
-	$$
-\end{proof}
+Given a given Clifford + T circuit on $n$ qubits, we can use results from the previous section to simulate it with a series of (not necessarily commuting) Pauli measurements with $k$ ancilla $\ket{T}$.
 
-Now, we have shown that Pauli can simulate CNOT, hadamard, $Z(\frac{\pi}{2})$, and $T$ gates, which are the generators of Clifford + T.
+First we shall note the, adding a series of $Z$ measurement at the beginning of of the circuit on the qubits of initial state $\ket{0}$ does not change the final measurement outcome, as the input state $\ket{0}$ is the eigenvector of $Z$ with eigenvalue $1$.
+This is illustrated in the following equality
+\begin{equation*}
+	\tikzfig{q-2-only-T-equality}
+\end{equation*}
+
+From this we can use algorithm \ref{alg:commuting-pauli} to find a series of commuting Pauli measurements that simulates the above circuit. 
+We are left with Pauli measurements that commute with $\Pi Z_i$ for any $i$.
+
+Notice that we may perform the following computation (we implicitly use the fact that $\ket{0} \propto \tikzfig{X-state}$)
+
+\begin{align*}
+	\tikzfig{q-2-3-onlyT-1}
+\end{align*}
+
+Now, part A of the ciruct shown on right hand side can be absorbed into the quantum circuit with only $\ket{T}^k$ qubits. 
+On the remaining part $B$ we can add $Z$ measurements in the beginning and use the same trick as above.
+This process can be repeated until all the measurements are removed and we are left with a quantum circuit on only $\ket{T}^k$.
+
