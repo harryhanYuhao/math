@@ -10,7 +10,9 @@ This is the central problem of this mini-project
 
 \section{Q1}
 
-In this section, we assume the class number of $\Q[\smd]$, denoted as $h(\Q[\smd])$, is not divisible by $p$, and $x, y$ are coprime.
+In this section, we assume the class number of $\Q[\smd]$, denoted as $h(\Q[\smd])$, is not divisible by $p$, and we only work on coprime solutions $x, y$.
+
+\subsection{General algorithm for coprime solutions when \texorpdfstring{$h(\Q[\smd])$ is not divisible by $p$}{}}
 
 The diopantine equation can be factorised in $\Qd$ as 
 
@@ -48,3 +50,50 @@ It is evident that $b$ is a divisor of $r$.
 We can try all possible values of $b$ and check if the corresponding $a$ is an integer.
 In this way, we can find all possible integer solutions (if any exists) of the original diophantine equation.
 
+\subsection{Example Solutions}
+
+\textbf{Solution for} $y^3 = x^2 + 2$.
+
+In this case $d = 2$ and the class number of $\Q[\sqrt{-2}]$ is 1, which is not divisible by 3.
+
+By our procedure above, we can write the equation as
+\begin{align*}
+	y^3 = (x + \sqrt{-2})(x - \sqrt{-2})
+\end{align*}
+our argument shows that
+$$
+	x + \sqrt{-2} = (a + b\sqrt{-2})^3
+$$
+for some $a, b \in \Z$.
+Expanding the right hand side, we have
+\begin{align*}
+	(a + b\sqrt{-2})^3 &= a^3 + 3a^2 b \sqrt{-2} - 6ab^2 - 2 \sqrt{-2} b^3 \\ 
+					   &= (a^3 - 6ab^2) + b(3a^2 - 2b^2) \sqrt{-2}
+\end{align*}
+That is $b(3a^2 - 2b^2) = 1$ for some $a, b \in \Z$.
+Since $b$ is a divisor of 1, it can be $\pm 1$.
+\begin{enumerate}
+	\item $b = 1$ gives $3a^2 - 2 = 1 \implies a = \pm 1$
+	\item $b = -1$ gives $3a^2 - 2 = -1 \implies 3a^2 = 1$ which has no solution.
+\end{enumerate}
+So only options are $b = 1, a = \pm 1$.
+Plugin to origin equation gives $y = (1 + \sqrt{-2})(1 - \sqrt{-2}) =  3$ and $x = \pm 5$.
+
+\textbf{Solution for} $y^3 = x^2 + 18$.
+
+In this case we have $p = 3, d = 2, r = 3$ and the equation can be factorised as
+$$
+	y^3 = (x + 3\sqrt{-2})(x - 3\sqrt{-2})
+$$
+By similar arguments as above we can write 
+$$
+	x + 3\sqrt{-2} = (a + b\sqrt{-2})^3
+$$
+which gives $b(3a^2 - 2b^2) = 3$, and $b$ has to be $\pm 1, \pm 3$ which are the only divisors of 3.
+\begin{enumerate}
+	\item $b = 1$ gives $3a^2 - 2 = 3 \implies 3a^2 = 5$ which has no solution.
+	\item $b = -1$ gives $3a^2 - 2 = -3 \implies 3a^2 = -1$ which has no solution.
+	\item $b = 3$ gives $3a^2 - 9 = 1 \implies 3a^2 = 10$ which has no solution.
+	\item $b = -3$ gives $3a^2 - 9 = -1 \implies 3a^2 = 8$ which has no solution.
+\end{enumerate}
+So there is no solution for this equation.
