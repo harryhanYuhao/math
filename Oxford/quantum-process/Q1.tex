@@ -9,7 +9,7 @@ We have the following lemma describing the commutativity relationship between al
 
 \begin{lemma}\label{XZ-commute}
 	For Pauli $\vec{X} = X^{v_1}\otimes X^{v_2} \otimes \cdots \otimes X^{v_n}$ and $\vec{Z} = Z^{w_1}\otimes Z^{w_2} \otimes \cdots \otimes Z^{w_n}$,
-	where $\bm{v} = [v_1, v_2, \cdots, v_n], \bm{w} = [w_1, w_2, \cdots, w_n]$ and $\bm{v}, \bm{w} \in F_2^n$, we have 
+	where $\bm{v} = [v_1, v_2, \cdots, v_n]^T, \bm{w} = [w_1, w_2, \cdots, w_n]^T$ and $\bm{v}, \bm{w} \in F_2^n$, we have 
 	$$
 	\vec{X} \vec{Z} = (-1)^{\bm{v} \cdot \bm{w}} \vec{Z} \vec{X}
 	$$
@@ -29,14 +29,13 @@ Apply lemma \ref{XZ-commute} we see that all $\X_i$ commute with all $\vec{Z}$ a
 For $i \neq j$, there are no overlap between $\X_i$ and $\Z_i$, so they commute. If $i = j$, there is one overlap, so they anti-commutes.
 This is the desired commutivity relationship for CSS code.
 
-For depth one error $P$ which is only none-trivial in the $i$-th qubit, it is evident that it does not commute with $\vec{X}$ and $\vec{Z}$ simultaneously, as there is no one-Pauli that commutes with $X$ and $Z$ at the same time.
-Consider the error $X_1X_2$, which commutes with $\vec{X}$ and $\vec{Z}$.
+The error $P$ which is only none-trivial in the $i$-th qubit does not commute with $\vec{X}$ and $\vec{Z}$ simultaneously, as there is no one-qubit Pauli that commutes with $X$ and $Z$ at the same time.
+The error $X_1X_2$, however, commutes with both of $\vec{X}$ and $\vec{Z}$.
 So the depth of this code is 2.
 
 Since we have 2 stabilizers, the logical qubits are $2m+2 -2 = 2m$.
 
 So crystal code has signature $[[2m+2, 2m, 2]]$.
-
 
 \subsection{X-form and Z-form}
 
@@ -78,7 +77,11 @@ Let us apply a $X$ gate with phase $\alpha$ to on one qubit of the encoder.
 \end{align*}
 
 The key of this transform is strong complementarity and several spider fusion and unfusion. 
-Thus we can conclude that $X$ spiders of any phase on one of the logical qubits can be implemented by a two-qubit gate on the physical qubits.
+Also note that 
+$$
+\tikzfig{q-1-two-qubit-phase}
+$$
+So we conclude that $X_i(\alpha)$ can be implemented by a two-qubit gate on the physical qubits.
 
 A $Z$ spider of any phase on one of the logical qubits can be implemented on the logical quibits as 
 $$
@@ -110,9 +113,12 @@ $$
 
 Thus a single CNOT gate between the $i$th and $j$th logical qubits can be implemented by four CNOT gates in the physical qubits.
 
+I would like to justify why the labling strategy work. 
+
 \subsection{Fault Tolerance}
 
 The single qubit logical operations are transverse thus fault tolerant. 
 One error before the CNOT operation, however, can propagate to two as shown below. Thus the CNOT operation is not fault tolerant.
 
 The simultaneous H gates is fault tolerant as, as it is transverse.
+

@@ -21,14 +21,14 @@ where $\vec{Q} = Z \otimes \vec{P}$ and is the desired answer.
 
 \subsubsection{Analysis}
 
-Let us denote the whole gadget as $W$ and analyze how does \eqref{q2-1} work.
+Let us denote the whole gadget as $W$ and analyse how does \eqref{q2-1} work.
 We know
 
 $$
 \tikzfig{q-2-1.3} = |0\rangle + e^{\frac{\pi}{4}i} |1\rangle
 $$
 
-Assuming $\vec{P}$ has eigenvector $v$ with eigenvalue $1$, and eigenvector $w$ with eigenvalue $-1$, then $\vec{Q}$ has eigenvector $|0\rangle \otimes v$ and $|1\rangle \otimes w$ with eigenvalue $1$, and eigenvector $|1\rangle \otimes v$ and $|0\rangle \otimes w$ with eigenvalue $-1$. 
+Let $v$ denote eigenvector of $\vec{P}$ with eigenvalue $1$, $w$ the eigenvector with eigenvalue $-1$; then $\vec{Q}$ has eigenvector $|0\rangle \otimes v$ and $|1\rangle \otimes w$ with eigenvalue $1$, and eigenvector $|1\rangle \otimes v$ and $|0\rangle \otimes w$ with eigenvalue $-1$. 
 (This is because we added a $Z$ in the first qubit, which has eigenvalue $1$ for $|0\rangle$ and $-1$ for $|1\rangle$.)
 
 The measurement $\Pi^0 \vec{Q}$ projects the state to the eigenspace of $\vec{Q}$ with eigenvalue $1$. 
@@ -46,3 +46,19 @@ This means
 $$
 W(v) = v, W(w) = e^{\frac{\pi}{4}i} w
 $$
+
+Generalising our discussion above gives the following lemma.
+
+\begin{lemma}\label{lm:general-phase-pauli}
+	Let $M$ denote the following map 
+	$$
+	M = \tikzfig{general-phase-pauli}
+	$$
+	Where $\vec{P}$ is a stabiliser Pauli. 
+	Assuming $v$ is an eigenvector of $\vec{P}$ with eigenvalue $1$, and $w$ is an eigenvector of $\vec{P}$ with eigenvalue $-1$, we have
+$$
+M(v) = v, M(w) = e^{\alpha i} w
+$$
+\end{lemma}
+
+

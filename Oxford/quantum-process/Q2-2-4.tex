@@ -1,5 +1,7 @@
 \subsubsection{Case 1,1}\label{section:case-1-1}
 
+\paragraph{Algebraic Analysis}
+
 Using the same argument as above, let us calculate the effect \eqref{solution-effect} with measurement outcome $1, 1$.
 
 \begin{equation}
@@ -17,11 +19,26 @@ Using the same argument as above, let us calculate the effect \eqref{solution-ef
 Note, $XH|-\rangle = 2 |0 \rangle$, and using the same reasoning as above, we see
 \begin{equation}
 	\begin{split}
-		(-P N^{\dagger} S_1 N) v &= - e^{-\frac{\pi}{4}} v \\
-		(-P N^{\dagger} S_1 N) w &= e^{\frac{\pi}{4}} w \\	
+		(P N^{\dagger} S_1 N) v &=  e^{-\frac{\pi}{4}} v \\
+		(P N^{\dagger} S_1 N) w &= -e^{\frac{\pi}{4}} w \\	
 	\end{split}
 \end{equation}
-Thus $C_{1,1} = (X H) \otimes (-P N^{\dagger} S_1 N)$ would work.
+Thus $C_{1,1} = (X H) \otimes (P N^{\dagger} S_1 N)$ would work (upto a phase).
+
+\paragraph{ZX Analysis}
+
+$C_{1, 1}$ can be shown to be 
+
+$$
+C_{1, 1} = \tikzfig{C-1-1}
+$$
+
+We have the following computation to show its validity 
+
+$$
+\tikzfig{measure-1-1}
+$$
+
 
 
 \subsubsection{Remark}\label{remark:alternating-pauli-clifford}

@@ -1,5 +1,7 @@
 \subsubsection{Case 1,0} \label{section:case-1-0}
 
+\paragraph{Algebraic Analysis}
+
 The first part of our circuit is shown below
 
 \begin{equation}\label{solution-effect}
@@ -45,4 +47,29 @@ Comparing with \eqref{q2-2-10-cal}, we see we need to find a Clifford $C_{0,1}$ 
 We decompose our Palui $\vec{P} = N^{\dagger} Z_1 N$ for some clifford $N$, where $Z_1$ is the Pauli $Z$ acting on the first qubit. 
 I claim that $C_{0,1} = H \otimes N^{\dagger} S_1 N$ works, where $S_1 = e^{-\frac{\pi}{4}} |0 \rangle \langle 0| +  e^{\frac{\pi}{4}} |1 \rangle \langle 1|$.
 The verification is straightforward, as $H |+\rangle = 2 |0\rangle$,
-and $N^{\dagger}S_1N$ exactly sends $v$ to $e^{-\frac{\pi}{4}} v$ and $w$ to $e^{\frac{\pi}{4}} w$, where $v$ and $w$ are the eigenvectors of $P$ with eigenvalues $1$ and $-1$ respectively.
+and $N^{\dagger}S_1N$ exactly sends $v$ to $e^{-\frac{\pi}{4}} v$ and $w$ to $e^{\frac{\pi}{4}} w$ (upto a phase), where $v$ and $w$ are the eigenvectors of $P$ with eigenvalues $1$ and $-1$ respectively.
+
+\paragraph{ZX Analysis}
+
+ZX calculus can show that
+
+$$
+C_{1, 0} =  \tikzfig{C-1-0}
+$$
+
+We have the following calculation
+
+$$
+\tikzfig{measure-1-0}
+$$
+
+Note by lemma \ref{lm:general-phase-pauli}, 
+for eigenvector $v$ of $\vec{P}$ with eigenvalue $1$, and eigenvector $w$ with eigenvalue $-1$, we have
+$$
+	C_{1, 0} v = v, C_{1, 0} w = e^{\frac{\pi}{2}i} w
+$$
+
+Which is exactly the same with previous algebraic analysis of $N^\dagger S_1 N$ upto a phase.
+
+
+

@@ -21,7 +21,7 @@
 		\node [style=H] (18) at (-6.75, 9.5) {};
 		\node [style=green] (19) at (-5.75, 9.5) {};
 		\node [style=H] (20) at (-4.75, 9.5) {};
-		\node [style=red] (21) at (-5.75, 8.5) {$\pi$};
+		\node [style=red-phase] (21) at (-5.75, 8.5) {$\pi$};
 		\node [style=H] (22) at (-2, 9.5) {};
 		\node [style=none] (23) at (-7.75, 10.75) {};
 		\node [style=none] (24) at (-7.75, 4.75) {};
@@ -54,10 +54,10 @@
 		\node [style=none] (101) at (13, 5.75) {};
 		\node [style=none] (102) at (12, 9.5) {};
 		\node [style=H] (103) at (10.25, 9.5) {};
-		\node [style=green] (104) at (9.25, 9.5) {$\pi$};
+		\node [style=green-phase] (104) at (9.25, 9.5) {$\pi$};
 		\node [style=none] (149) at (2, 7.75) {$=$};
-		\node [style=red] (150) at (-0.5, 9.5) {$\pi$};
-		\node [style=red] (151) at (11.25, 9.5) {$\pi$};
+		\node [style=red-phase] (150) at (-0.5, 9.5) {$\pi$};
+		\node [style=red-phase] (151) at (11.25, 9.5) {$\pi$};
 		\node [style=long-gate] (152) at (-0.5, 6.75) {$P$};
 		\node [style=long-gate] (153) at (11.25, 6.75) {$P$};
 		\node [style=none] (154) at (-8.5, -0.25) {};
@@ -75,7 +75,7 @@
 		\node [style=gate] (166) at (-8.5, -0.25) {$P_1$};
 		\node [style=gate] (167) at (-8.5, -2) {$P_i$};
 		\node [style=red] (168) at (-6.75, 0.5) {};
-		\node [style=green] (169) at (-6.75, 1.75) {$\pi$};
+		\node [style=green-phase] (169) at (-6.75, 1.75) {$\pi$};
 		\node [style=none] (170) at (-1, -0.25) {};
 		\node [style=none] (171) at (-1, -2) {};
 		\node [style=none] (172) at (-2, 1.75) {};
@@ -148,7 +148,8 @@
 		\node [style=none] (243) at (11.25, -6) {};
 		\node [style=none] (244) at (1.25, -7.75) {$=$};
 		\node [style=red] (245) at (9, -6) {};
-		\node [style=none] (246) at (-11.5, -6.25) {\eqref{q2-measure-Pi-mult}};
+		\node [style=none] (246) at (-11.5, -6.25) {};
+		% \node [style=none] (246) at (-11.5, -6.25) {\eqref{q2-measure-Pi-mult}};
 		\node [style=none] (247) at (9.25, -5.25) {};
 		\node [style=none] (248) at (2, 8.75) {Same reasoning as $C_{0,0}$};
 		\node [style=none] (249) at (1.25, -7) {Pauli is self inverse};
