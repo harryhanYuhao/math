@@ -1,130 +1,55 @@
 \section{Quantum Computation with Universal Gate}
 
+\subsection{Brief Introduction to Quantum Computation}
 
-In the effort to build quantum computers one task is especially important: to find some small sets of gates that can effectively simulate any unitary operations.
-Let us first concentrate on the single-qubit unitary operations.
+Computations, regardless of how it is performed, at its most fundamental level is a physical process. 
+Human perform computations in our mind by the biochemical process that took place in the brain, classical computer by transmitting electronic signals in the circuit boards, and \textit{quantum computers} by manipulating and measuring  the states of quantum mechanical objects.
 
+The following postulates of quantum mechanics is key to our discussions
+\begin{enumerate}[label={\textbf{Postulate} \arabic*}]
+	\item the simplest quantum state is \textit{qubit}, which is described by unit vector in $\mathbb{C}^2$;
+	\item composition of $n$-qubit state is described by unit vector in $(\mathbb{C}^2)^{\otimes n} \cong \mathbb{C}^{2^n}$;
+	\item states evolved by unitary\footnote{$U$ is unitary if $U^\dagger U = I$} operations.
+\end{enumerate}
+Let $\ket{1} = \begin{pmatrix}1 \\ 0\end{pmatrix}$ and $\ket{0} = \begin{pmatrix}0 \\ 1\end{pmatrix}$ be the standard orthonormal basis of $\mathbb{C}^2$.
+Any one qubit state $\ket{\psi}$, therefore, can be described as 
+$$
+\ket{\psi} = a\ket{0} + b\ket{1}, \quad a, b \in \mathbb{C}, |a|^2 + |b|^2 = 1
+$$
 
-There are infinitely many single qubit unitary operations, making it impossible to exactly synthesize any arbitrary operation with a finite set of gates. 
-\footnote{On classical computers, NAND gate alone is sufficient to implement any Boolean function.}
-Therefore, we relax our goal to find a finite set of gates that can approximate any single qubit unitary operation to arbitrary precision in the sense defined below. 
+The following unitary operators are called Pauli operators, which will be important for later discussions and are presented here as examples of unitaries operations.
+\begin{equation}\label{eq:pauli}
+	X = \begin{pmatrix}
+0 & 1\\
+1 & 0
+\end{pmatrix}, \quad Y = \begin{pmatrix}0 & -i\\
+i & 0
+\end{pmatrix}, \quad Z = \begin{pmatrix}1 & 0\\
+0 & -1
+\end{pmatrix}
+\end{equation}
 
-\begin{definition}[Error of approximation]
-	If $U$ is the unitary operation we wish to implement while $V$ is the actual implementation in practice. 
-	The \emph{error} of approximation is defined as  
-	\begin{equation}
-		E(U, V) = \max_{\ket{\psi}} \frac{\| (U - V) \ket{\psi} \|}{\| \ket{\psi} \|}.
-	\end{equation}
-\end{definition}
+It is worth discussing why states evolve according to unitary matrices.
+The time evolution of a closed quantum state $\ket{\psi}$ is described by the \textit{Schrödinger equation}
 
-\begin{definition}[Universal Gate]
-A set of quantum gates is called \emph{universal} if any unitary operation can be aproximated with arbitraily small error by a finite sequence of gates from the set.
-\end{definition}
+\begin{equation}\label{schrodinger}
+	i \hslash \frac{d \ket{\psi}}{d t} = H \ket{\psi}
+\end{equation}
+If $H$ is a time independent Hamiltonian, the solution \eqref{schrodinger} is 
+$$
+\ket{\psi(t)} = e^{\frac{-iH t}{\hslash}} \ket{\psi(0)}
+$$
+where $\ket{\psi(0)}$ is the initial state of the system.
+Standard results from linear algebra show that for Hermitian $H$, $e^{\frac{-i H t}{\hslash}}$ is indeed unitary for any real $t$.
 
-\begin{remark}[Soundness of Definition of Error]
-	Let $\ket{\psi}$ be the initial state of the system, which is evolved according to unitary $U$ or $V$, and then measured via POVM measurement $M$. 
-	Let $P_U$ and $P_V$ denote the probability of obtaining the corresponding measurement outcome when the operator $U$ or $V$ are performed, respectively. 
+The existence of qubit systems in nature has been demonstrated by the famous Stern-Gerlach experiment \cite{Sakurai_Napolitano_2020}. 
+Various physical realisations of quantum computers have been proposed, such as those based on ion traps \cite{steane1997ion}, optical photon \cite{gardiner2004quantum}, and nuclear magnetic resonance \cite{nmr} among others.
 
-	Then 
-	$$
-	|P_U - P_V| = | \bra{\psi} U^\dagger M U \ket{\psi} - \bra{\psi} V^\dagger M V \ket{\psi} |
-	$$
-	Let $\ket{\Delta} := (U - V)\ket{\psi}$, we have 
-	\begin{align*}
-		|P_U - P_V| 
-		& = | \bra{\psi} U^\dagger M \ket{\Delta} + \bra{\Delta} M V \ket{\psi} | & \\
-		&\leq | \bra{\psi} U^\dagger M \ket{\Delta} | + |\bra{\Delta} M V \ket{\psi} | &\\
-		& \leq \| \ket{M^\dagger U \psi} \| \cdot \| \ket{\Delta} \| + \| \ket{M V \psi} \| \cdot \| \ket{\Delta} \|  & \text{(by Cauchy-Schwarz)}\\ 
-		& \leq 2 \| \ket{\Delta} \| &  \| \ket{M^\dagger U \psi}\| \leq 1\\
-		& = 2 E(U, V) &
-	\end{align*}
+In this article we will regard qubit and its unitary evolution as our fundamental quantum mechanical system and describe the theories of unitary operation.
 
-	This means if $E(U, V)$ is small, the probability of obtaining a different measurement outcome is also small, which is exactly what we expect for the definition of error.
-\end{remark}
+\subsection{Single Qubit Operation}
 
-\begin{proposition}[Cumulation of Error]\label{prop:cumulation-of-error}
-	If we have a sequence of unitary operations $U_1, U_2, \cdots, U_n$ and their approximations $V_1, V_2, \cdots, V_n$ with error $E(U_i, V_i)$, then 
-	$$
-	E(U_1 U_2 \cdots U_n, V_1 V_2 \cdots V_n) \leq \sum_{i=1}^n E(U_i, V_i).
-	$$
-\end{proposition}
-
-\begin{proof}
-	Let us first consider $E(U_1U_2, V_1V_2)$
-	By definition
-\begin{align*}
-	E(U_1U_2, V_1V_2) 
-	& = \max_{\|\ket{\psi}\| = 1} \| (U_1 U_2 - V_1 V_2) \ket{\psi} \|&\\
-	& = \max_{\|\ket{\psi}\| = 1} \| (U_1 U_2 - U_1 V_2 + U_1 V_2 - V_1 V_2) \ket{\psi} \| &\\
-	& \leq \max_{\|\ket{\psi}\| = 1} \| \| (U_1 U_2 - U_1 V_2) \ket{\psi} \| + \| (U_1 V_2 - V_1 V_2) \ket{\psi} \| & \\
-	& = E(U_2, V_2) + E(U_1, V_1) &
-\end{align*}
-The general case will follow from induction.
-\end{proof}
-
-The definition of error is echoes the definition of matrix 2-norm.
-
-\begin{definition}[Matrix 2-norm]
-	The matrix 2-norm of a matrix $M$ is defined as 
-	$$
-	\| M \| = \max_{\ket{\psi}} \frac{\| M \ket{\psi} \|}{\| \ket{\psi} \|}.
-	$$
-\end{definition}
-
-\begin{proposition}[Computation of 2-Norm]
-	Assuming $M$ is normal\footnote{A matrix $M$ is normal if $M M^\dagger = M^\dagger M$.}, 
-	Then
-	$$
-	\| M \| = \max_{\ket{\psi}} \frac{\| M \ket{\psi} \|}{\| \ket{\psi} \|} = ||\lambda_{\max}|,
-	$$
-	Where $\lambda_{\max}$ is the eigenvalue of $U - V$ with the largest modulus.
-\end{proposition}
-
-\begin{proof}
-	This is the standard result about matrix norm. 
-
-	Since $M$ is normal by spectral theorem $M$ can be decompose into $\lambda_1\ket{u_1}\bra{u_1} + \lambda_2 \ket{u_2} \bra{u_2}$, where $\lambda_1, \lambda_2$ are its eigenvalues and $\ket{u_1}, \ket{u_2}$ are its orthogonal eigenvectors.
-
-	Therefore any vector $\alpha$ can be written as $\alpha = a \ket{u_1} + b \ket{u_2}$ for some $a, b \in \mathbb{C}$, and we have
-
-	\begin{align*}
-		\frac{\|M \ket{\alpha}^2 \|}{\| \ket{\alpha}\|^2} 
-				 &= \frac{\|M (a \ket{u_1} + b \ket{u_2})\|^2}{|a|^2 + |b|^2} 
-				 &\\ 
-				 & = \frac{\|a \lambda_1 \ket{u_1} + b \lambda_2 \ket{u_2}\|^2}{|a|^2 + |b|^2} 
-				 &\\ 
-				 & \leq \frac{ |a|^2 |\lambda_1|^2 + |b|^2 |\lambda_2|^2}{|a|^2 + |b|^2}
-				 & \text{triangular inequality}\\ 
-				 & \leq \frac{\max(|\lambda_1|, |\lambda_2|)^2 (|a|^2 + |b|^2)}{|a|^2 + |b|^2}
-				 &\\ 
-				 & = \max(|\lambda_1|, |\lambda_2|)^2 &
-	\end{align*}
-	Taking the square root on both sides concludes the proof.
-\end{proof}
-
-\begin{corollary}[Computation of Error]\label{cor:computation-of-error}
-	Let $U$ and $V$ be two unitary operations, then 
-	$$
-	E(U, V) = \| U - V \| = \| UV^\dagger - I \| = |\lambda_{\max}|,
-	$$
-	where $\lambda_{\max}$ is the eigenvalue of $UV^\dagger - I$ with the largest modulus.
-\end{corollary}
-
-\begin{proof}
-	$ \| U - V \| = \| UV^\dagger - I \| $ follows from proposition \ref{prop:cumulation-of-error} on cumulation of error. 
-	$UV^\dagger - I$ is normal because 
-	\begin{align*}
-		(UV^\dagger - I)(UV^\dagger - I)^\dagger 
-		& = (UV^\dagger - I)(VU^\dagger - I) &\\
-		& = UV^\dagger VU^\dagger - UV^\dagger - VU^\dagger + I &\\
-		& = I - UV^\dagger - VU^\dagger + I &\\
-		& = (VU^\dagger - I)(UV^\dagger - I) = (UV^\dagger - I)^\dagger (UV^\dagger - I) &
-	\end{align*}
-\end{proof}
-
-In the process of understading single qubit unitary operations, it is helpful to visualize the state of a single qubit as a point on the surface of a sphere in the following way.
-
-Let $\ket{1} = \begin{pmatrix}1 \\ 0\end{pmatrix}$ and $\ket{0} = \begin{pmatrix}0 \\ 1\end{pmatrix}$ be the standard basis of $\mathbb{C}^2$
+The Bloch sphere representation of a qubit is very helpful for our discussion.
 Any qubit $\ket{\psi}$ can be written $\ket{\psi} = a \ket{0} + b \ket{1}$ for some $a , b \in \mathbb{C}$ such that $|a|^2 + |b|^2 = 1$.
 If we write $|a| = \cos \frac{\theta}{2}$ and $|b| = \sin \frac{\theta}{2}$, then for some phase factors $e^{i \alpha}$ and $e^{i \beta}$, we have
 $$
@@ -141,18 +66,58 @@ This is called a Bloch sphere.
 	\label{fig:Bloch Sphere}
 \end{figure}
 
-It terms out the unitary operations on a single qubit can be represented as rotations on the Bloch sphere.
-For example, the the following Pauli operators
-$$X = \begin{pmatrix}
-0 & 1\\
-1 & 0
-\end{pmatrix}, \quad Y = \begin{pmatrix}0 & -i\\
-i & 0
-\end{pmatrix}, \quad Z = \begin{pmatrix}1 & 0\\
-0 & -1
-\end{pmatrix},
-$$
-correspond to the rotations of $\pi$ along the $x, y$ and $z$ axes, respectively, where $x, y, z$ axis are  
+The action of Pauli $Z$ from \eqref{eq:pauli} on the block sphere is.
+\begin{dmath*}
+	Z \ket{\psi} = Z \ket{\psi} 
+	= e^{i \beta} \left(\cos \frac{\theta}{2} \ket{0} - e^{i \alpha} \sin \frac{\theta}{2} \ket{1}\right)
+	= e^{i \beta} \left(\cos \frac{\theta}{2} \ket{0} + e^{i \alpha + \pi} \sin \frac{\theta}{2} \ket{1}\right)
+\end{dmath*}
+It transforms $(\theta, \alpha)$ to $(\theta, \alpha + \pi)$, which is rotation by $\pi$ on $z$ axis.
+By similar arguments, we can show Pauli $X, Y$ in \eqref{eq:pauli} correspond to the rotations of $\pi$ along the $x, y$ axis.
+It turns out that any unitary operations on a single qubit is precisely the rotation on Bloch sphere.
+
+\begin{theorem}[Unitaries on Bloch Sphere]\label{th:unitary-bloch}
+	The actions of single-qubit unitary matrices is equivalent to rotation (represented by $SO(3)$) in the Bloch sphere.
+\end{theorem}
+
+
+\subsection{Measurement}
+
+
+
+\subsection{Univeral Gates}
+
+In the effort to build quantum computers one task is especially important: to find some small sets of unitary matrices that can effectively simulate any unitary operations.
+These unitary matrices are called universal gates.
+
+Let us first concentrate on the single-qubit unitary operations.
+There are infinitely many single qubit unitary operations, making it impossible to exactly synthesize any arbitrary operation with a finite set of gates. 
+\footnote{On classical computers, it is well known that NAND gate alone is sufficient to implement any Boolean function \cite{sheffer1913set}.}
+Therefore, we relax our goal to find a finite set of gates that can approximate any single qubit unitary operation to arbitrary precision in the sense defined below. 
+
+\begin{definition}[Error of approximation]
+	If $U$ is the unitary operation we wish to implement while $V$ is the actual implementation in practice. 
+	The \emph{error} of approximation is defined as  
+	\begin{equation}
+		E(U, V) = \max_{\ket{\psi}} \frac{\| (U - V) \ket{\psi} \|}{\| \ket{\psi} \|}.
+	\end{equation}
+\end{definition}
+
+This definition of error has two important properties which fits our intuitions for errors. 
+\begin{enumerate}
+	\item let $\ket{\psi}$ be our initial state. If $E(U, V)$ is small, the probability of obtaining different measurement outcome from $U \kp$ and $V \kp$ is small;
+	\item accumulated error satisfies triangular inequality, that is 
+		$$
+			E(U_1 U_2, V_1, V_2) \leq E(U_1, V_1) + E(U_2, V_2)
+		$$
+\end{enumerate}
+
+Their proofs are presented in the appendix \ref{sec:error}.
+
+With the proper definition for error, we can settle the definition of univera;l gate.
+\begin{definition}[Universal Gate]
+A set of quantum gates is called \emph{universal} if any unitary operation can be aproximated with arbitraily small error by a finite sequence of gates from the set.
+\end{definition}
 
 \subsection{Universality of Hadamard and T Gates}
 
@@ -182,7 +147,7 @@ An important set of universal gate which we discuss in detail here is Hadamard +
 	THTH = \cos^2\frac{\pi}{8} I - i \sin \frac{\pi}{8} \left( \cos \frac{\pi}{8} (X + Z) + \sin \frac{\pi}{8} Y \right),
 	$$
 	This is rotation along the axis $(\cos\frac{\pi}{8}, \sin\frac{\pi}{8}, \cos\frac{\pi}{8})$ through an angle $\theta$ defined by $\cos \frac{\theta}{2} = \cos^2 \frac{\pi}{8}$.
-	We can show that $\theta$ is a irrational multiple of $\pi$.
+	We can show that $\theta$ is a irrational multiple of $\pi$\footnote{See \cite{boykin1999} and section 4.5.3 of \cite{Nielsen_Chuang_2010}. }.
 	Therefore repeated applications of $THTH$ can approximate any rotation along the axis $(\cos\frac{\pi}{8}, \sin\frac{\pi}{8}, \cos\frac{\pi}{8})$ to arbitrary precision.
 
 	By the same calculation we can show that $HTHT$ is a rotation along the axis $(\cos\frac{\pi}{8}, -\sin\frac{\pi}{8}, \cos\frac{\pi}{8})$ through the same angle $\theta$. 

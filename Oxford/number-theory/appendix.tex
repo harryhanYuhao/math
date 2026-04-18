@@ -1,0 +1,39 @@
+\section{Some Theorems in Number Theory}
+
+\begin{lemma}\label{lem:gcd-ideals}
+	Let $\O$ be the ring of integers of a number field and let $\a, \b$ be two ideals such that $\a + \b = \O$ (That is, thye are coprime ideals). 
+	If $\a\b = \c^n$ for some ideal $\c$ and some integer $n \geq 1$, then $\a = \d^n$ and $\b = \e^n$ for some ideals $\d, \e$ such that $\d\e = \c$.
+\end{lemma}
+
+\begin{proof}
+	This is direct consequence from unique factorisation of ideals into prime ideals.
+\end{proof}
+
+\begin{lemma}\label{lem:principal}
+	Let $\a$ be an ideal of $\O$ and $m$ some decimal integers.
+	If $gcd(h(\Qd), m) = 1$ and $\a^m$ is a principal ideal, then $\a$ is a principal ideal as well.
+\end{lemma}
+
+\begin{proof}
+	We only need to recall that $h(\Qd)$ is the order of the ideal class group of $\Qd$, whose identity element is the class of principal ideals.
+
+	By elementary theory of group theory we know that $\a^{h(\Qd)}$ must be idetity.
+	Since $\a^m$ is also identity, we can write $1 = am + bh(\Qd)$ by Euclidean algorithm for some integers $a, b$ therefore $\a = \a^{am + bh(\Qd)} = (\a^m)^a (\a^{h(\Qd)})^b$ is also identity, which means $\a$ is principal.
+\end{proof}
+
+\begin{lemma}\label{lem:unit}
+	The unit group of $\O_{\Qd}$ is $\{\pm 1\}$ for any even $d \geq 1$. 
+\end{lemma}
+
+\begin{proof}
+	We know $u$ is a unit if and only if $N(u) = 1$ where $N$ is the norm function from $\Qd$ to $\Z$.
+
+	We can write $u = a + b \smd$. Since $d$ is even, we can let $a, b \in \Z$.
+	Then $N(u) = a^2 + db^2$, which equals $1$ if and only if $a = \pm 1$ and $b = 0$.
+\end{proof}
+
+\begin{conjecture}
+	In equation \ref{eq:main}, $gcd(x, d) = 1$.
+\end{conjecture}
+
+

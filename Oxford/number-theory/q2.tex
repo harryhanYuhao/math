@@ -1,8 +1,126 @@
-\section{Part2}
+\section{Q2}
 
-\subsection{Example Solutions}
+\subsection{General Algorithm for non-coprime Solutions}
 
-\subsubsection{Solution of \texorpdfstring{$y^3 = x^2 + 18$}{}}
+As in the previous part, our equation can be factorised as 
+$$
+	y^p = (x + r\sqrt{-d})(x - r\sqrt{-d})
+$$
+In terms of ideals, we have
+$$
+	\langle y^p \rangle = \langle x + r\sqrt{-d} \rangle \langle x - r\sqrt{-d} \rangle 
+	= \A \bar{\A}
+$$
+where $\A = \langle x + r\sqrt{-d} \rangle$ and $\bar{\A}$, its conjugate ideal, is $ \langle x - r\sqrt{-d} \rangle$.
+
+As $x$ and $y$ are not coprime, we can not directly conclude that $\A = \h^p$ for some ideal $\h$. 
+However, assuming $\B | \A$ and $\langle \B, \bar{\A} \rangle = 1$ (that is, $\B$ is a factor of $\A$ that is coprime to $\bar{\A}$) it is clear that $\B = \a^p$ for some ideal $\a$.
+Therefore $\A$ can be factorised as 
+$$
+	\A = \a^p \b
+$$
+for some ideal $\a, \b$, where $\a$ is coprime to $\bar{\A}$ and $\b$ is not necessarily a p-th power of some ideal.
+
+Denote the class group of $\O$ as $\H$, which is a finite abelian group whose order does not contain the prime factor $p$.
+Therefore we have an automorphism
+$$
+\phi: \H \rightarrow \H,	\phi([\x]) = [\x]^p
+$$
+Thus, we can find some fractional ideal $\c$ such that $[\b] = [\c^p]$.
+Therefore 
+$$
+[\langle x + r\sqrt{-d} \rangle] = [\a^p\b] = [\a^p \c^p] = [(\a \c)^p] 
+$$
+This equation shows that $[(\a\c)]^p$ is equivalent to the principal class (the identity element in $\H$), use lemma \ref{lem:principal} we conclude that $\a\c$ is also the in the principal class and therefore a principal ideal, i.e, $\exists \omega \in \O$ such that $\a\c = \langle \omega \rangle$.
+
+By the definition of equivalence class in class group, we can find some $\gamma_1, \gamma_2 \in \O$ such that 
+$$
+	\gamma_1 \langle x + r\sqrt{-d} \rangle = \gamma_2 \langle \omega^p \rangle
+$$
+multiplying both sides by $\gamma_2^{p-1}$ gives
+$$
+\gamma_1 \gamma_2^{p-1} \langle x + r\sqrt{-d} \rangle = \langle \gamma_2^p \omega^p \rangle
+$$
+Set $\alpha = \gamma_1 \gamma_2^{p-1}, \beta = \gamma_2 \omega$, we arrived at the desired equation 
+\begin{equation}
+	\alpha  (x + r\sqrt{-d}) = \beta^p
+\end{equation}
+
+Let us investigate where does $\alpha$ come from.
+
+Assuming $x, y \in \Z$ is a solution for \ref{eq:main} while $gcd(x, y) = c \neq 1$.
+Therefore
+$$
+	0 \equiv y^p - x^2 \equiv r^2d \mod c^2
+$$
+as $d$ is square free, we conclude $c | r$.
+
+Indeed, we can show $gcd(x,r) = gcd(y,r) = gcd(x, y) = c$.
+Say, if $gcd(x, r) = c \gamma$ for some $\gamma > 1$, we can show that 
+$$
+y^p \equiv x^2 + r^2d \equiv 0 \mod c \gamma
+$$
+therefore $c \gamma | y$ and $c \neq gcd(x, y)$.
+
+In addition, we see that $gcd(x, y)\neq 2$. 
+As if both of them are even, $k \equiv y^p - x^2 \equiv 0 \mod 4$, which is a contradiction to our assumption that $k \equiv 2 \mod 4$.
+
+We can write $x = cx', y = cy', r = cr'$, while $gcd(x', y') = gcd(x', r') = gcd(y', r') = 1$, and equation \ref{eq:main} becomes 
+\begin{equation}\label{eq:main2}
+	c^{p} (y')^p = c^2(x')^2 + c^2(r')^2 d = c^2 (x' + r' \sqrt{-d})(x' - r' \sqrt{-d})
+\end{equation}
+
+which is equivalent to 
+$$
+	c^{p-2} (y')^p = (x' + r' \sqrt{-d})(x' - r' \sqrt{-d})
+$$
+
+Written in the format of product of ideals, we have 
+
+$$
+\langle y ^p \rangle = \g \a \g \bar{\a}
+$$
+where $\a = \langle x' + r' \smd \rangle, \bar{\a} = \langle x' - r'\smd\rangle$, $\g = \langle x + r\smd, x - r\smd \rangle$ which is their greatest common divisor ideal.
+
+By the same argument as in Q1, we can show that $\a$ and $\bar{\a}$ are coprime ideals. 
+Therefore
+Let $q$ be a prime such that $q | c$.
+I claim that $\langle p \rangle$ is not a prime ideal in $\O$.
+If is, than $\langle c \rangle$ divides both of $\langle x' + r' \sqrt{-d}\rangle$ and $\langle x' - r' \sqrt{-d} \rangle$, which contradicts the fact that they are coprime.
+Therefore, we may assume that $\langle x' + r' \smd\rangle$ = $\a^{p-2} \b^{p}$ for some ideals $\a, \b$, where $\a$ is some ideal dividing $\langle c \rangle$.
+
+\subsubsection{Homogeneous Equation}
+
+We have shown that for any solution $x, y$, there exists $\alpha$ from a finite set of elements in $\O$ such that
+$$
+	\alpha (x + r\sqrt{-d}) = \beta^p
+$$
+for some unknown $\beta$.
+Write $\alpha = a + b \smd$ and $\beta = u + v \smd$. 
+Expand the above equation gives
+\begin{align}
+	\beta^p &= u^p + \binom{p}{1} u^{p-1} v \smd + \binom{p}{2} u^{p-2} v^2 (\smd)^2 + \cdots + v^p (\smd)^p \label{expand-long}\\
+	 	& = (ax -rbd) + (ar + xb) \smd\\
+		& = \alpha (x + r\sqrt{-d})
+\end{align}
+Let $G_1(u, v)$ be the sum of the terms in \eqref{expand-long} such that the power of $u$ is odd (which is equivalent to the real terms), the $G_2(u, v)$ be the sum of the terms such that the power of $u$ is even (which is equivalent to the imaginary terms).
+It is clear that both of $G_1$ and $G_2$ are homogeneous polynomials of degree $p$ in $u, v$.
+
+We have 
+\begin{align*}
+	G_1(u, v) &= ax - rbd\\ 
+	G_2(u, v) &= ar + xb
+\end{align*}
+therefore 
+$$
+a G_2(u, v) - b G_1(u, v) = a^2 r +rb^2 d = r (N(\alpha))
+$$
+and we have homogeneous equation $F(u, v) = \frac{a G_2(u, v) + bG_1(u, v)}{N(\alpha)} = r$.
+
+
+
+
+\subsection{Solution of \texorpdfstring{$y^3 = x^2 + 18$}{}}
 
 $y^3 = x^2 + 18$ has solution $y = 3$, $x = \pm 3$.
 

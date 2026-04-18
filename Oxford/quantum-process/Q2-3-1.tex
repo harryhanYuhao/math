@@ -33,7 +33,13 @@ However, two $T$ gates make an $S$ gate which is part of Clifford, so there is n
 The number of $\ket{T}$ required is exactly equal to the number of $T$ gates in the original circuit.
 In this way, we have simulated a Clifford + T circuit with alternating Pauli measurements and Clifford gates.
 
+\paragraph{Time Complexity}
 
+We know computation of Pauli stabilisers is linear in number of qubits $n$. 
+Let $m$ be the number of Pauli measurement in our original construction, then
+the total number of gates in our circuit is $O(m)$.
+Moving clifford to the end causes $O(m^2)$ number of computations in Pauli.
+So the total time complexity is polynomial in $m$ and $n$.
 
 \subsubsection{Only Pauli}
 
@@ -42,7 +48,6 @@ Our quantum circuit model, including the last measurement in $Z$ basis shown bel
 \begin{equation}
 	\tikzfig{q-2-measurement-model}
 \end{equation}
-
 where section $A$ is state preparation, section $B$ is sections of alternating Pauli measurements and Clifford gates, and section $C$ is the final measurement in $Z$ basis, which themselves are Pauli measurements as well.
 
 Note we can apply lemma \ref{lemma:measure-conjugate} to move each Clifford gate to the right of section $C$ in the following way 
@@ -55,7 +60,11 @@ Indeed, we can move all Clifford gates to the right of section $C$ in the same w
 
 The Clifford gates on the right of section $C$ do not have any effect on the final measurement probability outcome by Born's rule.
 
-\subsection{Only Commuting Pauli}
+\paragraph{Time Complexity}
+
+The time complexity of moving Clifford gates to the end is $O(m^2)$ where $m$ is the number of Pauli measurements in the original construction.
+
+\subsubsection{Only Commuting Pauli}
 
 We take the following lemma for granted
 \begin{lemma}\label{lemma:clifford-non-commuting}
@@ -131,6 +140,8 @@ Using this lemma, we can prove the following theorem
 	This completes the proof.
 \end{proof}
 
+The above theorem captures the same idea as in 6.11 of \cite{kissinger}.
+
 From the answer to the previous part we can simulate a Clifford + T circuit with only Pauli measurements with ancilla $\ket{T}$.
 Assuming our sequence of measurements is $\Pi^{i_n}S_n, \cdots \Pi^{i_1}S_1$. (In this notation the first measurement is $\Pi^{i_1}S_1$ and the last measurement is $\Pi^{i_n}S_n$.)
 We can start with $k = 2$ and check if $\Pi^{i_k} S_i$ commutes with all of the previous measurements $\Pi^{i_1}S_1, \cdots, \Pi^{i_{k-1}}S_{k-1}$.
@@ -165,7 +176,11 @@ The algorithm is shown in detail in \ref{alg:commuting-pauli}
 \end{algorithmic}
 \end{algorithm}
 
-\subsection{Only \texorpdfstring{$\ket{T}$}{}}
+\paragraph{Time Complexity}
+
+The time complexity of checking if $\Pi^{i_k} S_k$ commutes with all the previous measurements is $O(k)$, and the time complexity of finding $C_j$ is $O(n)$, so the total time complexity of the algorithm is $O(k^2n^2)$ where $n$ is the number of Pauli measurements in the original construction.
+
+\subsubsection{Only \texorpdfstring{$\ket{T}$}{}}
 
 It is possible to simulate Clifford + T circuit with an equivalent circuit of commuting Pauli measurements with initial states in $\ket{T}^{k}$ by the following way.
 
@@ -191,4 +206,9 @@ Notice that we may perform the following computation (we implicitly use the fact
 Now, part A of the ciruct shown on right hand side can be absorbed into the quantum circuit with only $\ket{T}^k$ qubits. 
 On the remaining part $B$ we can add $Z$ measurements in the beginning and use the same trick as above.
 This process can be repeated until all the measurements are removed and we are left with a quantum circuit on only $\ket{T}^k$.
+
+\paragraph{Time Complexity}
+
+The time complexity of reducing the circuit to only $\ket{T}$ is $O(k^2n^2)$, which is the same as the time complexity of algorithm \ref{alg:commuting-pauli}.
+Computation of the final circuit (absorbing Pauli into the top qubits) is linear in the number of gates.
 
