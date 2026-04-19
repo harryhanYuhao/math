@@ -1,13 +1,13 @@
 \section{Q4: Constructing Class Groups}
 
-In question 1, we have established that if $p \nmid h(\Qd)$, then coprime solution $(x, y)$ for the equation 
+In question 1, we have established that if $p \nmid h(\Qd)$, the coprime solutions $(x, y)$ for the equation 
 \begin{equation}\label{eq:4main}
 	y^p = x^2 + r^2 d
 \end{equation}
 with $r^2 d \equiv 2 \mod 4$ satifies $y \geq d$.
 Therefore, by constructing coprime solutions to \eqref{eq:4main} such that $y < d$, we can show that $p | h(\Qd)$.
 
-Let us consider two equations 
+For $p \geq 5$, let us consider the following two equations 
 \begin{align}
 	3^p &= 5^2 + k_1 \label{contra1}\\
 	3^p &= 7^2 + k_2 \label{contra2}
@@ -21,24 +21,25 @@ We have the following congruence relations
 \end{align}
 therefore $k_1 \equiv k_2 \equiv 2 \mod 4$ and \eqref{contra1} and \eqref{contra2} satisfies our contrains for question 1. 
 
-Write $k_1 = r_1^2 d_1$ where $d_1$ are square-free.
+Write $k_1 = r_1^2 d_1$ where $d_1 \in \Z$ is square-free.
 Since $ k_1 \equiv 2 \mod 4$, we have $2 | k_1$ while $4 \nmid k_1$, so $2 |d_1$. 
-If $\frac{k_1}{2}$ is not a perfect square, there is another prime $q \neq 2$ that divides $d_1$, so $d_1 > 3$, and our solution $(x = 5, y = 3)$ for \eqref{contra1} satisfies $y < d_1$ which means $p | h(\Q(\sqrt{-d_1}))$.
+If $\frac{k_1}{2}$ is not a perfect square, there is another prime $q \neq 2$ that divides $d_1$, making $d_1 > 3$.
+In such case the solution $(x = 5, y = 3)$ for \eqref{contra1} satisfies $y < d_1$, leaving $p | h(\Q(\sqrt{-d_1}))$.
 The same arguments apply for $k_2$ and \eqref{contra2} as well.
 
 Note that $\frac{k_1}{2} + 12 = \frac{k_2}{2}$ and we have 
 \begin{align}
 	7^2 - 6^2 &= 13 \\ 
-	(a+1)^2 - a^2 &> 13 \text{ for any } a \geq 6
+	(a+1)^2 - a^2 &> 13 \text{ for any } a > 6
 \end{align}
-Therefore, if $\frac{k_1}{2} > 36 = 6^2$, it is impossible that both of $\frac{k_1}{2}$ and $\frac{k_2}{2}$ are perfect squares, and our $p$ divides at least one of $h(\Q(\sqrt{-d_1}))$, $h(\Q(\sqrt{-d_2}))$
+If $\frac{k_1}{2} > 36 = 6^2$, it is impossible that both of $\frac{k_1}{2}$ and $\frac{k_2}{2}$ are perfect squares, and our $p$ divides at least one of $h(\Q(\sqrt{-d_1}))$, $h(\Q(\sqrt{-d_2}))$
 
 It is clear that $k_1 > 36$ for all $p \geq 5$. 
 So our arguments above works for all $p \geq 5$.
 The case $p=3$ leaves no problem as $h(\Q(\sqrt{-26})) = 6$ is divisible by 3.
 In this way we have shown that for any odd prime $p$, there exists some $d$ such that $p | h(\Qd)$.
 
-Moreover, in either case we have $k_i < 3 ^p $. As $d| k_i$
+In either case we have $k_i < 3 ^p $. As $d| k_i$
 it implies that 
 $$
 d < 3^p.

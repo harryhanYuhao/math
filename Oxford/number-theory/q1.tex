@@ -73,9 +73,9 @@ Comparing with \ref{eq:q1key} we see
 \end{equation}
 Since $b \in \Z$, it must be a divisor of $r$.
 We can try all possible values of $b$ and check if there exists some integer $a$ such that $b f(a, b) = r$. 
-As will be shown in the section below we can find a bound for $a$. 
-So, just using brute-force method we can check all possible values of $a$ and $b$ and find all possible solutions for the equation \eqref{eq:q1key} if any exists.
-
+Notice that when substituting $b$ into $f(a, b)$, $f$ becomes a polynomial of $a$ with integer coefficients. 
+It is a result from elementary algebra that in such case all the integer roots of $f(a)$ (if any exists) are restricted into a finite set (see \autoref{lem:finite-integer-solutions}).
+So we can use brute-force will suffice to check if there is any integer solutions.
 
 \subsection{Coprime Solutions for \texorpdfstring{$y^3 = x^2 + 2$}{}}
 
@@ -122,6 +122,54 @@ which gives $b(3a^2 - 2b^2) = 3$, and $b$ has to be $\pm 1, \pm 3$ which are the
 	\item $b = -3$ gives $3a^2 - 9 = -1 \implies 3a^2 = 8$ which has no integer solution.
 \end{enumerate}
 So there is no coprime integer solution for this equation.
+
+\subsection{Coprime Solutions for \texorpdfstring{$y^7 = x^2 + 338$}{}}
+
+Note $338  = 13^2 \cdot 2$, and $\O_{\Q{\sqrt{-2}}}$ is a PID.
+Our factorisation gives 
+$$
+y^7 = (x + 13\sqrt{-2})(x - 13\sqrt{-2})
+$$
+Therefore we can write 
+\begin{dmath}
+x + 13\sqrt{-2} = (a + b\sqrt{-2})^7
+=a^{7} + 7 \sqrt{-2}  a^{6} b - 42 a^{5} b^{2} - 70 \sqrt{-2}  a^{4} b^{3} + 140 a^{3} b^{4} + 84 \sqrt{-2}  a^{2} b^{5} - 56 a b^{6} - 8 \sqrt{-2}  b^{7}
+\end{dmath}
+which gives 
+$$
+b(7 a^{6} - 70 a^{4} b^{2} + 84 a^{2} b^{4} - 8 b^{6}) = 13
+$$
+
+\textbf{Case b =1}.
+Our diophantine equation becomes
+$$a^2(7 a^{4} - 70 a^{2} + 84)  = 21$$
+Since $21 = 3\cdot 7$ is square free $a$ must be $\pm 1$, which indeed gives a valid solution.
+And $y =(1+\sqrt{-2})(1+\sqrt{-2}) = 3$ and $x$ is $\pm 43$.
+
+\textbf{Case b =-1}.
+Our diophantine equation becomes
+$$a^2(7 a^{4} - 70 a^{2} + 84)  = -5$$
+Since $5$ is square free any $a$ must be $\pm 1$, which are not valid solution in this case.
+
+\textbf{Case b =13}.
+Our diophantine equation becomes
+$$f(a) = a^2(7a^4 - 11830 a^2 + 2399124) = 38614471 = 7 \cdot 337 \cdot 16369 $$
+So any solution $a$ must be $\pm 1$. 
+Yet $f(1) = 2387301 $ so there is no solution in this case.
+
+\textbf{Case b =-13}.
+Our diophantine equation becomes
+$$f(a) = a^2(7a^4 - 11830 a^2 + 2399124) = 38614473$$
+Now, $38614485 = 3^2 \cdot 43 \cdot 113 \cdot 883$, so any solution $a$ must be $\pm 1$ or $\pm 3$.
+But 
+\begin{align*}
+	f(1) &= 2387301 \\
+	f(3) &= 20638989
+\end{align*}
+so there is no solution in this case.
+
+In conclusion, the only coprime integer solutions for this equation are $y = 3$ and $x = \pm 43$.
+
 
 \subsection{Bound on \texorpdfstring{$a, b, y$}{}}
 

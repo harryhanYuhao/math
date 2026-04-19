@@ -11,14 +11,14 @@ $$
 	\langle y^p \rangle = \langle x + r\sqrt{-d} \rangle \langle x - r\sqrt{-d} \rangle 
 	= \A \bar{\A}
 $$
-where $\A = \langle x + r\sqrt{-d} \rangle$ and $\bar{\A}$, its conjugate ideal, is $ \langle x - r\sqrt{-d} \rangle$.
+where $\A := \langle x + r\sqrt{-d} \rangle$ and $\bar{\A} := \langle x - r\sqrt{-d} \rangle$.
 
 As $x$ and $y$ are not coprime, we can not directly conclude that $\A = \h^p$ for some ideal $\h$. 
 However, assuming $\B | \A$ and $\langle \B, \bar{\A} \rangle = 1$ (that is, $\B$ is a factor of $\A$ that is coprime to $\bar{\A}$) it is clear that $\B = \a^p$ for some ideal $\a$.
 Therefore $\A$ can be factorised as 
-$$
+\begin{equation}\label{eq:A-factor}
 	\A = \a^p \b
-$$
+\end{equation}
 for some ideal $\a, \b$, where $\a$ is coprime to $\bar{\A}$ and $\b$ is not necessarily a p-th power of some ideal.
 
 Denote the class group of $\O$ as $\H$, which is a finite abelian group whose order does not contain the prime factor $p$.
@@ -46,7 +46,8 @@ Setting $\alpha = \gamma_1 \gamma_2^{p-1}$ gives
 \end{equation}
 which is our desired result.
 
-Let us investigate where does $\alpha$ come from.
+The constant $\alpha$ depends only the ideal factor $\b$ of $\A = \langle x + r\smd\rangle$ which is not coprime to $\bar{\A} = \langle x - r \smd\rangle$. 
+Let us investigate where does $\b $ come from.
 
 Assuming $x, y \in \Z$ is a solution for \ref{eq:main} while $gcd(x, y) = c \neq 1$.
 This gives the equation
@@ -54,7 +55,6 @@ $$
 	0 \equiv y^p - x^2 \equiv r^2d \mod c^2
 $$
 as $d$ is square free, we conclude $c | r$.
-
 Indeed, we can show $gcd(x,r) = gcd(y,r) = gcd(x, y) = c$.
 Say, if $gcd(x, r) = c \gamma$ for some $\gamma > 1$, we can show that 
 $$
@@ -63,25 +63,43 @@ $$
 therefore $c \gamma | y$ and $c \neq gcd(x, y)$.
 
 In addition, we see that $gcd(x, y)\neq 2$. 
-As if both of them are even, $k \equiv y^p - x^2 \equiv 0 \mod 4$, which is a contradiction to our assumption that $k \equiv 2 \mod 4$.
+As if both of $x, y$ are even, we have $k \equiv y^p - x^2 \equiv 0 \mod 4$, which is a contradiction to our assumption that $k \equiv 2 \mod 4$.
 
-We can write $x = cx', y = cy', r = cr'$, while $gcd(x', y') = gcd(x', r') = gcd(y', r') = 1$, and equation \ref{eq:main} becomes 
-\begin{equation}\label{eq:main2}
+Therefore we can write $x = cx', y = cy', r = cr'$, while $gcd(x', y') = gcd(x', r') = gcd(y', r') = 1$, and equation \ref{eq:main} becomes 
+\begin{equation}
 	c^{p} (y')^p = c^2(x')^2 + c^2(r')^2 d = c^2 (x' + r' \sqrt{-d})(x' - r' \sqrt{-d})
 \end{equation}
 
 which is equivalent to 
-$$
+\begin{equation}\label{eq:q2-coprime}
 	c^{p-2} (y')^p = (x' + r' \sqrt{-d})(x' - r' \sqrt{-d})
+\end{equation}
+
+I claim that each prime number $q \in \Z$ that divides $c$ must split in $\O$.
+Say if $q$ does not split, then $\langle q \rangle$ is a prime ideal in $\O$.
+Therefore $\langle q\rangle$ divides at least one of $\langle x' + r\smd'\rangle$ or $\langle x' - r\smd'\rangle$.
+As $\langle x' + r\smd'\rangle$ is conjugate ideal to $\langle x' - r\smd'\rangle$, $\langle q\rangle$ divides any one of them implies $\langle q\rangle$ divides both of them, which contradicts the fact that they are coprime ideals.
+So we conclude that $q$ splits in $\O$ and $\langle q\rangle = \q\bar{\q}$ for some prime ideals $\q$ and $\bar{\q}$.
+Since this argument applies to any prime factor of $c$, we can write $\langle c \rangle = \prod_{i=1}^m \q_i \bar{\q}_i$ for some prime ideals $\q_i, \bar{\q}_i$ in $\O$. 
+In particular, define $\g = \prod_{i=1}^n \q_i$, where each of $\q_i$ are factors of $\langle x ' + r'\smd \rangle$.
+
+By a similar argument as in Q1, we can show that $\a$ and $\bar{\a}$ are coprime ideals. 
+Therefore $\langle x' + r' \smd\rangle$ can be factorised as 
 $$
+\g^{p-2} \a^p 
+$$
+for some ideal $\a$. 
+And 
+$$
+\langle x + r\smd\rangle = c \langle x' + r' \smd\rangle = \bar{\g} \g^{p-1} \a^p.
+$$
+Using our notation in \eqref{eq:A-factor} we have $\b = \bar{\g} \g^{p-1}$.
+Recall the constant $\alpha \in \O$ is determined by $\b$ and thus determined by $\g$.
+Since $\g\bar{\g} = \langle c\rangle$ and $c \in \Z$ is a factor of $r$, so $\g$ is a ideal factor of $\langle r\rangle$.
+So $\alpha$ is determined by one of the ideal factors of $\langle r\rangle$.
+This is exactly what we want to prove.
 
-By the same argument as in Q1, we can show that $\a$ and $\bar{\a}$ are coprime ideals. 
-Let $q$ be a prime such that $q | c$.
-I claim that $\langle p \rangle$ splits in $\O$.
-If it does not splits, then $\langle c \rangle$ divides both of $\langle x' + r' \sqrt{-d}\rangle$ and $\langle x' - r' \sqrt{-d} \rangle$, which contradicts the fact that they are coprime.
-Therefore, we may assume that $\langle x' + r' \smd\rangle$ = $\a^{p-2} \b^{p}$ for some ideals $\a, \b$, where $\a$ is some ideal dividing $\langle c \rangle$.
-
-\subsubsection{Homogeneous Equation}
+\subsubsection{Homogeneous Equation}\label{sec:homogeneous}
 
 We have shown that for any solution $x, y$, there exists $\alpha$ from a finite set of elements in $\O$ such that
 $$
@@ -140,3 +158,10 @@ $$
 There is obviously a trivial solution $u=3, v =0$.
 Other than this I could not find a good way to tackle this equation.
 Yet sagemath's Thue equation solver states the only integer solution is $u=3, v=0$, giving us the only non-coprime solution to the original equation $y^3 = x^2 + 18$ is $x = \pm 3, y = 3$.
+
+\subsection{Solution of \texorpdfstring{$y^7 = x^2 + 338$}{}}
+Prime factorisation of $338  $ is $ 2 \cdot 13 ^2 $.
+In our previous arguments we have shown that if there is a pair of non-coprime solution $x, y$, then $gcd(x, y) = 13$ and $13$ splits in $\O_{\Q(\sqrt{-2})}$.
+Notice that in the field $\Z / 13 \Z$ we have
+% TODO:
+Apply Dedekind's criterion w
