@@ -1,6 +1,4 @@
-\section{Quantum Computation with Universal Gate}
-
-\subsection{Brief Introduction to Quantum Computation}
+\section{Brief Introduction to Quantum Computation}
 
 Computations, regardless of how it is performed, at its most fundamental level is a physical process. 
 Human perform computations in our mind by the biochemical process that took place in the brain, classical computer by transmitting electronic signals in the circuit boards, and \textit{quantum computers} by manipulating and measuring  the states of quantum mechanical objects.
@@ -10,7 +8,11 @@ The following postulates of quantum mechanics is key to our discussions
 	\item the simplest quantum state is \textit{qubit}, which is described by unit vector in $\mathbb{C}^2$;
 	\item composition of $n$-qubit state is described by unit vector in $(\mathbb{C}^2)^{\otimes n} \cong \mathbb{C}^{2^n}$;
 	\item states evolved by unitary\footnote{$U$ is unitary if $U^\dagger U = I$} operations.
+	\item quantum measurement is governed by the Born rule.
 \end{enumerate}
+
+We will dicuss the first three postulates here, while leaving the discussion of Born rule to section \ref{sec:measurement}.
+
 Let $\ket{1} = \begin{pmatrix}1 \\ 0\end{pmatrix}$ and $\ket{0} = \begin{pmatrix}0 \\ 1\end{pmatrix}$ be the standard orthonormal basis of $\mathbb{C}^2$.
 Any one qubit state $\ket{\psi}$, therefore, can be described as 
 $$
@@ -74,15 +76,35 @@ The action of Pauli $Z$ from \eqref{eq:pauli} on the block sphere is.
 \end{dmath*}
 It transforms $(\theta, \alpha)$ to $(\theta, \alpha + \pi)$, which is rotation by $\pi$ on $z$ axis.
 By similar arguments, we can show Pauli $X, Y$ in \eqref{eq:pauli} correspond to the rotations of $\pi$ along the $x, y$ axis.
-It turns out that any unitary operations on a single qubit is precisely the rotation on Bloch sphere.
+It turns out that unitary operations on a single qubit are precisely the rotations on Bloch sphere.
 
 \begin{theorem}[Unitaries on Bloch Sphere]\label{th:unitary-bloch}
 	The actions of single-qubit unitary matrices is equivalent to rotation (represented by $SO(3)$) in the Bloch sphere.
 \end{theorem}
+This theorem is excercise 4.6 from \cite{Nielsen_Chuang_2010}.
 
 
-\subsection{Measurement}
+\subsection{Measurement}\label{sec:measurement}
 
+Our discussion of measurement is breif and only for the sake of completeness. 
+For more details see chapter 2.2 and 4.4 of \cite{Nielsen_Chuang_2010}.
+
+Recall that a positive semidefinite projector is a Hermitian matrix $M$ such that $M^2 = M$ and $\bra{\psi} M \ket{\psi} \geq 0$ for any $\ket{\psi}$. 
+Using spectral theorem, we can show that each positive semidefinite projector $M$ can be written as
+$$M = \sum_{i} c_i\ket{v_{i}} \bra{v_{i}}, \quad c_i \in \{0, 1\}$$
+where $\ket{v_{i}}$ is a set of orthonormal basis of $\mathbb{C}^2$.
+That is, the eigenvalues of a positive semidefinite projector are either 0 or 1. 
+
+Let $\mathcal{M} = \{M_1, M_2, \cdots, M_n\}$ be a set of positive semidefinite projectors $V \rightarrow V$ such that $\sum_{i=1}^n M_i = I$. 
+Each of $M_i$ is called an observable of the measurement $\mathcal{M}$.
+Given a state $\kp$, the probability of obtaining the outcome $i$ is $\bra{\psi} M_i \ket{\psi}$, and the post-measurement state is $\frac{M_i \ket{\psi}}{\sqrt{\bra{\psi} M_i \ket{\psi}}}$.
+
+This principle of obtaining probabilistic outcomes from measurement is called the Born rule.
+
+From Born rule, we see $\kp$ and $e^{i\pi \theta} \kp$ are indistinguishable for any $\theta \in \mathbb{R}$, since 
+$$
+\bra{\psi} M_i \ket{\psi} = \bra{\psi} e^{-i\pi \theta} M_i e^{i\pi \theta} \ket{\psi}
+$$
 
 
 \subsection{Univeral Gates}
@@ -105,7 +127,7 @@ Therefore, we relax our goal to find a finite set of gates that can approximate 
 
 This definition of error has two important properties which fits our intuitions for errors. 
 \begin{enumerate}
-	\item let $\ket{\psi}$ be our initial state. If $E(U, V)$ is small, the probability of obtaining different measurement outcome from $U \kp$ and $V \kp$ is small;
+	\item Let $\ket{\psi}$ be our initial state. If $E(U, V)$ is small, the probability of obtaining different measurement outcome from $U \kp$ and $V \kp$ is small;
 	\item accumulated error satisfies triangular inequality, that is 
 		$$
 			E(U_1 U_2, V_1, V_2) \leq E(U_1, V_1) + E(U_2, V_2)
@@ -119,13 +141,11 @@ With the proper definition for error, we can settle the definition of univera;l 
 A set of quantum gates is called \emph{universal} if any unitary operation can be aproximated with arbitraily small error by a finite sequence of gates from the set.
 \end{definition}
 
-\subsection{Universality of Hadamard and T Gates}
+\subsubsection{Universality of Hadamard and T Gates and CNOT}
 
 An important set of universal gate which we discuss in detail here is Hadamard + T gate. 
-
-\begin{theorem}
-	The set $\{H, T\}$ is a universal gate set for single qubit unitary operations, where 
-	\begin{equation*}
+Where Hadamard gate $H$ and T gate $T$ are defined as
+\begin{equation*}
 		H = \frac{1}{\sqrt{2}} \begin{pmatrix}
 		1 & 1\\
 		1 & -1
@@ -133,7 +153,14 @@ An important set of universal gate which we discuss in detail here is Hadamard +
 		1 & 0\\
 		0 & e^{i\pi/4}
 		\end{pmatrix}.
-	\end{equation*}
+\end{equation*}
+
+\begin{remark}
+	Note that both of $T$ and $H$ are unitary, and $T^4 = Z$ and $HZH = X$.
+\end{remark}
+
+\begin{theorem}
+	The set $\{H, T\}$ is a universal gate set for single qubit unitary operations.
 \end{theorem}
 
 \begin{proof}
@@ -157,9 +184,26 @@ An important set of universal gate which we discuss in detail here is Hadamard +
 	$$
 	U = R_{\hat{n}}(\alpha) R_{\hat{m}}(\beta) R_{\hat{n}}(\gamma),
 	$$
-	where $\hat{n}$ and $\hat{m}$ are two non-parallel axes, and $R_{\hat{n}}{\alpha}$ denotes the rotation along axis $\hat{n}$ through angle $\alpha$.
+	where $\hat{n}$ and $\hat{m}$ are two non-parallel axes, and $R_{\hat{n}}(\alpha)$ denotes the rotation along axis $\hat{n}$ through angle $\alpha$.
 
 	Previous paragraphs shows that for any $\epsilon > 0$, $H$ and $T$ can be used to approximate generate $V_1, V_2, V_3$ such that $E(R_{\hat{n}}(\alpha), V_1) < \epsilon$, $E(R_{\hat{m}}(\beta), V_2) < \epsilon$ and $E(R_{\hat{n}}(\gamma), V_3) < \epsilon$.
 	Applying proposition \ref{prop:cumulation-of-error} we see $E(U, V_1 V_2 V_3) < 3 \epsilon$, proving the universality of $H$ and $T$.
 \end{proof}
+
+So $H$ and $T$ gates can approximate any single qubit unitary operation.
+The surprising fact is that by adding one more gate, CNOT, they can be used to approximate any unitary operation on any number of qubits. 
+
+\begin{theorem}
+	Single qubit gates together with CNOT gate is a universal gate set for quantum computation.
+\end{theorem}
+
+\begin{proof}
+	The detailed proof can be found here \cite{barenco1995elementary}.
+	The gist of the proof is two parts 
+	\begin{enumerate}
+		\item any multi-qubit unitary operations can be decomposed into two-body unitary operations via Gaussian elimination. \footnote{By two-body unitary operation we mean a unitary operation that acts non-trivially on only a 2-dimensional subspace.} 
+		\item any two-body unitary operation can be implemented by CNOT and single qubit gates.
+	\end{enumerate}
+\end{proof}
+
 

@@ -1,9 +1,6 @@
 \section{Exact Synthesis of Clifford+T Circuits}
 
-\subsection{Overview of Algorithm}
-
-In this section we present an algorithm for the exact synthesis of single qubit unitaries over the Clifford+T gate set, provided it is possible. 
-The algorithm was proposed by Kliuchnikov et al. \cite{exact-clifford+t}.
+In this section we present results from Kliuchnikov et al \cite{exact-clifford+t} an algorithm for the exact synthesis of single qubit unitaries over the Clifford+T gate set, when it is possible.
 
 The key insight is the following theorem, which relates the set of unitaries that can be implemented by Clifford+T circuits with the ring $\Z\left[\frac{1}{\sqrt{2}}, i\right]$.
 \begin{theorem}\label{unitary-iff-clifford+t}
@@ -21,21 +18,21 @@ The key insight is the following theorem, which relates the set of unitaries tha
 \end{theorem}
 
 
-% \begin{remark}\label{rk:first-column-matters}
-% Notice that 
-% $$
-% \begin{pmatrix}
-% 		a & b^\dagger \omega^k \\ 
-% 		b & a^\dagger \omega^k \\	
-% 	\end{pmatrix} T^n 
-% 	= \begin{pmatrix}
-% 		a & b^\dagger \omega^{k+n} \\ 
-% 		b & a^\dagger \omega^{k+n} \\	
-% \end{pmatrix}
-% $$
-% This means we only need to regard the first column of any unitary matrix in finding a Clifford+T circuit that implements it.
-% As for any $U, V \in \mathcal{CT}(2)$ with the same first column, we have $U = VT^n$ for some integer $n$.
-% \end{remark}
+\begin{remark}\label{rk:first-column-matters}
+Notice that 
+$$
+\begin{pmatrix}
+		a & b^\dagger \omega^k \\ 
+		b & a^\dagger \omega^k \\	
+	\end{pmatrix} T^n 
+	= \begin{pmatrix}
+		a & b^\dagger \omega^{k+n} \\ 
+		b & a^\dagger \omega^{k+n} \\	
+\end{pmatrix}
+$$
+This means we only need to regard the first column of any unitary matrix in finding a Clifford+T circuit that implements it.
+As for any $U, V \in \mathcal{CT}(2)$ with the same first column, we have $U = VT^n$ for some integer $n$.
+\end{remark}
 
 
 \begin{definition}[Least Denominator Exponent]\label{def:lde}
@@ -57,9 +54,9 @@ We can use the following theorem to reduce the least denominator exponent of a u
 There are only finitely many unit-vectors $v$ such that $\lde(|v|^2) \leq 4$.
 As the column of a unitary matrix $U \in \mathcal{CT}(2)$ is a unit-vector, we can reduce $\text{ldt-tl}(U)$ it to small enough number, after which we can find a Clifford+T circuit that implements it by brute-force search.
 
-We list the steps of the algorithm below for clarity.
+We list the exact steps of in algorithm \ref{exact-synthesis-algorithm} for clarity.
 
-\begin{algorithm}
+\begin{algorithm}[ht]\label{exact-synthesis-algorithm}
 	\caption{Exact Synthesis of Single Qubit Unitaries over Clifford+T}
 	\hspace*{\algorithmicindent} \textbf{Input:} $U \in \mathcal{CT}(2)$ \\
 \hspace*{\algorithmicindent} \textbf{Output:} a sequence of $H$ and $T$ gates that implements $U$

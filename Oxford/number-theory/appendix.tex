@@ -1,4 +1,4 @@
-\section{Some Theorems in Number Theory}
+\section{Some Useful Theorems}
 
 \begin{lemma}\label{lem:gcd-ideals}
 	Let $\O$ be the ring of integers of a number field and let $\a, \b$ be two ideals such that $\a + \b = \O$ (That is, thye are coprime ideals). 
@@ -36,4 +36,22 @@
 	In equation \ref{eq:main}, $gcd(x, d) = 1$.
 \end{conjecture}
 
+\begin{lemma}\label{lem:automorphism}
+	Let $G$ be a finite abelian group and $p$ a prime number such that $p \nmid |G|$, then the map $\phi: G \rightarrow G, \phi(g) = p\cdot g$ is an automorphism (bijective self isomorphism), where $p \cdot g$ denotes $\underbrace{g + g + g \cdots + g}_{p \text{ times}}$.
+\end{lemma}
 
+\begin{proof}
+	It is without saying that $\phi$ is a homomorphism.
+
+	To prove it is an automorphism, let us first prove the case when $G$ is cyclic.
+	Say $G \cong \Z/n\Z$ for some integer $n$.
+	Let $a, b \in G$ and assume that $\phi(a) = \phi(b)$, which is equivalent to 
+	$$
+		p a = p b \mod n \Leftrightarrow p(a - b) \equiv 0 \mod n
+	$$
+	Now, $p$ is a prime number and $p \nmid n$, therefore $a - b \equiv 0 \mod n$, which means $a = b$ and $\phi$ is injective.
+	Since $G$ is finite, injectivity automatically implies surjectivity, therefore $\phi$ is an automorphism.
+
+	In the general case, by the classification of finite abelian groups, we can write $G$ as a direct product of cyclic groups, i.e, $G \cong \Z/n_1\Z \times \Z/n_2\Z \times \cdots \times \Z/n_k\Z$ for some integers $n_1, n_2, \cdots, n_k$, where $p \nmid n_i$ for all $i$.
+	Then we can apply the previous result to each cyclic component and conclude that $\phi$ is an automorphism on each component, therefore $\phi$ is an automorphism on the whole group $G$.
+\end{proof}
