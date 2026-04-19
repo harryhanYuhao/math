@@ -18,3 +18,5 @@
 *.bcf
 *.xml
 *.dvi
+*.csv
+*.bak
