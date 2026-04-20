@@ -130,6 +130,32 @@ and we have homogeneous equation $F(u, v) = \frac{a G_2(u, v) + bG_1(u, v)}{N(\a
 Homogeneous diophantine equation like this in two variable is called Thue's equation. 
 Although in general Thue's equation can not be solved as easily compared to the coprime case, there does exist an efficient algorithm to solve it \cite{Gherga_2025}. 
 
+Let us summarise our result in this section. 
+\begin{theorem}
+	For any non-coprime solution $x, y$ of the equation \ref{eq:main},
+	$gcd(x, y)$ is a factor of $r$; moreover, all primes number dividing $gcd(x, y)$ must split in $\O_{\Q(\sqrt{-d})}$. 
+
+	There exists and ideal $\g$ which is a factor of $\langle r\rangle$ such that we can write
+	$$
+	\langle x + r\smd \rangle= \bar{\g} \g^{p-1} \a^p
+	$$
+	for some other ideal $\a$.
+
+	We can find $\gamma_1, \gamma_2 \in \O_{\Q(\sqrt{-d})}$, which only depends on $\g$ and the structure of the ring $\O_{\Q(\sqrt{-d})}$ such that 
+	$$
+		\gamma_1 \bar{\g} \g^{p-1} = \gamma_2 \c^p
+	$$
+	for another ideal $\c$. 
+
+	From this we deduced that 
+	\begin{equation}\label{eq:non-coprime}
+		\alpha (x + r\sqrt{-d}) = \beta^p
+	\end{equation}
+	for $\alpha = \gamma_1 \gamma_2^{\p-1}$ and some unknown $\beta \in \O_{\Q(\sqrt{-d})}$.
+
+	By expanding $\beta = u + v \sqrt{-d}$ for $u, v \in \Z$, we see \autoref{eq:non-coprime} is equivalent to a homogeneous diophantine equation $F(u, v) = r$ for some homogeneous polynomial, which can be effectively solved by an Thue's algorithm.
+\end{theorem}
+
 \subsection{Solution of \texorpdfstring{$y^3 = x^2 + 18$}{}}
 
 In \autoref{sol:coprime-18} we have shown that $y^3 = x^2 + 18$ has no coprime solution.
