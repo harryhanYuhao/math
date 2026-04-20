@@ -1,4 +1,6 @@
-\section{Some Useful Theorems}
+\section{Supporting Theorems and Explanations}
+
+\subsection{Useful Theorems}
 
 \begin{lemma}\label{lem:finite-integer-solutions}
 	Give a polynomial $f(x)$ which we write
@@ -88,12 +90,25 @@
 	Then we can apply the previous result to each cyclic component and conclude that $\phi$ is an automorphism on each component, therefore $\phi$ is an automorphism on the whole group $G$.
 \end{proof}
 
+\subsection{Computer Assisted Calculations}\label{sec:computer-assisted-calculations}
+
+I used SageMath \cite{sage} to solve Thue equations.
+Here is the code adapted from \cite{ThueCode}
+\begin{lstlisting}[style=python]
+def solvethue(f,n):
+    assert f.is_homogeneous()
+    return gp.thue(f.subs({f.variables()[1]:1}), n).sage()
+
+R.<x,y> = PolynomialRing(QQ)
+print( solvethue(x^3+y^3,1) )
+\end{lstlisting}
+
 \begin{table}
 \centering 
-\caption{Selected solutions for $y^p = x^2 + k$, while $k= r^2 d$ and $d$ is square free.
+\caption{Selected solutions for $y^p = x^2 + k$, while $k \equiv 2 \mod 4$, $k= r^2 d$ and $d$ is square free.
 All solutions are computed using python code.
 The class numbers are obtained from the $\mathcal{L}$-functions and Modular Forms Data Base\cite{lmfdb}.
-Notice that in all cases shown in the table, $h(\Qd) > \frac{\log d}{\log 3}.$}
+Notice that in all cases shown in the table we have $h(\Qd) > \frac{\log d}{\log 3}$, except the single case for $x=401$ marked with $*$.}
 \begin{tabular}{cccc|ccc}
 	\hline
 	$x$ & $y$ & $p$ & $k$ & $d$ & $\frac{\log d}{\log 3}$ & $h(\Qd)$ \\
@@ -124,7 +139,9 @@ Notice that in all cases shown in the table, $h(\Qd) > \frac{\log d}{\log 3}.$}
      1 & 7 & 3 & 342 & 38 & 3.31 & 6 \\
     29 & 11 & 3 & 490 & 10 & 2.1 & 2 \\
     7 & 3 & 5 & 194 & 194 & 4.8 & 20 \\
-   401 & 11 & 5 & 250 & 10 & 2.1 & 2 \\
+\hline
+	\textbf{*}401 & 11 & 5 & 250 & 10 & \textbf{2.1} & \textbf{2} \\
+\hline
  129 & 7 & 5 & 166 & 166 & 4.65 & 10 \\
       15 & 3 & 5 & 18 & 2 & 0.63 & 1 \\
     13 & 3 & 5 & 74 & 74 & 3.92 & 10 \\
@@ -138,4 +155,5 @@ Notice that in all cases shown in the table, $h(\Qd) > \frac{\log d}{\log 3}.$}
  \hline
 \end{tabular}
 \end{table}
+
 

@@ -157,11 +157,23 @@ $$
 
 There is obviously a trivial solution $u=3, v =0$.
 Other than this I could not find a good way to tackle this equation.
-Yet sagemath's Thue equation solver states the only integer solution is $u=3, v=0$, giving us the only non-coprime solution to the original equation $y^3 = x^2 + 18$ is $x = \pm 3, y = 3$.
+Yet SageMath's Thue equation solver\footnote{
+	See \autoref{sec:computer-assisted-calculations} for details.
+} states the only integer solution is $u=3, v=0$, giving us the only non-coprime solution to the original equation $y^3 = x^2 + 18$ is $x = \pm 3, y = 3$.
 
 \subsection{Solution of \texorpdfstring{$y^7 = x^2 + 338$}{}}
 Prime factorisation of $338  $ is $ 2 \cdot 13 ^2 $.
-In our previous arguments we have shown that if there is a pair of non-coprime solution $x, y$, then $gcd(x, y) = 13$ and $13$ splits in $\O_{\Q(\sqrt{-2})}$.
-Notice that in the field $\Z / 13 \Z$ we have
-% TODO:
-Apply Dedekind's criterion w
+In the field $\Z / 13 \Z$, the polynomial $x^2 + 2$ is reducible if and only if $-2 \equiv 11$ is a square in $\Z / 13 \Z$.
+Let us check 
+\begin{align*}
+	1^2 & \equiv 1 \mod 13,  & 2^2  \equiv 4 \mod 13\\
+	3^2 & \equiv 9 \mod 13,  & 4^2  \equiv 3 \mod 13\\
+	5^2 & \equiv 12 \mod 13, & 6^2  \equiv 10 \mod 13 \\ 
+	7^2 & \equiv 10 \mod 13,& 8^2  \equiv 12 \mod 13\\
+	9^2 & \equiv 3 \mod 13, & 10^2  \equiv 9 \mod 13\\ 
+	11^2 & \equiv 4 \mod 13,& 12^2  \equiv 1 \mod 13
+\end{align*}
+So $-2$ is not a square in $\Z / 13 \Z$ and $x^2 +2$ is irreducible in $\Z /\ 13\Z$.
+Applying Dedekind's criterion we see $13$ is inert in $\O_{\Q{\sqrt{-2}}}$.
+We have shown that if $x, y$ are non-coprime solution for $y^7 = x^2 + 13^2 \cdots 2 $, then $13|x, y$ and $13$ must split in $\O_{\Q{\sqrt{-2}}}$. 
+We have just shown that $13$ does not split, so there is no non-coprime solution for $y^7 = x^2 + 338$.

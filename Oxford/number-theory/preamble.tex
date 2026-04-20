@@ -24,7 +24,29 @@
 \usepackage{hyperref}
 \usepackage{import}
 \usepackage{breqn}
-\usepackage{libertinus}           % Load the Libertinus font
+\usepackage{listings}
+% \usepackage{libertinus}           % Load the Libertinus font
+
+\lstdefinestyle{python}{
+    language=Python,
+    basicstyle=\ttfamily\footnotesize,        
+    backgroundcolor=\color{black!5},    % Light gray background
+    keywordstyle=\bfseries\color{blue}, % Bold blue keywords
+    stringstyle=\color{teal},           % Teal strings
+    commentstyle=\color{gray},          % Gray comments
+    stepnumber=0,                             % Number every line
+    frame=single,                             % Add a thin border around the code
+    rulecolor=\color{black},                  % Border color
+    tabsize=4,                                % Set tab width
+    breaklines=true,                          % Enable line wrapping
+    breakatwhitespace=true,                   % Break at spaces
+    showspaces=false,                         % Hide space markers
+    showstringspaces=false,                   % Hide spaces in strings
+    captionpos=b,                             % Caption at bottom
+    aboveskip=5pt,                            % Space before code block
+    belowskip=5pt,                            % Space after code block
+    backgroundcolor=\color{black!5},          % Light gray background
+}
 
 \usepackage[toc,page]{appendix}
 
