@@ -11,16 +11,18 @@
 \maketitle
 
 \abstract{
-	This survey is written for the assessment of the course	Introduction to Quantum Information at Oxford.
+	This survey is written for the assessment of the course	Introduction to Quantum Information at Oxford. 
+	We reviewe the basic concepts of quantum computation and discuss in detail the universality of Clifford and T gates. 
+	We summarise the Mastumoto-Amano normal form, which is a unique representation of single qubit unitaries over Clifford and T gates with minimal T-count. We also discuss the Ross-Selinger algorithm for approximating $z$-rotations using Clifford and T gates.
 }
 
 \tableofcontents
-\newpage
 
-\include{universal-gate.tex}
+\input{universal-gate.tex}
 \input{exact-synthesis.tex}
 \input{matsumoto-amano.tex}
 \input{approximation-z-rotation.tex}
+\input{conclusion.tex}
 
 \appendix 
 \include{appendix-error}

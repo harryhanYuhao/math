@@ -1,17 +1,17 @@
 \section{Brief Introduction to Quantum Computation}
 
-Computations, regardless of how it is performed, at its most fundamental level is a physical process. 
-Human perform computations in our mind by the biochemical process that took place in the brain, classical computer by transmitting electronic signals in the circuit boards, and \textit{quantum computers} by manipulating and measuring  the states of quantum mechanical objects.
+Computations, regardless of how they are performed, are, at their most fundamental level, physical processes. 
+Humans perform computations in our mind by the biochemical process that takes place in the brain, classical computers by transmitting electronic signals in the circuit boards, and \textit{quantum computers} by manipulating and measuring the states of quantum mechanical objects \cite{Nielsen_Chuang_2010}.
 
-The following postulates of quantum mechanics is key to our discussions
+The following postulates \cite{Nielsen_Chuang_2010} of quantum mechanics are key to our discussions.
 \begin{enumerate}[label={\textbf{Postulate} \arabic*}]
-	\item the simplest quantum state is \textit{qubit}, which is described by unit vector in $\mathbb{C}^2$;
-	\item composition of $n$-qubit state is described by unit vector in $(\mathbb{C}^2)^{\otimes n} \cong \mathbb{C}^{2^n}$;
+	\item The simplest quantum state is \textit{qubit}, which is described by unit vector in $\mathbb{C}^2$;
+	\item composition of an $n$-qubit state is described by unit vector in $(\mathbb{C}^2)^{\otimes n} \cong \mathbb{C}^{2^n}$;
 	\item states evolved by unitary\footnote{$U$ is unitary if $U^\dagger U = I$} operations.
 	\item quantum measurement is governed by the Born rule.
 \end{enumerate}
 
-We will dicuss the first three postulates here, while leaving the discussion of Born rule to section \ref{sec:measurement}.
+We will discuss the first three postulates here, while leaving the discussion of the Born rule to section \ref{sec:measurement}.
 
 Let $\ket{1} = \begin{pmatrix}1 \\ 0\end{pmatrix}$ and $\ket{0} = \begin{pmatrix}0 \\ 1\end{pmatrix}$ be the standard orthonormal basis of $\mathbb{C}^2$.
 Any one qubit state $\ket{\psi}$, therefore, can be described as 
@@ -19,7 +19,7 @@ $$
 \ket{\psi} = a\ket{0} + b\ket{1}, \quad a, b \in \mathbb{C}, |a|^2 + |b|^2 = 1
 $$
 
-The following unitary operators are called Pauli operators, which will be important for later discussions and are presented here as examples of unitaries operations.
+The following unitary operators are called Pauli operators, which will be important for later discussions and are presented here as examples of unitary operations.
 \begin{equation}\label{eq:pauli}
 	X = \begin{pmatrix}
 0 & 1\\
@@ -37,22 +37,28 @@ The time evolution of a closed quantum state $\ket{\psi}$ is described by the \t
 \begin{equation}\label{schrodinger}
 	i \hslash \frac{d \ket{\psi}}{d t} = H \ket{\psi}
 \end{equation}
-If $H$ is a time independent Hamiltonian, the solution \eqref{schrodinger} is 
+If $H$ is a time-independent Hamiltonian, the solution to \autoref{schrodinger} is 
 $$
 \ket{\psi(t)} = e^{\frac{-iH t}{\hslash}} \ket{\psi(0)}
 $$
 where $\ket{\psi(0)}$ is the initial state of the system.
-Standard results from linear algebra show that for Hermitian $H$, $e^{\frac{-i H t}{\hslash}}$ is indeed unitary for any real $t$.
+Standard results from linear algebra show that for Hermitian $H$, $e^{\frac{-i H t}{\hslash}}$ is indeed unitary for any real $t$ \footnote{See section 2.2.2 of \cite{Nielsen_Chuang_2010}.}.
 
 The existence of qubit systems in nature has been demonstrated by the famous Stern-Gerlach experiment \cite{Sakurai_Napolitano_2020}. 
-Various physical realisations of quantum computers have been proposed, such as those based on ion traps \cite{steane1997ion}, optical photon \cite{gardiner2004quantum}, and nuclear magnetic resonance \cite{nmr} among others.
+Various physical realisations of quantum computers have been proposed, such as those based on ion traps \cite{steane1997ion}, optical photons \cite{gardiner2004quantum}, and nuclear magnetic resonance \cite{nmr}, among others.
 
-In this article we will regard qubit and its unitary evolution as our fundamental quantum mechanical system and describe the theories of unitary operation.
+The studies of the theory of quantum computation have shown very promising results. 
+For example, many quantum algorithms, such as Shor's algorithm for factoring \cite{Shor_1997}, have been shown to be exponentially faster than the best known classical algorithms for the same problems.
 
-\subsection{Single Qubit Operation}
+In this article, we will regard the qubit and its unitary evolution as our fundamental quantum mechanical system.
+We will assume that an ideal quantum computer exists and only discuss the theories of unitary operations.
+The remaining paragraphs of this section are a brief introduction to quantum gates.
+The rest of the article will focus on a particular set of quantum gates, namely the Clifford and T gates, and their ability to approximate any single-qubit unitary operation.
+
+\subsection{Single Qubit Operation} \label{sec:bloch-sphere}
 
 The Bloch sphere representation of a qubit is very helpful for our discussion.
-Any qubit $\ket{\psi}$ can be written $\ket{\psi} = a \ket{0} + b \ket{1}$ for some $a , b \in \mathbb{C}$ such that $|a|^2 + |b|^2 = 1$.
+Any qubit $\ket{\psi}$ can be written as $\ket{\psi} = a \ket{0} + b \ket{1}$ for some $a , b \in \mathbb{C}$ such that $|a|^2 + |b|^2 = 1$.
 If we write $|a| = \cos \frac{\theta}{2}$ and $|b| = \sin \frac{\theta}{2}$, then for some phase factors $e^{i \alpha}$ and $e^{i \beta}$, we have
 $$
 \ket{\psi} = e^{i \beta} \left(\cos \frac{\theta}{2} \ket{0} + e^{i \alpha} \sin \frac{\theta}{2} \ket{1}\right),
@@ -74,23 +80,23 @@ The action of Pauli $Z$ from \eqref{eq:pauli} on the block sphere is.
 	= e^{i \beta} \left(\cos \frac{\theta}{2} \ket{0} - e^{i \alpha} \sin \frac{\theta}{2} \ket{1}\right)
 	= e^{i \beta} \left(\cos \frac{\theta}{2} \ket{0} + e^{i \alpha + \pi} \sin \frac{\theta}{2} \ket{1}\right)
 \end{dmath*}
-It transforms $(\theta, \alpha)$ to $(\theta, \alpha + \pi)$, which is rotation by $\pi$ on $z$ axis.
-By similar arguments, we can show Pauli $X, Y$ in \eqref{eq:pauli} correspond to the rotations of $\pi$ along the $x, y$ axis.
-It turns out that unitary operations on a single qubit are precisely the rotations on Bloch sphere.
+It transforms a point on the Bloch sphere from $(\theta, \alpha)$ to $(\theta, \alpha + \pi)$, which is the rotation by $\pi$ on the $z$ axis.
+By similar arguments, we can show Pauli $X, Y$ in \eqref{eq:pauli} correspond to the rotations of $\pi$ along the $x, y$ axis \footnote{See section 4.2 of \cite{Nielsen_Chuang_2010}.}.
+It turns out that unitary operations on a single qubit are precisely the rotations on the Bloch sphere.
 
 \begin{theorem}[Unitaries on Bloch Sphere]\label{th:unitary-bloch}
-	The actions of single-qubit unitary matrices is equivalent to rotation (represented by $SO(3)$) in the Bloch sphere.
+	The actions of single-qubit unitary matrices are equivalent to rotation (represented by $SO(3)$) in the Bloch sphere.
 \end{theorem}
-This theorem is excercise 4.6 from \cite{Nielsen_Chuang_2010}.
+This theorem is Exercise 4.6 from \cite{Nielsen_Chuang_2010}.
 
 
 \subsection{Measurement}\label{sec:measurement}
 
-Our discussion of measurement is breif and only for the sake of completeness. 
-For more details see chapter 2.2 and 4.4 of \cite{Nielsen_Chuang_2010}.
+Our discussion of measurement is brief and only for the sake of completeness. 
+For more details, see chapters 2.2 and 4.4 of \cite{Nielsen_Chuang_2010}.
 
 Recall that a positive semidefinite projector is a Hermitian matrix $M$ such that $M^2 = M$ and $\bra{\psi} M \ket{\psi} \geq 0$ for any $\ket{\psi}$. 
-Using spectral theorem, we can show that each positive semidefinite projector $M$ can be written as
+Using the spectral theorem, we can show that each positive semidefinite projector $M$ can be written as
 $$M = \sum_{i} c_i\ket{v_{i}} \bra{v_{i}}, \quad c_i \in \{0, 1\}$$
 where $\ket{v_{i}}$ is a set of orthonormal basis of $\mathbb{C}^2$.
 That is, the eigenvalues of a positive semidefinite projector are either 0 or 1. 
@@ -109,26 +115,26 @@ $$
 
 \subsection{Univeral Gates}
 
-In the effort to build quantum computers one task is especially important: to find some small sets of unitary matrices that can effectively simulate any unitary operations.
+In the effort to build quantum computers, one task is especially important: to find a small set of unitary matrices that can effectively simulate any unitary operation.
 These unitary matrices are called universal gates.
 
 Let us first concentrate on the single-qubit unitary operations.
-There are infinitely many single qubit unitary operations, making it impossible to exactly synthesize any arbitrary operation with a finite set of gates. 
-\footnote{On classical computers, it is well known that NAND gate alone is sufficient to implement any Boolean function \cite{sheffer1913set}.}
-Therefore, we relax our goal to find a finite set of gates that can approximate any single qubit unitary operation to arbitrary precision in the sense defined below. 
+There are infinitely many single-qubit unitary operations, making it impossible to exactly synthesize any arbitrary operation with a finite set of gates. 
+\footnote{On classical computers, it is well known that the NAND gate alone is sufficient to implement any Boolean function \cite{sheffer1913set}.}
+Therefore, we relax our goal to find a finite set of gates that can approximate any single qubit unitary operation with an arbitrarily small error in the sense defined below. 
 
 \begin{definition}[Error of approximation]
-	If $U$ is the unitary operation we wish to implement while $V$ is the actual implementation in practice. 
+	If $U$ is the unitary operation we wish to implement, while $V$ is the actual implementation in practice. 
 	The \emph{error} of approximation is defined as  
 	\begin{equation}
 		E(U, V) = \max_{\ket{\psi}} \frac{\| (U - V) \ket{\psi} \|}{\| \ket{\psi} \|}.
 	\end{equation}
 \end{definition}
 
-This definition of error has two important properties which fits our intuitions for errors. 
+This definition of error has two important properties that fit our intuitions for errors. 
 \begin{enumerate}
-	\item Let $\ket{\psi}$ be our initial state. If $E(U, V)$ is small, the probability of obtaining different measurement outcome from $U \kp$ and $V \kp$ is small;
-	\item accumulated error satisfies triangular inequality, that is 
+	\item Let $\ket{\psi}$ be our initial state. If $E(U, V)$ is small, the probability of obtaining different measurement outcomes from $U \kp$ and $V \kp$ is small;
+	\item accumulated error satisfies the triangular inequality, that is 
 		$$
 			E(U_1 U_2, V_1, V_2) \leq E(U_1, V_1) + E(U_2, V_2)
 		$$
@@ -136,15 +142,15 @@ This definition of error has two important properties which fits our intuitions 
 
 Their proofs are presented in the appendix \ref{sec:error}.
 
-With the proper definition for error, we can settle the definition of univera;l gate.
+With the proper definition for error, we can settle the definition of a universal gate.
 \begin{definition}[Universal Gate]
-A set of quantum gates is called \emph{universal} if any unitary operation can be aproximated with arbitraily small error by a finite sequence of gates from the set.
+A set of quantum gates is called \emph{universal} if any unitary operation can be approximated with arbitrarily small error by a finite sequence of gates from the set.
 \end{definition}
 
-\subsubsection{Universality of Hadamard and T Gates and CNOT}
+\subsubsection{Universality of Clifford + T}
 
-An important set of universal gate which we discuss in detail here is Hadamard + T gate. 
-Where Hadamard gate $H$ and T gate $T$ are defined as
+An important set of universal gates that we discuss in detail here is the Clifford + T gate. 
+In the single qubit case, the Clifford + T gate set is generated by the Hadamard gate (denoted as $H$) and the T gate defined as
 \begin{equation*}
 		H = \frac{1}{\sqrt{2}} \begin{pmatrix}
 		1 & 1\\
@@ -160,10 +166,12 @@ Where Hadamard gate $H$ and T gate $T$ are defined as
 \end{remark}
 
 \begin{theorem}
-	The set $\{H, T\}$ is a universal gate set for single qubit unitary operations.
+	The set $\{H, T\}$ is a universal gate set for single-qubit unitary operations.
 \end{theorem}
 
 \begin{proof}
+	This proof is based on section 4.5.3 of \cite{Nielsen_Chuang_2010}.
+
 	We can write
 	$$
 	T = \cos \frac{\pi}{8} I - i \sin \frac{\pi}{8} Z, \quad H = \frac{1}{\sqrt{2}} (X + Z).
@@ -180,30 +188,86 @@ Where Hadamard gate $H$ and T gate $T$ are defined as
 	By the same calculation we can show that $HTHT$ is a rotation along the axis $(\cos\frac{\pi}{8}, -\sin\frac{\pi}{8}, \cos\frac{\pi}{8})$ through the same angle $\theta$. 
 	Repeated applications of $HTHT$ can approximate any rotation along the axis $(\cos\frac{\pi}{8}, -\sin\frac{\pi}{8}, \cos\frac{\pi}{8})$ to arbitrary precision.
 
-	As shown in the appendix, any single qubit unitary $U$ can be represented as 
+	By a standard result in linear algebra, any single qubit unitary $U$ can be represented as
 	$$
 	U = R_{\hat{n}}(\alpha) R_{\hat{m}}(\beta) R_{\hat{n}}(\gamma),
 	$$
-	where $\hat{n}$ and $\hat{m}$ are two non-parallel axes, and $R_{\hat{n}}(\alpha)$ denotes the rotation along axis $\hat{n}$ through angle $\alpha$.
+	where $\hat{n}$ and $\hat{m}$ are two non-parallel axes, and $R_{\hat{n}}(\alpha)$ denotes the rotation along axis $\hat{n}$ through angle $\alpha$. \footnote{
+		To quickly convince yourself of this fact, note that $R_{\hat{n}}(\alpha) R_{\hat{m}}(\beta) R_{\hat{n}}(-\alpha)$ of rotation along $\hat{k}$ through angle $\beta$, where the axis $\hat{k}$ is obtained rotating $\hat{m}$ along $\hat{n}$ through angle $-\alpha$.
+	}
 
 	Previous paragraphs shows that for any $\epsilon > 0$, $H$ and $T$ can be used to approximate generate $V_1, V_2, V_3$ such that $E(R_{\hat{n}}(\alpha), V_1) < \epsilon$, $E(R_{\hat{m}}(\beta), V_2) < \epsilon$ and $E(R_{\hat{n}}(\gamma), V_3) < \epsilon$.
 	Applying proposition \ref{prop:cumulation-of-error} we see $E(U, V_1 V_2 V_3) < 3 \epsilon$, proving the universality of $H$ and $T$.
 \end{proof}
 
-So $H$ and $T$ gates can approximate any single qubit unitary operation.
+So $H$ and $T$ gates can approximate any single-qubit unitary operation.
 The surprising fact is that by adding one more gate, CNOT, they can be used to approximate any unitary operation on any number of qubits. 
 
 \begin{theorem}
-	Single qubit gates together with CNOT gate is a universal gate set for quantum computation.
+	Single-qubit gates together with the CNOT gate are a universal gate set for quantum computation.
 \end{theorem}
 
 \begin{proof}
 	The detailed proof can be found here \cite{barenco1995elementary}.
 	The gist of the proof is two parts 
 	\begin{enumerate}
-		\item any multi-qubit unitary operations can be decomposed into two-body unitary operations via Gaussian elimination. \footnote{By two-body unitary operation we mean a unitary operation that acts non-trivially on only a 2-dimensional subspace.} 
-		\item any two-body unitary operation can be implemented by CNOT and single qubit gates.
+		\item any multi-qubit unitary operations can be decomposed into two-body unitary operations via Gaussian elimination. \footnote{By two-body unitary operation, we mean a unitary operation that acts non-trivially on only a 2-dimensional subspace.} 
+		\item any two-body unitary operation can be implemented by CNOT and single-qubit gates.
 	\end{enumerate}
 \end{proof}
 
+The circuits generated by $H, S:=T^2$ and CNOT are called \emph{Clifford circuits}.
+Notice we have the following algebraic relations 
+\begin{equation*}
+	\begin{aligned}
+		H^2 = I, \quad S^4 = I, \quad (HS)^3 = e^{i\pi/4} I, \\
+		H X H = Z, \quad H Z H = X, \quad S X S^{-1} = Y, \quad S Z S^{-1} = Z\\ 
+		 XY = i Z, \quad YZ = i X, \quad ZX = i Y
+	\end{aligned}
+\end{equation*}
 
+Because of these algebraic structures, Clifford circuits can be efficiently simulated on classical computers \cite{nest2009classicalsimulationquantumcomputation}.
+This is the famous Gottesman-Knill theorem \cite{gottesman1998heisenbergrepresentationquantumcomputers}.
+
+Combining the above discussion, we arrive at the following theorem. 
+
+\begin{theorem}
+	Clifford + T circuits are universal. 
+\end{theorem}
+
+\subsection{Solovay-Kitaev Theorem}
+
+The natural question now is to ask, given an error bound $\epsilon$, how many gates do we need to approximate a single qubit unitary operation with Clifford and T gates?
+Solovay-Kitaev algorithm \cite{dawson2005solovaykitaevalgorithm} gives an upper bound for the number of gates needed as $O(\log^c(1/\epsilon))$, where $c \approx 3.97$.
+
+The algorithm improves approximations iteratively. 
+Here is a brief summary of the algorithm.
+
+Let $U_n$ be the $n$-th order approximation.
+\begin{enumerate}
+    \item \textbf{Base Case ($n=0$):} Find $U_0$ from a pre-computed $\epsilon_0$-net such that $\|U - U_0\| < \epsilon_0$.
+    \item \textbf{Decomposition:} Define the error $\Delta = U U_n^\dagger$. Decompose $\Delta$ as a group commutator:
+    \[ \Delta = V W V^\dagger W^\dagger \]
+    where $V, W$ are unitaries such that $\|V-I\|, \|W-I\| \approx \sqrt{\| \Delta - I \|}$.
+    \item \textbf{Recursion:} Compute $V_{n-1}$ and $W_{n-1}$ by applying the algorithm to $V$ and $W$ at the previous level.
+    \item \textbf{Update:} Set $U_{n+1} = V_{n-1} W_{n-1} V_{n-1}^\dagger W_{n-1}^\dagger U_n$.
+\end{enumerate}
+
+In fact, the Solovay-Kitaev algorithm only requires the given set of gates to generate a dense subset of unitary matrices, so it can be applied to any universal gate set.
+
+In the later section, we will demonstrate a more effective algorithm for approximating single-qubit unitaries with Clifford and T gates.
+
+\subsection{Fault Tolerant Construction}
+
+In practice, no quantum circuit can be implemented without errors.
+A common approach to mitigate errors is through the use of quantum error correcting codes.
+The theory of quantum error correcting codes is vast and advanced, but the gist of it is to encode a single logical qubit into a large number of physical qubits. 
+When the error rate is below a certain threshold, the error can be detected and corrected \cite{Nielsen_Chuang_2010}.  
+This construction is called \textit{fault-tolerant construction}.
+
+Clifford circuits, which are generated by the gates $H$, $S$, and CNOT, can be implemented fault-tolerantly \cite{Nielsen_Chuang_2010}. 
+Moreover, as they can be efficiently simulated on classical computers, various tricks can be used to make their physical implementation very cheap and efficient. 
+On the other hand, fault-tolerant implementation of the T gate is much more expensive, and it is the main bottleneck for the construction of quantum computers \cite{Nielsen_Chuang_2010}. 
+
+In the rest of this article, we will discuss practical algorithms for approximating single-qubit unitary operations with Clifford and T gates. 
+We also touch on Matsumoto-Amano normal form, which can produce the minimal T-gate counts for any given Clifford + T circuit. 

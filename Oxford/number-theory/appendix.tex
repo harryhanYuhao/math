@@ -2,38 +2,6 @@
 
 \subsection{Useful Theorems}
 
-\begin{lemma}\label{lem:finite-integer-solutions}
-	Give a polynomial $f(x)$ which we write
-	\begin{align*}
-		f(x) = a_n x^n + a_{n-1} x^{n-1} + \cdots + a_1 x + a_0		
-	\end{align*}
-	for integer coefficients $a_n, a_{n-1}, \cdots, a_0$ and $a_n \neq 0$.
-
-	Let $r = \frac{p}{q}$ be rational number such that $gcd(p, q) = 1$ and $f(r) = 0$, then $p | a_0$ and $q | a_n$.
-\end{lemma}
-
-\begin{proof}
-	We have $f(r) = 0$, which is equivalent to 
-	$$
-		a_n \left(\frac{p}{q}\right)^n + a_{n-1} \left(\frac{p}{q}\right)^{n-1} + \cdots + a_1 \left(\frac{p}{q}\right) + a_0 = 0
-	$$
-	Multiplying both sides by $q^n$ gives us
-	$$
-	a_n p^n + a_{n-1} p^{n-1} q + \cdots + a_1 p q^{n-1} + a_0 q^n = 0
-	$$
-	which is equivalent to 
-	$$
-	p (a_n p^{n-1} + a_{n-1} p^{n-1} q + \cdots + a_1  q^{n-1}) = - a_0 q^n
-	$$
-	Since $gcd(p, q) = 1$, $p$ must divide $a_0$.
-
-	By considering 
-	$$ 
-	-a_n p^n = q( a_{n-1} p^{n-1}  + \cdots + a_1 p q^{n-2} + a_0 q^{n-1})
-	$$
-	in the same way we can show that $q | a_n$ as well.
-\end{proof}
-
 \begin{lemma}\label{lem:gcd-ideals}
 	Let $\O$ be the ring of integers of a number field and let $\a, \b$ be two ideals such that $\a + \b = \O$ (That is, thye are coprime ideals). 
 	If $\a\b = \c^n$ for some ideal $\c$ and some integer $n \geq 1$, then $\a = \d^n$ and $\b = \e^n$ for some ideals $\d, \e$ such that $\d\e = \c$.

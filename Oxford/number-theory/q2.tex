@@ -15,14 +15,14 @@ where $\A := \langle x + r\sqrt{-d} \rangle$ and $\bar{\A} := \langle x - r\sqrt
 
 As $x$ and $y$ are not coprime, we can not directly conclude that $\A = \h^p$ for some ideal $\h$. 
 However, assuming $\B | \A$ and $\langle \B, \bar{\A} \rangle = 1$ (that is, $\B$ is a factor of $\A$ that is coprime to $\bar{\A}$) it is clear that $\B = \a^p$ for some ideal $\a$.
-Therefore $\A$ can be factorised as 
+Therefore, $\A$ can be factorised as 
 \begin{equation}\label{eq:A-factor}
 	\A = \a^p \b
 \end{equation}
 for some ideal $\a, \b$, where $\a$ is coprime to $\bar{\A}$ and $\b$ is not necessarily a p-th power of some ideal.
 
 Denote the class group of $\O$ as $\H$, which is a finite abelian group whose order does not contain the prime factor $p$.
-Therefore we have the following an automorphism (self bijective homomorphism) by lemma \ref{lem:automorphism}
+Therefore, we have the following automorphism (self-bijective homomorphism) by Lemma \ref{lem:automorphism}
 $$
 \phi: \H \rightarrow \H,	\phi([\x]) = [\x]^p
 $$
@@ -39,7 +39,7 @@ $$
 \gamma_1 \gamma_2^{p-1} \langle x +  r \smd \rangle  = (\gamma_2 \a\c )^p 
 $$
 This means $(\gamma_2\a\c)^p$ is equivalent to the principal class (the identity element in $\H$).
-Using similar argument as in the coprime cose, by lemma \ref{lem:principal} we conclude that $\gamma_2\a\c$ is also the in the principal class and therefore a principal ideal, i.e, $\exists \beta\in \O$ such that $\gamma_2 \a\c = \langle \beta \rangle$.
+Using a similar argument as in the coprime case, by Lemma \ref{lem:principal} we conclude that $\gamma_2\a\c$ is also in the principal class and therefore a principal ideal, i.e, $\exists \beta\in \O$ such that $\gamma_2 \a\c = \langle \beta \rangle$.
 Setting $\alpha = \gamma_1 \gamma_2^{p-1}$ gives
 \begin{equation}
 	\alpha  (x + r\sqrt{-d}) = \beta^p
@@ -47,7 +47,7 @@ Setting $\alpha = \gamma_1 \gamma_2^{p-1}$ gives
 which is our desired result.
 
 The constant $\alpha$ depends only the ideal factor $\b$ of $\A = \langle x + r\smd\rangle$ which is not coprime to $\bar{\A} = \langle x - r \smd\rangle$. 
-Let us investigate where does $\b $ come from.
+Let us investigate where $\ b$ comes from.
 
 Assuming $x, y \in \Z$ is a solution for \ref{eq:main} while $gcd(x, y) = c \neq 1$.
 This gives the equation
@@ -63,7 +63,7 @@ $$
 therefore $c \gamma | y$ and $c \neq gcd(x, y)$.
 
 In addition, we see that $gcd(x, y)\neq 2$. 
-As if both of $x, y$ are even, we have $k \equiv y^p - x^2 \equiv 0 \mod 4$, which is a contradiction to our assumption that $k \equiv 2 \mod 4$.
+As if both of $ x$ and $ y$ are even, we have $k \equiv y^p - x^2 \equiv 0 \mod 4$, which is a contradiction to our assumption that $k \equiv 2 \mod 4$.
 
 Therefore we can write $x = cx', y = cy', r = cr'$, while $gcd(x', y') = gcd(x', r') = gcd(y', r') = 1$, and equation \ref{eq:main} becomes 
 \begin{equation}
@@ -78,7 +78,7 @@ which is equivalent to
 I claim that each prime number $q \in \Z$ that divides $c$ must split in $\O$.
 Say if $q$ does not split, then $\langle q \rangle$ is a prime ideal in $\O$.
 Therefore $\langle q\rangle$ divides at least one of $\langle x' + r\smd'\rangle$ or $\langle x' - r\smd'\rangle$.
-As $\langle x' + r\smd'\rangle$ is conjugate ideal to $\langle x' - r\smd'\rangle$, $\langle q\rangle$ divides any one of them implies $\langle q\rangle$ divides both of them, which contradicts the fact that they are coprime ideals.
+As $\langle x' + r\smd'\rangle$ is a conjugate ideal to $\langle x' - r\smd'\rangle$, $\langle q\rangle$ divides any one of them implies $\langle q\rangle$ divides both of them, which contradicts the fact that they are coprime ideals.
 So we conclude that $q$ splits in $\O$ and $\langle q\rangle = \q\bar{\q}$ for some prime ideals $\q$ and $\bar{\q}$.
 Since this argument applies to any prime factor of $c$, we can write $\langle c \rangle = \prod_{i=1}^m \q_i \bar{\q}_i$ for some prime ideals $\q_i, \bar{\q}_i$ in $\O$. 
 In particular, define $\g = \prod_{i=1}^n \q_i$, where each of $\q_i$ are factors of $\langle x ' + r'\smd \rangle$.
@@ -107,14 +107,14 @@ $$
 $$
 for some unknown $\beta$.
 Write $\alpha = a + b \smd$ and $\beta = u + v \smd$. 
-Expand the above equation gives
+Expanding the above equation gives
 \begin{align}
 	\beta^p &= u^p + \binom{p}{1} u^{p-1} v \smd + \binom{p}{2} u^{p-2} v^2 (\smd)^2 + \cdots + v^p (\smd)^p \label{expand-long}\\
 	 	& = (ax -rbd) + (ar + xb) \smd\\
 		& = \alpha (x + r\sqrt{-d})
 \end{align}
 Let $G_1(u, v)$ be the sum of the terms in \eqref{expand-long} such that the power of $u$ is odd (which is equivalent to the real terms), the $G_2(u, v)$ be the sum of the terms such that the power of $u$ is even (which is equivalent to the imaginary terms).
-It is clear that both of $G_1$ and $G_2$ are homogeneous polynomials of degree $p$ in $u, v$.
+It is clear that both $G_1$ and $G_2$ are homogeneous polynomials of degree $p$ in $u, v$.
 
 We have 
 \begin{align*}
@@ -127,15 +127,15 @@ a G_2(u, v) - b G_1(u, v) = a^2 r +rb^2 d = r (N(\alpha))
 $$
 and we have homogeneous equation $F(u, v) = \frac{a G_2(u, v) + bG_1(u, v)}{N(\alpha)} = r$.
 
-Homogeneous diophantine equation like this in two variable is called Thue's equation. 
+A homogeneous diophantine equation like this in two variables is called Thue's equation. 
 Although in general Thue's equation can not be solved as easily compared to the coprime case, there does exist an efficient algorithm to solve it \cite{Gherga_2025}. 
 
-Let us summarise our result in this section. 
+Let us summarise our results in this section. 
 \begin{theorem}
 	For any non-coprime solution $x, y$ of the equation \ref{eq:main},
 	$gcd(x, y)$ is a factor of $r$; moreover, all primes number dividing $gcd(x, y)$ must split in $\O_{\Q(\sqrt{-d})}$. 
 
-	There exists and ideal $\g$ which is a factor of $\langle r\rangle$ such that we can write
+	There exists an ideal $\g$ which is a factor of $\langle r\rangle$ such that we can write
 	$$
 	\langle x + r\smd \rangle= \bar{\g} \g^{p-1} \a^p
 	$$
@@ -147,14 +147,19 @@ Let us summarise our result in this section.
 	$$
 	for another ideal $\c$. 
 
-	From this we deduced that 
+	From this, we deduced that 
 	\begin{equation}\label{eq:non-coprime}
 		\alpha (x + r\sqrt{-d}) = \beta^p
 	\end{equation}
 	for $\alpha = \gamma_1 \gamma_2^{\p-1}$ and some unknown $\beta \in \O_{\Q(\sqrt{-d})}$.
 
-	By expanding $\beta = u + v \sqrt{-d}$ for $u, v \in \Z$, we see \autoref{eq:non-coprime} is equivalent to a homogeneous diophantine equation $F(u, v) = r$ for some homogeneous polynomial, which can be effectively solved by an Thue's algorithm.
+	By expanding $\beta = u + v \sqrt{-d}$ for $u, v \in \Z$, we see \autoref{eq:non-coprime} is equivalent to a homogeneous diophantine equation $F(u, v) = r$ for some homogeneous polynomial, which can be effectively solved by Thue's algorithm.
 \end{theorem}
+
+\begin{remark}
+The key to this theorem is that the constant $\alpha$ only depends on the structure of the ring $\O_{\Q(\sqrt{-d})}$ and some ideal factor $\g$ of $\langle r\rangle$, which is a finite set of ideals.
+So we can effectively find all possible $\alpha$ and thus all possible homogeneous equations $F(u, v) = r$, and any of their solution gives us a solution for the original equation \ref{eq:main}.
+\end{remark}
 
 \subsection{Solution of \texorpdfstring{$y^3 = x^2 + 18$}{}}
 
@@ -171,7 +176,7 @@ Write $\alpha = u + v \sqrt{-2}$ for some $u, v \in \Z$ and expanding the aboce 
 $$
 3x + 18 + \sqrt{-2} (9 - 3x) = u^3 + 3 u^2 v \sqrt{-2} - 6 uv^2 - 2 v^3 \sqrt{-2}
 $$
-equating the real and imaginary parts gives
+Equating the real and imaginary parts gives
 \begin{align*}
 	F(u, v) = u^3 - 6 uv^2 & = 3x + 18\\
 	G(u, v) = 3 u^2 v - 2 v^3 & = 9 - 3x
@@ -187,7 +192,7 @@ Yet SageMath's Thue equation solver\footnote{
 	See \autoref{sec:computer-assisted-calculations} for details.
 } states the only integer solution is $u=3, v=0$, giving us the only non-coprime solution to the original equation $y^3 = x^2 + 18$ is $x = \pm 3, y = 3$.
 
-\subsection{Solution of \texorpdfstring{$y^7 = x^2 + 338$}{}}
+\subsection{Solutions of \texorpdfstring{$y^7 = x^2 + 338$}{}}
 Prime factorisation of $338  $ is $ 2 \cdot 13 ^2 $.
 In the field $\Z / 13 \Z$, the polynomial $x^2 + 2$ is reducible if and only if $-2 \equiv 11$ is a square in $\Z / 13 \Z$.
 Let us check 
@@ -202,4 +207,47 @@ Let us check
 So $-2$ is not a square in $\Z / 13 \Z$ and $x^2 +2$ is irreducible in $\Z /\ 13\Z$.
 Applying Dedekind's criterion we see $13$ is inert in $\O_{\Q{\sqrt{-2}}}$.
 We have shown that if $x, y$ are non-coprime solution for $y^7 = x^2 + 13^2 \cdots 2 $, then $13|x, y$ and $13$ must split in $\O_{\Q{\sqrt{-2}}}$. 
-We have just shown that $13$ does not split, so there is no non-coprime solution for $y^7 = x^2 + 338$.
+As $13$ does not split, there is no non-coprime solution for $y^7 = x^2 + 338$.
+
+Combining with the result in \autoref{sol:coprime-338} we conclude the only solutions of $y^7 = x^2 + 338$ are $(x=\pm 43, y =3)$.
+
+\subsection{Solutions of \texorpdfstring{$y^3 = x^2 + 1210$}{}}
+
+This equation can be written as 
+$$
+	y^3 = (x + 11 \sqrt{-10})(x - 11 \sqrt{-10})
+$$
+
+The Minkowski bound of $\Q(\sqrt{-10})$ is $M_{0, 1} \sqrt{4 \cdot 10} \approx 4.02$. 
+So we only need to consider the prime ideals dividing $2, 3$.
+
+We know $2$ is ramified in $\O_{\Q{\sqrt{-10}}}$, and $\langle 2\rangle = \langle 2, \sqrt{-10}\rangle^2$.
+Let us denote $\a = \langle \sqrt{-10}, 2\rangle$.
+By applying Dedekind's criterion we see $3$ is inert in $\O_{\Q{\sqrt{-10}}}$, as $x^2  + 10 \equiv x^2 - 2$ is irreducible in $\Z / 3 \Z$, as no square is congruent to $2$ in $\Z / 3 \Z$.
+So we conclude that the class group of $\O_{\Q{\sqrt{-10}}}$ is order-2 and is generated by the class of $\langle 2, \sqrt{-10}+1\rangle$.
+
+Applying dedekind's criterion again, we in $\Z/11\Z$, $x^2 +  10$ is reducible as $(x+1)(x-1)$. 
+So $\langle 11\rangle = \langle \sqrt{-10} + 1 , 11\rangle \langle \sqrt{-10} - 1, 11\rangle$. Define $\q := \langle \sqrt{10} + 1, 11\rangle$.
+Since $(\sqrt{-10} + 1)(\sqrt{-10} - 1) == 1$, we see that $\q$ is actually principal ideal and $\q = \langle \sqrt{-10} + 1\rangle$.
+
+Therefore, by our previous arguments we can write 
+
+$$
+11(\sqrt{-10} + 1)(x + 11 \sqrt{-10}) = \alpha^3
+$$
+let $\alpha = u + v \sqrt{-10}$ for some $u, v \in \Z$ and expanding the above equation gives
+$$11x - 1210 + \sqrt{-10} (11x + 121) = u^3 + 3 u^2 v \sqrt{-10} - 30 uv^2 - 10 v^3 \sqrt{-10}$$
+Equating the real and imaginary parts gives
+\begin{align*}
+	F(u, v) = u^3 - 30 uv^2 & = 11x - 1210\\
+	G(u, v) = 3 u^2 v - 10 v^3 & = 11x + 121
+\end{align*}
+
+So we need to solve the diophantine equation 
+$$
+F - G = u^3 - 30 uv^2 - 3 u^2 v + 10 v^3 = -1331
+$$
+
+SageMath's Thue equation solver states the only integer solution is $u = 11, v= 0$, 
+which gives us the only non-coprime solution for $y^3 = x^2 + 1210$ is $x = \pm \pm 11, y = 11$.
+

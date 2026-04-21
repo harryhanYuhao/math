@@ -1,0 +1,11 @@
+\section{Conclusion}
+
+In this report, we touched on one of the central problems in quantum computation: how to implement a given unitary operation using a finite set of gates, and how to do it efficiently. 
+This is called the quantum compilation problem.
+
+We have shown that the Clifford + T gate is a universal gate set.
+Works by Kliuchnikov et al \cite{exact-clifford+t} proved the necessary and sufficient condition for a single qubit unitary to be exactly implementable by Clifford + T gates, and provided an efficient algorithm for finding such a circuit when it exists.
+Matsumoto and Amano \cite{matsumoto} showed that any Clifford + T circuit can be transformed into a unique normal form with minimal T-count. 
+This is particularly important as T gates are more expensive to implement than Clifford gates in fault-tolerant quantum computation.
+Finally, we have also presented the Ross-Selinger algorithm for approximating $z$-rotations using Clifford and T gates, which is asymptotically optimal in terms of T-count.
+
