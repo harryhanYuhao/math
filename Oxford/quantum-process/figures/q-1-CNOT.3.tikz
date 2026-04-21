@@ -34,6 +34,7 @@
 		\node [style=none] (48) at (6.75, 4.25) {};
 		\node [style=none] (49) at (6.75, 4.25) {$x_i + x_{2m+1}$};
 		\node [style=none] (50) at (6.75, 2) {$x_i + x_j + x_{2m+1}$};
+		\node [style=green] (51) at (-5.75, -1.25) {};
 	\end{pgfonlayer}
 	\begin{pgfonlayer}{edgelayer}
 		\draw (0) to (11);
@@ -54,5 +55,6 @@
 		\draw (41) to (42);
 		\draw (40) to (38);
 		\draw (43) to (44);
+		\draw (51) to (10);
 	\end{pgfonlayer}
 \end{tikzpicture}

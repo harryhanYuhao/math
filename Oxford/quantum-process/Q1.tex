@@ -81,7 +81,7 @@ Also note that
 $$
 \tikzfig{q-1-two-qubit-phase}
 $$
-So we conclude that $X_i(\alpha)$ can be implemented by a two-qubit gate on the physical qubits.
+So we conclude that $X_i(\alpha)$ can be implemented by two-qubit gates on the physical qubits.
 
 A $Z$ spider of any phase on one of the logical qubits can be implemented on the logical quibits as 
 $$
@@ -113,12 +113,21 @@ $$
 
 Thus a single CNOT gate between the $i$th and $j$th logical qubits can be implemented by four CNOT gates in the physical qubits.
 
-I would like to justify why the labling strategy work. 
-
 \subsection{Fault Tolerance}
 
-The single qubit logical operations are transverse thus fault tolerant. 
-One error before the CNOT operation, however, can propagate to two as shown below. Thus the CNOT operation is not fault tolerant.
+When it comes to single qubit errors, we only need to consider $X$ and $Z$ errors, as $X, Z, -iZX = Y,$ and $I$ forms a basis of all one-qubit unitary matrices, and any measurement will collapse the error to $X$ or $Z$.
+Moreover, since we have isomorphic $X$ forms and $Z$ forms if disregarding the colour, all analysis on $X$ error on $X$ forms can be applied to $Z$ error on $Z$ forms, and vice versa.
+So we only need to consider $X$ error.
 
-The simultaneous H gates is fault tolerant as, as it is transverse.
+The single qubit logical operations are transverse thus fault tolerant. 
+We can show it explicitly in the following diagram, where one $X$ error propagates to at most one $X$ error after the operation.
+\ctikzfig{one-qubit-error}
+
+One $X$ error before the CNOT operation, however, can propagate to two. Thus the CNOT operation is not fault tolerant.
+
+The simultaneous H gates is fault tolerant as, as it is transverse (as shown in section 12.3 of \cite{kissinger}).
+To justify it in a different way, consider simultaneous $H$ gates on the logical qubits, which is equivalent to simultaneous $H$ gates on the physical qubits and swap of the last two physical qubits.
+A single $H$ gate on the physical qubit is definitely fault tolerant. 
+The swap, considered as three consecutive CNOT gates, is also fault tolerant as long as there is no errors between the three CNOT gates.
+(In addition, since swap is literally swapping the two qubits, it can be down physically if ignoring any quantum entanglements.)
 

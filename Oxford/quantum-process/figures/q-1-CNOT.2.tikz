@@ -25,6 +25,7 @@
 		\node [style=red] (38) at (-5.25, 1.5) {};
 		\node [style=none] (39) at (-4.5, 3.5) {$x_i$};
 		\node [style=none] (40) at (-6.5, 2.25) {$x_j$};
+		\node [style=green] (41) at (-6, -1.25) {};
 	\end{pgfonlayer}
 	\begin{pgfonlayer}{edgelayer}
 		\draw (0) to (11);
@@ -42,5 +43,6 @@
 		\draw (28.center) to (15);
 		\draw (16) to (27.center);
 		\draw (37) to (38);
+		\draw (41) to (10);
 	\end{pgfonlayer}
 \end{tikzpicture}

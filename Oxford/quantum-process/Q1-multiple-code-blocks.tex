@@ -1,10 +1,34 @@
 \subsection{Fault Tolerance with Multiple Code Blocks}
 
-The following constructions can be done with fault tolerance.
+Here we discuss some more constructions on crystal code.
 
-\subsubsection{CNOT}
+\subsubsection{Universal Logical Gates}
 
-CNOT between two code blocks is transversal and thus can be implemented with fault tolerance.
+As shown in the previous section, we can implement $T$ gate on any logical qubit. 
+Let $H_i$ denote the $H$ gate on the $i$-th logical qubit and $\vec{H}$ denote the simultaneous $H$ gates on all logical qubits. 
+Then $\vec{H} T_i \vec{H}$ is $HTH$ gate on the $i$-th logical qubit as shown below.
+\ctikzfig{T-HTH}
+In section 4.5.3 of \cite{Nielsen_Chuang_2010}, it is shown that $T$ and $HTH$ are a universal set of gate on one qubit. (The can approximate any one qubit gate with arbitrary precision.) 
 
-\subsubsection{}
+Therefore, any one qubit Clifford gate can be implemented to arbitrary precision with fault tolerance, as we can implement simultaneous $H$ gate and $T$ gate wth fault tolerance.
+Any multi-qubit gates can also be implemented. 
+However, since they requires CNOT between logical qubits of a single code block, they may not be fault tolerant.
 
+\subsubsection{CNOT Between Two Code Blocks}
+
+CNOT between two code blocks is transversal and thus can be implemented with fault tolerance. 
+This has been shown in 12.3 of \cite{kissinger}.
+
+\subsubsection{Toffoli Logical Gate}
+
+The toffoli gate on logical qubits can be implemented in the following way,
+\ctikzfig{toffoli}
+Where we use two black dots and one white dot to denote the toffoli gate. 
+The first two black dots are the control qubits and the white dot is the target qubit.
+
+As the Pauli errors commute with the Toffoli gate in the following way.
+\ctikzfig{toffoli-error}
+
+Toffoli gates among different code blocks can be implemented with fault tolerance.
+
+\subsubsection{Restricted Clifford + T}

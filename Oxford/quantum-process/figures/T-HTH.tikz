@@ -1,0 +1,39 @@
+\begin{tikzpicture}
+	\begin{pgfonlayer}{nodelayer}
+		\node [style=none] (0) at (-4, 1.5) {};
+		\node [style=none] (1) at (-4, 0.5) {};
+		\node [style=none] (2) at (-4, -1) {};
+		\node [style=none] (3) at (-1.5, -1) {};
+		\node [style=none] (4) at (-1.5, 0.5) {};
+		\node [style=none] (5) at (-1.5, 1.5) {};
+		\node [style=green-phase] (6) at (-2.75, 1.5) {$\frac{\pi}{4}$};
+		\node [style=H] (7) at (-3.5, 1.5) {};
+		\node [style=H] (8) at (-3.5, 0.5) {};
+		\node [style=H] (9) at (-3.5, -1) {};
+		\node [style=H] (10) at (-2, -1) {};
+		\node [style=H] (11) at (-2, 0.5) {};
+		\node [style=H] (12) at (-2, 1.5) {};
+		\node [style=none] (13) at (0, 0.25) {$=$};
+		\node [style=none] (14) at (1, 1.5) {};
+		\node [style=none] (15) at (1, 0.5) {};
+		\node [style=none] (16) at (1, -1) {};
+		\node [style=none] (17) at (3.5, -1) {};
+		\node [style=none] (18) at (3.5, 0.5) {};
+		\node [style=none] (19) at (3.5, 1.5) {};
+		\node [style=green-phase] (20) at (2.25, 1.5) {$\frac{\pi}{4}$};
+		\node [style=H] (21) at (1.5, 1.5) {};
+		\node [style=H] (26) at (3, 1.5) {};
+		\node [style=none] (27) at (-2.75, -0.25) {$\dots$};
+		\node [style=none] (28) at (2.25, -0.25) {$\dots$};
+	\end{pgfonlayer}
+	\begin{pgfonlayer}{edgelayer}
+		\draw (0.center) to (6);
+		\draw (6) to (5.center);
+		\draw (4.center) to (1.center);
+		\draw (2.center) to (3.center);
+		\draw (14.center) to (20);
+		\draw (20) to (19.center);
+		\draw (18.center) to (15.center);
+		\draw (16.center) to (17.center);
+	\end{pgfonlayer}
+\end{tikzpicture}
