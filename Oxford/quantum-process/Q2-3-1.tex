@@ -1,6 +1,6 @@
 \subsection{Clifford and T with Measurement}
 
-Clifford + T computation are performed in the following three steps.
+Clifford + T computations are performed in the following three steps.
 \begin{enumerate}
 	\item Prepare the states $\ket{0}^{\otimes n}$,
 	\item Perform a sequence of Clifford + T gates,
@@ -22,39 +22,38 @@ We can inject the magic $T$ state into any qubit of our circuit with the followi
 	\tikzfig{q-2-3-1}
 \end{align}
 
-As shown in the the remark in section \ref{remark:alternating-pauli-clifford}, the gadget can be implemented with alternating Pauli measurements and Clifford gates on an extra ancilla qubit prepared in $\ket{T}$, where subsequent Pauli the Clifford gates only depend on the previous measurement outcomes.
+As shown in the remark in section \ref{remark:alternating-pauli-clifford}, the gadget can be implemented with alternating Pauli measurements and Clifford gates on an extra ancilla qubit prepared in $\ket{T}$, where subsequent Pauli and Clifford gates only depend on the previous measurement outcomes.
 
-Thus for a Clifford + T circuit, we can let the Clifford gates remain the same and replace each $T$ gate with the above Pauli measurement construction. 
-As product of two clifford gate is still a clifford gate, the construction guarantees that there is a Pauli measurement between each clifford gate. 
+Thus, for a Clifford + T circuit, we can let the Clifford gates remain the same and replace each $T$ gate with the above Pauli measurement construction. 
+As a product of two Clifford gates is still a Clifford gate, the construction guarantees that there is a Pauli measurement between each Clifford gate. 
 We still need to make sure that no two Pauli measurements are next to each other. 
-The only way this may take place is that there are two consective $T$ gates on the same qubit. 
-However, two $T$ gates make an $S$ gate which is part of Clifford, so there is no such problem, and we conclude that alternating Pauli measurement with Clifford with ancilla $\ket{T}$ can simulate any Clifford + T circuit.
+The only way this may take place is if there are two consecutive $T$ gates on the same qubit. 
+However, two $T$ gates make an $S$ gate, which is part of Clifford, so there is no such problem, and we conclude that alternating Pauli measurement with Clifford with ancilla $\ket{T}$ can simulate any Clifford + T circuit.
 
 The number of $\ket{T}$ required is exactly equal to the number of $T$ gates in the original circuit.
 In this way, we have simulated a Clifford + T circuit with alternating Pauli measurements and Clifford gates.
 
 \paragraph{Time Complexity}
 
-We know computation of Pauli stabilisers is linear in number of qubits $n$. 
-Let $m$ be the number of Pauli measurement in our original construction, then
-the total number of gates in our circuit is $O(m)$.
-Moving clifford to the end causes $O(m^2)$ number of computations in Pauli.
+We know computation of Pauli stabilisers is linear in the number of qubits $n$. 
+Let $m$ be the number of Pauli measurements in our original construction, then the total number of gates in our circuit is $O(m)$.
+Moving the Cliffords to the end causes $O(m^2)$ number of computations in Pauli.
 So the total time complexity is polynomial in $m$ and $n$.
 
 \subsubsection{Only Pauli}
 
-Our quantum circuit model, including the last measurement in $Z$ basis shown below 
+Our quantum circuit model, including the last measurement in the $Z$ basis, is shown below 
 
 \begin{equation}
 	\tikzfig{q-2-measurement-model}
 \end{equation}
 where section $A$ is state preparation, section $B$ is sections of alternating Pauli measurements and Clifford gates, and section $C$ is the final measurement in $Z$ basis, which themselves are Pauli measurements as well.
 
-Note we can apply lemma \ref{lemma:measure-conjugate} to move each Clifford gate to the right of section $C$ in the following way 
+Note, we can apply Lemma \ref{lemma:measure-conjugate} to move each Clifford gate to the right of section $C$ in the following way 
 $$
 	\tikzfig{q-2-measurement-model-move-clifford}
 $$
-In this way, $P_2'$ and $C_2'$s depend on the first measurement outcome.
+In this way, $P_2'$ and $C_2'$ depend on the first measurement outcome.
 
 Indeed, we can move all Clifford gates to the right of section $C$ in the same way.
 
@@ -62,25 +61,25 @@ The Clifford gates on the right of section $C$ do not have any effect on the fin
 
 \paragraph{Time Complexity}
 
-The time complexity of moving Clifford gates to the end is $O(m^2)$ where $m$ is the number of Pauli measurements in the original construction.
+The time complexity of moving Clifford gates to the end is $O(m^2)$, where $m$ is the number of Pauli measurements in the original construction.
 
 \subsubsection{Only Commuting Pauli}
 
 We take the following lemma for granted
 \begin{lemma}\label{lemma:clifford-non-commuting}
-	For any non-commuting pauli $P$ and $Q$, there exists a Clifford $C$ such that $C P C^\dagger = X_1$ and $C Q C^\dagger = Z_1$. where $X_1$ and $Z_1$ are the Pauli $X$ and $Z$ acting on the first qubit.
+	For any non-commuting Pauli $P$ and $Q$, there exists a Clifford $C$ such that $C P C^\dagger = X_1$ and $C Q C^\dagger = Z_1$. where $X_1$ and $Z_1$ are the Pauli $X$ and $Z$ acting on the first qubit.
 \end{lemma}
 
 Using this lemma, we can prove the following theorem
 
 \begin{theorem}\label{theorem:non-commuting-pauli}
-	Let $P, Q$ be two non-commuting Pauli. 
+	Let $P, Q$ be two non-commuting Paulis. 
 	Then $\Pi^j Q \Pi^i P \propto C_j \Pi^i P$ for some Clifford $C_j$ depending on the measurement outcome $j$ of $\Pi^j Q$.
 	Moreover, $\Pi^j Q$ outcome following a $P$ measurement gives $\frac{1}{2}$ chance for each outcome $j$.
 \end{theorem}
 
 \begin{proof}
-	Use lemma \ref{lemma:clifford-non-commuting}, we can find a Clifford $C$ such that $C P C^\dagger = X_1$ and $C Q C^\dagger = Z_1$. So we only need to verify the case when $P = X_1$ and $Q = Z_1$ with explicit calculation.
+	Using lemma \ref{lemma:clifford-non-commuting}, we can find a Clifford $C$ such that $C P C^\dagger = X_1$ and $C Q C^\dagger = Z_1$. So we only need to verify the case when $P = X_1$ and $Q = Z_1$ with explicit calculation.
 	In particular, we only need to verify the computation on the first qubit as the rest of the qubits are not affected by the measurement and Clifford gates.
 
 	\begin{align*}
@@ -142,14 +141,14 @@ Using this lemma, we can prove the following theorem
 
 The above theorem captures the same idea as in 6.11 of \cite{kissinger}.
 
-From the answer to the previous part we can simulate a Clifford + T circuit with only Pauli measurements with ancilla $\ket{T}$.
+From the answer to the previous part, we can simulate a Clifford + T circuit with only Pauli measurements with ancilla $\ket{T}$.
 Assuming our sequence of measurements is $\Pi^{i_n}S_n, \cdots \Pi^{i_1}S_1$. (In this notation the first measurement is $\Pi^{i_1}S_1$ and the last measurement is $\Pi^{i_n}S_n$.)
 We can start with $k = 2$ and check if $\Pi^{i_k} S_i$ commutes with all of the previous measurements $\Pi^{i_1}S_1, \cdots, \Pi^{i_{k-1}}S_{k-1}$.
-If it does we preceed to the next $k$. 
-If it does not, $S_k$ must anticommute with at least one of the previous measurement, which we label as $P$.
-Since all of the previous measurements commute with each other, we and move the measurement $P$ to right before $\Pi^{i_k} S_k$ without affecting anything.
-Now use theorem \ref{theorem:non-commuting-pauli} to replace $\Pi^{i_k} S_k \Pi^j P$ with $C_j \Pi^j P$ for some Clifford $C_j$ depending on the measurement outcome $j$ of $\Pi^j P$. We know the measurement outcome $j$ is $\frac{1}{2}$ for each $j$ by theorem regardless of the input state, so we may just pick randomly $C_0$ and $C_1$ with probability $\frac{1}{2}$ each.
-This extra Clifford gate can be moved to the end of the circuit and be absorbed into the final measurement as we have done in the previous section.
+If it does, we proceed to the next $k$. 
+If it does not, $S_k$ must anticommute with at least one of the previous measurements, which we label as $P$.
+Since all of the previous measurements commute with each other, we move the measurement $P$ to right before $\Pi^{i_k} S_k$ without affecting anything.
+Now use theorem \ref{theorem:non-commuting-pauli} to replace $\Pi^{i_k} S_k \Pi^j P$ with $C_j \Pi^j P$ for some Clifford $C_j$ depending on the measurement outcome $j$ of $\Pi^j P$. We know the measurement outcome $j$ is $\frac{1}{2}$ for each $j$, regardless of the input state, so we may just pick randomly $C_0$ and $C_1$ with probability $\frac{1}{2}$ each.
+This extra Clifford gate can be moved to the end of the circuit and absorbed into the final measurement, as we have done in the previous section.
 
 The algorithm is shown in detail in \ref{alg:commuting-pauli}
 
@@ -169,7 +168,7 @@ The algorithm is shown in detail in \ref{alg:commuting-pauli}
 	\State Let $P$ be the measurement in $R$ that does not commute with $\Pi^{i_k} S_k$.
 	\State Use theorem \ref{theorem:non-commuting-pauli} to find Clifford $C_j$ such that $\Pi^{i_k} S_k \Pi^j P \propto C_j \Pi^j P$ for $j = 0, 1$.
 	\State Pick randomly $C_j$ with probability $\frac{1}{2}$ for each $j$.
-	\State Move $C_j$ to the end of the circuit and absorb it into the final measurement. (In this process all the pauli measurements $\Pi^{i_{m}} S_m$ for $m > k$ are changed accordingly to $C_j$.
+	\State Move $C_j$ to the end of the circuit and absorb it into the final measurement. (In this process, all the Pauli measurements $\Pi^{i_{m}} S_m$ for $m > k$ are changed accordingly to $C_j$.
 	\EndIf
 	\State $k \gets k + 1$
 	\EndWhile 
@@ -182,19 +181,19 @@ The time complexity of checking if $\Pi^{i_k} S_k$ commutes with all the previou
 
 \subsubsection{Only \texorpdfstring{$\ket{T}$}{}}
 
-It is possible to simulate Clifford + T circuit with an equivalent circuit of commuting Pauli measurements with initial states in $\ket{T}^{k}$ by the following way.
+It is possible to simulate the Clifford + T circuit with an equivalent circuit of commuting Pauli measurements with initial states in $\ket{T}^{k}$ by the following way.
 
 
 
-Given a given Clifford + T circuit on $n$ qubits, we can use results from the previous section to simulate it with a series of (not necessarily commuting) Pauli measurements with $k$ ancilla $\ket{T}$.
+Given a Clifford + T circuit on $n$ qubits, we can use results from the previous section to simulate it with a series of (not necessarily commuting) Pauli measurements with $k$ ancilla $\ket{T}$.
 
-First we shall note the, adding a series of $Z$ measurement at the beginning of of the circuit on the qubits of initial state $\ket{0}$ does not change the final measurement outcome, as the input state $\ket{0}$ is the eigenvector of $Z$ with eigenvalue $1$.
+First, we shall note that adding a series of $Z$ measurements at the beginning of the circuit on the qubits of initial state $\ket{0}$ does not change the final measurement outcome, as the input state $\ket{0}$ is the eigenvector of $Z$ with eigenvalue $1$.
 This is illustrated in the following equality
 \begin{equation*}
 	\tikzfig{q-2-only-T-equality}
 \end{equation*}
 
-From this we can use algorithm \ref{alg:commuting-pauli} to find a series of commuting Pauli measurements that simulates the above circuit. 
+From this, we can use algorithm \ref{alg:commuting-pauli} to find a series of commuting Pauli measurements that simulates the above circuit. 
 We are left with Pauli measurements that commute with $\Pi Z_i$ for any $i$.
 
 Notice that we may perform the following computation (we implicitly use the fact that $\ket{0} \propto \tikzfig{X-state}$)
@@ -203,12 +202,11 @@ Notice that we may perform the following computation (we implicitly use the fact
 	\tikzfig{q-2-3-onlyT-1}
 \end{align*}
 
-Now, part A of the ciruct shown on right hand side can be absorbed into the quantum circuit with only $\ket{T}^k$ qubits. 
-On the remaining part $B$ we can add $Z$ measurements in the beginning and use the same trick as above.
+Now, part A of the circuit shown on the right-hand side can be absorbed into the quantum circuit with only $\ket{T}^k$ qubits. 
+On the remaining part $B$, we can add $Z$ measurements in the beginning and use the same trick as above.
 This process can be repeated until all the measurements are removed and we are left with a quantum circuit on only $\ket{T}^k$.
 
 \paragraph{Time Complexity}
 
 The time complexity of reducing the circuit to only $\ket{T}$ is $O(k^2n^2)$, which is the same as the time complexity of algorithm \ref{alg:commuting-pauli}.
 Computation of the final circuit (absorbing Pauli into the top qubits) is linear in the number of gates.
-

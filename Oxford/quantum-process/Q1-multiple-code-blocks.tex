@@ -2,33 +2,47 @@
 
 Here we discuss some more constructions on crystal code.
 
-\subsubsection{Universal Logical Gates}
-
-As shown in the previous section, we can implement $T$ gate on any logical qubit. 
-Let $H_i$ denote the $H$ gate on the $i$-th logical qubit and $\vec{H}$ denote the simultaneous $H$ gates on all logical qubits. 
-Then $\vec{H} T_i \vec{H}$ is $HTH$ gate on the $i$-th logical qubit as shown below.
-\ctikzfig{T-HTH}
-In section 4.5.3 of \cite{Nielsen_Chuang_2010}, it is shown that $T$ and $HTH$ are a universal set of gate on one qubit. (The can approximate any one qubit gate with arbitrary precision.) 
-
-Therefore, any one qubit Clifford gate can be implemented to arbitrary precision with fault tolerance, as we can implement simultaneous $H$ gate and $T$ gate wth fault tolerance.
-Any multi-qubit gates can also be implemented. 
-However, since they requires CNOT between logical qubits of a single code block, they may not be fault tolerant.
-
 \subsubsection{CNOT Between Two Code Blocks}
 
 CNOT between two code blocks is transversal and thus can be implemented with fault tolerance. 
 This has been shown in 12.3 of \cite{kissinger}.
 
+\subsubsection{Universal Multi-qubit Logical Gate}
+
+We can use the following fault tolerant CNOT constructions between physical qubits of two code blocks to implement CNOT within a single code block.
+\ctikzfig{CNOT-in-codeblocks}
+This construction can be used to implement CNOT between logical qubits in a single code block, which can be implemented with four CNOTs between physical qubits of the same code block.
+
+\subsubsection{Universal Single-qubit Logical Gates}
+
+As shown in the previous section, we can implement $T$ gate on any logical qubit. 
+Let $H_i$ denote the $H$ gate on the $i$-th logical qubit and $\vec{H}$ denote the simultaneous $H$ gates on all logical qubits. 
+Then $\vec{H} T_i \vec{H}$ is $HTH$ gate on the $i$-th logical qubit as shown below.
+\ctikzfig{T-HTH}
+In the section 4.5.3 of \cite{Nielsen_Chuang_2010}, it is shown that $T$ and $HTH$ are a universal set of gate on one qubit. (They can approximate any one qubit gate with arbitrary precision.) 
+
+Therefore, any one qubit Clifford gate can be implemented to arbitrary precision with fault tolerance, as we can implement simultaneous $H$ gate and $T$ gate wth fault tolerance.
+As shown in the previous section, we can implement CNOT between any two logical qubits with fault tolerance.
+
+
+
 \subsubsection{Toffoli Logical Gate}
 
-The toffoli gate on logical qubits can be implemented in the following way,
+The toffoli gate on logical qubits can be implemented in the following way.
+THe deduction is similar to the case of CNOT and omitted here for simplicity.
 \ctikzfig{toffoli}
 Where we use two black dots and one white dot to denote the toffoli gate. 
 The first two black dots are the control qubits and the white dot is the target qubit.
 
 As the Pauli errors commute with the Toffoli gate in the following way.
 \ctikzfig{toffoli-error}
+so toffoli gate on single code block is not fault tolerant.
 
-Toffoli gates among different code blocks can be implemented with fault tolerance.
+\subsubsection{Controlled-Z Logical Gate}
 
-\subsubsection{Restricted Clifford + T}
+We can show that CZ gate on the logical qubits can be implemented in the following way. 
+(The deduction is similar to the case of CNOT and omitted here for simplicity.)
+
+\ctikzfig{cz}
+
+If we have multiple code blocks, this can be implemented with fault tolerance, as we can implement CNOT between two code blocks with fault tolerance.

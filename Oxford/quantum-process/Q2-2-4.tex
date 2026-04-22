@@ -64,8 +64,8 @@ Our previous calculation shows that for outcome $i, j$, our post selected Cliffo
 \end{enumerate}
 
 That is
-Note that when the first measurement outcome is $0$, the post selected Clifford has the form $(H\otimes \vec{I}) D_{0,k}$ where $D_{0, k}$ is another Clifford depending on the second measurement outcome $k$.
-Let us write our original circuit with outcoome $0, k$ as
+Note that when the first measurement outcome is $0$, the post-selected Clifford has the form $(H\otimes \vec{I}) D_{0,k}$ where $D_{0, k}$ is another Clifford depending on the second measurement outcome $k$.
+Let us write our original circuit with outcome $0, k$ as
 $$
 \Pi^0 \vec{Q_1} \Pi^k\vec{Q_2} C_{0, k}
 $$
@@ -86,22 +86,19 @@ In either case, we have rewritten our original circuit as
 $$
 \Pi^i \vec{Q_1} \Pi^k\vec{Q_2} C_{i, k} = \Pi^i \vec{Q_1} E_i  \Pi^k\vec{Q_{2, i}'} D_{k}
 $$
-where Pauli measurements alternates Clifford gates and the subsequent Clifford gate and Pauli measurement are only dependent on previous measurement outcomes.
+where Pauli measurements alternate with Clifford gates, and the subsequent Clifford gate and Pauli measurement are only dependent on previous measurement outcomes.
 
 \paragraph{ZX Analysis}
 
-In summary of previous results we showed that 
+In summary of previous results, we showed that 
 
 $$
 D_k E_j = C_{j , k} = \tikzfig{C-i-j}
 $$
 
 Again, $E_j$ is only dependent on the first measurement outcome $j$, and $D_k$ is only dependent on the second measurement outcome $k$. 
-Thus we can move $E_j$ to the left of the second measurement (and conjugating $Q_2$ in the same time)
+Thus, we can move $E_j$ to the left of the second measurement (and conjugating $Q_2$ at the same time)
 
 $$
 \tikzfig{alternate-pauli-clifford}
 $$
-
-
-
